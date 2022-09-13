@@ -27,10 +27,13 @@
 
 <body>
   <header id="header">
-    <nav class="navbar navbar-expand-lg container">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg container fixed-top" 
+    style="background-color:rgb(255, 255, 255);
+    padding-top: 15px;">
+      <div class="container-fluid" style="
+      height: 50px;">
         <a class="navbar-brand" href="#" style="margin-right: 25px"
-          ><img src="/resources/images/15.png" style="width: 130px; height: 75px"
+          ><img src="/resources/images/15.png" style="width: 130px; height: 65px"
         /></a>
         <button
           class="navbar-toggler"
@@ -43,7 +46,7 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="background-color: white;">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link" href="#">일석이조</a>
