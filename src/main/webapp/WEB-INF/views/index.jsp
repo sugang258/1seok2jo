@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +20,7 @@
   rel="stylesheet"
 />
 </head>
+<c:import url="./template/header.jsp"></c:import>
 <body>
     <main class="container">
         <div id="d1">
@@ -196,6 +198,6 @@
           <div id="d5"></div>
         </div>
       </main>
-
+<c:import url="./template/footer.jsp"></c:import>
 </body>
 </html>
