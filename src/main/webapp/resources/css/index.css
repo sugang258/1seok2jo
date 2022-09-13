@@ -1,0 +1,261 @@
+* {
+  font-style: inherit;
+  font-weight: inherit;
+}
+body {
+  padding-top: 75px;
+}
+
+#d1 {
+  height: 300px;
+}
+#d1_1 {
+  height: 300px;
+  width: 70%;
+  float: left;
+}
+#d1_2 {
+  height: 300px;
+  width: 30%;
+  float: left;
+}
+
+#d3 {
+  height: 280px;
+}
+.lecture {
+  height: 280px;
+  width: 25%;
+  float: left;
+}
+#d4 {
+  border: solid 1px blueviolet;
+  height: 280px;
+}
+#d5 {
+  border: solid 1px rgb(233, 23, 89);
+  height: 280px;
+}
+
+.nav-item {
+  padding-right: 0.5rem;
+}
+.carousel-item {
+  height: 280px;
+}
+
+/**Search_bar*/
+.search-bar {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  width: 450px;
+  height: 50px;
+  margin-bottom: 40px;
+}
+
+.search-bar input {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  border: none;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.search-bar input:focus {
+  outline: none;
+}
+
+.seach-logo {
+  position: absolute;
+  border: none;
+  width: 20px;
+  height: 15px;
+  font-size: 20px;
+  top: 10px;
+  right: 30px;
+  color: gray;
+  background-color: white;
+  cursor: pointer;
+}
+.seach-logo:active {
+  color: green;
+  transform: scale(1.2);
+}
+
+/**footer*/
+.end-var {
+  background-color: white;
+  color: black;
+  display: flex;
+  height: 300px;
+  justify-content: center;
+}
+.end-var a {
+  color: gray;
+  text-decoration: none;
+}
+.end-container {
+  max-width: 1170px;
+  width: 100%;
+  margin-top: 70px;
+}
+.end-meun {
+  height: 70%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 50px;
+}
+.first-menu {
+  display: flex;
+  justify-content: space-between;
+  width: 73%;
+}
+.bottom-menu-bar {
+  width: 180px;
+}
+
+.bottom-menu-bar h1 {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+.bottom-menu-bar h2 {
+  font-weight: lighter;
+  font-size: 13px;
+  color: gray;
+}
+
+.second-menu {
+  display: flex;
+  justify-content: flex-end;
+  width: 30%;
+}
+.icon {
+  width: 60px;
+  font-size: 30px;
+}
+
+.end-line {
+  height: 12px;
+}
+.end-second-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+.end-second-line a:hover {
+  color: #3adf3a;
+}
+
+/**로그인폼*/
+
+li {
+  list-style: none;
+}
+
+.login {
+  font-size: 21px;
+  width: 100%;
+  height: 300px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  font-family: "Dongle", sans-serif;
+}
+
+.login_id {
+  margin-top: 0px;
+  width: 70%;
+}
+
+.login_id input {
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
+  margin-top: 0px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
+  padding-top: 5px;
+}
+
+.login_pw {
+  margin-top: 5px;
+  width: 70%;
+}
+
+.login_pw input {
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
+  padding-top: 5px;
+}
+
+.submit {
+  width: 70%;
+}
+.submit input {
+  width: 100%;
+  line-height: 40px;
+  height: 40px;
+  border: 0;
+  outline: none;
+  border-radius: 40px;
+  background: linear-gradient(to left, rgb(32, 237, 39), rgb(198, 233, 55));
+  color: white;
+  font-size: 1.2em;
+  letter-spacing: 2px;
+}
+
+/**강의 상단*/
+.hot {
+  height: 40px;
+  font-weight: bold;
+  font-size: 20px;
+}
+.hot a {
+  text-decoration: none;
+  color: black;
+}
+.hot a:hover {
+  color: yellowgreen;
+}
+
+/**카드*/
+.card {
+  margin-right: auto;
+  margin-left: auto;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border: none;
+  width: 90%;
+}
+@media (min-width: 1200px) {
+  .card {
+    width: 80%;
+  }
+}
+.card img {
+  height: 10em;
+}
+.card-text {
+  text-align: left !important;
+  font-size: 1.2rem;
+}
+.card:hover {
+  transform: scale(1.03);
+  transition: 0.2s ease-in-out;
+  color: black;
+}
