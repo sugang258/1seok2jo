@@ -5,7 +5,23 @@
 		    
 		    <mapper namespace="com.seok.home.lecture.LectureDAO">
 		    	
-		    	<insert id="setLecture" parameterType="LectureDTO"></insert>
-		    
-		    
+		    	<insert id="setLecture" parameterType="LectureDTO">
+		    		INSERT INTO LECTURE(L_NUM, ID, LEVEL_NUM, L_NAME, L_CONTENTS, C_NUM, L_PRICE, L_COUNT, L_DATE)
+					VALUES (lecture_seq.nextval, #{id},#{level_num},#{l_name},#{l_contents},#{c_num},#{l_price},0,#{l_date})
+		    	</insert>
+		    	
+		    	<select id="getLecture"  resultType="LectureDTO">
+		    		SELECT * FROM LECTURE
+		    	</select>
+		    	
+		    	<update id="setUpdate" parameterType="LectureDTO">
+		    		UPDATE LECTURE SET 
+		    		LEVEL_NUM = #{level_num}, L_NAME = #{l_name}, L_CONTENTS = #{l_contents},
+		    		C_NUM = #{c_num}, L_PRICE = #{l_price}, L_DATE = #{l_date}
+					WHERE L_NUM=#{l_num}
+		    	</update>
+		    	
+		    	<delete id="setDelete" parameterType="LectureDTO">
+		    		DELETE FROM LECTURE WHERE L_NUM=#{l_num}
+		    	</delete>
 		    </mapper>
