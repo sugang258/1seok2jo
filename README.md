@@ -25,4 +25,4 @@
 ![Work Flow](https://github.com/sugang258/1seok2jo/blob/main/FLOW.png)
 
 ## ERD
-
+![ERD](https://github.com/sugang258/1seok2jo/blob/main/erd.png)
