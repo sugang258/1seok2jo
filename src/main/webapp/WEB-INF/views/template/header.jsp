@@ -44,10 +44,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="background-color: white;">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#">일석이조</a>
+              <a class="nav-link" href="../../../../../">일석이조</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">강의</a>
+              <a class="nav-link" href="/lecture/list">강의</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">로드맵</a>
