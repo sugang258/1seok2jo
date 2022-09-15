@@ -14,7 +14,7 @@ public class LectureTest extends MyAbstractTest {
 	@Autowired
 	private LectureDAO lectureDAO;
 
-	//@Test
+	@Test
 	public void setLecture() throws Exception{
 		LectureDTO lectureDTO = new LectureDTO();
 		
@@ -22,7 +22,6 @@ public class LectureTest extends MyAbstractTest {
 		lectureDTO.setLevel_num(1L);
 		lectureDTO.setL_name("JJ");
 		lectureDTO.setL_contents("JJ");
-		lectureDTO.setC_num(1L);
 		lectureDTO.setL_price(10000L);
 		lectureDTO.setL_date(30L);
 		

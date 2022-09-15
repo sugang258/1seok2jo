@@ -16,5 +16,9 @@ public class LectureService {
 		return lectureDAO.getLecture();
 	}
 	
+	public int setLecture(LectureDTO lectureDTO) throws Exception {
+		return lectureDAO.setLecture(lectureDTO);
+	}
+	
 	
 }
