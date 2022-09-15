@@ -27,19 +27,12 @@
 		<div class="row">
 			<form action="login" method="post">
 				  <div class="mb-3">
-				    <label for="exampleInputEmail1" class="form-label">Email address</label>
-				    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-				    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+				    <input type="text" name="id" class="form-control" id="id" aria-describedby="emailHelp" placeholder="이메일을 입력해 주세요">
 				  </div>
 				  <div class="mb-3">
-				    <label for="exampleInputPassword1" class="form-label">Password</label>
-				    <input type="password" class="form-control" id="exampleInputPassword1">
+				    <input type="password" name="pw" class="form-control" id="pw" placeholder="비밀번호를 입력해 주세요">
 				  </div>
-				  <div class="mb-3 form-check">
-				    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-				    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-				  </div>
-				  <button type="submit" class="btn btn-primary">Submit</button>
+				  <button type="submit" class="btn btn-primary">로그인</button>
 			</form>
 		</div>
 	</section>
