@@ -13,5 +13,11 @@ public class AdminController {
 	private void getLogin() {
 		System.out.println("로그인 컨트롤러");
 	}
+	
+	
+	@GetMapping(value = "auth")
+	private void getAuth() {
+		System.out.println("관리자 인증 컨트롤러");
+	}
 
 }
