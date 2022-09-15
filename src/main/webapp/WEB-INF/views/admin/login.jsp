@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Admin Login</title>
+<link rel="shortcut icon" href="/resources/images/15.png">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
@@ -46,7 +47,7 @@
 						<div class="card-footer py-3 border-0">
 							<div class="text-center">
 								최초 관리자 로그인 전에 인증이 필요합니다.<br>
-								<!--comment 수정 모달-->
+								<!--관리자 인증 모달-->
 								<div>
 									<!-- Button trigger modal -->
 									<button type="button" id="btnAuth" data-bs-toggle="modal" data-bs-target="#modalAuth">
@@ -60,18 +61,31 @@
 											<div class="modal-header">
 											<h5 class="modal-title" id="ModalLabel">관리자 인증</h5>
 											</div>
-											<div class="modal-body">
-												일석이조 홈페이지에서 회원가입을 먼저한 후 관리자 인증을 해주세요
+											<div class="modal-body mb-3">
+												<div class="mb-3"> 
+													일석이조 회원가입을 먼저한 후 <br>
+													관리자 인증을 해주세요
+												</div>
 												<form>
+													<div class="mb-3 row">
+														<label for="recipient-name" class="text-muted col-form-label">아이디</label>
+														<input type="text" class="form-control col-3" id="idAuth">
+													</div>
 													<div class="mb-3">
-														<label for="recipient-name" class="col-form-label">내용</label>
-														<textarea class="form-control" id="upContents" rows="3"></textarea>
+														<label for="recipient-name" class="text-muted col-form-label">비밀번호</label>
+														<input type="password" class="form-control" id="pwAuth">
+													</div>
+													<div class="mb-3">
+														<label for="recipient-name" class="text-muted col-form-label">인증번호</label>
+														<input type="text" class="form-control" id="authNum">
 													</div>
 												</form>
+												<!--인증요청 응답텍스트 표시-->
+												<div id="authMessage"></div>
 											</div>
 											<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-											<button type="button" class="btn btn-primary" id="getAuth">인증 요청</button>
+											<button type="button" class="btn btn-outline-success" id="getAuth">인증 요청</button>
 											</div>
 										</div>
 										</div>
@@ -87,7 +101,6 @@
 
 
 
-	<script src="js/login.js"></script>
 	<style type="text/css">
 	.form-control:focus {
 		border-color:#aed581;
@@ -100,6 +113,8 @@
 		text-decoration:underline;
 	}
 	</style>
+<script src="/resources/js/admin.js">
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>
