@@ -12,7 +12,6 @@ public class AdminDAO {
 	private SqlSession session;
 	
 	public void getLogin() {
-		session.selectOne(NAMESPACE+"getLogin", NAMESPACE);
 	}
 	
 	public void getAuth() {
