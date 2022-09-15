@@ -4,26 +4,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BootStrap</title>
-
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<link rel="stylesheet" href="/resources/css/index.css" />
 		<%-- 보통 타이틀밑에 BootStrap 링크를 넣는다 --%>
     <%-- Bootstrap CSS --%>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+		  href="https://fonts.googleapis.com/css2?family=Arvo&family=Dongle&family=Montserrat:wght@200&family=PT+Serif&family=Playfair+Display:wght@600&family=Prompt&family=Vollkorn:wght@500&display=swap"
+		  rel="stylesheet"
+		/>
+		<%-- favicon --%>
+		<link rel="shortcut icon" href="/resources/images/favicon.ico">
 </head>
+<c:import url="../template/header.jsp"></c:import>
 <body>
-<%-- 제목은 여기에 써주세요! --%>
-<h1>Title</h1>
 <%-- 입력창 만들기 전 부트스트랩 쓸때 이걸 써야한다 --%>
 <%-- con-lg-7은 사이즈 조절하는것 --%>
 	<section class="container-fluid con-lg-7">
 		<div class="row">
-			
+			<form action="login" method="post">
+				  <div class="mb-3">
+				    <label for="exampleInputEmail1" class="form-label">Email address</label>
+				    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+				    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+				  </div>
+				  <div class="mb-3">
+				    <label for="exampleInputPassword1" class="form-label">Password</label>
+				    <input type="password" class="form-control" id="exampleInputPassword1">
+				  </div>
+				  <div class="mb-3 form-check">
+				    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+				    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+				  </div>
+				  <button type="submit" class="btn btn-primary">Submit</button>
+			</form>
 		</div>
 	</section>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<c:import url="../template/footer.jsp"></c:import>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>
