@@ -1,23 +1,29 @@
-var IMP = window.IMP; // 생략 가능
-IMP.init("imp18741385"); // 예: imp00000000
-
 let btnimport = document.getElementById("btnimport");
 
-btnimport.addEventListener("click", requestPay());
+btnimport.addEventListener("click", function(){
+    requestPay()
+})
 
 function requestPay() {
-    IMP.request_pay({
+    var IMP = window.IMP; // 초기화는 한번만
+    IMP.init("imp18741385"); // 아임포트 회원가입하면 부여되는 내 식별코드 입력
+
+    IMP.request_pay(
+        //파라미터값 상세
+        //https://docs.iamport.kr/sdk/javascript-sdk#request_pay
+        {
         pg : 'kcp',
-        pay_method : 'card',
-        merchant_uid: "570sdfsfe833-33sdfasde", 
+        pay_method : 'card',//필수, 결제수단
+        merchant_uid: "1seok2jo-20220904", //필수, 주문번호 내가 생성함. 중복불가!!!
         name : '당근 10kg',
-        amount : 1004,
-        buyer_email : 'Iamport@chai.finance',
-        buyer_name : '아임포트 기술지원팀',
-        buyer_tel : '010-1234-5678',
-        buyer_addr : '서울특별시 강남구 삼성동',
+        amount : 1004, //필수, 결제금액
+        buyer_email : 'simyj12@naver.com', //
+        buyer_name : '일석이조테스트', //
+        buyer_tel : '010-1234-5678', //필수, 가능한한..
+        buyer_addr : '꾸디일석이조',
         buyer_postcode : '123-456'
     }, function (rsp) { // callback
+        console.log("callback펑션 실행")
         if (rsp.success) {
             console.log(rsp);
         } else {
