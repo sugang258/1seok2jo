@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Admin Login</title>
-<link rel="shortcut icon" href="/resources/images/15.png">
+<link rel="shortcut icon" href="/resources/images/favicon.ico">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
@@ -38,7 +38,7 @@
 										<input type="checkbox" name="remember" id="remember" class="form-check-input ">
 										<label for="remember" class="form-check-label">Remember Me</label>
 									</div>
-									<button type="submit" class="btn ms-auto btn-outline-success" >
+									<button type="button" class="btn ms-auto btn-outline-success" >
 										Login
 									</button>
 								</div>
@@ -67,17 +67,29 @@
 													관리자 인증을 해주세요
 												</div>
 												<form>
-													<div class="mb-3 row">
-														<label for="recipient-name" class="text-muted col-form-label">아이디</label>
-														<input type="text" class="form-control col-3" id="idAuth">
+													<div class="mb-3 row justify-content-center">
+														<div class="col-3">
+															<label for="recipient-name" class="text-muted col-form-label authForm">아이디</label>
+														</div>
+														<div class="col-7">
+															<input type="text" class="form-control authForm " id="idAuth">
+														</div>
 													</div>
-													<div class="mb-3">
-														<label for="recipient-name" class="text-muted col-form-label">비밀번호</label>
-														<input type="password" class="form-control" id="pwAuth">
+													<div class="mb-3 row justify-content-center">
+														<div class="col-3">
+															<label for="recipient-name" class="text-muted col-form-label authForm">비밀번호</label>
+														</div>
+														<div class="col-7">
+															<input type="password" class="form-control authForm" id="pwAuth">
+														</div>
 													</div>
-													<div class="mb-3">
-														<label for="recipient-name" class="text-muted col-form-label">인증번호</label>
-														<input type="text" class="form-control" id="authNum">
+													<div class="mb-3 row justify-content-center">
+														<div class="col-3">
+															<label for="recipient-name" class="text-muted col-form-label authForm">인증번호</label>
+														</div>
+														<div class="col-7">
+															<input type="text" class="form-control authForm" id="authNum">
+														</div>
 													</div>
 												</form>
 												<!--인증요청 응답텍스트 표시-->
@@ -102,7 +114,18 @@
 
 
 	<style type="text/css">
-	.form-control:focus {
+	.form-check-input:checked{
+		background-color:#4b830d;
+
+	}
+	.btn:first-child:hover, :not(.btn-check)+.btn:hover{
+		
+		background-color: #4b830d;
+	}
+	.authForm{
+		display:inline;
+	}
+	.form-control:focus, .form-check-input:focus {
 		border-color:#aed581;
 		box-shadow: 0 0 0 0.25rem #e1ffb1;
 		}
