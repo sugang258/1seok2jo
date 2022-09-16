@@ -24,48 +24,56 @@
 		<div class="row">
 			<form action="./join" method="post">
 			  <div class="mb-3">
-			    <label for="exampleInputEmail1" class="form-label">아이디</label>
-			    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-			  </div>
-			  <div class="mb-3">
-			    <label for="exampleInputPassword1" class="form-label">비밀번호</label>
-			    <input type="password" class="form-control" id="exampleInputPassword1">
-			  </div>
-			  <div class="mb-3">
-			    <label for="exampleInputPassword1" class="form-label">비밀번호 재확인</label>
-			    <input type="password" class="form-control" id="exampleInputPassword1">
-			  </div>
-			  <div class="mb-3">
-			    <label for="exampleInputEmail1" class="form-label">이름</label>
-			    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-			  </div>
-			  <div class="mb-3">
-			    <label for="exampleInputEmail1" class="form-label">닉네임</label>
-			    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-			  </div>
-			  <div class="mb-3">
-			    <label for="exampleInputEmail1" class="form-label">생년월일</label>
-			    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-			  </div>
-			  <div class="mb-3">
-			    <label for="exampleInputEmail1" class="form-label">생년월일</label>
-			    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-			  </div>
-			  <div class="mb-3">
-			    <label for="exampleInputEmail1" class="form-label">성별</label>
-			    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-			  </div>
-			  <div class="mb-3">
-			    <label for="exampleInputEmail1" class="form-label">이메일</label>
-			    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+			  
+			    <label for="ipId" class="form-label">아이디</label>
+			    <input type="text" name="id" class="form-control" id="ipId" placeholder="아이디를 입력해주세요">
 			  </div>
 			  
 			  <div class="mb-3">
-			    <label for="exampleInputEmail1" class="form-label">연락처</label>
-			    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">ㄴ
+			    <label for="ipPw" class="form-label">비밀번호</label>
+			    <input type="password" name="pw" class="form-control" id="ipPw" placeholder="비밀번호를 입력해주세요">
+			  </div>
+			  
+			  <div class="mb-3">
+			    <label for="ipPwCheck" class="form-label">비밀번호 재확인</label>
+			    <input type="password" class="form-control" id="ipPwCheck" placeholder="비밀번호를 다시 입력해주세요">
+			  </div>
+			  
+			  <div class="mb-3">
+			    <label for="ipName" class="form-label">이름</label>
+			    <input type="text" name="name" class="form-control" id="ipName" placeholder="이름을 입력해주세요">
+			  </div>
+			  
+			  <div class="mb-3">
+			    <label for="ipNname" class="form-label">닉네임</label>
+			    <input type="text" name="n_name" class="form-control" id="ipNname" placeholder="닉네임을 입력해주세요">
+			  </div>
+			  
+			  <div class="mb-3">
+			    <label for="ipBdate" class="form-label">생년월일</label>
+			    <input type="number" name="b_date" class="form-control" id="ipBdate" placeholder="생년월일을 입력해주세요">
+			  </div>
+			  <div class="mb-3">
+			    <label for="ipGender" class="form-label">성별</label>
+			    <input type="text" name="gender" class="form-control" id="ipGender" placeholder="성별을 입력해주세요">
+			  </div>
+
+			  <div class="mb-3">
+			    <label for="ipEmail" class="form-label">이메일</label>
+			    <input type="text" name="email" class="form-control" id="ipEmail" placeholder="이메일을 입력해주세요">
+			  </div>
+			  
+			  <div class="mb-3">
+			    <label for="ipPhone" class="form-label">연락처</label>
+			    <input type="tel" name="phone" class="form-control" id="ipPhone" placeholder="연락처를 입력해주세요">
+			  </div>
+			  
+			  <div class="mb-3">
+			    <input type="hidden" name="point" class="form-control" id="ipPoint">
 			  </div>
 			  
 			  <button type="submit" class="btn btn-primary">회원가입</button>
+			  
 			</form>
 		</div>
 	</section>
