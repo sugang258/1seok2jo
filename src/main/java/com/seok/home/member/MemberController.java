@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/member/*")
 public class MemberController {
 
+	//회원가입
+	@GetMapping("join")
+	public void setJoin()throws Exception{
+		System.out.println("회원가입 접속");
+	}
+	
 	//로그인
 	@GetMapping("login")
 	public String getLogin()throws Exception{
