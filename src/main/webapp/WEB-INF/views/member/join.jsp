@@ -21,10 +21,10 @@
 <%-- 입력창 만들기 전 부트스트랩 쓸때 이걸 써야한다 --%>
 <%-- con-lg-7은 사이즈 조절하는것 --%>
 	<section class="container-fluid con-lg-7">
-		<div class="row">
+		<div class="row mt-5">
 			<form action="./join" method="post">
+			
 			  <div class="mb-3">
-			  
 			    <label for="ipId" class="form-label">아이디</label>
 			    <input type="text" name="id" class="form-control" id="ipId" placeholder="아이디를 입력해주세요">
 			  </div>
