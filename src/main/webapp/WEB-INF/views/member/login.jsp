@@ -24,7 +24,7 @@
 <%-- 입력창 만들기 전 부트스트랩 쓸때 이걸 써야한다 --%>
 <%-- con-lg-7은 사이즈 조절하는것 --%>
 	<section class="container-fluid con-lg-7">
-		<div class="row">
+		<div class="row mt-5" style="width:40% border: solid 1px">
 			<form action="login" method="post">
 				  <div class="mb-3">
 				    <input type="text" name="id" class="form-control" id="id" aria-describedby="emailHelp" placeholder="이메일을 입력해 주세요">
