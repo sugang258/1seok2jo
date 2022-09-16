@@ -4,4 +4,10 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 <mapper namespace="com.seok.home.member.MemberDAO">
+
+	<insert id="setJoin" parameterType="MemberDTO">
+		INSERT INTO MEMBER(ID, PW, NAME, N_NAME, B_DATE, GENDER, EMAIL, PHONE, POINT)
+		VALUES (#{id}, #{pw}, #{name}, #{n_name}, #{b_date}, #{gender}, #{email}, #{phone}, 0)
+	</insert>
+	
 </mapper> 
