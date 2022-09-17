@@ -82,4 +82,16 @@ public class LectureTest extends MyAbstractTest {
 
 	}
 	
+	//@Test
+	public void getDetail() throws Exception {
+		LectureDTO lectureDTO = new LectureDTO();
+		
+		lectureDTO.setL_num(2L);
+		
+		lectureDTO = lectureDAO.getDetail(lectureDTO);
+		
+		assertNotNull(lectureDTO);
+		
+	}
+	
 }

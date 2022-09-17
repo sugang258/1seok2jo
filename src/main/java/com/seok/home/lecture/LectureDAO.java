@@ -28,9 +28,14 @@ public class LectureDAO {
 	public int setDelete(LectureDTO lectureDTO) throws Exception{
 		return sqlSession.delete(NAMESPACE+"setDelete", lectureDTO);
 	}
+	
 	//file add
 	public int setAddFile(LectureFileDTO lectureFileDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setAddFile", lectureFileDTO);
+	}
+	
+	public LectureDTO getDetail(LectureDTO lectureDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getDetail", lectureDTO);
 	}
 
 }

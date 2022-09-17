@@ -51,4 +51,8 @@
 		    			<result column="f_oriname" property="f_oriname"/>
 		    		</collection>
 		    	</resultMap>
+		    	
+		    	<select id="getDetail" parameterType="LectureDTO" resultMap="getDetailResult">
+		    		SELECT * FROM LECTURE WHERE L_NUM = #{l_num}
+		    	</select>
 		    </mapper>
