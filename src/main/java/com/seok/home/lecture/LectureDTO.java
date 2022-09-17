@@ -1,5 +1,7 @@
 package com.seok.home.lecture;
 
+import java.util.List;
+
 public class LectureDTO {
 	
 	private Long l_num;
@@ -11,6 +13,7 @@ public class LectureDTO {
 	private Long l_price;
 	private Long l_count;
 	private Long l_date;
+	private List<LectureFileDTO> lectureFileDTO;
 	
 	public Long getL_num() {
 		return l_num;
@@ -66,6 +69,14 @@ public class LectureDTO {
 	public void setL_date(Long l_date) {
 		this.l_date = l_date;
 	}
+	public List<LectureFileDTO> getLectureFileDTO() {
+		return lectureFileDTO;
+	}
+	public void setLectureFileDTO(List<LectureFileDTO> lectureFileDTO) {
+		this.lectureFileDTO = lectureFileDTO;
+	}
+	
+	
 	
 	
 	

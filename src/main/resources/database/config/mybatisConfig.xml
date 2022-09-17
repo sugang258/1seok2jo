@@ -7,6 +7,7 @@
 	
 	<typeAliases>
 		<typeAlias type="com.seok.home.lecture.LectureDTO" alias="LectureDTO"/>
+		<typeAlias type="com.seok.home.lecture.LectureFileDTO" alias="LectureFileDTO"/>
 		<typeAlias type="com.seok.home.member.MemberDTO" alias="MemberDTO"/>
 	</typeAliases>
 

@@ -2,12 +2,16 @@ package com.seok.home.lecture;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 
 @Controller
@@ -18,13 +22,12 @@ public class LectureController {
 	private LectureService lectureService;
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
-	public String getLecture(Model model) throws Exception {
+	public ModelAndView getLecture(ModelAndView mv,LectureDTO lectureDTO) throws Exception {
 		
 		List<LectureDTO> ar = lectureService.getLecture();
+		mv.addObject("list", ar);
 		
-		model.addAttribute("list", ar);
-		
-		return "lecture/list";
+		return mv;
 	}
 	
 	@RequestMapping(value="add", method=RequestMethod.GET)
@@ -34,17 +37,18 @@ public class LectureController {
 	}
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
-	public ModelAndView setLecture(LectureDTO lectureDTO) throws Exception {
+	public ModelAndView setLecture(LectureDTO lectureDTO, HttpSession session, MultipartFile[] files) throws Exception {
 		System.out.println("강의 추가 POST");
 		
 		ModelAndView mv = new ModelAndView();
-		
 		lectureDTO.setId("gang");
+		int result = lectureService.setLecture(lectureDTO, files, session.getServletContext());
 		
-		lectureService.setLecture(lectureDTO);
-		
+		mv.addObject("result", result);
 		mv.setViewName("redirect:./list");
 		
 		return mv;
 	}
+	
+	
 }
