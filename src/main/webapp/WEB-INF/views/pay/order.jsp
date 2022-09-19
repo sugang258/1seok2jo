@@ -12,7 +12,9 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
     <!-- iamport.payment.js -->
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-</head>
+    <!-- help icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,700,0,0" />
+  </head>
 <body>
   <div class="container-fluid" style="height: 90px;">
     <c:import url="../template/header.jsp"></c:import>
@@ -28,9 +30,8 @@
         <div class="card mt-3">
           <div class="card-header">
             <label>구매자 정보</label>
-            <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Tooltip on right">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM169.8 165.3c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24V250.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1H222.6c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32z"/></svg>
-              Tooltip on right
+            <button type="button btn_tooltip" style="border: none; background-color: transparent;" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="입력된 이름과 이메일은 거래 증빙에 사용됩니다.">
+              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path fill="#abb0b5" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 464c-114.7 0-208-93.31-208-208S141.3 48 256 48s208 93.31 208 208S370.7 464 256 464zM256 336c-18 0-32 14-32 32s13.1 32 32 32c17.1 0 32-14 32-32S273.1 336 256 336zM289.1 128h-51.1C199 128 168 159 168 198c0 13 11 24 24 24s24-11 24-24C216 186 225.1 176 237.1 176h51.1C301.1 176 312 186 312 198c0 8-4 14.1-11 18.1L244 251C236 256 232 264 232 272V288c0 13 11 24 24 24S280 301 280 288V286l45.1-28c21-13 34-36 34-60C360 159 329 128 289.1 128z"></path></svg>
             </button>
           </div>
           <div class="card-body">
@@ -48,7 +49,59 @@
             </div>
           </div>
         </div>
-        <button type="button" class="btn btn-secondary" id="btnimport">결제하기</button>
+
+        <div class="card mt-3">
+          <div class="card-header">
+            <label>강의 정보</label>
+          </div>
+          <div class="card-body">
+            <!--강의정보내용-->
+            <div class="row g-1 p-3 align-items-center">
+              <div class="col-3">
+                <img src="../../../resources/images/22.png" class="img-fluid rounded-start" style="object-fit: contain">
+              </div>
+              <div class="col-md-6">
+                <small class="d-inline-flex px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">6개월 수강</small>
+                <label for="name" class="text-muted">강사명</label>
+                <p>강의명</p>
+              </div>
+              <div class="col-md-3 text-end">
+                55000원
+              </div>
+            </div>
+            <!--강의-->
+          </div>
+        </div>
+
+        <!--금액-->
+        <div class="card mt-3">
+          <div class="card-header">
+            <label>결제금액</label>
+          </div>
+          <div class="card-body">
+            <div class="mb-3" style="display: flex; justify-content:space-between">
+              <span>총 상품 금액</span>
+              <span>1000원</span>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <label for="point">마일리지</label>
+              </div>
+              <div class="col-6 text-end">
+                <span>0원</span>  
+              </div>
+            </div>
+            <input type="text" class="form-control text-end" id="point" placeholder="사용가능 0원">
+            <div class="mt-2" style="display: flex; justify-content:space-between">
+              <span class="fw-bold">총 결제 금액</span>
+              <span class="fw-bold">10원</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mt-3 mb-5">
+          <button type="button" class="btn btn-secondary" id="btnimport">결제하기</button>
+        </div>
       </div>
     </div>
   </div>
