@@ -14,12 +14,17 @@
 		    	</insert>
 		    	
 		    	<select id="getLecture"  resultMap="getDetailResult">
-		    		SELECT L.*, LF.*, VV.*
+		    		SELECT L.*, LF.*, VV.*, LV.LEVEL_NAME, C.C_NAME
 		    		FROM LECTURE L
 		    		JOIN L_FILE LF
 		    		ON L.L_NUM = LF.L_NUM
 		    		JOIN VIDEO VV
 					ON L.L_NUM = VV.L_NUM
+					JOIN "LEVEL" LV
+					ON L.LEVEL_NUM = LV.LEVEL_NUM
+					JOIN CATEGORY C
+					ON L.C_NUM = C.C_NUM
+					
 		    	</select>
 		    	
 		    	<update id="setUpdate" parameterType="LectureDTO">
@@ -42,7 +47,9 @@
 		    		<id column="l_num" property="l_num"/>
 		    		<result column="id" property="id"/>
 		    		<result column="c_num" property="c_num"/>
+		    		<result column="c_name" property="c_name"/>
 		    		<result column="level_num" property="level_num"/>
+		    		<result column="level_name" property="level_name"/>
 		    		<result column="l_name" property="l_name"/>
 		    		<result column="l_contents" property="l_contents"/>
 		    		<result column="l_price" property="l_price"/>
@@ -58,6 +65,7 @@
 		    			<result column="v_url" property="v_url"/>
 		    			<result column="v_context" property="v_context"/>
 		    		</collection>
+		    		
 		    		
 		    	</resultMap>
 		    	

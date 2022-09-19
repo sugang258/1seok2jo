@@ -1,0 +1,61 @@
+const lecture = document.querySelectorAll("#lecture");
+const cart = document.querySelectorAll(".cart");
+const lecture1 = document.querySelectorAll("#lecture1");
+const cate = document.querySelectorAll(".cate");
+const cate1 = document.querySelectorAll("#cate1")
+
+lecture.forEach(function(lecturebtn){
+    lecturebtn.addEventListener("click",function(){
+        window.location.href="./detail";
+        
+    });
+});
+
+
+cart.forEach(function(cartbtn) {
+    cartbtn.addEventListener("click",function(event){
+        alert("장바구니에 담으시겠습니까?");
+        event.stopPropagation();
+
+       let target =  event.target;
+       let l_num =  target.parentNode.parentNode.parentNode.childNodes[7].childNodes[1].childNodes[19].value;
+       let c_num = target.parentNode.parentNode.parentNode.childNodes[7].childNodes[1].childNodes[21].value;
+       
+        console.log(l_num);
+        console.log(c_num);
+        
+        // let l_num = lecture1.value;
+         let id = 'gang';
+        // let c_num = cate1.value;
+
+        // console.log(id);
+        // console.log(l_num);
+        // console.log(c_num);
+
+        const xhttp = new XMLHttpRequest() ;
+
+        xhttp.open("POST","../cart/setCartAdd");
+
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        xhttp.send("c_num=" + c_num + "&id=" + id + "&l_num=" + l_num);
+
+        xhttp.onreadystatechange = function() {
+            if(this.readyState == 4 && this.status == 200) {
+                let result = xhttp.responseText.trim();
+                console.log(result);
+                result = JSON.parse(result);
+                if (result == 1) {
+                    alert("장바구니 담기 성공");
+                    window.location.href = "./list";
+
+                }else {
+                    alert("장바구니 담기 실패");
+                    
+                }
+            }
+        }
+
+     })
+});
+

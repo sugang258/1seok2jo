@@ -7,9 +7,11 @@ public class LectureDTO {
 	private Long l_num;
 	private String id;
 	private Long level_num;
+	private String level_name;
 	private String l_name;
 	private String l_contents;
 	private Long c_num;
+	private String c_name;
 	private Long l_price;
 	private Long l_count;
 	private Long l_date;
@@ -82,6 +84,22 @@ public class LectureDTO {
 	public void setLectureVideoDTO(List<LectureVideoDTO> lectureVideoDTO) {
 		this.lectureVideoDTO = lectureVideoDTO;
 	}
+	public String getC_name() {
+		return c_name;
+	}
+	public void setC_name(String c_name) {
+		this.c_name = c_name;
+	}
+	public String getLevel_name() {
+		return level_name;
+	}
+	public void setLevel_name(String level_name) {
+		this.level_name = level_name;
+	}
+	
+	
+	
+	
 	
 	
 	

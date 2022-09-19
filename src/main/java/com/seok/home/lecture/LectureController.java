@@ -50,5 +50,12 @@ public class LectureController {
 		return mv;
 	}
 	
+	@RequestMapping(value="detail", method=RequestMethod.GET)
+	public String getDetailVideo(LectureDTO lectureDTO) throws Exception {
+		
+		System.out.println("detail");
+		return "lecture/detail";
+	}
+	
 	
 }
