@@ -60,7 +60,7 @@
             커뮤니티
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">학습게시판</a></li>
+            <li><a class="dropdown-item" href="/board/sb_list">학습게시판</a></li>
             <li><a class="dropdown-item" href="#">자유게시판</a></li>
           </ul>
         </li>

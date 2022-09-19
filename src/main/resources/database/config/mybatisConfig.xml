@@ -12,6 +12,7 @@
 		<typeAlias type="com.seok.home.lecture.add.LectureAddDTO" alias="LectureAddDTO" />
 		<typeAlias type="com.seok.home.lecture.teacher.TeacherDTO" alias="TeacherDTO" />
 		<typeAlias type="com.seok.home.cart.CartDTO" alias="CartDTO" />
+		<typeAlias type="com.seok.home.s_board.StudyBoardDTO" alias="StudyBoardDTO"/>
 		
 	</typeAliases>
 
