@@ -13,6 +13,8 @@
 		<typeAlias type="com.seok.home.lecture.teacher.TeacherDTO" alias="TeacherDTO" />
 		<typeAlias type="com.seok.home.cart.CartDTO" alias="CartDTO" />
 		<typeAlias type="com.seok.home.lecture.LectureVideoDTO" alias="LectureVideoDTO"/>
+		<typeAlias type="java.lang.String" alias="String"/>
+		
 		
 	</typeAliases>
 

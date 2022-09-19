@@ -17,8 +17,8 @@ public class LectureDAO {
 		return sqlSession.insert(NAMESPACE+"setLecture", lectureDTO);
 	}
 	
-	public List<LectureDTO> getLecture() throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getLecture");
+	public List<LectureDTO> getLecture(String search) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getLecture",search);
 	}
 	
 	public int setUpdate(LectureDTO lectureDTO) throws Exception{

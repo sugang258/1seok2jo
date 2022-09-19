@@ -31,10 +31,10 @@ public class LectureTest extends MyAbstractTest {
 	}
 	
 	//@Test
-	public void getLecture() throws Exception{
+	public void getLecture(String search) throws Exception{
 		//LectureDTO lectureDTO = new LectureDTO();
 		
-		List<LectureDTO> ar = lectureDAO.getLecture();
+		List<LectureDTO> ar = lectureDAO.getLecture(search);
 		
 		assertNotEquals(0, ar.size());
 	}

@@ -18,9 +18,9 @@ public class LectureService {
 	@Autowired
 	private FileManager fileManager;
 	
-	public List<LectureDTO> getLecture() throws Exception {
+	public List<LectureDTO> getLecture(String search) throws Exception {
 		
-		return lectureDAO.getLecture();
+		return lectureDAO.getLecture(search);
 	}
 	
 	public int setLecture(LectureDTO lectureDTO, MultipartFile[] files, ServletContext servletContext,LectureVideoDTO lectureVideoDTO) throws Exception {

@@ -20,7 +20,7 @@
 <body>
    <main class="container mt-5">
 		<!--Category Search-->
-		<form action="./list">
+		<form action="./list" method="post">
 			<div class="input-group mb-3 " style="width: 500px; margin: auto;">
 				<select name="category" class="form-select" id="category" style="border-radius: 7px 0 0 7px; width: 100px;">
 					<option class="categories" value="">Category</option>

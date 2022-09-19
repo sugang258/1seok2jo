@@ -22,9 +22,9 @@ public class LectureController {
 	private LectureService lectureService;
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
-	public ModelAndView getLecture(ModelAndView mv,LectureDTO lectureDTO) throws Exception {
+	public ModelAndView getLecture(ModelAndView mv,LectureDTO lectureDTO,String search) throws Exception {
 		
-		List<LectureDTO> ar = lectureService.getLecture();
+		List<LectureDTO> ar = lectureService.getLecture(search);
 		mv.addObject("list", ar);
 		
 		return mv;

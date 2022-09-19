@@ -13,7 +13,7 @@
 					VALUES (#{l_num}, #{id},#{level_num},#{l_name},#{l_contents},#{c_num},#{l_price},0,#{l_date})
 		    	</insert>
 		    	
-		    	<select id="getLecture"  resultMap="getDetailResult">
+		    	<select id="getLecture"  resultMap="getDetailResult" parameterType="String" >
 		    		SELECT L.*, LF.*, VV.*, LV.LEVEL_NAME, C.C_NAME
 		    		FROM LECTURE L
 		    		JOIN L_FILE LF
@@ -24,6 +24,15 @@
 					ON L.LEVEL_NUM = LV.LEVEL_NUM
 					JOIN CATEGORY C
 					ON L.C_NUM = C.C_NUM
+					(WHERE C.C_NAME = 
+	                  <choose>
+	                     <when test="category == 'Java'"></when>
+	                     <when test="category == 'Python'"></when>
+	                     <when test="category == 'JavaScript'"></when>
+	                     <otherwise>HTML/CSS</otherwise>
+	                  </choose>
+                  	 OR L.L_NAME LIKE '%'||#{search}||'%'
+                 	 ORDER BY L.L_NUM DESC)
 					
 		    	</select>
 		    	
