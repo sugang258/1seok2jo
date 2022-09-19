@@ -14,4 +14,8 @@ public class StudyBoardService {
 	public List<StudyBoardDTO> getBoardList()throws Exception{
 		return studyBoardDAO.getBoardList();
 	}
+	
+	public int setBoardAdd(StudyBoardDTO studyBoardDTO)throws Exception{
+		return studyBoardDAO.setBoardAdd(studyBoardDTO);
+	}
 }

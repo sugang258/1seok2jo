@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,5 +34,12 @@ public class StudyBoardController {
 	@GetMapping("sb_add")
 	public void setBoardAdd()throws Exception {
 		
+	}
+	
+	@PostMapping("sb_add")
+	public String setBoardAdd(StudyBoardDTO studyBoardDTO)throws Exception {
+		ModelAndView mv = new ModelAndView();
+
+		return "redirect:/board/sb_list";
 	}
 }

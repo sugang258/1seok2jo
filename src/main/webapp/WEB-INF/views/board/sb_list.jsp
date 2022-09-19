@@ -21,7 +21,7 @@
 
     <section class="container">
       <!--Board-Main-Top-->
-      <div class="mt-5" style="height: 190px">
+      <div style="height: 190px; margin-top:125px;">
         <div style="height: 70px">
           <h3 style="line-height: 80px"><strong>📗 학습게시판</strong></h3>
         </div>
@@ -60,7 +60,7 @@
                 </select>
               </div>
               <div class="ms-auto p-2">
-                <button id="writer"><a href="/board/sb_add">✏글쓰기</a></button>
+                <button  class="btn btn-success text-white" id="writer"><a href="/board/sb_add">✏글쓰기</a></button>
               </div>
             </div>
           </form>
@@ -71,7 +71,7 @@
       <div class="board">
         <c:forEach items="${requestScope.list}" var="BoardDTO">
         <div class="contents_box">
-        <div class="board_contents" onclick="location.href='/board/sb_detail';">
+        <div class="board_contents" onclick="location.href='/board/sb_detail?sb_num=${BoardDTO.getSb_num()}';">
           <div style="padding: 12px 0px">
             <div class="d-flex">
               <div class="p-1 flex-grow-1" style="font-size:13px;">

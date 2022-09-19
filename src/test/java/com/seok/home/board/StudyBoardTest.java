@@ -16,11 +16,27 @@ public class StudyBoardTest extends MyAbstractTest{
 	@Autowired
 	private StudyBoardDAO studyBoardDAO;
 	
-	@Test
+	//@Test
 	public void getBoardList()throws Exception{
 		List<StudyBoardDTO> ar = studyBoardDAO.getBoardList();
 		
 		assertEquals(1, ar.size());
+	}
+	
+	//@Test
+	public void setBoardAdd()throws Exception{
+		StudyBoardDTO studyBoardDTO = new StudyBoardDTO();
+		 studyBoardDTO.setL_num(2L); 
+		 studyBoardDTO.setId("USER2");
+		 studyBoardDTO.setTitle("또 질문합니다.");
+		 studyBoardDTO.setAnswer(0);
+		 studyBoardDTO.setHit(0L);
+		 studyBoardDTO.setContents("ㅠ ㅠㅠㅠ 아무것도 모르겠어요...........");
+		 studyBoardDTO.setCategory("CSS");
+		 
+		 int result = studyBoardDAO.setBoardAdd(studyBoardDTO);
+		 
+		 assertEquals(1, result);
 	}
 
 	

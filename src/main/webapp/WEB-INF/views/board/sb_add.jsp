@@ -27,7 +27,7 @@
         <div class="add_box" style="width:80%; margin: 150px auto 50px auto; padding: 1.7em; box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;">
         <div class="mb-4"><h2 style="text-align:center;">질문하기📬</h2></div>
             
-                <form action="./add" method="post" enctype="multipart/form-data">
+                <form action="./sb_add" method="post" enctype="multipart/form-data">
 
                     <div class="d-flex row">
                         <div class="flex-fill col-8">
@@ -37,7 +37,7 @@
                         <div class="flex-fill col-4">
                             <div class="mb-1"><label for="exampleFormControlInput1">카테고리</label></div>
                             <div class="dropdown">
-                                <select type="button" class="btn btn-success dropdown-toggle" style="text-align: left;" data-bs-toggle="dropdown" aria-expanded="false">
+                                <select type="button" name = "category" class="btn btn-success dropdown-toggle" style="text-align: left;" data-bs-toggle="dropdown" aria-expanded="false">
                                     <option value="">JAVA</option>
                                     <option value="">SPRING</option>
                                     <option value="">JAVASCRIPT</option>
@@ -49,7 +49,7 @@
                       </div>
                     
                     <div class="form-group pt-3 ">
-                        <input type="text"  style="display: none;" name = "writer" readonly value="${member.id}" class="form-control" id="exampleFormControlInput1">
+                        <input type="text"  style="display: none;" name = "id" readonly value="${id}" class="form-control" id="exampleFormControlInput1">
                     </div>
                     <div class="mt-1">
                         <div ><label  for="exampleFormControlInput1">글내용</label></div>

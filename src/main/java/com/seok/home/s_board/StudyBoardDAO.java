@@ -17,4 +17,8 @@ public class StudyBoardDAO {
 		return session.selectList(NAMESPACE+"getBoardList");
 	}
 	
+	public int setBoardAdd(StudyBoardDTO studyBoardDTO)throws Exception{
+		return session.insert(NAMESPACE+"setBoardAdd", studyBoardDTO);
+	}
+	
 }
