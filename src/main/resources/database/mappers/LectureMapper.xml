@@ -6,12 +6,17 @@
 		    <mapper namespace="com.seok.home.lecture.LectureDAO">
 		    	
 		    	<insert id="setLecture" parameterType="LectureDTO">
+		    		<selectKey order="BEFORE" keyProperty="l_num" resultType="Long">
+						SELECT LECTURE_SEQ.NEXTVAL FROM DUAL
+					</selectKey>
 		    		INSERT INTO LECTURE(L_NUM, ID, LEVEL_NUM, L_NAME, L_CONTENTS, C_NUM, L_PRICE, L_COUNT, L_DATE)
-					VALUES (lecture_seq.nextval, #{id},#{level_num},#{l_name},#{l_contents},#{c_num},#{l_price},0,#{l_date})
+					VALUES (#{l_num}, #{id},#{level_num},#{l_name},#{l_contents},#{c_num},#{l_price},0,#{l_date})
 		    	</insert>
 		    	
-		    	<select id="getLecture"  resultType="LectureDTO">
-		    		SELECT * FROM LECTURE
+		    	<select id="getLecture"  resultMap="getDetailResult">
+		    		SELECT L.*, LF.* FROM LECTURE L
+		    		LEFT JOIN L_FILE LF
+		    		ON L.L_NUM = LF.L_NUM
 		    	</select>
 		    	
 		    	<update id="setUpdate" parameterType="LectureDTO">
@@ -24,4 +29,30 @@
 		    	<delete id="setDelete" parameterType="LectureDTO">
 		    		DELETE FROM LECTURE WHERE L_NUM=#{l_num}
 		    	</delete>
+		    	
+		    	<insert id="setAddFile" parameterType="lectureFileDTO" >
+		    		INSERT INTO L_FILE(NUM, L_NUM, F_NAME, F_ORINAME) 
+		    		VALUES (FILE_SEQ.NEXTVAL, #{l_num}, #{f_name}, #{f_oriname})
+		    	</insert>
+		    	
+		    	<resultMap type="LectureDTO" id="getDetailResult">
+		    		<id column="l_num" property="l_num"/>
+		    		<result column="id" property="id"/>
+		    		<result column="c_num" property="c_num"/>
+		    		<result column="level_num" property="level_num"/>
+		    		<result column="l_name" property="l_name"/>
+		    		<result column="l_contents" property="l_contents"/>
+		    		<result column="l_price" property="l_price"/>
+		    		<result column="l_count" property="l_count"/>
+		    		<result column="l_date" property="l_date"/>
+		    		<collection property="lectureFileDTO" javaType="List" ofType="LectureFileDTO">
+		    			<id column="num" property="num"/>
+		    			<result column="f_name" property="f_name"/>
+		    			<result column="f_oriname" property="f_oriname"/>
+		    		</collection>
+		    	</resultMap>
+		    	
+		    	<select id="getDetail" parameterType="LectureDTO" resultMap="getDetailResult">
+		    		SELECT * FROM LECTURE WHERE L_NUM = #{l_num}
+		    	</select>
 		    </mapper>

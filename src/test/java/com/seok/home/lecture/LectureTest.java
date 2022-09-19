@@ -14,7 +14,7 @@ public class LectureTest extends MyAbstractTest {
 	@Autowired
 	private LectureDAO lectureDAO;
 
-	@Test
+	//@Test
 	public void setLecture() throws Exception{
 		LectureDTO lectureDTO = new LectureDTO();
 		
@@ -69,7 +69,29 @@ public class LectureTest extends MyAbstractTest {
 		assertEquals(1, result);
 	}
 	
-	
-	
+	//@Test
+	public void setAddFile() throws Exception {
+		LectureFileDTO lectureFileDTO = new LectureFileDTO();
+		
+		lectureFileDTO.setL_num(1L);
+		lectureFileDTO.setF_name("gang");
+		lectureFileDTO.setF_oriname("ganggang");
+		
+		int result = lectureDAO.setAddFile(lectureFileDTO);
+		assertEquals(1, result);
 
+	}
+	
+	//@Test
+	public void getDetail() throws Exception {
+		LectureDTO lectureDTO = new LectureDTO();
+		
+		lectureDTO.setL_num(2L);
+		
+		lectureDTO = lectureDAO.getDetail(lectureDTO);
+		
+		assertNotNull(lectureDTO);
+		
+	}
+	
 }

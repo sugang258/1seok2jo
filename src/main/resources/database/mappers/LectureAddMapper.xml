@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		    
+		    <mapper namespace="com.seok.home.lecture.add.LectureAddDAO">
+		    	<insert id="setLectureAdd" parameterType="LectureAddDTO">
+		    		INSERT INTO "LECTURE_SIGN"(S_NUM, L_NUM, ID, S_START, S_END, STATUS)
+					VALUES (SIGN_SEQ.NEXTVAL, #{l_num}, #{id}, SYSDATE, SYSDATE, '1')
+		    	</insert>
+		    	
+		    	<delete id="setLectureDelete" parameterType="LectureAddDTO">
+		    		DELETE FROM LECTURE_SIGN WHERE S_NUM=#{s_num}
+		    	</delete>
+		    	
+		    	<update id="setLectureUpdate" parameterType="LectureAddDTO">
+		    		UPDATE LECTURE_SIGN SET STATUS = #{status}  WHERE S_NUM = #{s_num}
+		    	</update>
+		    
+		    </mapper>

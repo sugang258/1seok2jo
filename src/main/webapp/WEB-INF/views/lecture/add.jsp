@@ -27,7 +27,7 @@
         </div>
 
         <div class="text-center">
-            <form action="add" method="post" >
+            <form action="add" method="post" enctype="multipart/form-data" >
               <div class="row g-3">
                 
                 <div class="col-12">
@@ -47,10 +47,6 @@
                     Your lecture content is required.
                   </div>
                 </div>
-    
-                
-    
-                
     
                 <div class="col-md-3">
                   <label for="c_num" class="form-label">Category</label>
@@ -92,12 +88,17 @@
 
             <!-- 파일 추가, 동영상 추가-->
             <div class="mt-4 mb-3">
-                <label for="formFile" class="form-label">강의 썸네일 사진</label>
-                <input class="form-control" type="file" id="formFile">
-              </div>
+                <label for="files" class="form-label">강의 썸네일 사진</label>
+                <input class="form-control" type="file" id="files" name="files">
+            </div>
 
             <div class="mb-4" id="addFiles">
                 <button type="button" class="btn btn-danger" id="fileAdd" style="border: none; color: #66ba39; background-color: white;">파일 추가</button>
+            </div>
+
+            <div class="mt-4 mb-3">
+                <label for="videos" class="form-label">강의 OT 영상 URL</label>
+                <input class="form-control" type="text" id="videos" name="videos">
             </div>
 
             <div class="mb-4" id="addVideos">
@@ -113,5 +114,6 @@
     </main>
     <c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="/resources/js/lecture_file.js"></script>
 </body>
 </html>

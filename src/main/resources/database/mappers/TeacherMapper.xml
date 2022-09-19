@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		    
+		    <mapper namespace="com.seok.home.lecture.teacher.TeacherDAO">
+		    	<insert id="setTeacherAdd" parameterType="TeacherDTO">
+		    		INSERT INTO TEACHER(T_NUM, ID, BANK_NUM, BANK_NAME, INTRODUCE)
+					VALUES(TEACHER_SEQ.NEXTVAL,#{id}, #{bank_num},#{bank_name},#{introduce})
+		    	</insert>
+		    	
+		    	<update id="setTeacherUpdate" parameterType="TeacherDTO">
+		    		UPDATE TEACHER SET BANK_NUM = #{bank_num}, BANK_NAME=#{bank_name}, INTRODUCE=#{introduce}
+		    		WHERE T_NUM = #{t_num}
+		    	</update>
+		    	
+		    	<select id="getTeacherDetail" parameterType="TeacherDTO" resultType="TeacherDTO">
+		    		SELECT * FROM TEACHER WHERE T_NUM = #{t_num}
+		    	</select>
+		    	
+		    	<select id="getTeacher" resultType="TeacherDTO">
+		    		SELECT * FROM TEACHER
+		    	</select>
+		    </mapper>
+		    
