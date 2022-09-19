@@ -27,7 +27,10 @@ public class StudyBoardController {
 	}
 	
 	@GetMapping("sb_detail")
-	public void getBoardDetail()throws Exception {
+	public void getBoardDetail(StudyBoardDTO studyBoardDTO)throws Exception {
+		ModelAndView mv = new ModelAndView();
+		studyBoardDTO = studyBoardService.getBoardDetail(studyBoardDTO);
+		
 		
 	}
 	
@@ -38,8 +41,8 @@ public class StudyBoardController {
 	
 	@PostMapping("sb_add")
 	public String setBoardAdd(StudyBoardDTO studyBoardDTO)throws Exception {
-		ModelAndView mv = new ModelAndView();
-
+		int result = studyBoardService.setBoardAdd(studyBoardDTO);
+		
 		return "redirect:/board/sb_list";
 	}
 }
