@@ -14,6 +14,7 @@ public class LectureDTO {
 	private Long l_count;
 	private Long l_date;
 	private List<LectureFileDTO> lectureFileDTO;
+	private List<LectureVideoDTO> lectureVideoDTO;
 	
 	public Long getL_num() {
 		return l_num;
@@ -74,6 +75,12 @@ public class LectureDTO {
 	}
 	public void setLectureFileDTO(List<LectureFileDTO> lectureFileDTO) {
 		this.lectureFileDTO = lectureFileDTO;
+	}
+	public List<LectureVideoDTO> getLectureVideoDTO() {
+		return lectureVideoDTO;
+	}
+	public void setLectureVideoDTO(List<LectureVideoDTO> lectureVideoDTO) {
+		this.lectureVideoDTO = lectureVideoDTO;
 	}
 	
 	

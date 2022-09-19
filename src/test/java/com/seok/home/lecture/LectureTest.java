@@ -94,4 +94,18 @@ public class LectureTest extends MyAbstractTest {
 		
 	}
 	
+	@Test
+	public void setVideoAdd() throws Exception {
+		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
+		
+		lectureVideoDTO.setL_num(2L);
+		lectureVideoDTO.setV_url("https://www.youtube.com/watch?v=oXB1FcMkusU");
+		lectureVideoDTO.setV_context("빙글빙글");
+		
+		int result = lectureDAO.setAddVideo(lectureVideoDTO);
+		
+		assertEquals(1, result);
+		
+	}
+	
 }

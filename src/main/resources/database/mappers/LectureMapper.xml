@@ -50,9 +50,41 @@
 		    			<result column="f_name" property="f_name"/>
 		    			<result column="f_oriname" property="f_oriname"/>
 		    		</collection>
+		    		
+		    	</resultMap>
+		    	
+		    	<resultMap type="LectureDTO" id="getDetailVideo">
+		    		<id column="l_num" property="l_num"/>
+		    		<result column="id" property="id"/>
+		    		<result column="c_num" property="c_num"/>
+		    		<result column="level_num" property="level_num"/>
+		    		<result column="l_name" property="l_name"/>
+		    		<result column="l_contents" property="l_contents"/>
+		    		<result column="l_price" property="l_price"/>
+		    		<result column="l_count" property="l_count"/>
+		    		<result column="l_date" property="l_date"/>
+		    		<collection property="lectureFileDTO" javaType="List" ofType="LectureFileDTO">
+		    			<id column="num" property="num"/>
+		    			<result column="f_name" property="f_name"/>
+		    			<result column="f_oriname" property="f_oriname"/>
+		    		</collection>
+		    		<collection property="lectureVideoDTO" javaType="List" ofType="lectureVideoDTO">
+		    			<id column="v_num" property="v_num"/>
+		    			<result column="v_url" property="v_url"/>
+		    			<result column="v_context" property="v_context"/>
+		    		</collection>
 		    	</resultMap>
 		    	
 		    	<select id="getDetail" parameterType="LectureDTO" resultMap="getDetailResult">
 		    		SELECT * FROM LECTURE WHERE L_NUM = #{l_num}
 		    	</select>
+		    	
+		    	<select id="getDetailVideo" resultMap="getDetailVideo">
+		    		
+		    	</select>
+		    	
+		    	<insert id="setAddVideo" parameterType="LectureVideoDTO">
+		    		INSERT INTO VIDEO(V_NUM, L_NUM, V_URL, V_CONTEXT) 
+		    		VALUES(video_seq.nextval, #{l_num}, #{v_url}, #{v_context})
+		    	</insert>
 		    </mapper>
