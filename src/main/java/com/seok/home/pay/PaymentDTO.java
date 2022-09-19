@@ -21,6 +21,7 @@ public class PaymentDTO {
 	
 	//결제완료 후 받아오는 변수 영역
 	private String p_c_name; //카드사
+	private Long p_c_apply; //카드사 승인번호
 	private Long p_c_num; //카드번호
 	private Long p_c_quota; //할부개월
 	private Long p_at; //결제승인시각(UNIX timestamp)
