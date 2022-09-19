@@ -22,6 +22,7 @@
 <%-- con-lg-7은 사이즈 조절하는것 --%>
 	<section class="container-fluid con-lg-7">
 		<div class="row mt-5">
+			<%-- 회원 회원가입JSP --%>
 			<form action="./join" method="post">
 			
 			  <div class="mb-3">
