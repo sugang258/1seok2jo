@@ -28,7 +28,7 @@
       <div class="container-fluid" style="
       height: 50px;">
         <a class="navbar-brand" href="#" style="margin-right: 25px"
-          ><img src="/resources/images/15.png" style="width: 130px; height: 65px"
+          ><img src="/resources/images/15.png" style="width: 120px; height: 65px"
         /></a>
         <button
           class="navbar-toggler"
