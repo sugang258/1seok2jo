@@ -55,9 +55,15 @@
             <li class="nav-item">
               <a class="nav-link" href="#">멘토링</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">커뮤니티</a>
-            </li>
+             <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            커뮤니티
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">학습게시판</a></li>
+            <li><a class="dropdown-item" href="#">자유게시판</a></li>
+          </ul>
+        </li>
           </ul>
 
           <form style="width: 190px">
