@@ -37,12 +37,12 @@ public class LectureController {
 	}
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
-	public ModelAndView setLecture(LectureDTO lectureDTO, HttpSession session, MultipartFile[] files) throws Exception {
+	public ModelAndView setLecture(LectureDTO lectureDTO, HttpSession session, MultipartFile[] files,LectureVideoDTO lectureVideoDTO) throws Exception {
 		System.out.println("강의 추가 POST");
 		
 		ModelAndView mv = new ModelAndView();
 		lectureDTO.setId("gang");
-		int result = lectureService.setLecture(lectureDTO, files, session.getServletContext());
+		int result = lectureService.setLecture(lectureDTO, files, session.getServletContext(),lectureVideoDTO);
 		
 		mv.addObject("result", result);
 		mv.setViewName("redirect:./list");

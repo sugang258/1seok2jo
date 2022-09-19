@@ -98,7 +98,9 @@ addFiles.addEventListener("click",function(event){
 
 videoAdd.addEventListener("click",function() {
     // <div class="mt-4 mb-3" id="video+count">
+    //      <div>
     //      <label for="v_url" class="form-label">동영상 (+idx) url 주소</label>
+    //      </div>
     //      <input class="form-control" type="text" id="v_url" name="v_url">
     //      <label for="v_context" class="form-label">동영상 (+idx) 제목</label>
     //      <input class="form-control" type="text" id="v_context" name="v_context">
@@ -110,13 +112,14 @@ videoAdd.addEventListener("click",function() {
     c= document.createAttribute("id");
     c.value = "video"+count;
     d.setAttributeNode(c);
+    //-----------------------------------------------------
     let d1 = document.createElement("div");
     let l = document.createElement("label");
     let f = document.createAttribute("for");
     f.value = "v_url";
     let c1 = document.createAttribute("class");
     c1.value = "form-label";
-    let t = document.createTextNode("동영상 " + count + "번 url 주소");
+    let t = document.createTextNode("동영상 " + (count+1) + "번 url 주소");
 
     l.setAttributeNode(f);
     l.setAttributeNode(c1);
@@ -125,6 +128,7 @@ videoAdd.addEventListener("click",function() {
     d1.appendChild(l);
     d.appendChild(d1);
 
+    //-------------------------------------------------------
     let d2 = document.createElement("div");
     let i = document.createElement("input");
     let c2 = document.createAttribute("class");
@@ -144,13 +148,14 @@ videoAdd.addEventListener("click",function() {
     d2.appendChild(i);
     d.appendChild(d2);
 
+//     //--------------------------------------------------------------
     let d4 = document.createElement("div");
     let l1 = document.createElement("label");
     let f1 = document.createAttribute("for");
-    f.value = "v_context";
+    f1.value = "v_context";
     let c4 = document.createAttribute("class");
-    c1.value = "form-label";
-    let t4 = document.createTextNode("동영상 " + count + "번 제목");
+    c4.value = "form-label";
+    let t4 = document.createTextNode("동영상 " + (count+1) + "번 제목");
 
     l1.setAttributeNode(f1);
     l1.setAttributeNode(c4);
@@ -159,16 +164,17 @@ videoAdd.addEventListener("click",function() {
     d4.appendChild(l1);
     d.appendChild(d4);
 
+//     //------------------------------------------------------
     let d5 = document.createElement("div");
     let i2 = document.createElement("input");
     let c5 = document.createAttribute("class");
-    c2.value = "form-label";
+    c5.value = "form-label";
     let t5 = document.createAttribute("type");
-    t1.value="text";
+    t5.value="text";
     let i3 = document.createAttribute("id");
-    i1.value = "v_context";
+    i3.value = "v_context";
     let n1 = document.createAttribute("name");
-    n.value = "v_context"
+    n1.value = "v_context";
 
     i2.setAttributeNode(c5);
     i2.setAttributeNode(t5);
@@ -199,11 +205,11 @@ videoAdd.addEventListener("click",function() {
     d3.appendChild(b);
     d.appendChild(d3)
 
-    addVideos.appendChild(d);
+      addVideos.appendChild(d);
 
-    count++;
+     count++;
 
-})
+ })
 
 addVideos.addEventListener("click",function(event){
     let button = event.target;

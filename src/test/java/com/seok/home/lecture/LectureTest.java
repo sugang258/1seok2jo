@@ -94,7 +94,7 @@ public class LectureTest extends MyAbstractTest {
 		
 	}
 	
-	@Test
+	//@Test
 	public void setVideoAdd() throws Exception {
 		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
 		

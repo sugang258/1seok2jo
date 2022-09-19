@@ -97,8 +97,10 @@
             </div>
 
             <div class="mt-4 mb-3">
-                <label for="videos" class="form-label">강의 OT 영상 URL</label>
-                <input class="form-control" type="text" id="videos" name="videos">
+                <label for="v_url" class="form-label">강의 OT 영상 URL</label>
+                <input class="form-control" type="text" id="v_url" name="v_url">
+                <label for="v_context" class="form-label">OT 제목</label>
+                <input class="form-control" type="text" id="v_context" name="v_context">
             </div>
 
             <div class="mb-4" id="addVideos">
