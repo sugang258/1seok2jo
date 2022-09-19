@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.seok.home.lecture.teacher.TeacherDTO;
+
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
@@ -14,9 +16,15 @@ public class MemberController {
 	private MemberService memberService;
 	
 	//강사 회원가입
-	@GetMapping("t_join")
-	public void setTjoin()throws Exception{
+	@GetMapping("teacherAdd")
+	public void setTeacherAdd()throws Exception{
 		System.out.println("강사 회원가입 접속(GET)");
+	}
+	
+	//강사 회원가입
+	@PostMapping("teacherAdd")
+	public void setTeacherAdd(TeacherDTO teacherDTO)throws Exception{
+		System.out.println("강사 회원가입 접속(POST)");
 	}
 	
 	//회원가입
