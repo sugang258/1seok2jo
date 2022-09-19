@@ -38,25 +38,32 @@
                             <div class="mb-1"><label for="exampleFormControlInput1">카테고리</label></div>
                             <div class="dropdown">
                                 <select type="button" name = "category" class="btn btn-success dropdown-toggle" style="text-align: left;" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <option value="">JAVA</option>
-                                    <option value="">SPRING</option>
-                                    <option value="">JAVASCRIPT</option>
-                                    <option value="">HTML</option>
-                                    <option value="">CSS</option>
+                                    <option value="JAVA">JAVA</option>
+                                    <option value="SPRING">SPRING</option>
+                                    <option value="SPRING">JAVASCRIPT</option>
+                                    <option value="HTML">HTML</option>
+                                    <option value="CSS">CSS</option>
                                 </select>
                               </div>
                         </div>
                       </div>
                     
+<!--                     임시로 보내는 값 -->
+                     <input type="text"  style="display: none;" name = "l_num" value="1">
+                     <input type="text"  style="display: none;" name = "answer" value="0">
+                     <input type="text"  style="display: none;" name = "hit" value="0">
+<!--                     임시로 보내는 값 -->
+                    
+                    
                     <div class="form-group pt-3 ">
-                        <input type="text"  style="display: none;" name = "id" readonly value="${id}" class="form-control" id="exampleFormControlInput1">
+                        <input type="text"  style="display: none;" name = "id" readonly value="USER2" class="form-control" id="exampleFormControlInput1">
                     </div>
                     <div class="mt-1">
                         <div ><label  for="exampleFormControlInput1">글내용</label></div>
-                        <textarea name = "contents" class="form-control mt-1" id="contents" rows="4"></textarea>
+                        <textarea name = "contents" class="form-control mt-1" id="contents" rows="3"></textarea>
                     </div>
         
-                    <div id="addFiles" style="display:none;">
+                    <div id="addFiles">
                         <button class="mt-2 file_add"><b>파일추가📂</b></button>
                     </div>			
                     
@@ -72,11 +79,11 @@
     <script type="text/javascript">
         $("#contents").summernote(
                 {
-                      height: 300,                
+                      height: 260,                
                       minHeight: null,           
                       maxHeight: null,          
                       focus: true 
                     });
-    </script>
+</script>
 </body>
 </html>

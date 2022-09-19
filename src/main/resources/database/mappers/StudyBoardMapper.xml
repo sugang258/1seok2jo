@@ -8,6 +8,10 @@
 		    		SELECT * FROM STUDY_BOARD
 		    	</select>
 		    	
+		    	<select id="getBoardDetail" parameterType="StudyBoardDTO" resultType="StudyBoardDTO">
+		    		SELECT * FROM STUDY_BOARD WHERE SB_NUM=#{sb_num}
+		    	</select>
+		    	
 		    	<insert id="setBoardAdd" parameterType="StudyBoardDTO">
 			    	INSERT INTO study_board
 					VALUES (BOARD_SEQ.NEXTVAL, #{l_num}, #{id}, #{title}, SYSDATE, #{answer}, #{hit}, #{contents}, #{category})

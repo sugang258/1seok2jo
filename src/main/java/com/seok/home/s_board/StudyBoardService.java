@@ -15,6 +15,10 @@ public class StudyBoardService {
 		return studyBoardDAO.getBoardList();
 	}
 	
+	public StudyBoardDTO getBoardDetail(StudyBoardDTO studyBoardDTO)throws Exception{
+		return studyBoardDAO.getBoardDetail(studyBoardDTO);
+	}
+	
 	public int setBoardAdd(StudyBoardDTO studyBoardDTO)throws Exception{
 		return studyBoardDAO.setBoardAdd(studyBoardDTO);
 	}
