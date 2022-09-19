@@ -11,4 +11,8 @@
 		    	<delete id="setCartDelete" parameterType="CartDTO">
 		    		DELETE FROM CART WHERE C_NUM = #{c_num}
 		    	</delete>
+		    	
+		    	<select id="getCartList" parameterType="CartDTO" resultType="CartDTO">
+		    		SELECT * FROM CART WHERE ID = #{id}
+		    	</select>
 		    </mapper>

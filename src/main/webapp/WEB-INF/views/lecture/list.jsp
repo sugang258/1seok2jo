@@ -54,9 +54,9 @@
 										<div>현재 ${list.l_count}명</div>
 										<!--Level-->
 										<div>난이도 : ${list.level_name}</div>
-										<div class="cate">카테고리 : ${list.c_name}</div>
-										<input type="label" value="${list.l_num}" style="display: none;" id="lecture1">
-										<input type="label" value="${list.c_num}" style="display: none;" id="cate1">
+										<div>카테고리 : ${list.c_name}</div>
+										<input type="label" value="${list.l_num}" style="display: none;">
+										<input type="label" value="${list.c_num}" style="display: none;">
 									</div>
 								</div>
 								<!-- Product actions-->

@@ -2,6 +2,8 @@ package com.seok.home.cart;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,7 +25,7 @@ public class CartTest extends MyAbstractTest  {
 		
 		assertEquals(1,result);
 	}
-	@Test
+	//@Test
 	public void setCartDelete() throws Exception{
 		CartDTO cartDTO = new CartDTO();
 		
@@ -33,6 +35,17 @@ public class CartTest extends MyAbstractTest  {
 		
 		assertEquals(1,result);
 		
+	}
+	
+	@Test
+	public void getCartList() throws Exception {
+		CartDTO cartDTO = new CartDTO();
+		
+		cartDTO.setId("gang");
+		
+		List<CartDTO> ar = cartDAO.getCartList(cartDTO);
+		
+		assertNotEquals(0, ar.size());
 	}
 
 }

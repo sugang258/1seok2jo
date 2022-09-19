@@ -1,5 +1,7 @@
 package com.seok.home.cart;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,5 +19,9 @@ public class CartDAO {
 	
 	public int setCartDelete(CartDTO cartDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"setCartDelete", cartDTO);
+	}
+	
+	public List<CartDTO> getCartList(CartDTO cartDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getCartList", cartDTO);
 	}
 }
