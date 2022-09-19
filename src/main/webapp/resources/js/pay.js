@@ -1,5 +1,8 @@
 let btnimport = document.getElementById("btnimport");
 
+
+
+// 결제하기 버튼을 클릭하면 하단 실행
 btnimport.addEventListener("click", function(){
     requestPay()
 })
@@ -14,7 +17,7 @@ function requestPay() {
         {
         pg : 'kcp',
         pay_method : 'card',//필수, 결제수단
-        merchant_uid: "1seok2jo-20220904", //필수, 주문번호 내가 생성함. 중복불가!!!
+        merchant_uid: "1seok2jo-2022092204", //필수, 주문번호 내가 생성함. 중복불가!!!
         name : '당근 10kg',
         amount : 1004, //필수, 결제금액
         buyer_email : 'simyj12@naver.com', //
@@ -25,11 +28,16 @@ function requestPay() {
     }, function (rsp) { // callback
         console.log("callback펑션 실행")
         if (rsp.success) {
-            console.log(rsp);
+            //ajax로 결제성공 페이지 요청
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("Post","./success", false);
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.send(rsp);
+            
         } else {
             console.log(rsp);
         }
-    });
+    })
 }
 /*
 function requestPay() {
@@ -64,3 +72,8 @@ function requestPay() {
       });
   }
   */
+
+
+//툴팁
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))

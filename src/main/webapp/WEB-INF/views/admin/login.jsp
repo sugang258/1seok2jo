@@ -23,7 +23,7 @@
 							<form method="POST" class="needs-validation" novalidate="" autocomplete="off">
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="id">ID</label>
-									<input id="id" type="email" class="form-control" name="id" value="" required autofocus>
+									<input id="id" type="text" class="form-control" name="id" value="" required autofocus>
 								</div>
 
 								<div class="mb-3">
