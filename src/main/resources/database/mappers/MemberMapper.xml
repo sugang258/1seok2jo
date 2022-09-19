@@ -10,4 +10,5 @@
 		VALUES (#{id}, #{pw}, #{name}, #{n_name}, #{b_date}, #{gender}, #{email}, #{phone}, 0)
 	</insert>
 	
+	
 </mapper> 
