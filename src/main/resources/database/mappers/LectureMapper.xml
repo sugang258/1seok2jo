@@ -14,9 +14,12 @@
 		    	</insert>
 		    	
 		    	<select id="getLecture"  resultMap="getDetailResult">
-		    		SELECT L.*, LF.* FROM LECTURE L
-		    		LEFT JOIN L_FILE LF
+		    		SELECT L.*, LF.*, VV.*
+		    		FROM LECTURE L
+		    		JOIN L_FILE LF
 		    		ON L.L_NUM = LF.L_NUM
+		    		JOIN VIDEO VV
+					ON L.L_NUM = VV.L_NUM
 		    	</select>
 		    	
 		    	<update id="setUpdate" parameterType="LectureDTO">
@@ -50,9 +53,30 @@
 		    			<result column="f_name" property="f_name"/>
 		    			<result column="f_oriname" property="f_oriname"/>
 		    		</collection>
+		    		<collection property="lectureVideoDTO" javaType="List" ofType="lectureVideoDTO">
+		    			<id column="v_num" property="v_num"/>
+		    			<result column="v_url" property="v_url"/>
+		    			<result column="v_context" property="v_context"/>
+		    		</collection>
+		    		
 		    	</resultMap>
 		    	
 		    	<select id="getDetail" parameterType="LectureDTO" resultMap="getDetailResult">
 		    		SELECT * FROM LECTURE WHERE L_NUM = #{l_num}
 		    	</select>
+		    	
+		    	<select id="getDetailVideo" resultMap="getDetailResult">
+		    		SELECT L.*, LF.* ,VV.*
+					FROM LECTURE L
+					JOIN L_FILE LF
+					ON L.L_NUM = LF.L_NUM
+					JOIN VIDEO VV
+					ON L.L_NUM = VV.L_NUM
+					WHERE L.L_NUM = #{l_num}
+		    	</select>
+		    	
+		    	<insert id="setAddVideo" parameterType="LectureVideoDTO">
+		    		INSERT INTO VIDEO(V_NUM, L_NUM, V_URL, V_CONTEXT,V_SEQ) 
+		    		VALUES(VIDEO_SEQ.NEXTVAL, #{l_num}, #{v_url}, #{v_context},#{v_seq})
+		    	</insert>
 		    </mapper>
