@@ -1,6 +1,7 @@
 package com.seok.home.board;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -38,23 +39,15 @@ public class StudyBoardTest extends MyAbstractTest{
 		 
 		 assertEquals(1, result);
 	}
+	
+	//@Test
+	public void getBoardDetail()throws Exception{
+		StudyBoardDTO studyBoardDTO = new StudyBoardDTO();
+		studyBoardDTO.setSb_num(321L);
+		
+		studyBoardDTO = studyBoardDAO.getBoardDetail(studyBoardDTO);
+		
+		assertNotNull(studyBoardDTO);
+	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*
-	 * Detail쪽 ㅠㅠ
-	 * StudyBoardDTO studyBoardDTO = new StudyBoardDTO();
-	 * studyBoardDTO.setL_num(2L); studyBoardDTO.setId("USER2");
-	 * studyBoardDTO.setTitle("또 질문합니다."); studyBoardDTO.setAnswer(0);
-	 * studyBoardDTO.setHit(0L);
-	 * studyBoardDTO.setContents("ㅠ ㅠㅠㅠ 아무것도 모르겠어요...........");
-	 * studyBoardDTO.setCategory("JAVA");
-	 */
 }

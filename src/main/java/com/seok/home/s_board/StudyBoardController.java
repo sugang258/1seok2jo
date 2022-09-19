@@ -27,11 +27,13 @@ public class StudyBoardController {
 	}
 	
 	@GetMapping("sb_detail")
-	public void getBoardDetail(StudyBoardDTO studyBoardDTO)throws Exception {
+	public ModelAndView getBoardDetail(StudyBoardDTO studyBoardDTO)throws Exception {
 		ModelAndView mv = new ModelAndView();
 		studyBoardDTO = studyBoardService.getBoardDetail(studyBoardDTO);
+		mv.addObject("studyBoardDTO", studyBoardDTO);
+		mv.setViewName("board/sb_detail");
 		
-		
+		return mv;
 	}
 	
 	@GetMapping("sb_add")

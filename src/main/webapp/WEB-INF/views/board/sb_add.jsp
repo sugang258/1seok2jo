@@ -63,7 +63,7 @@
                         <textarea name = "contents" class="form-control mt-1" id="contents" rows="3"></textarea>
                     </div>
         
-                    <div id="addFiles">
+                    <div id="addFiles" style="display:none;">
                         <button class="mt-2 file_add"><b>파일추가📂</b></button>
                     </div>			
                     
@@ -84,6 +84,9 @@
                       maxHeight: null,          
                       focus: true 
                     });
+        $("#contents").summernote('pasteHTML', data);
+        $("#contents").html(data.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g,'"').replace(/&#40;/g,'(').replace(/&#41;/g,')').replace(/&#35;/g,'#'));
+
 </script>
 </body>
 </html>

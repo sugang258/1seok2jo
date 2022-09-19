@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>게시판 상세보기</title>
 		<link rel="stylesheet" href="/resources/css/board/sb_detail.css" />
     <%-- Bootstrap CSS --%>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -26,23 +26,32 @@
         <div class="board_contents">
           <div style="padding: 12px 0px;">
             <div class="d-flex">
-              <div class="p-2 flex-grow-1">
-                <div>자바</div>
+              <div class="flex-grow-1" style="padding: 8px 8px 8px 0px; font-size: 14px;">
+                <div>${requestScope.studyBoardDTO.category}</div>
               </div>
-              <div class="p-2"><i class="fa-regular fa-user"></i> 아이디</div>
+              <div class="p-2"><i class="fa-regular fa-user"></i> ${studyBoardDTO.id}</div>
             </div>
             <div>
-              <h5><b>프로그래밍 언어의 종류에 대하여</b></h5>
+              <h5><b>${studyBoardDTO.title}</b></h5>
             </div>
 
             <div class="d-flex mt-4">
               <div class="d-flex p-1 w-100">
                 <div class="b1 d-flex">
-                  <div>0 조회</div>
-                  <div><b>답변대기</b></div>
+                  <div>${studyBoardDTO.hit} 조회</div>
+                  <div><b>
+                  <c:choose>
+                  	<c:when test="${studyBoardDTO.answer eq 0}">
+                  		답변대기
+                  	</c:when>
+                  	<c:otherwise>
+                  		 답변완료
+                  	</c:otherwise>
+                  </c:choose>
+                  </b></div>
                 </div>
               </div>
-              <div class="p-2 flex-shrink-1">2022/09/14</div>
+              <div class="p-2 flex-shrink-1" style="width: 120px; font-size:15px;">${studyBoardDTO.reg_date}</div>
             </div>
           </div>
         </div>
@@ -50,10 +59,9 @@
         <!--Contents-->
         <div class="sb_contents">
           <div class="mb-3">
-            <h5 style="text-align:justify; text-justify:auto;">질문 내용을 입력해 주세요.
-              C 자바 등 프로그래밍 언어를 소개시켜 주셨는데 HTML 관련 이야기는 없더라구요 HTML은 프로그래밍 언어인가요? 아니면 HTML은 프로그래밍 언어에 포함되지 않나요</h5>
+            <h5 style="text-align:justify; text-justify:auto;">${studyBoardDTO.contents}</h5>
           </div>
-          <div style="width: 100%;">
+          <div style="width: 100%; display:none;">
             <img style="width: 80%; object-fit: fill;" src="https://www.researchgate.net/profile/Md-Masudur-Rahman-2/publication/317401664/figure/fig2/AS:504826271408129@1497371370743/Source-Code-Example-Customerjava-Partial.png" alt="">
           </div>
           
@@ -69,33 +77,6 @@
           <div class="reply_list p-3" id="reply_list">
             <div class="d-flex mb-2">
               <div><img src="https://img.danawa.com/prod_img/500000/017/350/img/13350017_1.jpg?shrink=330:330&_v=20210224095944" style="width: 50px;  border-radius: 24px;"/></div><div class="ms-2 mt-3">USER1</div>
-            </div>
-            <div class="d-flex mb-2">
-              <div class="ms-5"><i class="fa-regular fa-comment-dots"></i></div>
-              <div class="ms-2">안녕하세요 수고 많으십니다^^</div>
-            </div>
-            <hr>
-
-            <div class="d-flex mb-2">
-              <div><img src="https://img.danawa.com/prod_img/500000/017/350/img/13350017_1.jpg?shrink=330:330&_v=20210224095944" style="width: 50px; border-radius: 24px;"/></div><div class="ms-2 mt-3">USER1</div>
-            </div>
-            <div class="d-flex mb-2">
-              <div class="ms-5"><i class="fa-regular fa-comment-dots"></i></div>
-              <div class="ms-2">안녕하세요 수고 많으십니다^^</div>
-            </div>
-            <hr>
-
-            <div class="d-flex mb-2">
-              <div><img src="https://img.danawa.com/prod_img/500000/017/350/img/13350017_1.jpg?shrink=330:330&_v=20210224095944" style="width: 50px; border-radius: 24px;"/></div><div class="ms-2 mt-3">USER1</div>
-            </div>
-            <div class="d-flex mb-2">
-              <div class="ms-5"><i class="fa-regular fa-comment-dots"></i></div>
-              <div class="ms-2">안녕하세요 수고 많으십니다^^</div>
-            </div>
-            <hr>
-
-            <div class="d-flex mb-2">
-              <div><img src="https://img.danawa.com/prod_img/500000/017/350/img/13350017_1.jpg?shrink=330:330&_v=20210224095944" style="width: 50px; border-radius: 24px;"/></div><div class="ms-2 mt-3">USER1</div>
             </div>
             <div class="d-flex mb-2">
               <div class="ms-5"><i class="fa-regular fa-comment-dots"></i></div>
@@ -133,7 +114,7 @@
         <!--board-Writer-Button-->
         <div class="d-flex flex-row-reverse mb-5" style="width: 70%; margin: 0px auto;">
           <div class="p-2"><button class="btn-st btn btn-outline-secondary">답변달기(강사)</button></div>
-          <div class="p-2"><button class="btn-st btn btn-outline-secondary">목록보기(작성자)</button></div>
+          <div class="p-2"><button class="btn-st btn btn-outline-secondary" onclick="location.href='./sb_list';">목록보기(작성자)</button></div>
           <div class="p-2"><button class="btn-st btn btn-outline-secondary">삭제하기(작성자)</button></div>
           <div class="p-2"><button class="btn-st btn btn-outline-secondary">수정하기(작성자)</button></div>
         </div>
@@ -172,45 +153,7 @@
             </div>
             <hr>
 
-            <div class="d-flex mb-2">
-              <div><img src="https://img.danawa.com/prod_img/500000/017/350/img/13350017_1.jpg?shrink=330:330&_v=20210224095944" style="width: 50px; border-radius: 24px;"/></div><div class="ms-2 mt-3">USER1</div>
-            </div>
-            <div class="d-flex mb-2">
-              <div class="ms-5"><i class="fa-regular fa-comment-dots"></i></div>
-              <div class="ms-2">안녕하세요 수고 많으십니다^^</div>
-            </div>
-            <hr>
-
-            <div class="d-flex mb-2">
-              <div><img src="https://img.danawa.com/prod_img/500000/017/350/img/13350017_1.jpg?shrink=330:330&_v=20210224095944" style="width: 50px; border-radius: 24px;"/></div><div class="ms-2 mt-3">USER1</div>
-            </div>
-            <div class="d-flex mb-2">
-              <div class="ms-5"><i class="fa-regular fa-comment-dots"></i></div>
-              <div class="ms-2">안녕하세요 수고 많으십니다^^</div>
-            </div>
-            <hr>
-
-            <div class="d-flex mb-2">
-              <div><img src="https://img.danawa.com/prod_img/500000/017/350/img/13350017_1.jpg?shrink=330:330&_v=20210224095944" style="width: 50px; border-radius: 24px;"/></div><div class="ms-2 mt-3">USER1</div>
-            </div>
-            <div class="d-flex mb-2">
-              <div class="ms-5"><i class="fa-regular fa-comment-dots"></i></div>
-              <div class="ms-2">안녕하세요 수고 많으십니다^^</div>
-            </div>
-            <hr>
-
-            <div class="d-flex mb-2">
-              <div><img src="https://img.danawa.com/prod_img/500000/017/350/img/13350017_1.jpg?shrink=330:330&_v=20210224095944" style="width: 50px; border-radius: 24px;"/></div><div class="ms-2 mt-3">USER1</div>
-            </div>
-            <div class="d-flex mb-2">
-              <div class="ms-5"><i class="fa-regular fa-comment-dots"></i></div>
-              <div class="ms-2">안녕하세요 수고 많으십니다^^</div>
-            </div>
-            <hr>
-
             <div class="mb-3" style="text-align: center;"><button id="plus">더보기</button></div>
-
-
 
             <div>
               <form action="">
