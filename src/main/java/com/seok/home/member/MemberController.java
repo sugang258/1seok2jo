@@ -20,6 +20,8 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	/************************ 회원 **************************/
+	
 	//강사신청(GET)
 	@GetMapping("teacherAdd")
 	public void setTeacherAdd()throws Exception{
@@ -92,6 +94,14 @@ public class MemberController {
 		return "member/cart";
 	}
 	
+	/************************ 마이페이지 **************************/
 	
+	//프로필
+	@GetMapping("profile")
+	public String setProfile()throws Exception {
+		System.out.println("프로필 접속(GET)");
+		
+		return "member/profile";
+	}
 	
 }
