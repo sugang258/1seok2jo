@@ -1,8 +1,15 @@
 const del = document.querySelectorAll(".del");
 const del1 = document.querySelectorAll("#del");
+const cart = document.querySelectorAll("#cart");
+const cartbtn = document.querySelectorAll(".cart");
+
 
 del.forEach(function(del1){
     del1.addEventListener("click",function(event){
+        let check = window.confirm("삭제하시겠습니까?");
+        event.stopPropagation();
+
+        if(check) {
         let d = event.target;
         let cart_num = d.parentNode.parentNode.childNodes[9].childNodes[3].value;
 
@@ -33,5 +40,21 @@ del.forEach(function(del1){
                 }
             }
         }
+    }else {
+        alert("장바구니 삭제 취소");
+    }
     })
+    
+});
+
+cart.forEach(function(cartbtn){
+    cartbtn.addEventListener("click",function(){
+        alert("detail");
+    })
+
 })
+
+
+
+
+

@@ -21,7 +21,21 @@ public class CartController {
 	@PostMapping("setCartAdd")
 	@ResponseBody
 	public int setCartAdd(CartDTO cartDTO) throws Exception {
-		int result = cartService.setCartAdd(cartDTO);
+		int result = 1;
+		cartDTO.setId("gang");
+		List<CartDTO> ar = cartService.getCartList(cartDTO);
+		for(int i=0;i<ar.size();i++) {
+			if(ar.get(i).getL_num().equals(cartDTO.getL_num())) {
+				result = 0;// 이미 장바구니에 있어용
+				break;
+			}else {
+				result = 1;
+			}
+		}
+		if(result == 1) {
+			cartService.setCartAdd(cartDTO);
+		}
+		
 		return result;
 	}
 	

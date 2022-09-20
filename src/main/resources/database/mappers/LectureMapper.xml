@@ -83,7 +83,17 @@
 		    	</resultMap>
 		    	
 		    	<select id="getDetail" parameterType="LectureDTO" resultMap="getDetailResult">
-		    		SELECT * FROM LECTURE WHERE L_NUM = #{l_num}
+		    		SELECT L.*, LF.* ,C.*, LV.*, CA.C_NAME
+					FROM LECTURE L
+					INNER JOIN L_FILE LF
+					ON L.L_NUM = LF.L_NUM
+					JOIN CART C
+					ON L.L_NUM = C.L_NUM
+					JOIN "LEVEL" LV
+					ON L.LEVEL_NUM = LV.LEVEL_NUM
+					JOIN CATEGORY CA
+					ON L.C_NUM = CA.C_NUM 
+					WHERE L.L_NUM = #{l_num}
 		    	</select>
 		    	
 		    	<select id="getDetailVideo" resultMap="getDetailResult">

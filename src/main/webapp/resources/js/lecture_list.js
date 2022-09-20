@@ -1,12 +1,16 @@
 const lecture = document.querySelectorAll("#lecture");
 const cart = document.querySelectorAll(".cart");
-const lecture1 = document.querySelectorAll("#lecture1");
+const lecturebtn = document.querySelectorAll("#lecturebtn");
 const cate = document.querySelectorAll(".cate");
-const cate1 = document.querySelectorAll("#cate1")
+const cate1 = document.querySelectorAll("#cate1");
 
 lecture.forEach(function(lecturebtn){
-    lecturebtn.addEventListener("click",function(){
-        window.location.href="./detail";
+    lecturebtn.addEventListener("click",function(event){
+        let target = event.target;
+        let l = target;
+        console.log(target);
+        //window.location.href="./detail?l_num="+l;
+
         
     });
 });

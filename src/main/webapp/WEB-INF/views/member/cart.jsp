@@ -26,7 +26,7 @@
             <h2 style="display: inline;">장바구니</h2>
         </div>
         <c:forEach items="${lectureDTO}" var="lecturedto">
-        <div class="row gx-2 gx-lg-2 align-items-center my-5" style="border-style: groove; border-width :thin;">
+        <div class="row gx-2 gx-lg-2 align-items-center my-5 cart" id="cart" style="border-style: groove; border-width :thin;">
             <div class="col-lg-2">
                 <img class="img-fluid rounded mb-4 mb-lg-0" src="../resources/upload/lecture/${lecturedto.lectureFileDTO[0].f_name}" alt="...">
                 <h3>${lecturedto.l_name}</h3>
@@ -45,10 +45,10 @@
                 <input type="label" value="${lecturedto.cartDTO.cart_num}" style="display: none;">
             </div>
             <div div class="col-lg-3">
-                <input type="button" class="btn btn-primary mt-3 sign" id="sign" value="수강신청 하기" style="border :none; color: #66ba39; background-color: white;">
                 <input type="button" class="btn btn-primary mt-3 del" id="del" value="장바구니에서 삭제하기" style="border :none; color: #66ba39; background-color: white;">
             </div>
         </div>
+    
         </c:forEach>
     </main>
     <c:import url="../template/footer.jsp"></c:import>
