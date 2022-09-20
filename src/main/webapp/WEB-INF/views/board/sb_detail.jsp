@@ -7,7 +7,12 @@
 		<meta charset="UTF-8">
 		<title>게시판 상세보기</title>
 		<link rel="stylesheet" href="/resources/css/board/sb_detail.css" />
-    <%-- Bootstrap CSS --%>
+		<!-- jquery -->
+    	<script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+		<!-- include summernote css/js-->
+	    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+	    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    	<%-- Bootstrap CSS --%>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -115,13 +120,74 @@
         <div class="d-flex flex-row-reverse mb-5" style="width: 70%; margin: 0px auto;">
           <div class="p-2"><button class="btn-st btn btn-outline-secondary">답변달기(강사)</button></div>
           <div class="p-2"><button class="btn-st btn btn-outline-secondary" onclick="location.href='./sb_list';">목록보기(작성자)</button></div>
-          <div class="p-2"><button class="btn-st btn btn-outline-secondary">삭제하기(작성자)</button></div>
-          <div class="p-2"><button class="btn-st btn btn-outline-secondary">수정하기(작성자)</button></div>
+          <div class="p-2"><button class="btn-st btn btn-outline-secondary" onclick="location.href='sb_delete?sb_num=${studyBoardDTO.getSb_num()}';">삭제하기(작성자)</button></div>
+          <div class="p-2"><button type="button" class="btn-st btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" id="up" >수정하기(작성자)</button></div>
         </div>
+        
+          <!--modal-->
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    <b style="color:gray;">글 수정하기📚</b>
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <form action="sb_update" method="post" enctype="multipart/form-data">
+      			    <input value="${studyBoardDTO.getSb_num()}" style="display:none;"/>
+                    <div class="mb-3">
+                      <label
+                        for="recipient-name"
+                        class="col-form-label"
+                        style="color: gray"
+                        ><b>글제목</b></label
+                      >
+                      <input type="text" name = "title" value="${studyBoardDTO.title}" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <div class="mb-3">
+                      <label
+                        for="message-text"
+                        class="col-form-label"
+                        style="color: gray"
+                        ><b>내용</b></label
+                      >
+                      <textarea name = "contents" class="form-control mt-1" id="contents" rows="3">${studyBoardDTO.contents}</textarea>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    취소
+                  </button>
+                  <button class="btn btn-warning" id="update_btn" data-board-num="${studyBoardDTO.getSb_num()}">
+                    등록하기
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        
 
         
       <div class="board teacher" style="margin-top: 2em; margin-bottom: 0.5em;">
-
         <!--Contents-->
         <div class="sb_contents">
           <div class="mb-3">
@@ -191,6 +257,19 @@
 
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script type="text/javascript">
+        $("#contents").summernote(
+                {
+                	  placeholder: '글 내용 수정',
+                      height: 260,                
+                      minHeight: null,           
+                      maxHeight: null,          
+                      focus: true 
+                    });
+ /*   $("#contents").summernote('pasteHTML', data);
+        $("#contents").html(data.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g,'"').replace(/&#40;/g,'(').replace(/&#41;/g,')').replace(/&#35;/g,'#')); */
+  
+</script>
 <script src="/resources/js/sb_detail.js"></script>
 </body>
 </html>

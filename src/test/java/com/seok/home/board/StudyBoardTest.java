@@ -49,5 +49,18 @@ public class StudyBoardTest extends MyAbstractTest{
 		
 		assertNotNull(studyBoardDTO);
 	}
+	
+	//@Test
+	public void setBoardUpdate()throws Exception{
+		StudyBoardDTO studyBoardDTO = new StudyBoardDTO();
+		studyBoardDTO.setSb_num(1052L);
+		studyBoardDTO.setTitle("gg");
+		studyBoardDTO.setContents("sssss");
+		
+		int result = studyBoardDAO.setBoardUpdate(studyBoardDTO);
+		
+		assertEquals(1, result);
+		
+	}
 
 }

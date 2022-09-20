@@ -22,4 +22,12 @@ public class StudyBoardService {
 	public int setBoardAdd(StudyBoardDTO studyBoardDTO)throws Exception{
 		return studyBoardDAO.setBoardAdd(studyBoardDTO);
 	}
+	
+	public int setBoardDelete(StudyBoardDTO studyBoardDTO)throws Exception{
+		return studyBoardDAO.setBoardDelete(studyBoardDTO);
+	}
+	
+	public int setBoardUpdate(StudyBoardDTO studyBoardDTO)throws Exception{
+		return studyBoardDAO.setBoardUpdate(studyBoardDTO);
+	}
 }

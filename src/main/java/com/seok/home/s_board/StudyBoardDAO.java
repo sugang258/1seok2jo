@@ -25,4 +25,12 @@ public class StudyBoardDAO {
 		return session.insert(NAMESPACE+"setBoardAdd", studyBoardDTO);
 	}
 	
+	public int setBoardDelete(StudyBoardDTO studyBoardDTO)throws Exception{
+		return session.delete(NAMESPACE+"setBoardDelete", studyBoardDTO);
+	}
+	
+	public int setBoardUpdate(StudyBoardDTO studyBoardDTO)throws Exception{
+		return session.update(NAMESPACE+"setBoardUpdate", studyBoardDTO);
+	}
+	
 }

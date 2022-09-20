@@ -16,5 +16,13 @@
 			    	INSERT INTO study_board
 					VALUES (BOARD_SEQ.NEXTVAL, #{l_num}, #{id}, #{title}, SYSDATE, #{answer}, #{hit}, #{contents}, #{category})
 		    	</insert>
+		    		
+		    	<delete id="setBoardDelete" parameterType="StudyBoardDTO">
+		    		DELETE FROM STUDY_BOARD WHERE SB_NUM= #{sb_num}
+		    	</delete>
+		    	
+		    	<update id="setBoardUpdate" parameterType="StudyBoardDTO">
+		    		UPDATE STUDY_BOARD SET TITLE=#{title}, CONTENTS=#{contents} WHERE SB_NUM=#{sb_num}
+		    	</update>
 		   
 		    </mapper>
