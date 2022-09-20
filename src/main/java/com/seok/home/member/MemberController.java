@@ -68,8 +68,10 @@ public class MemberController {
 	
 	//로그인(POST)
 	@PostMapping("login")
-	public String getLogin(MemberDTO memberDTO)throws Exception{
+	public String getLogin(MemberDTO memberDTO, HttpSession session)throws Exception{
 		System.out.println("로그인 접속(POST)");
+		memberDTO = memberService.getLogin(memberDTO);
+		session.setAttribute("member", memberDTO);
 		return "member/login";
 	}
 	
