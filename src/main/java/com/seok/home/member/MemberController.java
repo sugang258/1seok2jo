@@ -40,6 +40,32 @@ public class MemberController {
 
 	}
 	
+	//로그인(GET)
+	@GetMapping("login")
+	public String getLogin()throws Exception{
+		System.out.println("로그인 접속(GET)");
+		return "member/login";
+	}
+	
+	//로그인(POST)
+	@PostMapping("login")
+	public String getLogin(MemberDTO memberDTO, HttpSession session)throws Exception{
+		System.out.println("로그인 접속(POST)");
+		memberDTO = memberService.getLogin(memberDTO);
+		session.setAttribute("member", memberDTO);
+		return "member/login";
+	}
+	
+	//로그아웃(GET)
+	@GetMapping("logout")
+	public String setLogout(HttpSession session)throws Exception{
+		System.out.println("로그아웃 접속(GET)");
+		
+		session.invalidate();
+		
+		return "redirect:../";
+	}
+	
 	//회원가입(GET)
 	@GetMapping("join")
 	public void setJoin()throws Exception{
@@ -57,22 +83,6 @@ public class MemberController {
 		}else {
 			System.out.println("회원가입 실패..");
 		}
-	}
-	
-	//로그인(GET)
-	@GetMapping("login")
-	public String getLogin()throws Exception{
-		System.out.println("로그인 접속(GET)");
-		return "member/login";
-	}
-	
-	//로그인(POST)
-	@PostMapping("login")
-	public String getLogin(MemberDTO memberDTO, HttpSession session)throws Exception{
-		System.out.println("로그인 접속(POST)");
-		memberDTO = memberService.getLogin(memberDTO);
-		session.setAttribute("member", memberDTO);
-		return "member/login";
 	}
 	
 	//장바구니(GET)

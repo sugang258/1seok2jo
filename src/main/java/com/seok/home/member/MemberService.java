@@ -27,14 +27,14 @@ public class MemberService {
 		return teacherDAO.setTeacherAdd(teacherDTO);
 	}
 	
-	//회원가입
-	public int setJoin(MemberDTO memberDTO, ServletContext servletContext)throws Exception{
-		return memberDAO.setJoin(memberDTO);
-	}
-	
 	//회원로그인
 	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
 		return memberDAO.getLogin(memberDTO);
+	}
+	
+	//회원가입
+	public int setJoin(MemberDTO memberDTO, ServletContext servletContext)throws Exception{
+		return memberDAO.setJoin(memberDTO);
 	}
 	
 	//장바구니
