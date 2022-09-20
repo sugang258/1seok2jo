@@ -37,10 +37,19 @@ function requestPay() {
             const xhttp = new XMLHttpRequest();
             const res = JSON.stringify(rsp)
 
-            xhttp.open("Post","./success", true);
+            xhttp.open("Post","./success");
             xhttp.setRequestHeader("Content-type", "application/json");
             xhttp.send(res);
             console.log(res);
+
+            xhttp.addEventListener("readystatechange", function(){
+                console.log(this.readyState+"|"+this.status)
+                if(this.readyState==4 && this.status==200){
+                    if(xhttp.response==1){
+                        location.href="./complete?uid="+uid;
+                    }
+                }
+            })
             
         } else {
             alert("결제실패\n"+rsp.error_msg);
