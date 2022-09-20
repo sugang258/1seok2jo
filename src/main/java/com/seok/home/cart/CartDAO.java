@@ -24,4 +24,6 @@ public class CartDAO {
 	public List<CartDTO> getCartList(CartDTO cartDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getCartList", cartDTO);
 	}
+	
+	
 }

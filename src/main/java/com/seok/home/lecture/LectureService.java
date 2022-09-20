@@ -60,6 +60,10 @@ public class LectureService {
 		return result;
 	}
 	
+	public LectureDTO getDetail(LectureDTO lectureDTO) throws Exception {
+		return lectureDAO.getDetail(lectureDTO);
+	}
+	
 	
 	
 	
