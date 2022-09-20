@@ -39,7 +39,7 @@
           <div class="card-body">
             <div class="">
               <label for="name" class="text-muted">이름</label>
-              <input type="text" class="form-control" id="name">
+              <input type="text" class="form-control" id="name" value="${member.name}">
             </div>
             <div class="mt-2">
               <label for="email" class="text-muted">이메일</label>
@@ -58,6 +58,7 @@
           </div>
           <div class="card-body">
             <!--강의정보내용-->
+            <!--테스트 강의정보-->
             <div class="row g-1 p-3 align-items-center">
               <div class="col-3">
                 <img src="../../../resources/images/22.png" class="img-fluid rounded-start" style="object-fit: contain">
@@ -71,6 +72,23 @@
                 55000원
               </div>
             </div>
+            <!--테스트 끝-->
+            <c:forEach items="${lectureDTOs}" var="lectureDTOs">
+              <div class="row g-1 p-3 align-items-center">
+                <div class="col-3">
+                  <img src="../../../resources/images/22.png" class="img-fluid rounded-start" style="object-fit: contain">
+                </div>
+                <div class="col-md-6">
+                  <small class="d-inline-flex px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">6개월 수강</small>
+                  <label for="name" class="text-muted">강사명</label>
+                  <p>강의명</p>
+                </div>
+                <div class="col-md-3 text-end">
+                  55000원
+                </div>
+              </div>
+            </c:forEach>
+            
             <!--강의-->
           </div>
         </div>
@@ -90,7 +108,7 @@
                 <label for="point">마일리지</label>
               </div>
               <div class="col-6 text-end">
-                <span>0원</span>  
+                <span>${member.point}원</span>  
               </div>
             </div>
             <input type="text" class="form-control text-end" id="point" placeholder="사용가능 0원">

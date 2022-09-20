@@ -13,6 +13,10 @@ btnimport.addEventListener("click", function(){
 })
 
 function requestPay() {
+    let name = document.getElementById("name")
+    let email = document.getElementById("email")
+    let phone = document.getElementById("phone")
+
     var IMP = window.IMP; // 초기화는 한번만
     IMP.init("imp18741385"); // 아임포트 회원가입하면 부여되는 내 식별코드 입력
 
@@ -25,9 +29,9 @@ function requestPay() {
         merchant_uid: uid, //필수, 주문번호 내가 생성함. 중복불가!!!
         name : '당근 10kg',
         amount : 1004, //필수, 결제금액
-        buyer_email : 'simyj12@naver.com', //
-        buyer_name : '일석이조테스트', //
-        buyer_tel : '010-1234-5678', //필수, 가능한한..
+        buyer_email : email.value, //
+        buyer_name : name.value, //
+        buyer_tel : phone.value, //필수, 가능한한..
         buyer_addr : '꾸디일석이조',
         buyer_postcode : '123-456'
     }, function (rsp) { // callback
