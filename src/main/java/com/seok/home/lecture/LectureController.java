@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.seok.home.util.Pager;
+
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
@@ -22,10 +25,20 @@ public class LectureController {
 	private LectureService lectureService;
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
-	public ModelAndView getLecture(ModelAndView mv,LectureDTO lectureDTO,String search) throws Exception {
+	public ModelAndView getLecture(ModelAndView mv,LectureDTO lectureDTO,Pager pager) throws Exception {
 		
-		List<LectureDTO> ar = lectureService.getLecture(search);
+		
+		
+		List<LectureDTO> ar = lectureService.getLecture(pager);
+		System.out.println("ar : "+ar.size());
+		System.out.println("search :"+pager.getSearch());
+		System.out.println(pager.getStartRow());
+		System.out.println(pager.getLastRow());
+		System.out.println(pager.getKind());
 		mv.addObject("list", ar);
+		mv.addObject("Pager", pager);
+		
+		mv.setViewName("lecture/list");
 		
 		return mv;
 	}

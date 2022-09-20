@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.seok.home.util.FileManager;
+import com.seok.home.util.Pager;
 
 @Service
 public class LectureService {
@@ -18,9 +19,14 @@ public class LectureService {
 	@Autowired
 	private FileManager fileManager;
 	
-	public List<LectureDTO> getLecture(String search) throws Exception {
-		
-		return lectureDAO.getLecture(search);
+	public List<LectureDTO> getLecture(Pager pager) throws Exception {
+		System.out.println(pager.getPage());
+		System.out.println("seaaaa :"+pager.getSearch());
+		Long totalCount = lectureDAO.getCount(pager);
+		pager.getNum(totalCount);
+		pager.getRowNum();
+		System.out.println(totalCount);
+		return lectureDAO.getLecture(pager);
 	}
 	
 	public int setLecture(LectureDTO lectureDTO, MultipartFile[] files, ServletContext servletContext,LectureVideoDTO lectureVideoDTO) throws Exception {

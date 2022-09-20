@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.seok.home.MyAbstractTest;
+import com.seok.home.util.Pager;
 
 public class LectureTest extends MyAbstractTest {
 	
@@ -31,10 +32,10 @@ public class LectureTest extends MyAbstractTest {
 	}
 	
 	//@Test
-	public void getLecture(String search) throws Exception{
+	public void getLecture(Pager pager) throws Exception{
 		//LectureDTO lectureDTO = new LectureDTO();
 		
-		List<LectureDTO> ar = lectureDAO.getLecture(search);
+		List<LectureDTO> ar = lectureDAO.getLecture(pager);
 		
 		assertNotEquals(0, ar.size());
 	}

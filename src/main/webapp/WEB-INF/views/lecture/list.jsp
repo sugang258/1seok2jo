@@ -20,17 +20,18 @@
 <body>
    <main class="container mt-5">
 		<!--Category Search-->
-		<form action="./list" method="post">
+		<form action="./list">
 			<div class="input-group mb-3 " style="width: 500px; margin: auto;">
-				<select name="category" class="form-select" id="category" style="border-radius: 7px 0 0 7px; width: 100px;">
-					<option class="categories" value="">Category</option>
-					<option class="categories" value="java">Java</option>
-					<option class="categories" value="python">Python</option>
-					<option class="categories" value="javascript">JavaScript</option>
-					<option class="categories" value="html/css">HTML/CSS</option>
+				
+				<select name="kind" class="form-select" id="kind" style="border-radius: 7px 0 0 7px; width: 100px;">
+					<option class="kinds" value="">Category</option>
+					<option class="kinds" value="id">강사 ID</option>
+					<option class="kinds" value="l_name">강의 제목</option>
+					<option class="kinds" value="level_name">강의 난이도</option>
+					<option class="kinds" value="c_name">강의 카테고리</option>
 				</select>
 
-				<input type="text" class="form-control" id="search" name="search">
+				<input type="text" class="form-control" id="search" name="search" value="">
 				<button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
 			</div>
 		</form>
@@ -72,11 +73,23 @@
 				</div>
 				
 			</section>
-
-                   
-
-
-    </main>
+		
+		</main>
+		<div class="container">
+		<nav aria-label="Page navigation example" class="justify-content-center">
+			<ul class="pagination">
+			<c:if test="${pager.pre}">
+			  <li class="page-item"><a class="page-link" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">Previous</a></li>
+			  </c:if>
+			  <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+				  <li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+			 </c:forEach>
+			
+			 <li class="page-item ${pager.next?'':'disabled'}">
+			  <a class="page-link" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">Next</a></li>
+			</ul>
+		  </nav>
+		</div>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <script src="/resources/js/lecture_list.js"></script>
