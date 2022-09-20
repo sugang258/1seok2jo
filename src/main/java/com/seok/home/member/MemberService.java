@@ -37,6 +37,7 @@ public class MemberService {
 	
 	//회원가입
 	public int setJoin(MemberDTO memberDTO)throws Exception{
+		//MemberDAO에서 아이디 중복 확인 메서드를 만들어서 실행
 		//MemberDAO에 멤버등급 추가 메서드를 만들어서 실행
 		int susess = memberDAO.setJoin(memberDTO);
 		int result = 0;
