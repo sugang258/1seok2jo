@@ -38,8 +38,13 @@ public class MemberService {
 	//회원가입
 	public int setJoin(MemberDTO memberDTO)throws Exception{
 		//MemberDAO에 멤버등급 추가 메서드를 만들어서 실행
-		int result = memberDAO.setMemberRole(memberDTO);
-		return result;
+		int susess = memberDAO.setJoin(memberDTO);
+		int result = 0;
+		if(susess == 1 ) {
+			result = memberDAO.setMemberRole(memberDTO);
+		}
+		
+		return result;	
 	}
 	
 	//장바구니

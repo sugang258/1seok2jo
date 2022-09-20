@@ -54,14 +54,17 @@ public class MemberController {
 	public String getLogin(MemberDTO memberDTO, HttpSession session)throws Exception{
 		System.out.println("로그인 접속(POST)");
 		
-		ModelAndView mv = new ModelAndView();
-		
+		//ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO2 = new MemberDTO();
 		//DB에 아이디 패스워드 확인
 		memberDTO = memberService.getLogin(memberDTO);
 		
+		System.out.println(memberDTO.getId());
+		
 		//세션에 memberDTO 담기
 		session.setAttribute("member", memberDTO);
-		
+		memberDTO2 = (MemberDTO)session.getAttribute("member");
+		System.out.println(memberDTO2.getId());
 		//로그인 성공 실패 확인
 		if(memberDTO!=null) {
 			System.out.println("로그인 성공!");
