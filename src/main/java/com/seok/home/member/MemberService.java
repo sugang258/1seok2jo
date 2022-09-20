@@ -22,18 +22,22 @@ public class MemberService {
 	@Autowired
 	private CartDAO cartDAO;
 	
+	//강사신청
 	public int setTeacherAdd(TeacherDTO teacherDTO, ServletContext servletContext)throws Exception{
 		return teacherDAO.setTeacherAdd(teacherDTO);
 	}
 	
+	//회원가입
 	public int setJoin(MemberDTO memberDTO, ServletContext servletContext)throws Exception{
 		return memberDAO.setJoin(memberDTO);
 	}
 	
+	//회원로그인
 	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
 		return memberDAO.getLogin(memberDTO);
 	}
 	
+	//장바구니
 	public List<CartDTO> getCartList(CartDTO cartDTO) throws Exception {
 		return cartDAO.getCartList(cartDTO);
 	}

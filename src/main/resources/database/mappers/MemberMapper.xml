@@ -10,5 +10,26 @@
 		VALUES (#{id}, #{pw}, #{name}, #{n_name}, #{b_date}, #{gender}, #{email}, #{phone}, 0)
 	</insert>
 	
+	<select id="getLogin" resultType="MemberDTO">
+      SELECT M.ID, M.NAME, MR.ROLENUM, R.ROLENAME
+      FROM MEMBER M
+         INNER JOIN
+         MEMBER_ROLE MR
+         ON (M.ID=MR.ID)
+         INNER JOIN
+         ROLE R
+         ON (MR.ROLENUM=R.ROLENUM)
+      WHERE M.ID='koo' AND M.PW=123
+      ORDER BY R.ROLENUM ASC
+   </select>
+   
+   <resultMap type="MemberDTO" id="getLoginResult">
+      <id column="ID" property="id"></id>
+      <result column="NAME" property="name"/>
+      <collection property="roleDTOs" javaType="List" ofType="RoleDTO">
+         <id column="ROLENUM" property="roleNum"/>
+         <result column="ROLENAME" property="roleName"/>
+      </collection>
+   </resultMap>
 	
 </mapper> 

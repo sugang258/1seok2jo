@@ -1,5 +1,7 @@
 package com.seok.home.member;
 
+import java.util.List;
+
 public class MemberDTO {
 
 	//회원의 정보를 담을 DTO
@@ -22,6 +24,8 @@ public class MemberDTO {
 	private String phone;
 	//마일리지
 	private Long point;
+	//등급을 여러개
+	private List<RoleDTO> roleDTOs;
 	
 	//getter setter
 	public String getId() {

@@ -20,16 +20,16 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	//강사 회원가입
+	//강사신청(GET)
 	@GetMapping("teacherAdd")
 	public void setTeacherAdd()throws Exception{
-		System.out.println("강사 회원가입 접속(GET)");
+		System.out.println("강사신청 접속(GET)");
 	}
 	
-	//강사 회원가입
+	//강사신청(POST)
 	@PostMapping("teacherAdd")
 	public void setTeacherAdd(TeacherDTO teacherDTO, HttpSession session)throws Exception{
-		System.out.println("강사 회원가입 접속(POST)");
+		System.out.println("강사신청 접속(POST)");
 		
 		int result = memberService.setTeacherAdd(teacherDTO, session.getServletContext());
 		if(result>0) {
@@ -40,13 +40,13 @@ public class MemberController {
 
 	}
 	
-	//회원가입
+	//회원가입(GET)
 	@GetMapping("join")
 	public void setJoin()throws Exception{
 		System.out.println("회원가입 접속(GET)");
 	}
 	
-	//회원가입 폼
+	//회원가입(POST)
 	@PostMapping
 	public void setJoin(MemberDTO memberDTO, HttpSession session)throws Exception{
 		System.out.println("회원가입 접속(POST)");
@@ -59,20 +59,23 @@ public class MemberController {
 		}
 	}
 	
-	//로그인
+	//로그인(GET)
 	@GetMapping("login")
 	public String getLogin()throws Exception{
 		System.out.println("로그인 접속(GET)");
 		return "member/login";
 	}
 	
-	//로그인
+	//로그인(POST)
 	@PostMapping("login")
-	public String getLogin(MemberDTO memberDTO)throws Exception{
+	public String getLogin(MemberDTO memberDTO, HttpSession session)throws Exception{
 		System.out.println("로그인 접속(POST)");
+		memberDTO = memberService.getLogin(memberDTO);
+		session.setAttribute("member", memberDTO);
 		return "member/login";
 	}
 	
+	//장바구니(GET)
 	@RequestMapping(value="cart", method=RequestMethod.GET)
 	public String getCartList() throws Exception{
 		
