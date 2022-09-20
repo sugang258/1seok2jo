@@ -22,4 +22,9 @@ public class MemberDAO {
 		return sqlSession.insert(NAMESPACE+"setJoin", memberDTO);
 	}
 	
+	//회원등급 설정
+	public int setMemberRole(MemberDTO memberDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setMemberRole", memberDTO);
+	}
+	
 }

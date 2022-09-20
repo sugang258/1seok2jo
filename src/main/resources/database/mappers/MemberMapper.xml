@@ -6,7 +6,7 @@
 <mapper namespace="com.seok.home.member.MemberDAO">
 	
 	<select id="getLogin" parameterType="MemberDTO" resultMap="getLoginResult">
-		SELECT M.ID, M.NAME, M.EMAIL, M.PHONE , MR.ROLENUM, R.ROLENAME
+		SELECT M.ID, M.NAME, M.EMAIL, M.PHONE, M.POINT, MR.ROLENUM, R.ROLENAME
 		FROM MEMBER M
 			INNER JOIN
 			MEMBER_ROLE MR
@@ -27,6 +27,10 @@
 		</collection>
 	</resultMap>
 	
+	<insert id="setMemberRole" parameterType="MemberDTO">
+		INSERT INTO MEMBER_ROLE(R_NUM, ROLENUM, ID)
+		VALUES(MEMBER_ROLE_SEQ.NEXTVAL, 3, #{id})
+	</insert>
 	
 	<insert id="setJoin" parameterType="MemberDTO">
 		INSERT INTO MEMBER(ID, PW, NAME, N_NAME, B_DATE, GENDER, EMAIL, PHONE, POINT)

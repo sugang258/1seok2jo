@@ -93,7 +93,7 @@ public class MemberController {
 	public void setJoin(MemberDTO memberDTO, HttpSession session)throws Exception{
 		System.out.println("회원가입 접속(POST)");
 		
-		int result = memberService.setJoin(memberDTO, session.getServletContext());
+		int result = memberService.setJoin(memberDTO);
 		if(result>0) {
 			System.out.println("회원가입 성공!");
 		}else {

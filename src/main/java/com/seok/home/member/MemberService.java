@@ -11,14 +11,18 @@ import com.seok.home.cart.CartDAO;
 import com.seok.home.cart.CartDTO;
 import com.seok.home.lecture.teacher.TeacherDAO;
 import com.seok.home.lecture.teacher.TeacherDTO;
+import com.seok.home.member.role.RoleDAO;
 
 @Service
 public class MemberService {
 
+	//회원
 	@Autowired
 	private MemberDAO memberDAO;
+	//강사
 	@Autowired
 	private TeacherDAO teacherDAO;
+	//장바구니
 	@Autowired
 	private CartDAO cartDAO;
 	
@@ -33,9 +37,10 @@ public class MemberService {
 	}
 	
 	//회원가입
-	public int setJoin(MemberDTO memberDTO, ServletContext servletContext)throws Exception{
+	public int setJoin(MemberDTO memberDTO)throws Exception{
 		//MemberDAO에 멤버등급 추가 메서드를 만들어서 실행
-		return memberDAO.setJoin(memberDTO);
+		int result = memberDAO.setMemberRole(memberDTO);
+		return result;
 	}
 	
 	//장바구니
