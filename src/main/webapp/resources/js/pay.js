@@ -1,5 +1,10 @@
 let btnimport = document.getElementById("btnimport");
 
+//결제창이 열리면 주문번호를 생성한다.
+let now = new Date();
+let uid = "1seok2jo-"+now.getTime();
+
+
 
 
 // 결제하기 버튼을 클릭하면 하단 실행
@@ -17,7 +22,7 @@ function requestPay() {
         {
         pg : 'kcp',
         pay_method : 'card',//필수, 결제수단
-        merchant_uid: "1seok2jo-2022092204", //필수, 주문번호 내가 생성함. 중복불가!!!
+        merchant_uid: uid, //필수, 주문번호 내가 생성함. 중복불가!!!
         name : '당근 10kg',
         amount : 1004, //필수, 결제금액
         buyer_email : 'simyj12@naver.com', //
@@ -30,48 +35,20 @@ function requestPay() {
         if (rsp.success) {
             //ajax로 결제성공 페이지 요청
             const xhttp = new XMLHttpRequest();
-            xhttp.open("Post","./success", false);
+            const res = JSON.stringify(rsp)
+
+            xhttp.open("Post","./success", true);
             xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.send(rsp);
+            xhttp.send(res);
+            console.log(res);
             
         } else {
+            alert("결제실패\n"+rsp.error_msg);
             console.log(rsp);
         }
     })
 }
-/*
-function requestPay() {
-    // IMP.request_pay(param, callback) 결제창 호출
-    IMP.request_pay({ // param
-        pay_method: "card",
-        merchant_uid: "ORD20180131-0000011",
-        name: "노르웨이 회전 의자",
-        amount: 64900,
-        buyer_email: "gildong@gmail.com",
-        buyer_name: "홍길동",
-        buyer_tel: "010-4242-4242",
-        buyer_addr: "서울특별시 강남구 신사동",
-        buyer_postcode: "01181"
-    }, function (rsp) { // callback
-        if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-          // jQuery로 HTTP 요청
-          jQuery.ajax({
-              url: "/pay/order", // {서버의 결제 정보를 받는 endpoint} 예: https://www.myservice.com/payments/complete
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              data: {
-                  imp_uid: rsp.imp_uid, // 결제 번호
-                  merchant_uid: rsp.merchant_uid
-              }
-          }).done(function (data) {
-            console.log(" 가맹점 서버 결제 API 성공시 로직")
-          })
-        } else {
-          alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
-        }
-      });
-  }
-  */
+
 
 
 //툴팁

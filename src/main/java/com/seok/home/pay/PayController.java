@@ -2,12 +2,17 @@ package com.seok.home.pay;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.seok.home.member.MemberDTO;
 
 @Controller
 @RequestMapping(value="/pay/*")
@@ -28,10 +33,12 @@ public class PayController {
 	//결제성공시
 	@PostMapping(value="success")
 	@ResponseBody
-	public void getSuccess(HashMap<String, Object> param) {
-		//넘어오긴하는데 못받아옴아모암오
-		System.out.println(param.keySet());
-		
+	public String getSuccess(@RequestBody HashMap<String, Object> res, HttpSession session) {
+		//주문상세내역과 결제내역 저장
+		System.out.println(res.keySet());
+		System.out.println(res.get("buyer_email"));
+
+		return "pay/success";
 	}
 
 }
