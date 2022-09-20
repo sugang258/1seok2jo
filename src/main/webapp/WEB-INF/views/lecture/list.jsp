@@ -57,7 +57,7 @@
 										<div>난이도 : ${list.level_name}</div>
 										<div>카테고리 : ${list.c_name}</div>
 										<input type="label" value="${list.l_num}" style="display: none;">
-										<input type="label" value="${list.c_num}" style="display: none;">
+										<!--<input type="label" value="${list.c_num}" style="display: none;">-->
 									</div>
 								</div>
 								<!-- Product actions-->

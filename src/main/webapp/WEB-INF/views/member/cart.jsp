@@ -42,16 +42,17 @@
             </div>
             <div div class="col-lg-1">
                 <p>${lecturedto.l_price}원</p>
+                <input type="label" value="${lecturedto.cartDTO.cart_num}" style="display: none;">
             </div>
             <div div class="col-lg-3">
-                <input type="button" class="btn btn-primary mt-3" id="sign" value="수강신청 하기" style="border :none; color: #66ba39; background-color: white;">
-                <input type="button" class="btn btn-primary mt-3" id="delete" value="장바구니에서 삭제하기" style="border :none; color: #66ba39; background-color: white;">
+                <input type="button" class="btn btn-primary mt-3 sign" id="sign" value="수강신청 하기" style="border :none; color: #66ba39; background-color: white;">
+                <input type="button" class="btn btn-primary mt-3 del" id="del" value="장바구니에서 삭제하기" style="border :none; color: #66ba39; background-color: white;">
             </div>
         </div>
         </c:forEach>
     </main>
     <c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    <script src="/resources/js/lecture_file.js"></script>
+    <script src="/resources/js/cart.js"></script>
 </body>
 </html>

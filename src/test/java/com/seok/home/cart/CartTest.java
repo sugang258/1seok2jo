@@ -29,7 +29,7 @@ public class CartTest extends MyAbstractTest  {
 	public void setCartDelete() throws Exception{
 		CartDTO cartDTO = new CartDTO();
 		
-		cartDTO.setC_num(2L);
+		cartDTO.setCart_num(2L);
 		
 		int result = cartDAO.setCartDelete(cartDTO);
 		

@@ -19,10 +19,10 @@ cart.forEach(function(cartbtn) {
 
        let target =  event.target;
        let l_num =  target.parentNode.parentNode.parentNode.childNodes[7].childNodes[1].childNodes[19].value;
-       let c_num = target.parentNode.parentNode.parentNode.childNodes[7].childNodes[1].childNodes[21].value;
+      // let c_num = target.parentNode.parentNode.parentNode.childNodes[7].childNodes[1].childNodes[21].value;
        
         console.log(l_num);
-        console.log(c_num);
+        //console.log(c_num);
         
         // let l_num = lecture1.value;
          let id = 'gang';
@@ -38,7 +38,7 @@ cart.forEach(function(cartbtn) {
 
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-        xhttp.send("c_num=" + c_num + "&id=" + id + "&l_num=" + l_num);
+        xhttp.send("id=" + id + "&l_num=" + l_num);
 
         xhttp.onreadystatechange = function() {
             if(this.readyState == 4 && this.status == 200) {

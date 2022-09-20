@@ -25,7 +25,12 @@ public class CartController {
 		return result;
 	}
 	
-	
+	@PostMapping("setCartDelete")
+	@ResponseBody
+	public int setCartDelete(CartDTO cartDTO) throws Exception {
+		int result = cartService.setCartDelete(cartDTO);
+		return result;
+	}
 
 
 }
