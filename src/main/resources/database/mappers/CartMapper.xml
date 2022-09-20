@@ -15,4 +15,5 @@
 		    	<select id="getCartList" parameterType="CartDTO" resultType="CartDTO">
 		    		SELECT * FROM CART WHERE ID = #{id}
 		    	</select>
+		    	
 		    </mapper>

@@ -1,5 +1,7 @@
 package com.seok.home.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.seok.home.cart.CartDTO;
+import com.seok.home.cart.CartService;
+import com.seok.home.lecture.LectureDTO;
+import com.seok.home.lecture.LectureService;
 import com.seok.home.lecture.teacher.TeacherDTO;
+import com.seok.home.util.Pager;
 
 @Controller
 @RequestMapping("/member/*")
@@ -19,6 +26,9 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private CartService cartService;
 	
 	//강사신청(GET)
 	@GetMapping("teacherAdd")
@@ -77,9 +87,19 @@ public class MemberController {
 	
 	//장바구니(GET)
 	@RequestMapping(value="cart", method=RequestMethod.GET)
-	public String getCartList() throws Exception{
+	public ModelAndView getCartList(CartDTO cartDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
 		
-		return "member/cart";
+		cartDTO.setId("gang");
+		List<LectureDTO> ar = cartService.getCartDetail(cartDTO);
+		
+		System.out.println(ar.size());
+		
+		mv.addObject("lectureDTO", ar);
+		mv.setViewName("/member/cart");
+		
+		return mv;
+	
 	}
 	
 	

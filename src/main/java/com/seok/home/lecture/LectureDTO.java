@@ -2,6 +2,8 @@ package com.seok.home.lecture;
 
 import java.util.List;
 
+import com.seok.home.cart.CartDTO;
+
 public class LectureDTO {
 	
 	private Long l_num;
@@ -17,6 +19,7 @@ public class LectureDTO {
 	private Long l_date;
 	private List<LectureFileDTO> lectureFileDTO;
 	private List<LectureVideoDTO> lectureVideoDTO;
+	private List<CartDTO> cartDTO;
 	
 	public Long getL_num() {
 		return l_num;
@@ -96,6 +99,13 @@ public class LectureDTO {
 	public void setLevel_name(String level_name) {
 		this.level_name = level_name;
 	}
+	public List<CartDTO> getCartDTO() {
+		return cartDTO;
+	}
+	public void setCartDTO(List<CartDTO> cartDTO) {
+		this.cartDTO = cartDTO;
+	}
+	
 	
 	
 	

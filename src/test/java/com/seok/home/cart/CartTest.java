@@ -37,7 +37,7 @@ public class CartTest extends MyAbstractTest  {
 		
 	}
 	
-	@Test
+	//@Test
 	public void getCartList() throws Exception {
 		CartDTO cartDTO = new CartDTO();
 		
@@ -47,5 +47,4 @@ public class CartTest extends MyAbstractTest  {
 		
 		assertNotEquals(0, ar.size());
 	}
-
 }

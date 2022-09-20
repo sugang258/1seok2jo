@@ -1,9 +1,15 @@
 package com.seok.home.cart;
 
+import java.util.List;
+
+import com.seok.home.lecture.LectureDTO;
+import com.seok.home.lecture.LectureFileDTO;
+
 public class CartDTO {
 	private Long c_num;
 	private String id;
 	private Long l_num;
+	
 	
 	public Long getC_num() {
 		return c_num;
@@ -23,6 +29,9 @@ public class CartDTO {
 	public void setL_num(Long l_num) {
 		this.l_num = l_num;
 	}
+	
+	
+	
 	
 	
 

@@ -71,10 +71,14 @@
 		    			<result column="f_name" property="f_name"/>
 		    			<result column="f_oriname" property="f_oriname"/>
 		    		</collection>
-		    		<collection property="lectureVideoDTO" javaType="List" ofType="lectureVideoDTO">
+		    		<collection property="lectureVideoDTO" javaType="List" ofType="LectureVideoDTO">
 		    			<id column="v_num" property="v_num"/>
 		    			<result column="v_url" property="v_url"/>
 		    			<result column="v_context" property="v_context"/>
+		    		</collection>
+		    		<collection property="cartDTO" javaType="List" ofType="CartDTO">
+		    			<id column="c_num" property="c_num"/>
+		    			<result column="id" property="id"/>
 		    		</collection>
 		    		
 		    		
@@ -115,5 +119,19 @@
 	                  </choose>
                   	LIKE '%'||#{search}||'%'
 								
+				</select>
+				
+				<select id="getCartDetail" resultMap="getDetailResult" parameterType="CartDTO">
+					SELECT L.*, LF.* ,C.*,LV.*,CA.*
+					FROM LECTURE L
+					INNER JOIN L_FILE LF
+					ON L.L_NUM = LF.L_NUM
+					JOIN CART C
+					ON L.L_NUM = C.L_NUM
+					JOIN "LEVEL" LV
+					ON L.LEVEL_NUM = LV.LEVEL_NUM
+					JOIN CATEGORY CA
+					ON L.C_NUM = CA.C_NUM
+					WHERE C.ID = #{id}
 				</select>
 		    </mapper>
