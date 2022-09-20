@@ -40,6 +40,13 @@ body {
 .nav-item {
   padding-right: 0.5rem;
 }
+
+/* 드롭다운 자동 펼치기 */
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
 .carousel-item {
   height: 280px;
 }

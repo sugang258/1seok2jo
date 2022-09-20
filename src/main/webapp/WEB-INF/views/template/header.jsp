@@ -28,7 +28,7 @@
       <div class="container-fluid" style="
       height: 50px;">
         <a class="navbar-brand" href="#" style="margin-right: 25px"
-          ><img src="/resources/images/15.png" style="width: 130px; height: 65px"
+          ><img src="/resources/images/15.png" style="width: 120px; height: 65px"
         /></a>
         <button
           class="navbar-toggler"
@@ -55,9 +55,15 @@
             <li class="nav-item">
               <a class="nav-link" href="#">멘토링</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">커뮤니티</a>
-            </li>
+             <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            커뮤니티
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/board/sb_list">학습게시판</a></li>
+            <li><a class="dropdown-item" href="#">자유게시판</a></li>
+          </ul>
+        </li>
           </ul>
 
           <form style="width: 190px">

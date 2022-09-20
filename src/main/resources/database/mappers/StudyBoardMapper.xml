@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		    
+		    <mapper namespace="com.seok.home.s_board.StudyBoardDAO">
+		    	<select id="getBoardList" resultType="StudyBoardDTO">
+		    		SELECT * FROM STUDY_BOARD
+		    	</select>
+		    	
+		    	<select id="getBoardDetail" parameterType="StudyBoardDTO" resultType="StudyBoardDTO">
+		    		SELECT * FROM STUDY_BOARD WHERE SB_NUM=#{sb_num}
+		    	</select>
+		    	
+		    	<insert id="setBoardAdd" parameterType="StudyBoardDTO">
+			    	INSERT INTO study_board
+					VALUES (BOARD_SEQ.NEXTVAL, #{l_num}, #{id}, #{title}, SYSDATE, #{answer}, #{hit}, #{contents}, #{category})
+		    	</insert>
+		    		
+		    	<delete id="setBoardDelete" parameterType="StudyBoardDTO">
+		    		DELETE FROM STUDY_BOARD WHERE SB_NUM= #{sb_num}
+		    	</delete>
+		    	
+		    	<update id="setBoardUpdate" parameterType="StudyBoardDTO">
+		    		UPDATE STUDY_BOARD SET TITLE=#{title}, CONTENTS=#{contents} WHERE SB_NUM=#{sb_num}
+		    	</update>
+		   
+		    </mapper>
