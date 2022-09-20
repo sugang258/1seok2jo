@@ -53,8 +53,22 @@ public class MemberController {
 	@PostMapping("login")
 	public String getLogin(MemberDTO memberDTO, HttpSession session)throws Exception{
 		System.out.println("로그인 접속(POST)");
+		
+		ModelAndView mv = new ModelAndView();
+		
+		//DB에 아이디 패스워드 확인
 		memberDTO = memberService.getLogin(memberDTO);
+		
+		//세션에 memberDTO 담기
 		session.setAttribute("member", memberDTO);
+		
+		//로그인 성공 실패 확인
+		if(memberDTO!=null) {
+			System.out.println("로그인 성공!");
+		}else {
+			System.out.println("로그인 실패..");
+		}
+		
 		return "member/login";
 	}
 	
@@ -100,6 +114,14 @@ public class MemberController {
 	@GetMapping("profile")
 	public String setProfile()throws Exception {
 		System.out.println("프로필 접속(GET)");
+		
+		return "member/profile";
+	}
+	
+	//프로필
+	@PostMapping("profile")
+	public String setProfile(MemberDTO memberDTO)throws Exception {
+		System.out.println("프로필 접속(POST)");
 		
 		return "member/profile";
 	}

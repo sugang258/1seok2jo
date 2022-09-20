@@ -6,26 +6,27 @@
 <mapper namespace="com.seok.home.member.MemberDAO">
 	
 	<select id="getLogin" parameterType="MemberDTO" resultMap="getLoginResult">
-      SELECT M.ID, M.NAME, MR.ROLENUM, R.ROLENAME
-      FROM MEMBER M
-         INNER JOIN
-         MEMBER_ROLE MR
-         ON (M.ID=MR.ID)
-         INNER JOIN
-         ROLE R
-         ON (MR.ROLENUM=R.ROLENUM)
-      WHERE M.ID=#{id} AND M.PW=#{pw}
-      ORDER BY R.ROLENUM ASC
-   </select>
+		SELECT M.ID, M.NAME, M.EMAIL, M.PHONE , MR.ROLENUM, R.ROLENAME
+		FROM MEMBER M
+			INNER JOIN
+			MEMBER_ROLE MR
+			ON (M.ID=MR.ID)
+			INNER JOIN
+			ROLE R
+			ON (MR.ROLENUM=R.ROLENUM)
+		WHERE M.ID=#{id} AND M.PW=#{pw}
+		ORDER BY R.ROLENUM ASC
+	</select>
    
-   <resultMap type="MemberDTO" id="getLoginResult">
-      <id column="ID" property="id"></id>
-      <result column="NAME" property="name"/>
-      <collection property="roleDTOs" javaType="List" ofType="RoleDTO">
-         <id column="ROLENUM" property="roleNum"/>
-         <result column="ROLENAME" property="roleName"/>
-      </collection>
-   </resultMap>
+	<resultMap type="MemberDTO" id="getLoginResult">
+		<id column="ID" property="id"></id>
+		<result column="NAME" property="name"/>
+		<collection property="roleDTOs" javaType="List" ofType="RoleDTO">
+			<id column="ROLENUM" property="roleNum"/>
+			<result column="ROLENAME" property="roleName"/>
+		</collection>
+	</resultMap>
+	
 	
 	<insert id="setJoin" parameterType="MemberDTO">
 		INSERT INTO MEMBER(ID, PW, NAME, N_NAME, B_DATE, GENDER, EMAIL, PHONE, POINT)
