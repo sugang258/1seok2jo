@@ -37,8 +37,14 @@ public class PayController {
 		//주문상세내역과 결제내역 저장
 		System.out.println(res.keySet());
 		System.out.println(res.get("buyer_email"));
+		
+		return "1";
 
-		return "pay/success";
+	}
+	
+	@GetMapping(value="complete")
+	public void showComplete() {
+		//주문정보 DB에서 가져와서 화면에 뿌려준다.
 	}
 
 }
