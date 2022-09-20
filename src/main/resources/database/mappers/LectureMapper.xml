@@ -57,8 +57,8 @@
 		    	<resultMap type="LectureDTO" id="getDetailResult">
 		    		<id column="l_num" property="l_num"/>
 		    		<result column="id" property="id"/>
-		    		<result column="c_num" property="c_num"/>
 		    		<result column="c_name" property="c_name"/>
+		    		<result column="c_num" property="c_num"/>
 		    		<result column="level_num" property="level_num"/>
 		    		<result column="level_name" property="level_name"/>
 		    		<result column="l_name" property="l_name"/>
@@ -66,22 +66,34 @@
 		    		<result column="l_price" property="l_price"/>
 		    		<result column="l_count" property="l_count"/>
 		    		<result column="l_date" property="l_date"/>
+		    		<association property="cartDTO" javaType="CartDTO" >
+		    			<id column="cart_num" property="cart_num"/>
+		    			<result column="id" property="id"/>
+		    		</association>
 		    		<collection property="lectureFileDTO" javaType="List" ofType="LectureFileDTO">
 		    			<id column="num" property="num"/>
 		    			<result column="f_name" property="f_name"/>
 		    			<result column="f_oriname" property="f_oriname"/>
 		    		</collection>
-		    		<collection property="lectureVideoDTO" javaType="List" ofType="lectureVideoDTO">
+		    		<collection property="lectureVideoDTO" javaType="List" ofType="LectureVideoDTO">
 		    			<id column="v_num" property="v_num"/>
 		    			<result column="v_url" property="v_url"/>
 		    			<result column="v_context" property="v_context"/>
 		    		</collection>
-		    		
-		    		
 		    	</resultMap>
 		    	
 		    	<select id="getDetail" parameterType="LectureDTO" resultMap="getDetailResult">
-		    		SELECT * FROM LECTURE WHERE L_NUM = #{l_num}
+		    		SELECT L.*, LF.* ,C.*, LV.*, CA.C_NAME
+					FROM LECTURE L
+					INNER JOIN L_FILE LF
+					ON L.L_NUM = LF.L_NUM
+					JOIN CART C
+					ON L.L_NUM = C.L_NUM
+					JOIN "LEVEL" LV
+					ON L.LEVEL_NUM = LV.LEVEL_NUM
+					JOIN CATEGORY CA
+					ON L.C_NUM = CA.C_NUM 
+					WHERE L.L_NUM = #{l_num}
 		    	</select>
 		    	
 		    	<select id="getDetailVideo" resultMap="getDetailResult">
@@ -115,5 +127,19 @@
 	                  </choose>
                   	LIKE '%'||#{search}||'%'
 								
+				</select>
+				
+				<select id="getCartDetail" resultMap="getDetailResult" parameterType="CartDTO">
+					SELECT L.*, LF.* ,C.*,LV.*,CA.C_NAME
+					FROM LECTURE L
+					INNER JOIN L_FILE LF
+					ON L.L_NUM = LF.L_NUM
+					JOIN CART C
+					ON L.L_NUM = C.L_NUM
+					JOIN "LEVEL" LV
+					ON L.LEVEL_NUM = LV.LEVEL_NUM
+					JOIN CATEGORY CA
+					ON L.C_NUM = CA.C_NUM
+					WHERE C.ID = #{id}
 				</select>
 		    </mapper>

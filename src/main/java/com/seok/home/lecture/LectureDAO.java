@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.seok.home.cart.CartDTO;
 import com.seok.home.util.Pager;
 
 @Repository
@@ -49,6 +50,11 @@ public class LectureDAO {
 	public Long getCount(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"getCount",pager);
+	}
+	
+	//장바구니 리스트
+	public List<LectureDTO> getCartDetail(CartDTO cartDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getCartDetail",cartDTO);
 	}
 
 }
