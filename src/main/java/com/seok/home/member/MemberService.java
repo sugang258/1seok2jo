@@ -11,7 +11,6 @@ import com.seok.home.cart.CartDAO;
 import com.seok.home.cart.CartDTO;
 import com.seok.home.lecture.teacher.TeacherDAO;
 import com.seok.home.lecture.teacher.TeacherDTO;
-import com.seok.home.member.role.RoleDAO;
 
 @Service
 public class MemberService {
