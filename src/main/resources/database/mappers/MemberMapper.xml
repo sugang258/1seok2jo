@@ -10,7 +10,7 @@
 		VALUES (#{id}, #{pw}, #{name}, #{n_name}, #{b_date}, #{gender}, #{email}, #{phone}, 0)
 	</insert>
 	
-	<select id="getLogin" resultType="MemberDTO">
+	<select id="getLogin" parameterType="MemberDTO" resultMap="getLoginResult">
       SELECT M.ID, M.NAME, MR.ROLENUM, R.ROLENAME
       FROM MEMBER M
          INNER JOIN
@@ -19,7 +19,7 @@
          INNER JOIN
          ROLE R
          ON (MR.ROLENUM=R.ROLENUM)
-      WHERE M.ID='koo' AND M.PW=123
+      WHERE M.ID=#{id} AND M.PW=#{pw}
       ORDER BY R.ROLENUM ASC
    </select>
    
