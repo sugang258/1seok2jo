@@ -13,17 +13,28 @@
 					VALUES (#{l_num}, #{id},#{level_num},#{l_name},#{l_contents},#{c_num},#{l_price},0,#{l_date})
 		    	</insert>
 		    	
-		    	<select id="getLecture"  resultMap="getDetailResult">
-		    		SELECT L.*, LF.*, VV.*, LV.LEVEL_NAME, C.C_NAME
-		    		FROM LECTURE L
-		    		JOIN L_FILE LF
-		    		ON L.L_NUM = LF.L_NUM
-		    		JOIN VIDEO VV
-					ON L.L_NUM = VV.L_NUM
-					JOIN "LEVEL" LV
-					ON L.LEVEL_NUM = LV.LEVEL_NUM
-					JOIN CATEGORY C
-					ON L.C_NUM = C.C_NUM
+		    	<select id="getLecture"  resultMap="getDetailResult" parameterType="com.seok.home.util.Pager" >
+		    		SELECT * FROM
+		    			(SELECT ROWNUM R, L.* FROM
+		    				(SELECT * FROM LECTURE L
+		    				JOIN L_FILE LF
+		    				ON L.L_NUM = LF.L_NUM
+		    				JOIN VIDEO VV
+							ON L.L_NUM = VV.L_NUM
+							JOIN "LEVEL" LV
+							ON L.LEVEL_NUM = LV.LEVEL_NUM
+							JOIN CATEGORY C
+							ON L.C_NUM = C.C_NUM
+							WHERE
+	                  		<choose>
+	                     		<when test="kind == 'id'">L.ID</when>
+	                     		<when test="kind == 'l_name'">L.L_NAME</when>
+	                     		<when test="kind == 'level_name'">LV.LEVEL_NAME</when>
+	                     		<otherwise>C.C_NAME</otherwise>
+	                 		 </choose>
+                  			LIKE '%'||#{search}||'%'
+                 	 		ORDER BY L.L_NUM DESC) L)
+                 	 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 					
 		    	</select>
 		    	
@@ -87,4 +98,22 @@
 		    		INSERT INTO VIDEO(V_NUM, L_NUM, V_URL, V_CONTEXT,V_SEQ) 
 		    		VALUES(VIDEO_SEQ.NEXTVAL, #{l_num}, #{v_url}, #{v_context},#{v_seq})
 		    	</insert>
+		    	
+		    	<select id="getCount" resultType="java.lang.Long" parameterType="com.seok.home.util.Pager">
+					SELECT COUNT(L.L_NUM) 
+					FROM LECTURE L
+					JOIN "LEVEL" LV
+					ON L.LEVEL_NUM = LV.LEVEL_NUM
+					JOIN CATEGORY C
+					ON L.C_NUM = C.C_NUM
+					WHERE
+	                  <choose>
+	                     <when test="kind == 'id'">L.ID</when>
+	                     <when test="kind == 'l_name'">L.L_NAME</when>
+	                     <when test="kind == 'level_name'">LV.LEVEL_NAME</when>
+	                     <otherwise>C.C_NAME</otherwise>
+	                  </choose>
+                  	LIKE '%'||#{search}||'%'
+								
+				</select>
 		    </mapper>
