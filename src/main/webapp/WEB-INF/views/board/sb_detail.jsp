@@ -118,13 +118,13 @@
 
         <!--board-Writer-Button-->
         <div class="d-flex flex-row-reverse mb-5" style="width: 70%; margin: 0px auto;">
-          <div class="p-2"><button class="btn-st btn btn-outline-secondary">답변달기(강사)</button></div>
-          <div class="p-2"><button class="btn-st btn btn-outline-secondary" onclick="location.href='./sb_list';">목록보기(작성자)</button></div>
+          <div class="p-2"><button class="btn-st btn btn-outline-secondary"   data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@mdo">답변달기(강사)</button></div>
+          <div class="p-2"><button class="btn-st btn btn-outline-secondary" onclick="location.href='./sb_list';">목록보기</button></div>
           <div class="p-2"><button class="btn-st btn btn-outline-secondary" onclick="location.href='sb_delete?sb_num=${studyBoardDTO.getSb_num()}';">삭제하기(작성자)</button></div>
-          <div class="p-2"><button type="button" class="btn-st btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" id="up" >수정하기(작성자)</button></div>
+          <div class="p-2"><button type="button" class="btn-st btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">수정하기(작성자)</button></div>
         </div>
         
-          <!--modal-->
+          <!--modal/수정하기-->
           <div
             class="modal fade"
             id="exampleModal"
@@ -171,6 +171,7 @@
                 <div class="modal-footer">
                   <button
                     type="button"
+                    id="close"
                     class="btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
@@ -185,8 +186,64 @@
           </div>
         
         
-
         
+         <!--modal/강사답글-->
+          <div
+            class="modal fade"
+            id="exampleModal2"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    <b style="color:gray;">답글작성 😺</b>
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <form action="sb_update" method="post" enctype="multipart/form-data">
+      			    <input value="${studyBoardDTO.getSb_num()}" style="display:none;"/>
+                    <div class="mb-3">
+                      <label
+                        for="message-text"
+                        class="col-form-label"
+                        style="color: gray"
+                        ><b>내용</b></label
+                      >
+                      <textarea name = "contents" class="form-control mt-1" id="t_answer" rows="2" style="height: 150px;"></textarea>
+                    </div>
+                    <div id="addFiles">
+                        <button class="mt-2 file_add"><b>파일추가📂</b></button>
+                    </div>	
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    id="close"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    취소
+                  </button>
+                  <button class="btn btn-warning" id="answer_btn" data-board-num="${studyBoardDTO.getSb_num()}">
+                    작성하기
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+
+      <div id="teacher_box">
       <div class="board teacher" style="margin-top: 2em; margin-bottom: 0.5em;">
         <!--Contents-->
         <div class="sb_contents">
@@ -232,14 +289,15 @@
 
           </div>
 
-
         </div>
-
         <!--board-Writer-Button-->
         <div class="d-flex flex-row-reverse mb-4 mt-4" style="width: 70%; margin: 0px auto;">
           <div class="p-2"><button class="btn-st btn btn-outline-secondary">삭제하기(강사)</button></div>
           <div class="p-2"><button class="btn-st btn btn-outline-secondary">수정하기(강사)</button></div>
         </div>
+        
+	</div>
+
 
       <!--container-box-->  
       </div> 
