@@ -55,11 +55,11 @@ public class PayController {
 	//결제성공시
 	@PostMapping(value="success")
 	@ResponseBody
-	public String getSuccess(@RequestBody HashMap<String, Object> res, HttpSession session) {
+	public String getSuccess(@RequestBody HashMap<String, Object> res, HttpServletRequest request) {
 		//주문상세내역과 결제내역 저장
 		System.out.println(res.keySet());
 		System.out.println(res.get("buyer_email"));
-		MemberDTO mem = (MemberDTO)session.getAttribute("member");
+		MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
 		System.out.println(mem.getId());
 		
 		return "1";

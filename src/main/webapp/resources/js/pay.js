@@ -4,8 +4,33 @@ let btnimport = document.getElementById("btnimport");
 let now = new Date();
 let uid = "1seok2jo-"+now.getTime();
 
+//창열리면 테스트 영역
+let l_name = document.querySelectorAll("#l_name")
+let l_price = document.querySelectorAll("#l_price")
+let total = document.getElementById("total")
 
 
+let usePoint = document.getElementById("usePoint");
+let point = document.getElementById("point");
+let pointVal = 0;
+usePoint.innerText = pointVal;
+
+
+//총 상품 금액 계산
+let tt = 0;
+for(let i=0; i<l_price.length; i++){
+    let price = Number.parseInt(l_price[i].innerHTML);
+    tt += price;
+}
+total.innerText=tt+"원";
+
+//포인트 금액 입력하고 블러하면 위에 뜨게 그리고 총액 계산
+point.addEventListener("blur", function(){
+    pointVal = point.value;
+    usePoint.innerText = pointVal;
+    tt=(tt-pointVal)
+    total.innerText=tt+"원";
+})
 
 // 결제하기 버튼을 클릭하면 하단 실행
 btnimport.addEventListener("click", function(){
@@ -27,13 +52,11 @@ function requestPay() {
         pg : 'kcp',
         pay_method : 'card',//필수, 결제수단
         merchant_uid: uid, //필수, 주문번호 내가 생성함. 중복불가!!!
-        name : '당근 10kg',
-        amount : 1004, //필수, 결제금액
+        name : l_name[0].innerHTML+" 등",
+        amount : tt, //필수, 결제금액
         buyer_email : email.value, //
         buyer_name : name.value, //
         buyer_tel : phone.value, //필수, 가능한한..
-        buyer_addr : '꾸디일석이조',
-        buyer_postcode : '123-456'
     }, function (rsp) { // callback
         console.log("callback펑션 실행")
         if (rsp.success) {
