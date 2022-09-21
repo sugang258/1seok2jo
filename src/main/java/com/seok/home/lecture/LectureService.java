@@ -61,6 +61,7 @@ public class LectureService {
 	}
 	
 	public LectureDTO getDetail(LectureDTO lectureDTO) throws Exception {
+		
 		return lectureDAO.getDetail(lectureDTO);
 	}
 	
