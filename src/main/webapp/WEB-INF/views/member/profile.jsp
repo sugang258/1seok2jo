@@ -27,37 +27,37 @@
 			
 			  <div class="mb-3">
 			    <label for="ipId" class="form-label">아이디</label>
-			    <input type="text" name="id" class="form-control" id="ipId" placeholder="아이디를 입력해주세요">
+			    <input type="text" name="id" class="form-control" id="ipId" value="${member.id}">
 			  </div>
 			  
 			  <div class="mb-3">
 			    <label for="ipName" class="form-label">이름</label>
-			    <input type="text" name="name" class="form-control" id="ipName" placeholder="이름을 입력해주세요">
+			    <input type="text" name="name" class="form-control" id="ipName" value="${member.name}">
 			  </div>
 			  
 			  <div class="mb-3">
 			    <label for="ipNname" class="form-label">닉네임</label>
-			    <input type="text" name="n_name" class="form-control" id="ipNname" placeholder="닉네임을 입력해주세요">
+			    <input type="text" name="n_name" class="form-control" id="ipNname" value="${member.n_name}">
 			  </div>
 			  
 			  <div class="mb-3">
 			    <label for="ipBdate" class="form-label">생년월일</label>
-			    <input type="number" name="b_date" class="form-control" id="ipBdate" placeholder="생년월일을 입력해주세요">
+			    <input type="number" name="b_date" class="form-control" id="ipBdate" value="${member.b_date}">
 			  </div>
 			  
 			  <div class="mb-3">
 			    <label for="ipGender" class="form-label">성별</label>
-			    <input type="text" name="gender" class="form-control" id="ipGender" placeholder="성별을 입력해주세요">
+			    <input type="text" name="gender" class="form-control" id="ipGender" value="${member.gender}">
 			  </div>
 
 			  <div class="mb-3">
 			    <label for="ipEmail" class="form-label">이메일</label>
-			    <input type="text" name="email" class="form-control" id="ipEmail" placeholder="이메일을 입력해주세요">
+			    <input type="text" name="email" class="form-control" id="ipEmail" value="${member.email}">
 			  </div>
 			  
 			  <div class="mb-3">
 			    <label for="ipPhone" class="form-label">연락처</label>
-			    <input type="tel" name="phone" class="form-control" id="ipPhone" placeholder="연락처를 입력해주세요">
+			    <input type="tel" name="phone" class="form-control" id="ipPhone" value="${member.phone}">
 			  </div>
 			  
 			  <div class="mb-3">

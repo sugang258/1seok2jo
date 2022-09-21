@@ -22,49 +22,27 @@ public class MemberController {
 	
 	/************************ 회원 **************************/
 	
-	//강사신청(GET)
-	@GetMapping("teacherAdd")
-	public void setTeacherAdd()throws Exception{
-		System.out.println("강사신청 접속(GET)");
-	}
-	
-	//강사신청(POST)
-	@PostMapping("teacherAdd")
-	public void setTeacherAdd(TeacherDTO teacherDTO, HttpSession session)throws Exception{
-		System.out.println("강사신청 접속(POST)");
-		
-		int result = memberService.setTeacherAdd(teacherDTO, session.getServletContext());
-		if(result>0) {
-			System.out.println("강사신청 성공!");
-		}else {
-			System.out.println("강사신청 실패..");
-		}
-
-	}
-	
 	//로그인(GET)
 	@GetMapping("login")
 	public String getLogin()throws Exception{
 		System.out.println("로그인 접속(GET)");
+		
 		return "member/login";
 	}
 	
 	//로그인(POST)
 	@PostMapping("login")
-	public String getLogin(MemberDTO memberDTO, HttpSession session)throws Exception{
+	public ModelAndView getLogin(MemberDTO memberDTO, HttpSession session)throws Exception{
 		System.out.println("로그인 접속(POST)");
 		
-		//ModelAndView mv = new ModelAndView();
-		MemberDTO memberDTO2 = new MemberDTO();
-		//DB에 아이디 패스워드 확인
+		ModelAndView mv = new ModelAndView();
+		
+		//DB에 아이디 패스워드 확인(아이디, 이름, 이메일, 전화번호, 마일리지, 등급번호, 등급이름 조회)
 		memberDTO = memberService.getLogin(memberDTO);
 		
-		System.out.println(memberDTO.getId());
-		
-		//세션에 memberDTO 담기
+		//세션에 memberDTO 담기(아이디, 이름, 이메일, 전화번호, 마일리지, 등급번호, 등급이름)
 		session.setAttribute("member", memberDTO);
-		memberDTO2 = (MemberDTO)session.getAttribute("member");
-		System.out.println(memberDTO2.getId());
+		
 		//로그인 성공 실패 확인
 		if(memberDTO!=null) {
 			System.out.println("로그인 성공!");
@@ -72,7 +50,9 @@ public class MemberController {
 			System.out.println("로그인 실패..");
 		}
 		
-		return "member/login";
+		mv.setViewName("member/login");
+		
+		return mv;
 	}
 	
 	//로그아웃(GET)
@@ -87,13 +67,15 @@ public class MemberController {
 	
 	//회원가입(GET)
 	@GetMapping("join")
-	public void setJoin()throws Exception{
+	public String setJoin()throws Exception{
 		System.out.println("회원가입 접속(GET)");
+		
+		return "member/join";
 	}
 	
 	//회원가입(POST)
 	@PostMapping
-	public void setJoin(MemberDTO memberDTO, HttpSession session)throws Exception{
+	public String setJoin(MemberDTO memberDTO, HttpSession session)throws Exception{
 		System.out.println("회원가입 접속(POST)");
 		
 		int result = memberService.setJoin(memberDTO);
@@ -102,18 +84,34 @@ public class MemberController {
 		}else {
 			System.out.println("회원가입 실패..");
 		}
+		
+		return "member/join";
 	}
 	
-	//장바구니(GET)
-	@RequestMapping(value="cart", method=RequestMethod.GET)
-	public String getCartList() throws Exception{
+	//강사신청(GET)
+	@GetMapping("teacherAdd")
+	public void setTeacherAdd()throws Exception{
+		System.out.println("강사신청 접속(GET)");
+	}
+	
+	//강사신청(POST)
+	@PostMapping("teacherAdd")
+	public String setTeacherAdd(TeacherDTO teacherDTO, HttpSession session)throws Exception{
+		System.out.println("강사신청 접속(POST)");
 		
-		return "member/cart";
+		int result = memberService.setTeacherAdd(teacherDTO, session.getServletContext());
+		if(result>0) {
+			System.out.println("강사신청 성공!");
+		}else {
+			System.out.println("강사신청 실패..");
+		}
+
+		return "member/teacherAdd";
 	}
 	
 	/************************ 마이페이지 **************************/
 	
-	//프로필
+	//프로필수정(GET)
 	@GetMapping("profile")
 	public String setProfile()throws Exception {
 		System.out.println("프로필 접속(GET)");
@@ -121,12 +119,27 @@ public class MemberController {
 		return "member/profile";
 	}
 	
-	//프로필
+	//프로필수정(POST)
 	@PostMapping("profile")
-	public String setProfile(MemberDTO memberDTO)throws Exception {
+	public String setProfile(MemberDTO memberDTO, HttpSession session)throws Exception {
 		System.out.println("프로필 접속(POST)");
 		
+		int result = memberService.setProfile(memberDTO);
+		
+		if(result>0) {
+			System.out.println("프로필수정 성공!");
+		}else {
+			System.out.println("프로필수정 실패..");
+		}
+		
 		return "member/profile";
+	}
+	
+	//장바구니(GET)
+	@RequestMapping(value="cart", method=RequestMethod.GET)
+	public String getCartList() throws Exception{
+		
+		return "member/cart";
 	}
 	
 }

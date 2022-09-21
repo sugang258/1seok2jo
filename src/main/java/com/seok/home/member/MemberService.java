@@ -25,10 +25,7 @@ public class MemberService {
 	@Autowired
 	private CartDAO cartDAO;
 	
-	//강사신청
-	public int setTeacherAdd(TeacherDTO teacherDTO, ServletContext servletContext)throws Exception{
-		return teacherDAO.setTeacherAdd(teacherDTO);
-	}
+	/************************ 회원 **************************/
 	
 	//회원로그인
 	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
@@ -37,8 +34,7 @@ public class MemberService {
 	
 	//회원가입
 	public int setJoin(MemberDTO memberDTO)throws Exception{
-		//MemberDAO에서 아이디 중복 확인 메서드를 만들어서 실행
-		//MemberDAO에 멤버등급 추가 메서드를 만들어서 실행
+		//MemberDAO에 멤버등급 인서트 메서드를 만들어서 실행
 		int susess = memberDAO.setJoin(memberDTO);
 		int result = 0;
 		if(susess == 1 ) {
@@ -46,6 +42,18 @@ public class MemberService {
 		}
 		
 		return result;	
+	}
+	
+	//강사신청
+	public int setTeacherAdd(TeacherDTO teacherDTO, ServletContext servletContext)throws Exception{
+		return teacherDAO.setTeacherAdd(teacherDTO);
+	}
+	
+	/************************ 마이페이지 **************************/
+	
+	//프로필수정
+	public int setProfile(MemberDTO memberDTO)throws Exception{
+		return memberDAO.setProfile(memberDTO);
 	}
 	
 	//장바구니
