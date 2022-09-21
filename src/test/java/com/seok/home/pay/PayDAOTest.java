@@ -33,7 +33,7 @@ public class PayDAOTest extends MyAbstractTest{
 		assertEquals(1, result);
 	}
 	
-	@Test
+//	@Test
 	public void saveOrdertest() throws Exception{
 		OrderDTO order = new OrderDTO();
 		
@@ -43,6 +43,19 @@ public class PayDAOTest extends MyAbstractTest{
 		
 		int result = dao.saveOrder(order);
 		assertEquals(1, result);
+	}
+	
+	@Test
+	public void getPayDetailTest() throws Exception{
+		PaymentDTO dto = new PaymentDTO();
+		dto.setP_uid("1seok2jo-1663731094101");
+		
+		dto = dao.getPayDetail(dto);
+		
+		System.out.println(dto.getP_uid());
+		System.out.println(dto.getId());
+		assertNotNull(dto);
+		
 	}
 
 }

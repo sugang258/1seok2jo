@@ -13,5 +13,32 @@
     		insert into "ORDER"(O_NUM, L_NUM, P_UID, O_AMOUNT)
 			values (order_seq.nextval,#{l_num},#{p_uid},#{o_amount}) 
     	</insert>
+    	
+    	<select id="getPayDetail" parameterType="PaymentDTO" resultMap="payDetailResult">
+    		select P.p_uid,P.p_point, P.p_amount, P.p_realamount, P.p_regdate, P.p_method, P.p_c_name, P.p_c_num, P.p_c_quota, P.p_remains, P.P_RECEIPT, P.p_c_apply, O.O_NUM, O.L_NUM, O.O_AMOUNT
+			FROM payment P
+				left join "ORDER" O
+				on P.p_uid = O.P_UID
+			where P.p_uid=#{p_uid}
+    	</select>
+    	<resultMap type="PaymentDTO" id="payDetailResult">
+    		<id column="p_uid" property="p_uid"/>
+    		<result column="p_point" property="p_point"/>
+    		<result column="p_amount" property="p_amount"/>
+    		<result column="p_realamount" property="p_realamount"/>
+    		<result column="p_regdate" property="p_regdate"/>
+    		<result column="p_method" property="p_method"/>
+    		<result column="p_c_name" property="p_c_name"/>
+    		<result column="p_c_num" property="p_c_num"/>
+			<result column="p_c_quota" property="p_c_quota"/>
+    		<result column="p_remains" property="p_remains"/>
+    		<result column="P_RECEIPT" property="p_receipt"/>
+    		<result column="p_c_apply" property="p_c_apply"/>
+    		<collection property="orders" javaType="List" ofType="OrderDTO">
+    			<id column="O_NUM" property="o_num"/>
+    			<result column="L_NUM" property="l_num"/>
+    			<result column="O_AMOUNT" property="o_amount"/>
+    		</collection>
+    	</resultMap>
     
     </mapper>

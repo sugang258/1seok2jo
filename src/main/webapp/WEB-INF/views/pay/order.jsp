@@ -102,7 +102,7 @@
           <div class="card-body">
             <div class="mb-3" style="display: flex; justify-content:space-between">
               <span>총 상품 금액</span>
-              <span>1000원</span>
+              <span id="total">1000원</span>
             </div>
             <div class="row">
               <div class="col-6">
@@ -115,7 +115,7 @@
             <input type="number" class="form-control text-end" id="point" name="point" placeholder="사용가능 ${member.point}마일리지">
             <div class="mt-2" style="display: flex; justify-content:space-between">
               <span class="fw-bold">총 결제 금액</span>
-              <span class="fw-bold" id="total"></span>
+              <span class="fw-bold" id="realtotal"></span>
             </div>
           </div>
         </div>

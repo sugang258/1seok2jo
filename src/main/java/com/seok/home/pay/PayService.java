@@ -21,6 +21,10 @@ public class PayService {
 	@Autowired
 	LectureDAO lectureDAO;
 	
+	public PaymentDTO showComplete(PaymentDTO paymentDTO) throws Exception{
+		return payDAO.getPayDetail(paymentDTO);
+	}
+	
 	//결제후 주문목록 저장
 	public int receiveSuccess(PaymentDTO paymentDTO) throws Exception{
 		//payment저장

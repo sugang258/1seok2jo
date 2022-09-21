@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -69,7 +70,7 @@ public class PayController {
 		paymentDTO.setP_amount(Long.parseLong(res.get("amount")));
 		paymentDTO.setP_realamount(Long.parseLong(res.get("paid_amount")));
 		paymentDTO.setP_method(res.get("pay_method"));
-		paymentDTO.setP_remains(Long.parseLong(res.get("amount")));
+		paymentDTO.setP_remains(Long.parseLong(res.get("paid_amount")));
 		paymentDTO.setP_c_name(res.get("card_name"));
 		paymentDTO.setP_c_apply(Long.parseLong(res.get("apply_num")));
 		paymentDTO.setP_c_num(Long.parseLong(res.get("card_number")));
@@ -87,8 +88,13 @@ public class PayController {
 	}
 	
 	@GetMapping(value="complete")
-	public void showComplete() {
+	public void showComplete(PaymentDTO paymentDTO) throws Exception {
 		//주문정보 DB에서 가져와서 화면에 뿌려준다.
+		System.out.println(paymentDTO.getP_uid());
+		
+		paymentDTO = payService.showComplete(paymentDTO);
+		
+		System.out.println(paymentDTO.getP_receipt());
 	}
 
 }
