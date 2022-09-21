@@ -31,29 +31,31 @@
                     <div class="col-sm-5 order-sm-2">
                         <div class="row align-items-center" style="height: 100%">
                         	<div class="text-center">
-                        		주문번호 : ${uid}
+                        		주문번호 : ${requestScope.result.paymentDTO.p_uid}
                         	</div>
                             <div class="text-center">
                                 결제가 완료되었습니다.
                             </div>
                             <div class="text-center">
-                                총 결제금액 : 5520210원
+                                총 결제금액 : ${result.paymentDTO.p_realamount}원
                             </div>
                         </div>
                     </div>
 
                     <div class="col-sm-7 order-sm-1">
                         <!-- 결제한 강의목록 -->
+                        <c:forEach items="${result.lectures}" var="lecture">
                         <div class="row g-1 p-3 align-items-center">
                             <div class="col-3">
                               <img src="../../../resources/images/22.png" class="img-fluid rounded-start" style="object-fit: contain">
                             </div>
                             <div class="col-9">
-                              <small class="d-inline-flex px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">6개월 수강</small>
-                              <label for="name" class="text-muted">강사명</label>
-                              <p>강의명</p>
+                              <small class="d-inline-flex px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${lecture.l_date} 개월 수강</small>
+                              <label for="name" class="text-muted">${lecture.id}</label>
+                              <p>${lecture.l_name}</p>
                             </div>
                           </div>
+                        </c:forEach>
 
                         <!--결제한 강의목록 끝-->
                     </div>

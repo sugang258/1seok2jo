@@ -1,6 +1,7 @@
 package com.seok.home.pay;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,23 @@ public class PayService {
 	@Autowired
 	LectureDAO lectureDAO;
 	
-	public PaymentDTO showComplete(PaymentDTO paymentDTO) throws Exception{
-		return payDAO.getPayDetail(paymentDTO);
+	public HashMap<String, Object> showComplete(PaymentDTO paymentDTO) throws Exception{
+		
+		paymentDTO = payDAO.getPayDetail(paymentDTO);
+		//강의정보가져오기
+		ArrayList<LectureDTO> lectures = new ArrayList<LectureDTO>();
+		for(OrderDTO o : paymentDTO.getOrders()) {
+			LectureDTO lectureDTO = new LectureDTO();
+			lectureDTO.setL_num(o.getL_num());
+			lectureDTO = lectureDAO.getDetail(lectureDTO);
+
+			lectures.add(lectureDTO);
+		}
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		result.put("lectures", lectures);
+		result.put("paymentDTO", paymentDTO);
+
+		return result;
 	}
 	
 	//결제후 주문목록 저장

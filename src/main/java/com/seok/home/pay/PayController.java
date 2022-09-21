@@ -88,13 +88,17 @@ public class PayController {
 	}
 	
 	@GetMapping(value="complete")
-	public void showComplete(PaymentDTO paymentDTO) throws Exception {
-		//주문정보 DB에서 가져와서 화면에 뿌려준다.
-		System.out.println(paymentDTO.getP_uid());
+	public ModelAndView showComplete(PaymentDTO paymentDTO) throws Exception {
+		//주문정보, 강의정보 DB에서 가져와서 화면에 뿌려준다.
+		HashMap<String, Object> result = payService.showComplete(paymentDTO);
 		
-		paymentDTO = payService.showComplete(paymentDTO);
+		paymentDTO = (PaymentDTO)result.get("paymentDTO");
 		
-		System.out.println(paymentDTO.getP_receipt());
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("result",result);
+		mv.setViewName("pay/complete");
+		return mv;
 	}
 
 }

@@ -45,7 +45,7 @@ public class PayDAOTest extends MyAbstractTest{
 		assertEquals(1, result);
 	}
 	
-	@Test
+//	@Test
 	public void getPayDetailTest() throws Exception{
 		PaymentDTO dto = new PaymentDTO();
 		dto.setP_uid("1seok2jo-1663731094101");
@@ -54,6 +54,7 @@ public class PayDAOTest extends MyAbstractTest{
 		
 		System.out.println(dto.getP_uid());
 		System.out.println(dto.getId());
+		System.out.println(dto.getOrders().get(2).getL_num());
 		assertNotNull(dto);
 		
 	}
