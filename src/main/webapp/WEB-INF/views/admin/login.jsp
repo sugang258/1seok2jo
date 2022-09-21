@@ -30,7 +30,7 @@
 									<div class="mb-2 w-100">
 										<label class="text-muted" for="password">Password</label>
 									</div>
-									<input id="password" type="password" class="form-control" name="password" required>
+									<input id="password" type="password" class="form-control" name="pw" required>
 								</div>
 
 								<div class="d-flex align-items-center">

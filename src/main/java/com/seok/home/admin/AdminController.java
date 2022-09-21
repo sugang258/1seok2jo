@@ -1,11 +1,15 @@
 package com.seok.home.admin;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.seok.home.member.MemberDTO;
 
@@ -22,8 +26,19 @@ public class AdminController {
 	}
 	
 	@PostMapping
-	private void getLogin(MemberDTO member) {
-		System.out.println("admin login"+member.getId());
+	private void getLogin(MemberDTO member, HttpServletRequest request) throws Exception {
+		//아이디와 비밀번호를 체크한 뒤 admin 자격이 있으면 세션의 admin값에 true로 돌려준다.
+		boolean chk = service.getLogin(member);
+		
+		HttpSession session = request.getSession();
+		
+		if(chk==true) {
+			System.out.println("true");
+		}else {
+			System.out.println("false");
+		}
+		session.setAttribute("admin", chk);
+		
 	}
 	
 	
