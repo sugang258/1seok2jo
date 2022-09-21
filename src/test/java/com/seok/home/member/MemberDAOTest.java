@@ -43,5 +43,18 @@ public class MemberDAOTest extends MyAbstractTest {
 		assertNotNull(memberDTO);
 		
 	}
+	
+	//@Test
+	public void setProfileTest()throws Exception{
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setId("hyo");
+		memberDTO.setN_name("하이");
+		memberDTO.setGender("남자");
+		memberDTO.setEmail("hyo2@naver.com");
+		memberDTO.setPhone("010-3333-3333");
+		int result = memberDAO.setProfile(memberDTO);
+		
+		assertEquals(1, result);
+	}
 
 }
