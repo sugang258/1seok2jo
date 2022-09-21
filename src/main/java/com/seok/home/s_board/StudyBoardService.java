@@ -11,11 +11,15 @@ public class StudyBoardService {
 	@Autowired
 	private StudyBoardDAO studyBoardDAO;
 	
-	public List<StudyBoardDTO> getBoardList()throws Exception{
-		return studyBoardDAO.getBoardList();
+	public List<StudyBoardDTO> getBoardList(Pager pager)throws Exception{
+		Long totalCount = studyBoardDAO.getTotalCount(pager);
+		pager.getBlockNum(totalCount);
+		pager.getRowNum();
+		return studyBoardDAO.getBoardList(pager);
 	}
 	
 	public StudyBoardDTO getBoardDetail(StudyBoardDTO studyBoardDTO)throws Exception{
+		studyBoardDAO.setBoardHit(studyBoardDTO);
 		return studyBoardDAO.getBoardDetail(studyBoardDTO);
 	}
 	

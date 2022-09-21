@@ -19,9 +19,10 @@ public class StudyBoardController {
 	
 	//게시판 목록
 	@GetMapping("sb_list")
-	public ModelAndView setBoardList()throws Exception{
-		List<StudyBoardDTO> ar = studyBoardService.getBoardList();
+	public ModelAndView setBoardList(Pager pager)throws Exception{
+		List<StudyBoardDTO> ar = studyBoardService.getBoardList(pager);
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("pager", pager);
 		mv.addObject("list", ar);
 		mv.setViewName("board/sb_list");
 		

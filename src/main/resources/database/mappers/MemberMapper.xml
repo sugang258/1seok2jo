@@ -6,30 +6,45 @@
 <mapper namespace="com.seok.home.member.MemberDAO">
 	
 	<select id="getLogin" parameterType="MemberDTO" resultMap="getLoginResult">
-      SELECT M.ID, M.NAME, MR.ROLENUM, R.ROLENAME
-      FROM MEMBER M
-         INNER JOIN
-         MEMBER_ROLE MR
-         ON (M.ID=MR.ID)
-         INNER JOIN
-         ROLE R
-         ON (MR.ROLENUM=R.ROLENUM)
-      WHERE M.ID=#{id} AND M.PW=#{pw}
-      ORDER BY R.ROLENUM ASC
-   </select>
+		SELECT M.ID, M.NAME, M.N_NAME, M.B_DATE, M.GENDER, M.EMAIL, M.PHONE, M.POINT, MR.ROLENUM, R.ROLENAME
+		FROM MEMBER M
+			INNER JOIN
+			MEMBER_ROLE MR
+			ON (M.ID=MR.ID)
+			INNER JOIN
+			ROLE R
+			ON (MR.ROLENUM=R.ROLENUM)
+		WHERE M.ID=#{id} AND M.PW=#{pw}
+		ORDER BY R.ROLENUM ASC
+	</select>
    
-   <resultMap type="MemberDTO" id="getLoginResult">
-      <id column="ID" property="id"></id>
-      <result column="NAME" property="name"/>
-      <collection property="roleDTOs" javaType="List" ofType="RoleDTO">
-         <id column="ROLENUM" property="roleNum"/>
-         <result column="ROLENAME" property="roleName"/>
-      </collection>
-   </resultMap>
+	<resultMap type="MemberDTO" id="getLoginResult">
+		<id column="ID" property="id"></id>
+		<result column="NAME" property="name"/>
+		<result column="N_NAME" property="n_name"/>
+		<result column="B_DATE" property="b_date"/>
+		<result column="GENDER" property="gender"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<result column="POINT" property="point"/>
+		<collection property="roleDTOs" javaType="List" ofType="RoleDTO">
+			<id column="ROLENUM" property="roleNum"/>
+			<result column="ROLENAME" property="roleName"/>
+		</collection>
+	</resultMap>
+	
+	<insert id="setMemberRole" parameterType="MemberDTO">
+		INSERT INTO MEMBER_ROLE(R_NUM, ROLENUM, ID)
+		VALUES(MEMBER_ROLE_SEQ.NEXTVAL, 3, #{id})
+	</insert>
 	
 	<insert id="setJoin" parameterType="MemberDTO">
 		INSERT INTO MEMBER(ID, PW, NAME, N_NAME, B_DATE, GENDER, EMAIL, PHONE, POINT)
 		VALUES (#{id}, #{pw}, #{name}, #{n_name}, #{b_date}, #{gender}, #{email}, #{phone}, 0)
 	</insert>
+	
+	<update id="setProfile" parameterType="MemberDTO">
+		UPDATE MEMBER SET N_NAME=#{n_name}, GENDER=#{gender}, EMAIL=#{email}, PHONE=#{phone} WHERE ID=#{id}
+	</update>
 	
 </mapper> 

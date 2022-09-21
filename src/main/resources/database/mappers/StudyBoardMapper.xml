@@ -4,8 +4,17 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 		    <mapper namespace="com.seok.home.s_board.StudyBoardDAO">
-		    	<select id="getBoardList" resultType="StudyBoardDTO">
-		    		SELECT * FROM STUDY_BOARD
+		    	<select id="getBoardList" parameterType="Pager" resultType="StudyBoardDTO">
+		    		SELECT * FROM (
+		    			SELECT ROWNUM R, N.* FROM (
+		    				SELECT * FROM STUDY_BOARD ORDER BY SB_NUM DESC
+		    				)N
+		    			)
+		    		WHERE R BETWEEN #{startRow} AND #{lastRow}
+		    	</select>
+		    	
+		    	<select id="getTotalCount" parameterType="Pager" resultType="Long">
+		    		SELECT COUNT(sb_num) FROM STUDY_BOARD
 		    	</select>
 		    	
 		    	<select id="getBoardDetail" parameterType="StudyBoardDTO" resultType="StudyBoardDTO">
@@ -23,6 +32,10 @@
 		    	
 		    	<update id="setBoardUpdate" parameterType="StudyBoardDTO">
 		    		UPDATE STUDY_BOARD SET TITLE=#{title}, CONTENTS=#{contents} WHERE SB_NUM=#{sb_num}
+		    	</update>
+		    	
+		    	<update id="setBoardHit" parameterType="StudyBoardDTO">
+		    		UPDATE STUDY_BOARD SET HIT=HIT+1 WHERE SB_NUM=#{sb_num}
 		    	</update>
 		   
 		    </mapper>

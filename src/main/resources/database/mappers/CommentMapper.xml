@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		    
+		    <mapper namespace="com.seok.home.b_comment.CommentDAO"> 	
+		    	<select id="getCommentDetail" parameterType="CommentDTO" resultType="CommentDTO">
+		    		SELECT * FROM SB_REPLY WHERE SB_NUM=#{sb_num}
+		    	</select>
+		    	
+		    	<insert id="setCommentAdd" parameterType="CommentDTO">
+		    		INSERT INTO SB_REPLY VALUES(BOARD_SEQ.NEXTVAL, #{sb_num}, 'teacher', #{contents}, sysdate, 0)
+		    	</insert>
+		    	
+		    	<delete id="setCommentDelete" parameterType="CommentDTO">
+		    		DELETE SB_REPLY WHERE SB_NUM=#{sb_num}
+		    	</delete>
+
+		    </mapper>
