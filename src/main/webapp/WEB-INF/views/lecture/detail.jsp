@@ -20,28 +20,28 @@
 </head>
 <c:import url="../template/header.jsp"></c:import>
 <body>
-    <main class="container">
-        <div class="container mt-5">
+    <main class="container mt-5">
+        
             <div class="row">
                 <div class="col-lg-8">
                     <!-- Post content-->
                     <article>
                         <!-- Post header-->
-                        <header class="mb-4">
+                        <div>
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1">${detail.l_name}</h1>
-                            
-                        </header>
+                        </div>
+                        
                         <!-- Preview image figure-->
-                        <figure class="mb-4"><img class="img-fluid rounded" src="../resources/upload/lecture/${detail.lectureFileDTO[0].f_name}" alt="..."></figure>
+                        <figure class="mb-4"><img class="img-fluid rounded" src="../resources/upload/lecture/${detail.lectureFileDTO[0].f_name}" alt="..." width="600" height="350"></figure>
                         <!-- Post content-->
                         <section class="mb-5">
                             ${detail.l_contents}
                         </section>
                         <div>
-                            <c:forEach items="${file}" var="file">
-                                <div>
-                                <img class="img-fluid rounded" src="../resources/upload/lecture/${file.f_name}" alt="...">
+                            <c:forEach items="${file}" var="file" begin="1">
+                                <div class="mt-3 mb-3">
+                                <img class="img-fluid rounded" src="../resources/upload/lecture/${file.f_name}" alt="..." width="600" height="350" >
                                 </div>
                             </c:forEach>    
                         </div>
@@ -66,13 +66,23 @@
                         <div class="card-body">
                             <div>${detail.c_name}</div>
                         </div>
+                    </div>
+
                         <!--Level-->
+                    <div class="card mb-4">
                         <div class="card-header">Level</div>
                         <div class="card-body">
                             <div>${detail.level_name}</div>
                         </div>
-                        <!--Sign-->
                     </div>
+                        <!--Student Count-->
+                    <div class="card mb-4">
+                        <div class="card-header">Student count</div>
+                        <div class="card-body">
+                            <div>${detail.l_count}</div>
+                        </div>
+                    </div>
+               
                     <!-- Side widget-->
                     <div class="card mb-4">
                         <div class="card-header">목 차</div>
@@ -87,17 +97,17 @@
                         <div class="card-header">Sign</div>
                             <div class="card-body">
                                 <div class="input-group">
-                                    <button class="btn btn-primary" id="button-search" type="button" style="border :none; color: white; background-color: #66ba39;">수강신청 하기</button>
+                                    <button class="btn btn-primary" id="signs" type="button" data-lnum-num="${param.l_num}" style="border :none; color: white; background-color: #66ba39;">수강신청 하기</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        
     </main>
     <c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    <script src="/resources/js/cart.js"></script>
+    <script src="/resources/js/lecture_detail.js"></script>
 </body>
 </html>

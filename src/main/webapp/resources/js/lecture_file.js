@@ -45,7 +45,7 @@ fileAdd.addEventListener("click",function(){
     let i1 = document.createAttribute("id");
     i1.value = "files";
     let n = document.createAttribute("name");
-    n.value = "formFile"
+    n.value = "files";
 
     i.setAttributeNode(c2);
     i.setAttributeNode(t1);

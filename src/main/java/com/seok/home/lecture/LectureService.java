@@ -38,7 +38,7 @@ public class LectureService {
 				continue;
 			}
 		
-		
+		System.out.println(mf.getSize());
 		String fileName = fileManager.saveFile(path, servletContext,mf);
 
 		LectureFileDTO lectureFileDTO = new LectureFileDTO();

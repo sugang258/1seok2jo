@@ -86,7 +86,7 @@
 		    	<select id="getDetail" parameterType="LectureDTO" resultMap="getDetailResult">
 		    		SELECT L.*, LF.* , LV.*, CA.C_NAME, VV.*
 					FROM LECTURE L
-					INNER JOIN L_FILE LF
+					LEFT JOIN L_FILE LF
 					ON L.L_NUM = LF.L_NUM
 					JOIN "LEVEL" LV
 					ON L.LEVEL_NUM = LV.LEVEL_NUM
