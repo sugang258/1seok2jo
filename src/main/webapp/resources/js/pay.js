@@ -1,6 +1,37 @@
 let btnimport = document.getElementById("btnimport");
 
+//결제창이 열리면 주문번호를 생성한다.
+let now = new Date();
+let uid = "1seok2jo-"+now.getTime();
 
+let l_name = document.querySelectorAll("#l_name")
+let l_price = document.querySelectorAll("#l_price")
+let total = document.getElementById("total")
+
+
+let usePoint = document.getElementById("usePoint");
+let point = document.getElementById("point");
+let pointVal = "0";
+usePoint.innerText = pointVal;
+
+//총 상품 금액 계산
+let tt = 0;
+let rtt = 0;
+for(let i=0; i<l_price.length; i++){
+    let price = Number.parseInt(l_price[i].innerHTML);
+    tt += price;
+}
+rtt=tt;
+total.innerText=tt+"원";
+realtotal.innerText=rtt+"원";
+
+//포인트 금액 입력하고 블러하면 위에 뜨게 그리고 총액 계산
+point.addEventListener("blur", function(){
+    pointVal = point.value;
+    usePoint.innerText = pointVal;
+    rtt=(tt-pointVal)
+    realtotal.innerText=rtt+"원";
+})
 
 // 결제하기 버튼을 클릭하면 하단 실행
 btnimport.addEventListener("click", function(){
@@ -8,6 +39,10 @@ btnimport.addEventListener("click", function(){
 })
 
 function requestPay() {
+    let name = document.getElementById("name")
+    let email = document.getElementById("email")
+    let phone = document.getElementById("phone")
+
     var IMP = window.IMP; // 초기화는 한번만
     IMP.init("imp18741385"); // 아임포트 회원가입하면 부여되는 내 식별코드 입력
 
@@ -17,61 +52,43 @@ function requestPay() {
         {
         pg : 'kcp',
         pay_method : 'card',//필수, 결제수단
-        merchant_uid: "1seok2jo-2022092204", //필수, 주문번호 내가 생성함. 중복불가!!!
-        name : '당근 10kg',
-        amount : 1004, //필수, 결제금액
-        buyer_email : 'simyj12@naver.com', //
-        buyer_name : '일석이조테스트', //
-        buyer_tel : '010-1234-5678', //필수, 가능한한..
-        buyer_addr : '꾸디일석이조',
-        buyer_postcode : '123-456'
+        merchant_uid: uid, //필수, 주문번호 내가 생성함. 중복불가!!!
+        name : l_name[0].innerHTML+" 등",
+        amount : rtt, //필수, 결제금액
+        buyer_email : email.value, //
+        buyer_name : name.value, //
+        buyer_tel : phone.value, //필수, 가능한한..
     }, function (rsp) { // callback
         console.log("callback펑션 실행")
         if (rsp.success) {
             //ajax로 결제성공 페이지 요청
             const xhttp = new XMLHttpRequest();
-            xhttp.open("Post","./success", false);
+            //rsp에 금액, 포인트 추가
+            rsp.point=pointVal
+            rsp.amount=tt
+
+            const res = JSON.stringify(rsp)
+
+            xhttp.open("Post","./success");
             xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.send(rsp);
+            xhttp.send(res);
+
+            xhttp.addEventListener("readystatechange", function(){
+                console.log(this.readyState+"|"+this.status)
+                if(this.readyState==4 && this.status==200){
+                    if(xhttp.response==1){
+                        location.href="./complete?p_uid="+uid;
+                    }
+                }
+            })
             
         } else {
+            alert("결제실패\n"+rsp.error_msg);
             console.log(rsp);
         }
     })
 }
-/*
-function requestPay() {
-    // IMP.request_pay(param, callback) 결제창 호출
-    IMP.request_pay({ // param
-        pay_method: "card",
-        merchant_uid: "ORD20180131-0000011",
-        name: "노르웨이 회전 의자",
-        amount: 64900,
-        buyer_email: "gildong@gmail.com",
-        buyer_name: "홍길동",
-        buyer_tel: "010-4242-4242",
-        buyer_addr: "서울특별시 강남구 신사동",
-        buyer_postcode: "01181"
-    }, function (rsp) { // callback
-        if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-          // jQuery로 HTTP 요청
-          jQuery.ajax({
-              url: "/pay/order", // {서버의 결제 정보를 받는 endpoint} 예: https://www.myservice.com/payments/complete
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              data: {
-                  imp_uid: rsp.imp_uid, // 결제 번호
-                  merchant_uid: rsp.merchant_uid
-              }
-          }).done(function (data) {
-            console.log(" 가맹점 서버 결제 API 성공시 로직")
-          })
-        } else {
-          alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
-        }
-      });
-  }
-  */
+
 
 
 //툴팁

@@ -9,6 +9,7 @@ public class PaymentDTO {
 	//아임포트 변수 참고문서(https://docs.iamport.kr/sdk/javascript-sdk)
 	
 	//내가 작성하는 변수 영역
+	private String id;
 	private String p_uid; //결제번호 *필수
 	private Long p_point; //사용포인트
 	private Long p_amount; //총상품금액
@@ -102,6 +103,24 @@ public class PaymentDTO {
 	}
 	public void setP_receipt(String p_receipt) {
 		this.p_receipt = p_receipt;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public List<OrderDTO> getOrders() {
+		return orders;
+	}
+	public void setOrders(List<OrderDTO> orders) {
+		this.orders = orders;
+	}
+	public Long getP_c_apply() {
+		return p_c_apply;
+	}
+	public void setP_c_apply(Long p_c_apply) {
+		this.p_c_apply = p_c_apply;
 	}
 
 	

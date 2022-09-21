@@ -1,12 +1,10 @@
 package com.seok.home.pay;
 
-import com.seok.home.lecture.LectureDTO;
-
 public class OrderDTO {
-	
+	private String p_uid;
 	private Long o_num;
 	private Long o_amount;
-	private LectureDTO lectureDTO;
+	private Long l_num;
 	private RefundDTO refundDTO;
 	
 	public Long getO_num() {
@@ -21,17 +19,23 @@ public class OrderDTO {
 	public void setO_amount(Long o_amount) {
 		this.o_amount = o_amount;
 	}
-	public LectureDTO getLectureDTO() {
-		return lectureDTO;
+	public Long getL_num() {
+		return l_num;
 	}
-	public void setLectureDTO(LectureDTO lectureDTO) {
-		this.lectureDTO = lectureDTO;
+	public void setL_num(Long l_num) {
+		this.l_num = l_num;
 	}
 	public RefundDTO getRefundDTO() {
 		return refundDTO;
 	}
 	public void setRefundDTO(RefundDTO refundDTO) {
 		this.refundDTO = refundDTO;
+	}
+	public String getP_uid() {
+		return p_uid;
+	}
+	public void setP_uid(String p_uid) {
+		this.p_uid = p_uid;
 	}
 
 }
