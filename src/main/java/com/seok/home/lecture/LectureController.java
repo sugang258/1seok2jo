@@ -87,6 +87,16 @@ public class LectureController {
 		return mv;
 	}
 	
+	@GetMapping("update")
+	public String setUpdate(LectureDTO lectureDTO) throws Exception {
+		
+		System.out.println("update");
+		
+		//int result = lectureService.setUpdate(lectureDTO);
+		
+		return "lecture/update";
+	}
+	
 	
 	
 	

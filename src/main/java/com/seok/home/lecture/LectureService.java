@@ -69,6 +69,10 @@ public class LectureService {
 		return lectureDAO.getDetailVideo(lectureDTO);
 	}
 	
+	public int setUpdate(LectureDTO lectureDTO) throws Exception {
+		return lectureDAO.setUpdate(null);
+	}
+	
 	
 	
 	
