@@ -79,24 +79,25 @@
 		    			<id column="v_num" property="v_num"/>
 		    			<result column="v_url" property="v_url"/>
 		    			<result column="v_context" property="v_context"/>
+		    			<result column="v_seq" property="v_seq"/>
 		    		</collection>
 		    	</resultMap>
 		    	
 		    	<select id="getDetail" parameterType="LectureDTO" resultMap="getDetailResult">
-		    		SELECT L.*, LF.* ,C.*, LV.*, CA.C_NAME
+		    		SELECT L.*, LF.* , LV.*, CA.C_NAME, VV.*
 					FROM LECTURE L
 					INNER JOIN L_FILE LF
 					ON L.L_NUM = LF.L_NUM
-					JOIN CART C
-					ON L.L_NUM = C.L_NUM
 					JOIN "LEVEL" LV
 					ON L.LEVEL_NUM = LV.LEVEL_NUM
 					JOIN CATEGORY CA
-					ON L.C_NUM = CA.C_NUM 
+					ON L.C_NUM = CA.C_NUM
+					JOIN VIDEO VV
+					ON L.L_NUM = VV.L_NUM 
 					WHERE L.L_NUM = #{l_num}
 		    	</select>
 		    	
-		    	<select id="getDetailVideo" resultMap="getDetailResult">
+		    	<select id="getDetailVideo" resultMap="getDetailResult" parameterType="LectureDTO">
 		    		SELECT L.*, LF.* ,VV.*
 					FROM LECTURE L
 					JOIN L_FILE LF

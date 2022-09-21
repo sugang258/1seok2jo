@@ -71,8 +71,18 @@ public class LectureController {
 		System.out.println("detail");
 		
 		lectureDTO = lectureService.getDetail(lectureDTO);
+		System.out.println(lectureDTO);
+		List<LectureVideoDTO> ar  = lectureDTO.getLectureVideoDTO();
+		List<LectureFileDTO> file = lectureDTO.getLectureFileDTO();
+		System.out.println("ar : "+ar.size());
+		System.out.println("file : "+ file.size());
+		
+		//List<LectureDTO> ar = lectureService.getDetailVideo(lectureDTO);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("detail", lectureDTO);
+		mv.addObject("ar", ar);
+		mv.addObject("file", file);
+		//mv.addObject("video", ar);
 		mv.setViewName("/lecture/detail");
 		return mv;
 	}

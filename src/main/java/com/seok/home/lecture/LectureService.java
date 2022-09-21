@@ -65,6 +65,10 @@ public class LectureService {
 		return lectureDAO.getDetail(lectureDTO);
 	}
 	
+	public List<LectureDTO> getDetailVideo(LectureDTO lectureDTO) throws Exception {
+		return lectureDAO.getDetailVideo(lectureDTO);
+	}
+	
 	
 	
 	
