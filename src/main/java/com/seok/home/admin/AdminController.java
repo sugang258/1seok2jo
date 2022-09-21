@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.seok.home.member.MemberDTO;
+
 @Controller
 @RequestMapping(value = "/admin/*")
 public class AdminController {
@@ -17,7 +19,11 @@ public class AdminController {
 	//로그인 페이지 이동 컨트롤러
 	@GetMapping(value = "login")
 	private void getLogin() {
-		
+	}
+	
+	@PostMapping
+	private void getLogin(MemberDTO member) {
+		System.out.println("admin login"+member.getId());
 	}
 	
 	
