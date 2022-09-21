@@ -93,7 +93,9 @@
 					LEFT JOIN "LEVEL" LV
 					ON L.LEVEL_NUM = LV.LEVEL_NUM
 					LEFT JOIN CATEGORY CA
-					ON L.C_NUM = CA.C_NUM 
+					ON L.C_NUM = CA.C_NUM
+					LEFT JOIN VIDEO VV
+					ON L.L_NUM = VV.L_NUM 
 					WHERE L.L_NUM = #{l_num}
 		    	</select>
 		    	

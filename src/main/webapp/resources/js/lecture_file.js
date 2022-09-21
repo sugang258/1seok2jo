@@ -2,6 +2,9 @@ const fileAdd = document.querySelector("#fileAdd");
 const addFiles = document.querySelector("#addFiles");
 const addVideos = document.querySelector("#addVideos");
 const videoAdd = document.querySelector("#videoAdd");
+const sub = document.querySelector("#sub");
+const l_contents = document.querySelector("#l_contents");
+const add = document.querySelector("#add");
 
 let count = 0; //동영상 번호
 let idx = 0; //파일 사진 번호
@@ -220,3 +223,11 @@ addVideos.addEventListener("click",function(event){
     }
 
 });
+
+sub.addEventListener("click",function(){
+    var str = document.getElementById("l_contents").value;
+    str = str.replace(/(?:\r\n|\r\n)/g,'<br />');
+    document.getElementById("l_contents").innerHTML = str;
+
+    add.submit();
+})
