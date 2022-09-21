@@ -23,7 +23,7 @@
 		<form action="./list">
 			<div class="input-group mb-3 " style="width: 500px; margin: auto;">
 				
-				<select name="kind" class="form-select" id="kind" style="border-radius: 7px 0 0 7px; width: 100px;">
+				<select name="kind" class="form-select input-group" id="kind" >
 					<option class="kinds" value="">Category</option>
 					<option class="kinds" value="id">강사 ID</option>
 					<option class="kinds" value="l_name">강의 제목</option>
@@ -32,6 +32,7 @@
 				</select>
 
 				<input type="text" class="form-control" id="search" name="search" value="">
+			
 				<button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
 			</div>
 		</form>
@@ -40,8 +41,8 @@
 				<div class="container px-4 px-lg-5 mt-5">
 					<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
 						<c:forEach items="${list}" var="list">
-						<div class="col mb-5" id="lecture">
-							<div class="card h-100" id="lecturebtn">
+						<div class="col mb-5 lec" id="lec" data-ln-num ="${list.l_num}">
+							<div class="card h-100" >
 								<!-- Lecture image-->
 								<img class="card-img-top" src="../resources/upload/lecture/${list.lectureFileDTO[0].f_name}" alt="...">
 								<!-- Lecture details-->

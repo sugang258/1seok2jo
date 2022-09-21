@@ -20,32 +20,53 @@
 </head>
 <c:import url="../template/header.jsp"></c:import>
 <body>
-    <main class="container mt-3">
+    <main class="container mt-2">
         <div class="py-3 text-center">
             <img class="ml-1 mb-2 " src="/resources/images/15.png" alt="" width="100" height="70" style="display: inline;">
             <h2 style="display: inline;">장바구니</h2>
         </div>
+        <div class="row gx-2 gx-lg-2 align-items-center mb-1"  style="border-style: groove; border-width :thin;">
+            <div class="col-lg-2">
+                <h3>강의 제목</h3>
+            </div>
+            <div class="col-lg-2">
+                <h4>강사 이름</h4>
+            </div>
+            <div class="col-lg-1">
+                <h4>난이도</h4>
+            </div>
+            <div class="col-lg-2">
+                <h4>카테고리</h4>
+            </div>
+            <div class="col-lg-2">
+                <h4>가격</h4>
+            </div>
+            <div class="col-lg-3"></div>
+            
+
+        </div>
         <c:forEach items="${lectureDTO}" var="lecturedto">
-        <div class="row gx-2 gx-lg-2 align-items-center my-5 cart" id="cart" style="border-style: groove; border-width :thin;">
+        <div class="row gx-2 gx-lg-2 align-items-center my-3 cart" id="cart" style="border-style: groove; border-width :thin;" data-l-num ="${lecturedto.l_num}">
             <div class="col-lg-2">
                 <img class="img-fluid rounded mb-4 mb-lg-0" src="../resources/upload/lecture/${lecturedto.lectureFileDTO[0].f_name}" alt="...">
                 <h3>${lecturedto.l_name}</h3>
             </div>
             <div class="col-lg-2">
-                <h3>${lecturedto.id}</h3>
-            </div>
-            <div div class="col-lg-2">
-                <p>${lecturedto.level_name}</p>
-            </div>
-            <div div class="col-lg-2">
-                <p>${lecturedto.c_name}</p>
+                <h4>${lecturedto.id}</h4>
             </div>
             <div div class="col-lg-1">
-                <p>${lecturedto.l_price}원</p>
+                <h3>${lecturedto.level_name}</h3>
+            </div>
+            <div div class="col-lg-2">
+                <h4>${lecturedto.c_name}</h4>
+            </div>
+            <div div class="col-lg-2">
+                <h4>${lecturedto.l_price}원</h4>
                 <input type="label" value="${lecturedto.cartDTO.cart_num}" style="display: none;">
             </div>
             <div div class="col-lg-3">
                 <input type="button" class="btn btn-primary mt-3 del" id="del" value="장바구니에서 삭제하기" style="border :none; color: #66ba39; background-color: white;">
+                <input type="button" class="btn btn-primary mt-3 sign" id="sign" value="수강신청 하기" style="border :none; color: #66ba39; background-color: white;">
             </div>
         </div>
     

@@ -45,7 +45,7 @@ fileAdd.addEventListener("click",function(){
     let i1 = document.createAttribute("id");
     i1.value = "files";
     let n = document.createAttribute("name");
-    n.value = "formFile"
+    n.value = "files";
 
     i.setAttributeNode(c2);
     i.setAttributeNode(t1);
@@ -119,7 +119,7 @@ videoAdd.addEventListener("click",function() {
     f.value = "v_url";
     let c1 = document.createAttribute("class");
     c1.value = "form-label";
-    let t = document.createTextNode("동영상 " + (count+1) + "번 url 주소");
+    let t = document.createTextNode("동영상 url 주소");
 
     l.setAttributeNode(f);
     l.setAttributeNode(c1);
@@ -155,7 +155,7 @@ videoAdd.addEventListener("click",function() {
     f1.value = "v_context";
     let c4 = document.createAttribute("class");
     c4.value = "form-label";
-    let t4 = document.createTextNode("동영상 " + (count+1) + "번 제목");
+    let t4 = document.createTextNode("동영상 제목");
 
     l1.setAttributeNode(f1);
     l1.setAttributeNode(c4);

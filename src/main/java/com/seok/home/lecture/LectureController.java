@@ -6,8 +6,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -63,11 +65,26 @@ public class LectureController {
 		return mv;
 	}
 	
-	@RequestMapping(value="detail", method=RequestMethod.GET)
-	public String getDetailVideo(LectureDTO lectureDTO) throws Exception {
-		
+	@GetMapping("detail")
+	@ResponseBody
+	public ModelAndView getDetail(LectureDTO lectureDTO) throws Exception {
 		System.out.println("detail");
-		return "lecture/detail";
+		
+		lectureDTO = lectureService.getDetail(lectureDTO);
+		System.out.println(lectureDTO);
+		List<LectureVideoDTO> ar  = lectureDTO.getLectureVideoDTO();
+		List<LectureFileDTO> file = lectureDTO.getLectureFileDTO();
+		System.out.println("ar : "+ar.size());
+		System.out.println("file : "+ file.size());
+		
+		//List<LectureDTO> ar = lectureService.getDetailVideo(lectureDTO);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("detail", lectureDTO);
+		mv.addObject("ar", ar);
+		mv.addObject("file", file);
+		//mv.addObject("video", ar);
+		mv.setViewName("/lecture/detail");
+		return mv;
 	}
 	
 	
