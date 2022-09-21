@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.seok.home.MyAbstractTest;
+import com.seok.home.s_board.Pager;
 import com.seok.home.s_board.StudyBoardDAO;
 import com.seok.home.s_board.StudyBoardDTO;
 
@@ -18,8 +19,8 @@ public class StudyBoardTest extends MyAbstractTest{
 	private StudyBoardDAO studyBoardDAO;
 	
 	//@Test
-	public void getBoardList()throws Exception{
-		List<StudyBoardDTO> ar = studyBoardDAO.getBoardList();
+	public void getBoardList(Pager pager)throws Exception{
+		List<StudyBoardDTO> ar = studyBoardDAO.getBoardList(pager);
 		
 		assertEquals(1, ar.size());
 	}

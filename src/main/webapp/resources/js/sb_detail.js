@@ -26,16 +26,16 @@ reply.addEventListener("click", function(){
 	}
 });
 
-reply_sir.addEventListener("click", function(){
+// reply_sir.addEventListener("click", function(){
 	
-	if(document.getElementById("reply_list_second").style.display == "none"){
-		document.getElementById("reply_list_second").style.display = "";
-		reply_sir.innerHTML ="접기"
-	} else {
-		document.getElementById("reply_list_second").style.display = "none";
-		reply_sir.innerHTML ="댓글 더보기"
-	}
-});
+// 	if(document.getElementById("reply_list_second").style.display == "none"){
+// 		document.getElementById("reply_list_second").style.display = "";
+// 		reply_sir.innerHTML ="접기"
+// 	} else {
+// 		document.getElementById("reply_list_second").style.display = "none";
+// 		reply_sir.innerHTML ="댓글 더보기"
+// 	}
+// });
 
 
 
@@ -87,16 +87,17 @@ const answer_btn = document.getElementById("answer_btn");
 const t_answer = document.getElementById("t_answer");
 
 answer_btn.addEventListener("click", function(){
+
 	let t_num = answer_btn.getAttribute("data-board-num");
 	let t_cv = t_answer.value;
 	console.log(t_num);
 	console.log(t_cv);
-
+	
 	//1.XMLHTTPRequest생성
 	const xhttp = new XMLHttpRequest();
 
 	//2. url 준비
-	xhttp.open("POST", "./sb_answer");
+	xhttp.open("POST", "/comment/c_detail");
 
 	//3. Enctype 요청 헤더 설정
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -107,8 +108,34 @@ answer_btn.addEventListener("click", function(){
 	//5. 응답처리
 	xhttp.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 200){
-			this.responseText.trim();
+			let result = this.responseText.trim();
+			if(result == 1){
+				document.querySelector("#close").click();
+				window.location.reload();
+			}
+
 		}
 	}
 
 });
+
+
+
+
+/*update Page-강사 답글 Get 조회*/
+const teacher = document.getElementById("teacher");
+function getCommentDetail(){
+let num = update_btn.getAttribute("data-board-num");
+	const xhttp = new XMLHttpRequest();
+	xhttp.open("GET", "/comment/c_detail?sb_num="+num);
+
+	xhttp.send();
+
+	xhttp.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			console.log(this.responseText.trim());
+			teacher.innerHTML=xhttp.responseText;
+		}
+	}
+}
+

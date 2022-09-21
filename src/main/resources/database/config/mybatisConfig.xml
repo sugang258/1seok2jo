@@ -19,6 +19,7 @@
 		<typeAlias type="com.seok.home.s_board.StudyBoardDTO" alias="StudyBoardDTO"/>
 		<typeAlias type="com.seok.home.s_board.Pager" alias="Pager"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>
+		<typeAlias type="com.seok.home.b_comment.CommentDTO" alias="CommentDTO"/>
 		
 	</typeAliases>
 
