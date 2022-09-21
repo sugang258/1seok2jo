@@ -13,8 +13,12 @@ public class StudyBoardDAO {
 	private SqlSession session;
 	private String NAMESPACE="com.seok.home.s_board.StudyBoardDAO.";
 	
-	public List<StudyBoardDTO> getBoardList()throws Exception{
-		return session.selectList(NAMESPACE+"getBoardList");
+	public List<StudyBoardDTO> getBoardList(Pager pager)throws Exception{
+		return session.selectList(NAMESPACE+"getBoardList", pager);
+	}
+	
+	public Long getTotalCount(Pager pager)throws Exception{
+		return session.selectOne(NAMESPACE+"getTotalCount", pager);
 	}
 	
 	public StudyBoardDTO getBoardDetail(StudyBoardDTO studyBoardDTO)throws Exception{
@@ -31,6 +35,10 @@ public class StudyBoardDAO {
 	
 	public int setBoardUpdate(StudyBoardDTO studyBoardDTO)throws Exception{
 		return session.update(NAMESPACE+"setBoardUpdate", studyBoardDTO);
+	}
+	
+	public int setBoardHit(StudyBoardDTO studyBoardDTO)throws Exception{
+		return session.update(NAMESPACE+"setBoardHit", studyBoardDTO);
 	}
 	
 }
