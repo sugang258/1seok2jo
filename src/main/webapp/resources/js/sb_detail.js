@@ -23,6 +23,7 @@ reply.addEventListener("click", function(){
 	} else {
 		document.getElementById("reply_list").style.display = "none";
 		reply.innerHTML ="댓글 더보기"
+		getReply()
 	}
 });
 
@@ -82,7 +83,7 @@ update_btn.addEventListener("click", function(){
 });
 
 
-/*update Page-강사 답글*/
+/*강사 답글작성*/
 const answer_btn = document.getElementById("answer_btn");
 const t_answer = document.getElementById("t_answer");
 
@@ -119,10 +120,7 @@ answer_btn.addEventListener("click", function(){
 
 });
 
-
-
-
-/*update Page-강사 답글 Get 조회*/
+/*작성 된 강사 답글 조회*/
 const teacher = document.getElementById("teacher");
 function getCommentDetail(){
 let num = update_btn.getAttribute("data-board-num");
@@ -133,9 +131,76 @@ let num = update_btn.getAttribute("data-board-num");
 
 	xhttp.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 200){
-			console.log(this.responseText.trim());
 			teacher.innerHTML=xhttp.responseText;
 		}
 	}
 }
+
+/*강사답글 삭제*/
+teacher.addEventListener("click", function (event) {
+	let num = update_btn.getAttribute("data-board-num");
+	if (event.target.classList[0] == "c_delete") {
+		const xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "/comment/c_delete");
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send("sb_num="+num);
+		xhttp.onreadystatechange=function(){
+			if(this.readyState==4&& this.status==200){
+				let result = xhttp.responseText;
+				if(result == 1){
+					window.location.reload();
+				}
+			}
+		}
+	}
+})
+
+/*강사답글 수정*/
+
+
+
+/*게시판 댓글 가져오기*/
+const reply_content = document.getElementById("reply_content");
+
+function getReply(){
+	let c_num = update_btn.getAttribute("data-board-num");
+	const xhttp = new XMLHttpRequest();
+	xhttp.open("GET", "/comment/sb_comment?sb_num="+c_num);
+	xhttp.send();
+	xhttp.onreadystatechange = function(){
+		if(this.readyState==4&&this.status==200){
+			console.log(this.responseText.trim());
+			reply_content.innerHTML=xhttp.responseText;
+		}
+	}
+}
+
+/** 댓글작성*/
+const reply_btn = document.getElementById("reply_btn");
+
+reply_content.addEventListener("click", function(event){
+	console.log(event.target.className)
+	if(event.target.className == reply_btn){
+		const xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "/comment/sb_commentAdd");
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send(""); //id값가져오고 sb_num, contents가져오기
+		xhttp.onreadystatechange=function(){
+			if(this.readyState==4&&this.status==200){
+				let result = xhttp.responseText;
+				if(result==1){
+					window.location.reload();
+				}
+			}
+		}
+		
+	}
+});
+
+
+
+
+
+
+
 

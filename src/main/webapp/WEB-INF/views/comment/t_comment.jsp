@@ -36,8 +36,8 @@
         </div>
         <!--board-Writer-Button-->
         <div class="d-flex flex-row-reverse mb-4 mt-4" style="width: 70%; margin: 0px auto;">
-          <div class="p-2"><button class="btn-st btn btn-outline-secondary">삭제하기(강사)</button></div>
-          <div class="p-2"><button class="btn-st btn btn-outline-secondary">수정하기(강사)</button></div>
+          <div class="p-2"><button type="button" class="c_delete btn-st btn btn-outline-secondary">삭제하기(강사)</button></div>
+          <div class="p-2"><button type="button" class="c_update btn-st btn btn-outline-secondary">수정하기(강사)</button></div>
         </div>
        </div>
 	</form>

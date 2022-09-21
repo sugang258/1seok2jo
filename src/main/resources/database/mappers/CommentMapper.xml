@@ -15,5 +15,15 @@
 		    	<delete id="setCommentDelete" parameterType="CommentDTO">
 		    		DELETE SB_REPLY WHERE SB_NUM=#{sb_num}
 		    	</delete>
+		    	
+		    	<!-- 게시판댓글 -->
+		    	<select id="getSB_CommentList" parameterType="CommentDTO" resultType="CommentDTO">
+		    		SELECT * FROM SB_COMMENT WHERE SB_NUM = #{sb_num}
+		    	</select>
+		    	
+		    	<insert id="setSB_CommentAdd" parameterType="CommentDTO">
+		    		INSERT INTO SB_COMMENT VALUES(BOARD_SEQ.NEXTVAL, #{sb_num}, #{id}, #{contents}, SYSDATE, 1)
+		    	</insert>
+		    	
 
 		    </mapper>

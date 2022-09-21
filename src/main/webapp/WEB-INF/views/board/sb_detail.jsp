@@ -77,9 +77,9 @@
               <div class="p-2"><i style="color: rgb(15, 156, 50);"class="fa-solid fa-caret-down"></i><button id="reply"> 댓글</button></div>
             </div>
           </div>
-          
           <!--Reply-Content-->
-			<div></div>
+			<div id="reply_content"></div>
+          
 
 
 
@@ -244,6 +244,7 @@
 <script src="/resources/js/sb_detail.js"></script>
 <script>
   getCommentDetail();
+  getReply();
 </script>
 </body>
 </html>
