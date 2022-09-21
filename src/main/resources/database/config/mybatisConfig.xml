@@ -21,6 +21,9 @@
 		<typeAlias type="java.lang.Long" alias="Long"/>
 		<typeAlias type="com.seok.home.b_comment.CommentDTO" alias="CommentDTO"/>
 		
+		<typeAlias type="com.seok.home.pay.OrderDTO" alias="OrderDTO"/>
+		<typeAlias type="com.seok.home.pay.PaymentDTO" alias="PaymentDTO"/>
+		<typeAlias type="com.seok.home.pay.RefundDTO" alias="RefundDTO"/>
 	</typeAliases>
 
 </configuration>

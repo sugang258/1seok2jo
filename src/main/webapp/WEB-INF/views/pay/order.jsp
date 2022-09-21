@@ -39,15 +39,15 @@
           <div class="card-body">
             <div class="">
               <label for="name" class="text-muted">이름</label>
-              <input type="text" class="form-control" id="name">
+              <input type="text" class="form-control" id="name" value="${member.name}">
             </div>
             <div class="mt-2">
               <label for="email" class="text-muted">이메일</label>
-              <input type="text" class="form-control" id="email">
+              <input type="text" class="form-control" id="email" value="${member.email}">
             </div>
             <div class="mt-2">
               <label for="phone" class="text-muted">전화번호</label>
-              <input type="text" class="form-control" id="phone">
+              <input type="text" class="form-control" id="phone" value="${member.phone}">
             </div>
           </div>
         </div>
@@ -58,19 +58,38 @@
           </div>
           <div class="card-body">
             <!--강의정보내용-->
+            <!--테스트 강의정보-->
             <div class="row g-1 p-3 align-items-center">
               <div class="col-3">
                 <img src="../../../resources/images/22.png" class="img-fluid rounded-start" style="object-fit: contain">
               </div>
               <div class="col-md-6">
                 <small class="d-inline-flex px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">6개월 수강</small>
-                <label for="name" class="text-muted">강사명</label>
-                <p>강의명</p>
+                <label for="name" class="text-muted">테스트 강사명</label>
+                <p>테스트 강의명</p>
               </div>
               <div class="col-md-3 text-end">
-                55000원
+                5000원
               </div>
             </div>
+            <!--테스트 끝-->
+            <c:forEach items="${lectures}" var="lecture">
+              <div class="row g-1 p-3 align-items-center">
+                <div class="col-3">
+                  <img src="../../../resources/images/22.png" class="img-fluid rounded-start" style="object-fit: contain">
+                </div>
+                <div class="col-md-6">
+                  <small class="d-inline-flex px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${lecture.l_date}개월 수강</small>
+                  <label for="name" class="text-muted" id="teacher">${lecture.id}</label>
+                  <p id="l_name">${lecture.l_name}</p>
+                </div>
+                <div class="col-md-3 text-end">
+                  <span id="l_price">${lecture.l_price}</span>
+                  <span>원</span>
+                </div>
+              </div>
+            </c:forEach>
+            
             <!--강의-->
           </div>
         </div>
@@ -83,20 +102,20 @@
           <div class="card-body">
             <div class="mb-3" style="display: flex; justify-content:space-between">
               <span>총 상품 금액</span>
-              <span>1000원</span>
+              <span id="total">1000원</span>
             </div>
             <div class="row">
               <div class="col-6">
-                <label for="point">마일리지</label>
+                <label for="point">사용 마일리지</label>
               </div>
               <div class="col-6 text-end">
-                <span>0원</span>  
+                <span id="usePoint"></span>  
               </div>
             </div>
-            <input type="text" class="form-control text-end" id="point" placeholder="사용가능 0원">
+            <input type="number" class="form-control text-end" id="point" name="point" placeholder="사용가능 ${member.point}마일리지">
             <div class="mt-2" style="display: flex; justify-content:space-between">
               <span class="fw-bold">총 결제 금액</span>
-              <span class="fw-bold">10원</span>
+              <span class="fw-bold" id="realtotal"></span>
             </div>
           </div>
         </div>
@@ -109,8 +128,14 @@
   </div>
 
 
-
+  <style>
+    #point::-webkit-outer-spin-button,
+    #point::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+  </style>
   <script src="/resources/js/pay.js"></script>
+  <!--부트스트랩-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>
