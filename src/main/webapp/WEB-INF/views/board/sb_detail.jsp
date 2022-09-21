@@ -79,37 +79,9 @@
           </div>
           
           <!--Reply-Content-->
-          <div class="reply_list p-3" id="reply_list">
-            <div class="d-flex mb-2">
-              <div><img src="https://img.danawa.com/prod_img/500000/017/350/img/13350017_1.jpg?shrink=330:330&_v=20210224095944" style="width: 50px;  border-radius: 24px;"/></div><div class="ms-2 mt-3">USER1</div>
-            </div>
-            <div class="d-flex mb-2">
-              <div class="ms-5"><i class="fa-regular fa-comment-dots"></i></div>
-              <div class="ms-2">안녕하세요 수고 많으십니다^^</div>
-            </div>
-            <hr>
-
-            <div class="d-flex mb-2">
-              <div><img src="https://img.danawa.com/prod_img/500000/017/350/img/13350017_1.jpg?shrink=330:330&_v=20210224095944" style="width: 50px; border-radius: 24px;"/></div><div class="ms-2 mt-3">USER1</div>
-            </div>
-            <div class="d-flex mb-2">
-              <div class="ms-5"><i class="fa-regular fa-comment-dots"></i></div>
-              <div class="ms-2">안녕하세요 수고 많으십니다^^</div>
-            </div>
-            <hr>
-
-            <div class="mb-3" style="text-align: center;"><button id="plus">더보기</button></div>
+			<div></div>
 
 
-
-            <div>
-              <form action="">
-                <input type="text" id="reply_text" placeholder="모두에게 도움이 되는 답변의 주인공이 되어주세요!">
-                
-                <button id="reply_btn">댓글작성</button>
-              </form>
-            </div>
-          </div>
 
           </div>
 
@@ -118,10 +90,10 @@
 
         <!--board-Writer-Button-->
         <div class="d-flex flex-row-reverse mb-5" style="width: 70%; margin: 0px auto;">
-          <div class="p-2"><button class="btn-st btn btn-outline-secondary">답변달기(강사)</button></div>
-          <div class="p-2"><button class="btn-st btn btn-outline-secondary" onclick="location.href='./sb_list';">목록보기(작성자)</button></div>
+           <div class="p-2"><button class="btn-st btn btn-outline-secondary"   data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@mdo">답변달기(강사)</button></div>
+          <div class="p-2"><button class="btn-st btn btn-outline-secondary" onclick="location.href='./sb_list';">목록보기</button></div>
           <div class="p-2"><button class="btn-st btn btn-outline-secondary" onclick="location.href='sb_delete?sb_num=${studyBoardDTO.getSb_num()}';">삭제하기(작성자)</button></div>
-          <div class="p-2"><button type="button" class="btn-st btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" id="up" >수정하기(작성자)</button></div>
+          <div class="p-2"><button type="button" class="btn-st btn btn-outline-secondary"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">수정하기(작성자)</button></div>
         </div>
         
           <!--modal-->
@@ -171,6 +143,7 @@
                 <div class="modal-footer">
                   <button
                     type="button"
+                    id="close"
                     class="btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
@@ -184,63 +157,61 @@
             </div>
           </div>
         
-        
-
-        
-      <div class="board teacher" style="margin-top: 2em; margin-bottom: 0.5em;">
-        <!--Contents-->
-        <div class="sb_contents">
-          <div class="mb-3">
-            <div class="d-flex mb-2">
-              <div class="p-2" style="font-size: 19px;">
-                <i class="fa-solid fa-people-roof" style="color: rgb(211, 28, 28);"></i> <b>강사 답글</b>
+       <!--modal/강사답글-->
+          <div
+            class="modal fade"
+            id="exampleModal2"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    <b style="color:gray;">답글작성 😺</b>
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <form action="sb_update" method="post" enctype="multipart/form-data">
+      			    <input value="${studyBoardDTO.getSb_num()}" style="display:none;"/>
+                    <div class="mb-3">
+                      <label
+                        for="message-text"
+                        class="col-form-label"
+                        style="color: gray"
+                        ><b>내용</b></label
+                      >
+                      <textarea name = "contents" class="form-control mt-1" id="t_answer" rows="2" style="height: 150px;"></textarea>
+                    </div>
+                    <div id="addFiles">
+                        <button class="mt-2 file_add"><b>파일추가📂</b></button>
+                    </div>	
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    id="close"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    취소
+                  </button>
+                  <button class="btn btn-warning" id="answer_btn" data-board-num="${studyBoardDTO.getSb_num()}">
+                    작성하기
+                  </button>
+                </div>
               </div>
-              <div style="font-size: 12px; color: grey; margin: 17px 2px 0px 2px;">2022/9/15</div>
-            </div>
-            <h5 style="text-align:justify; text-justify:auto;">질문 내용을 입력해 주세요.</h5>
-          </div>
-
-          <div>
-            <div class="d-flex mt-4">
-              <div class="p-2 flex-grow-1">🗨 댓글 0개</div>
-              <div class="p-2 share"><a href="#" onclick="clip(); return false;"><i class="fa-solid fa-share-nodes" style="color: rgb(15, 156, 50);"></i> 공유하기</a></div>
-              <div class="p-2"><i style="color: rgb(15, 156, 50);"class="fa-solid fa-caret-down"></i><button id="reply_sir"> 댓글</button></div>
             </div>
           </div>
-
-          <!--Reply-Content-->
-          <div class="reply_list p-3" id="reply_list_second">
-            <div class="d-flex mb-2">
-              <div><img src="https://img.danawa.com/prod_img/500000/017/350/img/13350017_1.jpg?shrink=330:330&_v=20210224095944" style="width: 50px;  border-radius: 24px;"/></div><div class="ms-2 mt-3">USER1</div>
-            </div>
-            <div class="d-flex mb-2">
-              <div class="ms-5"><i class="fa-regular fa-comment-dots"></i></div>
-              <div class="ms-2">안녕하세요 수고 많으십니다^^</div>
-            </div>
-            <hr>
-
-            <div class="mb-3" style="text-align: center;"><button id="plus">더보기</button></div>
-
-            <div>
-              <form action="">
-                <input type="text" id="reply_text" placeholder="모두에게 도움이 되는 답변의 주인공이 되어주세요!">
-                
-                <button id="reply_btn">댓글작성</button>
-              </form>
-            </div>
-          </div>
-
-          </div>
-
-
-        </div>
-
-        <!--board-Writer-Button-->
-        <div class="d-flex flex-row-reverse mb-4 mt-4" style="width: 70%; margin: 0px auto;">
-          <div class="p-2"><button class="btn-st btn btn-outline-secondary">삭제하기(강사)</button></div>
-          <div class="p-2"><button class="btn-st btn btn-outline-secondary">수정하기(강사)</button></div>
-        </div>
-
+          <div id="teacher"></div>
       <!--container-box-->  
       </div> 
       
@@ -271,5 +242,8 @@
   
 </script>
 <script src="/resources/js/sb_detail.js"></script>
+<script>
+  getCommentDetail();
+</script>
 </body>
 </html>

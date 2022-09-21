@@ -38,25 +38,26 @@
           <form>
             <div class="d-flex mb-3">
               <div class="p-1">
-                <select class="select" name="">
-                  <option value="">최신순</option>
-                  <option value="">조회순</option>
+                <select class="select" name="kind">
+                  <option value="newest">최신순</option>
+                  <option value="hits">조회순</option>
                 </select>
               </div>
               <div class="p-1">
-                <select class="select" name="">
-                  <option value="">답변전체</option>
-                  <option value="">답변대기</option>
-                  <option value="">답변완료</option>
+                <select class="select" name="kind">
+                  <option value="all">답변전체</option>
+                  <option value="wait">답변대기</option>
+                  <option value="finish">답변완료</option>
                 </select>
               </div>
               <div class="p-1">
-                <select class="select" name="" style="width: 78px;">
-                  <option value="">JAVA</option>
-                  <option value="">SPRING</option>
-                  <option value="">JAVASCRIPT</option>
-                  <option value="">HTML</option>
-                  <option value="">CSS</option>
+                <select class="select" name="kind" style="width: 100px;">
+                  <option value="category">카테고리</option>
+                  <option value="java">JAVA</option>
+                  <option value="spring">SPRING</option>
+                  <option value="javascript">JAVASCRIPT</option>
+                  <option value="html">HTML</option>
+                  <option value="css">CSS</option>
                 </select>
               </div>
               <div class="ms-auto p-2">
@@ -123,30 +124,25 @@
       <div class="paging">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
+			<c:if test="${pager.pre}">
             <li class="page-item">
-              <a class="page-link text-success" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
+              <a class="page-link text-success" href="./sb_list?page=${pager.startNum-1}" aria-label="Previous">
+                <span aria-hidden="true">이전</span>
               </a>
             </li>
+              </c:if>
+            <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
             <li class="page-item">
-              <a class="page-link text-success" href="#">1</a>
+              <a class="page-link text-success" href="sb_list?page=${pageScope.i}">${i}</a>
             </li>
+            </c:forEach>
+            
             <li class="page-item">
-              <a class="page-link text-success" href="#">2</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link text-success" href="#">3</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link text-success" href="#">4</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link text-success" href="#">5</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link text-success" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
+            <c:if test="${pager.next}">
+              <a class="page-link text-success" href="./sb_list?page=${pager.lastNum+1}" aria-label="Next">
+                <span aria-hidden="true">다음</span>
               </a>
+              </c:if>
             </li>
           </ul>
         </nav>

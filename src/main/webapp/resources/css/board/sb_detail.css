@@ -149,3 +149,14 @@ input:focus {outline: none;}
     background-color: transparent;
     font-weight: bolder;
 }
+
+/**add.html */
+.file_add {
+  border:none; 
+  background-color: transparent; 
+  color: rgba(28, 28, 29, 0.678);"
+}
+.file_add:hover{
+  color: black;
+  transform: scale(1.03);
+}
