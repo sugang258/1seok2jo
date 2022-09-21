@@ -23,7 +23,7 @@
 		<form action="./list">
 			<div class="input-group mb-3 " style="width: 500px; margin: auto;">
 				
-				<select name="kind" class="form-select" id="kind" style="border-radius: 7px 0 0 7px; width: 100px;">
+				<select name="kind" class="form-select input-group" id="kind" >
 					<option class="kinds" value="">Category</option>
 					<option class="kinds" value="id">강사 ID</option>
 					<option class="kinds" value="l_name">강의 제목</option>
@@ -32,6 +32,7 @@
 				</select>
 
 				<input type="text" class="form-control" id="search" name="search" value="">
+			
 				<button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
 			</div>
 		</form>
