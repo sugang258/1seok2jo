@@ -63,7 +63,7 @@
                         <textarea name = "contents" class="form-control mt-1" id="contents" rows="3"></textarea>
                     </div>
         
-                    <div id="addFiles" style="display:none;">
+                    <div id="addFiles">
                         <button class="mt-2 file_add"><b>파일추가📂</b></button>
                     </div>			
                     
