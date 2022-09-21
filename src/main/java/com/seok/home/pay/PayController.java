@@ -55,14 +55,34 @@ public class PayController {
 	//결제성공시
 	@PostMapping(value="success")
 	@ResponseBody
-	public String getSuccess(@RequestBody HashMap<String, Object> res, HttpServletRequest request) {
+	public int receiveSuccess(@RequestBody HashMap<String, String> res, HttpServletRequest request) throws Exception {
 		//주문상세내역과 결제내역 저장
-		System.out.println(res.keySet());
-		System.out.println(res.get("buyer_email"));
+		//paymenDTO에 받아온 변수 값 매칭
+		PaymentDTO paymentDTO = new PaymentDTO();
 		MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
-		System.out.println(mem.getId());
 		
-		return "1";
+		System.out.println(res.keySet());
+		System.out.println(res.get("point"));
+		paymentDTO.setId(mem.getId());
+		paymentDTO.setP_uid(res.get("merchant_uid"));
+		paymentDTO.setP_point(Long.parseLong(res.get("point")));
+		paymentDTO.setP_amount(Long.parseLong(res.get("amount")));
+		paymentDTO.setP_realamount(Long.parseLong(res.get("paid_amount")));
+		paymentDTO.setP_method(res.get("pay_method"));
+		paymentDTO.setP_remains(Long.parseLong(res.get("amount")));
+		paymentDTO.setP_c_name(res.get("card_name"));
+		paymentDTO.setP_c_apply(Long.parseLong(res.get("apply_num")));
+		paymentDTO.setP_c_num(Long.parseLong(res.get("card_number")));
+		paymentDTO.setP_c_quota(Long.parseLong(res.get("card_quota")));
+		paymentDTO.setP_at(Long.parseLong(res.get("paid_amount")));
+		paymentDTO.setP_receipt(res.get("receipt_url"));
+		
+		int result = payService.receiveSuccess(paymentDTO);
+		
+		//포인트 계산
+		
+
+		return result;
 
 	}
 	

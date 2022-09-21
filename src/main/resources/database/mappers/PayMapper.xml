@@ -4,9 +4,14 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <mapper namespace="com.seok.home.pay.PayDAO">
+    	<insert id="savePayment" parameterType="PaymentDTO">
+    		insert into payment (p_uid, id, p_point, p_amount, p_realamount, p_regdate, p_method, p_c_name, p_c_num, p_c_quota, p_remains, p_at, P_RECEIPT, p_c_apply)
+			values (#{p_uid}, #{id}, #{p_point}, #{p_amount}, #{p_realamount}, sysdate, #{p_method}, #{p_c_name}, #{p_c_num}, #{p_c_quota}, #{p_remains}, #{p_at}, #{p_receipt}, #{p_c_apply})
+    	</insert>
+    	
     	<insert id="saveOrder" parameterType="OrderDTO">
     		insert into "ORDER"(O_NUM, L_NUM, P_UID, O_AMOUNT)
-			values (order_seq.nextval,#{l_num},#{p_uid},#{o_amount}); 
+			values (order_seq.nextval,#{l_num},#{p_uid},#{o_amount}) 
     	</insert>
     
     </mapper>

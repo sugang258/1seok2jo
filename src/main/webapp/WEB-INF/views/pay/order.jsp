@@ -43,11 +43,11 @@
             </div>
             <div class="mt-2">
               <label for="email" class="text-muted">이메일</label>
-              <input type="text" class="form-control" id="email">
+              <input type="text" class="form-control" id="email" value="${member.email}">
             </div>
             <div class="mt-2">
               <label for="phone" class="text-muted">전화번호</label>
-              <input type="text" class="form-control" id="phone">
+              <input type="text" class="form-control" id="phone" value="${member.phone}">
             </div>
           </div>
         </div>

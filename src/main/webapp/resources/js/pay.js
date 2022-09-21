@@ -4,7 +4,6 @@ let btnimport = document.getElementById("btnimport");
 let now = new Date();
 let uid = "1seok2jo-"+now.getTime();
 
-//창열리면 테스트 영역
 let l_name = document.querySelectorAll("#l_name")
 let l_price = document.querySelectorAll("#l_price")
 let total = document.getElementById("total")
@@ -12,9 +11,8 @@ let total = document.getElementById("total")
 
 let usePoint = document.getElementById("usePoint");
 let point = document.getElementById("point");
-let pointVal = 0;
+let pointVal = "0";
 usePoint.innerText = pointVal;
-
 
 //총 상품 금액 계산
 let tt = 0;
@@ -62,12 +60,15 @@ function requestPay() {
         if (rsp.success) {
             //ajax로 결제성공 페이지 요청
             const xhttp = new XMLHttpRequest();
+            //rsp에 금액, 포인트 추가
+            rsp.point=pointVal
+            rsp.amount=tt
+
             const res = JSON.stringify(rsp)
 
             xhttp.open("Post","./success");
             xhttp.setRequestHeader("Content-type", "application/json");
             xhttp.send(res);
-            console.log(res);
 
             xhttp.addEventListener("readystatechange", function(){
                 console.log(this.readyState+"|"+this.status)

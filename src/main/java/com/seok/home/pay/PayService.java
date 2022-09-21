@@ -22,28 +22,40 @@ public class PayService {
 	LectureDAO lectureDAO;
 	
 	//결제후 주문목록 저장
-	public void saveOrder(PaymentDTO paymentDTO) throws Exception{
-		//장바구니 목록 불러오기
-		CartDTO cartDTO = new CartDTO();
-		cartDTO.setId(paymentDTO.getId());
+	public int receiveSuccess(PaymentDTO paymentDTO) throws Exception{
+		//payment저장
+		int result = payDAO.savePayment(paymentDTO);
 		
-		cartDAO.getCartList(cartDTO);
-		List<CartDTO> cartDTOs = cartDAO.getCartList(cartDTO);
-		
-		for(CartDTO cart : cartDTOs) {
-			//강의정보가져오기
-			LectureDTO lectureDTO = new LectureDTO();
-			lectureDTO.setL_num(cart.getL_num());
-			lectureDTO = lectureDAO.getDetail(lectureDTO);
-			//강의넘이랑 가격만 가져다 DB에 저장할거임
-			OrderDTO orderDTO = new OrderDTO();
-			orderDTO.setL_num(lectureDTO.getL_num());
-			orderDTO.setO_amount(lectureDTO.getL_price());
-			orderDTO.setP_uid(paymentDTO.getP_uid());
+		//order목록 저장
+		if(result==1) {
 			
-			//orderDB에 저장!
-			int result = payDAO.saveOrder(orderDTO);
+			//장바구니 목록 불러오기
+			CartDTO cartDTO = new CartDTO();
+			cartDTO.setId(paymentDTO.getId());
+			
+			cartDAO.getCartList(cartDTO);
+			List<CartDTO> cartDTOs = cartDAO.getCartList(cartDTO);
+			
+			for(CartDTO cart : cartDTOs) {
+				//강의정보가져오기
+				LectureDTO lectureDTO = new LectureDTO();
+				lectureDTO.setL_num(cart.getL_num());
+				lectureDTO = lectureDAO.getDetail(lectureDTO);
+				//강의넘이랑 가격만 가져다 DB에 저장할거임
+				OrderDTO orderDTO = new OrderDTO();
+				orderDTO.setL_num(lectureDTO.getL_num());
+				orderDTO.setO_amount(lectureDTO.getL_price());
+				orderDTO.setP_uid(paymentDTO.getP_uid());
+				
+				//orderDB에 저장!
+				result = payDAO.saveOrder(orderDTO);
+				if(result!=1) {
+					System.out.println("order저장실패");
+				}
+			}
+			
 		}
+		return result;
 	}
 	
 	public List<CartDTO> getCartList(CartDTO cartDTO) throws Exception {
