@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.seok.home.MyAbstractTest;
+import com.seok.home.cart.CartDTO;
 import com.seok.home.util.Pager;
 
 public class LectureTest extends MyAbstractTest {
@@ -106,6 +107,20 @@ public class LectureTest extends MyAbstractTest {
 		int result = lectureDAO.setAddVideo(lectureVideoDTO);
 		
 		assertEquals(1, result);
+		
+	}
+	
+	//@Test
+	public void getCartDetail() throws Exception {
+		CartDTO cartDTO = new CartDTO();
+		
+		cartDTO.setId("gang");
+		
+		List<LectureDTO> ar = lectureDAO.getCartDetail(cartDTO);
+		
+		assertNotEquals(0, ar.size());
+		
+		
 		
 	}
 	

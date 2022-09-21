@@ -16,7 +16,11 @@
 		<typeAlias type="com.seok.home.cart.CartDTO" alias="CartDTO" />
 		<typeAlias type="com.seok.home.lecture.LectureVideoDTO" alias="LectureVideoDTO"/>
 		<typeAlias type="java.util.List" alias="List"/>
+		<typeAlias type="com.seok.home.s_board.StudyBoardDTO" alias="StudyBoardDTO"/>
 		
+		<typeAlias type="com.seok.home.pay.OrderDTO" alias="OrderDTO"/>
+		<typeAlias type="com.seok.home.pay.PaymentDTO" alias="PaymentDTO"/>
+		<typeAlias type="com.seok.home.pay.RefundDTO" alias="RefundDTO"/>
 	</typeAliases>
 
 </configuration>

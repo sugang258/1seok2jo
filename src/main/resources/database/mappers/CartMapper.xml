@@ -5,14 +5,17 @@
 		    
 		    <mapper namespace="com.seok.home.cart.CartDAO">
 		    	<insert id="setCartAdd" parameterType="CartDTO">
-		    		INSERT INTO CART(C_NUM, ID, L_NUM) VALUES (CART_SEQ.NEXTVAL, #{id}, #{l_num})
+		    		INSERT INTO CART(CART_NUM, ID, L_NUM) VALUES (CART_SEQ.NEXTVAL, #{id}, #{l_num})
 		    	</insert>
 		    	
 		    	<delete id="setCartDelete" parameterType="CartDTO">
-		    		DELETE FROM CART WHERE C_NUM = #{c_num}
+		    		DELETE FROM CART WHERE CART_NUM = #{cart_num}
 		    	</delete>
 		    	
 		    	<select id="getCartList" parameterType="CartDTO" resultType="CartDTO">
 		    		SELECT * FROM CART WHERE ID = #{id}
 		    	</select>
+		    	
+		    	
+		    	
 		    </mapper>
