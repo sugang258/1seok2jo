@@ -38,7 +38,7 @@ public class LectureService {
 				continue;
 			}
 		
-		
+		System.out.println(mf.getSize());
 		String fileName = fileManager.saveFile(path, servletContext,mf);
 
 		LectureFileDTO lectureFileDTO = new LectureFileDTO();
@@ -61,7 +61,12 @@ public class LectureService {
 	}
 	
 	public LectureDTO getDetail(LectureDTO lectureDTO) throws Exception {
+		
 		return lectureDAO.getDetail(lectureDTO);
+	}
+	
+	public List<LectureDTO> getDetailVideo(LectureDTO lectureDTO) throws Exception {
+		return lectureDAO.getDetailVideo(lectureDTO);
 	}
 	
 	

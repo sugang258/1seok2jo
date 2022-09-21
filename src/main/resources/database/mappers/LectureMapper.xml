@@ -79,11 +79,12 @@
 		    			<id column="v_num" property="v_num"/>
 		    			<result column="v_url" property="v_url"/>
 		    			<result column="v_context" property="v_context"/>
+		    			<result column="v_seq" property="v_seq"/>
 		    		</collection>
 		    	</resultMap>
 		    	
 		    	<select id="getDetail" parameterType="LectureDTO" resultMap="getDetailResult">
-		    		SELECT L.*, LF.* ,C.*, LV.*, CA.C_NAME
+		    		SELECT L.*, LF.* , LV.*, CA.C_NAME, VV.*
 					FROM LECTURE L
 					LEFT JOIN L_FILE LF
 					ON L.L_NUM = LF.L_NUM
@@ -96,7 +97,7 @@
 					WHERE L.L_NUM = #{l_num}
 		    	</select>
 		    	
-		    	<select id="getDetailVideo" resultMap="getDetailResult">
+		    	<select id="getDetailVideo" resultMap="getDetailResult" parameterType="LectureDTO">
 		    		SELECT L.*, LF.* ,VV.*
 					FROM LECTURE L
 					JOIN L_FILE LF

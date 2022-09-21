@@ -41,6 +41,10 @@ public class LectureDAO {
 		return sqlSession.selectOne(NAMESPACE+"getDetail", lectureDTO);
 	}
 	
+	public List<LectureDTO> getDetailVideo(LectureDTO lectureDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getDetailVideo", lectureDTO);
+	}
+	
 	//video add
 	public int setAddVideo(LectureVideoDTO lectureVideoDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setAddVideo", lectureVideoDTO);
