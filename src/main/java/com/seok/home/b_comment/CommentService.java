@@ -5,11 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.seok.home.s_board.StudyBoardDAO;
+import com.seok.home.s_board.StudyBoardDTO;
+
 @Service
 public class CommentService {
 
 	@Autowired
 	private CommentDAO commentDAO;
+	@Autowired
+	private StudyBoardDAO studyBoardDAO;
 	
 	public CommentDTO getCommentDetail(CommentDTO commentDTO)throws Exception {
 		return commentDAO.getCommentDetail(commentDTO);
@@ -29,6 +34,19 @@ public class CommentService {
 	}
 	
 	public int setSB_CommentAdd(CommentDTO commentDTO)throws Exception{
-		return commentDAO.setCommentAdd(commentDTO);
+		return commentDAO.setSB_CommentAdd(commentDTO);
+	}
+	
+	public int setSB_CommentDelete(CommentDTO commentDTO)throws Exception{
+		return commentDAO.setSB_CommentDelete(commentDTO);
+	}
+	
+	public Long getComment_Count(CommentDTO commentDTO)throws Exception{
+		return commentDAO.getComment_Count(commentDTO);
+	}
+	
+	//강사답글 - 댓글
+	public List<CommentDTO> getT_CommentList(CommentDTO commentDTO)throws Exception{
+		return commentDAO.getT_CommentList(commentDTO);
 	}
 }

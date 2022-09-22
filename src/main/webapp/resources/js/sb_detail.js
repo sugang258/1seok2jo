@@ -16,24 +16,24 @@ function clip(){
 }
 
 reply.addEventListener("click", function(){
-	
-	if(document.getElementById("reply_list").style.display == "none"){
-		document.getElementById("reply_list").style.display = "";
+	const reply_content = document.getElementById("reply_content");
+	if(document.getElementById("reply_content").style.display == "none"){
+		document.getElementById("reply_content").style.display = "";
 		reply.innerHTML ="접기"
 	} else {
-		document.getElementById("reply_list").style.display = "none";
+		document.getElementById("reply_content").style.display = "none";
 		reply.innerHTML ="댓글 더보기"
 		getReply()
 	}
 });
 
 // reply_sir.addEventListener("click", function(){
-	
-// 	if(document.getElementById("reply_list_second").style.display == "none"){
-// 		document.getElementById("reply_list_second").style.display = "";
+//	const reply_content2 = document.getElementById("reply_content2");
+// 	if(document.getElementById("reply_content2").style.display == "none"){
+// 		document.getElementById("reply_content2").style.display = "";
 // 		reply_sir.innerHTML ="접기"
 // 	} else {
-// 		document.getElementById("reply_list_second").style.display = "none";
+// 		document.getElementById("reply_content2").style.display = "none";
 // 		reply_sir.innerHTML ="댓글 더보기"
 // 	}
 // });
@@ -50,10 +50,6 @@ update_btn.addEventListener("click", function(){
 	let num = update_btn.getAttribute("data-board-num")
     let tv = title.value;
     let cv = contents.value;
-
-	console.log(num)
-	console.log(tv)
-	console.log(cv)
 
 	//1.XMLHTTPRequest생성
 	const xhttp = new XMLHttpRequest();
@@ -91,8 +87,6 @@ answer_btn.addEventListener("click", function(){
 
 	let t_num = answer_btn.getAttribute("data-board-num");
 	let t_cv = t_answer.value;
-	console.log(t_num);
-	console.log(t_cv);
 	
 	//1.XMLHTTPRequest생성
 	const xhttp = new XMLHttpRequest();
@@ -169,22 +163,29 @@ function getReply(){
 	xhttp.send();
 	xhttp.onreadystatechange = function(){
 		if(this.readyState==4&&this.status==200){
-			console.log(this.responseText.trim());
 			reply_content.innerHTML=xhttp.responseText;
 		}
 	}
 }
 
-/** 댓글작성*/
-const reply_btn = document.getElementById("reply_btn");
 
+
+
+/** 댓글작성*/
 reply_content.addEventListener("click", function(event){
-	console.log(event.target.className)
-	if(event.target.className == reply_btn){
+	const reply_text = document.getElementById("reply_text");
+	const reply_btn = document.getElementById("reply_btn");
+	const c_id = document.getElementById("c_id");
+	const c_box = document.getElementById("c_box");
+	if(event.target.className=="reply_btn"){
+		let num = update_btn.getAttribute("data-board-num");
+		let text = reply_text.value;
+		let id = c_id.value;
+		
 		const xhttp = new XMLHttpRequest();
 		xhttp.open("POST", "/comment/sb_commentAdd");
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhttp.send(""); //id값가져오고 sb_num, contents가져오기
+		xhttp.send("sb_num="+num+"&contents="+text+"&id="+id); //id값가져오고 sb_num, contents가져오기
 		xhttp.onreadystatechange=function(){
 			if(this.readyState==4&&this.status==200){
 				let result = xhttp.responseText;
@@ -197,10 +198,55 @@ reply_content.addEventListener("click", function(event){
 	}
 });
 
+reply_content.addEventListener('keydown',function(event){
+	const reply_text = document.getElementById("reply_text");
+	const reply_btn = document.getElementById("reply_btn");
+	const c_id = document.getElementById("c_id");
+	const c_box = document.getElementById("c_box");
+	if(event.target.className=="reply_text"){
+		if(event.keyCode ==13){
+
+			let num2 = update_btn.getAttribute("data-board-num");
+			let text2 = reply_text.value;
+			let id2 = c_id.value;
+
+			const xhttp = new XMLHttpRequest();
+			xhttp.open("POST", "/comment/sb_commentAdd");
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send("sb_num="+num2+"&contents="+text2+"&id="+id2); //id값가져오고 sb_num, contents가져오기
+			xhttp.onreadystatechange=function(){
+				if(this.readyState==4&&this.status==200){
+					let result = xhttp.responseText;
+					if(result==1){
+						window.location.reload();
+					}
+				}
+			}
+	  }
+	}
+});
 
 
+/**댓글 삭제 */
+const text_delete_btn = document.getElementsByClassName("text_delete_btn");
 
+reply_content.addEventListener("click",function(event){
+	if(event.target.className=="text_delete_btn"){
+		let comment_num = event.target.getAttribute("data-comment-num");
+		console.log(comment_num);
+	
 
-
-
+		const xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "/comment/sb_commentDelete");
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send("num="+comment_num);
+		xhttp.onreadystatechange=function(){
+			if(this.readyState==4 && this.status==200){
+				if(xhttp.responseText == 1){
+					window.location.reload();
+				}
+			}
+		}
+	}
+});
 

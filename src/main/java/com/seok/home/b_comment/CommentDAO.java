@@ -34,5 +34,19 @@ public class CommentDAO {
 	public int setSB_CommentAdd(CommentDTO commentDTO)throws Exception{
 		return session.insert(NAMESPACE+"setSB_CommentAdd", commentDTO);
 	}
+	
+	public int setSB_CommentDelete(CommentDTO commentDTO)throws Exception{
+		return session.delete(NAMESPACE+"setSB_CommentDelete", commentDTO);
+	}
+	
+	public Long getComment_Count(CommentDTO commentDTO)throws Exception{
+		return session.selectOne(NAMESPACE+"getComment_Count", commentDTO);
+	}
+	
+	//강사답글 - 댓글
+	public List<CommentDTO> getT_CommentList(CommentDTO commentDTO)throws Exception{
+		return session.selectList(NAMESPACE+"getT_CommentList", commentDTO);
+	}
+	
 
 }

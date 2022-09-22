@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.seok.home.b_comment.CommentDTO;
+
 @Repository
 public class StudyBoardDAO {
 	
@@ -40,5 +42,10 @@ public class StudyBoardDAO {
 	public int setBoardHit(StudyBoardDTO studyBoardDTO)throws Exception{
 		return session.update(NAMESPACE+"setBoardHit", studyBoardDTO);
 	}
+	
+	//댓글 수
+	public Long getCount(StudyBoardDTO studyBoardDTO)throws Exception{
+		return session.selectOne(NAMESPACE+"getCount", studyBoardDTO);
+	}	
 	
 }

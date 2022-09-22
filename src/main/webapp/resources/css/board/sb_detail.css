@@ -154,9 +154,19 @@ input:focus {outline: none;}
 .file_add {
   border:none; 
   background-color: transparent; 
-  color: rgba(28, 28, 29, 0.678);"
+  color: rgba(28, 28, 29, 0.678);
 }
 .file_add:hover{
   color: black;
   transform: scale(1.03);
+}
+
+/**sb_reply delete_button*/
+.text_delete_btn {
+    border: none;
+    background-color: transparent;
+    color: rgba(255, 0, 0, 0.87);
+}
+.text_delete_btn:active {
+    transform: scale(1.03);
 }

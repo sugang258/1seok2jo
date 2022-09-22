@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,6 +66,33 @@ public class CommentController {
 	public int setSB_CommentAdd(CommentDTO commentDTO)throws Exception{
 		int result = commentService.setSB_CommentAdd(commentDTO);
 		return result;
+	}
+	
+	@PostMapping("sb_commentDelete")
+	@ResponseBody
+	public int setSB_CommentDelete(CommentDTO commentDTO)throws Exception{
+		int result = commentService.setSB_CommentDelete(commentDTO);
+		return result;
+	}
+	
+	@PostMapping("commentCount")
+	@ResponseBody
+	public Long getComment_Count(CommentDTO commentDTO)throws Exception{
+		Long result = commentService.getComment_Count(commentDTO);
+		System.out.println(result);
+		return result;
+	}
+	
+	//강사답글 - 댓글
+	@PostMapping("teacher_comment")
+	@ResponseBody
+	public ModelAndView getT_CommentList(CommentDTO commentDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<CommentDTO> ar = commentService.getT_CommentList(commentDTO);
+		mv.addObject("list", ar);
+		mv.setViewName("comment/all_comment");
+		
+		return mv;
 	}
 
 }

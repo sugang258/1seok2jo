@@ -34,4 +34,10 @@ public class StudyBoardService {
 	public int setBoardUpdate(StudyBoardDTO studyBoardDTO)throws Exception{
 		return studyBoardDAO.setBoardUpdate(studyBoardDTO);
 	}
+	
+	//댓글 수 
+	public Long getCount(StudyBoardDTO studyBoardDTO)throws Exception{
+		return studyBoardDAO.getCount(studyBoardDTO);
+	}
+
 }

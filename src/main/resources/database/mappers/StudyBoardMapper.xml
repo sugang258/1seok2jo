@@ -23,7 +23,7 @@
 		    	
 		    	<insert id="setBoardAdd" parameterType="StudyBoardDTO">
 			    	INSERT INTO study_board
-					VALUES (BOARD_SEQ.NEXTVAL, #{l_num}, #{id}, #{title}, SYSDATE, #{answer}, #{hit}, #{contents}, #{category})
+					VALUES (BOARD_SEQ.NEXTVAL, #{l_num}, #{id}, #{title}, SYSDATE, #{answer}, #{hit}, #{contents}, #{category}, 1)
 		    	</insert>
 		    		
 		    	<delete id="setBoardDelete" parameterType="StudyBoardDTO">
@@ -37,5 +37,9 @@
 		    	<update id="setBoardHit" parameterType="StudyBoardDTO">
 		    		UPDATE STUDY_BOARD SET HIT=HIT+1 WHERE SB_NUM=#{sb_num}
 		    	</update>
-		   
+		   	   		    	
+		    	<select id="getCount" parameterType="StudyBoardDTO" resultType="Long">
+		    		SELECT COUNT(NUM) FROM SB_COMMENT WHERE SB_NUM=#{sb_num} AND REF=1
+		    	</select>
+
 		    </mapper>

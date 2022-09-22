@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.seok.home.b_comment.CommentService;
+
 @Controller
 @RequestMapping("/board/*")
 public class StudyBoardController {
@@ -34,6 +36,8 @@ public class StudyBoardController {
 	public ModelAndView getBoardDetail(StudyBoardDTO studyBoardDTO)throws Exception {
 		ModelAndView mv = new ModelAndView();
 		studyBoardDTO = studyBoardService.getBoardDetail(studyBoardDTO);
+		Long count = studyBoardService.getCount(studyBoardDTO);
+		mv.addObject("count", count);
 		mv.addObject("studyBoardDTO", studyBoardDTO);
 		mv.setViewName("board/sb_detail");
 		

@@ -18,12 +18,24 @@
 		    	
 		    	<!-- 게시판댓글 -->
 		    	<select id="getSB_CommentList" parameterType="CommentDTO" resultType="CommentDTO">
-		    		SELECT * FROM SB_COMMENT WHERE SB_NUM = #{sb_num}
+		    		SELECT * FROM SB_COMMENT WHERE SB_NUM = #{sb_num} AND REF=1 ORDER BY NUM ASC 
 		    	</select>
 		    	
 		    	<insert id="setSB_CommentAdd" parameterType="CommentDTO">
 		    		INSERT INTO SB_COMMENT VALUES(BOARD_SEQ.NEXTVAL, #{sb_num}, #{id}, #{contents}, SYSDATE, 1)
 		    	</insert>
 		    	
+		    	<delete id="setSB_CommentDelete" parameterType="CommentDTO">
+		    		DELETE SB_COMMENT WHERE NUM=#{num}
+		    	</delete>
+		    	
+		    	<select id="getComment_Count" parameterType="CommentDTO" resultType="Long">
+		    		SELECT COUNT(NUM) FROM SB_COMMENT WHERE SB_NUM=#{sb_num}
+		    	</select>
+		    	
+		    	<!-- 강사 답글 : 댓글 -->
+		    	<select id="getT_CommentList" parameterType="CommentDTO" resultType="CommentDTO">
+		    		SELECT * FROM SB_COMMENT WHERE SB_NUM = #{sb_num} AND REF=0 ORDER BY NUM ASC 
+		    	</select>
 
 		    </mapper>

@@ -4,8 +4,8 @@
 
 <form action="c_detail" method="post">
 
-  <div id="teacher_box">
-      <div class="board teacher" style="margin-top: 2em; margin-bottom: 0.5em;">
+  <div id="teacher_box"  class="teacher_box">
+      <div class="teacher board" style="margin-top: 2em; margin-bottom: 0.5em;">
         <!--Contents-->
         <div class="sb_contents">
           <div class="mb-3">
@@ -15,9 +15,9 @@
               </div>
               <div style="font-size: 12px; color: grey; margin: 17px 2px 0px 2px;">${commentDTO.reg_date}</div>
             </div>
-            <h5 style="text-align:justify; text-justify:auto;">${commentDTO.contents}</h5>
+            <h5 style="text-align:justify; text-justify:auto;">${commentDTO.contents}${commentDTO.sb_num}${commentDTO.ref}</h5>
           </div>
-
+         <input type="number" class="comment_ref" data-comment-num="${commentDTO.sb_num}" style="display: none" value="${commentDTO.ref}" id="comment_ref"/>
           <div>
             <div class="d-flex mt-4">
               <div class="p-2 flex-grow-1">🗨 댓글 0개</div>
@@ -27,7 +27,7 @@
           </div>
 
           <!--Reply-Content-->
-          <div></div>
+      	<div id="t_comment"></div>
           
           
 
@@ -40,5 +40,9 @@
           <div class="p-2"><button type="button" class="c_update btn-st btn btn-outline-secondary">수정하기(강사)</button></div>
         </div>
        </div>
-	</form>
+      </form>
+      <script src="/resources/js/t_comment.js"></script>
+      <script>
+        teacherReply();
+      </script>
 </body>

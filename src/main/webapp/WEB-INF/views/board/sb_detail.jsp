@@ -72,7 +72,7 @@
           
           <div>
             <div class="d-flex mt-4">
-              <div class="p-2 flex-grow-1">🗨 댓글 0개</div>
+              <div class="p-2 flex-grow-1">🗨 댓글 ${count}개</div>
               <div class="p-2 share"><a href="#" onclick="clip(); return false;"><i class="fa-solid fa-share-nodes" style="color: rgb(15, 156, 50);"></i> 공유하기</a></div>
               <div class="p-2"><i style="color: rgb(15, 156, 50);"class="fa-solid fa-caret-down"></i><button id="reply"> 댓글</button></div>
             </div>
@@ -212,6 +212,7 @@
             </div>
           </div>
           <div id="teacher"></div>
+
       <!--container-box-->  
       </div> 
       
