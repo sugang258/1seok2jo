@@ -2,6 +2,9 @@ const fileAdd = document.querySelector("#fileAdd");
 const addFiles = document.querySelector("#addFiles");
 const addVideos = document.querySelector("#addVideos");
 const videoAdd = document.querySelector("#videoAdd");
+const sub = document.querySelector("#sub");
+const l_contents = document.querySelector("#l_contents");
+const add = document.querySelector("#add");
 
 let count = 0; //동영상 번호
 let idx = 0; //파일 사진 번호
@@ -132,7 +135,7 @@ videoAdd.addEventListener("click",function() {
     let d2 = document.createElement("div");
     let i = document.createElement("input");
     let c2 = document.createAttribute("class");
-    c2.value = "form-label";
+    c2.value = "form-control";
     let t1 = document.createAttribute("type");
     t1.value="text";
     let i1 = document.createAttribute("id");
@@ -168,7 +171,7 @@ videoAdd.addEventListener("click",function() {
     let d5 = document.createElement("div");
     let i2 = document.createElement("input");
     let c5 = document.createAttribute("class");
-    c5.value = "form-label";
+    c5.value = "form-control";
     let t5 = document.createAttribute("type");
     t5.value="text";
     let i3 = document.createAttribute("id");
@@ -220,3 +223,12 @@ addVideos.addEventListener("click",function(event){
     }
 
 });
+
+sub.addEventListener("click",function(){
+    var str = document.getElementById("l_contents").value;
+    str = str.replace(/(?:\r\n|\r\n)/g,'<br />');
+    document.getElementById("l_contents").innerHTML = str;
+
+    add.submit();
+})
+

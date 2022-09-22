@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,8 +29,6 @@ public class LectureController {
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
 	public ModelAndView getLecture(ModelAndView mv,LectureDTO lectureDTO,Pager pager) throws Exception {
-		
-		
 		
 		List<LectureDTO> ar = lectureService.getLecture(pager);
 		System.out.println("ar : "+ar.size());
@@ -85,6 +84,54 @@ public class LectureController {
 		//mv.addObject("video", ar);
 		mv.setViewName("/lecture/detail");
 		return mv;
+	}
+	
+	@GetMapping("update")
+	public ModelAndView setUpdate(LectureDTO lectureDTO) throws Exception {
+		
+		System.out.println("update");
+		ModelAndView mv = new ModelAndView();
+		
+		lectureDTO = lectureService.getDetail(lectureDTO);
+		List<LectureVideoDTO> ar = lectureDTO.getLectureVideoDTO();
+		System.out.println("video ar: "+ar.size());
+		mv.addObject("video", ar);
+		mv.addObject("update", lectureDTO);
+		mv.setViewName("/lecture/update");
+		//int result = lectureService.setUpdate(lectureDTO);
+		
+		return mv;
+	}
+	
+	@PostMapping("update")
+	@ResponseBody
+	public ModelAndView setUpdate(LectureDTO lectureDTO, ModelAndView mv) throws Exception{
+		System.out.println("update post");
+		
+		
+		mv.setViewName("/lecture/detail");
+		
+		return mv;
+	}
+	
+	@PostMapping("setVideoDelete")
+	@ResponseBody
+	public int setVideoDelete(LectureVideoDTO lectureVideoDTO) throws Exception {
+		System.out.println("동영상 삭제");
+		
+		int result = lectureService.setVideoDelete(lectureVideoDTO);
+		
+		return result;
+	}
+	
+	@PostMapping("setDelete")
+	@ResponseBody
+	public int setDelete(LectureDTO lectureDTO) throws Exception {
+		lectureService.setFileDelete(lectureDTO);
+		lectureService.setVideoDele(lectureDTO);
+		int result = lectureService.setDelete(lectureDTO);
+		
+		return result;
 	}
 	
 	

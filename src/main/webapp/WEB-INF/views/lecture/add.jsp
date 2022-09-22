@@ -17,6 +17,10 @@
     href="https://fonts.googleapis.com/css2?family=Arvo&family=Dongle&family=Montserrat:wght@200&family=PT+Serif&family=Playfair+Display:wght@600&family=Prompt&family=Vollkorn:wght@500&display=swap"
     rel="stylesheet"
     />
+    <!-- jquery -->
+ <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <c:import url="../template/header.jsp"></c:import>
 <body>
@@ -27,7 +31,7 @@
         </div>
 
         <div class="text-center">
-            <form action="add" method="post" enctype="multipart/form-data" >
+            <form action="add" method="post" id="add" enctype="multipart/form-data" >
               <div class="row g-3">
                 
                 <div class="col-12">
@@ -42,7 +46,7 @@
     
                 <div class="col-12">
                   <label for="l_contents" class="form-label">강의 설명</label>
-                  <textarea  class="form-control" id="l_contents" name="l_contents" placeholder="강의 설명" style="height: 500px;"></textarea>
+                  <textarea  class="form-control" id="l_contents" name="l_contents" placeholder="강의 설명"></textarea>
                   <div class="invalid-feedback">
                     Your lecture content is required.
                   </div>
@@ -109,7 +113,7 @@
 
               <hr class="my-4">
     
-              <button class="w-100 btn btn-primary btn-lg" type="submit" style="background-color: #66ba39; border: none;">강의 추가</button>
+              <input type="button" class="w-100 btn btn-primary btn-lg" id="sub" style="background-color: #66ba39; border: none;" value="강의 추가"/>
             </form>
         </div>
 
@@ -117,8 +121,46 @@
     <c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script type="text/javascript">
-      $("#l_contents").summernote();
-    </script>
+      $(document).ready(function(){
+        $("#l_contents").summernote({
+          height:500,
+          minHeight: null,             // 최소 높이
+				  maxHeight: null,             // 최대 높이
+			  	focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+			  	lang: "ko-KR",					// 한글 설정
+			  	placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+			  	callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+            onImageUpload : function(files) {
+              uploadSummernoteImageFile(files[0],this);
+            },
+            onPaste: function (e) {
+              var clipboardData = e.originalEvent.clipboardData;
+              if (clipboardData && clipboardData.items && clipboardData.items.length) {
+                var item = clipboardData.items[0];
+                if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
+                  e.preventDefault();
+                }
+              }
+            }
+				  }
+        });
+      })
+      function uploadSummernoteImageFile(file, editor) {
+        data = new FormData();
+        data.append("file", file);
+        $.ajax({
+          data : data,
+          type : "POST",
+          url : "/uploadSummernoteImageFile",
+          contentType : false,
+          processData : false,
+          success : function(data) {
+                  //항상 업로드된 파일의 url이 있어야 한다.
+            $(editor).summernote('insertImage', data.url);
+          }
+        });
+      }
+      </script>
     <script src="/resources/js/lecture_file.js"></script>
 </body>
 </html>
