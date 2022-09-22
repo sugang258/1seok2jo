@@ -8,20 +8,23 @@
   <title>Order 페이지</title>
     <!--파비콘-->
     <link rel="shortcut icon" href="/resources/images/favicon.ico">
+    <!-- help icon-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,700,0,0" />
     <!--bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+	
     <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
     <!-- iamport.payment.js -->
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-    <!-- help icon-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,700,0,0" />
+    
+    <link rel="stylesheet" href="/resources/css/admin/bscommon.css">
   </head>
 <body>
   <div class="container-fluid" style="height: 90px;">
     <c:import url="../template/header.jsp"></c:import>
   </div>
-  <div class="container mt-5">
+  <div class="container mt-5 ilseok">
     <div class="row justify-content-center">
       <div class="col-lg-6 col-md-8 col-10">
       	<div class="card">
@@ -127,15 +130,14 @@
     </div>
   </div>
 
-
+  
   <style>
     #point::-webkit-outer-spin-button,
     #point::-webkit-inner-spin-button {
-        -webkit-appearance: none;
+      -webkit-appearance: none;
     }
-  </style>
+    </style>
   <script src="/resources/js/pay.js"></script>
-  <!--부트스트랩-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>

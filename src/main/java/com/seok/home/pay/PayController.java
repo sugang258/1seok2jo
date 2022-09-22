@@ -38,10 +38,8 @@ public class PayController {
 		ArrayList<LectureDTO> lectureDTOs = new ArrayList<LectureDTO>();
 		
 		if(l_num!=null) {
-			System.out.println("c_num은 널");
 			lectureDTOs = payService.getOrder(l_num);			
 		}else {
-			System.out.println("c_num은 낫널");
 			MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
 			lectureDTOs = payService.getOrder(member);
 		}
