@@ -60,5 +60,10 @@ public class LectureDAO {
 	public List<LectureDTO> getCartDetail(CartDTO cartDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getCartDetail",cartDTO);
 	}
+	
+	//비디오 삭제
+	public int setVideoDelete(LectureVideoDTO lectureVideoDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setVideoDelete", lectureVideoDTO);
+	}
 
 }

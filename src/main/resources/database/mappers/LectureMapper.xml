@@ -145,4 +145,8 @@
 					ON L.C_NUM = CA.C_NUM
 					WHERE C.ID = #{id}
 				</select>
+				
+				<delete id="setVideoDelete" parameterType="LectureVideoDTO">
+					DELETE VIDEO WHERE V_NUM=#{v_num}
+				</delete>
 		    </mapper>

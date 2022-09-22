@@ -31,7 +31,7 @@
         </div>
 
         <div class="text-center">
-            <form action="add" method="post" id="add" enctype="multipart/form-data" >
+            <form action="update" method="post" id="update" enctype="multipart/form-data" >
                 <div class="row g-3">
                 
                     <div class="col-12">
@@ -92,7 +92,7 @@
                     <div>
                         <label for="files" class="form-label">썸네일 이미지</label>
                         <img src="../resources/upload/lecture/${update.lectureFileDTO[0].f_name}" style="display: inline;">
-                        <input type="button" class="btn btn-primary mt-3 del" id="del" value="변경하기" style="border :none; color: white; background-color: #66ba39;">
+                        <input type="button" class="btn btn-primary mt-3 del" id="img_change" value="변경하기" style="border :none; color: white; background-color: #66ba39;">
                     </div>
 
                     <div class="mb-3">
@@ -103,7 +103,7 @@
                         </div>
 
                         <div>
-                        <input type="button" class="btn btn-primary mt-3 del" id="del" value="변경하기" style="border :none; color: white; background-color: #66ba39;">
+                        <input type="button" class="btn btn-primary mt-3 del" id="ot_change" value="변경하기" style="border :none; color: white; background-color: #66ba39;">
                         </div>
                     </div>
 
@@ -115,12 +115,15 @@
                                 ${ar.v_url}
                             </div>
                             <div>
-                                <input type="button" class="btn btn-primary mt-3 del" id="del" value="삭제하기" style="border :none; color: white; background-color: #66ba39;">
+                                <input type="button" class="btn btn-primary mt-3 video_dels" id="video_del" value="삭제하기" data-del-num="${ar.v_num}"  style="border :none; color: white; background-color: #66ba39;">
                             </div>
                         </c:forEach>
                     </div>
+                    <div class="video_adds">
+                        <input type="button" class="btn btn-primary mt-3 del" id="video_add" value="동영상 추가하기"style="border :none; color: #66ba39; background-color: white;">
+                    </div>
                     <div>
-                        <input type="button" class="btn btn-primary mt-3 del" id="del" value="동영상 추가하기" style="border :none; color: #66ba39; background-color: white;">
+                        <input type="button" class="w-100 btn btn-primary btn-lg" id="update_sub" style="background-color: #66ba39; border: none;" value="강의 수정"/>
                     </div>
                 </div>
             </form>
@@ -136,5 +139,6 @@
         })
     });
 </script>
+<script src="/resources/js/lecture_update.js"></script>
 </body>
 </html>

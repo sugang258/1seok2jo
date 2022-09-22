@@ -135,7 +135,7 @@ videoAdd.addEventListener("click",function() {
     let d2 = document.createElement("div");
     let i = document.createElement("input");
     let c2 = document.createAttribute("class");
-    c2.value = "form-label";
+    c2.value = "form-control";
     let t1 = document.createAttribute("type");
     t1.value="text";
     let i1 = document.createAttribute("id");
@@ -171,7 +171,7 @@ videoAdd.addEventListener("click",function() {
     let d5 = document.createElement("div");
     let i2 = document.createElement("input");
     let c5 = document.createAttribute("class");
-    c5.value = "form-label";
+    c5.value = "form-control";
     let t5 = document.createAttribute("type");
     t5.value="text";
     let i3 = document.createAttribute("id");
