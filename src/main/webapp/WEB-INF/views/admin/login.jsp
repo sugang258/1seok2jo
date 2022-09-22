@@ -20,10 +20,10 @@
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
 							<h1 class="fs-4 card-title fw-bold mb-4">관리자 로그인</h1>
-							<form method="POST" action="/admin/login" class="needs-validation" autocomplete="off">
+							<form method="POST" action="/admin/login" class="needs-validation" onsubmit="rememberid();" autocomplete="off">
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="id">ID</label>
-									<input id="id" type="text" class="form-control" name="id" value="" required autofocus>
+									<input id="id" type="text" class="form-control" name="id" required autofocus>
 								</div>
 
 								<div class="mb-3">
@@ -35,10 +35,10 @@
 
 								<div class="d-flex align-items-center">
 									<div class="form-check">
-										<input type="checkbox" name="remember" id="remember" class="form-check-input ">
-										<label for="remember" class="form-check-label">Remember Me</label>
+										<input type="checkbox" name="remember" id="remember" class="form-check-input" checked>
+										<label for="remember" class="form-check-label">아이디 기억하기</label>
 									</div>
-									<button type="submit" class="btn ms-auto btn-outline-success" >
+									<button type="submit" id="loginbtn" class="btn ms-auto btn-outline-success" >
 										Login
 									</button>
 								</div>
