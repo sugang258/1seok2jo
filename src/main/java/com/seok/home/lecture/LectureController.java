@@ -89,21 +89,31 @@ public class LectureController {
 	}
 	
 	@GetMapping("update")
-	public String setUpdate(LectureDTO lectureDTO) throws Exception {
+	public ModelAndView setUpdate(LectureDTO lectureDTO) throws Exception {
 		
 		System.out.println("update");
+		ModelAndView mv = new ModelAndView();
 		
+		lectureDTO = lectureService.getDetail(lectureDTO);
+		List<LectureVideoDTO> ar = lectureDTO.getLectureVideoDTO();
+		System.out.println("video ar: "+ar.size());
+		mv.addObject("video", ar);
+		mv.addObject("update", lectureDTO);
+		mv.setViewName("/lecture/update");
 		//int result = lectureService.setUpdate(lectureDTO);
 		
-		return "lecture/update";
+		return mv;
 	}
 	
 	@PostMapping("update")
 	@ResponseBody
-	public void setUpdate(LectureDTO lectureDTO, ModelAndView mv) throws Exception{
+	public ModelAndView setUpdate(LectureDTO lectureDTO, ModelAndView mv) throws Exception{
 		System.out.println("update post");
 		
-		mv.setViewName("lecture/detail");
+		
+		mv.setViewName("/lecture/detail");
+		
+		return mv;
 	}
 	
 	

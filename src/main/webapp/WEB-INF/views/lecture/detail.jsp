@@ -94,15 +94,30 @@
                     </div>
                     <!--Sign-->
                     <div class="card mb-4">
-                        <div class="card-header">Sign</div>
+                        <div class="card-header">
+                            Sign
+                        </div>
                             <div class="card-body">
                                 <div class="input-group">
                                     <button class="btn btn-primary" id="signs" type="button" data-lnum-num="${param.l_num}" style="border :none; color: white; background-color: #66ba39;">수강신청 하기</button>
                                 </div>
                             </div>
-                        </div>
                     </div>
+
+
+                    
+                    <!--Update-->
+                    <div class="card mb-4">
+                        <div class="card-header">Update</div>
+                            <div class="card-body">
+                                <div class="input-group">
+                                    <button class="btn btn-primary" id="update" type="button" data-update-num="${param.l_num}" style="border :none; color: white; background-color: #66ba39;">수정하기</button>
+                                </div>
+                            </div>
+                    </div>
+                    
                 </div>
+                
             </div>
         
     </main>

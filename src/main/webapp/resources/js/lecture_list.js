@@ -16,9 +16,10 @@ lecture.forEach(function(lecturebtn){
 
 cart.forEach(function(cartbtn) {
     cartbtn.addEventListener("click",function(event){
-        alert("장바구니에 담으시겠습니까?");
         event.stopPropagation();
-
+        let check = window.confirm("장바구니에 담으시겠습니까?")
+       
+        if(check){
        let target =  event.target;
        let l_num =  target.parentNode.parentNode.parentNode.childNodes[7].childNodes[1].childNodes[19].value;
       // let c_num = target.parentNode.parentNode.parentNode.childNodes[7].childNodes[1].childNodes[21].value;
@@ -49,7 +50,14 @@ cart.forEach(function(cartbtn) {
                 result = JSON.parse(result);
                 if (result == 1) {
                     alert("장바구니 담기 성공");
-                    window.location.href = "./list";
+                    let check1 = window.confirm("장바구니로 이동하시겠습니까?");
+                    if(check1) {
+                        window.location.href="../member/cart";
+                    }else{
+
+                        window.location.href = "./list";
+                    }
+                   
 
                 }else {
                     alert("장바구니 담기 실패");
@@ -57,6 +65,9 @@ cart.forEach(function(cartbtn) {
                 }
             }
         }
+    }else{
+        alert("장바구니 담기 취소");
+    }
 
      })
 });

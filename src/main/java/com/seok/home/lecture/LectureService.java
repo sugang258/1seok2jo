@@ -70,7 +70,7 @@ public class LectureService {
 	}
 	
 	public int setUpdate(LectureDTO lectureDTO) throws Exception {
-		return lectureDAO.setUpdate(null);
+		return lectureDAO.setUpdate(lectureDTO);
 	}
 	
 	
