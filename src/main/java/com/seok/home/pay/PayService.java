@@ -85,26 +85,26 @@ public class PayService {
 	public ArrayList<LectureDTO> getOrder(MemberDTO memberDTO) throws Exception {
 		//강의번호가 비어있으면 장바구니의 강의 번호를 불러온다.
 		
-		CartDTO cartDTO = new CartDTO();
-		cartDTO.setId(memberDTO.getId());
+//		CartDTO cartDTO = new CartDTO();
+//		cartDTO.setId(memberDTO.getId());
+//		
+//		//장바구니 목록 불러오기
+//		List<CartDTO> cartDTOs = cartDAO.getCartList(cartDTO);
+//		
+//		
+//		ArrayList<LectureDTO> lectureDTOs = new ArrayList<LectureDTO>();
+//		//for문으로 List<LectureDTO>를 만들어준다.
+//		for(CartDTO cart : cartDTOs) {
+//			LectureDTO lectureDTO = new LectureDTO();
+//			System.out.println(cart.getL_num());
+//			lectureDTO.setL_num(cart.getL_num());
+//			
+//			lectureDTO = lectureDAO.getDetail(lectureDTO);
+//			System.out.println(lectureDTO.getL_name());
+//			lectureDTOs.add(lectureDTO);
+//		}
 		
-		//장바구니 목록 불러오기
-		List<CartDTO> cartDTOs = cartDAO.getCartList(cartDTO);
-		
-		
-		ArrayList<LectureDTO> lectureDTOs = new ArrayList<LectureDTO>();
-		//for문으로 List<LectureDTO>를 만들어준다.
-		for(CartDTO cart : cartDTOs) {
-			LectureDTO lectureDTO = new LectureDTO();
-			System.out.println(cart.getL_num());
-			lectureDTO.setL_num(cart.getL_num());
-			
-			lectureDTO = lectureDAO.getDetail(lectureDTO);
-			System.out.println(lectureDTO.getL_name());
-			lectureDTOs.add(lectureDTO);
-		}
-		
-		return lectureDTOs;
+		return null;
 	}
 	
 	public ArrayList<LectureDTO> getOrder(String l_num) throws Exception {

@@ -8,10 +8,11 @@
 <title>Admin Login</title>
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<link rel="stylesheet" href="/resources/css/admin/bscommon.css">
 </head>
 <body>
 	<section class="h-100">
-		<div class="container h-100">
+		<div class="container ilseok h-100">
 			<div class="row justify-content-sm-center h-100">
 				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
 					<div class="text-center my-5">
@@ -114,21 +115,9 @@
 
 
 	<style type="text/css">
-	.form-check-input:checked{
-		background-color:#4b830d;
-
-	}
-	.btn:first-child:hover, :not(.btn-check)+.btn:hover{
-		
-		background-color: #4b830d;
-	}
 	.authForm{
 		display:inline;
 	}
-	.form-control:focus, .form-check-input:focus {
-		border-color:#aed581;
-		box-shadow: 0 0 0 0.25rem #e1ffb1;
-		}
 	#btnAuth{
 		border:none;
 		color:#7da453;
