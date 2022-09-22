@@ -36,8 +36,15 @@ let phoneCheck=false;
 ipId.addEventListener("blur", function(){
     //console.log("블러 이벤트 실행");
     idCheck=false;
-    if(ipId.value.length>5 && ip){
-
+    if(ipId.value.length>5 && ipId.value.length<20){
+        ipIdResult.innerHTML="";
+        idCheck=true;
+    }else {
+        ipIdResult.innerHTML="5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.";
     }
 
+});
+
+ipPw.addEventListener("keyup", function(){
+    
 });
