@@ -19,13 +19,10 @@ function login(){
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
         xhttp.send("id="+idAuth.value+"&pw="+idAuth.value+"&authNum="+authNum.value)
         xhttp.addEventListener("readystatechange", function(){
-            console.log(this.readyState+this.status)
+            console.log(this.readyState+""+this.status)
             if(this.readyState==4 && this.status==200){
-                if(xhttp.responseText.trim()=="1"){
-                    authMessage.innerHTML="인증이완료되었습니다"
-                }else{
-                    alert("수정실패")
-                }
+                console.log(xhttp.responseText.trim())
+                    authMessage.innerHTML=xhttp.responseText.trim()
             }
         })
     

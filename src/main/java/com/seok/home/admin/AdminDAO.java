@@ -4,6 +4,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.seok.home.member.MemberDTO;
+
 @Repository
 public class AdminDAO {
 	
@@ -11,10 +13,8 @@ public class AdminDAO {
 	@Autowired
 	private SqlSession session;
 	
-	public void getLogin() {
-	}
-	
-	public void getAuth() {
-		//권한 추가
+	//권한 추가
+	public int getAuth(MemberDTO member) {
+		return session.insert(NAMESPACE+"getAuth", member);
 	}
 }

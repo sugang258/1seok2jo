@@ -44,10 +44,25 @@ public class AdminController {
 	
 	@PostMapping(value = "auth")
 	@ResponseBody
-	private int getAuth(String id, String pw, String authNum) {
-		System.out.println("관리자 인증 컨트롤러"+authNum+id+pw);
+	private ModelAndView getAuth(MemberDTO member, String authNum) throws Exception {
+		//authNum은 "1seok2jo"로 통일
+		String chkAuthNum = "1seok2jo";
 		
-		return 1;
+		System.out.println(member.getId()+member.getPw()+authNum);
+		
+		String message = "";
+		if(chkAuthNum.equals(authNum)) {
+			message = service.getAuth(member);
+			
+		}else {
+			message = "관리자 인증번호가 맞지 않습니다.";
+		}
+
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("result", message);
+		mv.setViewName("common/ajaxResult");
+		
+		return mv;
 	}
 
 }

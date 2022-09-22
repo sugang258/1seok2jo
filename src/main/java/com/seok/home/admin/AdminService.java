@@ -37,10 +37,23 @@ public class AdminService {
 		return chk;
 	}
 	
-	public void getAuth() {
+	public String getAuth(MemberDTO member) throws Exception{
 		//아이디 패스워드 맞는지 확인
-		//권한추가
-		adminDAO.getAuth();
+		
+		member = memberDAO.getLogin(member);
+		
+		if(member==null) {
+			return "일석이조 회원 인증 실패";
+		}else {			
+			//권한추가
+			int result = memberDAO.setAdminRole(member);
+			if(result==1) {
+				return "인증이 완료되었습니다\n관리자 로그인을 진행해주세요";				
+			}else {
+				return "관리자 인증 실패\n 담당자에게 문의해주세요";
+			}
+		}
+		
 	}
 
 }

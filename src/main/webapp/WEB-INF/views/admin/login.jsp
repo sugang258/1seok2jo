@@ -13,7 +13,7 @@
 <body>
 	<section class="h-100">
 		<div class="container ilseok h-100">
-			<div class="row justify-content-sm-center h-100">
+			<div class="row justify-content-center h-100">
 				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
 					<div class="text-center my-5">
 						<img src="/resources/images/15.png" alt="logo" width="200">
@@ -73,7 +73,7 @@
 															<label for="recipient-name" class="text-muted col-form-label authForm">아이디</label>
 														</div>
 														<div class="col-7">
-															<input type="text" class="form-control authForm " id="idAuth">
+															<input type="text" class="form-control authForm " name="idAuth" id="idAuth">
 														</div>
 													</div>
 													<div class="mb-3 row justify-content-center">
@@ -81,7 +81,7 @@
 															<label for="recipient-name" class="text-muted col-form-label authForm">비밀번호</label>
 														</div>
 														<div class="col-7">
-															<input type="password" class="form-control authForm" id="pwAuth">
+															<input type="password" class="form-control authForm" name="pwAuth" id="pwAuth">
 														</div>
 													</div>
 													<div class="mb-3 row justify-content-center">
@@ -89,7 +89,7 @@
 															<label for="recipient-name" class="text-muted col-form-label authForm">인증번호</label>
 														</div>
 														<div class="col-7">
-															<input type="text" class="form-control authForm" id="authNum">
+															<input type="text" class="form-control authForm" name="authNum" id="authNum">
 														</div>
 													</div>
 												</form>

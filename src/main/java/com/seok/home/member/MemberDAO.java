@@ -29,6 +29,11 @@ public class MemberDAO {
 		return sqlSession.insert(NAMESPACE+"setMemberRole", memberDTO);
 	}
 	
+	//어드민등급설정
+	public int setAdminRole(MemberDTO memberDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setAdminRole", memberDTO);
+	}
+	
 	/************************ 마이페이지 **************************/
 	
 	//프로필수정
