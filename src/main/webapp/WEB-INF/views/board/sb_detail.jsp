@@ -211,8 +211,11 @@
               </div>
             </div>
           </div>
+          <!-- 강사 답글 위치-->
           <div id="teacher"></div>
-
+          <!-- 강사 답글의 댓글 위치-->
+          <!-- <div id="t_comment"></div> -->
+          
       <!--container-box-->  
       </div> 
       
@@ -246,6 +249,7 @@
 <script>
   getCommentDetail();
   getReply();
+  teacherReply();
 </script>
 </body>
 </html>

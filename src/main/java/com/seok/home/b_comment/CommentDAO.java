@@ -48,5 +48,9 @@ public class CommentDAO {
 		return session.selectList(NAMESPACE+"getT_CommentList", commentDTO);
 	}
 	
+	public int setT_CommentAdd(CommentDTO commentDTO)throws Exception{
+		return session.insert(NAMESPACE+"setT_CommentAdd", commentDTO);
+	}
+	
 
 }

@@ -49,4 +49,8 @@ public class CommentService {
 	public List<CommentDTO> getT_CommentList(CommentDTO commentDTO)throws Exception{
 		return commentDAO.getT_CommentList(commentDTO);
 	}
+	
+	public int setT_CommentAdd(CommentDTO commentDTO)throws Exception{
+		return commentDAO.setT_CommentAdd(commentDTO);
+	}
 }

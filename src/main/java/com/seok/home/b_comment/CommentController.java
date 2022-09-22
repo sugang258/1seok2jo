@@ -94,5 +94,11 @@ public class CommentController {
 		
 		return mv;
 	}
+	
+	public int setT_CommentAdd(CommentDTO commentDTO)throws Exception{
+		int result = commentService.setT_CommentAdd(commentDTO);
+		
+		return result;
+	}
 
 }

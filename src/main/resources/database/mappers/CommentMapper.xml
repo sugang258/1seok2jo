@@ -37,5 +37,9 @@
 		    	<select id="getT_CommentList" parameterType="CommentDTO" resultType="CommentDTO">
 		    		SELECT * FROM SB_COMMENT WHERE SB_NUM = #{sb_num} AND REF=0 ORDER BY NUM ASC 
 		    	</select>
+		    	
+		    	<insert id="setT_CommentAdd" parameterType="CommentDTO">
+		    		INSERT INTO SB_COMMENT VALUES(BOARD_SEQ.NEXTVAL, #{sb_num}, #{id}, #{contents}, SYSDATE, 0)
+		    	</insert>
 
 		    </mapper>
