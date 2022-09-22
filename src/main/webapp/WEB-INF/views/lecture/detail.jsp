@@ -92,6 +92,17 @@
                         </div>
                         </c:forEach>
                     </div>
+                    <!--board-->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            수강평 보러가기
+                        </div>
+                            <div class="card-body">
+                                <div class="input-group">
+                                    <button class="btn btn-primary" id="board" type="button" data-lnum-num="${param.l_num}" style="border :none; color: white; background-color: #66ba39;">수강평 보러가기</button>
+                                </div>
+                            </div>
+                    </div>
                     <!--Sign-->
                     <div class="card mb-4">
                         <div class="card-header">
@@ -103,9 +114,17 @@
                                 </div>
                             </div>
                     </div>
-
-
-                    
+                    <!--Listen-->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            Listen
+                        </div>
+                            <div class="card-body">
+                                <div class="input-group">
+                                    <button class="btn btn-primary" id="listen" type="button" data-listen-num="${param.l_num}" style="border :none; color: white; background-color: #66ba39;">강의 들으러 가기</button>
+                                </div>
+                            </div>
+                    </div>
                     <!--Update-->
                     <div class="card mb-4">
                         <div class="card-header">Update</div>
@@ -115,7 +134,16 @@
                                 </div>
                             </div>
                     </div>
-                    
+                    <!--Delete-->
+                    <div class="card mb-4">
+                        <div class="card-header">Delete</div>
+                            <div class="card-body">
+                                <div class="input-group">
+                                    <button class="btn btn-primary" id="de" type="button" data-delete-num="${param.l_num}" style="border :none; color: white; background-color: #66ba39;">삭제하기</button>
+                                </div>
+                            </div>
+                    </div>
+    
                 </div>
                 
             </div>

@@ -45,9 +45,6 @@
 					WHERE L_NUM=#{l_num}
 		    	</update>
 		    	
-		    	<delete id="setDelete" parameterType="LectureDTO">
-		    		DELETE FROM LECTURE WHERE L_NUM=#{l_num}
-		    	</delete>
 		    	
 		    	<insert id="setAddFile" parameterType="lectureFileDTO" >
 		    		INSERT INTO L_FILE(NUM, L_NUM, F_NAME, F_ORINAME) 
@@ -145,8 +142,27 @@
 					ON L.C_NUM = CA.C_NUM
 					WHERE C.ID = #{id}
 				</select>
-				
+				<!-- update에서 비디오 삭제 -->
 				<delete id="setVideoDelete" parameterType="LectureVideoDTO">
 					DELETE VIDEO WHERE V_NUM=#{v_num}
 				</delete>
+				
+				<!--Detail에서 강의 삭제 했을 때 비디오 삭제 -->
+				<delete id="setVideoDele" parameterType="LectureDTO">
+					DELETE VIDEO WHERE L_NUM = #{l_num}
+				</delete>
+				
+				
+				<delete id="setDelete" parameterType="LectureDTO">
+					DELETE LECTURE WHERE L_NUM=#{l_num}
+				</delete>
+				
+				<delete id="setFileDelete" parameterType="LectureDTO">
+					DELETE L_FILE WHERE L_NUM=#{l_num}
+				</delete>
+				
+				<select id="getFileDetail" parameterType="lectureFileDTO" resultType="lectureFileDTO">
+					SELECT * FROM NOTICEFILE WHERE f_num = #{f_num}
+				</select>
+				
 		    </mapper>

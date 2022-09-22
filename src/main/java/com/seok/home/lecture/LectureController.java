@@ -30,8 +30,6 @@ public class LectureController {
 	@RequestMapping(value="list", method=RequestMethod.GET)
 	public ModelAndView getLecture(ModelAndView mv,LectureDTO lectureDTO,Pager pager) throws Exception {
 		
-		
-		
 		List<LectureDTO> ar = lectureService.getLecture(pager);
 		System.out.println("ar : "+ar.size());
 		System.out.println("search :"+pager.getSearch());
@@ -122,6 +120,16 @@ public class LectureController {
 		System.out.println("동영상 삭제");
 		
 		int result = lectureService.setVideoDelete(lectureVideoDTO);
+		
+		return result;
+	}
+	
+	@PostMapping("setDelete")
+	@ResponseBody
+	public int setDelete(LectureDTO lectureDTO) throws Exception {
+		lectureService.setFileDelete(lectureDTO);
+		lectureService.setVideoDele(lectureDTO);
+		int result = lectureService.setDelete(lectureDTO);
 		
 		return result;
 	}

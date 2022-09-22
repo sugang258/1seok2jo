@@ -28,9 +28,6 @@ public class LectureDAO {
 		return sqlSession.update(NAMESPACE+"setUpdate", lectureDTO);
 	}
 	
-	public int setDelete(LectureDTO lectureDTO) throws Exception{
-		return sqlSession.delete(NAMESPACE+"setDelete", lectureDTO);
-	}
 	
 	//file add
 	public int setAddFile(LectureFileDTO lectureFileDTO) throws Exception {
@@ -64,6 +61,23 @@ public class LectureDAO {
 	//비디오 삭제
 	public int setVideoDelete(LectureVideoDTO lectureVideoDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"setVideoDelete", lectureVideoDTO);
+	}
+	
+	//강의 삭제
+	public int setDelete(LectureDTO lectureDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setDelete", lectureDTO);
+	}
+	
+	public int setVideoDele(LectureDTO lectureDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setVideoDele", lectureDTO);
+	}
+	
+	public int setFileDelete(LectureDTO lectureDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setFileDelete", lectureDTO);
+	}
+	
+	public List<LectureFileDTO> getFileDetail(LectureFileDTO lectureFileDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getFileDetail", lectureFileDTO);
 	}
 
 }
