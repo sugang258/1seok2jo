@@ -11,8 +11,6 @@ function login(){
         let pwAuth = document.querySelector("#pwAuth")
         let authNum = document.querySelector("#authNum")
         let authMessage = document.getElementById("authMessage")
-        
-        console.log(idAuth.value+pwAuth.value+authNum.value)
     
         const xhttp = new XMLHttpRequest();
         xhttp.open("POST","./auth");
