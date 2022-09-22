@@ -48,8 +48,6 @@ public class AdminController {
 		//authNum은 "1seok2jo"로 통일
 		String chkAuthNum = "1seok2jo";
 		
-		System.out.println(member.getId()+member.getPw()+authNum);
-		
 		String message = "";
 		if(chkAuthNum.equals(authNum)) {
 			message = service.getAuth(member);

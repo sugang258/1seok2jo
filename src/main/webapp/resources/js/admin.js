@@ -19,9 +19,7 @@ function login(){
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
         xhttp.send("id="+idAuth.value+"&pw="+idAuth.value+"&authNum="+authNum.value)
         xhttp.addEventListener("readystatechange", function(){
-            console.log(this.readyState+""+this.status)
             if(this.readyState==4 && this.status==200){
-                console.log(xhttp.responseText.trim())
                     authMessage.innerHTML=xhttp.responseText.trim()
             }
         })
@@ -45,9 +43,7 @@ function rememberid(){
         setCookie("rememberid",id.value, 30);
     }else if(!remember.checked){
         let ck = getCookie("rememberid")
-        console.log(ck)
         if(ck!=""){
-            console.log("실행")
             deleteCookie("rememberid")
         }
     }

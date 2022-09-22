@@ -13,8 +13,4 @@ public class AdminDAO {
 	@Autowired
 	private SqlSession session;
 	
-	//권한 추가
-	public int getAuth(MemberDTO member) {
-		return session.insert(NAMESPACE+"getAuth", member);
-	}
 }
