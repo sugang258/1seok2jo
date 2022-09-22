@@ -26,8 +26,14 @@ public class MemberDTO {
 	private Long point;
 	//등급을 여러개
 	private List<RoleDTO> roleDTOs;
-	
 	//getter setter
+	
+	public List<RoleDTO> getRoleDTOs() {
+		return roleDTOs;
+	}
+	public void setRoleDTOs(List<RoleDTO> roleDTOs) {
+		this.roleDTOs = roleDTOs;
+	}
 	public String getId() {
 		return id;
 	}
