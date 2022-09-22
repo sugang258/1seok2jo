@@ -28,6 +28,22 @@ public class PayController {
 	@Autowired
 	private PayService payService;
 	
+	@GetMapping(value="cancle")
+	public String cancle(PaymentDTO paymentDTO) throws Exception{
+		paymentDTO.setP_uid("1seok2jo-1663727564296");
+		System.out.println("cancleGet"+paymentDTO.getP_uid());
+		
+		paymentDTO = payService.cancle(paymentDTO);
+		System.out.println(paymentDTO.getP_remains());
+		return "pay/cancle";
+	}
+	
+	@PostMapping(value="cancle")
+	public String cancle(RefundDTO refundDTO) throws Exception{
+		System.out.println("hi");
+		return "hi";
+	}
+	
 	//‘강의 상세’  ‘장바구니’ 페이지에서 결제하기 버튼을 눌러 주문페이지로 이동
 	@GetMapping(value="order")
 	public ModelAndView showOrder(String l_num, HttpServletRequest request) throws Exception{
@@ -82,7 +98,6 @@ public class PayController {
 		
 
 		return result;
-
 	}
 	
 	@GetMapping(value="complete")
