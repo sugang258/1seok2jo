@@ -116,6 +116,16 @@ public class LectureController {
 		return mv;
 	}
 	
+	@PostMapping("setVideoDelete")
+	@ResponseBody
+	public int setVideoDelete(LectureVideoDTO lectureVideoDTO) throws Exception {
+		System.out.println("동영상 삭제");
+		
+		int result = lectureService.setVideoDelete(lectureVideoDTO);
+		
+		return result;
+	}
+	
 	
 	
 	

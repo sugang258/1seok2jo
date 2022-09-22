@@ -122,7 +122,7 @@ public class LectureTest extends MyAbstractTest {
 			
 	}
 	
-	@Test
+	//@Test
 	public void setVideoDelete() throws Exception {
 		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
 		

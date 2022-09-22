@@ -231,3 +231,5 @@ sub.addEventListener("click",function(){
 
     add.submit();
 })
+
+export {count}

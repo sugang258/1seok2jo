@@ -90,26 +90,31 @@
                     </div>
                     
                     <div>
-                        <label for="files" class="form-label">썸네일 이미지</label>
+                        <div>
+                            <label for="files" class="form-label">썸네일 이미지</label>
+                        </div>
                         <img src="../resources/upload/lecture/${update.lectureFileDTO[0].f_name}" style="display: inline;">
-                        <input type="button" class="btn btn-primary mt-3 del" id="img_change" value="변경하기" style="border :none; color: white; background-color: #66ba39;">
+                        <div class="img_change">
+                            <input type="button" class="btn btn-primary" id="img_change" value="변경하기" style="border :none; color: white; background-color: #66ba39;">
+                        </div>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mt-4 mb-3">
                         <div>
                             <label for="videos" class="form-label">OT 동영상</label>
                             <p>${update.lectureVideoDTO[0].v_context}</p>
                             ${update.lectureVideoDTO[0].v_url}
                         </div>
-
-                        <div>
-                        <input type="button" class="btn btn-primary mt-3 del" id="ot_change" value="변경하기" style="border :none; color: white; background-color: #66ba39;">
+        
+                        <div class="video_change">
+                        <input type="button" class="btn btn-primary mt-3" id="ot_change" value="변경하기" style="border :none; color: white; background-color: #66ba39;">
                         </div>
                     </div>
-
-                    <div class="mt-4">
-                        <c:forEach items="${video}" var="ar" begin="1">
-                            <label for="videos" class="form-label">동영상 목록</label>
+                    <div class="mb-3">
+                        <label for="videos" class="form-label">동영상 목록</label>
+                    </div>
+                    <c:forEach items="${video}" var="ar" begin="1">
+                    <div class="mt-4" data-v-num="${ar.v_num}" value ="${ar.v_num}">
                             <div>
                                 <p>${ar.v_context}</p>
                                 ${ar.v_url}
@@ -117,8 +122,8 @@
                             <div>
                                 <input type="button" class="btn btn-primary mt-3 video_dels" id="video_del" value="삭제하기" data-del-num="${ar.v_num}"  style="border :none; color: white; background-color: #66ba39;">
                             </div>
-                        </c:forEach>
-                    </div>
+                        </div>
+                    </c:forEach>
                     <div class="video_adds">
                         <input type="button" class="btn btn-primary mt-3 del" id="video_add" value="동영상 추가하기"style="border :none; color: #66ba39; background-color: white;">
                     </div>

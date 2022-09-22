@@ -73,6 +73,9 @@ public class LectureService {
 		return lectureDAO.setUpdate(lectureDTO);
 	}
 	
+	public int setVideoDelete(LectureVideoDTO lectureVideoDTO) throws Exception {
+		return lectureDAO.setVideoDelete(lectureVideoDTO);
+	}
 	
 	
 	
