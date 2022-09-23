@@ -27,8 +27,10 @@ public class CommentController {
 		ModelAndView mv = new ModelAndView();
 		CommentDTO t_comment = commentService.getCommentDetail(commentDTO);
 		List<CommentDTO> tCommentDTOs = commentService.getT_CommentList(commentDTO);
+		Long result = commentService.getComment_Count(commentDTO);
 		mv.addObject("commentDTO", t_comment);
-
+		mv.addObject("count", result);
+		mv.setViewName("comment/t_comment");
 		if(tCommentDTOs.size() != 0) {
 		mv.addObject("tCommentDTO", tCommentDTOs);
 		}
@@ -90,13 +92,6 @@ public class CommentController {
 		return result;
 	}
 	
-	@PostMapping("commentCount")
-	@ResponseBody
-	public Long getComment_Count(CommentDTO commentDTO)throws Exception{
-		Long result = commentService.getComment_Count(commentDTO);
-		System.out.println(result);
-		return result;
-	}
 	
 	//강사답글 - 댓글
 	@PostMapping("t_comment")

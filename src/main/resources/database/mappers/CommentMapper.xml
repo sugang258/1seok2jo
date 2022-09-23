@@ -29,10 +29,6 @@
 		    		DELETE SB_COMMENT WHERE NUM=#{num} AND  REF = 0
 		    	</delete>
 		    	
-		    	<select id="getComment_Count" parameterType="CommentDTO" resultType="Long">
-		    		SELECT COUNT(NUM) FROM SB_COMMENT WHERE SB_NUM=#{sb_num} AND  REF = 1
-		    	</select>
-		    	
 		    	<!-- 강사 답글 : 댓글 -->
 		    	<select id="getT_CommentList" parameterType="CommentDTO" resultType="CommentDTO">
 		    		SELECT * FROM SB_COMMENT WHERE SB_NUM = #{sb_num} AND REF=0 ORDER BY NUM ASC 
@@ -50,4 +46,8 @@
 		    		DELETE SB_COMMENT WHERE SB_NUM =#{sb_num} AND REF = 0
 		    	</delete>
 		    	
+		    	<!-- 강사답글 댓글 수 --> 
+		    	<select id="getComment_Count" parameterType="CommentDTO" resultType="Long">
+		    		SELECT COUNT(NUM) FROM SB_COMMENT WHERE SB_NUM=#{sb_num} AND  REF = 0
+		    	</select>
 		    </mapper>

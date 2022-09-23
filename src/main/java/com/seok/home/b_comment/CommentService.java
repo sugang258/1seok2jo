@@ -49,10 +49,6 @@ public class CommentService {
 		return commentDAO.setSB_CommentDelete(commentDTO);
 	}
 	
-	public Long getComment_Count(CommentDTO commentDTO)throws Exception{
-		return commentDAO.getComment_Count(commentDTO);
-	}
-	
 	//강사답글 - 댓글
 	public List<CommentDTO> getT_CommentList(CommentDTO commentDTO)throws Exception{
 		return commentDAO.getT_CommentList(commentDTO);
@@ -70,5 +66,9 @@ public class CommentService {
 	public int setAllCommentDelete(CommentDTO commentDTO)throws Exception{
 		return commentDAO.setAllCommentDelete(commentDTO);
 	}
-	
+
+	//강사답글의 댓글 수
+	public Long getComment_Count(CommentDTO commentDTO)throws Exception{
+		return commentDAO.getComment_Count(commentDTO);
+	}
 }

@@ -1,5 +1,6 @@
 const reply = document.getElementById("reply");
-const reply_sir = document.getElementById("reply_sir");
+const reply_t = document.getElementById("reply_t");
+const teacher = document.getElementById("teacher");
 
 /**URL주소복사 */
 function clip() {
@@ -26,16 +27,20 @@ reply.addEventListener("click", function () {
   }
 });
 
-// reply_sir.addEventListener("click", function(){
-//	const reply_content2 = document.getElementById("reply_content2");
-// 	if(document.getElementById("reply_content2").style.display == "none"){
-// 		document.getElementById("reply_content2").style.display = "";
-// 		reply_sir.innerHTML ="접기"
-// 	} else {
-// 		document.getElementById("reply_content2").style.display = "none";
-// 		reply_sir.innerHTML ="댓글 더보기"
-// 	}
-// });
+teacher.addEventListener("click", function (event) {
+  if (event.target.className == reply_t) {
+    console.log(event.target.className.nextSibling);
+    const t_comment = document.getElementById("t_comment");
+
+    if (document.getElementById("t_comment").style.display == "none") {
+      document.getElementById("t_comment").style.display = "";
+      reply_t.innerHTML = "접기";
+    } else {
+      document.getElementById("t_comment").style.display = "none";
+      reply_t.innerHTML = "댓글 더보기";
+    }
+  }
+});
 
 /*Update Page*/
 const update_btn = document.getElementById("update_btn");
@@ -108,7 +113,7 @@ answer_btn.addEventListener("click", function () {
 });
 
 /*작성 된 강사 답글 조회*/
-const teacher = document.getElementById("teacher");
+
 function getCommentDetail() {
   let num = update_btn.getAttribute("data-board-num");
   const xhttp = new XMLHttpRequest();
@@ -251,15 +256,13 @@ function teacherReply() {
 
 /**강사답글-댓글 작성하기 */
 teacher.addEventListener("click", function (event) {
-  const answer_btn = document.getElementById("answer_btn");
-  if (event.target.className == "reply_btn") {
-    const c_id = document.getElementById("c_id");
-    const reply_text = document.getElementById("reply_text");
-    let num = answer_btn.getAttribute("data-board-num");
-    let id = c_id.value;
+  const comment_ref = document.getElementById("comment_ref");
+  if (event.target.className == "reply_btn2") {
+    const c_id2 = document.getElementById("c_id2");
+    const reply_text2 = document.getElementById("reply_text2");
+    let num = comment_ref.getAttribute("data-comment-num");
+    let id = c_id2.value;
     let t_contents = event.target.previousSibling.previousSibling.value;
-    console.log(event.target.previousSibling.previousSibling);
-    console.log(t_contents);
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/comment/t_commentAdd");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -282,7 +285,6 @@ teacher.addEventListener("click", function (event) {
   if (event.target.classList[0] == "c_delete") {
     const t_num = document.getElementById("t_num");
     let num = t_num.value;
-    console.log(num);
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/comment/c_delete");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -301,19 +303,20 @@ teacher.addEventListener("click", function (event) {
 /**강사답글의 댓글 삭제 */
 teacher.addEventListener("click", function (event) {
   console.log(event.target.className);
-  if (event.target.className == "text_delete_btn") {
-    // const c_num2 = document.getElementById("c_num2");
-    // let num = c_num2.value;
-    // const xhttp = new XMLHttpRequest();
-    // xhttp.open("POST", "/comment/t_commentDelete");
-    // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // xhttp.send("num=" + num);
-    // xhttp.onreadystatechange = function () {
-    //   if (this.readyState == 4 && this.status == 200) {
-    //     if (xhttp.responseText == 1) {
-    //       alert("성공");
-    //     }
-    //   }
-    // };
+  if (event.target.className == "delete_btn") {
+    const c_num2 = document.getElementById("c_num2");
+    let num = c_num2.value;
+    console.log(num);
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "/comment/t_commentDelete");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("num=" + num);
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        if (xhttp.responseText == 1) {
+          alert("성공");
+        }
+      }
+    };
   }
 });

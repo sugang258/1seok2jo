@@ -20,9 +20,9 @@
               <input type="number" class="comment_ref" data-comment-num="${commentDTO.sb_num}" style="display: none" value="${commentDTO.ref}" id="comment_ref"/>
               <div>
                 <div class="d-flex mt-4">
-                  <div class="p-2 flex-grow-1">🗨 댓글 0개</div>
+                  <div class="p-2 flex-grow-1">🗨 댓글 ${count}개</div>
                   <div class="p-2 share"><a href="#" onclick="clip(); return false;"><i class="fa-solid fa-share-nodes" style="color: rgb(15, 156, 50);"></i> 공유하기</a></div>
-                  <div class="p-2"><i style="color: rgb(15, 156, 50);"class="fa-solid fa-caret-down"></i><button id="reply_sir"> 댓글</button></div>
+                  <div class="p-2"><i style="color: rgb(15, 156, 50);"class="fa-solid fa-caret-down"></i><button type="button" class="reply_t" id="reply_t"> 댓글</button></div>
                 </div>
               </div>
 
@@ -41,7 +41,7 @@
                         <div class="ms-5"><i class="fa-regular fa-comment-dots"></i></div>
                         <div class="ms-2" >${tCommentDTO.contents}</div>
                       </div>
-                      <div><button type="button" style="height: 30px;" class="text_delete_btn" data-comment-num="${tCommentDTO.num}">❌</button></div>
+                      <div><button type="button" style="height: 30px;" class="delete_btn" data-comment-num="${tCommentDTO.num}">❌</button></div>
                       
                     </div>
                     <hr>
@@ -51,12 +51,12 @@
         
                     <div class="mb-3" style="text-align: center;"><button id="plus">더보기</button></div>
                     <div>
-                      <form action="sb_commentAdd" method="post">
-                         <input id="c_id" name="id" style="display:none;" type="text" value="유저"/>
-                         <input id="c_num2" name="id" style="display:none;" type="text" value="${commentDTO.num}"/>
-                        <input name="contents" type="text" class="reply_text" id="reply_text" placeholder="모두에게 도움이 되는 답변의 주인공이 되어주세요!">
+                      <form action="t_commentAdd" method="post">
+                         <input id="c_id2" name="id" style="display:none;" type="text" value="유저"/>
+                         <input id="c_num2" name="num" style="display:none;" type="text" value="${commentDTO.num}"/>
+                        <input name="contents" type="text" class="reply_text2" id="reply_text2" placeholder="모두에게 도움이 되는 답변의 주인공이 되어주세요!">
                         
-                        <button type="button"  class="reply_btn" id="reply_btn" data-t_comment-num="${commentDTO.getSb_num()}">댓글작성</button>
+                        <button type="button"  class="reply_btn2" id="reply_btn2" data-t_comment-num="${commentDTO.getSb_num()}">댓글작성</button>
                       </form>
                 	  </div>
                   </div>

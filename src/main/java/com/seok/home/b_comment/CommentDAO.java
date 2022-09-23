@@ -47,9 +47,6 @@ public class CommentDAO {
 		return session.delete(NAMESPACE+"setSB_CommentDelete", commentDTO);
 	}
 	
-	public Long getComment_Count(CommentDTO commentDTO)throws Exception{
-		return session.selectOne(NAMESPACE+"getComment_Count", commentDTO);
-	}
 	
 	//강사답글 - 댓글
 	public List<CommentDTO> getT_CommentList(CommentDTO commentDTO)throws Exception{
@@ -69,4 +66,8 @@ public class CommentDAO {
 		return session.delete(NAMESPACE+"setAllCommentDelete", commentDTO);
 	}
 
+	//강사답글의 댓글 수 
+	public Long getComment_Count(CommentDTO commentDTO)throws Exception{
+		return session.selectOne(NAMESPACE+"getComment_Count", commentDTO);
+	}
 }
