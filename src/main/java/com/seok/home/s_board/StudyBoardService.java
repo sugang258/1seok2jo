@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.seok.home.b_comment.CommentDTO;
+import com.seok.home.b_comment.CommentService;
+
 @Service
 public class StudyBoardService {
 
@@ -39,5 +42,6 @@ public class StudyBoardService {
 	public Long getCount(StudyBoardDTO studyBoardDTO)throws Exception{
 		return studyBoardDAO.getCount(studyBoardDTO);
 	}
+	
 
 }

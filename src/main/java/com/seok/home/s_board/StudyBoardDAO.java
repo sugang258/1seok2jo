@@ -48,4 +48,13 @@ public class StudyBoardDAO {
 		return session.selectOne(NAMESPACE+"getCount", studyBoardDTO);
 	}	
 	
+	//답변상태
+	public int setAnsewer(StudyBoardDTO studyBoardDTO)throws Exception{
+		return session.update(NAMESPACE+"setAnsewer", studyBoardDTO);
+	}
+	
+	public int setAnsewerDefault(StudyBoardDTO studyBoardDTO)throws Exception{
+		return session.update(NAMESPACE+"setAnsewerDefault", studyBoardDTO);
+	}
+	
 }

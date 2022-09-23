@@ -41,5 +41,5 @@
 		    	<insert id="setT_CommentAdd" parameterType="CommentDTO">
 		    		INSERT INTO SB_COMMENT VALUES(BOARD_SEQ.NEXTVAL, #{sb_num}, #{id}, #{contents}, SYSDATE, 0)
 		    	</insert>
-
+		    	
 		    </mapper>

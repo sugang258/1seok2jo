@@ -15,7 +15,7 @@
                 <div class="ms-5"><i class="fa-regular fa-comment-dots"></i></div>
                 <div class="ms-2" >${commentDTO.contents}</div>
               </div>
-              <div><button type="button" class="text_delete_btn" data-comment-num="${commentDTO.num}"><i class="text_delete_btn fa-solid fa-trash"></i></button></div>
+              <div><button type="button" style="height: 30px;" class="text_delete_btn" data-comment-num="${commentDTO.num}">❌</button></div>
               
             </div>
             <hr>

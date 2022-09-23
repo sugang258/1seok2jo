@@ -23,7 +23,7 @@
 		    	
 		    	<insert id="setBoardAdd" parameterType="StudyBoardDTO">
 			    	INSERT INTO study_board
-					VALUES (BOARD_SEQ.NEXTVAL, #{l_num}, #{id}, #{title}, SYSDATE, #{answer}, #{hit}, #{contents}, #{category}, 1)
+					VALUES (BOARD_SEQ.NEXTVAL, #{l_num}, #{id}, #{title}, SYSDATE, #{answer}, #{hit}, #{contents}, #{category})
 		    	</insert>
 		    		
 		    	<delete id="setBoardDelete" parameterType="StudyBoardDTO">
@@ -39,7 +39,16 @@
 		    	</update>
 		   	   		    	
 		    	<select id="getCount" parameterType="StudyBoardDTO" resultType="Long">
-		    		SELECT COUNT(NUM) FROM SB_COMMENT WHERE SB_NUM=#{sb_num} AND REF=1
+		    		SELECT COUNT(NUM) FROM SB_COMMENT WHERE SB_NUM=#{sb_num}
 		    	</select>
+		    	
+		    	<!-- 댓글상태 -->
+		    	<update id="setAnsewer" parameterType="StudyBoardDTO">
+		    		UPDATE STUDY_BOARD SET answer=answer+1 WHERE SB_NUM=#{sb_num}
+		    	</update>
+		    	
+		    	<update id="setAnsewerDefault" parameterType="StudyBoardDTO">
+		    		UPDATE STUDY_BOARD SET answer=0 WHERE SB_NUM=#{sb_num}
+		    	</update>
 
 		    </mapper>

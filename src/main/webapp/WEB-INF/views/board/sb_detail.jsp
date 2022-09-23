@@ -211,10 +211,10 @@
               </div>
             </div>
           </div>
+
+          <div>
           <!-- 강사 답글 위치-->
           <div id="teacher"></div>
-          <!-- 강사 답글의 댓글 위치-->
-          <!-- <div id="t_comment"></div> -->
           
       <!--container-box-->  
       </div> 
@@ -235,7 +235,7 @@
 <script type="text/javascript">
         $("#contents").summernote(
                 {
-                	  placeholder: '글 내용 수정',
+                	  placeholder: '글 내용 수정' ,
                       height: 260,                
                       minHeight: null,           
                       maxHeight: null,          

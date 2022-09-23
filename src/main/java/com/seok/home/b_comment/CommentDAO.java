@@ -18,6 +18,14 @@ public class CommentDAO {
 		return session.selectOne(NAMESPACE+"getCommentDetail", commentDTO);
 	}
 	
+	/**
+	 * 
+	 * @param commentDTO (contents, sb_num)
+	 * @return Insert result
+	 * @throws Exception
+	 * @author 설희
+	 * 
+	 */
 	public int setCommentAdd(CommentDTO commentDTO)throws Exception{
 		return session.insert(NAMESPACE+"setCommentAdd", commentDTO);
 	}

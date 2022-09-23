@@ -13,14 +13,7 @@ public class StudyBoardDTO {
 	private Long hit;
 	private String contents;
 	private String category;
-	private int ref;
-	
-	public int getRef() {
-		return ref;
-	}
-	public void setRef(int ref) {
-		this.ref = ref;
-	}
+
 	public Long getSb_num() {
 		return sb_num;
 	}

@@ -50,6 +50,7 @@ update_btn.addEventListener("click", function(){
 	let num = update_btn.getAttribute("data-board-num")
     let tv = title.value;
     let cv = contents.value;
+	console.log(cv)
 
 	//1.XMLHTTPRequest생성
 	const xhttp = new XMLHttpRequest();
@@ -126,7 +127,6 @@ let num = update_btn.getAttribute("data-board-num");
 	xhttp.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 200){
 			teacher.innerHTML=xhttp.responseText;
-			teacherReply();
 		}
 	}
 }
@@ -234,9 +234,7 @@ const text_delete_btn = document.getElementsByClassName("text_delete_btn");
 reply_content.addEventListener("click",function(event){
 	if(event.target.className=="text_delete_btn"){
 		let comment_num = event.target.getAttribute("data-comment-num");
-		console.log(comment_num);
 	
-
 		const xhttp = new XMLHttpRequest();
 		xhttp.open("POST", "/comment/sb_commentDelete");
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -252,11 +250,11 @@ reply_content.addEventListener("click",function(event){
 });
 
 
-/**강사답글 - 댓글가져오기 */
-const t_comment = document.getElementById("t_comment");
-const teacher_box = document.getElementsByClassName("teacher_box");
 
+/**강사답글 - 댓글가져오기 */
 function teacherReply(){
+	const t_comment = document.getElementById("t_comment");
+	const teacher_box = document.getElementsByClassName("teacher_box");
 	let num = update_btn.getAttribute("data-board-num");
 	console.log(num);
 	const xhttp = new XMLHttpRequest();
@@ -268,11 +266,10 @@ function teacherReply(){
 			t_comment.innerHTML = xhttp.responseText;
 		}
 	}
-
+	
 }
 
-
-
+//teacher강사답글 화면이 가져와질때 teacherReply()해당함수도 강사답글 안에서 실행이 된다.
 
 
 

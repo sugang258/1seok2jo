@@ -1,5 +1,6 @@
 package com.seok.home.b_comment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,16 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 	
+	//강사 답글 불러오기 및 댓글 불러오기 
+	//강사 답글을 가져올때 댓글DTO의 값을 리스트에 담아서 해당 리스트를 Model로 보내준다.
 	@GetMapping("c_detail")
 	@ResponseBody
 	public ModelAndView getCommentDetail(CommentDTO commentDTO)throws Exception {
 		ModelAndView mv = new ModelAndView();
 		commentDTO = commentService.getCommentDetail(commentDTO);
+		List<CommentDTO> tCommentDTOs = commentService.getT_CommentList(commentDTO);
 		mv.addObject("commentDTO", commentDTO);
+		mv.addObject("tCommentDTO", tCommentDTOs);
 		
 		if(commentDTO==null) {
 			mv.setViewName("comment/blank");

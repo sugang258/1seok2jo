@@ -20,11 +20,18 @@ public class CommentService {
 		return commentDAO.getCommentDetail(commentDTO);
 	}
 	
+	//강사답글 추가 및 게시글 답변상태 변경
 	public int setCommentAdd(CommentDTO commentDTO)throws Exception{
+		StudyBoardDTO studyBoardDTO = new StudyBoardDTO();
+		studyBoardDTO.setSb_num(commentDTO.getSb_num());
+		studyBoardDAO.setAnsewer(studyBoardDTO);
 		return commentDAO.setCommentAdd(commentDTO);
 	}
-	
+	//강사답글 삭제 및 게시글 답변상태 변경
 	public int setCommentDelete(CommentDTO commentDTO)throws Exception{
+		StudyBoardDTO studyBoardDTO = new StudyBoardDTO();
+		studyBoardDTO.setSb_num(commentDTO.getSb_num());
+		studyBoardDAO.setAnsewerDefault(studyBoardDTO);
 		return commentDAO.setCommentDelete(commentDTO);
 	}
 	
@@ -51,6 +58,7 @@ public class CommentService {
 	}
 	
 	public int setT_CommentAdd(CommentDTO commentDTO)throws Exception{
+		
 		return commentDAO.setT_CommentAdd(commentDTO);
 	}
 }
