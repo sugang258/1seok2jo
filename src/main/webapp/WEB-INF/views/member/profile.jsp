@@ -66,7 +66,9 @@
 			    <input type="hidden" name="point" class="form-control" id="ipPoint">
 			  </div>
 			  
-			  <button type="submit" class="btn btn-outline-success">프로필수정</button>
+			  <div>
+				  <button type="submit" class="btn btn-outline-success">프로필수정</button>
+			  </div>
 			  
 			</form>
 		</div>

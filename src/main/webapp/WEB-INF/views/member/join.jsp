@@ -81,9 +81,7 @@
 					<div id="ipPhoneResult"></div>
 			  </div>
 			  
-			  <div class="\
-			  
-			  mb-3">
+			  <div class="mb-3">
 			    <input type="hidden" name="point" class="form-control" id="ipPoint">
 			  </div>
 
