@@ -1,5 +1,6 @@
 package com.seok.home.pay;
 
+import java.math.BigDecimal;
 import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +22,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.seok.home.lecture.LectureDTO;
 import com.seok.home.member.MemberDTO;
+import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.request.CancelData;
+import com.siot.IamportRestClient.response.AccessToken;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
 
 @Controller
 @RequestMapping(value="/pay/*")
@@ -27,20 +35,44 @@ public class PayController {
 	
 	@Autowired
 	private PayService payService;
+
+	IamportClient client = new IamportClient("6833265443546261", "SiEfYqnG3G0yBBQRFMvspUyp9l0UAJ0ytmsMxyHJBQftWtJHoRKQvJvB59QljGoZBNLS6wXZSGJ5p5Mg");
 	
-	@GetMapping(value="cancle")
-	public String cancle(PaymentDTO paymentDTO) throws Exception{
+	@PostMapping(value="getTk")
+	@ResponseBody
+	public ModelAndView getTk(ModelAndView mv) throws Exception{
+		IamportResponse<AccessToken> auth_response = client.getAuth();
+		String token = auth_response.getResponse().getToken();
+		
+		mv.addObject("result", token);
+		mv.setViewName("common/ajaxResult");
+		
+		return mv;
+	}
+
+	//추후 주문 상세 등으로 바꿀것...
+	@GetMapping(value="cancel")
+	public String cancle(PaymentDTO paymentDTO, Model model) throws Exception{
+		
 		paymentDTO.setP_uid("1seok2jo-1663727564296");
 		System.out.println("cancleGet"+paymentDTO.getP_uid());
 		
-		paymentDTO = payService.cancle(paymentDTO);
-		System.out.println(paymentDTO.getP_remains());
-		return "pay/cancle";
+		paymentDTO = payService.cancel(paymentDTO);
+		
+		model.addAttribute("payment", paymentDTO);
+		return "pay/cancel";
 	}
 	
-	@PostMapping(value="cancle")
+	@PostMapping(value="cancel")
 	public String cancle(RefundDTO refundDTO) throws Exception{
 		System.out.println("hi");
+		
+		String test_already_cancelled_merchant_uid = "1seok2jo-1663731094101";
+        CancelData cancel_data = new CancelData(test_already_cancelled_merchant_uid, false, BigDecimal.valueOf(1500)); //merchant_uid를 통한 500원 부분취소
+
+        IamportResponse<Payment> payment_response = client.cancelPaymentByImpUid(cancel_data);
+
+        System.out.println(payment_response.getResponse().getCancelAmount());
 		return "hi";
 	}
 	

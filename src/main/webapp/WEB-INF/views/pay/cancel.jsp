@@ -12,8 +12,15 @@
     <script  src="https://code.jquery.com/jquery-3.3.1.min.js"  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="  crossorigin="anonymous"></script>
 </head>
 <body>
+    <label for="p_uid">주문번호</label>
+    <input type="text" id="p_uid" value="${payment.p_uid}">
+    <br>
+    
+    <label for="reason">환불사유</label>
+    <input type="text" id="reason">
+    <input type="text" id="p_remains" value="${payment.p_remains}">
     <button onclick="cancelPay()">환불하기</button>
 
-<script src="/resources/js/cancle.js"></script>
+<script src="/resources/js/cancel.js"></script>
 </body>
 </html>

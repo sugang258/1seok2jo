@@ -22,7 +22,7 @@ public class PayService {
 	@Autowired
 	LectureDAO lectureDAO;
 	
-	public PaymentDTO cancle(PaymentDTO paymentDTO) throws Exception{
+	public PaymentDTO cancel(PaymentDTO paymentDTO) throws Exception{
 
 		paymentDTO = payDAO.getPayDetail(paymentDTO);
 		
