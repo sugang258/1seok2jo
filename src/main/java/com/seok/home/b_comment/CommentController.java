@@ -21,6 +21,7 @@ public class CommentController {
 	
 	//강사 답글 불러오기 및 댓글 불러오기 
 	//강사 답글을 가져올때 댓글DTO의 값을 리스트에 담아서 해당 리스트를 Model로 보내준다.
+
 	@GetMapping("c_detail")
 	@ResponseBody
 	public ModelAndView getCommentDetail(CommentDTO commentDTO)throws Exception {
@@ -38,7 +39,8 @@ public class CommentController {
 		return mv;
 	}
 	
-	@PostMapping("c_detail")
+	//강사답글 추가
+	@PostMapping("c_add")
 	@ResponseBody
 	public int setCommentAdd(CommentDTO commentDTO)throws Exception{
 		int result = commentService.setCommentAdd(commentDTO);
@@ -46,11 +48,17 @@ public class CommentController {
 		return result;
 	}
 	
+	//강사 답글 삭제
 	@PostMapping("c_delete")
 	@ResponseBody
 	public int setCommentDelete(CommentDTO commentDTO)throws Exception{
 		int result = commentService.setCommentDelete(commentDTO);
-		
+		if(result == 1) {
+			//강사답글 삭제 시, 해당 댓글 삭제
+			commentService.setAllCommentDelete(commentDTO);
+		}else {
+			result = 0;
+		}
 		return result;
 	}
 	
@@ -89,7 +97,7 @@ public class CommentController {
 	}
 	
 	//강사답글 - 댓글
-	@PostMapping("teacher_comment")
+	@PostMapping("t_comment")
 	@ResponseBody
 	public ModelAndView getT_CommentList(CommentDTO commentDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -100,10 +108,20 @@ public class CommentController {
 		return mv;
 	}
 	
+	@PostMapping("t_commentAdd")
+	@ResponseBody
 	public int setT_CommentAdd(CommentDTO commentDTO)throws Exception{
 		int result = commentService.setT_CommentAdd(commentDTO);
 		
 		return result;
 	}
+	
+	@PostMapping("t_commentDelete")
+	@ResponseBody
+	public int setT_CommentDelete(CommentDTO commentDTO)throws Exception{
+		int result = commentService.setT_CommentDelete(commentDTO);
+		return result;
+	}
+	
 
 }

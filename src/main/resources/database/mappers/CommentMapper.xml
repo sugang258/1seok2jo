@@ -42,4 +42,12 @@
 		    		INSERT INTO SB_COMMENT VALUES(BOARD_SEQ.NEXTVAL, #{sb_num}, #{id}, #{contents}, SYSDATE, 0)
 		    	</insert>
 		    	
+		    	<delete id="setT_CommentDelete" parameterType="CommentDTO">
+		    		DELETE SB_COMMENT WHERE NUM=#{num} AND REF = 0
+		    	</delete>
+		    	
+		    	<delete id="setAllCommentDelete" parameterType="CommentDTO">
+		    		DELETE SB_COMMENT WHERE SB_NUM =#{sb_num} AND REF = 0
+		    	</delete>
+		    	
 		    </mapper>

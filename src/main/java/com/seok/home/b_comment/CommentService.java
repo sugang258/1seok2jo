@@ -16,7 +16,9 @@ public class CommentService {
 	@Autowired
 	private StudyBoardDAO studyBoardDAO;
 	
+	//강사답글 확인
 	public CommentDTO getCommentDetail(CommentDTO commentDTO)throws Exception {
+		System.out.println("내용확인service : "+commentDTO.getSb_num());
 		return commentDAO.getCommentDetail(commentDTO);
 	}
 	
@@ -58,7 +60,16 @@ public class CommentService {
 	}
 	
 	public int setT_CommentAdd(CommentDTO commentDTO)throws Exception{
-		
 		return commentDAO.setT_CommentAdd(commentDTO);
 	}
+	
+	//강사답글 - 댓글 삭제 및 모든 댓글 삭제(강사답글 삭제 시)
+	public int setT_CommentDelete(CommentDTO commentDTO)throws Exception{
+		return commentDAO.setT_CommentDelete(commentDTO);
+	}
+	
+	public int setAllCommentDelete(CommentDTO commentDTO)throws Exception{
+		return commentDAO.setAllCommentDelete(commentDTO);
+	}
+	
 }

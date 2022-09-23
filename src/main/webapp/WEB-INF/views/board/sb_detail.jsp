@@ -149,7 +149,7 @@
                   >
                     취소
                   </button>
-                  <button class="btn btn-warning" id="update_btn" data-board-num="${studyBoardDTO.getSb_num()}">
+                  <button class="btn btn-warning" id="update_btn" data-board-num=${studyBoardDTO.getSb_num()}>
                     등록하기
                   </button>
                 </div>
@@ -204,7 +204,7 @@
                   >
                     취소
                   </button>
-                  <button class="btn btn-warning" id="answer_btn" data-board-num="${studyBoardDTO.getSb_num()}">
+                  <button class="btn btn-warning" id="answer_btn" data-board-num="${studyBoardDTO.sb_num}">
                     작성하기
                   </button>
                 </div>

@@ -15,6 +15,7 @@ public class CommentDAO {
 	
 	//강사답글
 	public CommentDTO getCommentDetail(CommentDTO commentDTO)throws Exception {
+		System.out.println("DAO내용확인 : "+commentDTO.getSb_num());
 		return session.selectOne(NAMESPACE+"getCommentDetail", commentDTO);
 	}
 	
@@ -60,5 +61,13 @@ public class CommentDAO {
 		return session.insert(NAMESPACE+"setT_CommentAdd", commentDTO);
 	}
 	
+	//강사답글 - 댓글 삭제 및 모든 댓글 삭제(강사답글 삭제 시)
+	public int setT_CommentDelete(CommentDTO commentDTO)throws Exception{
+		return session.delete(NAMESPACE+"setT_CommentDelete", commentDTO);
+	}
+	
+	public int setAllCommentDelete(CommentDTO commentDTO)throws Exception{
+		return session.delete(NAMESPACE+"setAllCommentDelete", commentDTO);
+	}
 
 }
