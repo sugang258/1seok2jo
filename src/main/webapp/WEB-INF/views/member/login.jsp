@@ -23,7 +23,7 @@
 <c:import url="../template/header.jsp"></c:import>
 <body>
 	<%-- 회원 로그인JSP --%>
-	<main class="container">
+	<main class="container ilseok">
 		<div style="margin-top: 10em; text-align: center; color: rgb(11, 138, 11);"><h2>🔐<b>LOGIN PAGE</b></h2></div>
 		<div class="login_main" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px; width: 460px; height: 330px; margin: 2em auto 5em auto;">
 			<form action="" method="post" id="">
