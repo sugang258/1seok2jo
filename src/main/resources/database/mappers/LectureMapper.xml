@@ -165,4 +165,8 @@
 					SELECT * FROM NOTICEFILE WHERE f_num = #{f_num}
 				</select>
 				
+				<update id="setFileUpdate" parameterType="LectureFileDTO">
+					UPDATE L_FILE SET F_NAME=#{f_name}, F_ORINAME=#{f_oriname} WHERE NUM=#{num}
+				</update>
+				
 		    </mapper>

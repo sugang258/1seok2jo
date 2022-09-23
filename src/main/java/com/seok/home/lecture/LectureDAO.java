@@ -79,5 +79,9 @@ public class LectureDAO {
 	public List<LectureFileDTO> getFileDetail(LectureFileDTO lectureFileDTO) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getFileDetail", lectureFileDTO);
 	}
+	
+	public int setFileUpdate(LectureFileDTO lectureFileDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setFileUpdate", lectureFileDTO);
+	}
 
 }

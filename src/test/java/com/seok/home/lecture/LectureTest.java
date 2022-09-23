@@ -134,4 +134,17 @@ public class LectureTest extends MyAbstractTest {
 		
 	}
 	
+	@Test
+	public void setFileUpdate() throws Exception {
+		LectureFileDTO lectureFileDTO = new LectureFileDTO();
+		
+		lectureFileDTO.setNum(52L);
+		lectureFileDTO.setF_name("gang");
+		lectureFileDTO.setF_oriname("gang");
+		
+		int result = lectureDAO.setFileUpdate(lectureFileDTO);
+		
+		assertEquals(1, result);
+	}
+	
 }

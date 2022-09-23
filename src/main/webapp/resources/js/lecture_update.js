@@ -6,6 +6,7 @@ const img_change = document.querySelector("#img_change");
 const img_changee = document.querySelector(".img_change");
 const video_change = document.querySelector(".video_change");
 const ot_change = document.querySelector("#ot_change");
+const add = document.querySelector("#add");
 
 
 let count = 0;
@@ -17,7 +18,11 @@ function setCount(ct) {
     }
 }
 
+//비디오 추가
 video_add.addEventListener("click",function(){
+
+    add.style.display ='inline';
+
     let d = document.createElement("div");
     let c = document.createAttribute("class");
     c.value = "mt-4 mb-3";
@@ -134,6 +139,7 @@ video_adds.addEventListener("click",function(event){
 
 });
 
+//비디오 삭제
 video_dels.forEach(function(video_del){
     video_del.addEventListener("click",function(event){
         let check = window.confirm("삭제하시겠습니까?");
@@ -179,6 +185,7 @@ video_dels.forEach(function(video_del){
 
 })
 
+//ot 비디오 변경
 let countt = 0;
 ot_change.addEventListener("click",function(){
     if(countt>0) {
@@ -263,6 +270,25 @@ ot_change.addEventListener("click",function(){
         d5.appendChild(i2);
         d.appendChild(d5);
 
+        let div = document.createElement("div");
+        let button = document.createElement("button");
+        let cl = document.createAttribute("class");
+        cl.value = "change btn btn-danger mb-2";
+        let text = document.createTextNode("변경 확정");
+        let type = document.createAttribute("type");
+        type.value="button";
+    
+        button.setAttributeNode(cl);
+        button.setAttributeNode(type);
+        button.appendChild(text);
+    
+        type = document.createAttribute("title");
+        type.value = count;
+        button.setAttributeNode(type);
+    
+        div.appendChild(button);
+        d.appendChild(div);
+
         let d3 = document.createElement("div");
         let b = document.createElement("button");
         let c3 = document.createAttribute("class");
@@ -300,14 +326,18 @@ video_change.addEventListener("click",function(event){
         
     }
 
+    if(button.classList[0] == 'change') {
+        alert("변경확정");
+    }
+
 });
 
+//썸네일 이미지 변경
 img_change.addEventListener("click",function(){
 
     if(idx>0) {
         alert("추가 안됩니다.");
     }else {
-
    
     let d = document.createElement("div");
     let c = document.createAttribute("class");
@@ -350,6 +380,25 @@ img_change.addEventListener("click",function(){
     d2.appendChild(i);
     d.appendChild(d2);
 
+    let div = document.createElement("div");
+    let button = document.createElement("button");
+    let cl = document.createAttribute("class");
+    cl.value = "change btn btn-danger mb-2";
+    let text = document.createTextNode("변경 확정");
+    let type = document.createAttribute("type");
+    type.value="button";
+
+    button.setAttributeNode(cl);
+    button.setAttributeNode(type);
+    button.appendChild(text);
+
+    type = document.createAttribute("title");
+    type.value = count;
+    button.setAttributeNode(type);
+
+    div.appendChild(button);
+    d.appendChild(div);
+
     let d3 = document.createElement("div");
     let b = document.createElement("button");
     let c3 = document.createAttribute("class");
@@ -386,6 +435,13 @@ img_changee.addEventListener("click",function(event){
         document.getElementById("file"+button.title).remove();
         idx--;
 
+    }
+
+    if(button.classList[0] == 'change') {
+        let check = window.confirm("변경 확정하시겠습니까? (기존에 있던 사진은 삭제됩니다.)");
+        if(check) {
+            
+        }
     }
 
 });

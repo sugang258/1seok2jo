@@ -125,7 +125,10 @@
                         </div>
                     </c:forEach>
                     <div class="video_adds">
-                        <input type="button" class="btn btn-primary mt-3 del" id="video_add" value="동영상 추가하기"style="border :none; color: #66ba39; background-color: white;">
+                        
+                        <input type="button" class="btn btn-primary mt-1 video_add" id="video_add" value="동영상 추가하기"style="border :none; color: #66ba39; background-color: white;">
+                        <input type="button" class="btn btn-primary mt-2 add" id="add" value="동영상 추가 확정하기" style="border :none; color: #66ba39; background-color: white; display: none;">
+                       
                     </div>
                     <div>
                         <input type="button" class="w-100 btn btn-primary btn-lg" id="update_sub" style="background-color: #66ba39; border: none;" value="강의 수정"/>
