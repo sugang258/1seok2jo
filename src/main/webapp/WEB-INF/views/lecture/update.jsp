@@ -95,7 +95,7 @@
                         </div>
                         <img src="../resources/upload/lecture/${update.lectureFileDTO[0].f_name}" style="display: inline;">
                         <div class="img_change">
-                            <input type="button" class="btn btn-primary" id="img_change" value="변경하기" style="border :none; color: white; background-color: #66ba39;">
+                            <input type="button" class="btn btn-primary" id="img_change" value="변경하기" data-f-num="${update.lectureFileDTO[0].num}" style="border :none; color: white; background-color: #66ba39;">
                         </div>
                     </div>
 

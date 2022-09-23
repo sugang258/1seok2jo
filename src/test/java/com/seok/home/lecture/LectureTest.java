@@ -134,7 +134,7 @@ public class LectureTest extends MyAbstractTest {
 		
 	}
 	
-	@Test
+	//@Test
 	public void setFileUpdate() throws Exception {
 		LectureFileDTO lectureFileDTO = new LectureFileDTO();
 		
@@ -145,6 +145,17 @@ public class LectureTest extends MyAbstractTest {
 		int result = lectureDAO.setFileUpdate(lectureFileDTO);
 		
 		assertEquals(1, result);
+	}
+	
+	//@Test
+	public void getFileDetail() throws Exception {
+		LectureFileDTO lectureFileDTO = new LectureFileDTO();
+		
+		lectureFileDTO.setNum(52L);
+		
+		List<LectureFileDTO> ar = lectureDAO.getFileDetail(lectureFileDTO);
+		
+		assertNotEquals(0, ar.size());
 	}
 	
 }

@@ -134,6 +134,18 @@ public class LectureController {
 		return result;
 	}
 	
+	@PostMapping("setFileUpdate")
+	@ResponseBody
+	public int setFileUpdate(LectureFileDTO lectureFileDTO, MultipartFile[] files, HttpSession session) throws Exception{
+		System.out.println("파일 업데이트");
+		
+		int result = lectureService.setFileUpdate(lectureFileDTO,files,session.getServletContext());
+		
+		
+		return result;
+		
+	}
+	
 	
 	
 	

@@ -162,7 +162,7 @@
 				</delete>
 				
 				<select id="getFileDetail" parameterType="lectureFileDTO" resultType="lectureFileDTO">
-					SELECT * FROM NOTICEFILE WHERE f_num = #{f_num}
+					SELECT * FROM L_FILE WHERE num = #{num}
 				</select>
 				
 				<update id="setFileUpdate" parameterType="LectureFileDTO">

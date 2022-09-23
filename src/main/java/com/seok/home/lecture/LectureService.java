@@ -92,5 +92,25 @@ public class LectureService {
 		
 	}
 	
+	//파일 업데이트
+	public int setFileUpdate(LectureFileDTO lectureFileDTO, MultipartFile[] files, ServletContext servletContext) throws Exception{
+		
+		String path = "resources/upload/lecture";
+		
+		for(MultipartFile mf : files) {
+			if(mf.isEmpty()) {
+				continue;
+			}
+		
+		System.out.println(mf.getSize());
+		String fileName = fileManager.saveFile(path, servletContext,mf);
+		lectureFileDTO.setF_name(fileName);
+		lectureFileDTO.setF_oriname(mf.getOriginalFilename());
+		
+	}
+		 return  lectureDAO.setFileUpdate(lectureFileDTO);
+			
 	
+	
+	}
 }

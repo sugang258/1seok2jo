@@ -83,5 +83,7 @@ public class LectureDAO {
 	public int setFileUpdate(LectureFileDTO lectureFileDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"setFileUpdate", lectureFileDTO);
 	}
+	
+	
 
 }

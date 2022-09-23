@@ -7,6 +7,7 @@ const img_changee = document.querySelector(".img_change");
 const video_change = document.querySelector(".video_change");
 const ot_change = document.querySelector("#ot_change");
 const add = document.querySelector("#add");
+const setFileUpdate = document.querySelector("#setFileUpdate");
 
 
 let count = 0;
@@ -338,92 +339,106 @@ img_change.addEventListener("click",function(){
     if(idx>0) {
         alert("추가 안됩니다.");
     }else {
-   
-    let d = document.createElement("div");
-    let c = document.createAttribute("class");
-    c.value = "mt-4 mb-3";
-    d.setAttributeNode(c);
-    c= document.createAttribute("id");
-    c.value = "file"+idx;
-    d.setAttributeNode(c);
-    let d1 = document.createElement("div");
-    let l = document.createElement("label");
-    let f = document.createAttribute("for");
-    f.value = "files";
-    let c1 = document.createAttribute("class");
-    c1.value = "form-label";
-    let t = document.createTextNode("File");
+        
+        
+        let form = document.createElement("form");
+        let action = document.createAttribute("action");
+        action.value ="setFileUpdate";
+        let id = document.createAttribute("id");
+        id.value = "setFileUpdate";
+        let method = document.createAttribute("method");
+        method.value="post";
+        let enctype = document.createAttribute("enctype");
+        enctype.value="multipart/form-data"
+        
+        let d = document.createElement("div");
 
-    l.setAttributeNode(f);
-    l.setAttributeNode(c1);
-    l.appendChild(t);
+        let c = document.createAttribute("class");
+        c.value = "mt-4 mb-3";
+        d.setAttributeNode(c);
+        c= document.createAttribute("id");
+        c.value = "file"+idx;
+        d.setAttributeNode(c);
+        let d1 = document.createElement("div");
+        let l = document.createElement("label");
+        let f = document.createAttribute("for");
+        f.value = "files";
+        let c1 = document.createAttribute("class");
+        c1.value = "form-label";
+        let t = document.createTextNode("File");
 
-    d1.appendChild(l);
-    d.appendChild(d1);
+        l.setAttributeNode(f);
+        l.setAttributeNode(c1);
+        l.appendChild(t);
 
-    let d2 = document.createElement("div");
-    let i = document.createElement("input");
-    let c2 = document.createAttribute("class");
-    c2.value = "form-label";
-    let t1 = document.createAttribute("type");
-    t1.value="file";
-    let i1 = document.createAttribute("id");
-    i1.value = "files";
-    let n = document.createAttribute("name");
-    n.value = "files";
+        d1.appendChild(l);
+        d.appendChild(d1);
 
-    i.setAttributeNode(c2);
-    i.setAttributeNode(t1);
-    i.setAttributeNode(i1);
-    i.setAttributeNode(n);
+        let d2 = document.createElement("div");
+        let i = document.createElement("input");
+        let c2 = document.createAttribute("class");
+        c2.value = "form-label";
+        let t1 = document.createAttribute("type");
+        t1.value="file";
+        let i1 = document.createAttribute("id");
+        i1.value = "files";
+        let n = document.createAttribute("name");
+        n.value = "files";
 
-    d2.appendChild(i);
-    d.appendChild(d2);
+        i.setAttributeNode(c2);
+        i.setAttributeNode(t1);
+        i.setAttributeNode(i1);
+        i.setAttributeNode(n);
 
-    let div = document.createElement("div");
-    let button = document.createElement("button");
-    let cl = document.createAttribute("class");
-    cl.value = "change btn btn-danger mb-2";
-    let text = document.createTextNode("변경 확정");
-    let type = document.createAttribute("type");
-    type.value="button";
+        d2.appendChild(i);
+        d.appendChild(d2);
 
-    button.setAttributeNode(cl);
-    button.setAttributeNode(type);
-    button.appendChild(text);
+        let div = document.createElement("div");
+        let button = document.createElement("button");
+        let cl = document.createAttribute("class");
+        cl.value = "change btn btn-danger mb-2";
+        let text = document.createTextNode("변경 확정");
+        let type = document.createAttribute("type");
+        type.value="button";
 
-    type = document.createAttribute("title");
-    type.value = count;
-    button.setAttributeNode(type);
+        button.setAttributeNode(cl);
+        button.setAttributeNode(type);
+        button.appendChild(text);
 
-    div.appendChild(button);
-    d.appendChild(div);
+        type = document.createAttribute("title");
+        type.value = count;
+        button.setAttributeNode(type);
 
-    let d3 = document.createElement("div");
-    let b = document.createElement("button");
-    let c3 = document.createAttribute("class");
-    c3.value = "idel btn btn-danger";
-    let t2 = document.createTextNode("삭제");
-    let t3 = document.createAttribute("type");
-    t3.value="button";
+        div.appendChild(button);
+        d.appendChild(div);
 
-
-    b.setAttributeNode(c3);
-    b.setAttributeNode(t3);
-    b.appendChild(t2);
+        let d3 = document.createElement("div");
+        let b = document.createElement("button");
+        let c3 = document.createAttribute("class");
+        c3.value = "idel btn btn-danger";
+        let t2 = document.createTextNode("삭제");
+        let t3 = document.createAttribute("type");
+        t3.value="button";
 
 
-    t3 = document.createAttribute("title");
-    t3.value = idx;
-    b.setAttributeNode(t3);
+        b.setAttributeNode(c3);
+        b.setAttributeNode(t3);
+        b.appendChild(t2);
 
-    d3.appendChild(b);
-    d.appendChild(d3)
 
-    img_changee.appendChild(d);
+        t3 = document.createAttribute("title");
+        t3.value = idx;
+        b.setAttributeNode(t3);
 
-    idx++;
-    }
+        d3.appendChild(b);
+        d.appendChild(d3);
+
+        form.appendChild(d);
+
+        img_changee.appendChild(form);
+
+        idx++;
+        }
 
 
 })
@@ -439,9 +454,42 @@ img_changee.addEventListener("click",function(event){
 
     if(button.classList[0] == 'change') {
         let check = window.confirm("변경 확정하시겠습니까? (기존에 있던 사진은 삭제됩니다.)");
+        let num = img_change.getAttributeNode("data-f-num").value;
+        console.log(num);
         if(check) {
+            const xhttp = new XMLHttpRequest();
+
+            xhttp.open("POST","../lecture/setFileUpdate");
+    
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    
             
+            xhttp.send("num="+num);
+    
+            xhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    let result = xhttp.responseText.trim();
+                    console.log(result);
+                    
+                    result = JSON.parse(result);
+                    if(result == 1) {
+                        
+                        alert("썸네일 사진 변경 성공");
+                        setFileUpdate.submit();
+                                
+                            
+                    }else {
+                        alert("썸네일 사진 변경 실패");
+                    }
+                }
         }
+        
+    }else {
+        alert("썸네일 사진 변경 취소");
     }
+
+
+        }
+    
 
 });
