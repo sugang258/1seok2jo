@@ -3,10 +3,12 @@ package com.seok.home.lecture;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.seok.home.util.FileManager;
 import com.seok.home.util.Pager;
@@ -70,7 +72,37 @@ public class LectureService {
 	}
 	
 	public int setUpdate(LectureDTO lectureDTO) throws Exception {
-		return lectureDAO.setUpdate(lectureDTO);
+		
+		//Long seq=0L;
+		
+		int result = lectureDAO.setUpdate(lectureDTO);
+		return result;
+		
+//		lectureVideoDTO.setL_num(lectureDTO.getL_num());
+//		List<LectureVideoDTO> ar = lectureDAO.getVideoDetails(lectureVideoDTO);
+//		
+//		//마지막 SEQ 가져오기
+//		for(int i=0; i<ar.size();i++) {
+//			
+//			System.out.println(lectureVideoDTO.getV_seq());
+//			seq = lectureVideoDTO.getV_seq();
+//			System.out.println();
+//		
+//		}
+		
+//		String[] url =lectureVideoDTO.getV_url().split(",");
+//		String[] context = lectureVideoDTO.getV_context().split(",");
+//		for(int i=0; i<url.length; i++) {
+//			lectureVideoDTO.setL_num(lectureDTO.getL_num());
+//			lectureVideoDTO.setV_url(url[i]);
+//			lectureVideoDTO.setV_context(context[i]);
+//			lectureVideoDTO.setV_seq((long)i);
+//			lectureDAO.setAddVideo(lectureVideoDTO);
+//			
+//		}
+		
+		
+		
 	}
 	
 	public int setVideoDelete(LectureVideoDTO lectureVideoDTO) throws Exception {
@@ -95,6 +127,7 @@ public class LectureService {
 	//파일 업데이트
 	public int setFileUpdate(LectureFileDTO lectureFileDTO, MultipartFile[] files, ServletContext servletContext) throws Exception{
 		
+		lectureFileDTO = lectureDAO.getFileDetail(lectureFileDTO);
 		String path = "resources/upload/lecture";
 		
 		for(MultipartFile mf : files) {
@@ -109,8 +142,11 @@ public class LectureService {
 		
 	}
 		 return  lectureDAO.setFileUpdate(lectureFileDTO);
-			
+		
+	}
 	
-	
+	public int setVideoUpdate(LectureVideoDTO lectureVideoDTO) throws Exception{
+		
+		return lectureDAO.setVideoUpdate(lectureVideoDTO);
 	}
 }

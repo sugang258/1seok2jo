@@ -161,12 +161,20 @@
 					DELETE L_FILE WHERE L_NUM=#{l_num}
 				</delete>
 				
-				<select id="getFileDetail" parameterType="lectureFileDTO" resultType="lectureFileDTO">
-					SELECT * FROM L_FILE WHERE num = #{num}
+				<select id="getFileDetail" parameterType="LectureFileDTO" resultType="lectureFileDTO">
+					SELECT * FROM L_FILE WHERE NUM = #{num}
 				</select>
 				
 				<update id="setFileUpdate" parameterType="LectureFileDTO">
 					UPDATE L_FILE SET F_NAME=#{f_name}, F_ORINAME=#{f_oriname} WHERE NUM=#{num}
 				</update>
+				
+				<update id="setVideoUpdate" parameterType="LectureVideoDTO">
+					UPDATE VIDEO SET V_URL=#{v_url}, V_CONTEXT=#{v_context} WHERE V_NUM=#{v_num}
+				</update>
+				
+				<select id="getVideoDetails" parameterType="LectureVideoDTO" resultType="LectureVideoDTO">
+					SELECT * FROM VIDEO WHERE L_NUM= #{l_num}
+				</select>
 				
 		    </mapper>

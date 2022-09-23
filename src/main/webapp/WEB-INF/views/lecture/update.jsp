@@ -33,7 +33,8 @@
         <div class="text-center">
             <form action="update" method="post" id="update" enctype="multipart/form-data" >
                 <div class="row g-3">
-                
+                    <label for="l_num" class="form-label" style="display: none;">강의 번호</label>
+                    <input type="text" class="form-control" id="l_num" name="l_num" value="${update.l_num}" style="display: none;">
                     <div class="col-12">
                     <label for="l_name" class="form-label">강의 제목</label>
                         <div class="input-group has-validation">
@@ -93,7 +94,7 @@
                         <div>
                             <label for="files" class="form-label">썸네일 이미지</label>
                         </div>
-                        <img src="../resources/upload/lecture/${update.lectureFileDTO[0].f_name}" style="display: inline;">
+                        <img id="ori_img" src="../resources/upload/lecture/${update.lectureFileDTO[0].f_name}" style="display: inline;" data-file-num="${update.lectureFileDTO[0].f_name}" data-ori-num="${update.lectureFileDTO[0].f_oriname}">
                         <div class="img_change">
                             <input type="button" class="btn btn-primary" id="img_change" value="변경하기" data-f-num="${update.lectureFileDTO[0].num}" style="border :none; color: white; background-color: #66ba39;">
                         </div>
@@ -107,7 +108,7 @@
                         </div>
         
                         <div class="video_change">
-                        <input type="button" class="btn btn-primary mt-3" id="ot_change" value="변경하기" style="border :none; color: white; background-color: #66ba39;">
+                        <input type="button" class="btn btn-primary mt-3" id="ot_change" value="변경하기" data-video-num="${update.lectureVideoDTO[0].v_num}" style="border :none; color: white; background-color: #66ba39;">
                         </div>
                     </div>
                     <div class="mb-3">
@@ -124,14 +125,15 @@
                             </div>
                         </div>
                     </c:forEach>
+                    
                     <div class="video_adds">
-                        
                         <input type="button" class="btn btn-primary mt-1 video_add" id="video_add" value="동영상 추가하기"style="border :none; color: #66ba39; background-color: white;">
                         <input type="button" class="btn btn-primary mt-2 add" id="add" value="동영상 추가 확정하기" style="border :none; color: #66ba39; background-color: white; display: none;">
                        
                     </div>
+                    
                     <div>
-                        <input type="button" class="w-100 btn btn-primary btn-lg" id="update_sub" style="background-color: #66ba39; border: none;" value="강의 수정"/>
+                        <input type="button" class="w-100 btn btn-primary btn-lg" id="update_sub" data-l-num="${update.l_num}" style="background-color: #66ba39; border: none;" value="강의 수정"/>
                     </div>
                 </div>
             </form>

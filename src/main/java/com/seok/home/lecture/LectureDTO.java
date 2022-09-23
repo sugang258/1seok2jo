@@ -21,6 +21,7 @@ public class LectureDTO {
 	private List<LectureVideoDTO> lectureVideoDTO;
 	private CartDTO cartDTO;
 	
+	
 	public Long getL_num() {
 		return l_num;
 	}

@@ -76,14 +76,21 @@ public class LectureDAO {
 		return sqlSession.delete(NAMESPACE+"setFileDelete", lectureDTO);
 	}
 	
-	public List<LectureFileDTO> getFileDetail(LectureFileDTO lectureFileDTO) throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getFileDetail", lectureFileDTO);
+	public LectureFileDTO getFileDetail(LectureFileDTO lectureFileDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getFileDetail", lectureFileDTO);
 	}
 	
 	public int setFileUpdate(LectureFileDTO lectureFileDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"setFileUpdate", lectureFileDTO);
 	}
 	
+	public int setVideoUpdate(LectureVideoDTO lectureVideoDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setVideoUpdate", lectureVideoDTO);
+	}
 	
-
+	public List<LectureVideoDTO> getVideoDetails(LectureVideoDTO lectureVideoDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getVideoDetails", lectureVideoDTO);
+	}
+	
+	
 }

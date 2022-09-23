@@ -153,9 +153,25 @@ public class LectureTest extends MyAbstractTest {
 		
 		lectureFileDTO.setNum(52L);
 		
-		List<LectureFileDTO> ar = lectureDAO.getFileDetail(lectureFileDTO);
+		lectureFileDTO = lectureDAO.getFileDetail(lectureFileDTO);
 		
-		assertNotEquals(0, ar.size());
+		assertNotNull(lectureFileDTO);
+
+		
+	}
+	
+	//@Test
+	public void setVideoUpdate() throws Exception {
+		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
+		
+		lectureVideoDTO.setV_num(120L);
+		lectureVideoDTO.setV_url("HI");
+		lectureVideoDTO.setV_context("HIII");
+		
+		int result = lectureDAO.setVideoUpdate(lectureVideoDTO);
+
+		assertEquals(1, result);
+		
 	}
 	
 }

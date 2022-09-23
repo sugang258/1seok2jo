@@ -8,7 +8,9 @@ const video_change = document.querySelector(".video_change");
 const ot_change = document.querySelector("#ot_change");
 const add = document.querySelector("#add");
 const setFileUpdate = document.querySelector("#setFileUpdate");
-
+const ori_img = document.querySelector("#ori_img");
+const update = document.querySelector("#update");
+const update_sub = document.querySelector("#update_sub");
 
 let count = 0;
 let idx=0;
@@ -192,6 +194,17 @@ ot_change.addEventListener("click",function(){
     if(countt>0) {
         alert("추가 안됩니다.");
     }else{
+
+        let form = document.createElement("form");
+        let action = document.createAttribute("action");
+        action.value ="setVideoUpdate";
+        let id = document.createAttribute("id");
+        id.value = "setVideoUpdate";
+        let method = document.createAttribute("method");
+        method.value="post";
+        let enctype = document.createAttribute("enctype");
+        enctype.value="multipart/form-data"
+        
         let d = document.createElement("div");
         let c = document.createAttribute("class");
         c.value = "mt-4 mb-3";
@@ -311,7 +324,10 @@ ot_change.addEventListener("click",function(){
         d3.appendChild(b);
         d.appendChild(d3)
 
-        video_change.appendChild(d);
+        form.appendChild(d);
+
+        video_change.appendChild(form);
+
         console.log(countt);
         countt++
 
@@ -328,8 +344,48 @@ video_change.addEventListener("click",function(event){
     }
 
     if(button.classList[0] == 'change') {
-        alert("변경확정");
+        
+        let check = window.confirm("변경확정하시겠습니까?(기존에 있던 동영상은 삭제됩니다.)");
+        
+        if(check) {
+            let v_num = ot_change.getAttributeNode("data-video-num").value;
+            let v_url = button.parentNode.parentNode.parentNode.childNodes[0].childNodes[1].firstChild.value;
+            let v_context = button.parentNode.parentNode.parentNode.childNodes[0].childNodes[3].firstChild.value;
+
+            console.log(v_url);
+            console.log(v_context);
+
+            const xhttp = new XMLHttpRequest();
+
+            xhttp.open("POST","../lecture/setVideoUpdate");
+    
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    
+            
+            xhttp.send("v_url="+v_url+"&v_context="+v_context+"&v_num="+v_num);
+    
+            xhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    let result = xhttp.responseText.trim();
+                    console.log(result);
+                    
+                    result = JSON.parse(result);
+                    if(result == 1) {
+                        
+                        alert("OT 동영상 변경 성공");
+                        
+                    }else {
+                        alert("OT 동영상 변경 실패");
+                    }
+                }
+        }
+        
+    }else {
+        alert("OT 동영상 변경 취소");
     }
+
+
+        }
 
 });
 
@@ -452,44 +508,85 @@ img_changee.addEventListener("click",function(event){
 
     }
 
-    if(button.classList[0] == 'change') {
-        let check = window.confirm("변경 확정하시겠습니까? (기존에 있던 사진은 삭제됩니다.)");
-        let num = img_change.getAttributeNode("data-f-num").value;
-        console.log(num);
-        if(check) {
-            const xhttp = new XMLHttpRequest();
+    // if(button.classList[0] == 'change') {
+    //     let check = window.confirm("변경 확정하시겠습니까? (기존에 있던 사진은 삭제됩니다.)");
+    //     let num = img_change.getAttributeNode("data-f-num").value;
+    //     let f_name = ori_img.getAttributeNode("data-file-num").value;
+    //     let f_oriname = ori_img.getAttributeNode("data-ori-num").value;
 
-            xhttp.open("POST","../lecture/setFileUpdate");
+    //     var formData = new FormData();
+    //     var inputFile = $("input[name='files']");
     
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //     var files = inputFile[0].files;
+
+    //     console.log(files);
+    //     console.log(inputFile);
+
+    //     console.log(f_oriname);
+    //     console.log(f_name);
+    //     console.log(num);
+
+    //     if(check) {
+    //         const xhttp = new XMLHttpRequest();
+
+    //         xhttp.open("POST","../lecture/setFileUpdate");
+    
+    //         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     
             
-            xhttp.send("num="+num);
+    //         xhttp.send("f_name="+f_name+"&f_oriname="+f_oriname+"&num="+num);
     
-            xhttp.onreadystatechange = function() {
-                if(this.readyState == 4 && this.status == 200) {
-                    let result = xhttp.responseText.trim();
-                    console.log(result);
+    //         xhttp.onreadystatechange = function() {
+    //             if(this.readyState == 4 && this.status == 200) {
+    //                 let result = xhttp.responseText.trim();
+    //                 console.log(result);
                     
-                    result = JSON.parse(result);
-                    if(result == 1) {
+    //                 result = JSON.parse(result);
+    //                 if(result == 1) {
                         
-                        alert("썸네일 사진 변경 성공");
-                        setFileUpdate.submit();
+    //                     alert("썸네일 사진 변경 성공");
+    //                     setFileUpdate.submit();
                                 
                             
-                    }else {
-                        alert("썸네일 사진 변경 실패");
-                    }
-                }
-        }
+    //                 }else {
+    //                     alert("썸네일 사진 변경 실패");
+    //                 }
+    //             }
+    //     }
         
-    }else {
-        alert("썸네일 사진 변경 취소");
-    }
+    // }else {
+    //     alert("썸네일 사진 변경 취소");
+    // }
 
 
-        }
+       // }
     
 
 });
+
+update_sub.addEventListener("click",function(){
+    let check = window.confirm("수정하시겠습니까?") 
+    let l_num = update_sub.getAttributeNode("data-l-num").value;
+
+    if(check) {
+        update.submit();
+        alert("수정 완료되었습니다");
+        //window.location.href="../lecture/detail?l_num="+l_num;
+    }else{
+        alert("수정 취소");
+    }
+})
+
+add.addEventListener("click",function(event){
+    let button = event.target;
+    let check = window.confirm("동영상 추가를 확정하시겠습니까?");
+
+    console.log(button);
+    if(check) {
+
+    }
+})
+
+
+
+
