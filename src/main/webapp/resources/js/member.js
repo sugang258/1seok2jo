@@ -65,6 +65,8 @@ ipPwCheck.addEventListener("blur", function(){
     if(ipPw.value == ipPwCheck.value){
         ipPwCheckResult.innerHTML="";
         pwEqualCheck=true;
+    }else if(ipPwCheck.value.length == 0){
+        ipPwCheckResult.innerHTML="필수 정보입니다.";
     }else {
         pwEqualCheck=false;
         ipPwCheck.value="";
