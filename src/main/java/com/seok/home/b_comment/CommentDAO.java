@@ -15,7 +15,6 @@ public class CommentDAO {
 	
 	//강사답글
 	public CommentDTO getCommentDetail(CommentDTO commentDTO)throws Exception {
-		System.out.println("DAO내용확인 : "+commentDTO.getSb_num());
 		return session.selectOne(NAMESPACE+"getCommentDetail", commentDTO);
 	}
 	

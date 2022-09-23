@@ -18,7 +18,6 @@ public class CommentService {
 	
 	//강사답글 확인
 	public CommentDTO getCommentDetail(CommentDTO commentDTO)throws Exception {
-		System.out.println("내용확인service : "+commentDTO.getSb_num());
 		return commentDAO.getCommentDetail(commentDTO);
 	}
 	

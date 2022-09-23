@@ -38,8 +38,9 @@
 		    		UPDATE STUDY_BOARD SET HIT=HIT+1 WHERE SB_NUM=#{sb_num}
 		    	</update>
 		   	   		    	
+		   	   	<!-- 게시판 댓글 수 -->	    	
 		    	<select id="getCount" parameterType="StudyBoardDTO" resultType="Long">
-		    		SELECT COUNT(NUM) FROM SB_COMMENT WHERE SB_NUM=#{sb_num}
+		    		SELECT COUNT(NUM) FROM SB_COMMENT WHERE SB_NUM=#{sb_num} AND REF=1
 		    	</select>
 		    	
 		    	<!-- 댓글상태 -->

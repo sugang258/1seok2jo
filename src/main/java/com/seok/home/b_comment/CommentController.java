@@ -21,17 +21,19 @@ public class CommentController {
 	
 	//강사 답글 불러오기 및 댓글 불러오기 
 	//강사 답글을 가져올때 댓글DTO의 값을 리스트에 담아서 해당 리스트를 Model로 보내준다.
-
 	@GetMapping("c_detail")
 	@ResponseBody
 	public ModelAndView getCommentDetail(CommentDTO commentDTO)throws Exception {
 		ModelAndView mv = new ModelAndView();
-		commentDTO = commentService.getCommentDetail(commentDTO);
+		CommentDTO t_comment = commentService.getCommentDetail(commentDTO);
 		List<CommentDTO> tCommentDTOs = commentService.getT_CommentList(commentDTO);
-		mv.addObject("commentDTO", commentDTO);
+		mv.addObject("commentDTO", t_comment);
+
+		if(tCommentDTOs.size() != 0) {
 		mv.addObject("tCommentDTO", tCommentDTOs);
+		}
 		
-		if(commentDTO==null) {
+		if(t_comment==null) {
 			mv.setViewName("comment/blank");
 		}else {
 			mv.setViewName("comment/t_comment");			

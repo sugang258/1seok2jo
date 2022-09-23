@@ -26,11 +26,11 @@
 		    	</insert>
 		    	
 		    	<delete id="setSB_CommentDelete" parameterType="CommentDTO">
-		    		DELETE SB_COMMENT WHERE NUM=#{num}
+		    		DELETE SB_COMMENT WHERE NUM=#{num} AND  REF = 0
 		    	</delete>
 		    	
 		    	<select id="getComment_Count" parameterType="CommentDTO" resultType="Long">
-		    		SELECT COUNT(NUM) FROM SB_COMMENT WHERE SB_NUM=#{sb_num}
+		    		SELECT COUNT(NUM) FROM SB_COMMENT WHERE SB_NUM=#{sb_num} AND  REF = 1
 		    	</select>
 		    	
 		    	<!-- 강사 답글 : 댓글 -->
