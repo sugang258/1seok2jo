@@ -69,7 +69,28 @@ public class LectureService {
 		return lectureDAO.getDetailVideo(lectureDTO);
 	}
 	
+	public int setUpdate(LectureDTO lectureDTO) throws Exception {
+		return lectureDAO.setUpdate(lectureDTO);
+	}
 	
+	public int setVideoDelete(LectureVideoDTO lectureVideoDTO) throws Exception {
+		return lectureDAO.setVideoDelete(lectureVideoDTO);
+	}
+	
+	//강의 삭제
+	public int setDelete(LectureDTO lectureDTO) throws Exception {
+		return lectureDAO.setDelete(lectureDTO);
+	}
+	
+	public int setVideoDele(LectureDTO lectureDTO) throws Exception {
+		return lectureDAO.setVideoDele(lectureDTO);
+	}
+	
+	public int setFileDelete(LectureDTO lectureDTO) throws Exception {
+		
+		return lectureDAO.setFileDelete(lectureDTO);
+		
+	}
 	
 	
 }

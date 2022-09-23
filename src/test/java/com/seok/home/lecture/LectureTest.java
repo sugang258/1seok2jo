@@ -119,8 +119,18 @@ public class LectureTest extends MyAbstractTest {
 		List<LectureDTO> ar = lectureDAO.getCartDetail(cartDTO);
 		
 		assertNotEquals(0, ar.size());
+			
+	}
+	
+	//@Test
+	public void setVideoDelete() throws Exception {
+		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
 		
+		lectureVideoDTO.setV_num(101L);
 		
+		int result = lectureDAO.setVideoDelete(lectureVideoDTO);
+		
+		assertEquals(1, result);
 		
 	}
 	

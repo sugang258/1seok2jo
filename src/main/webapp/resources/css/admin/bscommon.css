@@ -1,0 +1,16 @@
+.ilseok .form-check-input:checked{
+    background-color:#4b830d;
+
+}
+.ilseok .btn:first-child:hover,.ilseok :not(.btn-check)+.btn:hover{
+    
+    background-color: #4b830d;
+}
+.ilseok .form-control:focus {
+    border-color:#aed581;
+    box-shadow: 0 0 0 0.25rem #e1ffb1;
+}
+.ilseok .form-check-input:focus {
+    border-color:#aed581;
+    box-shadow: 0 0 0 0.25rem #e1ffb1;
+}
