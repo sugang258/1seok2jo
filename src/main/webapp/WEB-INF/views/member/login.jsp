@@ -19,6 +19,7 @@
 		/>
 		<%-- favicon --%>
 		<link rel="shortcut icon" href="/resources/images/favicon.ico">
+		<link rel="stylesheet" href="/resources/css/admin/bscommon.css">
 </head>
 <c:import url="../template/header.jsp"></c:import>
 <body>
@@ -37,7 +38,7 @@
 							<input type="password" class="form-control"  id= "pw" name = "pw" placeholder="패스워드">
 						</div>
 						<div class="col-sm-10">
-							<button type="submit" class="btn btn-primary">로그인</button>
+							<button type="submit" class="btn btn-outline-success">로그인</button>
 						</div>
 					</div>
 				</div>

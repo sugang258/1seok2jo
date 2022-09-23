@@ -16,12 +16,13 @@
 		<link href="https://fonts.googleapis.com/css2?family=Arvo&family=Dongle&family=Montserrat:wght@200&family=PT+Serif&family=Playfair+Display:wght@600&family=Prompt&family=Vollkorn:wght@500&display=swap" rel="stylesheet"/>
 		<%-- favicon --%>
 		<link rel="shortcut icon" href="/resources/images/favicon.ico">
+		<link rel="stylesheet" href="/resources/css/admin/bscommon.css">
 </head>
 <c:import url="../template/header.jsp"></c:import>
 <body>
 <%-- 입력창 만들기 전 부트스트랩 쓸때 이걸 써야한다 --%>
 <%-- con-lg-7은 사이즈 조절하는것 --%>
-	<section class="container-fluid">
+	<section class="container-fluid ilseok">
 		<div class="row justify-content-center mt-5">
 			<%-- 회원 회원가입JSP --%>
 			<form action="./join" method="post">
@@ -87,7 +88,7 @@
 			  </div>
 
 			  <div>
-				  <button type="submit" class="btn btn-primary">회원가입</button>
+				  <button type="submit" class="btn btn-outline-success" id="btn">회원가입</button>
 			  </div>
 			  
 			</form>
