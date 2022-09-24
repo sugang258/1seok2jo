@@ -59,3 +59,10 @@ de.addEventListener("click",function(){
     }
 })
 
+const listen = document.querySelector("#listen");
+
+listen.addEventListener("click",function(){
+    let l_num = listen.getAttributeNode("data-listen-num").value;
+    window.location.href="../lecture/listen?l_num="+l_num;
+})
+

@@ -167,6 +167,20 @@ public class LectureController {
 		return result;
 	}
 	
+	@GetMapping("listen")
+	public ModelAndView getDetailVideo(LectureDTO lectureDTO, ModelAndView mv, HttpSession session) throws Exception{
+		System.out.println("detailLecture");
+		lectureDTO = (LectureDTO) session.getAttribute("detail");
+		List<LectureVideoDTO> video = lectureDTO.getLectureVideoDTO();
+		List<LectureFileDTO> file = lectureDTO.getLectureFileDTO();
+		mv.addObject("video", video);
+		mv.addObject("file", file);
+		mv.addObject("dto", lectureDTO);
+		mv.setViewName("/lecture/listen");
+		
+		return mv;
+	}
+	
 	
 	
 	
