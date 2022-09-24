@@ -93,7 +93,7 @@
 					ON L.C_NUM = CA.C_NUM
 					LEFT JOIN VIDEO VV
 					ON L.L_NUM = VV.L_NUM 
-					WHERE L.L_NUM = #{l_num}
+					WHERE L.L_NUM = #{l_num} ORDER BY VV.V_SEQ ASC
 		    	</select>
 		    	
 		    	<select id="getDetailVideo" resultMap="getDetailResult" parameterType="LectureDTO">
@@ -103,7 +103,7 @@
 					ON L.L_NUM = LF.L_NUM
 					JOIN VIDEO VV
 					ON L.L_NUM = VV.L_NUM
-					WHERE L.L_NUM = #{l_num}
+					WHERE L.L_NUM = #{l_num} ORDER BY VV.V_SEQ ASC
 		    	</select>
 		    	
 		    	<insert id="setAddVideo" parameterType="LectureVideoDTO">
@@ -162,11 +162,11 @@
 				</delete>
 				
 				<select id="getFileDetail" parameterType="LectureFileDTO" resultType="lectureFileDTO">
-					SELECT * FROM L_FILE WHERE NUM = #{num}
+					SELECT * FROM L_FILE WHERE L_NUM = #{l_num}
 				</select>
 				
 				<update id="setFileUpdate" parameterType="LectureFileDTO">
-					UPDATE L_FILE SET F_NAME=#{f_name}, F_ORINAME=#{f_oriname} WHERE NUM=#{num}
+					UPDATE L_FILE SET F_NAME=#{f_name}, F_ORINAME=#{f_oriname} WHERE L_NUM=#{l_num}
 				</update>
 				
 				<update id="setVideoUpdate" parameterType="LectureVideoDTO">
@@ -174,7 +174,7 @@
 				</update>
 				
 				<select id="getVideoDetails" parameterType="LectureVideoDTO" resultType="LectureVideoDTO">
-					SELECT * FROM VIDEO WHERE L_NUM= #{l_num}
+					SELECT * FROM VIDEO WHERE L_NUM= #{l_num} order by V_SEQ ASC
 				</select>
 				
 		    </mapper>

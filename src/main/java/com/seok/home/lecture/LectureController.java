@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
 
 import com.seok.home.util.Pager;
 
@@ -113,7 +114,7 @@ public class LectureController {
 	public ModelAndView setUpdate(LectureDTO lectureDTO, ModelAndView mv,MultipartFile[] files,HttpSession session,LectureVideoDTO lectureVideoDTO) throws Exception{
 		System.out.println("update post");
 		//System.out.println("l_nummmm"+lectureDTO.getL_num());
-		lectureService.setUpdate(lectureDTO);
+		lectureService.setUpdate(lectureDTO,lectureVideoDTO);
 		
 		mv.addObject("dto", lectureDTO);
 		mv.setViewName("redirect:./detail?l_num="+lectureDTO.getL_num());
@@ -143,13 +144,19 @@ public class LectureController {
 	
 	@PostMapping("setFileUpdate")
 	@ResponseBody
-	public int setFileUpdate(LectureFileDTO lectureFileDTO, MultipartFile[] files, HttpSession session) throws Exception{
+	public ModelAndView setFileUpdate(LectureDTO lectureDTO, MultipartFile[] files, HttpSession session) throws Exception{
 		System.out.println("파일 업데이트");
-		
+		ModelAndView mv = new ModelAndView();
+		LectureFileDTO lectureFileDTO = new LectureFileDTO();
+		lectureDTO = (LectureDTO) session.getAttribute("detail");
+		lectureFileDTO.setL_num(lectureDTO.getL_num());
+		System.out.println(lectureFileDTO.getL_num());
 		int result = lectureService.setFileUpdate(lectureFileDTO,files,session.getServletContext());
 		
+		mv.setViewName("redirect:./detail?l_num="+lectureDTO.getL_num());
 		
-		return result;
+		
+		return mv;
 		
 	}
 	

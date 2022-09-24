@@ -71,35 +71,38 @@ public class LectureService {
 		return lectureDAO.getDetailVideo(lectureDTO);
 	}
 	
-	public int setUpdate(LectureDTO lectureDTO) throws Exception {
+	public int setUpdate(LectureDTO lectureDTO,LectureVideoDTO lectureVideoDTO) throws Exception {
 		
-		//Long seq=0L;
+		Long seq=0L;
 		
 		int result = lectureDAO.setUpdate(lectureDTO);
+		
+		lectureVideoDTO.setL_num(lectureDTO.getL_num());
+		List<LectureVideoDTO> ar = lectureDAO.getVideoDetails(lectureVideoDTO);
+		System.out.println("arrrr :" +ar.size());
+//		//마지막 SEQ 가져오기
+		for(int i=0; i<ar.size();i++) {
+			
+			System.out.println("seqqq:"+ar.get(i).getV_seq());
+			seq = ar.get(i).getV_seq();
+			
+		}
+		if(lectureVideoDTO != null) {
+		String[] url =lectureVideoDTO.getV_url().split(",");
+		String[] context = lectureVideoDTO.getV_context().split(",");
+		for(int i=0; i<url.length; i++) {
+			seq++;
+			lectureVideoDTO.setL_num(lectureDTO.getL_num());
+			lectureVideoDTO.setV_url(url[i]);
+			lectureVideoDTO.setV_context(context[i]);
+			lectureVideoDTO.setV_seq(seq+1);
+			lectureDAO.setAddVideo(lectureVideoDTO);
+			}
+		}
 		return result;
 		
-//		lectureVideoDTO.setL_num(lectureDTO.getL_num());
-//		List<LectureVideoDTO> ar = lectureDAO.getVideoDetails(lectureVideoDTO);
 //		
-//		//마지막 SEQ 가져오기
-//		for(int i=0; i<ar.size();i++) {
-//			
-//			System.out.println(lectureVideoDTO.getV_seq());
-//			seq = lectureVideoDTO.getV_seq();
-//			System.out.println();
-//		
-//		}
 		
-//		String[] url =lectureVideoDTO.getV_url().split(",");
-//		String[] context = lectureVideoDTO.getV_context().split(",");
-//		for(int i=0; i<url.length; i++) {
-//			lectureVideoDTO.setL_num(lectureDTO.getL_num());
-//			lectureVideoDTO.setV_url(url[i]);
-//			lectureVideoDTO.setV_context(context[i]);
-//			lectureVideoDTO.setV_seq((long)i);
-//			lectureDAO.setAddVideo(lectureVideoDTO);
-//			
-//		}
 		
 		
 		
@@ -141,7 +144,8 @@ public class LectureService {
 		lectureFileDTO.setF_oriname(mf.getOriginalFilename());
 		
 	}
-		 return  lectureDAO.setFileUpdate(lectureFileDTO);
+		 return lectureDAO.setFileUpdate(lectureFileDTO);
+		
 		
 	}
 	

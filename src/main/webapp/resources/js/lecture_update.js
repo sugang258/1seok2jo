@@ -24,8 +24,6 @@ function setCount(ct) {
 //비디오 추가
 video_add.addEventListener("click",function(){
 
-    add.style.display ='inline';
-
     let d = document.createElement("div");
     let c = document.createAttribute("class");
     c.value = "mt-4 mb-3";
@@ -397,15 +395,20 @@ img_change.addEventListener("click",function(){
     }else {
         
         
-        let form = document.createElement("form");
-        let action = document.createAttribute("action");
-        action.value ="setFileUpdate";
-        let id = document.createAttribute("id");
-        id.value = "setFileUpdate";
-        let method = document.createAttribute("method");
-        method.value="post";
-        let enctype = document.createAttribute("enctype");
-        enctype.value="multipart/form-data"
+        // let form = document.createElement("form");
+        // let action = document.createAttribute("action");
+        // action.value ="setFileUpdate";
+        // let id = document.createAttribute("id");
+        // id.value = "setFileUpdate";
+        // let method = document.createAttribute("method");
+        // method.value="post";
+        // let enctype = document.createAttribute("enctype");
+        // enctype.value="multipart/form-data"
+
+        // form.setAttribute(action);
+        // form.setAttribute(id);
+        // form.setAttribute(method);
+        // form.setAttribute(enctype);
         
         let d = document.createElement("div");
 
@@ -489,9 +492,9 @@ img_change.addEventListener("click",function(){
         d3.appendChild(b);
         d.appendChild(d3);
 
-        form.appendChild(d);
+        //form.appendChild(d);
 
-        img_changee.appendChild(form);
+        img_changee.appendChild(d);
 
         idx++;
         }
@@ -508,58 +511,65 @@ img_changee.addEventListener("click",function(event){
 
     }
 
-    // if(button.classList[0] == 'change') {
-    //     let check = window.confirm("변경 확정하시겠습니까? (기존에 있던 사진은 삭제됩니다.)");
-    //     let num = img_change.getAttributeNode("data-f-num").value;
-    //     let f_name = ori_img.getAttributeNode("data-file-num").value;
-    //     let f_oriname = ori_img.getAttributeNode("data-ori-num").value;
+    if(button.classList[0] == 'change') {
+        let check = window.confirm("변경 확정하시겠습니까? (기존에 있던 사진은 삭제됩니다.)");
+        let num = img_change.getAttributeNode("data-f-num").value;
+        let f_name = ori_img.getAttributeNode("data-file-num").value;
+        let f_oriname = ori_img.getAttributeNode("data-ori-num").value;
+        let update = button.parentNode.parentNode.parentNode.parentNode;
+        let l_num = update_sub.getAttributeNode("data-l-num").value;
+        
+        console.log(update);
 
-    //     var formData = new FormData();
-    //     var inputFile = $("input[name='files']");
+        // var formData = new FormData();
+        // var inputFile = $("input[name='files']");
     
-    //     var files = inputFile[0].files;
+        // var files = inputFile[0].files;
 
-    //     console.log(files);
-    //     console.log(inputFile);
+        // console.log(files);
+        // console.log(inputFile);
 
-    //     console.log(f_oriname);
-    //     console.log(f_name);
-    //     console.log(num);
+        console.log(f_oriname);
+        console.log(f_name);
+        console.log(num);
 
-    //     if(check) {
-    //         const xhttp = new XMLHttpRequest();
+        if(check) {
+        //     const xhttp = new XMLHttpRequest();
 
-    //         xhttp.open("POST","../lecture/setFileUpdate");
+        //     xhttp.open("POST","../lecture/setFileUpdate");
     
-    //         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        //     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     
             
-    //         xhttp.send("f_name="+f_name+"&f_oriname="+f_oriname+"&num="+num);
+        //     xhttp.send("f_name="+f_name+"&f_oriname="+f_oriname+"&num="+num);
     
-    //         xhttp.onreadystatechange = function() {
-    //             if(this.readyState == 4 && this.status == 200) {
-    //                 let result = xhttp.responseText.trim();
-    //                 console.log(result);
+        //     xhttp.onreadystatechange = function() {
+        //         if(this.readyState == 4 && this.status == 200) {
+        //             let result = xhttp.responseText.trim();
+        //             console.log(result);
                     
-    //                 result = JSON.parse(result);
-    //                 if(result == 1) {
+        //             result = JSON.parse(result);
+        //             if(result == 1) {
                         
-    //                     alert("썸네일 사진 변경 성공");
-    //                     setFileUpdate.submit();
+        //                 alert("썸네일 사진 변경 성공");
+        //                 setFileUpdate.submit();
                                 
                             
-    //                 }else {
-    //                     alert("썸네일 사진 변경 실패");
-    //                 }
-    //             }
-    //     }
+        //             }else {
+        //                 alert("썸네일 사진 변경 실패");
+        //             }
+        //         }
+        // }
+        setFileUpdate.submit();
         
-    // }else {
-    //     alert("썸네일 사진 변경 취소");
-    // }
+        
+        
+    }else {
+        alert("썸네일 사진 변경 취소");
+    }
 
 
-       // }
+       }
     
 
 });
@@ -577,15 +587,9 @@ update_sub.addEventListener("click",function(){
     }
 })
 
-add.addEventListener("click",function(event){
-    let button = event.target;
-    let check = window.confirm("동영상 추가를 확정하시겠습니까?");
+const setAddVideo = document.querySelector("#setAddVideo");
 
-    console.log(button);
-    if(check) {
 
-    }
-})
 
 
 
