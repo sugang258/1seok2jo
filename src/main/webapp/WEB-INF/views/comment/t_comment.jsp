@@ -62,11 +62,84 @@
             </div>
           </div>
 
-            <!--board-Writer-Button-->
-          <div class="d-flex flex-row-reverse mb-4 mt-4" style="width: 70%; margin: 0px auto;">
-              <div class="p-2"><button type="button" class="c_delete btn-st btn btn-outline-secondary">삭제하기(강사)</button></div>
-              <div class="p-2"><button type="button" class="c_update btn-st btn btn-outline-secondary">수정하기(강사)</button></div>
+        <!--modal/강사답글-->
+        <div
+          class="modal fade"
+          id="exampleModal3"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  <b style="color: gray">답글 수정👩‍🏫</b>
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form
+                  action="comment_update"
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+                  <input
+                    value="${commentDTO.getSb_num()}"
+                    style="display: none"
+                  />
+                  <div class="mb-3">
+                    <label
+                      for="message-text"
+                      class="col-form-label"
+                      style="color: gray"
+                      ><b>내용</b></label
+                    >
+                    <textarea
+                      name="contents"
+                      class="form-control mt-1"
+                      id="answer-update"
+                      rows="2"
+                      style="height: 150px"
+                    >${commentDTO.contents}</textarea>
+                  </div>
+                  <div id="addFiles">
+                    <button class="mt-2 file_add"><b>파일추가📂</b></button>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  id="close"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  취소
+                </button>
+                <button
+                  class="t_answer_btn btn btn-warning"
+                  id="t_answer_btn"
+                  data-answer-num="${commentDTO.getSb_num()}"
+                  type="button"
+                >
+                  수정하기
+                </button>
+              </div>
+            </div>
           </div>
+        </div>
+
+          <!--board-Writer-Button-->
+        <div class="d-flex flex-row-reverse mb-4 mt-4" style="width: 70%; margin: 0px auto;">
+            <div class="p-2"><button type="button" class="c_delete btn-st btn btn-outline-secondary">삭제하기(강사)</button></div>
+            <div class="p-2"><button type="button" class="c_update btn-st btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@mdo">수정하기(강사)</button></div>
+        </div>
     </div>
   </form>
 </body>

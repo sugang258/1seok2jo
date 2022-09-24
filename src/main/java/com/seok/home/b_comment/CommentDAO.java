@@ -6,6 +6,18 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+/**
+ * @author USER
+ *
+ */
+/**
+ * @author USER
+ *
+ */
+/**
+ * @author USER
+ *
+ */
 @Repository
 public class CommentDAO {
 	
@@ -28,6 +40,18 @@ public class CommentDAO {
 	 */
 	public int setCommentAdd(CommentDTO commentDTO)throws Exception{
 		return session.insert(NAMESPACE+"setCommentAdd", commentDTO);
+	}
+	
+	//아래주석 /** + enter
+	/**
+	 * 
+	 * @param commentDTO(contents, sb_num)
+	 * @return Update result
+	 * @throws Exception
+	 * @author 설희
+	 */
+	public int setCommentUpdate(CommentDTO commentDTO)throws Exception{
+		return session.update(NAMESPACE+"setCommentUpdate", commentDTO);
 	}
 	
 	public int setCommentDelete(CommentDTO commentDTO)throws Exception{

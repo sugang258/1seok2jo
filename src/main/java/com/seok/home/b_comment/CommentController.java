@@ -66,6 +66,14 @@ public class CommentController {
 		return result;
 	}
 	
+	//강사답글 수정
+	@PostMapping("comment_update")
+	@ResponseBody
+	public int setCommentUpdate(CommentDTO commentDTO)throws Exception{
+		int result = commentService.setCommentUpdate(commentDTO);
+		return result;
+	}
+	
 	//게시글 댓글
 	@GetMapping("sb_comment")
 	@ResponseBody

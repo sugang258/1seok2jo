@@ -28,6 +28,12 @@ public class CommentService {
 		studyBoardDAO.setAnsewer(studyBoardDTO);
 		return commentDAO.setCommentAdd(commentDTO);
 	}
+	
+	//강사 답글 수정
+	public int setCommentUpdate(CommentDTO commentDTO)throws Exception{
+		return commentDAO.setCommentUpdate(commentDTO);
+	}
+	
 	//강사답글 삭제 및 게시글 답변상태 변경
 	public int setCommentDelete(CommentDTO commentDTO)throws Exception{
 		StudyBoardDTO studyBoardDTO = new StudyBoardDTO();

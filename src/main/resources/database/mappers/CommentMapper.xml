@@ -4,6 +4,7 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 		    <mapper namespace="com.seok.home.b_comment.CommentDAO"> 	
+		    	<!-- 강사답글 -->
 		    	<select id="getCommentDetail" parameterType="CommentDTO" resultType="CommentDTO">
 		    		SELECT * FROM SB_REPLY WHERE SB_NUM=#{sb_num}
 		    	</select>
@@ -11,6 +12,10 @@
 		    	<insert id="setCommentAdd" parameterType="CommentDTO">
 		    		INSERT INTO SB_REPLY VALUES(BOARD_SEQ.NEXTVAL, #{sb_num}, 'teacher', #{contents}, sysdate, 0)
 		    	</insert>
+		    	
+		    	<update id="setCommentUpdate" parameterType="CommentDTO">
+		    		UPDATE SB_REPLY SET CONTENTS=#{contents} WHERE SB_NUM=#{sb_num}
+		    	</update>
 		    	
 		    	<delete id="setCommentDelete" parameterType="CommentDTO">
 		    		DELETE SB_REPLY WHERE SB_NUM=#{sb_num}

@@ -147,6 +147,25 @@ teacher.addEventListener("click", function (event) {
 });
 
 /*강사답글 수정*/
+teacher.addEventListener("click", function (event) {
+  if (event.target.classList[0] == "t_answer_btn") {
+    const answer = document.getElementById("answer-update");
+    const answer_contents = answer.value;
+    const num = update_btn.getAttribute("data-board-num");
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "/comment/comment_update");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("contents=" + answer_contents + "&sb_num=" + num);
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        if (xhttp.responseText == 1) {
+          document.querySelector("#close").click();
+          window.location.reload();
+        }
+      }
+    };
+  }
+});
 
 /*게시판 댓글 가져오기*/
 const reply_content = document.getElementById("reply_content");
