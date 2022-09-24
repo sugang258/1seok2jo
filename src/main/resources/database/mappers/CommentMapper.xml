@@ -26,7 +26,7 @@
 		    	</insert>
 		    	
 		    	<delete id="setSB_CommentDelete" parameterType="CommentDTO">
-		    		DELETE SB_COMMENT WHERE NUM=#{num} AND  REF = 0
+		    		DELETE SB_COMMENT WHERE NUM=#{num} AND  REF = 1
 		    	</delete>
 		    	
 		    	<!-- 강사 답글 : 댓글 -->

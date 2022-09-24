@@ -28,7 +28,7 @@ reply.addEventListener("click", function () {
 });
 
 teacher.addEventListener("click", function (event) {
-  if (event.target.className == reply_t) {
+  if (event.target.className == "reply_t") {
     console.log(event.target.className.nextSibling);
     const t_comment = document.getElementById("t_comment");
 
@@ -188,7 +188,7 @@ reply_content.addEventListener("click", function (event) {
     };
   }
 });
-
+/** 게시판 댓글작성-enter*/
 reply_content.addEventListener("keydown", function (event) {
   const reply_text = document.getElementById("reply_text");
   const reply_btn = document.getElementById("reply_btn");
@@ -225,7 +225,6 @@ const text_delete_btn = document.getElementsByClassName("text_delete_btn");
 reply_content.addEventListener("click", function (event) {
   if (event.target.className == "text_delete_btn") {
     let comment_num = event.target.getAttribute("data-comment-num");
-
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/comment/sb_commentDelete");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -243,7 +242,6 @@ reply_content.addEventListener("click", function (event) {
 /**강사답글 - 댓글가져오기 */
 function teacherReply() {
   let num = update_btn.getAttribute("data-board-num");
-  console.log(num);
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "../comment/t_comment");
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -259,7 +257,6 @@ teacher.addEventListener("click", function (event) {
   const comment_ref = document.getElementById("comment_ref");
   if (event.target.className == "reply_btn2") {
     const c_id2 = document.getElementById("c_id2");
-    const reply_text2 = document.getElementById("reply_text2");
     let num = comment_ref.getAttribute("data-comment-num");
     let id = c_id2.value;
     let t_contents = event.target.previousSibling.previousSibling.value;
@@ -277,6 +274,38 @@ teacher.addEventListener("click", function (event) {
         }
       }
     };
+  }
+});
+/**강사답글-댓글 작성하기 -enter*/
+teacher.addEventListener("keydown", function (event) {
+  const comment_ref = document.getElementById("comment_ref");
+  if (event.target.className == "reply_text2") {
+    if (event.keyCode == 13) {
+      event.preventDefault();
+      const enter_id = document.getElementById("c_id2");
+      let enter_num = comment_ref.getAttribute("data-comment-num");
+      let id = enter_id.value;
+      let enter_content = event.target.value;
+      const xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "/comment/t_commentAdd");
+      xhttp.setRequestHeader(
+        "Content-type",
+        "application/x-www-form-urlencoded"
+      );
+      xhttp.send(
+        "sb_num=" + enter_num + "&id=" + id + "&contents=" + enter_content
+      );
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          let result = xhttp.responseText;
+          if (result == 1) {
+            window.location.reload();
+          } else {
+            alert("등록실패");
+          }
+        }
+      };
+    }
   }
 });
 
@@ -302,10 +331,10 @@ teacher.addEventListener("click", function (event) {
 
 /**강사답글의 댓글 삭제 */
 teacher.addEventListener("click", function (event) {
-  console.log(event.target.className);
   if (event.target.className == "delete_btn") {
-    const c_num2 = document.getElementById("c_num2");
-    let num = c_num2.value;
+    const delete_num = document.getElementById("delete_num");
+    console.log(event.target.getAttribute("data-comment-num"));
+    let num = event.target.getAttribute("data-comment-num");
     console.log(num);
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/comment/t_commentDelete");
@@ -314,7 +343,7 @@ teacher.addEventListener("click", function (event) {
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         if (xhttp.responseText == 1) {
-          alert("성공");
+          window.location.reload();
         }
       }
     };
