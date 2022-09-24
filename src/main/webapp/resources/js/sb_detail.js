@@ -23,14 +23,13 @@ reply.addEventListener("click", function () {
   } else {
     document.getElementById("reply_content").style.display = "none";
     reply.innerHTML = "댓글 더보기";
-    getReply();
   }
 });
 
 teacher.addEventListener("click", function (event) {
   if (event.target.className == "reply_t") {
-    console.log(event.target.className.nextSibling);
     const t_comment = document.getElementById("t_comment");
+    const reply_t = document.getElementById("reply_t");
 
     if (document.getElementById("t_comment").style.display == "none") {
       document.getElementById("t_comment").style.display = "";
