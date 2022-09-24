@@ -85,7 +85,6 @@ const t_answer = document.getElementById("t_answer");
 answer_btn.addEventListener("click", function () {
   let t_num = update_btn.getAttribute("data-board-num");
   let t_cv = t_answer.value;
-  console.log(t_num);
 
   //1.XMLHTTPRequest생성
   const xhttp = new XMLHttpRequest();

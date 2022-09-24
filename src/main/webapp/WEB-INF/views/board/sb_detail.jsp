@@ -36,7 +36,7 @@ prefix="c" %>
   </head>
   <c:import url="../template/header.jsp"></c:import>
   <body>
-    <section class="container">
+    <section class="container" style="width: 80%">
       <div class="board">
         <div class="board_contents">
           <div style="padding: 12px 0px">
