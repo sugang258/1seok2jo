@@ -136,7 +136,11 @@ public class MemberController {
 	public String setProfile(MemberDTO memberDTO, HttpSession session)throws Exception {
 		System.out.println("프로필 접속(POST)");
 		
-//		int result = memberService.setDeleteProfile(memberDTO);
+		int result = memberService.setProfile(memberDTO);
+		if(result!=0) {
+			memberDTO = memberService.getLogin(memberDTO);
+			System.out.println(memberDTO.getPhone());
+		}
 		
 //		if(result>0) {
 //			System.out.println("프로필삭제 성공!");

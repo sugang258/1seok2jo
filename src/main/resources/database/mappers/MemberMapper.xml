@@ -48,8 +48,8 @@
 		VALUES (#{id}, #{pw}, #{name}, #{n_name}, #{b_date}, #{gender}, #{email}, #{phone}, 0)
 	</insert>
 	
-	<delete id="setDeleteProfile" parameterType="MemberDTO">
+	<update id="setProfile" parameterType="MemberDTO">
 		UPDATE MEMBER SET N_NAME=#{n_name}, GENDER=#{gender}, EMAIL=#{email}, PHONE=#{phone} WHERE ID=#{id}
-	</delete>
+	</update>
 	
 </mapper> 
