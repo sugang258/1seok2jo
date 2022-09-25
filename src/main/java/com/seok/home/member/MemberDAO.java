@@ -37,8 +37,8 @@ public class MemberDAO {
 	/************************ 마이페이지 **************************/
 	
 	//프로필수정
-	public int setProfile(MemberDTO memberDTO)throws Exception{	
-		return sqlSession.update(NAMESPACE+"setProfile", memberDTO);
+	public int setDeleteProfile(MemberDTO memberDTO)throws Exception{	
+		return sqlSession.delete(NAMESPACE+"setDeleteProfile", memberDTO);
 	}
 	
 }

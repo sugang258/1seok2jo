@@ -52,8 +52,9 @@ public class MemberService {
 	/************************ 마이페이지 **************************/
 	
 	//프로필수정
-	public int setProfile(MemberDTO memberDTO)throws Exception{
-		return memberDAO.setProfile(memberDTO);
+	public int setDeleteProfile(MemberDTO memberDTO)throws Exception{
+		int result = memberDAO.setDeleteProfile(memberDTO);
+		return memberDAO.setDeleteProfile(memberDTO);
 	}
 	
 	//장바구니
