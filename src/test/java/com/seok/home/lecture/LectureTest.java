@@ -174,4 +174,36 @@ public class LectureTest extends MyAbstractTest {
 		
 	}
 	
+	//@Test
+	public void setVideoStatus() throws Exception{
+		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
+		
+		lectureVideoDTO.setV_num(116L);
+		
+		int result = lectureDAO.setVideoStatus(lectureVideoDTO);
+		
+		assertEquals(1, result);
+	}
+	
+	//@Test
+	public void getVideoStatusCount() throws Exception{
+		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
+		
+		lectureVideoDTO.setL_num(72L);
+		
+		long result = lectureDAO.getVideoStatusCount(lectureVideoDTO);
+		
+		assertEquals(0L, result);
+	}
+	
+	//@Test
+	public void getVideoStatus() throws Exception{
+		LectureDTO lectureDTO = new LectureDTO();
+		
+		lectureDTO.setL_num(72L);
+		
+		List<LectureDTO> ar = lectureDAO.getVideoStatus(lectureDTO);
+		
+		assertNotEquals(1, ar.size());
+	}
 }
