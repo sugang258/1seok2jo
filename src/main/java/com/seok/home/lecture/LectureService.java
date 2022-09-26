@@ -157,4 +157,8 @@ public class LectureService {
 	public long getListCount(LectureDTO lectureDTO) throws Exception{
 		return lectureDAO.getListCount(lectureDTO);
 	}
+	
+	public LectureDTO getLecturePre(LectureVideoDTO lectureVideoDTO) throws Exception{
+		return lectureDAO.getLecturePre(lectureVideoDTO);
+	}
 }

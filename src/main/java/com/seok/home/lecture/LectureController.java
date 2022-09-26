@@ -209,6 +209,16 @@ public class LectureController {
 		return lectureDTO.getLectureVideoDTO();
 	}
 	
+	@PostMapping("getLecturePre")
+	@ResponseBody
+	public List<LectureVideoDTO> getLecturePre(LectureVideoDTO lectureVideoDTO) throws Exception{
+		System.out.println("pre");
+		ModelAndView mv = new ModelAndView();
+		LectureDTO lectureDTO = new LectureDTO();
+		lectureDTO = lectureService.getLecturePre(lectureVideoDTO);
+		return lectureDTO.getLectureVideoDTO();
+	}
+	
 	
 	
 	

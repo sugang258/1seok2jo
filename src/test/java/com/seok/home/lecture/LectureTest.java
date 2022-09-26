@@ -220,7 +220,7 @@ public class LectureTest extends MyAbstractTest {
 
 	}
 	
-	@Test
+	//@Test
 	public void getLecturePre() throws Exception{
 		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
 		LectureDTO lectureDTO = new LectureDTO();
