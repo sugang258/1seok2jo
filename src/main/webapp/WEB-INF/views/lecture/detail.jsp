@@ -85,7 +85,7 @@
                
                     <!-- Side widget-->
                     <div class="card mb-4">
-                        <div class="card-header" style="display: inline;">목 차    (총 ${count} 강의)</div>
+                        <div class="card-header" style="display: inline;">목 차 (총 ${count} 강의)</div>
                         <c:forEach items="${ar}" var="ar">
                         <div class="card-body">
                            - ${ar.v_context}

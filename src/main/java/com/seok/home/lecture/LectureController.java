@@ -24,7 +24,7 @@ import org.springframework.validation.BindingResult;
 
 
 @Controller
-@RequestMapping(value="lecture/*")
+@RequestMapping(value="/lecture/*")
 public class LectureController {
 
 	@Autowired
@@ -73,7 +73,7 @@ public class LectureController {
 		System.out.println("detail");
 		
 		lectureDTO = lectureService.getDetail(lectureDTO);
-		long count = lectureService.getCountList(lectureDTO);
+		long count = lectureService.getListCount(lectureDTO);
 		System.out.println(lectureDTO);
 		List<LectureVideoDTO> ar  = lectureDTO.getLectureVideoDTO();
 		List<LectureFileDTO> file = lectureDTO.getLectureFileDTO();
@@ -171,17 +171,42 @@ public class LectureController {
 	}
 	
 	@GetMapping("listen")
-	public ModelAndView getDetailVideo(LectureDTO lectureDTO, ModelAndView mv, HttpSession session) throws Exception{
+	public ModelAndView getDetailVideo(LectureDTO lectureDTO,LectureVideoDTO lectureVideoDTO, ModelAndView mv, HttpSession session) throws Exception{
 		System.out.println("detailLecture");
 		lectureDTO = (LectureDTO) session.getAttribute("detail");
+		long count = lectureService.getListCount(lectureDTO);
+		//System.out.println(lectureVideoDTO.getV_seq());
+		
+		
 		List<LectureVideoDTO> video = lectureDTO.getLectureVideoDTO();
 		List<LectureFileDTO> file = lectureDTO.getLectureFileDTO();
+		System.out.println("video size" +video.size());
+		//lectureVideoDTO.setV_seq(0L);
+		//lectureVideoDTO.setL_num(lectureDTO.getL_num());
+		//List<LectureVideoDTO> list = lectureService.getDetailVideo(lectureVideoDTO);
+		
+		mv.addObject("count", count);
 		mv.addObject("video", video);
 		mv.addObject("file", file);
 		mv.addObject("dto", lectureDTO);
+		//mv.addObject("list", list);
 		mv.setViewName("/lecture/listen");
 		
 		return mv;
+	}
+	
+	//강의 이동
+	@PostMapping("getLectureNext")
+	@ResponseBody
+	public List<LectureVideoDTO> getLectureNext(LectureVideoDTO lectureVideoDTO) throws Exception{
+		System.out.println("next");
+		ModelAndView mv = new ModelAndView();
+		LectureDTO lectureDTO = new LectureDTO();
+		lectureDTO = lectureService.getDetailVideo(lectureVideoDTO);
+		System.out.println(lectureDTO.getLectureVideoDTO().size());
+		mv.addObject("dto", lectureDTO);
+		mv.setViewName("/lecture/listen");
+		return lectureDTO.getLectureVideoDTO();
 	}
 	
 	

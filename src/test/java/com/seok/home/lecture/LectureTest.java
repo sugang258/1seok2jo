@@ -219,4 +219,16 @@ public class LectureTest extends MyAbstractTest {
 
 
 	}
+	
+	@Test
+	public void getLecturePre() throws Exception{
+		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
+		LectureDTO lectureDTO = new LectureDTO();
+		lectureVideoDTO.setL_num(72L);
+		lectureVideoDTO.setV_seq(6L);
+		
+		lectureDTO = lectureDAO.getLecturePre(lectureVideoDTO);
+		
+		assertNotNull(lectureDTO);
+	}
 }
