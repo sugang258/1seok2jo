@@ -8,7 +8,7 @@ public class LectureAddDTO {
 	private String id;
 	private DATE s_start;
 	private DATE s_end;
-	private Boolean status;
+	private Long status;
 	
 	public Long getS_num() {
 		return s_num;
@@ -40,10 +40,11 @@ public class LectureAddDTO {
 	public void setS_end(DATE s_end) {
 		this.s_end = s_end;
 	}
-	public Boolean getStatus() {
+	public Long getStatus() {
 		return status;
 	}
-	public void setStatus(Boolean status) {
+	public void setStatus(Long status) {
 		this.status = status;
 	}
+	
 }

@@ -6,7 +6,7 @@
 		    <mapper namespace="com.seok.home.lecture.add.LectureAddDAO">
 		    	<insert id="setLectureAdd" parameterType="LectureAddDTO">
 		    		INSERT INTO "LECTURE_SIGN"(S_NUM, L_NUM, ID, S_START, S_END, STATUS)
-					VALUES (SIGN_SEQ.NEXTVAL, #{l_num}, #{id}, SYSDATE, SYSDATE, '1')
+					VALUES (SIGN_SEQ.NEXTVAL, #{l_num}, #{id}, SYSDATE, SYSDATE, 1)
 		    	</insert>
 		    	
 		    	<delete id="setLectureDelete" parameterType="LectureAddDTO">
@@ -14,7 +14,7 @@
 		    	</delete>
 		    	
 		    	<update id="setLectureUpdate" parameterType="LectureAddDTO">
-		    		UPDATE LECTURE_SIGN SET STATUS = #{status}  WHERE S_NUM = #{s_num}
+		    		UPDATE LECTURE_SIGN SET STATUS = 0  WHERE S_NUM = #{s_num}
 		    	</update>
 		    
 		    </mapper>
