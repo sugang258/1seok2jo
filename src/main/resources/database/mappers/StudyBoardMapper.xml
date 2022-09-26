@@ -17,13 +17,36 @@
 		    		SELECT COUNT(sb_num) FROM STUDY_BOARD
 		    	</select>
 		    	
-		    	<select id="getBoardDetail" parameterType="StudyBoardDTO" resultType="StudyBoardDTO">
-		    		SELECT * FROM STUDY_BOARD WHERE SB_NUM=#{sb_num}
+		    	<select id="getBoardDetail" parameterType="StudyBoardDTO" resultMap="getBoardDetailResult">
+		    		SELECT ????????추가하기 FROM STUDY_BOARD SB
+						    LEFT JOIN
+						    BOARDFILE BF
+						    ON (SB.SB_NUM = BF.SB_NUM) 
+					WHERE SB_NUM=#{sb_num}
 		    	</select>
 		    	
+		    	<resultMap type="StudyBoardDTO" id="getBoardDetailResult">
+		    		<id column="" property=""/>
+		    		<result column="" property=""/>
+		    		<result column="" property=""/>
+		    		<result column="" property=""/>
+		    		<result column="" property=""/>
+		    		<result column="" property=""/>
+		    		<result column="" property=""/>
+		    		<result column="" property=""/>
+
+		    		<association property="boardFileDTO" javaType="BoardFileDTO">
+		    			<id column="NUM" property="num"/>
+		    			<result column="F_NAME" property="f_name"/>
+		    		</association>
+		    	</resultMap>
+		    	
 		    	<insert id="setBoardAdd" parameterType="StudyBoardDTO">
+		    		<selectKey order="BEFORE" keyProperty="sb_num" resultType="Long">
+		    			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		    		</selectKey>
 			    	INSERT INTO study_board
-					VALUES (BOARD_SEQ.NEXTVAL, #{l_num}, #{id}, #{title}, SYSDATE, #{answer}, #{hit}, #{contents}, #{category})
+					VALUES (#{sb_num}, #{l_num}, #{id}, #{title}, SYSDATE, #{answer}, #{hit}, #{contents}, #{category})
 		    	</insert>
 		    		
 		    	<delete id="setBoardDelete" parameterType="StudyBoardDTO">
@@ -37,6 +60,11 @@
 		    	<update id="setBoardHit" parameterType="StudyBoardDTO">
 		    		UPDATE STUDY_BOARD SET HIT=HIT+1 WHERE SB_NUM=#{sb_num}
 		    	</update>
+		    	
+		    	<!-- 게시판 파일 등록 -->
+		    	<insert id="setBoardFile" parameterType="BoardFileDTO">
+		    		INSERT INTO BOARDFILE VALUES (FILE_SEQ.NEXTVAL, #{sb_num}, #{f_name}, #{f_oriname})
+		    	</insert>
 		   	   		    	
 		   	   	<!-- 게시판 댓글 수 -->	    	
 		    	<select id="getCount" parameterType="StudyBoardDTO" resultType="Long">

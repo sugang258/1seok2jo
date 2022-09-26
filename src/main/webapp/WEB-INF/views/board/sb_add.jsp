@@ -63,8 +63,10 @@
                         <textarea name = "contents" class="form-control mt-1" id="contents" rows="3"></textarea>
                     </div>
         
-                    <div id="addFiles">
-                        <button class="mt-2 file_add"><b>파일추가📂</b></button>
+                    <div class="file_box mt-2">
+                        <input class="upload-name" value="첨부파일" placeholder="첨부파일">
+                        <label for="file" style="color: gray;"><b>파일찾기</b></label>
+                        <input type="file" name="file" id="file"/>
                     </div>			
                     
                     <div class="mt-3 mb-1" style="text-align: right;">
@@ -76,17 +78,22 @@
 
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        $("#contents").summernote(
-                {
-                      height: 260,                
-                      minHeight: null,           
-                      maxHeight: null,          
-                      focus: true 
-                    });
-        $("#contents").summernote('pasteHTML', data);
-        $("#contents").html(data.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g,'"').replace(/&#40;/g,'(').replace(/&#41;/g,')').replace(/&#35;/g,'#'));
-
+<script type="text/javascript">
+    $("#contents").summernote(
+            {
+                    height: 260,                
+                    minHeight: null,           
+                    maxHeight: null,          
+                    focus: true 
+                });
+    $("#contents").summernote('pasteHTML', data);
+    $("#contents").html(data.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g,'"').replace(/&#40;/g,'(').replace(/&#41;/g,')').replace(/&#35;/g,'#'));
+</script>
+<script>
+$("#file").on('change',function(){
+    var fileName = $("#file").val();
+    $(".upload-name").val(fileName);
+});
 </script>
 </body>
 </html>

@@ -88,10 +88,10 @@ prefix="c" %>
               ${studyBoardDTO.contents}
             </h5>
           </div>
-          <div style="width: 100%; display: none">
+          <div style="width: 100%;">
             <img
               style="width: 80%; object-fit: fill"
-              src="https://www.researchgate.net/profile/Md-Masudur-Rahman-2/publication/317401664/figure/fig2/AS:504826271408129@1497371370743/Source-Code-Example-Customerjava-Partial.png"
+              src="../../../../resources/upload/board/${studyBoardDTO.boardFileDTO.f_name}"
               alt=""
             />
           </div>
