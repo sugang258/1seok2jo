@@ -24,3 +24,9 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+let video = document.getElementById("video")
+video.addEventListener("click", function(){
+
+    console.log(video)
+})
