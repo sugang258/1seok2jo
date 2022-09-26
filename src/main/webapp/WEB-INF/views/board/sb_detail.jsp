@@ -88,7 +88,7 @@ prefix="c" %>
               ${studyBoardDTO.contents}
             </h5>
           </div>
-          <div style="width: 100%;">
+          <div style="width: 100%">
             <img
               style="width: 80%; object-fit: fill"
               src="../../../../resources/upload/board/${studyBoardDTO.boardFileDTO.f_name}"
@@ -356,8 +356,17 @@ ${studyBoardDTO.contents}</textarea
         maxHeight: null,
         focus: true,
       });
-      /*   $("#contents").summernote('pasteHTML', data);
-        $("#contents").html(data.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g,'"').replace(/&#40;/g,'(').replace(/&#41;/g,')').replace(/&#35;/g,'#')); */
+      $("#contents").summernote("pasteHTML", data);
+      $("#contents").html(
+        data
+          .replace(/&amp;/g, "&")
+          .replace(/&lt;/g, "<")
+          .replace(/&gt;/g, ">")
+          .replace(/&quot;/g, '"')
+          .replace(/&#40;/g, "(")
+          .replace(/&#41;/g, ")")
+          .replace(/&#35;/g, "#")
+      );
     </script>
     <script src="/resources/js/sb_detail.js"></script>
     <script>

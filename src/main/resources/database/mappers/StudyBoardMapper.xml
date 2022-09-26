@@ -18,22 +18,23 @@
 		    	</select>
 		    	
 		    	<select id="getBoardDetail" parameterType="StudyBoardDTO" resultMap="getBoardDetailResult">
-		    		SELECT ????????추가하기 FROM STUDY_BOARD SB
+		    		SELECT SB.*, BF.num, BF.f_name  FROM STUDY_BOARD SB
 						    LEFT JOIN
 						    BOARDFILE BF
 						    ON (SB.SB_NUM = BF.SB_NUM) 
-					WHERE SB_NUM=#{sb_num}
+					WHERE SB.SB_NUM=#{sb_num}
 		    	</select>
 		    	
 		    	<resultMap type="StudyBoardDTO" id="getBoardDetailResult">
-		    		<id column="" property=""/>
-		    		<result column="" property=""/>
-		    		<result column="" property=""/>
-		    		<result column="" property=""/>
-		    		<result column="" property=""/>
-		    		<result column="" property=""/>
-		    		<result column="" property=""/>
-		    		<result column="" property=""/>
+		    		<id column="SB_NUM" property="sb_num"/>
+		    		<result column="L_NUM" property="l_num"/>
+		    		<result column="ID" property="id"/>
+		    		<result column="TITLE" property="title"/>
+		    		<result column="REG_DATE" property="reg_date"/>
+		    		<result column="ANSWER" property="answer"/>
+		    		<result column="HIT" property="hit"/>
+		    		<result column="CONTENTS" property="contents"/>
+		    		<result column="CATEGORY" property="category"/>
 
 		    		<association property="boardFileDTO" javaType="BoardFileDTO">
 		    			<id column="NUM" property="num"/>
