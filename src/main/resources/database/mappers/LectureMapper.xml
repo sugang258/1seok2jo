@@ -221,7 +221,7 @@
 				</select>
 				
 				<select id="getVideoList" parameterType="LectureVideoDTO" resultType="LectureVideoDTO">
-					SELECT * FROM VIDEO WHERE L_NUM =#{l_num} ORDER BY V_SEQ ASC  
+					SELECT * FROM VIDEO WHERE L_NUM =#{l_num} AND V_SEQ=#{v_seq}  
 				</select>
 				
 		    </mapper>

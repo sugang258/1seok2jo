@@ -26,7 +26,7 @@ rel="stylesheet"/>
                 <div class="sidebar-heading border-bottom bg-light">목 차</div>
                 <div class="list-group list-group-flush count"  data-count-num="${count}">
                     <c:forEach items="${video}" var="video">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">${video.v_context}</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 video_list" href="#!" data-video-num="${video.v_seq}">${video.v_context}</a>
                     </c:forEach>
                 </div>
             </div>

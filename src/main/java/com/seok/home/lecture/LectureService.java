@@ -161,4 +161,8 @@ public class LectureService {
 	public LectureDTO getLecturePre(LectureVideoDTO lectureVideoDTO) throws Exception{
 		return lectureDAO.getLecturePre(lectureVideoDTO);
 	}
+	
+	public LectureVideoDTO getVideoList(LectureVideoDTO lectureVideoDTO) throws Exception{
+		return lectureDAO.getVideoList(lectureVideoDTO);
+	}
 }
