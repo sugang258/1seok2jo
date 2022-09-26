@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.seok.home.cart.CartDTO;
@@ -133,22 +134,25 @@ public class MemberController {
 	
 	//프로필수정(POST)
 	@PostMapping("profile")
-	public String setProfile(MemberDTO memberDTO, HttpSession session)throws Exception {
+	public ModelAndView setProfile(MemberDTO memberDTO, HttpSession session, MultipartFile profile)throws Exception {
 		System.out.println("프로필 접속(POST)");
+		ModelAndView mv = new ModelAndView();
 		
-		int result = memberService.setProfile(memberDTO);
-		if(result!=0) {
-			memberDTO = memberService.getLogin(memberDTO);
-			System.out.println(memberDTO.getPhone());
+		int result = memberService.setProfile(memberDTO, profile, session.getServletContext());
+		
+		String message = "프로필수정 실패";
+		String url = "./profile";
+		if(result>0) {
+			message = "프로필수정 성공";
+			url = "./profile";
 		}
 		
-//		if(result>0) {
-//			System.out.println("프로필삭제 성공!");
-//		}else {
-//			System.out.println("프로필삭제 실패..");
-//		}
+		mv.addObject("result", result);
+		mv.addObject("message", message);
+		mv.addObject("url", url);
+		mv.setViewName("common/result");
 		
-		return "member/profile";
+		return mv;
 	}
 	
 	//장바구니(GET)

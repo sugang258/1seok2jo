@@ -6,11 +6,13 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.seok.home.cart.CartDAO;
 import com.seok.home.cart.CartDTO;
 import com.seok.home.lecture.teacher.TeacherDAO;
 import com.seok.home.lecture.teacher.TeacherDTO;
+import com.seok.home.util.FileManager;
 
 @Service
 public class MemberService {
@@ -52,7 +54,12 @@ public class MemberService {
 	/************************ 마이페이지 **************************/
 	
 	//프로필수정
-	public int setProfile(MemberDTO memberDTO)throws Exception{
+	public int setProfile(MemberDTO memberDTO, MultipartFile profile, ServletContext servletContext)throws Exception{
+		
+		int result = memberDAO.setJoin(memberDTO);
+		
+		String path = "resources/upload/member";
+		
 		return memberDAO.setProfile(memberDTO);
 	}
 	

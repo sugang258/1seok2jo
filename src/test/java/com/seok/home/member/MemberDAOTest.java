@@ -24,7 +24,6 @@ public class MemberDAOTest extends MyAbstractTest {
 		memberDTO.setGender("여자");
 		memberDTO.setEmail("hyo@naver.com");
 		memberDTO.setPhone("010-2222-2222");
-//		memberDTO.setPoint(0L);
 		
 		System.out.println(memberDTO.getB_date());
 		int result  = memberDAO.setJoin(memberDTO);
@@ -33,7 +32,7 @@ public class MemberDAOTest extends MyAbstractTest {
 		
 	}
 	
-	@Test
+	//@Test
 	public void getLoginTest()throws Exception {
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setId("yj");
