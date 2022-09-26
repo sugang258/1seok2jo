@@ -60,6 +60,8 @@ public class MemberService {
 		
 		String path = "resources/upload/member";
 		
+		String filName = FileManager.
+		
 		return memberDAO.setProfile(memberDTO);
 	}
 	
