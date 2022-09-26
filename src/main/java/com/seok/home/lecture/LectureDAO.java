@@ -107,5 +107,10 @@ public class LectureDAO {
 		return sqlSession.selectList(NAMESPACE+"getVideoStatus", lectureDTO);
 	}
 	
+	//한 강의당 목차 갯수
+	public Long getListCount(LectureDTO lectureDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getListCount", lectureDTO);
+	}
+	
 	
 }

@@ -206,4 +206,17 @@ public class LectureTest extends MyAbstractTest {
 		
 		assertNotEquals(1, ar.size());
 	}
+	
+	//@Test
+	public void getListCount() throws Exception{
+		LectureDTO lectureDTO = new LectureDTO();
+		
+		lectureDTO.setL_num(72L);
+		
+		long result = lectureDAO.getListCount(lectureDTO);
+		
+		assertEquals(6L, result);
+
+
+	}
 }

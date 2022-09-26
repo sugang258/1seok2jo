@@ -202,4 +202,9 @@
 					WHERE L.L_NUM = #{l_num} AND VV.V_STATUS = 1 ORDER BY VV.V_SEQ ASC
 				</select>
 				
+				<!-- 목차 갯수 -->
+				<select id="getListCount" parameterType="LectureDTO" resultType="java.lang.Long">
+					SELECT COUNT(*) FROM VIDEO WHERE L_NUM=#{l_num}
+				</select>
+				
 		    </mapper>

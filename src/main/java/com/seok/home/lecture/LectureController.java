@@ -73,15 +73,18 @@ public class LectureController {
 		System.out.println("detail");
 		
 		lectureDTO = lectureService.getDetail(lectureDTO);
+		long count = lectureService.getCountList(lectureDTO);
 		System.out.println(lectureDTO);
 		List<LectureVideoDTO> ar  = lectureDTO.getLectureVideoDTO();
 		List<LectureFileDTO> file = lectureDTO.getLectureFileDTO();
 		System.out.println("ar : "+ar.size());
 		System.out.println("file : "+ file.size());
+		System.out.println("count : "+count);
 		
 		//List<LectureDTO> ar = lectureService.getDetailVideo(lectureDTO);
 		ModelAndView mv = new ModelAndView();
 		session.setAttribute("detail", lectureDTO);
+		mv.addObject("count", count);
 		mv.addObject("detail", lectureDTO);
 		mv.addObject("ar", ar);
 		mv.addObject("file", file);
