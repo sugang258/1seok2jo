@@ -231,4 +231,16 @@ public class LectureTest extends MyAbstractTest {
 		
 		assertNotNull(lectureDTO);
 	}
+	
+	@Test
+	public void getVideoList() throws Exception{
+		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
+		lectureVideoDTO.setL_num(72L);
+
+		List<LectureVideoDTO> ar = lectureDAO.getVideoList(lectureVideoDTO);
+		
+		assertNotEquals(1, ar.size());
+
+		
+	}
 }
