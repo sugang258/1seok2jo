@@ -17,6 +17,9 @@ import com.seok.home.util.FileManager;
 @Service
 public class MemberService {
 
+	//파일매니저
+	@Autowired
+	private FileManager fileManager;
 	//회원
 	@Autowired
 	private MemberDAO memberDAO;
@@ -60,9 +63,17 @@ public class MemberService {
 		
 		String path = "resources/upload/member";
 		
-		String filName = FileManager.
+		String fileName = fileManager.saveFile(path, servletContext, profile);
 		
-		return memberDAO.setProfile(memberDTO);
+		if(!profile.isEmpty()) {
+			MemberFileDTO memberFileDTO = new MemberFileDTO();
+			memberFileDTO.setF_name(fileName);
+			memberFileDTO.setF_oriname(profile.getOriginalFilename());
+			memberFileDTO.setId(memberDTO.getId());
+			memberDAO.setAddFile(memberFileDTO);
+		}
+		
+		return result;
 	}
 	
 	//장바구니

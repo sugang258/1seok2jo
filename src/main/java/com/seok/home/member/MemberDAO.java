@@ -41,4 +41,9 @@ public class MemberDAO {
 		return sqlSession.update(NAMESPACE+"setProfile", memberDTO);
 	}
 	
+	//프로필사진업로드
+	public int setAddFile(MemberFileDTO memberFileDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setAddFile", memberFileDTO);
+	}
+	
 }

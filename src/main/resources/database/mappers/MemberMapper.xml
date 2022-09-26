@@ -52,4 +52,9 @@
 		UPDATE MEMBER SET N_NAME=#{n_name}, GENDER=#{gender}, EMAIL=#{email}, PHONE=#{phone} WHERE ID=#{id}
 	</update>
 	
+	<insert id="setAddFile" parameterType="MemberFileDTO">
+		INSERT INTO MEMBERFILE (NUM, ID, F_NAME, F_ORINAME)
+		VALUES(FILE_SEQ.NEXTVAL, #{id},#{f_name}, #{f_oriname})
+	</insert>
+	
 </mapper> 
