@@ -34,7 +34,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                 class="fa-solid fa-leaf"
                 style="color: rgba(72, 170, 72, 0.89)"
               ></i>
-              수강평 <span style="font-size: 13px; color: gray">총10개</span></b
+              수강평 <span style="font-size: 13px; color: gray">총 ${count}개</span></b
             >
           </div>
           <div
@@ -58,7 +58,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                 <div class="p-2" style="font-size: 34px"><b>5.0</b></div>
                 <div class="p-2" style="font-size: 20px">⭐⭐⭐⭐⭐</div>
                 <div class="p-2" style="color: rgb(85, 84, 84)">
-                  10개의 수강평
+                 ${count}개의 수강평
                 </div>
               </div>
             </div>
@@ -145,46 +145,63 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           </div>
         </div>
   
-        <div class="board">
           <!--Contents-->
+        <div class="board">
           <div>
             <div class="d-flex mt-3 ms-3 justify-content: flex-start;">
               <div class="p-2 flex-grow-3"><b>VIEW</b></div>
               <div class="p-2 flex-grow-3" style="color: gray">|</div>
-              <div class="p-2 flex-grow-3 font_st">👍 좋아요 순</div>
-              <div class="p-2 flex-grow-3 font_st">👀 최신 순</div>
-              <div class="p-2 flex-grow-3 font_st">😍 높은 평점 순</div>
-              <div class="p-2 flex-grow-3 font_st">🤔 낮은 평점 순</div>
+              <form action="./lectureboard_index" method="get">
+              <select name="array" class="array d-flex">
+	              <option class="arrays p-2 flex-grow-3 font_st" value="">👍 추천 순</option>
+	              <option class="arrays p-2 flex-grow-3 font_st" value="new">👀 최신 순</option>
+	              <option class="arrays p-2 flex-grow-3 font_st" value="high">😍 높은 평점 순</option>
+	              <option class="arrays p-2 flex-grow-3 font_st" value="low">🤔 낮은 평점 순</option>
+              </select>
+            </form>
             </div>
             <hr
               style="border: solid 0.7px; margin-top: 5px; margin-bottom: 0px"
             />
+            <!-- 임시로 보내는값 -->
+            <input type="text"  style="display: none;" name = "id" value="악플러" id="l_board_id">    
+          
           </div>
 
             <!--Reply-Content-->
-          <c:forEach items="list" var="lectureBoardDTO">
-          <input type="text" name="l_num" value="${lectureBoardDTO.l_num}" id="l_num" style="display: none"/>
-
           <div class="reply_list p-3" id="reply_list">
+          <c:forEach items="${requestScope.list}" var="lectureBoardDTO">
+          <input type="text" name="l_num" value="${lectureBoardDTO.l_num}" id="l_num" style="display: none"/>
+          <input type="text" name="num" value="${lectureBoardDTO.num}" id="lecture_boardNum" style="display: none"/>
   
-            <div class="mb-1 ms-2" style="margin-top: -8px; font-size: 13px">
-              ⭐⭐⭐⭐⭐ <b>5</b>
+          <div class="d-flex justify-content-between">
+            <div class="mb-2 ms-2" style="margin-top: -5px; font-size: 13px">
+              <c:choose>
+              	<c:when test="${lectureBoardDTO.score eq 1}">⭐</c:when>
+              	<c:when test="${lectureBoardDTO.score eq 2}">⭐⭐</c:when>
+              	<c:when test="${lectureBoardDTO.score eq 3}">⭐⭐⭐</c:when>
+              	<c:when test="${lectureBoardDTO.score eq 4}">⭐⭐⭐⭐</c:when>
+              	<c:otherwise>⭐⭐⭐⭐⭐</c:otherwise>
+              </c:choose>
+              <b>${lectureBoardDTO.score}</b>
             </div>
-            <div class="d-flex mb-2 ms-2">
+            <div><button id="l_board_delete" class="l_board_delete" type="button" style="font-size: 10px; background-color: transparent; border: none;">❌</button></div>
+          </div>
+            <div class="d-flex mb-2 ms-2 mt-1">
               <div>
                 <img
-                  src="https://img.danawa.com/prod_img/500000/017/350/img/13350017_1.jpg?shrink=330:330&_v=20210224095944"
+                  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
                   style="width: 26px; border-radius: 24px"
                 />
               </div>
-              <div class="ms-2 mt-1" style="font-size: 13px"><input type="text" name="id" value="${lectureBoardDTO.id}" id="id" style="display: none"/></div>
+              <div class="ms-2 mt-1" style="font-size: 13px">${lectureBoardDTO.id}</div>
             </div>
             <div class="d-flex mb-1">
               <div class="ms-2" style="font-size: 15px">
                 ${lectureBoardDTO.contents}
               </div>
             </div>
-            <div class="d-flex justify-content: space-around">
+            <div class="d-flex justify-content-between">
               <div
                 class="ms-2"
                 style="
@@ -192,31 +209,34 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                   margin-top: 10px;
                   margin-bottom: -6px;
                   color: rgb(73, 71, 71);
-                  width: 93%;
+                  width: 85%;
                 "
               >
-                🕓&{lectureBoardDTO.reg_date}
+                🕓${lectureBoardDTO.reg_date}
               </div>
-              <div class="best">
+              <div class="d-flex best">
+              	<div style="padding:6px 10px 0px 0px; font-size:15px;">100</div>
+              	<div>
                 <i class="fa-solid fa-thumbs-up"></i
                 ><span
-                  class="ms-1 d-md-inline-block d-none"
+                  class="ps-1 d-xl-inline-block d-none"
                   style="font-size: 11px"
                 >
                   추천</span
                 >
+                </div>
               </div>
             </div>
-            <hr />
+            <hr style="margin-top: 5px;" />
+          </c:forEach>
+          </div>
   
             <div class="mb-3" style="text-align: center">
               <button id="plus">더보기</button>
             </div>
         </div>
 
-
-
-          <div class="d-grid gap-2">
+          <div class="d-grid gap-2 ">
             <button
               class="btn btn-warning"
               data-bs-toggle="modal"
@@ -224,6 +244,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               data-bs-whatever="@mdo"
               type="button"
               id="lecture_add_btn"
+              style="width:69%; margin:0 auto;"
             >
               수강평 작성(수강생)
             </button>
@@ -317,16 +338,13 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                       ></textarea>
                     </div>
                 </div>
-                <!--임시로 보내는 값 -->
-                   <input type="text"  style="display: none;" name = "l_num" value="1">
-                   <input type="text"  style="display: none;" name = "id" value="user">
-				<!--임시로 보내는 값 -->
                 
                 <div class="modal-footer">
                   <button
                     type="button"
                     class="btn btn-secondary"
                     data-bs-dismiss="modal"
+                    id="close"
                   >
                     취소
                   </button>
@@ -338,9 +356,6 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               </div>
             </div>
           </div>
-          </c:forEach>
-          
-        </div>
     </section>
 
     <c:import url="../template/footer.jsp"></c:import>

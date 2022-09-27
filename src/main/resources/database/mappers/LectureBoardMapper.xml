@@ -4,12 +4,26 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 		    <mapper namespace="com.seok.home.l_board.LectureBoardDAO">
-		    	<select id="getL_boardList" resultType="LectureBoardDTO">
-		    		SELECT * FROM LECTURE_BOARD ORDER BY NUM DESC
+		    	<select id="getL_boardList" parameterType="LectureBoardDTO" resultType="LectureBoardDTO">
+		    		SELECT * FROM LECTURE_BOARD WHERE L_NUM = #{l_num} ORDER BY NUM DESC
+	 			<choose>
+		    			<when test="array=='new'">ORDER BY NUM DESC</when>
+		    			<when test="array=='high'">ORDER BY SCORE DESC, REG_DATE DESC</when>
+		    			<when test="array=='low'">ORDER BY SCORE ASC, REG_DATE DESC</when>
+		    		</choose>
 		    	</select>
 		    	
 		    	<insert id="setL_boardAdd" parameterType="LectureBoardDTO">
 		    		INSERT INTO LECTURE_BOARD VALUES (BOARD_SEQ.NEXTVAL, #{l_num}, #{id}, #{score}, #{contents}, SYSDATE)
 		    	</insert>
+		    	
+		    	<delete id="setL_boardDelete" parameterType="LectureBoardDTO">
+		    		DELETE LECTURE_BOARD WHERE num = #{num}
+		    	</delete>
+		    	
+		    	<!-- 수강평 댓글 수 -->
+		    	<select id="getTotalCount" parameterType="LectureBoardDTO" resultType="Long">
+		    		SELECT COUNT(NUM) FROM LECTURE_BOARD WHERE L_NUM = #{l_num}
+		    	</select>
 
 		    </mapper>

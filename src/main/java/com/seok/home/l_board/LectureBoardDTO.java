@@ -2,14 +2,26 @@ package com.seok.home.l_board;
 
 import java.sql.Date;
 
+
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class LectureBoardDTO {
 	private Long num;
 	private Long l_num;
 	private String id;
 	private Integer score;
 	private String contents;
-	private Date get_date;
+	@JsonFormat(pattern = "MM/DD/YY HH:MM:SS")
+	private Date reg_date;
+	private String array;
 	
+	public String getArray() {
+		return array;
+	}
+	public void setArray(String array) {
+		this.array = array;
+	}
 	public Long getNum() {
 		return num;
 	}
@@ -40,11 +52,11 @@ public class LectureBoardDTO {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public Date getGet_date() {
-		return get_date;
+	public Date getReg_date() {
+		return reg_date;
 	}
-	public void setGet_date(Date get_date) {
-		this.get_date = get_date;
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
 	}
 	
 }

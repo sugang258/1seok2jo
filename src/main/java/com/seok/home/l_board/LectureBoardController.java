@@ -18,11 +18,13 @@ public class LectureBoardController {
 	private LectureBoardService lectureBoardService;
 	
 	@GetMapping("lectureboard_index")
-	public ModelAndView getL_boardList()throws Exception {
+	public ModelAndView getL_boardList(LectureBoardDTO lectureBoardDTO)throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<LectureBoardDTO> ar = lectureBoardService.getL_boardList();
-		
+		List<LectureBoardDTO> ar = lectureBoardService.getL_boardList(lectureBoardDTO);
+		Long count = lectureBoardService.getTotalCount(lectureBoardDTO);
+		System.out.println(lectureBoardDTO.getArray());
 		mv.addObject("list", ar);
+		mv.addObject("count", count);
 		mv.setViewName("board/lectureboard_index");
 		
 		return mv;
@@ -35,4 +37,13 @@ public class LectureBoardController {
 		
 		return result;
 	}
+	
+	@PostMapping("l_boardDelete")
+	@ResponseBody
+	public int setL_boardDelete(LectureBoardDTO lectureBoardDTO)throws Exception{
+		int result = lectureBoardService.setL_boardDelete(lectureBoardDTO);
+		
+		return result;
+	}
+
 }
