@@ -104,7 +104,7 @@ public class PayService {
 			lectureDTOs.add(lectureDTO);
 		}
 		
-		return null;
+		return lectureDTOs;
 	}
 	
 	public ArrayList<LectureDTO> getOrder(String l_num) throws Exception {
