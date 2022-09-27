@@ -77,6 +77,7 @@
 		    			<result column="v_url" property="v_url"/>
 		    			<result column="v_context" property="v_context"/>
 		    			<result column="v_seq" property="v_seq"/>
+		    			<result column="v_status" property="v_status"/>
 		    		</collection>
 		    	</resultMap>
 		    	
@@ -93,7 +94,7 @@
 					ON L.C_NUM = CA.C_NUM
 					LEFT JOIN VIDEO VV
 					ON L.L_NUM = VV.L_NUM 
-					WHERE L.L_NUM = #{l_num}
+					WHERE L.L_NUM = #{l_num} ORDER BY VV.V_SEQ ASC
 		    	</select>
 		    	
 		    	<select id="getDetailVideo" resultMap="getDetailResult" parameterType="LectureDTO">
@@ -103,12 +104,12 @@
 					ON L.L_NUM = LF.L_NUM
 					JOIN VIDEO VV
 					ON L.L_NUM = VV.L_NUM
-					WHERE L.L_NUM = #{l_num}
+					WHERE L.L_NUM = #{l_num} ORDER BY VV.V_SEQ ASC
 		    	</select>
 		    	
 		    	<insert id="setAddVideo" parameterType="LectureVideoDTO">
-		    		INSERT INTO VIDEO(V_NUM, L_NUM, V_URL, V_CONTEXT,V_SEQ) 
-		    		VALUES(VIDEO_SEQ.NEXTVAL, #{l_num}, #{v_url}, #{v_context},#{v_seq})
+		    		INSERT INTO VIDEO(V_NUM, L_NUM, V_URL, V_CONTEXT,V_SEQ,V_STATUS) 
+		    		VALUES(VIDEO_SEQ.NEXTVAL, #{l_num}, #{v_url}, #{v_context},#{v_seq},0)
 		    	</insert>
 		    	
 		    	<select id="getCount" resultType="java.lang.Long" parameterType="com.seok.home.util.Pager">
@@ -161,8 +162,44 @@
 					DELETE L_FILE WHERE L_NUM=#{l_num}
 				</delete>
 				
-				<select id="getFileDetail" parameterType="lectureFileDTO" resultType="lectureFileDTO">
-					SELECT * FROM NOTICEFILE WHERE f_num = #{f_num}
+				<select id="getFileDetail" parameterType="LectureFileDTO" resultType="lectureFileDTO">
+					SELECT * FROM L_FILE WHERE L_NUM = #{l_num}
+				</select>
+				
+				<update id="setFileUpdate" parameterType="LectureFileDTO">
+					UPDATE L_FILE SET F_NAME=#{f_name}, F_ORINAME=#{f_oriname} WHERE L_NUM=#{l_num}
+				</update>
+				
+				<update id="setVideoUpdate" parameterType="LectureVideoDTO">
+					UPDATE VIDEO SET V_URL=#{v_url}, V_CONTEXT=#{v_context} WHERE V_NUM=#{v_num}
+				</update>
+				
+				<select id="getVideoDetails" parameterType="LectureVideoDTO" resultType="LectureVideoDTO">
+					SELECT * FROM VIDEO WHERE L_NUM= #{l_num} order by V_SEQ ASC
+				</select>
+				
+				<update id="setVideoStatus" parameterType="LectureVideoDTO">
+					UPDATE VIDEO SET V_STATUS=1 WHERE V_NUM=#{v_num}
+				</update>
+				
+				<select id="getVideoStatusCount" parameterType="LectureVideoDTO" resultType="java.lang.Long">
+					SELECT COUNT(V_NUM) FROM VIDEO WHERE L_NUM=#{l_num} AND V_STATUS = 1
+				</select>
+				
+				<select id="getVideoStatus" parameterType="LectureDTO" resultMap="getDetailResult">
+					SELECT L.*, LF.* , LV.*, CA.C_NAME, VV.*
+					FROM LECTURE L
+					LEFT JOIN L_FILE LF
+					ON L.L_NUM = LF.L_NUM
+					LEFT JOIN CART C
+					ON L.L_NUM = C.L_NUM
+					LEFT JOIN "LEVEL" LV
+					ON L.LEVEL_NUM = LV.LEVEL_NUM
+					LEFT JOIN CATEGORY CA
+					ON L.C_NUM = CA.C_NUM
+					LEFT JOIN VIDEO VV
+					ON L.L_NUM = VV.L_NUM 
+					WHERE L.L_NUM = #{l_num} AND VV.V_STATUS = 1 ORDER BY VV.V_SEQ ASC
 				</select>
 				
 		    </mapper>

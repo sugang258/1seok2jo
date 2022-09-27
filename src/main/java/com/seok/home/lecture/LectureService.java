@@ -3,10 +3,12 @@ package com.seok.home.lecture;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.seok.home.util.FileManager;
 import com.seok.home.util.Pager;
@@ -69,8 +71,41 @@ public class LectureService {
 		return lectureDAO.getDetailVideo(lectureDTO);
 	}
 	
-	public int setUpdate(LectureDTO lectureDTO) throws Exception {
-		return lectureDAO.setUpdate(lectureDTO);
+	public int setUpdate(LectureDTO lectureDTO,LectureVideoDTO lectureVideoDTO) throws Exception {
+		
+		Long seq=0L;
+		
+		int result = lectureDAO.setUpdate(lectureDTO);
+		
+		lectureVideoDTO.setL_num(lectureDTO.getL_num());
+		List<LectureVideoDTO> ar = lectureDAO.getVideoDetails(lectureVideoDTO);
+		System.out.println("arrrr :" +ar.size());
+//		//마지막 SEQ 가져오기
+		for(int i=0; i<ar.size();i++) {
+			
+			System.out.println("seqqq:"+ar.get(i).getV_seq());
+			seq = ar.get(i).getV_seq();
+			
+		}
+		if(lectureVideoDTO != null) {
+		String[] url =lectureVideoDTO.getV_url().split(",");
+		String[] context = lectureVideoDTO.getV_context().split(",");
+		for(int i=0; i<url.length; i++) {
+			seq++;
+			lectureVideoDTO.setL_num(lectureDTO.getL_num());
+			lectureVideoDTO.setV_url(url[i]);
+			lectureVideoDTO.setV_context(context[i]);
+			lectureVideoDTO.setV_seq(seq+1);
+			lectureDAO.setAddVideo(lectureVideoDTO);
+			}
+		}
+		return result;
+		
+//		
+		
+		
+		
+		
 	}
 	
 	public int setVideoDelete(LectureVideoDTO lectureVideoDTO) throws Exception {
@@ -92,5 +127,30 @@ public class LectureService {
 		
 	}
 	
+	//파일 업데이트
+	public int setFileUpdate(LectureFileDTO lectureFileDTO, MultipartFile[] files, ServletContext servletContext) throws Exception{
+		
+		lectureFileDTO = lectureDAO.getFileDetail(lectureFileDTO);
+		String path = "resources/upload/lecture";
+		
+		for(MultipartFile mf : files) {
+			if(mf.isEmpty()) {
+				continue;
+			}
+		
+		System.out.println(mf.getSize());
+		String fileName = fileManager.saveFile(path, servletContext,mf);
+		lectureFileDTO.setF_name(fileName);
+		lectureFileDTO.setF_oriname(mf.getOriginalFilename());
+		
+	}
+		 return lectureDAO.setFileUpdate(lectureFileDTO);
+		
+		
+	}
 	
+	public int setVideoUpdate(LectureVideoDTO lectureVideoDTO) throws Exception{
+		
+		return lectureDAO.setVideoUpdate(lectureVideoDTO);
+	}
 }

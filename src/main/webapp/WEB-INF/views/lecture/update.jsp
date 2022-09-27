@@ -14,13 +14,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=Arvo&family=Dongle&family=Montserrat:wght@200&family=PT+Serif&family=Playfair+Display:wght@600&family=Prompt&family=Vollkorn:wght@500&display=swap"
-  rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=Arvo&family=Dongle&family=Montserrat:wght@200&family=PT+Serif&family=Playfair+Display:wght@600&family=Prompt&family=Vollkorn:wght@500&display=swap"
+rel="stylesheet"
 />
-   <!-- jquery -->
-   <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
-   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<!-- jquery -->
+<script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <c:import url="../template/header.jsp"></c:import>
 <body>
@@ -30,10 +30,23 @@
             <h2 style="display: inline;">강의 수정 Form</h2>
         </div>
 
+        <div class="py-3 text-center">
+            <form action="setFileUpdate" id="setFileUpdate" method="post" enctype="multipart/form-data">
+            <div>
+                <label for="files" class="form-label">썸네일 이미지</label>
+            </div>
+            <img id="ori_img" src="../resources/upload/lecture/${update.lectureFileDTO[0].f_name}" style="display: inline;" data-file-num="${update.lectureFileDTO[0].f_name}" data-ori-num="${update.lectureFileDTO[0].f_oriname}">
+            <div class="img_change">
+                <input type="button" class="btn btn-primary" id="img_change" value="변경하기" data-f-num="${update.lectureFileDTO[0].num}" style="border :none; color: white; background-color: #66ba39;">
+            </div>
+            </form>
+        </div>
+
         <div class="text-center">
             <form action="update" method="post" id="update" enctype="multipart/form-data" >
                 <div class="row g-3">
-                
+                    <label for="l_num" class="form-label" style="display: none;">강의 번호</label>
+                    <input type="text" class="form-control" id="l_num" name="l_num" value="${update.l_num}" style="display: none;">
                     <div class="col-12">
                     <label for="l_name" class="form-label">강의 제목</label>
                         <div class="input-group has-validation">
@@ -89,15 +102,6 @@
                         <input type="text" class="form-control" id="l_price" name="l_price" placeholder="" required="" value="${update.l_price}">
                     </div>
                     
-                    <div>
-                        <div>
-                            <label for="files" class="form-label">썸네일 이미지</label>
-                        </div>
-                        <img src="../resources/upload/lecture/${update.lectureFileDTO[0].f_name}" style="display: inline;">
-                        <div class="img_change">
-                            <input type="button" class="btn btn-primary" id="img_change" value="변경하기" style="border :none; color: white; background-color: #66ba39;">
-                        </div>
-                    </div>
 
                     <div class="mt-4 mb-3">
                         <div>
@@ -107,7 +111,7 @@
                         </div>
         
                         <div class="video_change">
-                        <input type="button" class="btn btn-primary mt-3" id="ot_change" value="변경하기" style="border :none; color: white; background-color: #66ba39;">
+                        <input type="button" class="btn btn-primary mt-3" id="ot_change" value="변경하기" data-video-num="${update.lectureVideoDTO[0].v_num}" style="border :none; color: white; background-color: #66ba39;">
                         </div>
                     </div>
                     <div class="mb-3">
@@ -124,11 +128,14 @@
                             </div>
                         </div>
                     </c:forEach>
+                    
                     <div class="video_adds">
-                        <input type="button" class="btn btn-primary mt-3 del" id="video_add" value="동영상 추가하기"style="border :none; color: #66ba39; background-color: white;">
+                        <input type="button" class="btn btn-primary mt-1 video_add" id="video_add" value="동영상 추가하기"style="border :none; color: #66ba39; background-color: white;">
+                       
                     </div>
+                    
                     <div>
-                        <input type="button" class="w-100 btn btn-primary btn-lg" id="update_sub" style="background-color: #66ba39; border: none;" value="강의 수정"/>
+                        <input type="button" class="w-100 btn btn-primary btn-lg" id="update_sub" data-l-num="${update.l_num}" style="background-color: #66ba39; border: none;" value="강의 수정"/>
                     </div>
                 </div>
             </form>

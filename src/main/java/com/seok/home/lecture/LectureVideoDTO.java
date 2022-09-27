@@ -7,6 +7,7 @@ public class LectureVideoDTO {
 	private String v_url;
 	private String v_context;
 	private Long v_seq;
+	private Long v_status;
 	
 	
 	public Long getV_num() {
@@ -39,6 +40,14 @@ public class LectureVideoDTO {
 	public void setV_seq(Long v_seq) {
 		this.v_seq = v_seq;
 	}
+	public Long getV_status() {
+		return v_status;
+	}
+	public void setV_status(Long v_status) {
+		this.v_status = v_status;
+	}
+	
+	
 	
 	
 	

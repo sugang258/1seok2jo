@@ -13,7 +13,7 @@ public class StudyBoardDTO {
 	private Long hit;
 	private String contents;
 	private String category;
-	
+
 	public Long getSb_num() {
 		return sb_num;
 	}

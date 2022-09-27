@@ -134,4 +134,76 @@ public class LectureTest extends MyAbstractTest {
 		
 	}
 	
+	//@Test
+	public void setFileUpdate() throws Exception {
+		LectureFileDTO lectureFileDTO = new LectureFileDTO();
+		
+		lectureFileDTO.setNum(52L);
+		lectureFileDTO.setF_name("gang");
+		lectureFileDTO.setF_oriname("gang");
+		
+		int result = lectureDAO.setFileUpdate(lectureFileDTO);
+		
+		assertEquals(1, result);
+	}
+	
+	//@Test
+	public void getFileDetail() throws Exception {
+		LectureFileDTO lectureFileDTO = new LectureFileDTO();
+		
+		lectureFileDTO.setNum(52L);
+		
+		lectureFileDTO = lectureDAO.getFileDetail(lectureFileDTO);
+		
+		assertNotNull(lectureFileDTO);
+
+		
+	}
+	
+	//@Test
+	public void setVideoUpdate() throws Exception {
+		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
+		
+		lectureVideoDTO.setV_num(120L);
+		lectureVideoDTO.setV_url("HI");
+		lectureVideoDTO.setV_context("HIII");
+		
+		int result = lectureDAO.setVideoUpdate(lectureVideoDTO);
+
+		assertEquals(1, result);
+		
+	}
+	
+	//@Test
+	public void setVideoStatus() throws Exception{
+		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
+		
+		lectureVideoDTO.setV_num(116L);
+		
+		int result = lectureDAO.setVideoStatus(lectureVideoDTO);
+		
+		assertEquals(1, result);
+	}
+	
+	//@Test
+	public void getVideoStatusCount() throws Exception{
+		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
+		
+		lectureVideoDTO.setL_num(72L);
+		
+		long result = lectureDAO.getVideoStatusCount(lectureVideoDTO);
+		
+		assertEquals(0L, result);
+	}
+	
+	//@Test
+	public void getVideoStatus() throws Exception{
+		LectureDTO lectureDTO = new LectureDTO();
+		
+		lectureDTO.setL_num(72L);
+		
+		List<LectureDTO> ar = lectureDAO.getVideoStatus(lectureDTO);
+		
+		assertNotEquals(1, ar.size());
+	}
 }

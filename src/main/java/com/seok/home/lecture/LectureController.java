@@ -2,9 +2,11 @@ package com.seok.home.lecture;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.YamlProcessor.ResolutionMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
 
 import com.seok.home.util.Pager;
 
@@ -57,7 +60,7 @@ public class LectureController {
 		ModelAndView mv = new ModelAndView();
 		lectureDTO.setId("gang");
 		int result = lectureService.setLecture(lectureDTO, files, session.getServletContext(),lectureVideoDTO);
-		
+		session.setAttribute("add", lectureDTO);
 		mv.addObject("result", result);
 		mv.setViewName("redirect:./list");
 		
@@ -66,7 +69,7 @@ public class LectureController {
 	
 	@GetMapping("detail")
 	@ResponseBody
-	public ModelAndView getDetail(LectureDTO lectureDTO) throws Exception {
+	public ModelAndView getDetail(LectureDTO lectureDTO, HttpSession session) throws Exception {
 		System.out.println("detail");
 		
 		lectureDTO = lectureService.getDetail(lectureDTO);
@@ -78,6 +81,7 @@ public class LectureController {
 		
 		//List<LectureDTO> ar = lectureService.getDetailVideo(lectureDTO);
 		ModelAndView mv = new ModelAndView();
+		session.setAttribute("detail", lectureDTO);
 		mv.addObject("detail", lectureDTO);
 		mv.addObject("ar", ar);
 		mv.addObject("file", file);
@@ -87,14 +91,17 @@ public class LectureController {
 	}
 	
 	@GetMapping("update")
-	public ModelAndView setUpdate(LectureDTO lectureDTO) throws Exception {
+	public ModelAndView setUpdate(LectureDTO lectureDTO,HttpSession session) throws Exception {
 		
 		System.out.println("update");
 		ModelAndView mv = new ModelAndView();
 		
-		lectureDTO = lectureService.getDetail(lectureDTO);
+		lectureDTO = (LectureDTO) session.getAttribute("detail");
 		List<LectureVideoDTO> ar = lectureDTO.getLectureVideoDTO();
 		System.out.println("video ar: "+ar.size());
+		System.out.println("l_num : "+lectureDTO.getL_num());
+		Long l_num = lectureDTO.getL_num();
+		session.setAttribute("update", l_num);
 		mv.addObject("video", ar);
 		mv.addObject("update", lectureDTO);
 		mv.setViewName("/lecture/update");
@@ -103,13 +110,14 @@ public class LectureController {
 		return mv;
 	}
 	
-	@PostMapping("update")
-	@ResponseBody
-	public ModelAndView setUpdate(LectureDTO lectureDTO, ModelAndView mv) throws Exception{
+	@RequestMapping(value="update", method=RequestMethod.POST)
+	public ModelAndView setUpdate(LectureDTO lectureDTO, ModelAndView mv,MultipartFile[] files,HttpSession session,LectureVideoDTO lectureVideoDTO) throws Exception{
 		System.out.println("update post");
+		//System.out.println("l_nummmm"+lectureDTO.getL_num());
+		lectureService.setUpdate(lectureDTO,lectureVideoDTO);
 		
-		
-		mv.setViewName("/lecture/detail");
+		mv.addObject("dto", lectureDTO);
+		mv.setViewName("redirect:./detail?l_num="+lectureDTO.getL_num());
 		
 		return mv;
 	}
@@ -132,6 +140,45 @@ public class LectureController {
 		int result = lectureService.setDelete(lectureDTO);
 		
 		return result;
+	}
+	
+	@PostMapping("setFileUpdate")
+	@ResponseBody
+	public ModelAndView setFileUpdate(LectureDTO lectureDTO, MultipartFile[] files, HttpSession session) throws Exception{
+		System.out.println("파일 업데이트");
+		ModelAndView mv = new ModelAndView();
+		LectureFileDTO lectureFileDTO = new LectureFileDTO();
+		lectureDTO = (LectureDTO) session.getAttribute("detail");
+		lectureFileDTO.setL_num(lectureDTO.getL_num());
+		System.out.println(lectureFileDTO.getL_num());
+		int result = lectureService.setFileUpdate(lectureFileDTO,files,session.getServletContext());
+		
+		mv.setViewName("redirect:./detail?l_num="+lectureDTO.getL_num());
+		
+		
+		return mv;
+		
+	}
+	
+	@PostMapping("setVideoUpdate")
+	@ResponseBody
+	public int setVideoUpdate(LectureVideoDTO lectureVideoDTO) throws Exception{
+		int result = lectureService.setVideoUpdate(lectureVideoDTO);
+		return result;
+	}
+	
+	@GetMapping("listen")
+	public ModelAndView getDetailVideo(LectureDTO lectureDTO, ModelAndView mv, HttpSession session) throws Exception{
+		System.out.println("detailLecture");
+		lectureDTO = (LectureDTO) session.getAttribute("detail");
+		List<LectureVideoDTO> video = lectureDTO.getLectureVideoDTO();
+		List<LectureFileDTO> file = lectureDTO.getLectureFileDTO();
+		mv.addObject("video", video);
+		mv.addObject("file", file);
+		mv.addObject("dto", lectureDTO);
+		mv.setViewName("/lecture/listen");
+		
+		return mv;
 	}
 	
 	

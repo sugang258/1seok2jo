@@ -76,8 +76,36 @@ public class LectureDAO {
 		return sqlSession.delete(NAMESPACE+"setFileDelete", lectureDTO);
 	}
 	
-	public List<LectureFileDTO> getFileDetail(LectureFileDTO lectureFileDTO) throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getFileDetail", lectureFileDTO);
+	public LectureFileDTO getFileDetail(LectureFileDTO lectureFileDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getFileDetail", lectureFileDTO);
 	}
-
+	
+	public int setFileUpdate(LectureFileDTO lectureFileDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setFileUpdate", lectureFileDTO);
+	}
+	
+	public int setVideoUpdate(LectureVideoDTO lectureVideoDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setVideoUpdate", lectureVideoDTO);
+	}
+	
+	public List<LectureVideoDTO> getVideoDetails(LectureVideoDTO lectureVideoDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getVideoDetails", lectureVideoDTO);
+	}
+	
+	//video 수강 업데이트
+	public int setVideoStatus(LectureVideoDTO lectureVideoDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setVideoStatus", lectureVideoDTO);
+	}
+	
+	//수강 동영상 갯수
+	public Long getVideoStatusCount(LectureVideoDTO lectureVideoDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getVideoStatusCount", lectureVideoDTO);
+	}
+	
+	//수강완료한 동영상 정보 
+	public List<LectureDTO> getVideoStatus(LectureDTO lectureDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getVideoStatus", lectureDTO);
+	}
+	
+	
 }
