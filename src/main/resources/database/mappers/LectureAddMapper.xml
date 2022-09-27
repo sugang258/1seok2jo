@@ -16,5 +16,9 @@
 		    	<update id="setLectureUpdate" parameterType="LectureAddDTO">
 		    		UPDATE LECTURE_SIGN SET STATUS = 0  WHERE S_NUM = #{s_num}
 		    	</update>
+		    	
+		    	<select id="getLectureAdd" parameterType="LectureAddDTO" resultType="LectureAddDTO"> 
+		    		SELECT S_NUM FROM LECTURE_SIGN WHERE L_NUM=#{l_num} AND ID=#{id}
+		    	</select>
 		    
 		    </mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		    
+		    <mapper namespace="com.seok.home.lecture.status.StatusDAO">
+		    
+		    	<insert id="setStatusAdd" parameterType="StatusDTO">
+		    		INSERT INTO STATUS(NUM, V_NUM, S_NUM,V_STATUS) 
+		    		VALUES(STATUS_SEQ.NEXTVAL, #{v_num}, #{s_num},0)
+		    	</insert>
+		    	
+		    	<select id="getVideoList" parameterType="LectureDTO" resultType="LectureVideoDTO">
+		    		SELECT V_NUM FROM VIDEO WHERE L_NUM=#{l_num}
+		    	</select>
+		    
+		    </mapper>

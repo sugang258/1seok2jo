@@ -82,16 +82,16 @@ function requestPay() {
                         let name = document.getElementById("name");
                         console.log(name.value);
                         console.log(l_num);
-
+                   
                         const xhttp = new XMLHttpRequest();
-
+                   
                         xhttp.open("POST","../lectureAdd/setLectureAdd");
-
+                   
                         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
+                   
                         
                         xhttp.send("l_num="+l_num+"&id="+name.value);
-
+                   
                         xhttp.onreadystatechange = function() {
                             if(this.readyState == 4 && this.status == 200) {
                                 let result = xhttp.responseText.trim();
