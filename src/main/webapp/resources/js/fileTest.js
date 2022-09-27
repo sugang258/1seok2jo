@@ -78,10 +78,11 @@ function delfile(){
             let f_name = delImg[i].getAttribute("data-name");
             let path = delImg[i].getAttribute("data-path");
 
-            
+            //Ajax로 삭제요청 전송
             const xhttp = new XMLHttpRequest();
             xhttp.open("POST","http://20.249.88.100/deleteFile");
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+            //path와 f_name 전송해줌
             xhttp.send("path="+path+"&f_name="+f_name)
             xhttp.addEventListener("readystatechange", function(){
                 if(this.readyState==4 && this.status==200){
