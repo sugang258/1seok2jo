@@ -24,9 +24,9 @@ rel="stylesheet"/>
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light">목 차</div>
-                <div class="list-group list-group-flush">
+                <div class="list-group list-group-flush count"  data-count-num="${count}">
                     <c:forEach items="${video}" var="video">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">${video.v_context}</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 video_list" href="#!" data-video-num="${video.v_seq}">${video.v_context}</a>
                     </c:forEach>
                 </div>
             </div>
@@ -41,10 +41,10 @@ rel="stylesheet"/>
                     </div>
                 </nav>
                 <!-- Page content-->
-                <div class="container-fluid">
-                    <h1 class="mt-4">${dto.l_name}</h1>
-                    <div>
-                        ${dto.lectureVideoDTO[0].v_url}
+                <div class="container-fluid" id="video" data-v-num="${dto.lectureVideoDTO[0].v_num}" data-sta-num="${dto.lectureVideoDTO[0].v_status}">
+                    <h1 class="mt-4 num" data-l-num="${dto.l_num}">${dto.l_name}</h1>
+                    <div id="LectureVideo" data-seq-num="${dto.lectureVideoDTO[0].v_seq}">
+                         ${dto.lectureVideoDTO[0].v_url}
                     </div>
                 </div>
                 <div class="text-center">
@@ -59,5 +59,9 @@ rel="stylesheet"/>
 
     <c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="/resources/js/listen.js"></script>
+    <script src="https://www.youtube.com/player_api"></script>
+    
+   
 </body>
 </html>

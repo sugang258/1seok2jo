@@ -37,7 +37,7 @@ public class LectureAddTest extends MyAbstractTest {
 	public void setLectureUpdate() throws Exception {
 		LectureAddDTO lectureAddDTO = new LectureAddDTO();
 		lectureAddDTO.setS_num(4L);
-		lectureAddDTO.setStatus(false);
+		
 		
 		int result = lectureAddDAO.setLectureUpdate(lectureAddDTO);
 		assertEquals(1,result);

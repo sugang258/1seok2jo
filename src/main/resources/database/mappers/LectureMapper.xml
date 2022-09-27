@@ -97,14 +97,16 @@
 					WHERE L.L_NUM = #{l_num} ORDER BY VV.V_SEQ ASC
 		    	</select>
 		    	
-		    	<select id="getDetailVideo" resultMap="getDetailResult" parameterType="LectureDTO">
+		    	<select id="getDetailVideo" resultMap="getDetailResult" parameterType="LectureVideoDTO">
 		    		SELECT L.*, LF.* ,VV.*
 					FROM LECTURE L
 					JOIN L_FILE LF
 					ON L.L_NUM = LF.L_NUM
 					JOIN VIDEO VV
 					ON L.L_NUM = VV.L_NUM
-					WHERE L.L_NUM = #{l_num} ORDER BY VV.V_SEQ ASC
+					WHERE L.L_NUM = #{l_num} AND 
+					VV.V_SEQ =(SELECT MIN(V_SEQ) FROM VIDEO WHERE V_SEQ>#{v_seq}) 
+					ORDER BY VV.V_SEQ ASC
 		    	</select>
 		    	
 		    	<insert id="setAddVideo" parameterType="LectureVideoDTO">
@@ -200,6 +202,26 @@
 					LEFT JOIN VIDEO VV
 					ON L.L_NUM = VV.L_NUM 
 					WHERE L.L_NUM = #{l_num} AND VV.V_STATUS = 1 ORDER BY VV.V_SEQ ASC
+				</select>
+				
+				<!-- 목차 갯수 -->
+				<select id="getListCount" parameterType="LectureDTO" resultType="java.lang.Long">
+					SELECT COUNT(*) FROM VIDEO WHERE L_NUM=#{l_num}
+				</select>
+				
+				<select id="getLecturePre" parameterType="LectureVideoDTO" resultMap="getDetailResult">
+					SELECT L.*, LF.* ,VV.*
+					FROM LECTURE L
+					JOIN L_FILE LF
+					ON L.L_NUM = LF.L_NUM
+					JOIN VIDEO VV
+					ON L.L_NUM = VV.L_NUM
+					WHERE L.L_NUM = #{l_num} AND 
+					VV.V_SEQ =(SELECT MAX(V_SEQ) FROM VIDEO <![CDATA[WHERE V_SEQ < #{v_seq})]]>
+				</select>
+				
+				<select id="getVideoList" parameterType="LectureVideoDTO" resultType="LectureVideoDTO">
+					SELECT * FROM VIDEO WHERE L_NUM =#{l_num} AND V_SEQ=#{v_seq}  
 				</select>
 				
 		    </mapper>

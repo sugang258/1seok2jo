@@ -1,14 +1,16 @@
 package com.seok.home.lecture.add;
 
+import java.sql.Date;
+
 import oracle.sql.DATE;
 
 public class LectureAddDTO {
 	private Long s_num;
 	private Long l_num;
 	private String id;
-	private DATE s_start;
-	private DATE s_end;
-	private Boolean status;
+	private Date s_start;
+	private Date s_end;
+	private Long status;
 	
 	public Long getS_num() {
 		return s_num;
@@ -28,22 +30,24 @@ public class LectureAddDTO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public DATE getS_start() {
+	
+	public Date getS_start() {
 		return s_start;
 	}
-	public void setS_start(DATE s_start) {
+	public void setS_start(Date s_start) {
 		this.s_start = s_start;
 	}
-	public DATE getS_end() {
+	public Date getS_end() {
 		return s_end;
 	}
-	public void setS_end(DATE s_end) {
+	public void setS_end(Date s_end) {
 		this.s_end = s_end;
 	}
-	public Boolean getStatus() {
+	public Long getStatus() {
 		return status;
 	}
-	public void setStatus(Boolean status) {
+	public void setStatus(Long status) {
 		this.status = status;
 	}
+	
 }

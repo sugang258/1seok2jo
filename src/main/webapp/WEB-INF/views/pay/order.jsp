@@ -77,7 +77,7 @@
             </div>
             <!--테스트 끝-->
             <c:forEach items="${lectures}" var="lecture">
-              <div class="row g-1 p-3 align-items-center">
+              <div class="row g-1 p-3 align-items-center"  id="l_num" data-l-num="${lecture.l_num}">
                 <div class="col-3">
                   <img src="../../../resources/images/22.png" class="img-fluid rounded-start" style="object-fit: contain">
                 </div>
