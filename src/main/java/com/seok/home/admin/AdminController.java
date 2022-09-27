@@ -35,6 +35,11 @@ public class AdminController {
 		return "admin/memberList";
 	}
 	
+	@GetMapping(value = "paymentList")
+	private String getPayments() {
+		return "admin/paymentList";
+	}
+	
 	@PostMapping
 	private void getLogin(MemberDTO member, HttpServletRequest request) throws Exception {
 		//아이디와 비밀번호를 체크한 뒤 admin 자격이 있으면 세션의 admin값에 true로 돌려준다.

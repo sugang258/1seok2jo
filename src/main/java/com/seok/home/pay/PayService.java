@@ -22,6 +22,13 @@ public class PayService {
 	@Autowired
 	LectureDAO lectureDAO;
 	
+	public PaymentDTO cancel(PaymentDTO paymentDTO) throws Exception{
+
+		paymentDTO = payDAO.getPayDetail(paymentDTO);
+		
+		return paymentDTO;
+	}
+	
 	public HashMap<String, Object> showComplete(PaymentDTO paymentDTO) throws Exception{
 		
 		paymentDTO = payDAO.getPayDetail(paymentDTO);

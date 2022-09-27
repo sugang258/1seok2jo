@@ -46,7 +46,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 회원관리
                             </a>
-                            <a class="nav-link" href="charts.html">
+                            <a class="nav-link" href="/admin/paymentList">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 매출관리
                             </a>
