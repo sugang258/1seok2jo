@@ -41,10 +41,9 @@ rel="stylesheet"/>
                     </div>
                 </nav>
                 <!-- Page content-->
-                <div class="container-fluid" id="video">
+                <div class="container-fluid" id="video" data-v-num="${dto.lectureVideoDTO[0].v_num}" data-sta-num="${dto.lectureVideoDTO[0].v_status}">
                     <h1 class="mt-4 num" data-l-num="${dto.l_num}">${dto.l_name}</h1>
                     <div id="LectureVideo" data-seq-num="${dto.lectureVideoDTO[0].v_seq}">
-                        <button>click</button>
                          ${dto.lectureVideoDTO[0].v_url}
                     </div>
                 </div>

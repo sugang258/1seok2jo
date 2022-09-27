@@ -34,9 +34,42 @@ b_next.addEventListener("click",function(){
 
                 LectureVideo.innerHTML = result[0].v_url;
                 LectureVideo.getAttributeNode("data-seq-num").value = result[0].v_seq;
+                video.getAttributeNode("data-v-num").value = result[0].v_num;
+                video.getAttributeNode("data-sta-num").value = result[0].v_status;
 
             }
         }
+        setTimeout(function(){
+            let status = video.getAttributeNode("data-sta-num").value;
+            let v_num = video.getAttributeNode("data-v-num").value;
+            if(status == 0) {
+                const xhttp = new XMLHttpRequest();
+
+                xhttp.open("POST","./setVideoStatus");
+
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                xhttp.send("v_num="+v_num);
+
+                xhttp.onreadystatechange = function() {
+                    if(this.readyState == 4 && this.status == 200) {
+                        let result = xhttp.responseText.trim();
+                        console.log(result);
+                        
+                        result = JSON.parse(result);
+                        if(result == 1) {
+                                
+                            console.log(result);
+                            alert("수강 완료");
+                                    
+                                
+                        }else {
+                            alert("수강 완료 실패");
+                        }
+                    }
+                }
+            }
+        },10000)
 })
 
 b_pre.addEventListener("click",function(){
@@ -67,10 +100,43 @@ b_pre.addEventListener("click",function(){
 
                 LectureVideo.innerHTML = result[0].v_url;
                 LectureVideo.getAttributeNode("data-seq-num").value = result[0].v_seq;
+                video.getAttributeNode("data-v-num").value = result[0].v_num;
+                video.getAttributeNode("data-sta-num").value = result[0].v_status;
 
             }
         }
+        setTimeout(function(){
+            let status = video.getAttributeNode("data-sta-num").value;
+            let v_num = video.getAttributeNode("data-v-num").value;
+            if(status == 0) {
+                const xhttp = new XMLHttpRequest();
+
+                xhttp.open("POST","./setVideoStatus");
+
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                xhttp.send("v_num="+v_num);
+
+                xhttp.onreadystatechange = function() {
+                    if(this.readyState == 4 && this.status == 200) {
+                        let result = xhttp.responseText.trim();
+                        console.log(result);
+                        
+                        result = JSON.parse(result);
+                        if(result == 1) {
+                                
+                            console.log(result);
+                            alert("수강 완료");
+            
+                        }else {
+                            alert("수강 완료 실패");
+                        }
+                    }
+                }
+            }
+        },10000)
 })
+
 video_list.forEach(function(video_list) {
     video_list.addEventListener("click",function(){
         let v_seq = video_list.getAttributeNode("data-video-num").value;
@@ -99,12 +165,46 @@ video_list.forEach(function(video_list) {
 
                 LectureVideo.innerHTML = result.v_url;
                 LectureVideo.getAttributeNode("data-seq-num").value = result.v_seq;
+                video.getAttributeNode("data-v-num").value = result.v_num;
+                video.getAttributeNode("data-sta-num").value = result.v_status;
 
             }
         }
+        setTimeout(function(){
+            let status = video.getAttributeNode("data-sta-num").value;
+            let v_num = video.getAttributeNode("data-v-num").value;
+            if(status == 0) {
+                const xhttp = new XMLHttpRequest();
+
+                xhttp.open("POST","./setVideoStatus");
+
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                xhttp.send("v_num="+v_num);
+
+                xhttp.onreadystatechange = function() {
+                    if(this.readyState == 4 && this.status == 200) {
+                        let result = xhttp.responseText.trim();
+                        console.log(result);
+                        
+                        result = JSON.parse(result);
+                        if(result == 1) {
+                                
+                            console.log(result);
+                            alert("수강 완료");
+                                
+                        }else {
+                            alert("수강 완료 실패");
+                        }
+                    }
+                }
+            }
+        },10000)
     })
 
 })
+
+
 
 // video.addEventListener("click",function(event){
 //     let time = event.target;
@@ -113,13 +213,14 @@ video_list.forEach(function(video_list) {
 
 // })
 
-LectureVideo.addEventListener("click",function(event){
-    event.preventDefault();
-    let t = event.target;
-    let d = document.getElementById("player");
-    let c = document.querySelector(".ytp-time-duration");
-    console.log(c);
-    console.log(d);
-    console.log(this);
+// LectureVideo.addEventListener("click",function(event){
+//     event.preventDefault();
+//     let t = event.target;
+//     let d = document.getElementById("player");
+//     let c = document.querySelector(".ytp-time-duration");
+//     console.log(c);
+//     console.log(d);
+//     console.log(this);
 
-})
+// })
+

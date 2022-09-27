@@ -83,6 +83,7 @@ public class LectureController {
 		
 		//List<LectureDTO> ar = lectureService.getDetailVideo(lectureDTO);
 		ModelAndView mv = new ModelAndView();
+		session.setAttribute("num", lectureDTO.getL_num());
 		session.setAttribute("detail", lectureDTO);
 		mv.addObject("count", count);
 		mv.addObject("detail", lectureDTO);
@@ -171,10 +172,14 @@ public class LectureController {
 	}
 	
 	@GetMapping("listen")
-	public ModelAndView getDetailVideo(LectureDTO lectureDTO,LectureVideoDTO lectureVideoDTO, ModelAndView mv, HttpSession session) throws Exception{
+	public ModelAndView getDetailVideo(LectureDTO lectureDTO, ModelAndView mv, HttpSession session) throws Exception{
 		System.out.println("detailLecture");
-		lectureDTO = (LectureDTO) session.getAttribute("detail");
+		lectureDTO = lectureService.getDetail(lectureDTO);
+		//lectureDTO = (LectureDTO) session.getAttribute("detail");
+		//lectureDTO.setL_num((Long)session.getAttribute("num"));
+		System.out.println(lectureDTO.getL_num());
 		long count = lectureService.getListCount(lectureDTO);
+		
 		//System.out.println(lectureVideoDTO.getV_seq());
 		
 		
@@ -226,6 +231,15 @@ public class LectureController {
 		lectureVideoDTO = lectureService.getVideoList(lectureVideoDTO);
 		
 		return lectureVideoDTO;
+	}
+	
+	@PostMapping("setVideoStatus")
+	@ResponseBody
+	public int setVideoStatus(LectureVideoDTO lectureVideoDTO) throws Exception{
+		System.out.println("status");
+		
+		int result = lectureService.setVideoStatus(lectureVideoDTO);
+		return result;
 	}
 	
 	
