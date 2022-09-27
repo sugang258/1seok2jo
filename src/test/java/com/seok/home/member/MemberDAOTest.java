@@ -2,6 +2,8 @@ package com.seok.home.member;
 
 import static org.junit.Assert.*;
 
+import javax.swing.plaf.metal.MetalMenuBarUI;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -54,6 +56,19 @@ public class MemberDAOTest extends MyAbstractTest {
 		int result = memberDAO.setProfile(memberDTO);
 		
 		assertEquals(1, result);
+	}
+	
+	@Test
+	public void getProfileTest()throws Exception{
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setId("koo");
+//		MemberFileDTO memberFileDTO = new MemberFileDTO();
+//		memberFileDTO.setNum(1L);
+//		memberFileDTO.setF_name("ㅎㅎ");
+		
+		memberDTO = memberDAO.getProfile(memberDTO);
+		
+		assertNotNull(memberDTO);
 	}
 
 }

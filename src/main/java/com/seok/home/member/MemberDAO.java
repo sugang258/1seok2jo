@@ -20,7 +20,6 @@ public class MemberDAO {
 	
 	//회원가입
 	public int setJoin(MemberDTO memberDTO)throws Exception{
-		System.out.println(memberDTO.getB_date());
 		return sqlSession.insert(NAMESPACE+"setJoin", memberDTO);
 	}
 	
@@ -35,6 +34,11 @@ public class MemberDAO {
 	}
 	
 	/************************ 마이페이지 **************************/
+	
+	//프로필정보조회
+	public MemberDTO getProfile(MemberDTO memberDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getProfile", memberDTO);
+	}
 	
 	//프로필수정
 	public int setProfile(MemberDTO memberDTO)throws Exception{	

@@ -39,7 +39,7 @@ public class MemberService {
 	
 	//회원가입
 	public int setJoin(MemberDTO memberDTO)throws Exception{
-		//MemberDAO에 멤버등급 인서트 메서드를 만들어서 실행
+		//회원가입이 성공하면 등급을 추가
 		int susess = memberDAO.setJoin(memberDTO);
 		int result = 0;
 		if(susess == 1 ) {
@@ -56,11 +56,15 @@ public class MemberService {
 	
 	/************************ 마이페이지 **************************/
 	
+	//프로필정보조회
+	public MemberDTO getProfile(MemberDTO memberDTO)throws Exception{
+		return memberDAO.getProfile(memberDTO);
+	}
+	
 	//프로필수정
 	public int setProfile(MemberDTO memberDTO, MultipartFile profile, ServletContext servletContext)throws Exception{
 		
 		int result = memberDAO.setJoin(memberDTO);
-		
 		String path = "resources/upload/member";
 		
 		String fileName = fileManager.saveFile(path, servletContext, profile);
