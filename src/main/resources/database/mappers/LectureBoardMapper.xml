@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		    
+		    <mapper namespace="com.seok.home.l_board.LectureBoardDAO">
+		    	<select id="getL_boardList" resultType="LectureBoardDTO">
+		    		SELECT * FROM LECTURE_BOARD ORDER BY NUM DESC
+		    	</select>
+		    	
+		    	<insert id="setL_boardAdd" parameterType="LectureBoardDTO">
+		    		INSERT INTO LECTURE_BOARD VALUES (BOARD_SEQ.NEXTVAL, #{l_num}, #{id}, #{score}, #{contents}, SYSDATE)
+		    	</insert>
+
+		    </mapper>

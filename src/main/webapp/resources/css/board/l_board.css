@@ -1,0 +1,105 @@
+/**board-top*/
+.board_top {
+    height: 290px;
+    width: 70%;
+    margin: 20px auto 0px auto;
+    padding-top: 1px;
+    padding-bottom: 2px;
+  }
+  
+  /**board*/
+  .board {
+    width: 70%;
+    margin: 0 auto;
+  }
+  .font_st {
+    letter-spacing: -1px;
+    font-size: 14px;
+    color: rgba(104, 100, 100, 0.74);
+    margin-top: 1px;
+    line-height: 24px;
+  }
+  .font_st:hover {
+    color: black;
+    font-weight: bold;
+  }
+  
+  /**reply*/
+  
+  #reply_btn {
+    border: none;
+    background-color: rgba(0, 66, 0, 0.637);
+    border-radius: 6px;
+    padding: 3px;
+    padding: 5px 10px 7px 10px;
+    color: white;
+    margin-left: -10px;
+    margin-top: 5px;
+    z-index: 10px;
+  }
+  #reply_text {
+    z-index: 5px;
+    width: 60%;
+    height: 34px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+      rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    font-size: 14px;
+    padding-left: 1.5em;
+    padding-right: 1.3em;
+  }
+  input:focus {
+    outline: none;
+  }
+  
+  #plus {
+    border: none;
+    background-color: transparent;
+    font-weight: bolder;
+    color: rgb(70, 70, 70);
+  }
+  #plus:active {
+    color: black;
+    transform: scale(1.03);
+  }
+  
+  .best {
+    font-size: 20px;
+    color: rgb(73, 71, 71);
+  }
+  .fa-solid:active {
+    color: rgba(248, 195, 19, 0.918);
+  }
+  
+  /**Modal css*/
+  .star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 3rem;
+    line-height: 2.5rem;
+    justify-content: space-around;
+    padding: 0 0.2em;
+    text-align: center;
+    width: 5em;
+  }
+  
+  .star-rating input {
+    display: none;
+  }
+  
+  .star-rating label {
+    -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 2.3px;
+    -webkit-text-stroke-color: #2b2a29;
+    cursor: pointer;
+  }
+  
+  .star-rating :checked ~ label {
+    -webkit-text-fill-color: gold;
+  }
+  
+  .star-rating label:hover,
+  .star-rating label:hover ~ label {
+    -webkit-text-fill-color: #fff58c;
+  }
+  
