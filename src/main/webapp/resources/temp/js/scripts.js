@@ -24,9 +24,14 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+let iframe = document.getElementsByTagName("iframe");
+iframe.onclick = function(){
+    console.log("ㅗㅑ   ")
+}
 
 let video = document.getElementById("video")
 video.addEventListener("click", function(){
 
-    console.log(video)
+    console.log(video.children[0])
+    console.log(video.children[0].contentDocument.document)
 })
