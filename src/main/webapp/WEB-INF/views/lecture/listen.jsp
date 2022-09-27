@@ -41,9 +41,10 @@ rel="stylesheet"/>
                     </div>
                 </nav>
                 <!-- Page content-->
-                <div class="container-fluid">
+                <div class="container-fluid" id="video">
                     <h1 class="mt-4 num" data-l-num="${dto.l_num}">${dto.l_name}</h1>
                     <div id="LectureVideo" data-seq-num="${dto.lectureVideoDTO[0].v_seq}">
+                        <button>click</button>
                          ${dto.lectureVideoDTO[0].v_url}
                     </div>
                 </div>
@@ -60,5 +61,8 @@ rel="stylesheet"/>
     <c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="/resources/js/listen.js"></script>
+    <script src="https://www.youtube.com/player_api"></script>
+    
+   
 </body>
 </html>

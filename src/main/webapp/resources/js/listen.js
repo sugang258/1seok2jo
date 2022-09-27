@@ -3,6 +3,8 @@ const b_pre = document.querySelector("#b_pre");
 const LectureVideo = document.querySelector("#LectureVideo");
 const num = document.querySelector(".num");
 const video_list = document.querySelectorAll(".video_list");
+const duration = document.querySelector(".ytp-time-duration");
+const video = document.querySelector("#video");
 
 b_next.addEventListener("click",function(){
     let count = document.querySelector(".count").getAttributeNode("data-count-num").value; 
@@ -104,3 +106,20 @@ video_list.forEach(function(video_list) {
 
 })
 
+// video.addEventListener("click",function(event){
+//     let time = event.target;
+//     console.log(time);
+//     console.log("clock");
+
+// })
+
+LectureVideo.addEventListener("click",function(event){
+    event.preventDefault();
+    let t = event.target;
+    let d = document.getElementById("player");
+    let c = document.querySelector(".ytp-time-duration");
+    console.log(c);
+    console.log(d);
+    console.log(this);
+
+})
