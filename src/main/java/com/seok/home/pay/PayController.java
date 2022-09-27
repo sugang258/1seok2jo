@@ -64,13 +64,19 @@ public class PayController {
 	}
 	
 	@PostMapping(value="cancel")
+	@ResponseBody
 	public String cancle(RefundDTO refundDTO) throws Exception{
 		System.out.println("hi");
 		
-		String test_already_cancelled_merchant_uid = "1seok2jo-1663731094101";
+		String test_already_cancelled_merchant_uid = "1seok2jo-1663728830588";
         CancelData cancel_data = new CancelData(test_already_cancelled_merchant_uid, false, BigDecimal.valueOf(1500)); //merchant_uid를 통한 500원 부분취소
 
         IamportResponse<Payment> payment_response = client.cancelPaymentByImpUid(cancel_data);
+
+        System.out.println(payment_response.getResponse().getCancelAmount());
+        System.out.println(payment_response.getResponse().getApplyNum());//환불번호
+        System.out.println(payment_response.getResponse().getCancelReason());
+        System.out.println(payment_response.getResponse().getFailReason());
 
         System.out.println(payment_response.getResponse().getCancelAmount());
 		return "hi";

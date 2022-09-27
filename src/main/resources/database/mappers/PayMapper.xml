@@ -5,7 +5,14 @@
     
     <mapper namespace="com.seok.home.pay.PayDAO">
     	<select id="getPaymentList" resultType="PaymentDTO">
-    		select * from payment
+    		select * 
+			FROM payment P
+			left join "ORDER" O
+			on P.p_uid = O.P_UID
+			left join Lecture L
+			on O.l_num = L.l_num
+			left join refund R
+			on O.O_num = R.O_num
     	</select>
     
     	<insert id="savePayment" parameterType="PaymentDTO">
