@@ -55,7 +55,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                 class="d-flex flex-column mt-2 mb-3"
                 style="text-align: center"
               >
-                <div class="p-2" style="font-size: 34px"><b>5.0</b></div>
+                <div class="p-2" style="font-size: 34px"><b>${avg}</b></div>
                 <div class="p-2" style="font-size: 20px">⭐⭐⭐⭐⭐</div>
                 <div class="p-2" style="color: rgb(85, 84, 84)">
                  ${count}개의 수강평
@@ -86,7 +86,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                     class="progress-bar bg-warning"
                     role="progressbar"
                     aria-label="Warning example"
-                    style="width: 100%"
+                    style="width: ${fiveScore}%"
                     aria-valuenow="75"
                     aria-valuemin="0"
                     aria-valuemax="100"
@@ -98,7 +98,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                     class="progress-bar bg-warning"
                     role="progressbar"
                     aria-label="Warning example"
-                    style="width: 0%"
+                    style="width: ${fourScore}%"
                     aria-valuenow="75"
                     aria-valuemin="0"
                     aria-valuemax="100"
@@ -110,7 +110,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                     class="progress-bar bg-warning"
                     role="progressbar"
                     aria-label="Warning example"
-                    style="width: 0%"
+                    style="width: ${thirdScore}%"
                     aria-valuenow="75"
                     aria-valuemin="0"
                     aria-valuemax="100"
@@ -122,7 +122,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                     class="progress-bar bg-warning"
                     role="progressbar"
                     aria-label="Warning example"
-                    style="width: 0%"
+                    style="width: ${secondScore}%"
                     aria-valuenow="75"
                     aria-valuemin="0"
                     aria-valuemax="100"
@@ -134,7 +134,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                     class="progress-bar bg-warning"
                     role="progressbar"
                     aria-label="Warning example"
-                    style="width: 0%"
+                    style="width: ${firstScore}%"
                     aria-valuenow="75"
                     aria-valuemin="0"
                     aria-valuemax="100"
@@ -151,14 +151,20 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             <div class="d-flex mt-3 ms-3 justify-content: flex-start;">
               <div class="p-2 flex-grow-3"><b>VIEW</b></div>
               <div class="p-2 flex-grow-3" style="color: gray">|</div>
-              <form action="./lectureboard_index" method="get">
-              <select name="array" class="array d-flex">
-	              <option class="arrays p-2 flex-grow-3 font_st" value="">👍 추천 순</option>
-	              <option class="arrays p-2 flex-grow-3 font_st" value="new">👀 최신 순</option>
-	              <option class="arrays p-2 flex-grow-3 font_st" value="high">😍 높은 평점 순</option>
-	              <option class="arrays p-2 flex-grow-3 font_st" value="low">🤔 낮은 평점 순</option>
-              </select>
-            </form>
+              <div class="array d-flex">
+              <form action="./new" method="get">
+	              <div class="arrays p-2 flex-grow-3 font_st" onclick="location='./new?l_num=${lectureBoardDTO.l_num}'">👀 최신 순</div>
+              </form>
+              <form action="./like" method="get">
+	              <div class="arrays p-2 flex-grow-3 font_st" onclick="location='./like?l_num=${lectureBoardDTO.l_num}'">👍 추천 순</div>
+              </form>
+              <form action="./high" method="get">
+	              <div class="arrays p-2 flex-grow-3 font_st" onclick="location='./high?l_num=${lectureBoardDTO.l_num}'">😍 높은 평점 순</div>
+	          </form>
+	          <form action="./low" method="get">
+	              <div class="arrays p-2 flex-grow-3 font_st" onclick="location='./low?l_num=${lectureBoardDTO.l_num}'">🤔 낮은 평점 순</div>
+	          </form>
+              </div>
             </div>
             <hr
               style="border: solid 0.7px; margin-top: 5px; margin-bottom: 0px"
@@ -172,7 +178,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           <div class="reply_list p-3" id="reply_list">
           <c:forEach items="${requestScope.list}" var="lectureBoardDTO">
           <input type="text" name="l_num" value="${lectureBoardDTO.l_num}" id="l_num" style="display: none"/>
-          <input type="text" name="num" value="${lectureBoardDTO.num}" id="lecture_boardNum" style="display: none"/>
+          <input type="text" name="num" value="${lectureBoardDTO.num}" class="lecture_boardNum" style="display: none"/>
   
           <div class="d-flex justify-content-between">
             <div class="mb-2 ms-2" style="margin-top: -5px; font-size: 13px">
@@ -194,7 +200,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                   style="width: 26px; border-radius: 24px"
                 />
               </div>
-              <div class="ms-2 mt-1" style="font-size: 13px">${lectureBoardDTO.id}</div>
+              <div class="l_board_id ms-2 mt-1" style="font-size: 13px">${lectureBoardDTO.id}</div>
             </div>
             <div class="d-flex mb-1">
               <div class="ms-2" style="font-size: 15px">
@@ -215,15 +221,17 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                 🕓${lectureBoardDTO.reg_date}
               </div>
               <div class="d-flex best">
-              	<div style="padding:6px 10px 0px 0px; font-size:15px;">100</div>
+              	<div style="padding:6px 10px 0px 0px; font-size:15px;">${heart_count}</div>
               	<div>
-                <i class="fa-solid fa-thumbs-up"></i
-                ><span
-                  class="ps-1 d-xl-inline-block d-none"
-                  style="font-size: 11px"
-                >
-                  추천</span
-                >
+                  <form action="./l_heartCount" method="get">
+                    <i class="like_btn fa-solid fa-thumbs-up" onclick="location='./l_heartCount?num=${lectureBoardDTO.num}'" data-l_board-num="${lectureBoardDTO.num}"></i
+                      ><span
+                      class="ps-1 d-xl-inline-block d-none"
+                      style="font-size: 11px"
+                      >
+                      추천</span
+                      >
+                  </form>
                 </div>
               </div>
             </div>

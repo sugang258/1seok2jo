@@ -52,27 +52,34 @@ for(l of l_board_delete){
     });
 }
 
+//수강평 추천 기능구현
+const reply_list = document.getElementsByClassName("reply_list");
+const like_btn = document.getElementsByClassName("like_btn");
 
-/**정렬기능 */
-let array = document.getElementsByClassName("array");
-
-for(ar of array){
-    ar.addEventListener("click", function(event){
-        if(event.target.classList[0]="array"){
-            const l_num = document.getElementById("l_num").value;
-            // let l_array = event.target.getAttribute("data-l_board-value")
-            let l_array = event.target.value;
-            console.log(l_array)
-            const xhttp = new XMLHttpRequest();
-            xhttp.open("GET", "/board/lectureboard_index?array="+l_array+"&l_num="+l_num);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send();
-            xhttp.onreadystatechange=function(){
-                xhttp.responseText.trim();
+for(let i=0; i<like_btn.length; i++){
+    like_btn[i].addEventListener("click", function(){
+        let result;
+        let num = document.querySelectorAll(".lecture_boardNum");
+        num = num[i].value;
+        let id = document.querySelectorAll(".l_board_id");
+        id = id[i].innerHTML;
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "/board/l_heart");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("num="+num+"&id="+id);
+        xhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                result = xhttp.responseText.trim();
+                console.log(result);
+                if(result==1){
+                    like_btn[i].setAttribute("style", "color:#FFCD28");
+                }else {
+                    like_btn[i].setAttribute("style", "color: rgb(73, 71, 71)");
+                }
             }
         }
-    }
-)}
+    });
+}
 
 
 

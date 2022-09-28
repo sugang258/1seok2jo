@@ -67,9 +67,6 @@
     font-size: 20px;
     color: rgb(73, 71, 71);
   }
-  .fa-solid:active {
-    color: rgba(248, 195, 19, 0.918);
-  }
   
   /**Modal css*/
   .star-rating {

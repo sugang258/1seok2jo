@@ -12,7 +12,6 @@ public class LectureBoardService {
 	private LectureBoardDAO lectureBoardDAO;
 	
 	public List<LectureBoardDTO> getL_boardList(LectureBoardDTO lectureBoardDTO)throws Exception{
-		System.out.println("service"+lectureBoardDTO.getArray());
 		return lectureBoardDAO.getL_boardList(lectureBoardDTO);
 	}
 	
@@ -27,5 +26,53 @@ public class LectureBoardService {
 	public Long getTotalCount(LectureBoardDTO lectureBoardDTO)throws Exception{
 		return lectureBoardDAO.getTotalCount(lectureBoardDTO);
 	}
+	/* 수강평 점수별 댓글 수 */ 	
+	public Long getFiveScore(LectureBoardDTO lectureBoardDTO)throws Exception{
+		return lectureBoardDAO.getFiveScore(lectureBoardDTO);
+	}
+	public Long getFourScore(LectureBoardDTO lectureBoardDTO)throws Exception{
+		return lectureBoardDAO.getFourScore(lectureBoardDTO);
+	}
+	public Long getThirdScore(LectureBoardDTO lectureBoardDTO)throws Exception{
+		return lectureBoardDAO.getThirdScore(lectureBoardDTO);
+	}
+	public Long getSecondScore(LectureBoardDTO lectureBoardDTO)throws Exception{
+		return lectureBoardDAO.getSecondScore(lectureBoardDTO);
+	}
+	public Long getFirstScore(LectureBoardDTO lectureBoardDTO)throws Exception{
+		return lectureBoardDAO.getFirstScore(lectureBoardDTO);
+	}
+	/* 별점 평점 */
+	public double getAvgScore(LectureBoardDTO lectureBoardDTO)throws Exception{
+		return lectureBoardDAO.getAvgScore(lectureBoardDTO);
+	}
+	/* 정렬기능구현 */
+	public List<LectureBoardDTO> getL_boardNewList(LectureBoardDTO lectureBoardDTO)throws Exception{
+		return lectureBoardDAO.getL_boardNewList(lectureBoardDTO);
+	}
+	public List<LectureBoardDTO> getL_boardHighList(LectureBoardDTO lectureBoardDTO)throws Exception{
+		return lectureBoardDAO.getL_boardHighList(lectureBoardDTO);
+	}
+	public List<LectureBoardDTO> getL_boardLowList(LectureBoardDTO lectureBoardDTO)throws Exception{
+		return lectureBoardDAO.getL_boardLowList(lectureBoardDTO);
+	}
+	
+	/* 수강평 추천기능구현 */
+	public L_heartDTO getL_heart(L_heartDTO l_heartDTO)throws Exception{
+		return lectureBoardDAO.getL_heart(l_heartDTO);
+	}
+	public int setL_heart(L_heartDTO l_heartDTO)throws Exception {
+		return lectureBoardDAO.setL_heart(l_heartDTO);
+	}
+	/* 수강평 추천 취소 및 재선택 */
+	public int setHeartToggle(L_heartDTO l_heartDTO)throws Exception{
+		return lectureBoardDAO.setHeartToggle(l_heartDTO);
+	}
+	/* 추천 갯수 */
+	public Long getHeartCount(L_heartDTO l_heartDTO)throws Exception{
+		return lectureBoardDAO.getHeartCount(l_heartDTO);
+	}
+
+	
 
 }
