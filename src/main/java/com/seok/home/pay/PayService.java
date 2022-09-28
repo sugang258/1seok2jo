@@ -19,14 +19,16 @@ public class PayService {
 	PayDAO payDAO;
 	@Autowired
 	CartDAO cartDAO;
-	@Autowired
-	LectureDAO lectureDAO;
 	
 	public PaymentDTO cancel(PaymentDTO paymentDTO) throws Exception{
 
 		paymentDTO = payDAO.getPayDetail(paymentDTO);
 		
 		return paymentDTO;
+	}
+	
+	public PaymentDTO getPayDetail(PaymentDTO paymentDTO) throws Exception{
+		return payDAO.getPayDetail(paymentDTO);
 	}
 	
 	public HashMap<String, Object> showComplete(PaymentDTO paymentDTO) throws Exception{
@@ -37,7 +39,7 @@ public class PayService {
 		for(OrderDTO o : paymentDTO.getOrders()) {
 			LectureDTO lectureDTO = new LectureDTO();
 			lectureDTO.setL_num(o.getL_num());
-			lectureDTO = lectureDAO.getDetail(lectureDTO);
+			lectureDTO = payDAO.getSimpleLecture(lectureDTO);
 
 			lectures.add(lectureDTO);
 		}
@@ -67,7 +69,7 @@ public class PayService {
 				//강의정보가져오기
 				LectureDTO lectureDTO = new LectureDTO();
 				lectureDTO.setL_num(cart.getL_num());
-				lectureDTO = lectureDAO.getDetail(lectureDTO);
+				lectureDTO = payDAO.getSimpleLecture(lectureDTO);
 				//강의넘이랑 가격만 가져다 DB에 저장할거임
 				OrderDTO orderDTO = new OrderDTO();
 				orderDTO.setL_num(lectureDTO.getL_num());
@@ -106,7 +108,7 @@ public class PayService {
 			System.out.println(cart.getL_num());
 			lectureDTO.setL_num(cart.getL_num());
 			
-			lectureDTO = lectureDAO.getDetail(lectureDTO);
+			lectureDTO = payDAO.getSimpleLecture(lectureDTO);
 			System.out.println(lectureDTO.getL_name());
 			lectureDTOs.add(lectureDTO);
 		}
@@ -121,7 +123,7 @@ public class PayService {
 		lectureDTO.setL_num(Long.parseLong(l_num));
 		
 		ArrayList<LectureDTO> lectureDTOs = new ArrayList<LectureDTO>();
-		lectureDTO = lectureDAO.getDetail(lectureDTO);
+		lectureDTO = payDAO.getSimpleLecture(lectureDTO);
 		lectureDTOs.add(lectureDTO);
 		
 		return lectureDTOs;

@@ -4,12 +4,14 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <mapper namespace="com.seok.home.pay.PayDAO">
+    
     	<select id="getSimpleLecture" parameterType="LectureDTO" resultMap="simpleLectureResult">
     		select *
     		from lecture L
     		left join l_file F
     		ON L.l_num=F.l_num
     		where L.l_num=#{l_num}
+    		order by NUM ASC
     	</select>
     	<resultMap type="LectureDTO" id="simpleLectureResult">
     		<id column="l_num" property="l_num"/>
@@ -28,8 +30,8 @@
     
     	<select id="getPaymentList" parameterType="PaymentDTO" resultMap="allPaymentsResult">
     		select * 
-			FROM payment P
-			left join "ORDER" O
+			FROM payments P
+			left join ORDERS O
 			on P.p_uid = O.P_UID
 			left join Lecture L
 			on O.l_num = L.l_num
@@ -72,21 +74,10 @@
     		</collection>
     	</resultMap>
 
-    
-    	<insert id="savePayment" parameterType="PaymentDTO">
-    		insert into payment (p_uid, id, p_point, p_amount, p_realamount, p_regdate, p_method, p_c_name, p_c_num, p_c_quota, p_remains, p_at, P_RECEIPT, p_c_apply)
-			values (#{p_uid}, #{id}, #{p_point}, #{p_amount}, #{p_realamount}, sysdate, #{p_method}, #{p_c_name}, #{p_c_num}, #{p_c_quota}, #{p_remains}, #{p_at}, #{p_receipt}, #{p_c_apply})
-    	</insert>
-    	
-    	<insert id="saveOrder" parameterType="OrderDTO">
-    		insert into "ORDER"(O_NUM, L_NUM, P_UID, O_AMOUNT)
-			values (order_seq.nextval,#{l_num},#{p_uid},#{o_amount}) 
-    	</insert>
-    	
     	<select id="getPayDetail" parameterType="PaymentDTO" resultMap="allPaymentsResult">
     		select * 
-			FROM payment P
-			left join "ORDER" O
+			FROM payments P
+			left join ORDERS O
 			on P.p_uid = O.P_UID
 			left join Lecture L
 			on O.l_num = L.l_num
@@ -94,5 +85,16 @@
 			on O.O_num = R.O_num
 			where P.p_uid=#{p_uid}
     	</select>
+    
+    	<insert id="savePayment" parameterType="PaymentDTO">
+    		insert into payments (p_uid, id, p_point, p_amount, p_realamount, p_regdate, p_method, p_c_name, p_c_num, p_c_quota, p_remains, p_at, P_RECEIPT, p_c_apply)
+			values (#{p_uid}, #{id}, #{p_point}, #{p_amount}, #{p_realamount}, sysdate, #{p_method}, #{p_c_name}, #{p_c_num}, #{p_c_quota}, #{p_remains}, #{p_at}, #{p_receipt}, #{p_c_apply})
+    	</insert>
+    	
+    	<insert id="saveOrder" parameterType="OrderDTO">
+    		insert into ORDERS (O_NUM, L_NUM, P_UID, O_AMOUNT)
+			values (order_seq.nextval,#{l_num},#{p_uid},#{o_amount}) 
+    	</insert>
+    	
     
     </mapper>

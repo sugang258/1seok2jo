@@ -17,7 +17,7 @@ public class PayDAOTest extends MyAbstractTest{
 	@Autowired
 	PayDAO dao;
 	
-	@Test
+//	@Test
 	public void getSimpleLecture() throws Exception{
 		LectureDTO dto = new LectureDTO();
 		

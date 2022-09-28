@@ -39,9 +39,14 @@ public class PayController {
 	IamportClient client = new IamportClient("6833265443546261", "SiEfYqnG3G0yBBQRFMvspUyp9l0UAJ0ytmsMxyHJBQftWtJHoRKQvJvB59QljGoZBNLS6wXZSGJ5p5Mg");
 	
 	@GetMapping(value="status")
-	public String getDetail() throws Exception{
+	public ModelAndView getPayDetail(PaymentDTO paymentDTO, ModelAndView mv) throws Exception{
 		
-		return "pay/status";
+		paymentDTO = payService.getPayDetail(paymentDTO);
+		
+		mv.addObject("paymentDTO", paymentDTO);
+		mv.setViewName("pay/status");
+		
+		return mv;
 	}
 	
 	@PostMapping(value="getTk")
