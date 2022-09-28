@@ -21,5 +21,7 @@
 		    	<select id="getStatus" parameterType="StatusDTO" resultType="StatusDTO">
 		    		SELECT * FROM STATUS WHERE S_NUM=#{s_num} AND V_NUM=#{v_num}
 		    	</select>
+		    	
+		    	
 		    
 		    </mapper>

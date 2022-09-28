@@ -92,11 +92,6 @@ public class LectureDAO {
 		return sqlSession.selectList(NAMESPACE+"getVideoDetails", lectureVideoDTO);
 	}
 	
-	//video 수강 업데이트
-	public int setVideoStatus(LectureVideoDTO lectureVideoDTO) throws Exception{
-		return sqlSession.update(NAMESPACE+"setVideoStatus", lectureVideoDTO);
-	}
-	
 	//수강 동영상 갯수
 	public Long getVideoStatusCount(LectureVideoDTO lectureVideoDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getVideoStatusCount", lectureVideoDTO);

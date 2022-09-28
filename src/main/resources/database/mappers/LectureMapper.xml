@@ -179,10 +179,6 @@
 					SELECT * FROM VIDEO WHERE L_NUM= #{l_num} order by V_SEQ ASC
 				</select>
 				
-				<update id="setVideoStatus" parameterType="LectureVideoDTO">
-					UPDATE VIDEO SET V_STATUS=1 WHERE V_NUM=#{v_num}
-				</update>
-				
 				<select id="getVideoStatusCount" parameterType="LectureVideoDTO" resultType="java.lang.Long">
 					SELECT COUNT(V_NUM) FROM VIDEO WHERE L_NUM=#{l_num} AND V_STATUS = 1
 				</select>

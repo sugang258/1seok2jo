@@ -271,15 +271,6 @@ public class LectureController {
 		return lectureVideoDTO;
 	}
 	
-	@PostMapping("setVideoStatus")
-	@ResponseBody
-	public int setVideoStatus(LectureVideoDTO lectureVideoDTO) throws Exception{
-		System.out.println("status");
-		
-		int result = lectureService.setVideoStatus(lectureVideoDTO);
-		return result;
-	}
-	
 	
 	
 	
