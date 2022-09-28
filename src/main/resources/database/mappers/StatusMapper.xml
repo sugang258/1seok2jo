@@ -11,7 +11,15 @@
 		    	</insert>
 		    	
 		    	<select id="getVideoList" parameterType="LectureDTO" resultType="LectureVideoDTO">
-		    		SELECT V_NUM FROM VIDEO WHERE L_NUM=#{l_num}
+		    		SELECT * FROM VIDEO WHERE L_NUM=#{l_num}
+		    	</select>
+		    	
+		    	<update id="setStatusUpdate" parameterType="StatusDTO">
+		    		UPDATE STATUS SET V_STATUS = 1 WHERE NUM=#{num}
+		    	</update>
+		    	
+		    	<select id="getStatus" parameterType="StatusDTO" resultType="StatusDTO">
+		    		SELECT * FROM STATUS WHERE S_NUM=#{s_num} AND V_NUM=#{v_num}
 		    	</select>
 		    
 		    </mapper>

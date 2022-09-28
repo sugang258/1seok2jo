@@ -40,4 +40,28 @@ public class StatusTest extends MyAbstractTest{
 		assertNotEquals(0, ar.size());
 
 	}
+	
+	//@Test
+	public void setStatusUpdate() throws Exception{
+		StatusDTO statusDTO = new StatusDTO();
+		
+		statusDTO.setNum(1L);
+		
+		int result = statusDAO.setStatusUpdate(statusDTO);
+		
+		assertEquals(1,result);
+
+	}
+	
+	//@Test
+//	public void getStatus() throws Exception{
+//		StatusDTO statusDTO = new StatusDTO();
+//		statusDTO.setS_num(19L);
+//		statusDTO.setV_num(125L);
+//		
+//		List<StatusDTO> ar = statusDAO.getStatus(statusDTO);
+//		
+//		assertNotNull(ar);
+//
+//	}
 }

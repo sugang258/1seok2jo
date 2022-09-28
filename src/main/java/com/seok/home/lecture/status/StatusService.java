@@ -21,5 +21,13 @@ public class StatusService {
 	public List<LectureVideoDTO> getVideoList(LectureDTO lectureDTO) throws Exception{
 		return statusDAO.getVideoList(lectureDTO);
 	}
+	
+	public int setStatusUpdate(StatusDTO statusDTO) throws Exception{
+		return statusDAO.setStatusUpdate(statusDTO);
+	}
+	
+	public StatusDTO getStatus(StatusDTO statusDTO) throws Exception{
+		return statusDAO.getStatus(statusDTO);
+	}
 
 }

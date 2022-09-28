@@ -25,5 +25,12 @@ public class StatusDAO {
 		return sqlSession.selectList(NAMESPACE+"getVideoList", lectureDTO);
 	}
 	
+	public int setStatusUpdate(StatusDTO statusDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setStatusUpdate", statusDTO);
+	}
+	
+	public StatusDTO getStatus(StatusDTO statusDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getStatus", statusDTO);
+	}
 
 }

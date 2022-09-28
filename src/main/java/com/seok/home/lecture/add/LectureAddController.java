@@ -12,6 +12,7 @@ import java.util.List;
 import java.time.LocalDate;
 import java.util.Calendar;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -20,11 +21,12 @@ import com.seok.home.lecture.LectureService;
 import com.seok.home.lecture.LectureVideoDTO;
 import com.seok.home.lecture.status.StatusDTO;
 import com.seok.home.lecture.status.StatusService;
+import com.seok.home.member.MemberDTO;
 
 @Controller
 @RequestMapping(value="/lectureAdd/*")
 public class LectureAddController {
-
+ 
 	@Autowired
 	private LectureAddService lectureAddService;
 	@Autowired
@@ -34,9 +36,10 @@ public class LectureAddController {
 	
 	@PostMapping("setLectureAdd")
 	@ResponseBody
-	public int setLectureAdd(LectureDTO lectureDTO, LectureAddDTO lectureAddDTO, HttpSession session) throws Exception{
+	public int setLectureAdd(LectureDTO lectureDTO, LectureAddDTO lectureAddDTO, HttpServletRequest request,HttpSession session) throws Exception{
 		System.out.println("수강완료");
 		lectureDTO = lectureService.getDetail(lectureDTO);
+		MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
 		Date now = new Date();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(now);
@@ -60,16 +63,17 @@ public class LectureAddController {
 		List<LectureVideoDTO> ar = statusService.getVideoList(lectureDTO);
 		lectureAddDTO.setL_num(lectureDTO.getL_num());
 		//로그인 정보 가져오기
-		lectureAddDTO.setId("gang");
+		lectureAddDTO.setId(mem.getId());
 		lectureAddDTO = lectureAddService.getLectureAdd(lectureAddDTO);
 		
 		for(int i=0; i<ar.size();i++) {
 			statusDTO.setS_num(lectureAddDTO.getS_num());
 			statusDTO.setV_num(ar.get(i).getV_num());
-			System.out.println(ar.get(i).getV_num());
-			System.out.println(lectureAddDTO.getS_num());
+			//System.out.println(ar.get(i).getV_num());
+			//System.out.println(lectureAddDTO.getS_num());
 			statusService.setStatusAdd(statusDTO);
 		}
+		//session.setAttribute("sign", lectureAddDTO);
 		return result;
 	}
 }

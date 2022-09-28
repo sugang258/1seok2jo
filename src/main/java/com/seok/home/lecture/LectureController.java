@@ -3,6 +3,7 @@ package com.seok.home.lecture;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 
+import com.seok.home.lecture.add.LectureAddDTO;
+import com.seok.home.lecture.add.LectureAddService;
+import com.seok.home.lecture.status.StatusDTO;
+import com.seok.home.lecture.status.StatusService;
+import com.seok.home.member.MemberDTO;
 import com.seok.home.util.Pager;
 
 import org.springframework.ui.Model;
@@ -29,6 +35,11 @@ public class LectureController {
 
 	@Autowired
 	private LectureService lectureService;
+	@Autowired
+	private LectureAddService lectureAddService;
+	@Autowired
+	private StatusService statusService;
+	
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
 	public ModelAndView getLecture(ModelAndView mv,LectureDTO lectureDTO,Pager pager) throws Exception {
@@ -54,11 +65,11 @@ public class LectureController {
 	}
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
-	public ModelAndView setLecture(LectureDTO lectureDTO, HttpSession session, MultipartFile[] files,LectureVideoDTO lectureVideoDTO) throws Exception {
+	public ModelAndView setLecture(LectureDTO lectureDTO, HttpServletRequest request, HttpSession session, MultipartFile[] files,LectureVideoDTO lectureVideoDTO) throws Exception {
 		System.out.println("강의 추가 POST");
-		
+		MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
 		ModelAndView mv = new ModelAndView();
-		lectureDTO.setId("gang");
+		lectureDTO.setId(mem.getId());
 		int result = lectureService.setLecture(lectureDTO, files, session.getServletContext(),lectureVideoDTO);
 		session.setAttribute("add", lectureDTO);
 		mv.addObject("result", result);
@@ -69,8 +80,9 @@ public class LectureController {
 	
 	@GetMapping("detail")
 	@ResponseBody
-	public ModelAndView getDetail(LectureDTO lectureDTO, HttpSession session) throws Exception {
+	public ModelAndView getDetail(LectureDTO lectureDTO,HttpServletRequest request, HttpSession session,LectureAddDTO lectureAddDTO) throws Exception {
 		System.out.println("detail");
+		MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
 		
 		lectureDTO = lectureService.getDetail(lectureDTO);
 		long count = lectureService.getListCount(lectureDTO);
@@ -80,11 +92,15 @@ public class LectureController {
 		System.out.println("ar : "+ar.size());
 		System.out.println("file : "+ file.size());
 		System.out.println("count : "+count);
+		lectureAddDTO.setId(mem.getId());
+		lectureAddDTO.setL_num(lectureDTO.getL_num());
+		lectureAddDTO = lectureAddService.getLectureAdd(lectureAddDTO);
 		
 		//List<LectureDTO> ar = lectureService.getDetailVideo(lectureDTO);
 		ModelAndView mv = new ModelAndView();
 		session.setAttribute("num", lectureDTO.getL_num());
 		session.setAttribute("detail", lectureDTO);
+		session.setAttribute("sign", lectureAddDTO);
 		mv.addObject("count", count);
 		mv.addObject("detail", lectureDTO);
 		mv.addObject("ar", ar);
@@ -172,8 +188,10 @@ public class LectureController {
 	}
 	
 	@GetMapping("listen")
-	public ModelAndView getDetailVideo(LectureDTO lectureDTO, ModelAndView mv, HttpSession session) throws Exception{
+	public ModelAndView getDetailVideo(LectureAddDTO lectureAddDTO,HttpServletRequest request, LectureDTO lectureDTO, ModelAndView mv, HttpSession session) throws Exception{
 		System.out.println("detailLecture");
+		MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+		lectureAddDTO = (LectureAddDTO) session.getAttribute("sign");
 		lectureDTO = lectureService.getDetail(lectureDTO);
 		//lectureDTO = (LectureDTO) session.getAttribute("detail");
 		//lectureDTO.setL_num((Long)session.getAttribute("num"));
@@ -181,15 +199,24 @@ public class LectureController {
 		long count = lectureService.getListCount(lectureDTO);
 		
 		//System.out.println(lectureVideoDTO.getV_seq());
-		
-		
 		List<LectureVideoDTO> video = lectureDTO.getLectureVideoDTO();
 		List<LectureFileDTO> file = lectureDTO.getLectureFileDTO();
+		
+		//lectureAddDTO = lectureAddService.getLectureAdd(lectureAddDTO);
+		StatusDTO statusDTO = new StatusDTO();
+		
+			statusDTO.setS_num(lectureAddDTO.getS_num());
+			statusDTO.setV_num(video.get(0).getV_num());
+			statusDTO = statusService.getStatus(statusDTO);
+		
+		
 		System.out.println("video size" +video.size());
 		//lectureVideoDTO.setV_seq(0L);
 		//lectureVideoDTO.setL_num(lectureDTO.getL_num());
 		//List<LectureVideoDTO> list = lectureService.getDetailVideo(lectureVideoDTO);
-		
+		session.setAttribute("status", statusDTO);
+		mv.addObject("status", statusDTO);
+		mv.addObject("sign", lectureAddDTO);
 		mv.addObject("count", count);
 		mv.addObject("video", video);
 		mv.addObject("file", file);
@@ -203,32 +230,43 @@ public class LectureController {
 	//강의 이동
 	@PostMapping("getLectureNext")
 	@ResponseBody
-	public List<LectureVideoDTO> getLectureNext(LectureVideoDTO lectureVideoDTO) throws Exception{
+	public LectureVideoDTO getLectureNext(LectureVideoDTO lectureVideoDTO,HttpSession session,StatusDTO statusDTO) throws Exception{
 		System.out.println("next");
+		//statusDTO = (StatusDTO)session.getAttribute("status");
 		ModelAndView mv = new ModelAndView();
-		LectureDTO lectureDTO = new LectureDTO();
-		lectureDTO = lectureService.getDetailVideo(lectureVideoDTO);
-		System.out.println(lectureDTO.getLectureVideoDTO().size());
-		mv.addObject("dto", lectureDTO);
-		mv.setViewName("/lecture/listen");
-		return lectureDTO.getLectureVideoDTO();
+		//LectureDTO lectureDTO = new LectureDTO();
+		lectureVideoDTO = lectureService.getLectureNext(lectureVideoDTO);
+		System.out.println(lectureVideoDTO);
+		//mv.addObject("status", statusDTO);
+		//mv.addObject("dto", lectureVideoDTO);
+		//mv.setViewName("/lecture/listen");
+		return lectureVideoDTO;
 	}
 	
 	@PostMapping("getLecturePre")
 	@ResponseBody
-	public List<LectureVideoDTO> getLecturePre(LectureVideoDTO lectureVideoDTO) throws Exception{
+	public LectureVideoDTO getLecturePre(LectureVideoDTO lectureVideoDTO,HttpSession session,StatusDTO statusDTO) throws Exception{
 		System.out.println("pre");
 		ModelAndView mv = new ModelAndView();
-		LectureDTO lectureDTO = new LectureDTO();
-		lectureDTO = lectureService.getLecturePre(lectureVideoDTO);
-		return lectureDTO.getLectureVideoDTO();
+
+		//statusDTO = (StatusDTO)session.getAttribute("status");
+		//LectureDTO lectureDTO = new LectureDTO();
+		lectureVideoDTO = lectureService.getLecturePre(lectureVideoDTO);
+		//mv.addObject("status", statusDTO);
+
+		return lectureVideoDTO;
 	}
 	
 	@PostMapping("getVideoList")
 	@ResponseBody
-	public LectureVideoDTO getVideoList(LectureVideoDTO lectureVideoDTO) throws Exception{
+	public LectureVideoDTO getVideoList(LectureVideoDTO lectureVideoDTO,HttpSession session,StatusDTO statusDTO) throws Exception{
 		System.out.println("list");
+		statusDTO = (StatusDTO)session.getAttribute("status");
+
+		//ModelAndView mv = new ModelAndView();
+
 		lectureVideoDTO = lectureService.getVideoList(lectureVideoDTO);
+		//mv.addObject("status", statusDTO);
 		
 		return lectureVideoDTO;
 	}

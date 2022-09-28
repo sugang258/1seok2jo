@@ -1,5 +1,7 @@
 package com.seok.home.lecture;
 
+import com.seok.home.lecture.status.StatusDTO;
+
 public class LectureVideoDTO {
 	
 	private Long v_num;
@@ -7,7 +9,8 @@ public class LectureVideoDTO {
 	private String v_url;
 	private String v_context;
 	private Long v_seq;
-	private Long v_status;
+	private StatusDTO statusDTO;
+	
 	
 	
 	public Long getV_num() {
@@ -40,12 +43,14 @@ public class LectureVideoDTO {
 	public void setV_seq(Long v_seq) {
 		this.v_seq = v_seq;
 	}
-	public Long getV_status() {
-		return v_status;
+	public StatusDTO getStatusDTO() {
+		return statusDTO;
 	}
-	public void setV_status(Long v_status) {
-		this.v_status = v_status;
+	public void setStatusDTO(StatusDTO statusDTO) {
+		this.statusDTO = statusDTO;
 	}
+	
+	
 	
 	
 	

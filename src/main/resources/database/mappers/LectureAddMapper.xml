@@ -18,7 +18,7 @@
 		    	</update>
 		    	
 		    	<select id="getLectureAdd" parameterType="LectureAddDTO" resultType="LectureAddDTO"> 
-		    		SELECT S_NUM FROM LECTURE_SIGN WHERE L_NUM=#{l_num} AND ID=#{id}
+		    		SELECT * FROM LECTURE_SIGN WHERE L_NUM=#{l_num} AND ID=#{id}
 		    	</select>
 		    
 		    </mapper>
