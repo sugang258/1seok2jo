@@ -22,6 +22,13 @@ public class PayService {
 	@Autowired
 	LectureDAO lectureDAO;
 	
+	public PaymentDTO cancel(PaymentDTO paymentDTO) throws Exception{
+
+		paymentDTO = payDAO.getPayDetail(paymentDTO);
+		
+		return paymentDTO;
+	}
+	
 	public HashMap<String, Object> showComplete(PaymentDTO paymentDTO) throws Exception{
 		
 		paymentDTO = payDAO.getPayDetail(paymentDTO);
@@ -104,7 +111,7 @@ public class PayService {
 			lectureDTOs.add(lectureDTO);
 		}
 		
-		return null;
+		return lectureDTOs;
 	}
 	
 	public ArrayList<LectureDTO> getOrder(String l_num) throws Exception {

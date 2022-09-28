@@ -20,9 +20,24 @@ public class AdminController {
 	@Autowired
 	private AdminService service;
 	
+	@GetMapping(value="main")
+	private String getMain() {
+		return "admin/main";
+	}
+	
 	//로그인 페이지 이동 컨트롤러
 	@GetMapping(value = "login")
 	private void getLogin() {
+	}
+	
+	@GetMapping(value = "memberList")
+	private String getMember() {
+		return "admin/memberList";
+	}
+	
+	@GetMapping(value = "paymentList")
+	private String getPayments() {
+		return "admin/paymentList";
 	}
 	
 	@PostMapping

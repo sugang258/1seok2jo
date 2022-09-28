@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		    
+		 <mapper namespace="com.seok.home.vm.FileTestDAO">
+		 
+		 		<insert id="setBoardAdd" parameterType="com.seok.home.vm.TestBoardDTO">
+		 			<selectKey keyProperty="sb_num" order="BEFORE" resultType="Long">
+						SELECT TEST_SEQ.NEXTVAL FROM DUAL
+					</selectKey>
+			    	INSERT INTO TEST_BOARD
+					VALUES (#{sb_num}, #{l_num}, #{id}, #{title}, SYSDATE, #{answer}, #{hit}, #{contents}, #{category})
+		    	</insert>
+		    	<insert id="setFileAdd" parameterType="com.seok.home.vm.TestFileDTO">
+		    		insert into TEST_FILE (F_NUM, SB_NUM, F_NAME, ORINAME)
+		    		values (TEST_SEQ.nextval, #{sb_num}, #{f_name}, #{f_oriname})
+		    	</insert>
+		    	
+		    	<select id="getBoardDetail" parameterType="com.seok.home.vm.TestBoardDTO" resultMap="detailResult">
+		    		SELECT * 
+					FROM TEST_BOARD B
+					    LEFT JOIN TEST_FILE F
+					    ON B.sb_num = F.sb_num
+					WHERE b.SB_NUM=#{sb_num}
+		    	</select>
+		    	<resultMap type="com.seok.home.vm.TestBoardDTO" id="detailResult">
+		    		<id column="SB_NUM" property="sb_num"/>
+		    		<result column="CATEGORY" property="category"/>
+		    		<result column="ID" property="id"/>
+		    		<result column="HIT" property="hit"/>
+		    		<result column="TITLE" property="title"/>
+		    		<result column="REG_DATE" property="reg_date"/>
+		    		<result column="CONTENTS" property="contents"/>
+		    		<collection property="testFileDTOs" javaType="List" ofType="com.seok.home.vm.TestFileDTO">
+		    			<id column="F_NUM" property="num"/>
+		    			<result column="F_NAME" property="f_name"/>
+		    			<result column="ORINAME" property="f_oriname"/>
+		    		</collection>
+		    	</resultMap>
+		 
+		 
+		 </mapper>

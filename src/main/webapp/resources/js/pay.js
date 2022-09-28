@@ -72,10 +72,11 @@ function requestPay() {
 
             xhttp.open("Post","./success");
             xhttp.setRequestHeader("Content-type", "application/json");
+            
             xhttp.send(res);
 
             xhttp.addEventListener("readystatechange", function(){
-                console.log(this.readyState+"|"+this.status)
+
                 if(this.readyState==4 && this.status==200){
                     if(xhttp.response==1){
                         let l_num = num[0].getAttributeNode("data-l-num").value;
@@ -111,7 +112,6 @@ function requestPay() {
                     }
                 }
             })
-            
         } else {
             alert("결제실패\n"+rsp.error_msg);
             console.log(rsp);
