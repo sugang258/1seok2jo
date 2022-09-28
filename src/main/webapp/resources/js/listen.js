@@ -6,6 +6,7 @@ const video_list = document.querySelectorAll(".video_list");
 const duration = document.querySelector(".ytp-time-duration");
 const video = document.querySelector("#video");
 
+
 setTimeout(function(){
     let status = video.getAttributeNode("data-sta-num").value;
     let s_num = video.getAttributeNode("data-sign-num").value;

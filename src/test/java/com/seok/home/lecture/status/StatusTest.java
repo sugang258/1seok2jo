@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.seok.home.MyAbstractTest;
 import com.seok.home.lecture.LectureDTO;
 import com.seok.home.lecture.LectureVideoDTO;
+import com.seok.home.lecture.add.LectureAddDTO;
 
 public class StatusTest extends MyAbstractTest{
 	
@@ -63,5 +64,39 @@ public class StatusTest extends MyAbstractTest{
 //		
 //		assertNotNull(ar);
 //
+//	}
+	
+	//@Test
+	public void getSignList() throws Exception{
+		LectureAddDTO lectureAddDTO = new LectureAddDTO();
+		
+		lectureAddDTO.setId("gg");
+		
+		List<LectureDTO> ar = statusDAO.getSignList(lectureAddDTO);
+		
+		assertNotEquals(0, ar.size());
+	}
+	
+	//@Test
+//	public void getStatusCount() throws Exception{
+//		LectureAddDTO lectureAddDTO = new LectureAddDTO();
+//		lectureAddDTO.setId("gg");
+//		lectureAddDTO.setS_num(20L);
+//		
+//		long result = statusDAO.getStatusCount(lectureAddDTO);
+//		
+//		assertNotEquals(0L, result);
+//	}
+	
+	//@Test
+//	public void getStatusTotal() throws Exception{
+//		LectureAddDTO lectureAddDTO = new LectureAddDTO();
+//		
+//		lectureAddDTO.setId("gg");
+//		lectureAddDTO.setS_num(20L);
+//		
+//		long result= statusDAO.getStatusTotal(lectureAddDTO);
+//		
+//		assertNotEquals(0L, result);
 //	}
 }
