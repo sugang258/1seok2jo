@@ -1,16 +1,52 @@
 package com.seok.home.pay;
 
 import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
+import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.seok.home.MyAbstractTest;
+import com.seok.home.lecture.LectureDTO;
+import com.seok.home.lecture.LectureFileDTO;
 
 public class PayDAOTest extends MyAbstractTest{
 
 	@Autowired
 	PayDAO dao;
+	
+	@Test
+	public void getSimpleLecture() throws Exception{
+		LectureDTO dto = new LectureDTO();
+		
+		dto.setL_num(2L);
+		
+		dto = dao.getSimpleLecture(dto);
+		for(LectureFileDTO f: dto.getLectureFileDTO()) {
+			System.out.println(f.getF_oriname());
+		}
+		
+		assertNotNull(dto);
+	}
+	
+//	@Test
+	public void getPaymentList() throws Exception{
+		PaymentDTO dto = new PaymentDTO();
+		
+		dto.setP_uid("1seok2jo-1663730923460");
+		
+		List<PaymentDTO> lst = dao.getPaymentList(dto);
+		for(PaymentDTO pay: lst) {
+			for(OrderDTO order: pay.getOrders()) {
+				System.out.println(order.getLectureDTO().getL_price());
+			}
+		}
+		
+		assertNotNull(lst);
+	}
+	
 //	@Test
 	public void savePaymenttest() throws Exception {
 		PaymentDTO pay = new PaymentDTO();

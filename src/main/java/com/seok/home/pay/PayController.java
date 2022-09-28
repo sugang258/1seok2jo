@@ -40,6 +40,7 @@ public class PayController {
 	
 	@GetMapping(value="status")
 	public String getDetail() throws Exception{
+		
 		return "pay/status";
 	}
 	
