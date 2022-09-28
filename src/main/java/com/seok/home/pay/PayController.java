@@ -38,6 +38,11 @@ public class PayController {
 
 	IamportClient client = new IamportClient("6833265443546261", "SiEfYqnG3G0yBBQRFMvspUyp9l0UAJ0ytmsMxyHJBQftWtJHoRKQvJvB59QljGoZBNLS6wXZSGJ5p5Mg");
 	
+	@GetMapping(value="status")
+	public String getDetail() throws Exception{
+		return "pay/status";
+	}
+	
 	@PostMapping(value="getTk")
 	@ResponseBody
 	public ModelAndView getTk(ModelAndView mv) throws Exception{
