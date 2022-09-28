@@ -42,7 +42,7 @@ public class MemberDAO {
 	
 	//프로필정보 수정
 	public int setEditProfile(MemberDTO memberDTO)throws Exception{	
-		return sqlSession.update(NAMESPACE+"setProfile", memberDTO);
+		return sqlSession.update(NAMESPACE+"setEditProfile", memberDTO);
 	}
 	
 	//프로필사진업로드

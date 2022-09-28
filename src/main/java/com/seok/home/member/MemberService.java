@@ -64,7 +64,7 @@ public class MemberService {
 	//프로필수정
 	public int setEditProfile(MemberDTO memberDTO, MultipartFile profile, ServletContext servletContext)throws Exception{
 		
-		int result = memberDAO.setJoin(memberDTO);
+		int result = memberDAO.setEditProfile(memberDTO);
 		String path = "resources/upload/member";
 		
 		String fileName = fileManager.saveFile(path, servletContext, profile);

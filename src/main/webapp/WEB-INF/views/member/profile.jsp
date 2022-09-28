@@ -25,7 +25,7 @@
 	<section class="container-fluid con-lg-7 ilseok">
 		<div class="row mt-5">
 			<%-- 회원 회원가입JSP --%>
-			<form action="./profile">
+			<form action="./profile" method="post">
 			
 			  <div class="mb-3">
 			    <label for="ipId" class="form-label">프로필사진 변경</label>

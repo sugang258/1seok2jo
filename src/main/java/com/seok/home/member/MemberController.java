@@ -50,16 +50,16 @@ public class MemberController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		//DB에 아이디 패스워드 확인->(아이디, 이름, 닉네임, 생년월일, 성별, 이메일, 전화번호, 마일리지, 등급번호, 등급이름 조회)
+		//DB에 아이디 패스워드 확인->(아이디, 이름, 닉네임, 성별, 이메일, 전화번호, 마일리지, 등급번호, 등급이름 조회)
 		memberDTO = memberService.getLogin(memberDTO);
 		
 		
 		//로그인 성공 실패 확인
 		if(memberDTO!=null) {
 			System.out.println("로그인 성공!!");
-			//세션에 memberDTO 담기(아이디, 이름, 닉네임, 생년월일, 성별, 이메일, 전화번호, 마일리지, 등급번호, 등급이름 조회)
+			//세션에 memberDTO 담기(아이디, 이름, 닉네임, 성별, 이메일, 전화번호, 마일리지, 등급번호, 등급이름 조회)
 			session.setAttribute("member", memberDTO);
-			mv.setViewName("redirect:/");
+			mv.setViewName("redirect:../");
 		}else {
 			System.out.println("로그인 실패..");
 			mv.setViewName("member/login");		
@@ -140,10 +140,16 @@ public class MemberController {
 		
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = new MemberDTO();
+		//세션정보(아이디, 이름, 닉네임, 성별, 이메일, 전화번호, 마일리지, 등급번호, 등급이름 조회)를 꺼내서
+		//memberDTO에 담음
 		memberDTO = (MemberDTO) session.getAttribute("member");
+		System.out.println("get에 session.memberDTO.닉네임 : "+memberDTO.getN_name());
 		
+		//프로필정보조회(아이디, 이름, 닉네임, *생년월일,* 성별, 이메일, 연락처 조회)
+		//getProfile을 갔다온 memberDTO를 respMemberDTO(responseMemberDTO)에 담음
 		MemberDTO respMemberDTO = memberService.getProfile(memberDTO);
 		
+		//그 데이터를 "member"로 JSP에 보내줌
 		mv.addObject("member", respMemberDTO);
 		mv.setViewName("member/profile");
 		
@@ -159,15 +165,19 @@ public class MemberController {
 //		System.out.println(memberDTO2.getPw());
 		ModelAndView mv = new ModelAndView();
 		
+		//구효입니당
+		System.out.println("수정 전 memberDTO.닉네임 : "+memberDTO.getN_name());
 		int result = memberService.setEditProfile(memberDTO, profile, session.getServletContext());
+		//구효입니당
+		System.out.println("수정 후 memberDTO.닉네임 : "+memberDTO.getN_name());
 		
-		memberDTO = (MemberDTO)session.getAttribute("member");
-		System.out.println("memberDTO.닉네임 : "+memberDTO.getN_name());
+		//memberService.getProfile(memberDTO);
 		
-		if(memberDTO != null) {
+		if(result > 0) {
 			System.out.println("프로필 수정 성공!!");
-			mv.addObject("memver", memberDTO);
-			mv.setViewName("redirect:/");
+//			session.setAttribute("member", memberDTO);
+			mv.addObject("member", memberDTO);
+			mv.setViewName("redirect:./profile");
 		}else {
 			System.out.println("프로필 수정 실패..");
 			mv.setViewName("member/profile");
@@ -184,8 +194,6 @@ public class MemberController {
 //		mv.addObject("message", message);
 //		mv.addObject("url", url);
 //		mv.setViewName("common/result");
-		
-		mv.setViewName("member/profile");
 		
 		return mv;
 	}
