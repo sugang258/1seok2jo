@@ -26,6 +26,10 @@ public class LectureAddDAO {
 		return sqlSession.update(NAMESPACE+"setLectureUpdate", lectureAddDTO);
 	}
 	
+	public LectureAddDTO getLectureAdd(LectureAddDTO lectureAddDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getLectureAdd", lectureAddDTO);
+	}
+	
 	
 
 }

@@ -175,15 +175,15 @@ public class LectureTest extends MyAbstractTest {
 	}
 	
 	//@Test
-	public void setVideoStatus() throws Exception{
-		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
-		
-		lectureVideoDTO.setV_num(116L);
-		
-		int result = lectureDAO.setVideoStatus(lectureVideoDTO);
-		
-		assertEquals(1, result);
-	}
+//	public void setVideoStatus() throws Exception{
+//		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
+//		
+//		lectureVideoDTO.setV_num(116L);
+//		
+//		int result = lectureDAO.setVideoStatus(lectureVideoDTO);
+//		
+//		assertEquals(1, result);
+//	}
 	
 	//@Test
 	public void getVideoStatusCount() throws Exception{
@@ -221,16 +221,16 @@ public class LectureTest extends MyAbstractTest {
 	}
 	
 	//@Test
-	public void getLecturePre() throws Exception{
-		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
-		LectureDTO lectureDTO = new LectureDTO();
-		lectureVideoDTO.setL_num(72L);
-		lectureVideoDTO.setV_seq(6L);
-		
-		lectureDTO = lectureDAO.getLecturePre(lectureVideoDTO);
-		
-		assertNotNull(lectureDTO);
-	}
+//	public void getLecturePre() throws Exception{
+//		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
+//		LectureDTO lectureDTO = new LectureDTO();
+//		lectureVideoDTO.setL_num(72L);
+//		lectureVideoDTO.setV_seq(6L);
+//		
+//		lectureDTO = lectureDAO.getLecturePre(lectureVideoDTO);
+//		
+//		assertNotNull(lectureDTO);
+//	}
 	
 	//@Test
 	public void getVideoList() throws Exception{

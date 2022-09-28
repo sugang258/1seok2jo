@@ -21,6 +21,7 @@
 		<typeAlias type="com.seok.home.s_board.Pager" alias="Pager"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>
 		<typeAlias type="com.seok.home.b_comment.CommentDTO" alias="CommentDTO"/>
+		<typeAlias type="com.seok.home.lecture.status.StatusDTO" alias="StatusDTO"/>
 		
 		<typeAlias type="com.seok.home.pay.OrderDTO" alias="OrderDTO"/>
 		<typeAlias type="com.seok.home.pay.PaymentDTO" alias="PaymentDTO"/>
