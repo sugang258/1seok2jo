@@ -4,9 +4,10 @@ let btnimport = document.getElementById("btnimport");
 let now = new Date();
 let uid = "1seok2jo-"+now.getTime();
 
-let l_name = document.querySelectorAll("#l_name")
-let l_price = document.querySelectorAll("#l_price")
-let total = document.getElementById("total")
+let l_name = document.querySelectorAll("#l_name");
+let l_price = document.querySelectorAll("#l_price");
+let total = document.getElementById("total");
+let num = document.querySelectorAll("#l_num");
 
 
 let usePoint = document.getElementById("usePoint");
@@ -71,17 +72,46 @@ function requestPay() {
 
             xhttp.open("Post","./success");
             xhttp.setRequestHeader("Content-type", "application/json");
+            
             xhttp.send(res);
 
             xhttp.addEventListener("readystatechange", function(){
-                console.log(this.readyState+"|"+this.status)
+
                 if(this.readyState==4 && this.status==200){
                     if(xhttp.response==1){
+                        let l_num = num[0].getAttributeNode("data-l-num").value;
+                        let name = document.getElementById("name");
+                        console.log(name.value);
+                        console.log(l_num);
+
+                        const xhttp = new XMLHttpRequest();
+
+                        xhttp.open("POST","../lectureAdd/setLectureAdd");
+
+                        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                        
+                        xhttp.send("l_num="+l_num+"&id="+name.value);
+
+                        xhttp.onreadystatechange = function() {
+                            if(this.readyState == 4 && this.status == 200) {
+                                let result = xhttp.responseText.trim();
+                                console.log(result);
+                                
+                                result = JSON.parse(result);
+                                if(result == 1) {
+                                    alert("수강 신청 완료");
+                                                                        
+                                }else {
+                                    alert("수강 신청 실패");
+                                }
+                            }
+                        }
+                        
                         location.href="./complete?p_uid="+uid;
                     }
                 }
             })
-            
         } else {
             alert("결제실패\n"+rsp.error_msg);
             console.log(rsp);
@@ -94,3 +124,36 @@ function requestPay() {
 //툴팁
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+// const test = document.querySelector("#test");
+
+// test.addEventListener("click",function(){
+//      let l_num = num[0].getAttributeNode("data-l-num").value;
+//      let name = document.getElementById("name");
+//      console.log(name.value);
+//       console.log(l_num);
+
+//      const xhttp = new XMLHttpRequest();
+
+//      xhttp.open("POST","../lectureAdd/setLectureAdd");
+
+//      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+     
+//      xhttp.send("l_num="+l_num+"&id="+name.value);
+
+//      xhttp.onreadystatechange = function() {
+//          if(this.readyState == 4 && this.status == 200) {
+//              let result = xhttp.responseText.trim();
+//              console.log(result);
+             
+//              result = JSON.parse(result);
+//              if(result == 1) {
+//                  alert("수강 신청 완료");
+                                                     
+//              }else {
+//                  alert("수강 신청 실패");
+//              }
+//          }
+//      }
+// })

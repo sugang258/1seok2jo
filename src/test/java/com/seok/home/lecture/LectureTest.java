@@ -206,4 +206,42 @@ public class LectureTest extends MyAbstractTest {
 		
 		assertNotEquals(1, ar.size());
 	}
+	
+	//@Test
+	public void getListCount() throws Exception{
+		LectureDTO lectureDTO = new LectureDTO();
+		
+		lectureDTO.setL_num(72L);
+		
+		long result = lectureDAO.getListCount(lectureDTO);
+		
+		assertEquals(6L, result);
+
+
+	}
+	
+	//@Test
+	public void getLecturePre() throws Exception{
+		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
+		LectureDTO lectureDTO = new LectureDTO();
+		lectureVideoDTO.setL_num(72L);
+		lectureVideoDTO.setV_seq(6L);
+		
+		lectureDTO = lectureDAO.getLecturePre(lectureVideoDTO);
+		
+		assertNotNull(lectureDTO);
+	}
+	
+	//@Test
+	public void getVideoList() throws Exception{
+		LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
+		lectureVideoDTO.setL_num(72L);
+		lectureVideoDTO.setV_seq(5L);
+		
+		lectureVideoDTO = lectureDAO.getVideoList(lectureVideoDTO);
+		
+		assertNotNull(lectureVideoDTO);
+
+		
+	}
 }

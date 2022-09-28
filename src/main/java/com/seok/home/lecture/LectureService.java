@@ -67,8 +67,8 @@ public class LectureService {
 		return lectureDAO.getDetail(lectureDTO);
 	}
 	
-	public List<LectureDTO> getDetailVideo(LectureDTO lectureDTO) throws Exception {
-		return lectureDAO.getDetailVideo(lectureDTO);
+	public LectureDTO getDetailVideo(LectureVideoDTO lectureVideoDTO) throws Exception {
+		return lectureDAO.getDetailVideo(lectureVideoDTO);
 	}
 	
 	public int setUpdate(LectureDTO lectureDTO,LectureVideoDTO lectureVideoDTO) throws Exception {
@@ -152,5 +152,21 @@ public class LectureService {
 	public int setVideoUpdate(LectureVideoDTO lectureVideoDTO) throws Exception{
 		
 		return lectureDAO.setVideoUpdate(lectureVideoDTO);
+	}
+	
+	public long getListCount(LectureDTO lectureDTO) throws Exception{
+		return lectureDAO.getListCount(lectureDTO);
+	}
+	
+	public LectureDTO getLecturePre(LectureVideoDTO lectureVideoDTO) throws Exception{
+		return lectureDAO.getLecturePre(lectureVideoDTO);
+	}
+	
+	public LectureVideoDTO getVideoList(LectureVideoDTO lectureVideoDTO) throws Exception{
+		return lectureDAO.getVideoList(lectureVideoDTO);
+	}
+	
+	public int setVideoStatus(LectureVideoDTO lectureVideoDTO) throws Exception{
+		return lectureDAO.setVideoStatus(lectureVideoDTO);
 	}
 }
