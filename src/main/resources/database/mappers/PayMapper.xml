@@ -4,6 +4,17 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <mapper namespace="com.seok.home.pay.PayDAO">
+    	<select id="getPaymentList" resultType="PaymentDTO">
+    		select * 
+			FROM payment P
+			left join "ORDER" O
+			on P.p_uid = O.P_UID
+			left join Lecture L
+			on O.l_num = L.l_num
+			left join refund R
+			on O.O_num = R.O_num
+    	</select>
+    
     	<insert id="savePayment" parameterType="PaymentDTO">
     		insert into payment (p_uid, id, p_point, p_amount, p_realamount, p_regdate, p_method, p_c_name, p_c_num, p_c_quota, p_remains, p_at, P_RECEIPT, p_c_apply)
 			values (#{p_uid}, #{id}, #{p_point}, #{p_amount}, #{p_realamount}, sysdate, #{p_method}, #{p_c_name}, #{p_c_num}, #{p_c_quota}, #{p_remains}, #{p_at}, #{p_receipt}, #{p_c_apply})
