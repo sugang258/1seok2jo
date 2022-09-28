@@ -7,7 +7,7 @@
 
 	<select id="getLogin" parameterType="MemberDTO" resultMap="getLoginResult">
 		/* 로그인시(아이디와 비밀번호가 맞으면) */
-		/* 아이디, 이름, 닉네임, 생년월일, 성별, 이메일, 폰, 마일리지, 등급번호, 등급이름 조회 */
+		/* 아이디, 이름, 닉네임, 성별, 이메일, 폰, 마일리지, 등급번호, 등급이름 조회 */
 		
 		SELECT M.ID, M.NAME, M.N_NAME, M.GENDER, M.EMAIL, M.PHONE, M.POINT, MR.ROLENUM, R.ROLENAME
 		FROM MEMBER M
@@ -56,7 +56,7 @@
 	</insert>
 	
 	<select id="getProfile" parameterType="MemberDTO" resultMap="getProfileResult">
-		/* 프로필에 쓰일 정보 조회 */
+		/* 프로필에 쓰일 정보 조회 화면 */
 	
 		SELECT M.ID, M.NAME, M.N_NAME, M.B_DATE, M.GENDER, M.EMAIL, M.PHONE, MF.NUM, MF.F_NAME
 		FROM MEMBER M

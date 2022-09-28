@@ -35,12 +35,12 @@ public class MemberDAO {
 	
 	/************************ 마이페이지 **************************/
 	
-	//프로필정보조회
+	//프로필정보조회 화면
 	public MemberDTO getProfile(MemberDTO memberDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getProfile", memberDTO);
 	}
 	
-	//프로필수정
+	//프로필정보 수정
 	public int setEditProfile(MemberDTO memberDTO)throws Exception{	
 		return sqlSession.update(NAMESPACE+"setProfile", memberDTO);
 	}

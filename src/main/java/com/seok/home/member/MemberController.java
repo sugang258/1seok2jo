@@ -162,6 +162,7 @@ public class MemberController {
 		int result = memberService.setEditProfile(memberDTO, profile, session.getServletContext());
 		
 		memberDTO = (MemberDTO)session.getAttribute("member");
+		System.out.println("memberDTO.닉네임 : "+memberDTO.getN_name());
 		
 		if(memberDTO != null) {
 			System.out.println("프로필 수정 성공!!");
