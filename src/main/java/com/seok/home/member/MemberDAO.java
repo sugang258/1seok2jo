@@ -41,7 +41,7 @@ public class MemberDAO {
 	}
 	
 	//프로필수정
-	public int setProfile(MemberDTO memberDTO)throws Exception{	
+	public int setEditProfile(MemberDTO memberDTO)throws Exception{	
 		return sqlSession.update(NAMESPACE+"setProfile", memberDTO);
 	}
 	

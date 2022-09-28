@@ -81,7 +81,7 @@
 		</association>
 	</resultMap>
 	
-	<update id="setProfile" parameterType="MemberDTO">
+	<update id="setEditProfile" parameterType="MemberDTO">
 		UPDATE MEMBER SET N_NAME=#{n_name}, GENDER=#{gender}, EMAIL=#{email}, PHONE=#{phone} WHERE ID=#{id}
 	</update>
 	

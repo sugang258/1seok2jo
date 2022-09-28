@@ -35,7 +35,7 @@ public class MemberController {
 	private CartService cartService;
 	
 	
-	//로그인(GET)
+	//로그인 화면(GET)
 	@GetMapping("login")
 	public String getLogin()throws Exception{
 		System.out.println("로그인 접속(GET)");
@@ -43,7 +43,7 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	//로그인(POST)
+	//로그인 로직 처리(POST)
 	@PostMapping("login")
 	public ModelAndView getLogin(MemberDTO memberDTO, HttpSession session)throws Exception{
 		System.out.println("로그인 접속(POST)");
@@ -53,17 +53,18 @@ public class MemberController {
 		//DB에 아이디 패스워드 확인->(아이디, 이름, 닉네임, 생년월일, 성별, 이메일, 전화번호, 마일리지, 등급번호, 등급이름 조회)
 		memberDTO = memberService.getLogin(memberDTO);
 		
-		//세션에 memberDTO 담기(아이디, 이름, 닉네임, 생년월일, 성별, 이메일, 전화번호, 마일리지, 등급번호, 등급이름 조회)
-		session.setAttribute("member", memberDTO);
 		
 		//로그인 성공 실패 확인
 		if(memberDTO!=null) {
 			System.out.println("로그인 성공!");
+			//세션에 memberDTO 담기(아이디, 이름, 닉네임, 생년월일, 성별, 이메일, 전화번호, 마일리지, 등급번호, 등급이름 조회)
+			session.setAttribute("member", memberDTO);
+			mv.setViewName("redirect:/");
 		}else {
 			System.out.println("로그인 실패..");
+			mv.setViewName("member/login");		
 		}
 		
-		mv.setViewName("member/login");
 		
 		return mv;
 	}
@@ -79,7 +80,7 @@ public class MemberController {
 		return "redirect:../";
 	}
 	
-	//회원가입(GET)
+	//회원가입 화면(GET)
 	@GetMapping("join")
 	public String setJoin()throws Exception{
 		System.out.println("회원가입 접속(GET)");
@@ -87,7 +88,7 @@ public class MemberController {
 		return "member/join";
 	}
 	
-	//회원가입(POST)
+	//회원가입 로직 처리(POST)
 	@PostMapping
 	public String setJoin(MemberDTO memberDTO, HttpSession session)throws Exception{
 		System.out.println("회원가입 접속(POST)");
@@ -105,13 +106,13 @@ public class MemberController {
 		return "member/join";
 	}
 	
-	//강사신청(GET)
+	//강사신청 화면(GET)
 	@GetMapping("teacherAdd")
 	public void setTeacherAdd()throws Exception{
 		System.out.println("강사신청 접속(GET)");
 	}
 	
-	//강사신청(POST)
+	//강사신청 로직 처리(POST)
 	@PostMapping("teacherAdd")
 	public String setTeacherAdd(TeacherDTO teacherDTO, HttpSession session)throws Exception{
 		System.out.println("강사신청 접속(POST)");
@@ -131,67 +132,54 @@ public class MemberController {
 	
 	/************************ 마이페이지 **************************/
 	
-	//프로필정보조회(GET)
+	//프로필정보조회 화면(GET)
 	@GetMapping("profile")
-	public String getProfile()throws Exception {
+	public ModelAndView getProfile(HttpSession session)throws Exception {
 		System.out.println("프로필 정보(GET)");
 		
-		return "member/profile";
-	}
-	
-	//프로필정보조회(POST)
-	@PostMapping("profile")
-	public ModelAndView getProfile(MemberDTO memberDTO, HttpSession session)throws Exception {
-		System.out.println("프로필 정보(POST)");
 		ModelAndView mv = new ModelAndView();
-//		MemberDTO memberDTO2 = new MemberDTO();
-//	 	memberDTO2 = (MemberDTO)session.getAttribute("member");
-//		System.out.println(memberDTO2.getPw());
-		
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO = (MemberDTO) session.getAttribute("member");
 		
 		MemberDTO respMemberDTO = memberService.getProfile(memberDTO);
-//		int result = memberService.setProfile(memberDTO, profile, session.getServletContext());
-//		
-//		//session.setAttribute("member", memberDTO);
-//		
-//		String message = "프로필수정 실패";
-//		String url = "./profile";
-//		if(result>0) {
-//			message = "프로필수정 성공";
-//			url = "./profile";
-//		}
-//		
-//		mv.addObject("result", result);
-//		mv.addObject("message", message);
-//		mv.addObject("url", url);
-//		mv.setViewName("common/result");
-		mv.addObject("dto", respMemberDTO);
+		
+		mv.addObject("member", respMemberDTO);
 		mv.setViewName("member/profile");
 		
 		return mv;
 	}
 	
-//	//프로필수정(GET)
-//	@GetMapping("profile")
-//	public void setProfile()throws Exception{
-//		System.out.println("프로필 수정(GET)");
-//	}
-//	
-//	//프로필수정(POST)
-//	@PostMapping("profile")
-//	public ModelAndView setProfile(MemberDTO memberDTO, HttpSession session, MultipartFile profile)throws Exception{
-//		System.out.println("프로필 수정(POST)");
-//		
-//		ModelAndView mv = new ModelAndView();
-//		
-//		int result = memberService.setProfile(memberDTO, profile, session.getServletContext());
-//		
+	//프로필 내 정보 수정 로직 처리(POST)
+	@PostMapping("profile")
+	public ModelAndView getProfile(MemberDTO memberDTO, HttpSession session, MultipartFile profile)throws Exception {
+		System.out.println("프로필 정보(POST)");
+//		MemberDTO memberDTO2 = new MemberDTO();
+//	 	memberDTO2 = (MemberDTO)session.getAttribute("member");
+//		System.out.println(memberDTO2.getPw());
+		ModelAndView mv = new ModelAndView();
+		
+		int result = memberService.setEditProfile(memberDTO, profile, session.getServletContext());
+		
+		//session.setAttribute("member", memberDTO);
+		
+		String message = "프로필수정 실패";
+		String url = "./profile";
+		if(result>0) {
+			message = "프로필수정 성공";
+			url = "./profile";
+		}
+		
+		mv.addObject("result", result);
+		mv.addObject("message", message);
+		mv.addObject("url", url);
+		mv.setViewName("common/result");
+		
 //		mv.setViewName("member/profile");
-//		
-//		return mv;
-//	}
+		
+		return mv;
+	}
 	
-	//장바구니(GET)
+	//장바구니 화면(GET)
 	@RequestMapping(value="cart", method=RequestMethod.GET)
 	public ModelAndView getCartList(CartDTO cartDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();

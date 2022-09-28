@@ -62,7 +62,7 @@ public class MemberService {
 	}
 	
 	//프로필수정
-	public int setProfile(MemberDTO memberDTO, MultipartFile profile, ServletContext servletContext)throws Exception{
+	public int setEditProfile(MemberDTO memberDTO, MultipartFile profile, ServletContext servletContext)throws Exception{
 		
 		int result = memberDAO.setJoin(memberDTO);
 		String path = "resources/upload/member";
