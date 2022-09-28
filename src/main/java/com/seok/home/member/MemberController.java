@@ -56,7 +56,7 @@ public class MemberController {
 		
 		//로그인 성공 실패 확인
 		if(memberDTO!=null) {
-			System.out.println("로그인 성공!");
+			System.out.println("로그인 성공!!");
 			//세션에 memberDTO 담기(아이디, 이름, 닉네임, 생년월일, 성별, 이메일, 전화번호, 마일리지, 등급번호, 등급이름 조회)
 			session.setAttribute("member", memberDTO);
 			mv.setViewName("redirect:/");
@@ -98,12 +98,13 @@ public class MemberController {
 		
 		//새로운 회원데이터추가 성공 실패 확인
 		if(result>0) {
-			System.out.println("회원가입 성공!");
+			System.out.println("회원가입 성공!!");
+			return "redirect:member/login";
 		}else {
 			System.out.println("회원가입 실패..");
+			return "member/join";
 		}
-		
-		return "member/join";
+	
 	}
 	
 	//강사신청 화면(GET)
@@ -122,7 +123,7 @@ public class MemberController {
 		
 		//새로운 강사데이터추가 성공 실패 확인
 		if(result>0) {
-			System.out.println("강사신청 성공!");
+			System.out.println("강사신청 성공!!");
 		}else {
 			System.out.println("강사신청 실패..");
 		}
@@ -160,21 +161,30 @@ public class MemberController {
 		
 		int result = memberService.setEditProfile(memberDTO, profile, session.getServletContext());
 		
-		//session.setAttribute("member", memberDTO);
+		memberDTO = (MemberDTO)session.getAttribute("member");
 		
-		String message = "프로필수정 실패";
-		String url = "./profile";
-		if(result>0) {
-			message = "프로필수정 성공";
-			url = "./profile";
+		if(memberDTO != null) {
+			System.out.println("프로필 수정 성공!!");
+			mv.addObject("memver", memberDTO);
+			mv.setViewName("redirect:/");
+		}else {
+			System.out.println("프로필 수정 실패..");
+			mv.setViewName("member/profile");
 		}
 		
-		mv.addObject("result", result);
-		mv.addObject("message", message);
-		mv.addObject("url", url);
-		mv.setViewName("common/result");
+//		String message = "프로필수정 실패";
+//		String url = "./profile";
+//		if(result>0) {
+//			message = "프로필수정 성공";
+//			url = "./profile";
+//		}
+//		
+//		mv.addObject("result", result);
+//		mv.addObject("message", message);
+//		mv.addObject("url", url);
+//		mv.setViewName("common/result");
 		
-//		mv.setViewName("member/profile");
+		mv.setViewName("member/profile");
 		
 		return mv;
 	}
