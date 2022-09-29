@@ -198,7 +198,11 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
 
         <!--Reply-Content-->
         <div class="reply_list p-3" id="reply_list">
-          <c:forEach items="${requestScope.list}" var="lectureBoardDTO">
+          <c:forEach
+            items="${requestScope.list}"
+            var="lectureBoardDTO"
+            varStatus="i"
+          >
             <input
               type="text"
               name="l_num"
@@ -247,8 +251,8 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                   style="width: 26px; border-radius: 24px"
                 />
               </div>
-              <div class="l_board_id ms-2 mt-1" style="font-size: 13px">
-                ${lectureBoardDTO.id}
+              <div class="ms-2 mt-1" style="font-size: 13px">
+                <span class="l_board_id">${lectureBoardDTO.id}</span>
               </div>
             </div>
             <div class="d-flex mb-1">
@@ -271,16 +275,27 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               </div>
               <div class="d-flex best">
                 <div style="padding: 6px 10px 0px 0px; font-size: 15px">
-                  ${heart_count}
+                  <span class="count_text">${count_list[i.index]}</span>
                 </div>
                 <div>
                   <form action="./l_heartCount" method="get">
-                    <i
-                      class="like_btn fa-solid fa-thumbs-up"
-                      onclick="location='./l_heartCount?num=${lectureBoardDTO.num}'"
-                      data-l_board-num="${lectureBoardDTO.num}"
-                    ></i
-                    ><span
+                    <c:choose>
+                      <c:when test="${color_list[i.index] eq null}">
+                        <i
+                          class="like_btn fa-solid fa-thumbs-up"
+                          style="color: rgb(73, 71, 71)"
+                          data-l_board-num="${lectureBoardDTO.num}"
+                        ></i>
+                      </c:when>
+                      <c:otherwise>
+                        <i
+                          class="like_btn fa-solid fa-thumbs-up"
+                          style="color: #ffcd28"
+                          data-l_board-num="${lectureBoardDTO.num}"
+                        ></i>
+                      </c:otherwise>
+                    </c:choose>
+                    <span
                       class="ps-1 d-xl-inline-block d-none"
                       style="font-size: 11px"
                     >

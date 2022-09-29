@@ -4,11 +4,11 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 		    <mapper namespace="com.seok.home.l_board.LectureBoardDAO">
-		    	<select id="getL_boardList" parameterType="LectureBoardDTO" resultType="LectureBoardDTO">
-		    		SELECT * FROM LECTURE_BOARD WHERE L_NUM = #{l_num} ORDER BY NUM DESC			
-		    	</select>
 		    	<!-- 정렬기능구현 -->
 		    	<select id="getL_boardNewList" parameterType="LectureBoardDTO" resultType="LectureBoardDTO">
+		    		SELECT * FROM LECTURE_BOARD WHERE L_NUM = #{l_num} ORDER BY NUM DESC
+		    	</select>	
+		    	<select id="getL_boardLikeList" parameterType="LectureBoardDTO" resultType="LectureBoardDTO">
 		    		SELECT * FROM LECTURE_BOARD WHERE L_NUM = #{l_num} ORDER BY NUM DESC
 		    	</select>			
 		    	<select id="getL_boardHighList" parameterType="LectureBoardDTO" resultType="LectureBoardDTO">
@@ -52,26 +52,22 @@
 		    		SELECT AVG(SCORE) FROM LECTURE_BOARD WHERE L_NUM = #{l_num}
 		    	</select>
 		    	
-		    	
 		    	<!-- 수강평 추천기능구현 -->
 		    	<select id="getL_heart" parameterType="L_heartDTO" resultType="L_heartDTO">
 		    		SELECT * FROM L_HEART WHERE NUM=#{num} AND ID=#{id}
 		    	</select>
-		    	<!-- 수강평 추천 시 추천수 1증가 -->	
+		    	<!-- 수강평 추천 -->	
 		    	<insert id="setL_heart" parameterType="L_heartDTO">
-		    		INSERT INTO L_HEART VALUES (LIKE_SEQ.NEXTVAL,#{id}, #{num}, 1)
+		    		INSERT INTO L_HEART VALUES (LIKE_SEQ.NEXTVAL,#{id}, #{num})
 		    	</insert>
-		    	<!-- 수강평 추천 취소 및 재선택 -->
-		    	<update id="setHeartToggle" parameterType="L_heartDTO">
-			    	UPDATE L_HEART SET LIKE_CHECK =
-						CASE LIKE_CHECK
-						    WHEN 0 THEN 1
-						    WHEN 1 THEN 0
-						    END
-					WHERE LIKE_NUM = #{like_num} AND ID=#{id}
-		    	</update>
+		    	<!-- 추천 취소 -->
+		    	<delete id="setL_heartDelete" parameterType="L_heartDTO">
+		    		DELETE L_HEART WHERE NUM=#{num} AND ID=#{id}
+		    	</delete>
+
+				<!-- 추천수 조회 -->
 		    	<select id="getHeartCount" parameterType="L_heartDTO" resultType="Long">
-		    		SELECT COUNT(LIKE_NUM) FROM L_HEART WHERE NUM=#{num} AND LIKE_CHECK=1
+		    		SELECT COUNT(LIKE_NUM) FROM L_HEART WHERE NUM=#{num}
 		    	</select>
 
 		    </mapper>

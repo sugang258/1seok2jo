@@ -13,10 +13,6 @@ public class LectureBoardDAO {
 	private SqlSession session;
 	private String NAMESPACE = "com.seok.home.l_board.LectureBoardDAO.";
 	
-	public List<LectureBoardDTO> getL_boardList(LectureBoardDTO lectureBoardDTO)throws Exception{
-		return session.selectList(NAMESPACE+"getL_boardList", lectureBoardDTO);
-	}
-	
 	public int setL_boardAdd(LectureBoardDTO lectureBoardDTO)throws Exception{
 		return session.insert(NAMESPACE+"setL_boardAdd", lectureBoardDTO);
 	}
@@ -52,6 +48,9 @@ public class LectureBoardDAO {
 	public List<LectureBoardDTO> getL_boardNewList(LectureBoardDTO lectureBoardDTO)throws Exception{
 		return session.selectList(NAMESPACE+"getL_boardNewList", lectureBoardDTO);
 	}
+	public List<LectureBoardDTO> getL_boardLikeList(LectureBoardDTO lectureBoardDTO)throws Exception{
+		return session.selectList(NAMESPACE+"getL_boardLikeList", lectureBoardDTO);
+	}
 	public List<LectureBoardDTO> getL_boardHighList(LectureBoardDTO lectureBoardDTO)throws Exception{
 		return session.selectList(NAMESPACE+"getL_boardHighList", lectureBoardDTO);
 	}
@@ -66,9 +65,9 @@ public class LectureBoardDAO {
 	public int setL_heart(L_heartDTO l_heartDTO)throws Exception {
 		return session.insert(NAMESPACE+"setL_heart", l_heartDTO);
 	}
-	/* 수강평 추천 취소 및 재선택 */
-	public int setHeartToggle(L_heartDTO l_heartDTO)throws Exception{
-		return session.update(NAMESPACE+"setHeartToggle", l_heartDTO);
+	/* 수강평 추천 취소 */
+	public int setL_heartDelete(L_heartDTO l_heartDTO)throws Exception {
+		return session.delete(NAMESPACE+"setL_heartDelete", l_heartDTO);
 	}
 	/* 추천 갯수 */
 	public Long getHeartCount(L_heartDTO l_heartDTO)throws Exception{

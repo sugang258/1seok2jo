@@ -41,9 +41,11 @@ lecture_add.addEventListener("click", function (event) {
   }
 });
 
-for (l of l_board_delete) {
-  l.addEventListener("click", function () {
-    let num = document.getElementById("lecture_boardNum").value;
+for (let i = 0; i < l_board_delete.length; i++) {
+  l_board_delete[i].addEventListener("click", function () {
+    let num = document.querySelectorAll(".lecture_boardNum");
+    num = num[i].value;
+    console.log(num);
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/board/l_boardDelete");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -51,6 +53,7 @@ for (l of l_board_delete) {
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         let result = xhttp.responseText.trim();
+        console.log(result);
         if (result == 1) {
           window.location.reload();
         } else {
@@ -67,6 +70,8 @@ const like_btn = document.getElementsByClassName("like_btn");
 
 for (let i = 0; i < like_btn.length; i++) {
   like_btn[i].addEventListener("click", function () {
+    const count_text = document.querySelectorAll(".count_text");
+    let count_text_value = count_text[i].innerHTML;
     let result;
     let num = document.querySelectorAll(".lecture_boardNum");
     num = num[i].value;
@@ -79,13 +84,30 @@ for (let i = 0; i < like_btn.length; i++) {
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         result = xhttp.responseText.trim();
-        console.log(result);
+
         if (result == 1) {
           like_btn[i].setAttribute("style", "color:#FFCD28");
+          count_text[i].innerHTML = ++count_text_value;
         } else {
           like_btn[i].setAttribute("style", "color: rgb(73, 71, 71)");
+          count_text[i].innerHTML = --count_text_value;
         }
       }
     };
   });
+}
+
+//추천 수 조회
+function getHeartCount() {
+  const heart_text = document.getElementsByClassName("heart_text");
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "/board/l_heartCount?num=" + num);
+  console.log(num);
+  xhttp.send();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      let result = xhttp.responseText;
+      heart_text.innerHTML = result;
+    }
+  };
 }

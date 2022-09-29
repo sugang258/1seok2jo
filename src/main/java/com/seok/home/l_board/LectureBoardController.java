@@ -18,15 +18,28 @@ public class LectureBoardController {
 	@Autowired
 	private LectureBoardService lectureBoardService;
 
-	@GetMapping("L_index")
-	public ModelAndView getL_boardList(LectureBoardDTO lectureBoardDTO) throws Exception {
+	/* 최신순조회 */
+	@GetMapping("new")
+	public ModelAndView getL_boardNewList(LectureBoardDTO lectureBoardDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<LectureBoardDTO> ar = lectureBoardService.getL_boardList(lectureBoardDTO);
+		List<LectureBoardDTO> ar = lectureBoardService.getL_boardNewList(lectureBoardDTO);
 		Long count = lectureBoardService.getTotalCount(lectureBoardDTO);
 		double avg = lectureBoardService.getAvgScore(lectureBoardDTO);
 		avg = Math.round(avg);
+		
+		/* 추천수 조회 및 컬러변경 */
+		List<Long> heartCount = new ArrayList<Long>();
+		List<L_heartDTO> heartColor = new ArrayList<L_heartDTO>();
+		for(LectureBoardDTO a : ar) {
+			L_heartDTO l_heartDTO = new L_heartDTO();
+			l_heartDTO.setNum(a.getNum());
+			l_heartDTO.setId(a.getId());
+			heartCount.add(lectureBoardService.getHeartCount(l_heartDTO));
+			heartColor.add(lectureBoardService.getL_heart(l_heartDTO));
+		}
+		mv.addObject("count_list", heartCount);
+		mv.addObject("color_list", heartColor);
 
-		/* 프로그래스바 구현 */
 		Long firstScore = lectureBoardService.getFirstScore(lectureBoardDTO);
 		Long secondScore = lectureBoardService.getSecondScore(lectureBoardDTO);
 		Long thirdScore = lectureBoardService.getThirdScore(lectureBoardDTO);
@@ -53,15 +66,28 @@ public class LectureBoardController {
 
 		return mv;
 	}
-
-	/* 정렬조회 */
-	@GetMapping("new")
-	public ModelAndView getL_boardNewList(LectureBoardDTO lectureBoardDTO) throws Exception {
+	
+	/* 추천순 조회 */
+	@GetMapping("like")
+	public ModelAndView getL_boardLikeList(LectureBoardDTO lectureBoardDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<LectureBoardDTO> ar = lectureBoardService.getL_boardNewList(lectureBoardDTO);
+		List<LectureBoardDTO> ar = lectureBoardService.getL_boardLikeList(lectureBoardDTO);
 		Long count = lectureBoardService.getTotalCount(lectureBoardDTO);
 		double avg = lectureBoardService.getAvgScore(lectureBoardDTO);
 		avg = Math.round(avg);
+		
+		/* 추천수 조회 및 컬러변경 */
+		List<Long> heartCount = new ArrayList<Long>();
+		List<L_heartDTO> heartColor = new ArrayList<L_heartDTO>();
+		for(LectureBoardDTO a : ar) {
+			L_heartDTO l_heartDTO = new L_heartDTO();
+			l_heartDTO.setNum(a.getNum());
+			l_heartDTO.setId(a.getId());
+			heartCount.add(lectureBoardService.getHeartCount(l_heartDTO));
+			heartColor.add(lectureBoardService.getL_heart(l_heartDTO));
+		}
+		mv.addObject("count_list", heartCount);
+		mv.addObject("color_list", heartColor);
 
 		Long firstScore = lectureBoardService.getFirstScore(lectureBoardDTO);
 		Long secondScore = lectureBoardService.getSecondScore(lectureBoardDTO);
@@ -98,6 +124,19 @@ public class LectureBoardController {
 		Long count = lectureBoardService.getTotalCount(lectureBoardDTO);
 		double avg = lectureBoardService.getAvgScore(lectureBoardDTO);
 		avg = Math.round(avg);
+		
+		/* 추천수 조회 */
+		List<Long> heartCount = new ArrayList<Long>();
+		List<L_heartDTO> heartColor = new ArrayList<L_heartDTO>();
+		for(LectureBoardDTO a : ar) {
+			L_heartDTO l_heartDTO = new L_heartDTO();
+			l_heartDTO.setNum(a.getNum());
+			l_heartDTO.setId(a.getId());
+			heartCount.add(lectureBoardService.getHeartCount(l_heartDTO));
+			heartColor.add(lectureBoardService.getL_heart(l_heartDTO));
+		}
+		mv.addObject("count_list", heartCount);
+		mv.addObject("color_list", heartColor);
 
 		Long firstScore = lectureBoardService.getFirstScore(lectureBoardDTO);
 		Long secondScore = lectureBoardService.getSecondScore(lectureBoardDTO);
@@ -134,6 +173,19 @@ public class LectureBoardController {
 		Long count = lectureBoardService.getTotalCount(lectureBoardDTO);
 		double avg = lectureBoardService.getAvgScore(lectureBoardDTO);
 		avg = Math.round(avg);
+		
+		/* 추천수 조회 */
+		List<Long> heartCount = new ArrayList<Long>();
+		List<L_heartDTO> heartColor = new ArrayList<L_heartDTO>();
+		for(LectureBoardDTO a : ar) {
+			L_heartDTO l_heartDTO = new L_heartDTO();
+			l_heartDTO.setNum(a.getNum());
+			l_heartDTO.setId(a.getId());
+			heartCount.add(lectureBoardService.getHeartCount(l_heartDTO));
+			heartColor.add(lectureBoardService.getL_heart(l_heartDTO));
+		}
+		mv.addObject("count_list", heartCount);
+		mv.addObject("color_list", heartColor);
 
 		Long firstScore = lectureBoardService.getFirstScore(lectureBoardDTO);
 		Long secondScore = lectureBoardService.getSecondScore(lectureBoardDTO);
@@ -181,31 +233,16 @@ public class LectureBoardController {
 	/* 수강평 추천 기능 구현 */
 	@PostMapping("l_heart")
 	@ResponseBody
-	public Long setL_heart(L_heartDTO l_heartDTO) throws Exception {
+	public int setL_heart(L_heartDTO l_heartDTO) throws Exception {
 		int result=0;
-		Long like_check = 0L;
 		L_heartDTO h_DTO = lectureBoardService.getL_heart(l_heartDTO);
 		if(h_DTO==null) {
-			result = lectureBoardService.setL_heart(l_heartDTO);
-			like_check = 1L;
+			lectureBoardService.setL_heart(l_heartDTO);
+			result = 1;
 		}else {
-			result = lectureBoardService.setHeartToggle(h_DTO);
-			if(h_DTO.getLike_check() == 1) {
-				like_check = 0L;
-			}else {
-				like_check = 1L;
-			}
+			lectureBoardService.setL_heartDelete(l_heartDTO);
 		}
-		return like_check;
-	}
-	
-	@GetMapping("l_heartCount")
-	public ModelAndView getHeartCount(L_heartDTO l_heartDTO)throws Exception{
-		ModelAndView mv = new ModelAndView();
-		Long heart_count = lectureBoardService.getHeartCount(l_heartDTO);
-		mv.addObject("heart_count", heart_count);
-		mv.setViewName("board/lectureboard_index");
-		return mv;
+		return result;
 	}
 
 }
