@@ -1,5 +1,7 @@
 package com.seok.home.lecture.add;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +25,9 @@ public class LectureAddService {
 	
 	public int setLectureCount(LectureAddDTO lectureAddDTO) throws Exception{
 		return lectureAddDAO.setLectureCount(lectureAddDTO);
+	}
+	
+	public List<LectureAddDTO> getLectureAddAll() throws Exception{
+		return lectureAddDAO.getLectureAddAll();
 	}
 }
