@@ -96,7 +96,7 @@ public class PayController {
 	//‘강의 상세’  ‘장바구니’ 페이지에서 결제하기 버튼을 눌러 주문페이지로 이동
 	@GetMapping(value="order")
 	public ModelAndView showOrder(String l_num, HttpServletRequest request) throws Exception{
-		//구매하려는 강의정보를 받아와 (강의상세에서 바로 넘어오는 경우 강의번호로, 장바구니에서 넘어오는 경우 장바구니 표시로 넘겨준다.)
+		//구매하려는 강의정보를 받아와 (강의상세에서 바로 넘어오는 경우 강의번호로, 장바구니에서 넘어오는 경우 아이디로 장바구니를 가져와 넘겨준다.)
 		
 		ModelAndView mv = new ModelAndView();
 		

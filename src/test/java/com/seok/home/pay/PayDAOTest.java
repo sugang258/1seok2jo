@@ -31,16 +31,19 @@ public class PayDAOTest extends MyAbstractTest{
 		assertNotNull(dto);
 	}
 	
-//	@Test
+	@Test
 	public void getPaymentList() throws Exception{
 		PaymentDTO dto = new PaymentDTO();
 		
-		dto.setP_uid("1seok2jo-1663730923460");
+		dto.setP_uid("1seok2jo-1664417705219");
 		
 		List<PaymentDTO> lst = dao.getPaymentList(dto);
+
 		for(PaymentDTO pay: lst) {
+			System.out.println(pay.getId());
 			for(OrderDTO order: pay.getOrders()) {
-				System.out.println(order.getLectureDTO().getL_price());
+				System.out.println(order.getLectureDTO().getL_name());
+				System.out.println(order.getLectureDTO().getId());
 			}
 		}
 		
