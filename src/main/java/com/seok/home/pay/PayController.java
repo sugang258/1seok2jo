@@ -61,22 +61,21 @@ public class PayController {
 		return mv;
 	}
 
-	//추후 주문 상세 등으로 바꿀것...
+	//환불 요청 창
 	@GetMapping(value="cancel")
-	public String cancle(PaymentDTO paymentDTO, Model model) throws Exception{
+	public String requestCancle(OrderDTO orderDTO, Model model) throws Exception{
 		
-		paymentDTO.setP_uid("1seok2jo-1663727564296");
-		System.out.println("cancleGet"+paymentDTO.getP_uid());
+		orderDTO = payService.requestCancle(orderDTO);
+
+		model.addAttribute("orderDTO", orderDTO);
 		
-		paymentDTO = payService.cancel(paymentDTO);
-		
-		model.addAttribute("payment", paymentDTO);
 		return "pay/cancel";
 	}
 	
 	@PostMapping(value="cancel")
 	@ResponseBody
-	public String cancle(RefundDTO refundDTO) throws Exception{
+	public String requestCancle(RefundDTO refundDTO) throws Exception{
+		//payment의 remains변경해야딤
 		System.out.println("hi");
 		
 		String test_already_cancelled_merchant_uid = "1seok2jo-1663728830588";
@@ -103,10 +102,10 @@ public class PayController {
 		ArrayList<LectureDTO> lectureDTOs = new ArrayList<LectureDTO>();
 		
 		if(l_num!=null) {
-			lectureDTOs = payService.getOrder(l_num);			
+			lectureDTOs = payService.getCartLectures(l_num);			
 		}else {
 			MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
-			lectureDTOs = payService.getOrder(member);
+			lectureDTOs = payService.getCartLectures(member);
 		}
 		
 		

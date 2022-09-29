@@ -18,7 +18,7 @@
     <div class="container-fluid" style="height:80px">
         <c:import url="../template/header.jsp"></c:import>
     </div>
-    <div class="container" style="min-width: 950px;">
+    <div class="container" style="min-width: 1150px;">
     <div class="row justify-content-center pt-3 mt-3">
         <div class="mx-5">
             <h4 class="mx-5"><b>결제 상세 정보</b></h3>    
@@ -88,8 +88,7 @@
                                 </c:if>
                             </td>
                             <td>
-                                <button type="button">환불</button> 
-                                결제 후 3일 이내에만 환불
+                                <button type="button" id="cancleBtn" data-onum="${order.o_num}">환불</button>
                             </td>
                         </tr>
                         
@@ -201,10 +200,10 @@
         function doPopupopen() {
             window. open("${paymentDTO.p_receipt}", "_blank", "width=300, height=360");
         }
-        function doCancle(){
-            window. open("/pay/cancle", "_blank", "width=300, height=360");
-        }
     </script>
+    <!--환불 요청하기-->
+    <script src="/resources/js/cancel.js"></script>
+    <script>cancelPay()</script>
 <!--부트스트랩-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 

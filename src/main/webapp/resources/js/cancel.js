@@ -1,17 +1,16 @@
 function cancelPay() {
+  let cancleBtn = document.querySelectorAll("#cancleBtn");
     /* 취소요청 */
+  
+  for(let i =0; i<cancleBtn.length; i++){
+    cancleBtn[i].addEventListener("click", function(){
+      let o_num = cancleBtn[i].getAttribute("data-onum")
+      window. open("/pay/cancel?o_num="+o_num, "_blank", "width=300, height=360");
+    })
+  }
 
-  const xhttp = new XMLHttpRequest();
-  let p_uid = document.getElementById("p_uid");
-  console.log("p_uid="+p_uid.value);
-
-  xhttp.open("Post","/pay/cancel");
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-  xhttp.send("p_uid="+p_uid.value);
-  xhttp.addEventListener("readystatechange", function(){
-    if(this.readyState==4 && this.status==200){
-      token = xhttp.responseText.trim();
-    }
-  })
-
+  function requestCancle(){
+  
+  }
+  
 }

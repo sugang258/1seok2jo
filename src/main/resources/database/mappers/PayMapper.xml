@@ -27,6 +27,27 @@
    				<result column="f_oriname" property="f_oriname"/>
    			</collection>
     	</resultMap>
+    	
+    	<select id="getOrder" parameterType="OrderDTO" resultMap="getOrderResult">
+    		select *
+    		from orders O
+    		left join Lecture L
+    		on O.l_num = L.l_num
+    		where O.O_NUM = #{o_num}
+    	</select>
+    	<resultMap type="OrderDTO" id="getOrderResult">
+    		<id column="O_NUM" property="o_num"/>
+    		<result column="P_UID" property="p_uid"/>
+   			<result column="L_NUM" property="l_num"/>
+   			<result column="O_AMOUNT" property="o_amount"/>
+   			<association property="lectureDTO" javaType="LectureDTO">
+   				<id column="l_num" property="l_num"/>
+   				<result column="TEACHER" property="id"/>
+   				<result column="l_name" property="l_name"/>
+   				<result column="l_price" property="l_price"/>
+   				<result column="l_date" property="l_date"/>
+   			</association>
+    	</resultMap>
     
     	<select id="getPaymentList" parameterType="PaymentDTO" resultMap="allPaymentsResult">
     		select P.*, O.O_NUM, O.L_NUM, O.O_AMOUNT, L.ID TEACHER, L.LEVEL_NUM, L.L_NAME, L.L_PRICE, R.PR_NUM, R.PR_REASON, R.PR_AMOUNT, R.PR_POINT, R.PR_REGDATE

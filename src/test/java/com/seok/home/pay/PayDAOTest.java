@@ -17,6 +17,22 @@ public class PayDAOTest extends MyAbstractTest{
 	@Autowired
 	PayDAO dao;
 	
+	@Test
+	public void getOrderTest() throws Exception{
+		OrderDTO orderDTO = new OrderDTO();
+		
+		orderDTO.setO_num(49L);
+		
+		orderDTO = dao.getOrder(orderDTO);
+		
+		System.out.println(orderDTO.getL_num());
+		System.out.println(orderDTO.getP_uid());
+		System.out.println(orderDTO.getLectureDTO().getL_name());
+		System.out.println(orderDTO.getLectureDTO().getL_price());
+		
+		assertNotNull(orderDTO);
+	}
+	
 //	@Test
 	public void getSimpleLecture() throws Exception{
 		LectureDTO dto = new LectureDTO();
@@ -31,7 +47,7 @@ public class PayDAOTest extends MyAbstractTest{
 		assertNotNull(dto);
 	}
 	
-	@Test
+//	@Test
 	public void getPaymentList() throws Exception{
 		PaymentDTO dto = new PaymentDTO();
 		

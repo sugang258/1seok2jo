@@ -20,11 +20,11 @@ public class PayService {
 	@Autowired
 	CartDAO cartDAO;
 	
-	public PaymentDTO cancel(PaymentDTO paymentDTO) throws Exception{
+	public OrderDTO requestCancle(OrderDTO orderDTO) throws Exception{
 
-		paymentDTO = payDAO.getPayDetail(paymentDTO);
+		orderDTO = payDAO.getOrder(orderDTO);
 		
-		return paymentDTO;
+		return orderDTO;
 	}
 	
 	public PaymentDTO getPayDetail(PaymentDTO paymentDTO) throws Exception{
@@ -91,7 +91,7 @@ public class PayService {
 		return cartDAO.getCartList(cartDTO);
 	}
 	
-	public ArrayList<LectureDTO> getOrder(MemberDTO memberDTO) throws Exception {
+	public ArrayList<LectureDTO> getCartLectures(MemberDTO memberDTO) throws Exception {
 		//강의번호가 비어있으면 장바구니의 강의 번호를 불러온다.
 		
 		CartDTO cartDTO = new CartDTO();
@@ -116,7 +116,7 @@ public class PayService {
 		return lectureDTOs;
 	}
 	
-	public ArrayList<LectureDTO> getOrder(String l_num) throws Exception {
+	public ArrayList<LectureDTO> getCartLectures(String l_num) throws Exception {
 		//강의 불러온다.
 		LectureDTO lectureDTO = new LectureDTO();
 		System.out.println(Long.parseLong(l_num));
