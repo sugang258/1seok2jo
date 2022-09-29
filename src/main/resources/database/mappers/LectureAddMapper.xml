@@ -20,5 +20,9 @@
 		    	<select id="getLectureAdd" parameterType="LectureAddDTO" resultType="LectureAddDTO"> 
 		    		SELECT * FROM LECTURE_SIGN WHERE L_NUM=#{l_num} AND ID=#{id}
 		    	</select>
+		    	
+		    	<delete id="setLectureAddDelete" parameterType="LectureAddDTO">
+		    		DELETE FROM LECTURE_SIGN WHERE S_NUM=#{s_num}
+		    	</delete>
 		    
 		    </mapper>

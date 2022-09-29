@@ -43,6 +43,18 @@ public class LectureAddTest extends MyAbstractTest {
 		assertEquals(1,result);
 	}
 	
+	//@Test
+	public void setLectureAddDelete() throws Exception{
+		LectureAddDTO lectureAddDTO = new LectureAddDTO();
+		
+		lectureAddDTO.setS_num(22L);
+		
+		int result = lectureAddDAO.setLectureAddDelete(lectureAddDTO);
+		
+		assertEquals(1,result);
+
+	}
+	
 	
 
 }

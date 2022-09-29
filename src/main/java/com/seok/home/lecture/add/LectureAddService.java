@@ -16,4 +16,8 @@ public class LectureAddService {
 	public LectureAddDTO getLectureAdd(LectureAddDTO lectureAddDTO) throws Exception{
 		return lectureAddDAO.getLectureAdd(lectureAddDTO);
 	}
+	
+	public int setLectureAddDelete(LectureAddDTO lectureAddDTO) throws Exception{
+		return lectureAddDAO.setLectureAddDelete(lectureAddDTO);
+	}
 }

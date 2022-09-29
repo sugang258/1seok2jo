@@ -41,4 +41,8 @@ public class StatusService {
 	public long getStatusTotal(LectureAddDTO lectureAddDTO) throws Exception{
 		return statusDAO.getStatusTotal(lectureAddDTO);
 	}
+	
+	public int setStatusDelete(StatusDTO statusDTO) throws Exception{
+		return statusDAO.setStatusDelete(statusDTO);
+	}
 }
