@@ -50,6 +50,10 @@
 					WHERE LS.ID= #{id} AND S.S_NUM=#{s_num}
 		    	</select>
 		    	
+		    	<delete id="setStatusDelete" parameterType="StatusDTO">
+		    		DELETE FROM STATUS WHERE S_NUM=#{s_num}
+		    	</delete>
+		    	
 		    	
 		    	
 		    	

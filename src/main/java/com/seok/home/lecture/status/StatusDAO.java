@@ -44,5 +44,9 @@ public class StatusDAO {
 	public long getStatusTotal(LectureAddDTO lectureAddDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getStatusTotal", lectureAddDTO);
 	}
+	
+	public int setStatusDelete(StatusDTO statusDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setStatusDelete", statusDTO);
+	}
 
 }

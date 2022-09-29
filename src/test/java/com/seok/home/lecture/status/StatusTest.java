@@ -99,4 +99,16 @@ public class StatusTest extends MyAbstractTest{
 //		
 //		assertNotEquals(0L, result);
 //	}
+	
+	//@Test
+	public void setStatusDelete() throws Exception{
+		StatusDTO statusDTO = new StatusDTO();
+		
+		statusDTO.setS_num(9L);
+		
+		int result = statusDAO.setStatusDelete(statusDTO);
+		
+		assertEquals(1,result);
+
+	}
 }
