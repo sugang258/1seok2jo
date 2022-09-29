@@ -88,7 +88,10 @@
                                 </c:if>
                             </td>
                             <td>
-                                <button type="button" id="cancleBtn" data-onum="${order.o_num}">환불</button>
+                                <!-- Button trigger modal -->
+                                <button type="button" id="cancleBtn" data-bs-toggle="modal" data-bs-target="#modalCancel" data-onum="${order.o_num}" data-amount="${order.o_amount}" data-lname="${order.lectureDTO.l_name}">
+                                    환불
+                                </button>
                             </td>
                         </tr>
                         
@@ -113,13 +116,13 @@
                         <tr>
                             <td>
                                 <strong>총 주문 금액</strong>${paymentDTO.p_amount}원<br>
-                                <span class="text-muted">사용 마일리지</span> ${paymentDTO.p_point}마일리지<BR>
+                                <span class="text-muted">사용 마일리지</span> <span id="p_point">${paymentDTO.p_point}</span>마일리지<BR>
                                 <span>총 결제 금액</span> ${paymentDTO.p_realamount}원<br>
                             </td>
                             <td>
                                 <strong>포인트 혜택</strong><BR>
                                 <span> 포인트 적립</span>
-                                <span>30원</span>
+                                <span>${paymentDTO.p_realamount*0.05}원</span>
                             </td>
                         </tr>
                         <tr>
@@ -168,7 +171,7 @@
                                     <strong>취소 상품 상세</strong><br>
                                     <!--refund 갯수에 따라 반복-->
                                     <span>상품명</span><small>(pr_regdate)</small> <span>pr_amount</span><br>
-                                    <span>마일리지 환물</span> <span>pr_point</span>
+                                    <span>마일리지 환불</span> <span>pr_point</span>
                                     <!--반복 끝-->
                                 </td>
                             </tr>
@@ -188,9 +191,50 @@
                 </div>
             </div>
         </div>
-        <!--환불 끝-->
-
     </c:if>
+    <!--환불 끝-->
+    <!-- Modal -->
+    <div class="modal fade" id="modalCancel" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="ModalLabel">환불 요청</h5>
+            </div>
+            <div class="modal-body mb-3">
+                <div class="mb-3 text-center"> 
+                    <span id="mLname">강의명</span> (<span id="mOamount">55000</span>원)을 환불요청하시겠습니까?
+                </div>
+                <form>
+
+                    <div class="row">
+                        <div class="col-6">
+                          <label>환불 요청 포인트</label>
+                        </div>
+                        <div class="col-6 text-end">
+                          <span id="cancelPoint">ㅇㅇㅇ</span>  
+                        </div>
+                    </div>
+                    <input type="number" class="form-control text-end" id="point" name="point" placeholder="사용가능 ${member.point}마일리지">
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label text-muted">환불 사유</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                    <div class="mt-2" style="display: flex; justify-content:space-between">
+                        <span class="fw-bold">총 환불 금액</span>
+                        <span class="fw-bold" id="realtotal"></span>원
+                    </div>
+                </form>
+                <!--인증요청 응답텍스트 표시-->
+                <div id="authMessage"></div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">요청 취소</button>
+            <button type="button" class="btn btn-outline-success" id="getAuth">환불 요청</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!--modal끝-->
     </div>
     <div class="container-fluid mt-5" style="height: 300px;">
         <c:import url="../template/footer.jsp"></c:import>
@@ -206,6 +250,16 @@
     <script>cancelPay()</script>
 <!--부트스트랩-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<style >
+    .modal-backdrop.show{
+        opacity:0.1;
+    }
 
+    #point::-webkit-outer-spin-button,
+    #point::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+    
+</style>
 </body>
 </html>
