@@ -165,6 +165,11 @@ public class MemberController {
 //		System.out.println(memberDTO2.getPw());
 		ModelAndView mv = new ModelAndView();
 		
+		System.out.println(profile);
+		System.out.println("upload 파일명 : "+profile.getOriginalFilename());
+		System.out.println("upload 파라미터명 : "+profile.getName());
+		System.out.println("upload 파일 크기 : "+profile.getSize());
+		
 		//구효입니당
 		System.out.println("수정 전 memberDTO.닉네임 : "+memberDTO.getN_name());
 		int result = memberService.setEditProfile(memberDTO, profile, session.getServletContext());

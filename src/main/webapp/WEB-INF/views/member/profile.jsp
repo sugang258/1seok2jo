@@ -25,16 +25,23 @@
 	<section class="container-fluid con-lg-7 ilseok">
 		<div class="row mt-5">
 			<%-- 회원 회원가입JSP --%>
-			<form action="./profile" method="post">
+			<form action="./profile" method="post" enctype="multipart/form-data">
 			
 			  <div class="mb-3">
 			    <label for="ipId" class="form-label">프로필사진 변경</label>
 			    <input type="file" name="profile" class="form-control" id="file">
 			  </div>
+			  
+			  <%-- 			  <div id="addFiles">
+                  <!--하단 파일 추가 input과 연결된 라벨-->
+                  <label for="file" class="mt-2 file_add"><b>파일추가📂</b></button>
+
+              </div>					
+                <!-- 파일 추가 input -->
+                <input type="file" id="file" style="display: none;" > --%>
 			
 			  <div class="mb-3">
-			    <label for="ipId" class="form-label">아이디</label>
-			    <input type="text" name="id" class="form-control" id="ipId" value="${member.id}">
+			    <input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}">
 			  </div>
 			  
 			  <div class="mb-3">
@@ -80,5 +87,8 @@
 	</section>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<%-- </script>
+<script src="/resources/js/fileTest.js"></script>
+<script>save()</script> --%>
 </body>
 </html>

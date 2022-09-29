@@ -85,9 +85,15 @@
 	
 	<insert id="setAddFile" parameterType="MemberFileDTO">
 		/* 프로필사진 데이터 추가 */
-	
-		INSERT INTO MEMBERFILE (NUM, ID, F_NAME, F_ORINAME)
-		VALUES(FILE_SEQ.NEXTVAL, #{id},#{f_name}, #{f_oriname})
+		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+			SELECT FILE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO MEMBER_FILE (NUM, ID, F_NAME, F_ORINAME)
+		VALUES(#{num}, #{id},#{f_name}, #{f_oriname})
 	</insert>
+	
+	<delete id="setDeleteFile">
+		DELETE FROM MEMBER_FILE WHERE NUM=#{num};
+	</delete>
 	
 </mapper> 

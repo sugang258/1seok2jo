@@ -64,17 +64,21 @@ public class MemberService {
 	//프로필수정
 	public int setEditProfile(MemberDTO memberDTO, MultipartFile profile, ServletContext servletContext)throws Exception{
 		
-		int result = memberDAO.setEditProfile(memberDTO);
+		int susess = memberDAO.setEditProfile(memberDTO);
 		String path = "resources/upload/member";
+		//수정된게 나오길 희망함!!
+		System.out.println("Service : "+memberDTO.getN_name());
 		
 		String fileName = fileManager.saveFile(path, servletContext, profile);
 		
+		int result = 0;
 		if(!profile.isEmpty()) {
 			MemberFileDTO memberFileDTO = new MemberFileDTO();
 			memberFileDTO.setF_name(fileName);
 			memberFileDTO.setF_oriname(profile.getOriginalFilename());
 			memberFileDTO.setId(memberDTO.getId());
-			memberDAO.setAddFile(memberFileDTO);
+			result = memberDAO.setAddFile(memberFileDTO);
+			memberDTO.setMemberFileDTO(memberFileDTO);
 		}
 		
 		return result;

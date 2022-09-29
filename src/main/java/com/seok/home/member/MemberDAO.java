@@ -45,9 +45,13 @@ public class MemberDAO {
 		return sqlSession.update(NAMESPACE+"setEditProfile", memberDTO);
 	}
 	
-	//프로필사진업로드
+	//프로필사진 추가
 	public int setAddFile(MemberFileDTO memberFileDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"setAddFile", memberFileDTO);
 	}
 	
+	//프로필사진 삭제
+	public int setDeleteFile(MemberFileDTO memberFileDTO)throws Exception{
+		return sqlSession.delete(NAMESPACE+"setDeleteFile", memberFileDTO);
+	}
 }
