@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/resources/css/index.css" />
-<link rel="stylesheet" href="/resources/css/list.css" />
+<link rel="stylesheet" href="/resources/css/lecture/status.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -46,7 +46,7 @@ rel="stylesheet"/>
                                         <div class="fw-bolder">진도율</div>
                                             <div class="progress">
                                                 
-                                                    <div class="progress-bar progress-bar-success" id="bar" role="progressbar" aria-valuenow="${status[arNm.index]}"
+                                                    <div class="progress-bar progress-bar-success progress-bar-striped" id="bar" role="progressbar" aria-valuenow="${status[arNm.index]}"
                                                     aria-valuemin="0" aria-valuemax="100">
                                                     ${status[arNm.index]}% Complete
                                                 </div>

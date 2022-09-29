@@ -19,6 +19,7 @@
 <c:import url="../template/header.jsp"></c:import>
 <body>
    <main class="container mt-5">
+	
 		<!--Category Search-->
 		<form action="./list">
 			<div class="input-group mb-3 " style="width: 500px; margin: auto;">

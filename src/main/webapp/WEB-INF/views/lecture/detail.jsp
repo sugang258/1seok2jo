@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${detail.l_name}</title>
     <link rel="stylesheet" href="/resources/css/index.css" />
-    <link rel="stylesheet" href="/resources/css/list.css" />
+    <link rel="stylesheet" href="/resources/css/lecture/lecture_detail.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,8 +22,8 @@
 <body>
     <main class="container mt-5">
         
-            <div class="row">
-                <div class="col-lg-8">
+            <div class="row main-content">
+                <div class="col-lg-8 content" id="content">
                     <!-- Post content-->
                     <article>
                         <!-- Post header-->
@@ -59,9 +59,9 @@
                     </section>
                 </div>
                 <!-- Side widgets-->
-                <div class="col-lg-4 wrapper" style="display: inline-block; position: sticky;">
+                <div class="col-lg-4 sidebar" id="aside">
                     <!-- Categories widget-->
-                    <div class="card mb-4" style="display: block;">
+                    <div class="card mb-4 sidebar__inner" style="display: block;" >
                         <div class="card-header">Category</div>
                         <div class="card-body">
                             <div>${detail.c_name}</div>
@@ -69,14 +69,14 @@
                     </div>
 
                         <!--Level-->
-                    <div class="card mb-4" style="display: block;">
+                    <div class="card mb-4 sidebar__inner" style="display: block;">
                         <div class="card-header">Level</div>
                         <div class="card-body">
                             <div>${detail.level_name}</div>
                         </div>
                     </div>
                         <!--Student Count-->
-                    <div class="card mb-4" style="display: block;">
+                    <div class="card mb-4 sidebar__inner" style="display: block;">
                         <div class="card-header">Student count</div>
                         <div class="card-body">
                             <div>${detail.l_count}</div>
@@ -84,7 +84,7 @@
                     </div>
                
                     <!-- Side widget-->
-                    <div class="card mb-4" style="display: block;">
+                    <div class="card mb-4 sidebar__inner" style="display: block;">
                         <div class="card-header" style="display: inline;">목 차 (총 ${count} 강의)</div>
                         <c:forEach items="${ar}" var="ar">
                         <div class="card-body">
@@ -93,7 +93,7 @@
                         </c:forEach>
                     </div>
                     <!--board-->
-                    <div class="card mb-4" style="display: block;">
+                    <div class="card mb-4 sidebar__inner" style="display: block;">
                         <div class="card-header">
                             수강평 보러가기
                         </div>
@@ -104,7 +104,7 @@
                             </div>
                     </div>
                     <!--Sign-->
-                    <div class="card mb-4" style="display: block;">
+                    <div class="card mb-4 sidebar__inner" style="display: block;">
                         <div class="card-header">
                             Sign
                         </div>
@@ -115,7 +115,7 @@
                             </div>
                     </div>
                     <!--Listen-->
-                    <div class="card mb-4" style="display: block;">
+                    <div class="card mb-4 sidebar__inner" style="display: block;">
                         <div class="card-header">
                             Listen
                         </div>
@@ -126,7 +126,7 @@
                             </div>
                     </div>
                     <!--Update-->
-                    <div class="card mb-4" style="display: block;">
+                    <div class="card mb-4 sidebar__inner" style="display: block;">
                         <div class="card-header">Update</div>
                             <div class="card-body">
                                 <div class="input-group">
@@ -135,7 +135,7 @@
                             </div>
                     </div>
                     <!--Delete-->
-                    <div class="card mb-4" style="display: block;">
+                    <div class="card mb-4 sidebar__inner" style="display: block;">
                         <div class="card-header">Delete</div>
                             <div class="card-body">
                                 <div class="input-group">
