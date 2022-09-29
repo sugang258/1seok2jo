@@ -22,8 +22,11 @@ public class LectureBoardController {
 	@GetMapping("new")
 	public ModelAndView getL_boardNewList(LectureBoardDTO lectureBoardDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		//수강평정보
 		List<LectureBoardDTO> ar = lectureBoardService.getL_boardNewList(lectureBoardDTO);
+		//수강평 총갯수
 		Long count = lectureBoardService.getTotalCount(lectureBoardDTO);
+		//별점 평균
 		double avg = lectureBoardService.getAvgScore(lectureBoardDTO);
 		avg = Math.round(avg);
 		
@@ -34,12 +37,15 @@ public class LectureBoardController {
 			L_heartDTO l_heartDTO = new L_heartDTO();
 			l_heartDTO.setNum(a.getNum());
 			l_heartDTO.setId(a.getId());
+			//수강평 추천수(jsp적용) 
 			heartCount.add(lectureBoardService.getHeartCount(l_heartDTO));
+			//수강평 color변경(jsp적용)
 			heartColor.add(lectureBoardService.getL_heart(l_heartDTO));
 		}
 		mv.addObject("count_list", heartCount);
 		mv.addObject("color_list", heartColor);
 
+		//수강평 프로그래스바 width값
 		Long firstScore = lectureBoardService.getFirstScore(lectureBoardDTO);
 		Long secondScore = lectureBoardService.getSecondScore(lectureBoardDTO);
 		Long thirdScore = lectureBoardService.getThirdScore(lectureBoardDTO);
@@ -116,7 +122,7 @@ public class LectureBoardController {
 		return mv;
 	}
 
-	/* 정렬조회 */
+	/* 높은 평점순 조회 */
 	@GetMapping("high")
 	public ModelAndView getL_boardHighList(LectureBoardDTO lectureBoardDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -165,7 +171,7 @@ public class LectureBoardController {
 		return mv;
 	}
 
-	/* 정렬조회 */
+	/* 낮은 평점순 조회 */
 	@GetMapping("low")
 	public ModelAndView getL_boardLowList(LectureBoardDTO lectureBoardDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -214,6 +220,7 @@ public class LectureBoardController {
 		return mv;
 	}
 
+	/* 수강평추가 */
 	@PostMapping("l_boardAdd")
 	@ResponseBody
 	public int setL_boardAdd(LectureBoardDTO lectureBoardDTO) throws Exception {
@@ -221,7 +228,7 @@ public class LectureBoardController {
 
 		return result;
 	}
-
+	/* 수강평삭제 */
 	@PostMapping("l_boardDelete")
 	@ResponseBody
 	public int setL_boardDelete(LectureBoardDTO lectureBoardDTO) throws Exception {

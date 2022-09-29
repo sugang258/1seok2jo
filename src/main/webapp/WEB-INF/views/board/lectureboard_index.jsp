@@ -53,7 +53,15 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               style="text-align: center"
             >
               <div class="p-2" style="font-size: 34px"><b>${avg}</b></div>
-              <div class="p-2" style="font-size: 20px">⭐⭐⭐⭐⭐</div>
+              <div class="p-2" style="font-size: 20px">
+                <c:choose>
+                  <c:when test="${avg eq 1}">⭐</c:when>
+                  <c:when test="${avg eq 2}">⭐⭐</c:when>
+                  <c:when test="${avg eq 3}">⭐⭐⭐</c:when>
+                  <c:when test="${avg eq 4}">⭐⭐⭐⭐</c:when>
+                  <c:otherwise>⭐⭐⭐⭐⭐</c:otherwise>
+                </c:choose>
+              </div>
               <div class="p-2" style="color: rgb(85, 84, 84)">
                 ${count}개의 수강평
               </div>
