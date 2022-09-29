@@ -28,8 +28,9 @@ rel="stylesheet"/>
 
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-                    <c:forEach items="${ar}" var="ar">
-                        <div class="col mb-5">
+                   
+                    <c:forEach items="${ar}" var="ar" varStatus="arNm">
+                        <div class="col mb-5" id="detail" data-l-num="${ar.l_num}">
                             <div class="card h-100">
                                 <!-- Product image-->
                                 <img class="card-img-top" src="../resources/upload/lecture/${ar.lectureFileDTO[0].f_name}" alt="...">
@@ -44,20 +45,23 @@ rel="stylesheet"/>
                                         <!--진도율-->
                                         <div class="fw-bolder">진도율</div>
                                             <div class="progress">
-                                                <c:forEach items="${status}" var="status">
-                                                    <div class="progress-bar progress-bar-success" id="bar" role="progressbar" aria-valuenow="${status}"
+                                                
+                                                    <div class="progress-bar progress-bar-success" id="bar" role="progressbar" aria-valuenow="${status[arNm.index]}"
                                                     aria-valuemin="0" aria-valuemax="100">
-                                                    ${status}% Complete
+                                                    ${status[arNm.index]}% Complete
                                                 </div>
-                                                </c:forEach>
+                                                
                                             </div>
                                         </div>
                                     
                                 </div>
                                 <!-- Product actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center">
-                                        <input type="button" class="btn btn-outline-dark mt-auto" id="listen"  value="강의 들으러 가기"/>
+                                    <div class="text-center" id="listen">
+                                        <input type="button" class="btn btn-outline-dark mt-auto" id="listenbtn" data-ln-num="${ar.l_num}"  value="강의 들으러 가기"/>
+                                    </div>
+                                    <div class="text-center" id="cancel">
+                                        <input type="button" class="btn btn-outline-dark mt-1" id="cancelbtn" data-ln-num="${ar.l_num}"  value="수강 취소하기"/>
                                     </div>
                                 </div>
                             </div>

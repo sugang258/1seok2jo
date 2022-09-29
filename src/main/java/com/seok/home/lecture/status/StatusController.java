@@ -47,20 +47,24 @@ public class StatusController {
 		
 		lectureAddDTO.setId(mem.getId());
 		List<LectureDTO> ar = statusService.getSignList(lectureAddDTO);
-		long count = 0L;
-		long total = 0L;
-		List<Long> status = new ArrayList<Long>();
-		long percent = 0L;
+		Long count = 0L;
+		Long total = 0L;
+		List<Double> status = new ArrayList<Double>();
+		double percent=0L;
 		for(int i=0; i<ar.size();i++) {
 			lectureAddDTO.setId(mem.getId());
 			lectureAddDTO.setS_num(ar.get(i).getLectureAddDTO().getS_num());
 			count = statusService.getStatusCount(lectureAddDTO);
 			total = statusService.getStatusTotal(lectureAddDTO);
-			percent = (count / total) * 100;
+			percent =((double)count/(double)total)*100;
 			
-			status.add(percent);
 			System.out.println("count"+count);
 			System.out.println("t"+total);
+			System.out.println("percent"+percent);
+			status.add(i, percent);
+			count =0L;
+			total=0L;
+			percent=0L;
 		}
 		System.out.println(ar.size());
 		System.out.println(status.get(0));

@@ -115,6 +115,7 @@ public class LectureDTO {
 		this.lectureAddDTO = lectureAddDTO;
 	}
 	
+	
 
 	
 	
