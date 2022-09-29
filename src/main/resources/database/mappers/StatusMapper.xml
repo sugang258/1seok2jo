@@ -32,6 +32,7 @@
 					LEFT JOIN L_FILE F
 					ON L.L_NUM = F.L_NUM
 					WHERE LS.STATUS = 1 AND LS.ID = #{id}
+					ORDER BY S_NUM ASC
 		    	</select>
 		    	
 		    	<select id="getStatusCount" parameterType="LectureAddDTO" resultType="java.lang.Long">

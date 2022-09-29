@@ -20,4 +20,8 @@ public class LectureAddService {
 	public int setLectureAddDelete(LectureAddDTO lectureAddDTO) throws Exception{
 		return lectureAddDAO.setLectureAddDelete(lectureAddDTO);
 	}
+	
+	public int setLectureCount(LectureAddDTO lectureAddDTO) throws Exception{
+		return lectureAddDAO.setLectureCount(lectureAddDTO);
+	}
 }

@@ -33,7 +33,10 @@ public class LectureAddDAO {
 	public int setLectureAddDelete(LectureAddDTO lectureAddDTO) throws Exception{
 		return sqlSession.delete(NAMESPACE+"setLectureAddDelete", lectureAddDTO);
 	}
-	
+
+	public int setLectureCount(LectureAddDTO lectureAddDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setLectureCount", lectureAddDTO);
+	}
 	
 
 }

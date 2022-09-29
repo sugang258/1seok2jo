@@ -48,6 +48,7 @@ cancel.forEach(function(cancelbtn){
         event.stopPropagation();
 
         let check = window.confirm("강의 취소하시겠습니까?");
+        //환불 페이지로 -> 환불 완료되면 강의 수강 + 상태 테이블 삭제
     })
 })
 

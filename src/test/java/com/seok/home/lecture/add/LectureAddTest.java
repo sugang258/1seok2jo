@@ -54,7 +54,17 @@ public class LectureAddTest extends MyAbstractTest {
 		assertEquals(1,result);
 
 	}
-	
+
+	//@Test
+	public void setLectureCount() throws Exception{
+		LectureAddDTO lectureAddDTO = new LectureAddDTO();
+		
+		lectureAddDTO.setL_num(69L);
+		int result = lectureAddDAO.setLectureCount(lectureAddDTO);
+		
+		assertEquals(1,result);
+
+	}
 	
 
 }

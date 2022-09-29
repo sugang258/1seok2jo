@@ -24,5 +24,9 @@
 		    	<delete id="setLectureAddDelete" parameterType="LectureAddDTO">
 		    		DELETE FROM LECTURE_SIGN WHERE S_NUM=#{s_num}
 		    	</delete>
+		    	
+		    	<update id="setLectureCount" parameterType="LectureAddDTO">
+		    		UPDATE LECTURE SET L_COUNT=L_COUNT+1 WHERE L_NUM= #{l_num}
+		    	</update>
 		    
 		    </mapper>

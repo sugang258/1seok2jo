@@ -33,7 +33,7 @@
 	                     		<otherwise>C.C_NAME</otherwise>
 	                 		 </choose>
                   			LIKE '%'||#{search}||'%'
-                 	 		ORDER BY L.L_NUM DESC) L)
+                 	 		ORDER BY L.L_NUM ASC) L)
                  	 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 					
 		    	</select>

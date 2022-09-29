@@ -58,6 +58,7 @@ public class LectureAddController {
 		//System.out.println(date);
 		
 		int result = lectureAddService.setLectureAdd(lectureAddDTO);
+		lectureAddService.setLectureCount(lectureAddDTO);
 		
 		StatusDTO statusDTO = new StatusDTO();
 		List<LectureVideoDTO> ar = statusService.getVideoList(lectureDTO);
