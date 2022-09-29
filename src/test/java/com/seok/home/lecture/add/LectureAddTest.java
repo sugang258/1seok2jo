@@ -2,6 +2,8 @@ package com.seok.home.lecture.add;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -64,6 +66,13 @@ public class LectureAddTest extends MyAbstractTest {
 		
 		assertEquals(1,result);
 
+	}
+	
+	//@Test
+	public void getLectureAddAll() throws Exception{
+		List<LectureAddDTO> ar =lectureAddDAO.getLectureAddAll();
+		
+		assertNotEquals(0, ar.size());
 	}
 	
 
