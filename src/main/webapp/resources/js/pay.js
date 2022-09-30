@@ -1,6 +1,10 @@
 let btnimport = document.getElementById("btnimport");
 
 //결제창이 열리면 주문번호를 생성한다.
+const url = new URL(window.location.href)
+const urlparam = url.searchParams;
+let l_num = urlparam.get("l_num")
+
 let now = new Date();
 let uid = "1seok2jo-"+now.getTime();
 
@@ -60,13 +64,13 @@ function requestPay() {
         buyer_name : name.value, //
         buyer_tel : phone.value, //필수, 가능한한..
     }, function (rsp) { // callback
-        console.log("callback펑션 실행")
         if (rsp.success) {
             //ajax로 결제성공 페이지 요청
             const xhttp = new XMLHttpRequest();
             //rsp에 금액, 포인트 추가
             rsp.point=pointVal
             rsp.amount=tt
+            rsp.l_num = l_num;
 
             const res = JSON.stringify(rsp)
 
@@ -101,14 +105,14 @@ function requestPay() {
                                 result = JSON.parse(result);
                                 if(result == 1) {
                                     alert("수강 신청 완료");
+                                    location.href="./complete?p_uid="+uid;
                                                                         
                                 }else {
-                                    alert("수강 신청 실패");
+                                    alert("이미 수강하고 있는 강의입니다.");
                                 }
                             }
                         }
                         
-                        location.href="./complete?p_uid="+uid;
                     }
                 }
             })

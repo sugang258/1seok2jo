@@ -261,7 +261,7 @@ public class LectureController {
 	@ResponseBody
 	public LectureVideoDTO getVideoList(LectureVideoDTO lectureVideoDTO,HttpSession session,StatusDTO statusDTO) throws Exception{
 		System.out.println("list");
-		statusDTO = (StatusDTO)session.getAttribute("status");
+		//statusDTO = (StatusDTO)session.getAttribute("status");
 
 		//ModelAndView mv = new ModelAndView();
 

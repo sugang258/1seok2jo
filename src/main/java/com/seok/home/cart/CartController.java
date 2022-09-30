@@ -2,6 +2,8 @@ package com.seok.home.cart;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.seok.home.member.MemberDTO;
 
 @Controller
 @RequestMapping(value="cart/*")
@@ -20,9 +24,10 @@ public class CartController {
 	
 	@PostMapping("setCartAdd")
 	@ResponseBody
-	public int setCartAdd(CartDTO cartDTO) throws Exception {
+	public int setCartAdd(CartDTO cartDTO,HttpServletRequest request) throws Exception {
 		int result = 1;
-		cartDTO.setId("gang");
+		MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+		cartDTO.setId(mem.getId());
 		List<CartDTO> ar = cartService.getCartList(cartDTO);
 		for(int i=0;i<ar.size();i++) {
 			if(ar.get(i).getL_num().equals(cartDTO.getL_num())) {

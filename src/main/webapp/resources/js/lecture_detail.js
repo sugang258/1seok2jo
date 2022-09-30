@@ -66,3 +66,4 @@ listen.addEventListener("click",function(){
     window.location.href="../lecture/listen?l_num="+l_num;
 })
 
+

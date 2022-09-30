@@ -31,6 +31,11 @@ public class StudyBoardDAO {
 		return session.insert(NAMESPACE+"setBoardAdd", studyBoardDTO);
 	}
 	
+	/* 게시판 파일 등록 */
+	public int setBoardFile(BoardFileDTO boardFileDTO)throws Exception{
+		return session.insert(NAMESPACE+"setBoardFile", boardFileDTO);
+	}
+	
 	public int setBoardDelete(StudyBoardDTO studyBoardDTO)throws Exception{
 		return session.delete(NAMESPACE+"setBoardDelete", studyBoardDTO);
 	}

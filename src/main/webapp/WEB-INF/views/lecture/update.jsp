@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/resources/css/index.css" />
-<link rel="stylesheet" href="/resources/css/list.css" />
+<link rel="stylesheet" href="/resources/css/lecture/update.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,7 +33,7 @@ rel="stylesheet"
         <div class="py-3 text-center">
             <form action="setFileUpdate" id="setFileUpdate" method="post" enctype="multipart/form-data">
             <div>
-                <label for="files" class="form-label">썸네일 이미지</label>
+                <label for="files" class="form-label" id="file">썸네일 이미지</label>
             </div>
             <img id="ori_img" src="../resources/upload/lecture/${update.lectureFileDTO[0].f_name}" style="display: inline;" data-file-num="${update.lectureFileDTO[0].f_name}" data-ori-num="${update.lectureFileDTO[0].f_oriname}">
             <div class="img_change">
@@ -45,10 +45,10 @@ rel="stylesheet"
         <div class="text-center">
             <form action="update" method="post" id="update" enctype="multipart/form-data" >
                 <div class="row g-3">
-                    <label for="l_num" class="form-label" style="display: none;">강의 번호</label>
+                    <label for="l_num" class="form-label" style="display: none;" id="num">강의 번호</label>
                     <input type="text" class="form-control" id="l_num" name="l_num" value="${update.l_num}" style="display: none;">
                     <div class="col-12">
-                    <label for="l_name" class="form-label">강의 제목</label>
+                    <label for="l_name" class="form-label" id="name">강의 제목</label>
                         <div class="input-group has-validation">
                             <input type="text" class="form-control" id="l_name" name="l_name" placeholder="강의 제목" value="${update.l_name}">
                             <div class="invalid-feedback">
@@ -58,7 +58,7 @@ rel="stylesheet"
                     </div>
     
                     <div class="col-12">
-                        <label for="l_contents" class="form-label">강의 설명</label>
+                        <label for="l_contents" class="form-label" id="contents">강의 설명</label>
                         <textarea  class="form-control" id="l_contents" name="l_contents" placeholder="강의 설명">${update.l_contents}</textarea>
                         <div class="invalid-feedback">
                             Your lecture content is required.

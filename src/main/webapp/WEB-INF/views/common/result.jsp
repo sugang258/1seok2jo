@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>common result 페이지</h1>
 
 <script type="text/javascript">
 
