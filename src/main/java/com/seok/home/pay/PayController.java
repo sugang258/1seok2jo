@@ -90,13 +90,13 @@ public class PayController {
 			String cancelled_merchant_uid = cancelPuid;
 			BigDecimal cancelAmount = BigDecimal.valueOf(refundDTO.getPr_amount());
 			
-			CancelData cancel_data = new CancelData(cancelled_merchant_uid, false, cancelAmount); //merchant_uid를 통한 500원 부분취소
+			CancelData cancel_data = new CancelData(cancelled_merchant_uid, false, cancelAmount);
 			
 			IamportResponse<Payment> payment_response = client.cancelPaymentByImpUid(cancel_data);
 
-			//이미 취소되면 null값이 돌아옴
+			//환불요청 실패한 경우 null값이 돌아옴
 			if(payment_response.getResponse()==null) {
-				System.out.println("이미 취소된 거래");
+				message = "요청금액이 환불가능 금액보다 많습니다.";
 
 			}else {//취소 성공하면
 				refundDTO.setPr_num(Long.parseLong(payment_response.getResponse().getApplyNum()));
