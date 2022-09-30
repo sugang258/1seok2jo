@@ -1,7 +1,9 @@
 let btnimport = document.getElementById("btnimport");
 
 //결제창이 열리면 주문번호를 생성한다.
-console.log(window.location.search)
+const url = new URL(window.location.href)
+const urlparam = url.searchParams;
+let l_num = urlparam.get("l_num")
 
 let now = new Date();
 let uid = "1seok2jo-"+now.getTime();
@@ -69,6 +71,7 @@ function requestPay() {
             //rsp에 금액, 포인트 추가
             rsp.point=pointVal
             rsp.amount=tt
+            rsp.l_num = l_num;
 
             const res = JSON.stringify(rsp)
 

@@ -88,10 +88,12 @@
                                 </c:if>
                             </td>
                             <td>
-                                <!-- Button trigger modal -->
-                                <button type="button" id="cancleBtn" data-bs-toggle="modal" data-bs-target="#modalCancel" data-onum="${order.o_num}" data-amount="${order.o_amount}" data-lname="${order.lectureDTO.l_name}">
-                                    환불
-                                </button>
+                                <c:if test="${order.refundDTO eq null}">
+                                    <!-- Button trigger modal -->
+                                    <button type="button" id="cancleBtn" data-bs-toggle="modal" data-bs-target="#modalCancel" data-onum="${order.o_num}" data-amount="${order.o_amount}" data-lname="${order.lectureDTO.l_name}">
+                                        환불
+                                    </button>                         	
+                            	</c:if>
                             </td>
                         </tr>
                         

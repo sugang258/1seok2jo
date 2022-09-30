@@ -143,12 +143,12 @@ public class PayController {
 	@ResponseBody
 	public int receiveSuccess(@RequestBody HashMap<String, String> res, HttpServletRequest request) throws Exception {
 		//주문상세내역과 결제내역 저장
-		//paymenDTO에 받아온 변수 값 매칭
 		PaymentDTO paymentDTO = new PaymentDTO();
 		MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
 		
-		System.out.println(res.keySet());
-		System.out.println(res.get("point"));
+		//받아온 파라미터 값 매칭
+		String l_num = res.get("l_num");
+
 		paymentDTO.setId(mem.getId());
 		paymentDTO.setP_uid(res.get("merchant_uid"));
 		paymentDTO.setP_point(Long.parseLong(res.get("point")));
@@ -163,7 +163,7 @@ public class PayController {
 		paymentDTO.setP_at(Long.parseLong(res.get("paid_amount")));
 		paymentDTO.setP_receipt(res.get("receipt_url"));
 		
-		int result = payService.paySuccess(paymentDTO);
+		int result = payService.paySuccess(paymentDTO, l_num);
 		
 		//포인트 계산
 		
