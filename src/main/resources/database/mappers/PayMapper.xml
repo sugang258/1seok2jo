@@ -92,13 +92,7 @@
     			<id column="O_NUM" property="o_num"/>
     			<result column="L_NUM" property="l_num"/>
     			<result column="O_AMOUNT" property="o_amount"/>
-    			<association property="refundDTO" javaType="RefundDTO">
-    				<id column="pr_num" property="pr_num"/>
-    				<result column="pr_amount" property="pr_amount"/>
-    				<result column="pr_point" property="pr_point"/>
-    				<result column="pr_regdate" property="pr_regdate"/>
-    				<result column="pr_reason" property="pr_reason"/>
-    			</association>
+    			<result column="pr_num" property="pr_num"/>
     			<association property="lectureDTO" javaType="LectureDTO">
     				<id column="l_num" property="l_num"/>
     				<result column="TEACHER" property="id"/>
@@ -107,6 +101,13 @@
     				<result column="l_date" property="l_date"/>
     			</association>
     		</collection>
+   		    <collection property="refunds" javaType="List"  ofType="RefundDTO">
+   				<id column="pr_num" property="pr_num"/>
+   				<result column="pr_amount" property="pr_amount"/>
+   				<result column="pr_point" property="pr_point"/>
+   				<result column="pr_regdate" property="pr_regdate"/>
+   				<result column="pr_reason" property="pr_reason"/>
+   			</collection>
     	</resultMap>
 
     	<select id="getPayDetail" parameterType="PaymentDTO" resultMap="allPaymentsResult">

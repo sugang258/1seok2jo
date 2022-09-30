@@ -72,12 +72,13 @@ public class PayDAOTest extends MyAbstractTest{
 	public void getPaymentList() throws Exception{
 		PaymentDTO dto = new PaymentDTO();
 		
-		dto.setP_uid("1seok2jo-1664417705219");
+		dto.setP_uid("1seok2jo-1664515867547");
 		
 		List<PaymentDTO> lst = dao.getPaymentList(dto);
-
+		
 		for(PaymentDTO pay: lst) {
 			System.out.println(pay.getId());
+			System.out.println(pay.getRefunds().get(0).getPr_reason());
 			for(OrderDTO order: pay.getOrders()) {
 				System.out.println(order.getLectureDTO().getL_name());
 				System.out.println(order.getLectureDTO().getId());
@@ -124,14 +125,15 @@ public class PayDAOTest extends MyAbstractTest{
 //	@Test
 	public void getPayDetailTest() throws Exception{
 		PaymentDTO dto = new PaymentDTO();
-		dto.setP_uid("1seok2jo-1663731094101");
+		dto.setP_uid("1seok2jo-1664515867547");
 		
 		dto = dao.getPayDetail(dto);
 		
 		System.out.println(dto.getP_uid());
 		System.out.println(dto.getId());
-		System.out.println(dto.getOrders().get(2).getL_num());
-		assertNotNull(dto);
+		System.out.println(dto.getOrders().get(0).getL_num());
+		System.out.println(dto.getOrders().get(0).getPr_num());
+		assertNotNull(dto.getRefunds());
 		
 	}
 

@@ -80,15 +80,15 @@
                                 ${order.o_amount}
                             </td>
                             <td>
-                            	<c:if test="${order.refundDTO eq null}">
+                            	<c:if test="${order.pr_num eq null}">
                             		결제완료                           	
                             	</c:if>
-                                <c:if test="${not empty order.refundDTO}">
+                                <c:if test="${not empty order.pr_num}">
                                 	환불완료
                                 </c:if>
                             </td>
                             <td>
-                                <c:if test="${order.refundDTO eq null}">
+                                <c:if test="${order.pr_num eq null}">
                                     <!-- Button trigger modal -->
                                     <button type="button" id="cancleBtn" data-bs-toggle="modal" data-bs-target="#modalCancel" data-onum="${order.o_num}" data-amount="${order.o_amount}" data-lname="${order.lectureDTO.l_name}">
                                         환불
@@ -149,7 +149,7 @@
             </div>
         </div>
     </div>
-    <c:if test="${not empty order.refundDTO}">
+    <c:if test="${not empty paymentDTO.refunds}">
         <!--환불은 환불내역 있어야 보이도록.. 환불 갯수를 리턴 받고 0이면 프린트하지 않음-->
         <div class="row mt-3">
             <div class="mx-5">
