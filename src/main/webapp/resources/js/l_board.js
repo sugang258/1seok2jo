@@ -33,7 +33,6 @@ lecture_add.addEventListener("click", function (event) {
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         let result = xhttp.responseText;
-        console.log(result);
         document.querySelector("#close").click();
         window.location.reload();
       }
@@ -45,7 +44,6 @@ for (let i = 0; i < l_board_delete.length; i++) {
   l_board_delete[i].addEventListener("click", function () {
     let num = document.querySelectorAll(".lecture_boardNum");
     num = num[i].value;
-    console.log(num);
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/board/l_boardDelete");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -111,8 +109,7 @@ function getHeartCount() {
   };
 }
 
-
-function move(){
+function move() {
   const l_new = document.getElementById("new");
   const l_like = document.getElementById("like");
   const l_high = document.getElementById("high");
@@ -121,20 +118,37 @@ function move(){
   const l_num = document.getElementById("l_num");
   let num = l_num.value;
 
-  l_new.addEventListener("click", function(){
-    location.href='./list?l_num='+num+'&type=1';
-    // l_new.setAttribute("style","font-weight:bold")
+  l_new.addEventListener("click", function () {
+    location.href = "./list?l_num=" + num + "&type=1";
   });
 
-  l_like.addEventListener("click", function(){
-    location.href='./list?l_num='+num+'&type=2';
-  })
+  l_like.addEventListener("click", function () {
+    location.href = "./list?l_num=" + num + "&type=2";
+  });
 
-  l_high.addEventListener("click", function(){
-    location.href='./list?l_num='+num+'&type=3';
-  })
+  l_high.addEventListener("click", function () {
+    location.href = "./list?l_num=" + num + "&type=3";
+  });
 
-  l_low.addEventListener("click", function(){
-    location.href='./list?l_num='+num+'&type=4';
-  })
+  l_low.addEventListener("click", function () {
+    location.href = "./list?l_num=" + num + "&type=4";
+  });
+}
+
+function weight() {
+  const l_check = document.querySelector("#new");
+  const l_new = document.getElementById("new");
+  const l_like = document.getElementById("like");
+  const l_high = document.getElementById("high");
+  const l_low = document.getElementById("low");
+  let check = l_check.getAttribute("data-check-num");
+  if (check == 1) {
+    l_new.setAttribute("style", "font-weight:bold; color:black");
+  } else if (check == 2) {
+    l_like.setAttribute("style", "font-weight:bold; color:black");
+  } else if (check == 3) {
+    l_high.setAttribute("style", "font-weight:bold; color:black");
+  } else {
+    l_low.setAttribute("style", "font-weight:bold; color:black");
+  }
 }

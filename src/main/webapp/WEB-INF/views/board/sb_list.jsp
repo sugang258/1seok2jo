@@ -87,18 +87,18 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             >
               <div style="padding: 12px 0px">
                 <div class="d-flex">
-                  <div class="p-1 flex-grow-1" style="font-size: 13px">
+                  <div class="p-1 flex-grow-1 mt-2" style="font-size: 13px">
                     <div>${BoardDTO.category}</div>
                   </div>
                   <div class="p-2">
                     <i class="fa-regular fa-user"></i> ${pageScope.BoardDTO.id}
                   </div>
                 </div>
-                <div style="margin-top: -5px">
+                <div style="margin-bottom: 8px;">
                   <h5><b>${BoardDTO.title}</b></h5>
                 </div>
                 <div>
-                  <p class="list_contents">
+                  <div class="list_contents mb-3"  style="word-break: break-all;">
                     <c:choose>
                       <c:when test="${fn:length(BoardDTO.contents) > 65}">
                         <c:out
@@ -107,7 +107,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                       </c:when>
                       <c:otherwise> ${BoardDTO.contents} </c:otherwise>
                     </c:choose>
-                  </p>
+                  </div>
                 </div>
 
                 <div class="d-flex">

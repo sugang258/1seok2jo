@@ -95,10 +95,17 @@ button a:hover {
   margin: 0px auto;
   padding: 0px 20px;
 }
+.contents_box:hover {
+  background-color: rgba(204, 200, 200, 0.452);
+  cursor: pointer;
+}
 
-@media screen and (max-width: 870px) {
+@media screen and (max-width: 944px) {
   .board_contents {
     height: 206px;
+  }
+  .list_contents {
+  	margin-top: 10px;
   }
 }
 

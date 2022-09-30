@@ -72,28 +72,33 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       <!--Board_Contents-->
       <div class="board">
       <c:forEach items="${list}" var="freeBoardDTO">
-        <div class="board_contents">
+      <div class="contents_box">
+	       <div 
+	        class="board_contents"
+	        onclick="location.href='/board/sb_detail?sb_num=';"
+	       >
           <div style="padding: 12px 0px">
             <div class="d-flex">
-              <div class="p-2 flex-grow-1" style="font-size:14px; margin-left:-6.5px">
+              <div class="p-2 flex-grow-1" style="font-size:14px; margin-left:-6.5px;">
                 <div>${freeBoardDTO.category}</div>
               </div>
               <div class="p-2"><i class="fa-regular fa-user"></i> ${freeBoardDTO.id}</div>
             </div>
-            <div  style="margin-top: -5px">
+            <div  style="margin-bottom: 8px; margin-top: -2px;">
               <h5><b>${freeBoardDTO.title}</b></h5>
             </div>
+	            
             <div>
-                  <p class="list_contents">
+           		<div class="list_contents pt-1 mb-2" style="word-break: break-all;">
                     <c:choose>
-                      <c:when test="${fn:length(freeBoardDTO.contents) > 65}">
+                      <c:when test="${fn:length(freeBoardDTO.contents) > 55}">
                         <c:out
-                          value="${fn:substring(freeBoardDTO.contents,0 , 65)}"
+                          value="${fn:substring(freeBoardDTO.contents,0 , 55)}"
                         />....
                       </c:when>
                       <c:otherwise> ${freeBoardDTO.contents} </c:otherwise>
                     </c:choose>
-                  </p>
+            	</div>
             </div>
 
             <div class="d-flex">
@@ -104,13 +109,13 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                   <div><b>0 댓글</b></div>
                 </div>
               </div>
-              <div class="p-2 flex-shrink-1" style="width: 116px; font-size: 14px">${freeBoardDTO.reg_date}</div>
+              <div class="p-2 flex-shrink-1" style="width: 116px; font-size: 14px; text-align: right;">${freeBoardDTO.reg_date}</div>
             </div>
           </div>
         </div>
+       </div>
 		</c:forEach>
-		
-      </div>
+    </div>
 
       <!--PageNation-->
       <div class="paging">
@@ -149,7 +154,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       <div class="d-flex flex-row-reverse">
         <div class="fix_box d-flex flex-row-reverse">
           <div class="d-grid gap-2 d-md-block">
-            <button class="fix_btn" type="button" onclick="location:'#'">
+            <button class="fix_btn" type="button" onclick="location.href='#'">
               <h1 style="color: green">
                 ▲
                 <h6 style="color: green">맨 위로</h6>

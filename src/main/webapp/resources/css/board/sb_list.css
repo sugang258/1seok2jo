@@ -1,15 +1,15 @@
-main{
-    margin-top: 8em;
+main {
+  margin-top: 8em;
 }
 
 /**Search_bar*/
 .search-bar {
-    position: relative;
-    margin-top: 12px;
-    width: 380px;
-    height: 45px;
-  }
-  
+  position: relative;
+  margin-top: 12px;
+  width: 380px;
+  height: 45px;
+}
+
 .search-bar input {
   position: relative;
   width: 100%;
@@ -24,7 +24,7 @@ main{
 .search-bar input:focus {
   outline: none;
 }
-  
+
 .seach-logo {
   position: absolute;
   border: none;
@@ -42,7 +42,7 @@ main{
 }
 
 /**ORDER & CATEGORY*/
-.order{
+.order {
   line-height: 20px;
   float: left;
   width: 100%;
@@ -56,7 +56,7 @@ main{
   color: rgba(64, 66, 66, 0.836);
   font-weight: bold;
 }
-.select:focus{
+.select:focus {
   color: black;
 }
 
@@ -72,7 +72,8 @@ main{
 /**Board-Contents*/
 .board {
   margin-top: 2px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 .board_contents {
   border-bottom: solid 1px rgba(156, 152, 152, 0.664);
@@ -82,28 +83,27 @@ main{
   padding: 0px 20px;
 }
 .contents_box:hover {
-	background-color : rgba(204, 200, 200, 0.452);
-	cursor: pointer;
+  background-color: rgba(204, 200, 200, 0.452);
+  cursor: pointer;
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
   .board_contents {
-    height: 200px;
+    height: 190px;
   }
-  
 }
 
 button a {
-	text-decoration: none;
-	color: white;
+  text-decoration: none;
+  color: white;
 }
 
 #writer:active {
-	transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 button a:hover {
-	color: white;
+  color: white;
 }
 
 .b1 {
@@ -116,9 +116,6 @@ button a:hover {
 .b1 div {
   margin: 0px auto;
 }
-
-
-
 
 /**Fix_box*/
 .fix_box {
@@ -140,7 +137,7 @@ button a:hover {
   border-radius: 10px;
 }
 
-.fix_btn:active{
+.fix_btn:active {
   transform: scale(1.05);
 }
 

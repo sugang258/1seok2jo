@@ -23,18 +23,23 @@ public class LectureBoardController {
 	public ModelAndView getL_boardNewList(LectureBoardDTO lectureBoardDTO, Integer type) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<LectureBoardDTO> ar = new ArrayList<LectureBoardDTO>();
+		Long l_check = 1L;
 		//수강평정보(type별로 정렬)
 		 if(type == null) {
 			ar = lectureBoardService.getL_boardNewList(lectureBoardDTO);
 		} else if(type == 2) {
 			ar = lectureBoardService.getL_boardLikeList(lectureBoardDTO);
+			l_check = 2L;
 		}else if(type == 3) {
 			ar = lectureBoardService.getL_boardHighList(lectureBoardDTO);
+			l_check = 3L;
 		}else if(type == 4) {
 			ar = lectureBoardService.getL_boardLowList(lectureBoardDTO);
+			l_check = 4L;
 		}else {
 			ar = lectureBoardService.getL_boardNewList(lectureBoardDTO);			
 		}
+		mv.addObject("l_check", l_check);
 		//수강평 총갯수
 		Long count = lectureBoardService.getTotalCount(lectureBoardDTO);
 		//별점 평균
