@@ -71,6 +71,8 @@
         </div>
     
         </c:forEach>
+        <input type="button" class="btn btn-primary mt-3 sign" id="all" value="수강신청 하기" style="border :none; color: #66ba39; background-color: white;">
+
     </main>
     <c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>

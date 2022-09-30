@@ -4,6 +4,11 @@ const cart = document.querySelectorAll("#cart");
 const cartbtn = document.querySelectorAll(".cart");
 const sign = document.querySelectorAll(".sign");
 const sign1 = document.querySelectorAll("#sign");
+const all = document.querySelector("#all");
+
+all.addEventListener("click",function(){
+    window.location.href="../pay/order";
+})
 
 
 del.forEach(function(del1){
