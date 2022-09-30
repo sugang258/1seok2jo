@@ -2,12 +2,15 @@ package com.seok.home.s_board;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.seok.home.b_comment.CommentService;
@@ -50,8 +53,8 @@ public class StudyBoardController {
 		
 	}
 	@PostMapping("sb_add")
-	public String setBoardAdd(StudyBoardDTO studyBoardDTO)throws Exception {
-		int result = studyBoardService.setBoardAdd(studyBoardDTO);
+	public String setBoardAdd(StudyBoardDTO studyBoardDTO, MultipartFile file, HttpSession session)throws Exception {
+		int result = studyBoardService.setBoardAdd(studyBoardDTO, file, session);
 		
 		return "redirect:/board/sb_list";
 	}

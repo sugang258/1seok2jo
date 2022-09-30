@@ -98,7 +98,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                   <h5><b>${BoardDTO.title}</b></h5>
                 </div>
                 <div>
-                  <p>
+                  <p class="list_contents">
                     <c:choose>
                       <c:when test="${fn:length(BoardDTO.contents) > 65}">
                         <c:out
@@ -200,5 +200,9 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
       crossorigin="anonymous"
     ></script>
+    <script src="/resources/js/sb_list.js"></script>
+    <script>
+      init();
+    </script>
   </body>
 </html>
