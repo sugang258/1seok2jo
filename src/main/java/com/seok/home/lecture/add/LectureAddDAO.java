@@ -1,5 +1,7 @@
 package com.seok.home.lecture.add;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,6 +32,17 @@ public class LectureAddDAO {
 		return sqlSession.selectOne(NAMESPACE+"getLectureAdd", lectureAddDTO);
 	}
 	
+	public int setLectureAddDelete(LectureAddDTO lectureAddDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setLectureAddDelete", lectureAddDTO);
+	}
+
+	public int setLectureCount(LectureAddDTO lectureAddDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setLectureCount", lectureAddDTO);
+	}
+	
+	public List<LectureAddDTO> getLectureAddAll() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getLectureAddAll");
+	}
 	
 
 }

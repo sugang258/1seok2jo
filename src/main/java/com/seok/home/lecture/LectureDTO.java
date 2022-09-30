@@ -3,6 +3,7 @@ package com.seok.home.lecture;
 import java.util.List;
 
 import com.seok.home.cart.CartDTO;
+import com.seok.home.lecture.add.LectureAddDTO;
 import com.seok.home.lecture.status.StatusDTO;
 
 public class LectureDTO {
@@ -21,6 +22,7 @@ public class LectureDTO {
 	private List<LectureFileDTO> lectureFileDTO;
 	private List<LectureVideoDTO> lectureVideoDTO;
 	private CartDTO cartDTO;
+	private LectureAddDTO lectureAddDTO;
 	
 	public Long getL_num() {
 		return l_num;
@@ -106,6 +108,14 @@ public class LectureDTO {
 	public void setCartDTO(CartDTO cartDTO) {
 		this.cartDTO = cartDTO;
 	}
+	public LectureAddDTO getLectureAddDTO() {
+		return lectureAddDTO;
+	}
+	public void setLectureAddDTO(LectureAddDTO lectureAddDTO) {
+		this.lectureAddDTO = lectureAddDTO;
+	}
+	
+	
 
 	
 	

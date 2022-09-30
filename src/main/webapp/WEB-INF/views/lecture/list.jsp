@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>강의 목록</title>
 <link rel="stylesheet" href="/resources/css/index.css" />
-<link rel="stylesheet" href="/resources/css/list.css" />
+<link rel="stylesheet" href="/resources/css/lecture/list.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,12 +19,13 @@
 <c:import url="../template/header.jsp"></c:import>
 <body>
    <main class="container mt-5">
+	
 		<!--Category Search-->
 		<form action="./list">
-			<div class="input-group mb-3 " style="width: 500px; margin: auto;">
+			<div class="input-group mb-3 " style="width: 500px; margin: auto; height: 40px;">
 				
 				<select name="kind" class="form-select input-group" id="kind" >
-					<option class="kinds" value="">Category</option>
+					<option class="kinds" value="" style="display: none;">Category</option>
 					<option class="kinds" value="id">강사 ID</option>
 					<option class="kinds" value="l_name">강의 제목</option>
 					<option class="kinds" value="level_name">강의 난이도</option>

@@ -13,7 +13,14 @@ public class StudyBoardDTO {
 	private Long hit;
 	private String contents;
 	private String category;
+	private BoardFileDTO boardFileDTO;
 
+	public BoardFileDTO getBoardFileDTO() {
+		return boardFileDTO;
+	}
+	public void setBoardFileDTO(BoardFileDTO boardFileDTO) {
+		this.boardFileDTO = boardFileDTO;
+	}
 	public Long getSb_num() {
 		return sb_num;
 	}

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.seok.home.cart.CartDTO;
+import com.seok.home.lecture.add.LectureAddDTO;
 import com.seok.home.util.Pager;
 
 @Repository
@@ -118,6 +119,9 @@ public class LectureDAO {
 	public LectureVideoDTO getVideoList(LectureVideoDTO lectureVideoDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getVideoList", lectureVideoDTO);
 	}
+
+
+	
 	
 	
 }

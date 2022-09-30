@@ -105,14 +105,14 @@ function requestPay() {
                                 result = JSON.parse(result);
                                 if(result == 1) {
                                     alert("수강 신청 완료");
+                                    location.href="./complete?p_uid="+uid;
                                                                         
                                 }else {
-                                    alert("수강 신청 실패");
+                                    alert("이미 수강하고 있는 강의입니다.");
                                 }
                             }
                         }
                         
-                        location.href="./complete?p_uid="+uid;
                     }
                 }
             })

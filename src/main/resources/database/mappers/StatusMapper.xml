@@ -22,6 +22,66 @@
 		    		SELECT * FROM STATUS WHERE S_NUM=#{s_num} AND V_NUM=#{v_num}
 		    	</select>
 		    	
+		    	<select id="getSignList" parameterType="LectureAddDTO" resultMap="getSignList">
+		    		SELECT L.*,LV.LEVEL_NAME,F.F_NAME,LS.S_NUM
+					FROM LECTURE L
+					JOIN "LEVEL" LV
+					ON L.LEVEL_NUM = LV.LEVEL_NUM
+					JOIN LECTURE_SIGN LS
+					ON L.L_NUM = LS.L_NUM
+					LEFT JOIN L_FILE F
+					ON L.L_NUM = F.L_NUM
+					WHERE LS.STATUS = 1 AND LS.ID = #{id}
+					ORDER BY S_NUM ASC
+		    	</select>
 		    	
+		    	<select id="getStatusCount" parameterType="LectureAddDTO" resultType="java.lang.Long">
+		    		SELECT COUNT(*) 
+					FROM STATUS S
+					JOIN LECTURE_SIGN LS
+					ON S.S_NUM = LS.S_NUM
+					WHERE S.V_STATUS = 1 AND ID=#{id} AND LS.S_NUM = #{s_num}
+		    	</select>
+		    	
+		    	<select id="getStatusTotal" parameterType="LectureAddDTO" resultType="java.lang.Long">
+		    		SELECT COUNT(*)
+					FROM STATUS S
+					JOIN LECTURE_SIGN LS
+					ON S.S_NUM = LS.S_NUM
+					WHERE LS.ID= #{id} AND S.S_NUM=#{s_num}
+		    	</select>
+		    	
+		    	<delete id="setStatusDelete" parameterType="StatusDTO">
+		    		DELETE FROM STATUS WHERE S_NUM=#{s_num}
+		    	</delete>
+		    	
+		    	
+		    	
+		    	
+		    	<resultMap type="LectureDTO" id="getSignList">
+		    		<id column="l_num" property="l_num"/>
+		    		<result column="id" property="id"/>
+		    		<result column="c_num" property="c_num"/>
+		    		<result column="c_num" property="c_num"/>
+		    		<result column="level_num" property="level_num"/>
+		    		<result column="level_name" property="level_name"/>
+		    		<result column="l_name" property="l_name"/>
+		    		<result column="l_contents" property="l_contents"/>
+		    		<result column="l_price" property="l_price"/>
+		    		<result column="l_count" property="l_count"/>
+		    		<result column="l_date" property="l_date"/>
+		    		<association property="lectureAddDTO" javaType="lectureAddDTO" >
+		    			<id column="s_num" property="s_num"/>
+		    			<result column="s_start" property="s_start"/>
+		    			<result column="s_end" property="s_end"/>
+		    			<result column="status" property="status"/>
+		    		</association>
+		    		<collection property="lectureFileDTO" javaType="List" ofType="LectureFileDTO">
+		    			<id column="num" property="num"/>
+		    			<result column="f_name" property="f_name"/>
+		    			<result column="f_oriname" property="f_oriname"/>
+		    		
+		    		</collection>
+		    	</resultMap>
 		    
 		    </mapper>
