@@ -64,7 +64,6 @@ function requestPay() {
         buyer_name : name.value, //
         buyer_tel : phone.value, //필수, 가능한한..
     }, function (rsp) { // callback
-        console.log("callback펑션 실행")
         if (rsp.success) {
             //ajax로 결제성공 페이지 요청
             const xhttp = new XMLHttpRequest();

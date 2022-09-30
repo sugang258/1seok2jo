@@ -5,8 +5,10 @@ function cancelPay() {
   let o_num;
   let o_amount;
   let l_name;
+  let l_num;
   let cancelPoint= document.getElementById("cancelPoint");
   let cancelOnum = document.getElementById("cancelOnum");
+  let cancelLnum = document.getElementById("cancleLnum";)
 
   /* 환불 버튼 클릭*/
   for(let i =0; i<cancleBtn.length; i++){
@@ -16,6 +18,7 @@ function cancelPay() {
       o_num = cancleBtn[i].getAttribute("data-onum")
       o_amount = cancleBtn[i].getAttribute("data-amount")
       l_name = cancleBtn[i].getAttribute("data-lname")
+      l_num = cancleBtn[i].getAttribute("data-lnum")
 
       //모달에 값을 띄워준다.
       let mLname = document.getElementById("mLname")
@@ -24,6 +27,8 @@ function cancelPay() {
       mOamount.innerText = o_amount;
       pr_amount.value=o_amount;
       cancelOnum.value=o_num;
+      cancelLnum.value=l_num;
+      
 
       
       // window. open("/pay/cancel?o_num="+o_num, "_blank", "width=300, height=360");

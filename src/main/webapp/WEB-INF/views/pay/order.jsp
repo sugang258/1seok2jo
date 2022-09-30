@@ -115,7 +115,7 @@
                 <span id="usePoint"></span>  
               </div>
             </div>
-            <input type="number" class="form-control text-end" id="point" name="point" placeholder="사용가능 ${member.point}마일리지">
+            <input type="number" class="form-control text-end" id="point" name="point" placeholder="사용가능 ${member.point}마일리지" value="0">
             <div class="mt-2" style="display: flex; justify-content:space-between">
               <span class="fw-bold">총 결제 금액</span>
               <span class="fw-bold" id="realtotal"></span>

@@ -40,7 +40,7 @@ public class PayController {
 	
 	@GetMapping(value="status")
 	public ModelAndView getPayDetail(PaymentDTO paymentDTO, ModelAndView mv) throws Exception{
-		
+
 		paymentDTO = payService.getPayDetail(paymentDTO);
 		
 		mv.addObject("paymentDTO", paymentDTO);
@@ -74,17 +74,18 @@ public class PayController {
 	
 	@PostMapping(value="cancel")
 	@ResponseBody
-	public ModelAndView requestCancle(RefundDTO refundDTO, Long cancelOnum, String cancelPuid, String pr_amount, ModelAndView mv) throws Exception{
+	public ModelAndView requestCancle(RefundDTO refundDTO, Long cancelOnum,Long cancelLnum, String cancelPuid, String pr_amount, ModelAndView mv) throws Exception{
 		refundDTO.setP_uid(cancelPuid);
-		refundDTO.setO_num(cancelOnum);		
+		refundDTO.setO_num(cancelOnum);	
+		Long l_num = cancelLnum;
 		String message = "환불 실패";
 		int result = 0;
-		
+		System.out.println("엘넘"+l_num);
 		//전액 포인트 환불이면 환불요청을 하지 않음
 		if(refundDTO.getPr_amount()==0) {
 			//바로 저장
 			refundDTO.setPr_num(cancelOnum*10+1);
-			result = payService.cancelSuccess(refundDTO);
+			result = payService.cancelSuccess(refundDTO, l_num);
 		}else {
 			//아임페이로 환불 요청
 			String cancelled_merchant_uid = cancelPuid;
@@ -101,7 +102,7 @@ public class PayController {
 			}else {//취소 성공하면
 				refundDTO.setPr_num(Long.parseLong(payment_response.getResponse().getApplyNum()));
 				
-				result = payService.cancelSuccess(refundDTO);
+				result = payService.cancelSuccess(refundDTO, l_num);
 			}
 		}
 		
