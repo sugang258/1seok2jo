@@ -122,20 +122,19 @@ function move(){
   let num = l_num.value;
 
   l_new.addEventListener("click", function(){
-    location.href='./new?l_num='+num;
-    l_new.href='./new?l_num='+num;
+    location.href='./list?l_num='+num+'&type=1';
     // l_new.setAttribute("style","font-weight:bold")
   });
 
   l_like.addEventListener("click", function(){
-    location.href='./like?l_num='+num;
+    location.href='./list?l_num='+num+'&type=2';
   })
 
   l_high.addEventListener("click", function(){
-    location.href='./high?l_num='+num;
+    location.href='./list?l_num='+num+'&type=3';
   })
 
   l_low.addEventListener("click", function(){
-    location.href='./low?l_num='+num;
+    location.href='./list?l_num='+num+'&type=4';
   })
 }

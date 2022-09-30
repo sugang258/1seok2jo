@@ -62,15 +62,15 @@
                         <div ><label  for="exampleFormControlInput1">글내용</label></div>
                         <textarea name = "contents" class="form-control mt-1" id="contents" rows="3"></textarea>
                     </div>
-        
-                    <div class="file_box mt-2">
-                        <input class="upload-name" value="첨부파일" placeholder="첨부파일">
-                        <label for="file" style="color: gray;"><b>파일찾기</b></label>
-                        <input type="file" name="file" id="file"/>
-                    </div>			
-                    
-                    <div class="mt-3 mb-1" style="text-align: right;">
-                    <input class="btn btn-success text-white" type="submit" value="작성하기" >
+        			<div class="d-flex justify-content-between">
+	                    <div class="file_box mt-4">
+	                        <label for="file" class="file"><b>파일추가📂</b></label>
+	                        <input type="file" name="file" id="file" style="display: none;"/>
+	                    </div>			
+	                    
+	                    <div class="mt-4 mb-1" style="text-align: right;">
+	                    <input class="btn btn-success text-white" type="submit" value="작성하기" >
+	                    </div>
                     </div>			
                 </form>
             </div>
@@ -86,12 +86,6 @@
                     maxHeight: null,          
                     focus: true 
                 });
-</script>
-<script>
-$("#file").on('change',function(){
-    var fileName = $("#file").val();
-    $(".upload-name").val(fileName);
-});
 </script>
 </body>
 </html>

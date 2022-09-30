@@ -155,33 +155,13 @@ button a:hover {
 }
 
 /**add.html */
-/**file*/
-.file_box .upload-name {
-  display: inline-block;
-  height: 40px;
-  padding: 0 10px;
-  vertical-align: middle;
-  border: 1px solid #dddddd;
-  width: 78%;
-  color: #999999;
+.file {
+  border: none;
+  background-color: transparent;
+  color: rgba(28, 28, 29, 0.678);
 }
-
-.filebox label {
-  display: inline-block;
-  padding: 10px 20px;
-  color: #fff;
-  vertical-align: middle;
-  background-color: #999999;
+.file:hover {
+  color: black;
+  transform: scale(1.03);
   cursor: pointer;
-  height: 40px;
-  margin-left: 10px;
-}
-
-.file_box input[type="file"] {
-  position: absolute;
-  width: 0;
-  height: 0;
-  padding: 0;
-  overflow: hidden;
-  border: 0;
 }

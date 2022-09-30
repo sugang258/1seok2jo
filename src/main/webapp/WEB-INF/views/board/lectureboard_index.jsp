@@ -21,7 +21,21 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
   <c:import url="../template/header.jsp"></c:import>
   <body>
     <section class="container" style="width: 90%; margin-top: 150px">
-      강의상세보기 페이지 수강평 구현
+        강의상세보기 페이지 수강평 구현
+      <!-- 임시로 보내는값 -->
+      <input
+      type="text"
+      name="l_num"
+      value="${param.l_num}"
+      id="l_num"
+    /> 강의 번호 입력
+      <input
+        type="text"
+        style="display: none"
+        name="id"
+        value="지나가는사람"
+        id="l_board_id"
+      />
 
       <div class="board_top">
         <div class="ms-4" style="font-size: 17px; color: rgba(5, 5, 5, 0.808)">
@@ -175,33 +189,25 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               </form>
               <form action="./high" method="get">
                 <div
-                  class="high p-2 flex-grow-3 font_st"
-                  id="high"
+                class="high p-2 flex-grow-3 font_st"
+                id="high"
                 >
-                  😍 높은 평점 순
-                </div>
-              </form>
+                😍 높은 평점 순
+              </div>
+            </form>
               <form action="./low" method="get">
                 <div
-                  class="low p-2 flex-grow-3 font_st"
-                  id="low"
+                class="low p-2 flex-grow-3 font_st"
+                id="low"
                 >
-                  🤔 낮은 평점 순
-                </div>
-              </form>
-            </div>
+                🤔 낮은 평점 순
+              </div>
+            </form>
           </div>
-          <hr
-            style="border: solid 0.7px; margin-top: 5px; margin-bottom: 0px"
-          />
-          <!-- 임시로 보내는값 -->
-          <input
-            type="text"
-            style="display: none"
-            name="id"
-            value="지나가는사람"
-            id="l_board_id"
-          />
+        </div>
+        <hr
+        style="border: solid 0.7px; margin-top: 5px; margin-bottom: 0px"
+        />
         </div>
 
         <!--Reply-Content-->
@@ -211,13 +217,6 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             var="lectureBoardDTO"
             varStatus="i"
           >
-            <input
-              type="text"
-              name="l_num"
-              value="${lectureBoardDTO.l_num}"
-              id="l_num"
-              style="display: none"
-            />
             <input
               type="text"
               name="num"
