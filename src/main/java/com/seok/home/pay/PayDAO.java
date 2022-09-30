@@ -15,6 +15,7 @@ public class PayDAO {
 	@Autowired
 	private SqlSession session;
 	private final String NAMESPACE = "com.seok.home.pay.PayDAO.";
+
 	
 	public int updatePaymentRemains(PaymentDTO paymentDTO) throws Exception{
 		return session.update(NAMESPACE+"updatePaymentRemains", paymentDTO);
