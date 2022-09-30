@@ -173,6 +173,7 @@ public class MemberController {
 		//구효입니당
 		System.out.println("수정 전 memberDTO.닉네임 : "+memberDTO.getN_name());
 		int result = memberService.setEditProfile(memberDTO, profile, session.getServletContext());
+		
 		//구효입니당
 		System.out.println("수정 후 memberDTO.닉네임 : "+memberDTO.getN_name());
 		
@@ -182,6 +183,7 @@ public class MemberController {
 			System.out.println("프로필 수정 성공!!");
 //			session.setAttribute("member", memberDTO);
 			mv.addObject("member", memberDTO);
+			//mv.addObject("memberFile", memberDTO.getMemberFileDTO());
 			mv.setViewName("redirect:./profile");
 		}else {
 			System.out.println("프로필 수정 실패..");

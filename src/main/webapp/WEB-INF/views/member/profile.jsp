@@ -28,6 +28,10 @@
 			<form action="./profile" method="post" enctype="multipart/form-data">
 			
 			  <div class="mb-3">
+			    <img alt="" src="../resources/upload/member/${member.memberFileDTO.f_name}">
+			  </div>
+			
+			  <div class="mb-3">
 			    <label for="ipId" class="form-label">프로필사진 변경</label>
 			    <input type="file" name="profile" class="form-control" id="file">
 			  </div>
