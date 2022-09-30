@@ -8,7 +8,7 @@ function cancelPay() {
   let l_num;
   let cancelPoint= document.getElementById("cancelPoint");
   let cancelOnum = document.getElementById("cancelOnum");
-  let cancelLnum = document.getElementById("cancleLnum";)
+  let cancelLnum = document.getElementById("cancelLnum");
 
   /* 환불 버튼 클릭*/
   for(let i =0; i<cancleBtn.length; i++){

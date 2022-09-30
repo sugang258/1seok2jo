@@ -80,7 +80,7 @@ public class PayController {
 		Long l_num = cancelLnum;
 		String message = "환불 실패";
 		int result = 0;
-		System.out.println("엘넘"+l_num);
+
 		//전액 포인트 환불이면 환불요청을 하지 않음
 		if(refundDTO.getPr_amount()==0) {
 			//바로 저장
