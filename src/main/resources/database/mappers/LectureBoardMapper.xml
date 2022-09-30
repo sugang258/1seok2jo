@@ -9,7 +9,11 @@
 		    		SELECT * FROM LECTURE_BOARD WHERE L_NUM = #{l_num} ORDER BY NUM DESC
 		    	</select>	
 		    	<select id="getL_boardLikeList" parameterType="LectureBoardDTO" resultType="LectureBoardDTO">
-		    		SELECT * FROM LECTURE_BOARD WHERE L_NUM = #{l_num} ORDER BY NUM DESC
+		    		SELECT * FROM (SELECT LB.*,NVL(LC.C ,0)C FROM LECTURE_BOARD LB
+					    LEFT JOIN
+					    (SELECT NUM, COUNT(NUM) C FROM L_HEART GROUP BY NUM) LC
+					    ON (LB.NUM = LC.NUM) WHERE L_NUM = #{l_num})
+					ORDER BY C DESC, REG_DATE DESC
 		    	</select>			
 		    	<select id="getL_boardHighList" parameterType="LectureBoardDTO" resultType="LectureBoardDTO">
 		    		SELECT * FROM LECTURE_BOARD WHERE L_NUM = #{l_num} ORDER BY SCORE DESC, REG_DATE DESC
