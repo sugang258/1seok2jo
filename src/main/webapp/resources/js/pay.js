@@ -1,6 +1,8 @@
 let btnimport = document.getElementById("btnimport");
 
 //결제창이 열리면 주문번호를 생성한다.
+console.log(window.location.search)
+
 let now = new Date();
 let uid = "1seok2jo-"+now.getTime();
 

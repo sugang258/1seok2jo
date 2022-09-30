@@ -16,6 +16,18 @@ public class PayDAO {
 	private SqlSession session;
 	private final String NAMESPACE = "com.seok.home.pay.PayDAO.";
 	
+	public int updatePaymentRemains(PaymentDTO paymentDTO) throws Exception{
+		return session.update(NAMESPACE+"updatePaymentRemains", paymentDTO);
+	}
+	
+	public Long getPaymentRemains(PaymentDTO paymentDTO) throws Exception{
+		return session.selectOne(NAMESPACE+"getPaymentRemains", paymentDTO);
+	}
+	
+	public int saveRefund(RefundDTO refundDTO) throws Exception{
+		return session.insert(NAMESPACE+"saveRefund", refundDTO);
+	}
+	
 	public PaymentDTO getPayDetail(PaymentDTO dto)throws Exception{
 		return session.selectOne(NAMESPACE+"getPayDetail", dto);
 	}

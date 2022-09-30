@@ -17,7 +17,28 @@ public class PayDAOTest extends MyAbstractTest{
 	@Autowired
 	PayDAO dao;
 	
-	@Test
+//	@Test
+	public void updatePaymentRemainsTest() throws Exception{
+		PaymentDTO dto = new PaymentDTO();
+		
+		dto.setP_uid("1seok2jo-1664359791350");
+		dto.setP_remains(55000L);
+		
+		int result = dao.updatePaymentRemains(dto);
+		
+		assertEquals(1, result);
+	}
+	
+//	@Test
+	public void getPaymentRemainsTest() throws Exception{
+//		String p_uid= "1seok2jo-1664359791350";
+////		Long result = dao.getPaymentRemains(p_uid);
+//		System.out.println(result);
+//		
+//		assertNotNull(result);
+	}
+	
+//	@Test
 	public void getOrderTest() throws Exception{
 		OrderDTO orderDTO = new OrderDTO();
 		

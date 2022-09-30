@@ -193,7 +193,7 @@
         </div>
     </c:if>
     <!--환불 끝-->
-    <!-- Modal -->
+    <!--환불 요청 Modal -->
     <div class="modal fade" id="modalCancel" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog  modal-dialog-centered">
         <div class="modal-content">
@@ -204,24 +204,25 @@
                 <div class="mb-3 text-center"> 
                     <span id="mLname">강의명</span> (<span id="mOamount">55000</span>원)을 환불요청하시겠습니까?
                 </div>
-                <form>
-
+                <form method="POST" action="/pay/cancel" id="cancelForm">
+                    <input type="text" id="cancelOnum" name="cancelOnum" style="display: none;">
+                    <input type="text" id="cancelPuid" name="cancelPuid" style="display: none;" value="${paymentDTO.p_uid}"/>
                     <div class="row">
                         <div class="col-6">
-                          <label>환불 요청 포인트</label>
+                          <label>마일리지로 환불 요청</label>
                         </div>
                         <div class="col-6 text-end">
-                          <span id="cancelPoint">ㅇㅇㅇ</span>  
+                          <span id="cancelPoint">0 마일</span>  
                         </div>
                     </div>
-                    <input type="number" class="form-control text-end" id="point" name="point" placeholder="사용가능 ${member.point}마일리지">
+                    <input type="number" id="pr_point" name="pr_point" class="form-control text-end" value="0">
                     <div class="mb-3">
-                        <label for="message-text" class="col-form-label text-muted">환불 사유</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <label for="pr_reason" class="col-form-label text-muted">환불 사유</label>
+                        <textarea class="form-control" id="pr_reason" name="pr_reason"></textarea>
                     </div>
                     <div class="mt-2" style="display: flex; justify-content:space-between">
-                        <span class="fw-bold">총 환불 금액</span>
-                        <span class="fw-bold" id="realtotal"></span>원
+                        <span class="fw-bold">포인트 제외 환불 금액</span>
+                        <input type="number" class="fw-bold" name="pr_amount" id="pr_amount" value="0"></input>원
                     </div>
                 </form>
                 <!--인증요청 응답텍스트 표시-->
@@ -229,7 +230,7 @@
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">요청 취소</button>
-            <button type="button" class="btn btn-outline-success" id="getAuth">환불 요청</button>
+            <button type="button" class="btn btn-outline-success" id="reqCancel">환불 요청</button>
             </div>
         </div>
         </div>

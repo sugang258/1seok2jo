@@ -5,6 +5,20 @@
     
     <mapper namespace="com.seok.home.pay.PayDAO">
     
+    	<select id="getPaymentRemains" parameterType="PaymentDTO" resultType="Long">
+    		select p_remains from payments where p_uid=#{p_uid}
+    	</select>
+    	
+    	<update id="updatePaymentRemains" parameterType="PaymentDTO">
+    		update payments set p_remains=#{p_remains}
+            where p_uid=#{p_uid}
+    	</update>
+    
+    	<insert id="saveRefund">
+    		insert into REFUND (PR_NUM,	O_NUM,PR_REASON,PR_AMOUNT,PR_POINT,	PR_REGDATE,	P_UID)
+    		values (#{pr_num}, #{o_num}, #{pr_reason}, #{pr_amount}, #{pr_point}, sysdate, #{p_uid})
+    	</insert>
+    
     	<select id="getSimpleLecture" parameterType="LectureDTO" resultMap="simpleLectureResult">
     		select *
     		from lecture L

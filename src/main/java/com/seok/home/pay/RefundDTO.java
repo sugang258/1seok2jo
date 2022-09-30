@@ -4,6 +4,8 @@ import java.sql.Date;
 
 public class RefundDTO {
 	
+	private Long o_num; //fk orders
+	private String p_uid; //fk payments
 	private Long pr_num; //환불번호
 	private String pr_reason; //환불사유
 	private Long pr_amount; //환불금액
@@ -40,6 +42,18 @@ public class RefundDTO {
 	}
 	public void setPr_point(String pr_point) {
 		this.pr_point = pr_point;
+	}
+	public Long getO_num() {
+		return o_num;
+	}
+	public void setO_num(Long o_num) {
+		this.o_num = o_num;
+	}
+	public String getP_uid() {
+		return p_uid;
+	}
+	public void setP_uid(String p_uid) {
+		this.p_uid = p_uid;
 	}
 
 	

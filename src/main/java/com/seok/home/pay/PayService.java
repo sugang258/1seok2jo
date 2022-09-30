@@ -20,6 +20,23 @@ public class PayService {
 	@Autowired
 	CartDAO cartDAO;
 	
+	public int cancelSuccess(RefundDTO refundDTO) throws Exception{
+		//결제 취소에 성공하면 refundDTO DB에 저장
+		int result = payDAO.saveRefund(refundDTO);
+		
+		//payment의 remains변경해야딤
+		PaymentDTO payment = new PaymentDTO();
+		payment.setP_uid(refundDTO.getP_uid());
+		//p_remains값을 가져온다
+		Long premains = payDAO.getPaymentRemains(payment);
+		
+		payment.setP_remains(premains - refundDTO.getPr_amount());
+		//업데이트
+		result = payDAO.updatePaymentRemains(payment);
+		
+		return result;
+	}
+	
 	public OrderDTO requestCancle(OrderDTO orderDTO) throws Exception{
 
 		orderDTO = payDAO.getOrder(orderDTO);
@@ -51,7 +68,7 @@ public class PayService {
 	}
 	
 	//결제후 주문목록 저장
-	public int receiveSuccess(PaymentDTO paymentDTO) throws Exception{
+	public int paySuccess(PaymentDTO paymentDTO) throws Exception{
 		//payment저장
 		int result = payDAO.savePayment(paymentDTO);
 		

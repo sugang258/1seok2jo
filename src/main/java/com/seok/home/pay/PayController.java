@@ -61,35 +61,58 @@ public class PayController {
 		return mv;
 	}
 
-	//환불 요청 창
-	@GetMapping(value="cancel")
-	public String requestCancle(OrderDTO orderDTO, Model model) throws Exception{
-		
-		orderDTO = payService.requestCancle(orderDTO);
-
-		model.addAttribute("orderDTO", orderDTO);
-		
-		return "pay/cancel";
-	}
+	//환불 요청 창(삭제 필요! 안씀)
+//	@GetMapping(value="cancel")
+//	public String requestCancle(OrderDTO orderDTO, Model model) throws Exception{
+//		
+//		orderDTO = payService.requestCancle(orderDTO);
+//
+//		model.addAttribute("orderDTO", orderDTO);
+//		
+//		return "pay/cancel";
+//	}
 	
 	@PostMapping(value="cancel")
 	@ResponseBody
-	public String requestCancle(RefundDTO refundDTO) throws Exception{
-		//payment의 remains변경해야딤
-		System.out.println("hi");
+	public ModelAndView requestCancle(RefundDTO refundDTO, Long cancelOnum, String cancelPuid, String pr_amount, ModelAndView mv) throws Exception{
+		refundDTO.setP_uid(cancelPuid);
+		refundDTO.setO_num(cancelOnum);		
+		String message = "환불 실패";
+		int result = 0;
 		
-		String test_already_cancelled_merchant_uid = "1seok2jo-1663728830588";
-        CancelData cancel_data = new CancelData(test_already_cancelled_merchant_uid, false, BigDecimal.valueOf(1500)); //merchant_uid를 통한 500원 부분취소
+		//전액 포인트 환불이면 환불요청을 하지 않음
+		if(refundDTO.getPr_amount()==0) {
+			//바로 저장
+			refundDTO.setPr_num(cancelOnum*10+1);
+			result = payService.cancelSuccess(refundDTO);
+		}else {
+			//아임페이로 환불 요청
+			String cancelled_merchant_uid = cancelPuid;
+			BigDecimal cancelAmount = BigDecimal.valueOf(refundDTO.getPr_amount());
+			
+			CancelData cancel_data = new CancelData(cancelled_merchant_uid, false, cancelAmount); //merchant_uid를 통한 500원 부분취소
+			
+			IamportResponse<Payment> payment_response = client.cancelPaymentByImpUid(cancel_data);
 
-        IamportResponse<Payment> payment_response = client.cancelPaymentByImpUid(cancel_data);
+			//이미 취소되면 null값이 돌아옴
+			if(payment_response.getResponse()==null) {
+				System.out.println("이미 취소된 거래");
 
-        System.out.println(payment_response.getResponse().getCancelAmount());
-        System.out.println(payment_response.getResponse().getApplyNum());//환불번호
-        System.out.println(payment_response.getResponse().getCancelReason());
-        System.out.println(payment_response.getResponse().getFailReason());
+			}else {//취소 성공하면
+				refundDTO.setPr_num(Long.parseLong(payment_response.getResponse().getApplyNum()));
+				
+				result = payService.cancelSuccess(refundDTO);
+			}
+		}
+		
+		if(result==1) {
+			message="환불요청이 완료되었습니다";
+		}
+		mv.addObject("message", message);
+		mv.addObject("url", "/pay/status?p_uid="+cancelPuid);
+		mv.setViewName("common/result");
 
-        System.out.println(payment_response.getResponse().getCancelAmount());
-		return "hi";
+		return mv;
 	}
 	
 	//‘강의 상세’  ‘장바구니’ 페이지에서 결제하기 버튼을 눌러 주문페이지로 이동
@@ -140,7 +163,7 @@ public class PayController {
 		paymentDTO.setP_at(Long.parseLong(res.get("paid_amount")));
 		paymentDTO.setP_receipt(res.get("receipt_url"));
 		
-		int result = payService.receiveSuccess(paymentDTO);
+		int result = payService.paySuccess(paymentDTO);
 		
 		//포인트 계산
 		
