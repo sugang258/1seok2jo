@@ -65,9 +65,8 @@ public class MemberService {
 	public int setEditProfile(MemberDTO memberDTO, MultipartFile profile, ServletContext servletContext)throws Exception{
 		
 		int susess = memberDAO.setEditProfile(memberDTO);
+		
 		String path = "resources/upload/member";
-		//수정된게 나오길 희망함!!
-		System.out.println("Service : "+memberDTO.getN_name());
 		
 		String fileName = fileManager.saveFile(path, servletContext, profile);
 		
