@@ -24,6 +24,7 @@
 		<typeAlias type="com.seok.home.l_board.LectureBoardDTO" alias="LectureBoardDTO"/>
 		<typeAlias type="com.seok.home.l_board.L_heartDTO" alias="L_heartDTO"/>
 		<typeAlias type="com.seok.home.lecture.status.StatusDTO" alias="StatusDTO"/>
+		<typeAlias type="com.seok.home.f_board.FreeBoardDTO" alias="FreeBoardDTO"/>
 		
 		<typeAlias type="com.seok.home.pay.OrderDTO" alias="OrderDTO"/>
 		<typeAlias type="com.seok.home.pay.PaymentDTO" alias="PaymentDTO"/>
