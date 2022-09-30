@@ -20,7 +20,7 @@ public class PayService {
 	@Autowired
 	CartDAO cartDAO;
 	
-	public int cancelSuccess(RefundDTO refundDTO) throws Exception{
+	public int cancelSuccess(RefundDTO refundDTO, Long l_num) throws Exception{
 		//결제 취소에 성공하면 refundDTO DB에 저장
 		int result = payDAO.saveRefund(refundDTO);
 		

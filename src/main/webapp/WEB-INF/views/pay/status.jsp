@@ -90,7 +90,7 @@
                             <td>
                                 <c:if test="${order.pr_num eq null}">
                                     <!-- Button trigger modal -->
-                                    <button type="button" id="cancleBtn" data-bs-toggle="modal" data-bs-target="#modalCancel" data-onum="${order.o_num}" data-amount="${order.o_amount}" data-lname="${order.lectureDTO.l_name}">
+                                    <button type="button" id="cancleBtn" data-bs-toggle="modal" data-bs-target="#modalCancel" data-onum="${order.o_num}" data-amount="${order.o_amount}" data-lnum="${order.lectureDTO.l_num}" data-lname="${order.lectureDTO.l_name}">
                                         환불
                                     </button>                         	
                             	</c:if>
@@ -207,6 +207,7 @@
                     <span id="mLname">강의명</span> (<span id="mOamount">55000</span>원)을 환불요청하시겠습니까?
                 </div>
                 <form method="POST" action="/pay/cancel" id="cancelForm">
+                    <input type="text" id="cancelLnum" name="cancelLnum" style="display: none;">
                     <input type="text" id="cancelOnum" name="cancelOnum" style="display: none;">
                     <input type="text" id="cancelPuid" name="cancelPuid" style="display: none;" value="${paymentDTO.p_uid}"/>
                     <div class="row">
