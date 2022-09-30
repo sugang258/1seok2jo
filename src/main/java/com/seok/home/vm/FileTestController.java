@@ -20,6 +20,11 @@ public class FileTestController {
 	@Autowired
 	private FileTestService service;
 	
+	@GetMapping(value="home")
+	public String home() {
+		return "fileTest/home";
+	}
+	
 	@GetMapping(value="add")
 	public String upload() {
 		return "fileTest/fileUpload";

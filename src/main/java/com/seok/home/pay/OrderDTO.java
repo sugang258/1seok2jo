@@ -7,7 +7,7 @@ public class OrderDTO {
 	private Long o_num;
 	private Long o_amount;
 	private Long l_num;
-	private RefundDTO refundDTO;
+	private Long pr_num; //환불번호
 	private LectureDTO lectureDTO;
 	
 	public Long getO_num() {
@@ -28,11 +28,11 @@ public class OrderDTO {
 	public void setL_num(Long l_num) {
 		this.l_num = l_num;
 	}
-	public RefundDTO getRefundDTO() {
-		return refundDTO;
+	public Long getPr_num() {
+		return pr_num;
 	}
-	public void setRefundDTO(RefundDTO refundDTO) {
-		this.refundDTO = refundDTO;
+	public void setPr_num(Long pr_num) {
+		this.pr_num = pr_num;
 	}
 	public String getP_uid() {
 		return p_uid;
