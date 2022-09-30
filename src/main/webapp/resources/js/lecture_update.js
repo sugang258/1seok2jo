@@ -11,6 +11,11 @@ const setFileUpdate = document.querySelector("#setFileUpdate");
 const ori_img = document.querySelector("#ori_img");
 const update = document.querySelector("#update");
 const update_sub = document.querySelector("#update_sub");
+const cc = document.querySelector("#c_num");
+const c_num = document.querySelector("#c_num");
+const category = document.querySelectorAll(".category");
+const level_num = document.querySelector("#level_num");
+const level=document.querySelectorAll(".level")
 
 let count = 0;
 let idx=0;
@@ -20,6 +25,22 @@ function setCount(ct) {
         count=ct;
     }
 }
+let c1 = cc.getAttributeNode("data-c-num").value;
+console.log(c1);
+category.forEach(function(c){
+    console.log(c.value == c1);
+    if(c.value == c1) {
+        c.setAttribute("selected",true);
+    }
+})
+
+let l1 = level_num.getAttributeNode("data-level-num").value;
+console.log(l1);
+level.forEach(function(l){
+    if(l.value == l1) {
+        l.setAttribute("selected",true);
+    }
+})
 
 //비디오 추가
 video_add.addEventListener("click",function(){

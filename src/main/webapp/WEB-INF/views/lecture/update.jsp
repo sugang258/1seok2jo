@@ -27,7 +27,7 @@ rel="stylesheet"
     <main class="container mt-3">
         <div class="py-3 text-center">
             <img class="ml-1 mb-2 " src="/resources/images/15.png" alt="" width="100" height="70" style="display: inline;">
-            <h2 style="display: inline;">강의 수정 Form</h2>
+            <h2 style="display: inline;" id="update">강의 수정 Form</h2>
         </div>
 
         <div class="py-3 text-center">
@@ -66,13 +66,13 @@ rel="stylesheet"
                     </div>
     
                     <div class="col-md-3">
-                        <label for="c_num" class="form-label">Category</label>
-                        <select class="form-select" id="c_num" name="c_num" required=""  >
-                            <option value="">Choose...</option>
-                            <option value="1">Java</option>
-                            <option value="2">Python</option>
-                            <option value="3">JavaScript</option>
-                            <option value="4">HTML/CSS</option>
+                        <label for="c_num" class="form-label" id="cc">Category</label>
+                        <select class="form-select" id="c_num" name="c_num" required="" data-c-num="${update.c_num}" >
+                            <option class="category" value="">Choose...</option>
+                            <option class="category" value="1">Java</option>
+                            <option class="category" value="2">Python</option>
+                            <option class="category" value="3">JavaScript</option>
+                            <option class="category" value="4">HTML/CSS</option>
                         </select>
                         <div class="invalid-feedback">
                             Please select a valid category.
@@ -81,11 +81,11 @@ rel="stylesheet"
     
                     <div class="col-md-3">
                         <label for="level_num" class="form-label">Level</label>
-                        <select class="form-select" id="level_num" name="level_num" required="">
-                            <option value="">Choose...</option>
-                            <option value="3">상</option>
-                            <option value="2">중</option>
-                            <option value="1">하</option>
+                        <select class="form-select" id="level_num" name="level_num" required="" data-level-num="${update.level_num}">
+                            <option class="level" value="">Choose...</option>
+                            <option class="level" value="3">상</option>
+                            <option class="level" value="2">중</option>
+                            <option class="level" value="1">하</option>
                         </select>
                         <div class="invalid-feedback">
                             Please provide a valid level.
