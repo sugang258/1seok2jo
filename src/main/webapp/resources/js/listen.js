@@ -5,6 +5,8 @@ const num = document.querySelector(".num");
 const video_list = document.querySelectorAll(".video_list");
 const duration = document.querySelector(".ytp-time-duration");
 const video = document.querySelector("#video");
+const context = document.querySelector("#context");
+const sidebarToggle = document.querySelector("#sidebarToggle");
 
 
 setTimeout(function(){
@@ -43,6 +45,13 @@ setTimeout(function(){
     }
 },10000)
 
+sidebarToggle.addEventListener("click",function(){
+    //alert("클릭");
+    document.getElementById("sidebar-wrapper").classList.toggle('active');
+    document.getElementById("wrapper").classList.toggle('active');
+    
+});
+
 b_next.addEventListener("click",function(){
     let count = document.querySelector(".count").getAttributeNode("data-count-num").value; 
     console.log(count);
@@ -70,10 +79,12 @@ b_next.addEventListener("click",function(){
                 console.log(result.v_seq);
 
                 LectureVideo.innerHTML = result.v_url;
+                context.innerHTML=result.v_context;
                 LectureVideo.getAttributeNode("data-seq-num").value = result.v_seq;
                 video.getAttributeNode("data-v-num").value = result.v_num;
                 video.getAttributeNode("data-sta-num").value = result.statusDTO.v_status;
                 video.getAttributeNode("data-s-num").value = result.statusDTO.num;
+                
 
             }
         }
@@ -141,6 +152,7 @@ b_pre.addEventListener("click",function(){
                 console.log(result.v_seq);
 
                 LectureVideo.innerHTML = result.v_url;
+                context.innerHTML=result.v_context;
                 LectureVideo.getAttributeNode("data-seq-num").value = result.v_seq;
                 video.getAttributeNode("data-v-num").value = result.v_num;
                 video.getAttributeNode("data-sta-num").value = result.statusDTO.v_status;
@@ -209,6 +221,7 @@ video_list.forEach(function(video_list) {
                 console.log(result.v_seq);
 
                 LectureVideo.innerHTML = result.v_url;
+                context.innerHTML=result.v_context;
                 LectureVideo.getAttributeNode("data-seq-num").value = result.v_seq;
                 video.getAttributeNode("data-v-num").value = result.v_num;
                 video.getAttributeNode("data-sta-num").value = result.statusDTO.v_status;
@@ -253,6 +266,7 @@ video_list.forEach(function(video_list) {
 
 
 
+
 // video.addEventListener("click",function(event){
 //     let time = event.target;
 //     console.log(time);
@@ -270,4 +284,5 @@ video_list.forEach(function(video_list) {
 //     console.log(this);
 
 // })
+
 

@@ -10,3 +10,16 @@
     width: 226px;
 
 }
+
+.justify-content-center{
+    margin-left: 500px;
+}
+
+#lec{
+    width: 30%;
+}
+
+#kind,#button-addon2{
+    font-weight: bold;
+    color: black;
+}

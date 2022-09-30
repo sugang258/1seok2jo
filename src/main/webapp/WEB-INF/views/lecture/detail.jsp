@@ -29,7 +29,7 @@
                         <!-- Post header-->
                         <div>
                             <!-- Post title-->
-                            <h1 class="fw-bolder mb-1">${detail.l_name}</h1>
+                            <h1 class="fw-bolder mb-1 text-center">${detail.l_name}</h1>
                         </div>
                         
                         <!-- Preview image figure-->
@@ -46,22 +46,11 @@
                             </c:forEach>    
                         </div>
                     </article>
-                    <!--OT 비디오-->
-                    <section class="mb-5">
-                        <div class="card bg-light">
-                            <div class="card-body">
-                                <h2>OT 영상</h2>
-                                <p>${detail.lectureVideoDTO[0].v_context}</p>
-                                ${detail.lectureVideoDTO[0].v_url}
-                               
-                            </div>
-                        </div>
-                    </section>
                 </div>
                 <!-- Side widgets-->
                 <div class="col-lg-4 sidebar" id="aside">
                     <!-- Categories widget-->
-                    <div class="card mb-4 sidebar__inner" style="display: block;" >
+                    <div class="card mb-4 sidebar__inner text-center" style="display: block;" >
                         <div class="card-header">Category</div>
                         <div class="card-body">
                             <div>${detail.c_name}</div>
@@ -69,84 +58,96 @@
                     </div>
 
                         <!--Level-->
-                    <div class="card mb-4 sidebar__inner" style="display: block;">
+                    <div class="card mb-4 sidebar__inner text-center" style="display: block;">
                         <div class="card-header">Level</div>
                         <div class="card-body">
                             <div>${detail.level_name}</div>
                         </div>
                     </div>
                         <!--Student Count-->
-                    <div class="card mb-4 sidebar__inner" style="display: block;">
-                        <div class="card-header">Student count</div>
+                    <div class="card mb-4 sidebar__inner text-center" style="display: block;">
+                        <div class="card-header">수강중인 학생 수</div>
                         <div class="card-body">
-                            <div>${detail.l_count}</div>
+                            <div>${detail.l_count}명</div>
                         </div>
                     </div>
                
                     <!-- Side widget-->
                     <div class="card mb-4 sidebar__inner" style="display: block;">
-                        <div class="card-header" style="display: inline;">목 차 (총 ${count} 강의)</div>
+                        <div class="card-header text-center">목 차 (총 ${count} 강의)</div>
                         <c:forEach items="${ar}" var="ar">
-                        <div class="card-body">
-                           - ${ar.v_context}
+                        <div class="card-body" id="list">
+                           ✔ ${ar.v_context}
                         </div>
                         </c:forEach>
                     </div>
+                    <div class="input">
                     <!--board-->
-                    <div class="card mb-4 sidebar__inner" style="display: block;">
+                    <!-- <div class="card mb-4 sidebar__inner text-center" style="display: block;">
                         <div class="card-header">
                             수강평 보러가기
                         </div>
-                            <div class="card-body">
-                                <div class="input-group">
-                                    <button class="btn btn-primary" id="board" type="button" data-lnum-num="${param.l_num}" style="border :none; color: white; background-color: #66ba39;">수강평 보러가기</button>
-                                </div>
-                            </div>
-                    </div>
+                            <div class="card-body">-->
+                                <div class="input-group"> 
+                                    <button class="btn btn-primary" id="board" type="button" data-lnum-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">📝수강평 보러가기</button>
+                                 </div>
+                           <!-- </div>
+                    </div> -->
                     <!--Sign-->
-                    <div class="card mb-4 sidebar__inner" style="display: block;">
+                    <!-- <div class="card mb-4 sidebar__inner text-center" style="display: block;">
                         <div class="card-header">
                             Sign
                         </div>
-                            <div class="card-body">
+                            <div class="card-body"> -->
                                 <div class="input-group">
-                                    <button class="btn btn-primary" id="signs" type="button" data-lnum-num="${param.l_num}" style="border :none; color: white; background-color: #66ba39;">수강신청 하기</button>
+                                    <button class="btn btn-primary" id="signs" type="button" data-lnum-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">✏수강신청 하기</button>
                                 </div>
-                            </div>
-                    </div>
+                            <!-- </div>
+                    </div> -->
                     <!--Listen-->
-                    <div class="card mb-4 sidebar__inner" style="display: block;">
+                    <!-- <div class="card mb-4 sidebar__inner text-center" style="display: block;">
                         <div class="card-header">
                             Listen
                         </div>
-                            <div class="card-body">
+                            <div class="card-body"> -->
                                 <div class="input-group">
-                                    <button class="btn btn-primary" id="listen" type="button" data-listen-num="${param.l_num}" style="border :none; color: white; background-color: #66ba39;">강의 들으러 가기</button>
+                                    <button class="btn btn-primary" id="listen" type="button" data-listen-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">🎧강의 들으러 가기</button>
                                 </div>
-                            </div>
-                    </div>
+                            <!-- </div>
+                    </div> -->
                     <!--Update-->
-                    <div class="card mb-4 sidebar__inner" style="display: block;">
+                    <!-- <div class="card mb-4 sidebar__inner text-center" style="display: block;">
                         <div class="card-header">Update</div>
-                            <div class="card-body">
+                            <div class="card-body"> -->
                                 <div class="input-group">
-                                    <button class="btn btn-primary" id="update" type="button" data-update-num="${param.l_num}" style="border :none; color: white; background-color: #66ba39;">수정하기</button>
+                                    <button class="btn btn-primary" id="update" type="button" data-update-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">💡수정하기</button>
                                 </div>
-                            </div>
-                    </div>
+                            <!-- </div>
+                    </div> -->
                     <!--Delete-->
-                    <div class="card mb-4 sidebar__inner" style="display: block;">
+                    <!-- <div class="card mb-4 sidebar__inner text-center" style="display: block;">
                         <div class="card-header">Delete</div>
-                            <div class="card-body">
+                            <div class="card-body"> -->
                                 <div class="input-group">
-                                    <button class="btn btn-primary" id="de" type="button" data-delete-num="${param.l_num}" style="border :none; color: white; background-color: #66ba39;">삭제하기</button>
+                                    <button class="btn btn-primary" id="de" type="button" data-delete-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">❌삭제하기</button>
                                 </div>
-                            </div>
-                    </div>
-    
+                            <!-- </div>
+                    </div> -->
+                </div>
                 </div>
                 
             </div>
+            <!--OT 비디오-->
+            <section class="mb-5">
+                <div class="card" id="ot">
+                    <div class="card-body">
+                        <h2 class="text-center">OT 영상</h2>
+                        <p class="text-center">${detail.lectureVideoDTO[0].v_context}</p>
+                        ${detail.lectureVideoDTO[0].v_url}
+                       
+                    </div>
+                </div>
+            </section>
         
     </main>
     <c:import url="../template/footer.jsp"></c:import>

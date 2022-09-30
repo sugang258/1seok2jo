@@ -222,7 +222,7 @@
 					V.V_SEQ =(SELECT MAX(V_SEQ) FROM VIDEO <![CDATA[WHERE V_SEQ < #{v_seq})]]>
 				</select>
 				
-				<select id="getSignList" parameterType="LectureVideoDTO" resultMap="getVideoList">
+				<select id="getVideoList" parameterType="LectureVideoDTO" resultMap="getVideoList">
 					SELECT V.*,S.V_STATUS,S.NUM 
                     FROM VIDEO V
                     LEFT JOIN STATUS S

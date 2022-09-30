@@ -119,6 +119,8 @@ public class LectureDAO {
 	public LectureVideoDTO getVideoList(LectureVideoDTO lectureVideoDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getVideoList", lectureVideoDTO);
 	}
+
+
 	
 	
 	

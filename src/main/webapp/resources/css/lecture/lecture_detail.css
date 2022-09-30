@@ -1,3 +1,7 @@
+* {
+  font-style: inherit;
+  font-weight: inherit;
+}
 @media screen and (max-width:767px) {
     #aside {
       margin-top: 0 !important;
@@ -7,4 +11,32 @@
     transition: margin-top 0.5s ease-in-out 0s, right .5s;
     height: 1500px;
     position: sticky;
+    font-weight: bold;
   }
+
+  .card{
+    width: 282.8px;
+    margin: auto;
+  }
+
+  .btn{
+    width: 250px;
+    margin-top: 40px;
+    margin: auto;
+    display: block;
+    font-weight: bold;
+    font-size: x-large;
+
+  }
+
+ #board,#signs,#listen,#update,#de{
+    margin-left: 40px;
+    margin-bottom: 50px;
+    font-weight: bold;
+    font-size:x-large;
+  }
+
+ #ot{
+  width: 600px;
+ }
+

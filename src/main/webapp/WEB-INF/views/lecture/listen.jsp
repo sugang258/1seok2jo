@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/resources/css/index.css" />
-<link rel="stylesheet" href="/resources/css/list.css" />
+<link rel="stylesheet" href="/resources/css/lecture/listen.css" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,40 +22,45 @@ rel="stylesheet"/>
     <main class="mt-3">
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
-            <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light">목 차</div>
+            <div class="border-end bg-white side" id="sidebar-wrapper">
+                <div class="sidebar-heading border-bottom bg-light  text-center">목 차</div>
                 <div class="list-group list-group-flush count"  data-count-num="${count}">
                     <c:forEach items="${video}" var="video">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3 video_list" href="#!" data-video-num="${video.v_seq}">${video.v_context}</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 video_list" href="#" data-video-num="${video.v_seq}">✔${video.v_context}</a>
                     </c:forEach>
                 </div>
             </div>
             <!-- Page content wrapper-->
-            <div id="page-content-wrapper">
-                <!-- Top navigation-->
-                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                    <div class="container-fluid">
-                        <button class="btn btn-primary" id="sidebarToggle">Toggle Menu</button>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                        
+            <div id="page-content">
+                <div id="content">
+                    <!-- Top navigation-->
+                    <nav class="navbar navbar-expand-lg">
+                        <div class="container-fluid">
+                            <button class="btn btn-primary" id="sidebarToggle">💡목차 보이기/숨기기</button>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                            
+                        </div>
+                    </nav>
+                    
+                    <!-- Page content-->
+                    
+                    <div id="video" data-v-num="${dto.lectureVideoDTO[0].v_num}" data-s-num="${status.num}" data-sta-num="${status.v_status}" data-sign-num="${sign.s_num}">
+                        <h1 class="mt-4 num text-center" data-l-num="${dto.l_num}">${dto.l_name}</h1>
+                        <p class="text-center" id="context">${dto.lectureVideoDTO[0].v_context}</p>
+                        <div id="LectureVideo" data-seq-num="${dto.lectureVideoDTO[0].v_seq}">
+                            ${dto.lectureVideoDTO[0].v_url}
+                        </div>
                     </div>
-                </nav>
-                <!-- Page content-->
-                <div class="container-fluid" id="video" data-v-num="${dto.lectureVideoDTO[0].v_num}" data-s-num="${status.num}" data-sta-num="${status.v_status}" data-sign-num="${sign.s_num}">
-                    <h1 class="mt-4 num" data-l-num="${dto.l_num}">${dto.l_name}</h1>
-                    <div id="LectureVideo" data-seq-num="${dto.lectureVideoDTO[0].v_seq}">
-                         ${dto.lectureVideoDTO[0].v_url}
+                    <div class="text-center" id="btn">
+                        <input type="button" class="btn btn-primary btn-lg" id="b_pre" value="◀"/>
+                        <input type="button" class="btn btn-primary btn-lg" id="b_next"value="▶"/>
                     </div>
-                </div>
-                <div class="text-center">
-                    <input type="button" class="btn btn-primary btn-lg" id="b_pre" style="background-color: #66ba39; border: none; display: inline;" value="이전 동영상"/>
-                    <input type="button" class="btn btn-primary btn-lg" id="b_next" style="background-color: #66ba39; border: none; display: inline;" value="다음 동영상"/>
-
                 </div>
             </div>
         </div>
+    
 
-    </main>
+        </main>
 
     <c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
