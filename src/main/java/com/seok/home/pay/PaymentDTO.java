@@ -18,6 +18,7 @@ public class PaymentDTO {
 	private Date p_regdate; //결제일자
 	private Long p_remains; //환불후남은금액
 	private List<OrderDTO> orders; //강의기준 주문상세
+	private List<RefundDTO> refunds; 
 
 	
 	//결제완료 후 받아오는 변수 영역
@@ -121,6 +122,12 @@ public class PaymentDTO {
 	}
 	public void setP_c_apply(Long p_c_apply) {
 		this.p_c_apply = p_c_apply;
+	}
+	public List<RefundDTO> getRefunds() {
+		return refunds;
+	}
+	public void setRefunds(List<RefundDTO> refunds) {
+		this.refunds = refunds;
 	}
 
 	

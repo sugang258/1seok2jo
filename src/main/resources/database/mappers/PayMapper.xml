@@ -4,36 +4,79 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <mapper namespace="com.seok.home.pay.PayDAO">
-    	<select id="getPaymentList" resultType="PaymentDTO">
-    		select * 
-			FROM payment P
-			left join "ORDER" O
+    
+    	<select id="getPaymentRemains" parameterType="PaymentDTO" resultType="Long">
+    		select p_remains from payments where p_uid=#{p_uid}
+    	</select>
+    	
+    	<update id="updatePaymentRemains" parameterType="PaymentDTO">
+    		update payments set p_remains=#{p_remains}
+            where p_uid=#{p_uid}
+    	</update>
+    
+    	<insert id="saveRefund">
+    		insert into REFUND (PR_NUM,	O_NUM,PR_REASON,PR_AMOUNT,PR_POINT,	PR_REGDATE,	P_UID)
+    		values (#{pr_num}, #{o_num}, #{pr_reason}, #{pr_amount}, #{pr_point}, sysdate, #{p_uid})
+    	</insert>
+    
+    	<select id="getSimpleLecture" parameterType="LectureDTO" resultMap="simpleLectureResult">
+    		select *
+    		from lecture L
+    		left join l_file F
+    		ON L.l_num=F.l_num
+    		where L.l_num=#{l_num}
+    		order by NUM ASC
+    	</select>
+    	<resultMap type="LectureDTO" id="simpleLectureResult">
+    		<id column="l_num" property="l_num"/>
+    		<result column="id" property="id"/>
+    		<result column="l_name" property="l_name"/>
+    		<result column="l_price" property="l_price"/>
+    		<result column="l_date" property="l_date"/>
+    		<result column="p_c_name" property="p_c_name"/>
+    		<result column="p_c_num" property="p_c_num"/>
+			<collection property="lectureFileDTO" javaType="List" ofType="LectureFileDTO">
+   				<id column="num" property="num"/>
+   				<result column="f_name" property="f_name"/>
+   				<result column="f_oriname" property="f_oriname"/>
+   			</collection>
+    	</resultMap>
+    	
+    	<select id="getOrder" parameterType="OrderDTO" resultMap="getOrderResult">
+    		select *
+    		from orders O
+    		left join Lecture L
+    		on O.l_num = L.l_num
+    		where O.O_NUM = #{o_num}
+    	</select>
+    	<resultMap type="OrderDTO" id="getOrderResult">
+    		<id column="O_NUM" property="o_num"/>
+    		<result column="P_UID" property="p_uid"/>
+   			<result column="L_NUM" property="l_num"/>
+   			<result column="O_AMOUNT" property="o_amount"/>
+   			<association property="lectureDTO" javaType="LectureDTO">
+   				<id column="l_num" property="l_num"/>
+   				<result column="TEACHER" property="id"/>
+   				<result column="l_name" property="l_name"/>
+   				<result column="l_price" property="l_price"/>
+   				<result column="l_date" property="l_date"/>
+   			</association>
+    	</resultMap>
+    
+    	<select id="getPaymentList" parameterType="PaymentDTO" resultMap="allPaymentsResult">
+    		select P.*, O.O_NUM, O.L_NUM, O.O_AMOUNT, L.ID TEACHER, L.LEVEL_NUM, L.L_NAME, L.L_PRICE, R.PR_NUM, R.PR_REASON, R.PR_AMOUNT, R.PR_POINT, R.PR_REGDATE
+			FROM payments P
+			left join ORDERS O
 			on P.p_uid = O.P_UID
 			left join Lecture L
 			on O.l_num = L.l_num
 			left join refund R
 			on O.O_num = R.O_num
-    	</select>
-    
-    	<insert id="savePayment" parameterType="PaymentDTO">
-    		insert into payment (p_uid, id, p_point, p_amount, p_realamount, p_regdate, p_method, p_c_name, p_c_num, p_c_quota, p_remains, p_at, P_RECEIPT, p_c_apply)
-			values (#{p_uid}, #{id}, #{p_point}, #{p_amount}, #{p_realamount}, sysdate, #{p_method}, #{p_c_name}, #{p_c_num}, #{p_c_quota}, #{p_remains}, #{p_at}, #{p_receipt}, #{p_c_apply})
-    	</insert>
-    	
-    	<insert id="saveOrder" parameterType="OrderDTO">
-    		insert into "ORDER"(O_NUM, L_NUM, P_UID, O_AMOUNT)
-			values (order_seq.nextval,#{l_num},#{p_uid},#{o_amount}) 
-    	</insert>
-    	
-    	<select id="getPayDetail" parameterType="PaymentDTO" resultMap="payDetailResult">
-    		select P.p_uid,P.p_point, P.p_amount, P.p_realamount, P.p_regdate, P.p_method, P.p_c_name, P.p_c_num, P.p_c_quota, P.p_remains, P.P_RECEIPT, P.p_c_apply, O.O_NUM, O.L_NUM, O.O_AMOUNT
-			FROM payment P
-				left join "ORDER" O
-				on P.p_uid = O.P_UID
 			where P.p_uid=#{p_uid}
     	</select>
-    	<resultMap type="PaymentDTO" id="payDetailResult">
+    	<resultMap type="PaymentDTO" id="allPaymentsResult">
     		<id column="p_uid" property="p_uid"/>
+    		<result column="id" property="id"/>
     		<result column="p_point" property="p_point"/>
     		<result column="p_amount" property="p_amount"/>
     		<result column="p_realamount" property="p_realamount"/>
@@ -49,7 +92,45 @@
     			<id column="O_NUM" property="o_num"/>
     			<result column="L_NUM" property="l_num"/>
     			<result column="O_AMOUNT" property="o_amount"/>
+    			<result column="pr_num" property="pr_num"/>
+    			<association property="lectureDTO" javaType="LectureDTO">
+    				<id column="l_num" property="l_num"/>
+    				<result column="TEACHER" property="id"/>
+    				<result column="l_name" property="l_name"/>
+    				<result column="l_price" property="l_price"/>
+    				<result column="l_date" property="l_date"/>
+    			</association>
     		</collection>
+   		    <collection property="refunds" javaType="List"  ofType="RefundDTO">
+   				<id column="pr_num" property="pr_num"/>
+   				<result column="pr_amount" property="pr_amount"/>
+   				<result column="pr_point" property="pr_point"/>
+   				<result column="pr_regdate" property="pr_regdate"/>
+   				<result column="pr_reason" property="pr_reason"/>
+   			</collection>
     	</resultMap>
+
+    	<select id="getPayDetail" parameterType="PaymentDTO" resultMap="allPaymentsResult">
+    		select P.*, O.O_NUM, O.L_NUM, O.O_AMOUNT, L.ID TEACHER, L.LEVEL_NUM, L.L_NAME, L.L_PRICE, R.PR_NUM, R.PR_REASON, R.PR_AMOUNT, R.PR_POINT, R.PR_REGDATE
+			FROM payments P
+			left join ORDERS O
+			on P.p_uid = O.P_UID
+			left join Lecture L
+			on O.l_num = L.l_num
+			left join refund R
+			on O.O_num = R.O_num
+			where P.p_uid=#{p_uid}
+    	</select>
+    
+    	<insert id="savePayment" parameterType="PaymentDTO">
+    		insert into payments (p_uid, id, p_point, p_amount, p_realamount, p_regdate, p_method, p_c_name, p_c_num, p_c_quota, p_remains, p_at, P_RECEIPT, p_c_apply)
+			values (#{p_uid}, #{id}, #{p_point}, #{p_amount}, #{p_realamount}, sysdate, #{p_method}, #{p_c_name}, #{p_c_num}, #{p_c_quota}, #{p_remains}, #{p_at}, #{p_receipt}, #{p_c_apply})
+    	</insert>
+    	
+    	<insert id="saveOrder" parameterType="OrderDTO">
+    		insert into ORDERS (O_NUM, L_NUM, P_UID, O_AMOUNT)
+			values (order_seq.nextval,#{l_num},#{p_uid},#{o_amount}) 
+    	</insert>
+    	
     
     </mapper>

@@ -19,14 +19,33 @@ public class PayService {
 	PayDAO payDAO;
 	@Autowired
 	CartDAO cartDAO;
-	@Autowired
-	LectureDAO lectureDAO;
 	
-	public PaymentDTO cancel(PaymentDTO paymentDTO) throws Exception{
-
-		paymentDTO = payDAO.getPayDetail(paymentDTO);
+	public int cancelSuccess(RefundDTO refundDTO) throws Exception{
+		//결제 취소에 성공하면 refundDTO DB에 저장
+		int result = payDAO.saveRefund(refundDTO);
 		
-		return paymentDTO;
+		//payment의 remains변경해야딤
+		PaymentDTO payment = new PaymentDTO();
+		payment.setP_uid(refundDTO.getP_uid());
+		//p_remains값을 가져온다
+		Long premains = payDAO.getPaymentRemains(payment);
+		
+		payment.setP_remains(premains - refundDTO.getPr_amount());
+		//업데이트
+		result = payDAO.updatePaymentRemains(payment);
+		
+		return result;
+	}
+	
+	public OrderDTO requestCancle(OrderDTO orderDTO) throws Exception{
+
+		orderDTO = payDAO.getOrder(orderDTO);
+		
+		return orderDTO;
+	}
+	
+	public PaymentDTO getPayDetail(PaymentDTO paymentDTO) throws Exception{
+		return payDAO.getPayDetail(paymentDTO);
 	}
 	
 	public HashMap<String, Object> showComplete(PaymentDTO paymentDTO) throws Exception{
@@ -37,7 +56,7 @@ public class PayService {
 		for(OrderDTO o : paymentDTO.getOrders()) {
 			LectureDTO lectureDTO = new LectureDTO();
 			lectureDTO.setL_num(o.getL_num());
-			lectureDTO = lectureDAO.getDetail(lectureDTO);
+			lectureDTO = payDAO.getSimpleLecture(lectureDTO);
 
 			lectures.add(lectureDTO);
 		}
@@ -49,13 +68,15 @@ public class PayService {
 	}
 	
 	//결제후 주문목록 저장
-	public int receiveSuccess(PaymentDTO paymentDTO) throws Exception{
+	public int paySuccess(PaymentDTO paymentDTO, String l_num) throws Exception{
 		//payment저장
 		int result = payDAO.savePayment(paymentDTO);
 		
 		//order목록 저장
 		if(result==1) {
 			
+			
+			if(l_num==null) {
 			//장바구니 목록 불러오기
 			CartDTO cartDTO = new CartDTO();
 			cartDTO.setId(paymentDTO.getId());
@@ -67,7 +88,7 @@ public class PayService {
 				//강의정보가져오기
 				LectureDTO lectureDTO = new LectureDTO();
 				lectureDTO.setL_num(cart.getL_num());
-				lectureDTO = lectureDAO.getDetail(lectureDTO);
+				lectureDTO = payDAO.getSimpleLecture(lectureDTO);
 				//강의넘이랑 가격만 가져다 DB에 저장할거임
 				OrderDTO orderDTO = new OrderDTO();
 				orderDTO.setL_num(lectureDTO.getL_num());
@@ -80,6 +101,21 @@ public class PayService {
 					System.out.println("order저장실패");
 				}
 			}
+			}else {
+				Long lNum = Long.parseLong(l_num);
+				//강의정보가져오기
+				LectureDTO lectureDTO = new LectureDTO();
+				lectureDTO.setL_num(lNum);
+				lectureDTO = payDAO.getSimpleLecture(lectureDTO);
+				//강의넘이랑 가격만 가져다 DB에 저장할거임
+				OrderDTO orderDTO = new OrderDTO();
+				orderDTO.setL_num(lectureDTO.getL_num());
+				orderDTO.setO_amount(lectureDTO.getL_price());
+				orderDTO.setP_uid(paymentDTO.getP_uid());
+				
+				//orderDB에 저장!
+				result = payDAO.saveOrder(orderDTO);
+			}
 			
 		}
 		return result;
@@ -89,7 +125,7 @@ public class PayService {
 		return cartDAO.getCartList(cartDTO);
 	}
 	
-	public ArrayList<LectureDTO> getOrder(MemberDTO memberDTO) throws Exception {
+	public ArrayList<LectureDTO> getCartLectures(MemberDTO memberDTO) throws Exception {
 		//강의번호가 비어있으면 장바구니의 강의 번호를 불러온다.
 		
 		CartDTO cartDTO = new CartDTO();
@@ -103,25 +139,22 @@ public class PayService {
 		//for문으로 List<LectureDTO>를 만들어준다.
 		for(CartDTO cart : cartDTOs) {
 			LectureDTO lectureDTO = new LectureDTO();
-			System.out.println(cart.getL_num());
 			lectureDTO.setL_num(cart.getL_num());
 			
-			lectureDTO = lectureDAO.getDetail(lectureDTO);
-			System.out.println(lectureDTO.getL_name());
+			lectureDTO = payDAO.getSimpleLecture(lectureDTO);
 			lectureDTOs.add(lectureDTO);
 		}
 		
 		return lectureDTOs;
 	}
 	
-	public ArrayList<LectureDTO> getOrder(String l_num) throws Exception {
+	public ArrayList<LectureDTO> getCartLectures(String l_num) throws Exception {
 		//강의 불러온다.
 		LectureDTO lectureDTO = new LectureDTO();
-		System.out.println(Long.parseLong(l_num));
 		lectureDTO.setL_num(Long.parseLong(l_num));
 		
 		ArrayList<LectureDTO> lectureDTOs = new ArrayList<LectureDTO>();
-		lectureDTO = lectureDAO.getDetail(lectureDTO);
+		lectureDTO = payDAO.getSimpleLecture(lectureDTO);
 		lectureDTOs.add(lectureDTO);
 		
 		return lectureDTOs;
