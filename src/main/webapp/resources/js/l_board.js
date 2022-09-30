@@ -102,7 +102,6 @@ function getHeartCount() {
   const heart_text = document.getElementsByClassName("heart_text");
   const xhttp = new XMLHttpRequest();
   xhttp.open("GET", "/board/l_heartCount?num=" + num);
-  console.log(num);
   xhttp.send();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -110,4 +109,33 @@ function getHeartCount() {
       heart_text.innerHTML = result;
     }
   };
+}
+
+
+function move(){
+  const l_new = document.getElementById("new");
+  const l_like = document.getElementById("like");
+  const l_high = document.getElementById("high");
+  const l_low = document.getElementById("low");
+
+  const l_num = document.getElementById("l_num");
+  let num = l_num.value;
+
+  l_new.addEventListener("click", function(){
+    location.href='./new?l_num='+num;
+    l_new.href='./new?l_num='+num;
+    // l_new.setAttribute("style","font-weight:bold")
+  });
+
+  l_like.addEventListener("click", function(){
+    location.href='./like?l_num='+num;
+  })
+
+  l_high.addEventListener("click", function(){
+    location.href='./high?l_num='+num;
+  })
+
+  l_low.addEventListener("click", function(){
+    location.href='./low?l_num='+num;
+  })
 }

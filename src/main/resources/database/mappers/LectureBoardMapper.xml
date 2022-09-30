@@ -47,9 +47,9 @@
 		    		SELECT COUNT(SCORE) FROM LECTURE_BOARD WHERE L_NUM =#{l_num} AND SCORE=1
 		    	</select>
 		    	
-		    	<!-- 별점평균 -->
+		    	<!-- 별점평균 /NVL()함수로 null처리 -->
 		    	<select id="getAvgScore" parameterType="LectureBoardDTO" resultType="java.lang.Double">
-		    		SELECT AVG(SCORE) FROM LECTURE_BOARD WHERE L_NUM = #{l_num}
+		    		SELECT NVL(AVG(SCORE),0) FROM LECTURE_BOARD WHERE L_NUM = #{l_num}
 		    	</select>
 		    	
 		    	<!-- 수강평 추천기능구현 -->
