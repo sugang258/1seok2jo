@@ -22,6 +22,16 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
   <body>
     <section class="container" style="width: 90%; margin-top: 150px">
       강의상세보기 페이지 수강평 구현
+      <!-- 임시로 보내는값 -->
+      <input type="text" name="l_num" value="${param.l_num}" id="l_num" /> 강의
+      번호 입력
+      <input
+        type="text"
+        style="display: none"
+        name="id"
+        value="지나가는사람"
+        id="l_board_id"
+      />
 
       <div class="board_top">
         <div class="ms-4" style="font-size: 17px; color: rgba(5, 5, 5, 0.808)">
@@ -159,33 +169,25 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             <div class="array d-flex">
               <form action="./new" method="get">
                 <div
-                  class="arrays p-2 flex-grow-3 font_st"
-                  onclick="location='./new?l_num=${lectureBoardDTO.l_num}'"
+                  class="new p-2 flex-grow-3 font_st"
+                  data-check-num="${l_check}"
+                  id="new"
                 >
                   👀 최신 순
                 </div>
               </form>
               <form action="./like" method="get">
-                <div
-                  class="arrays p-2 flex-grow-3 font_st"
-                  onclick="location='./like?l_num=${lectureBoardDTO.l_num}'"
-                >
+                <div class="like p-2 flex-grow-3 font_st" id="like">
                   👍 추천 순
                 </div>
               </form>
               <form action="./high" method="get">
-                <div
-                  class="arrays p-2 flex-grow-3 font_st"
-                  onclick="location='./high?l_num=${lectureBoardDTO.l_num}'"
-                >
+                <div class="high p-2 flex-grow-3 font_st" id="high">
                   😍 높은 평점 순
                 </div>
               </form>
               <form action="./low" method="get">
-                <div
-                  class="arrays p-2 flex-grow-3 font_st"
-                  onclick="location='./low?l_num=${lectureBoardDTO.l_num}'"
-                >
+                <div class="low p-2 flex-grow-3 font_st" id="low">
                   🤔 낮은 평점 순
                 </div>
               </form>
@@ -193,14 +195,6 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           </div>
           <hr
             style="border: solid 0.7px; margin-top: 5px; margin-bottom: 0px"
-          />
-          <!-- 임시로 보내는값 -->
-          <input
-            type="text"
-            style="display: none"
-            name="id"
-            value="악플러"
-            id="l_board_id"
           />
         </div>
 
@@ -211,13 +205,6 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             var="lectureBoardDTO"
             varStatus="i"
           >
-            <input
-              type="text"
-              name="l_num"
-              value="${lectureBoardDTO.l_num}"
-              id="l_num"
-              style="display: none"
-            />
             <input
               type="text"
               name="num"
@@ -450,5 +437,9 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
 
     <c:import url="../template/footer.jsp"></c:import>
     <script src="/resources/js/l_board.js"></script>
+    <script>
+      move();
+      weight();
+    </script>
   </body>
 </html>

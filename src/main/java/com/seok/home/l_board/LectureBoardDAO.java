@@ -42,7 +42,8 @@ public class LectureBoardDAO {
 	}
 	/* 별점 평점 */
 	public double getAvgScore(LectureBoardDTO lectureBoardDTO)throws Exception{
-		return session.selectOne(NAMESPACE+"getAvgScore", lectureBoardDTO);
+		double result = session.selectOne(NAMESPACE+"getAvgScore", lectureBoardDTO);
+		return result;
 	}
 	/* 정렬기능구현 */
 	public List<LectureBoardDTO> getL_boardNewList(LectureBoardDTO lectureBoardDTO)throws Exception{
