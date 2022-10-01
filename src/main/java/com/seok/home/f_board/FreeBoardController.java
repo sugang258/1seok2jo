@@ -49,5 +49,11 @@ public class FreeBoardController {
 	}
 
 	
+	
+	//이건나중에 공지사항 controller에서 연결
+	@GetMapping("faq")
+	public void getFAQ()throws Exception{
+		
+	}
 
 }
