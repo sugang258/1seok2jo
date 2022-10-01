@@ -5,6 +5,7 @@
 <html lang="en">
 <head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Insert title here</title>
 		<link rel="stylesheet" href="/resources/css/index.css" />
 		<%-- 보통 타이틀밑에 BootStrap 링크를 넣는다 --%>
@@ -18,25 +19,39 @@
 		/>
 		<%-- favicon --%>
 		<link rel="shortcut icon" href="/resources/images/favicon.ico">
+		<link rel="stylesheet" href="/resources/css/admin/bscommon.css">
 </head>
 <c:import url="../template/header.jsp"></c:import>
 <body>
-<%-- 입력창 만들기 전 부트스트랩 쓸때 이걸 써야한다 --%>
-<%-- con-lg-7은 사이즈 조절하는것 --%>
-	<section class="container-fluid con-lg-7">
-		<div class="row mt-5" style="width:40% border: solid 1px">
-			<%-- 회원 로그인JSP --%>
-			<form action="login" method="post">
-				  <div class="mb-3">
-				    <input type="text" name="id" class="form-control" id="id" aria-describedby="emailHelp" placeholder="이메일을 입력해 주세요">
-				  </div>
-				  <div class="mb-3">
-				    <input type="password" name="pw" class="form-control" id="pw" placeholder="비밀번호를 입력해 주세요">
-				  </div>
-				  <button type="submit" class="btn btn-primary">로그인</button>
+	<%-- 회원 로그인JSP --%>
+	<main class="container ilseok">
+		<div style="margin-top: 10em; text-align: center; color: rgb(11, 138, 11);"><h2>🔐<b>LOGIN PAGE</b></h2></div>
+		<div class="login_main" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px; width: 460px; height: 330px; margin: 2em auto 5em auto;">
+			<form action="" method="post" id="">
+				<div class="row">
+					<div><h5 style="height: 70px;line-height: 80px; padding-left: 38px;"><i class="fa-solid fa-right-to-bracket" style="color: rgb(56, 221, 56);"></i><b> ID 로그인</b></h5></div>
+					<div class="row" style="justify-content: center;">
+
+						<div class="col-sm-10">
+							<input type="text" class="form-control" name = "id" id= "id" placeholder="아이디">
+						</div>
+
+						<div class="col-sm-10">
+							<input type="password" class="form-control"  id= "pw" name = "pw" placeholder="패스워드">
+						</div>
+
+						<div class="col-sm-10">
+							<button type="submit" class="btn btn-outline-success">로그인</button>
+						</div>
+
+						<div class="col-sm-10">
+							<button type="submit" class="btn btn-outline-success" onclick="location.href='/member/logout'">로그아웃</button>
+						</div>
+					</div>
+				</div>
 			</form>
 		</div>
-	</section>
+	</main>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>

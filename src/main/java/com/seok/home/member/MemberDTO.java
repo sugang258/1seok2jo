@@ -24,15 +24,23 @@ public class MemberDTO {
 	private String phone;
 	//마일리지
 	private Long point;
+	//프로필사진
+	private MemberFileDTO memberFileDTO;
 	//등급을 여러개
 	private List<RoleDTO> roleDTOs;
-	//getter setter
 	
+	//getter setter
 	public List<RoleDTO> getRoleDTOs() {
 		return roleDTOs;
 	}
 	public void setRoleDTOs(List<RoleDTO> roleDTOs) {
 		this.roleDTOs = roleDTOs;
+	}
+	public MemberFileDTO getMemberFileDTO() {
+		return memberFileDTO;
+	}
+	public void setMemberFileDTO(MemberFileDTO memberFileDTO) {
+		this.memberFileDTO = memberFileDTO;
 	}
 	public String getId() {
 		return id;

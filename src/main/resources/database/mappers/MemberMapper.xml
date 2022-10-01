@@ -4,9 +4,12 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 <mapper namespace="com.seok.home.member.MemberDAO">
-	
+
 	<select id="getLogin" parameterType="MemberDTO" resultMap="getLoginResult">
-		SELECT M.ID, M.NAME, M.N_NAME, M.B_DATE, M.GENDER, M.EMAIL, M.PHONE, M.POINT, MR.ROLENUM, R.ROLENAME
+		/* 로그인시(아이디와 비밀번호가 맞으면) */
+		/* 아이디, 이름, 닉네임, 성별, 이메일, 폰, 마일리지, 등급번호, 등급이름 조회 */
+		
+		SELECT M.ID, M.NAME, M.N_NAME, M.GENDER, M.EMAIL, M.PHONE, M.POINT, MR.ROLENUM, R.ROLENAME
 		FROM MEMBER M
 			INNER JOIN
 			MEMBER_ROLE MR
@@ -17,12 +20,10 @@
 		WHERE M.ID=#{id} AND M.PW=#{pw}
 		ORDER BY R.ROLENUM ASC
 	</select>
-   
 	<resultMap type="MemberDTO" id="getLoginResult">
 		<id column="ID" property="id"></id>
 		<result column="NAME" property="name"/>
 		<result column="N_NAME" property="n_name"/>
-		<result column="B_DATE" property="b_date"/>
 		<result column="GENDER" property="gender"/>
 		<result column="EMAIL" property="email"/>
 		<result column="PHONE" property="phone"/>
@@ -34,22 +35,65 @@
 	</resultMap>
 	
 	<insert id="setMemberRole" parameterType="MemberDTO">
+		/* 회원 등급 데이터 추가 */
+		
 		INSERT INTO MEMBER_ROLE(R_NUM, ROLENUM, ID)
 		VALUES(MEMBER_ROLE_SEQ.NEXTVAL, 3, #{id})
 	</insert>
 	
 	<insert id="setAdminRole" parameterType="MemberDTO">
+		/* 관리자 등급 데이터 추가 */
+		
 		INSERT INTO MEMBER_ROLE(R_NUM, ROLENUM, ID)
 		VALUES(MEMBER_ROLE_SEQ.NEXTVAL, 1, #{id})
 	</insert>
 	
 	<insert id="setJoin" parameterType="MemberDTO">
+		/* 회원 데이터 추가 */
+		
 		INSERT INTO MEMBER(ID, PW, NAME, N_NAME, B_DATE, GENDER, EMAIL, PHONE, POINT)
 		VALUES (#{id}, #{pw}, #{name}, #{n_name}, #{b_date}, #{gender}, #{email}, #{phone}, 0)
 	</insert>
 	
-	<update id="setProfile" parameterType="MemberDTO">
+	<select id="getProfile" parameterType="MemberDTO" resultMap="getProfileResult">
+		/* 프로필에 쓰일 정보 조회 화면 */
+	
+		SELECT M.ID, M.NAME, M.N_NAME, M.B_DATE, M.GENDER, M.EMAIL, M.PHONE, MF.NUM, MF.F_NAME
+		FROM MEMBER M
+		    LEFT JOIN
+		    MEMBER_FILE MF
+		    ON M.ID = MF.ID
+		WHERE M.ID=#{id}
+	</select>
+	<resultMap type="MemberDTO" id="getProfileResult">
+		<id column="ID" property="id"/>
+		<result column="NAME" property="name"/>
+		<result column="N_NAME" property="n_name"/>
+		<result column="B_DATE" property="b_date"/>
+		<result column="GENDER" property="gender"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<association property="memberFileDTO" javaType="MemberFileDTO">
+			<id column="NUM" property="num"/>
+			<result column="F_NAME" property="f_name"/>
+		</association>
+	</resultMap>
+	
+	<update id="setEditProfile" parameterType="MemberDTO">
 		UPDATE MEMBER SET N_NAME=#{n_name}, GENDER=#{gender}, EMAIL=#{email}, PHONE=#{phone} WHERE ID=#{id}
 	</update>
+	
+	<insert id="setAddFile" parameterType="MemberFileDTO">
+		/* 프로필사진 데이터 추가 */
+		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+			SELECT FILE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO MEMBER_FILE (NUM, ID, F_NAME, F_ORINAME)
+		VALUES(#{num}, #{id},#{f_name}, #{f_oriname})
+	</insert>
+	
+	<delete id="setDeleteFile">
+		DELETE FROM MEMBER_FILE WHERE NUM=#{num};
+	</delete>
 	
 </mapper> 
