@@ -51,7 +51,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                         href="#list-profile"
                         role="tab"
                         aria-controls="list-profile"
-                        onclick="location.href='#'"
+                        onclick="location.href='./notice'"
                         >공지사항</a
                         >
                         <a
@@ -68,7 +68,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                         class="list-group-item list-group-item-action active"
                         id="list-settings-list"
                         data-bs-toggle="list"
-                        href="/WEB-INF/views/board/faq.jsp"
+                        href="#list-messages"
                         role="tab"
                         aria-controls="list-settings"
                         onclick="location.href='./faq'"

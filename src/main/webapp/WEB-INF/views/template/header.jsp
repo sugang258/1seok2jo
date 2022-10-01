@@ -69,7 +69,7 @@
 	           공지사항
 	         </a>
 	         <ul class="dropdown-menu">
-	           <li><a class="dropdown-item" href="#">공지사항</a></li>
+	           <li><a class="dropdown-item" href="/board/notice">공지사항</a></li>
 	           <li><a class="dropdown-item" href="/board/faq">자주묻는질문</a></li>
 	         </ul>
           </li>

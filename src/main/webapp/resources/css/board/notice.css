@@ -1,0 +1,86 @@
+main{
+    margin-top: 8em;
+}
+
+/**Board-Contents*/
+.board {
+  margin: 8em auto 28px auto;
+  width: 85%;
+   justify-content: center;
+}
+.board_contents {
+  border-bottom: solid 1px rgba(131, 127, 127, 0.384);
+  height: 100px;
+  padding: 10px 20px;
+}
+
+@media screen and (max-width:768px) {
+  .board_contents {
+    height: 130px;
+  }
+  
+}
+
+.b1 {
+  border: none;
+  width:18em;
+  padding: 8px 0px 0px 0px;
+  font-size: 12px;
+}
+.b1 div {
+  margin: 0px auto;
+}
+
+
+/**Fix_box*/
+.fix_box {
+  position: fixed;
+  bottom: 3em;
+}
+.fix_btn {
+  border: none;
+  height: 40px;
+  font-size: large;
+  width: 6em;
+  background-color:transparent;
+  border-radius: 10px;
+}
+
+.fix_btn:active{
+  transform: scale(1.05);
+}
+
+/**PageNation*/
+.paging {
+  height: 100px;
+  margin-bottom: 2em;
+}
+.pagination {
+  justify-content: center;
+  padding-top: 2em;
+}
+
+/**sidebar*/
+.list-group {
+  left: auto;
+}
+
+.container {
+  position: relative;
+}
+.sidebar {
+  width: fit-content;
+  font-size: 13px;
+  position: absolute;
+  position: fixed;
+  top: 160px;
+  bottom: 0;
+  margin: 0 auto;
+  z-index: 10;
+  display: block;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: center;
+  left:10em;
+}
