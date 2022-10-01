@@ -30,4 +30,16 @@ public class MemberServiceTest extends MyAbstractTest {
 		assertEquals(1, result);
 	}
 
+	//@Test
+	public void setAddFileTest()throws Exception{
+		MemberFileDTO memberFileDTO = new MemberFileDTO();
+		memberFileDTO.setNum(1L);
+		memberFileDTO.setF_name("file");
+		
+		int result = memberService.setEditProfile(null, null, null);
+		
+		assertEquals(1, result);
+		
+	}
+	
 }

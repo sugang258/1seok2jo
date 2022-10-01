@@ -5,6 +5,7 @@
 <html lang="en">
 <head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Insert title here</title>
 		<link rel="stylesheet" href="/resources/css/index.css" />
 		<%-- 보통 타이틀밑에 BootStrap 링크를 넣는다 --%>
@@ -15,19 +16,36 @@
 		<link href="https://fonts.googleapis.com/css2?family=Arvo&family=Dongle&family=Montserrat:wght@200&family=PT+Serif&family=Playfair+Display:wght@600&family=Prompt&family=Vollkorn:wght@500&display=swap" rel="stylesheet"/>
 		<%-- favicon --%>
 		<link rel="shortcut icon" href="/resources/images/favicon.ico">
+		<link rel="stylesheet" href="/resources/css/admin/bscommon.css">
 </head>
 <c:import url="../template/header.jsp"></c:import>
 <body>
 <%-- 입력창 만들기 전 부트스트랩 쓸때 이걸 써야한다 --%>
 <%-- con-lg-7은 사이즈 조절하는것 --%>
-	<section class="container-fluid con-lg-7">
+	<section class="container-fluid con-lg-7 ilseok">
 		<div class="row mt-5">
 			<%-- 회원 회원가입JSP --%>
-			<form action="./profile" method="post">
+			<form action="./profile" method="post" enctype="multipart/form-data">
 			
 			  <div class="mb-3">
-			    <label for="ipId" class="form-label">아이디</label>
-			    <input type="text" name="id" class="form-control" id="ipId" value="${member.id}">
+			    <img alt="" src="../resources/upload/member/${member.memberFileDTO.f_name}">
+			  </div>
+			
+			  <div class="mb-3">
+			    <label for="ipId" class="form-label">프로필사진 변경</label>
+			    <input type="file" name="profile" class="form-control" id="file">
+			  </div>
+			  
+			  <%-- 			  <div id="addFiles">
+                  <!--하단 파일 추가 input과 연결된 라벨-->
+                  <label for="file" class="mt-2 file_add"><b>파일추가📂</b></button>
+
+              </div>					
+                <!-- 파일 추가 input -->
+                <input type="file" id="file" style="display: none;" > --%>
+			
+			  <div class="mb-3">
+			    <input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}">
 			  </div>
 			  
 			  <div class="mb-3">
@@ -64,12 +82,17 @@
 			    <input type="hidden" name="point" class="form-control" id="ipPoint">
 			  </div>
 			  
-			  <button type="submit" class="btn btn-primary">프로필수정</button>
+			  <div>
+				  <button type="submit" class="btn btn-outline-success">프로필수정</button>
+			  </div>
 			  
 			</form>
 		</div>
 	</section>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<%-- </script>
+<script src="/resources/js/fileTest.js"></script>
+<script>save()</script> --%>
 </body>
 </html>

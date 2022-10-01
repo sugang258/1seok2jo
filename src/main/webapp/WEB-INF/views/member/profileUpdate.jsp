@@ -9,7 +9,7 @@
 		<title>Insert title here</title>
 		<link rel="stylesheet" href="/resources/css/index.css" />
 		<%-- 보통 타이틀밑에 BootStrap 링크를 넣는다 --%>
-    <%-- Bootstrap CSS --%>
+    	<%-- Bootstrap CSS --%>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,29 +24,56 @@
 <%-- con-lg-7은 사이즈 조절하는것 --%>
 	<section class="container-fluid con-lg-7 ilseok">
 		<div class="row mt-5">
-			<%-- 강사 회원가입JSP --%>
-			<form action="./teacherAdd" method="post">
+			<%-- 회원 회원가입JSP --%>
+			<form action="./profile" method="post">
+			
+			  <div class="mb-3">
+			    <label for="ipId" class="form-label">프로필사진 변경</label>
+			    <input type="file" name="profile" class="form-control" id="file">
+			  </div>
+			
 			  <div class="mb-3">
 			    <label for="ipId" class="form-label">아이디</label>
-			    <input type="text" name="id" class="form-control" id="ipId" placeholder="아이디를 입력해주세요">
+			    <input type="text" name="id" class="form-control" id="ipId" value="${member.id}">
 			  </div>
 			  
 			  <div class="mb-3">
-			    <label for="ipBank_num" class="form-label">계좌번호</label>
-			    <input type="text" name="bank_num" class="form-control" id="ipBank_num" placeholder="계좌번호를 입력해주세요">
+			    <label for="ipName" class="form-label">이름</label>
+			    <input type="text" name="name" class="form-control" id="ipName" value="${member.name}">
 			  </div>
 			  
 			  <div class="mb-3">
-			    <label for="ipBank_name" class="form-label">은행이름</label>
-			    <input type="text" name="bank_name" class="form-control" id="ipBank_name" placeholder="은행명을 입력해주세요">
+			    <label for="ipNname" class="form-label">닉네임</label>
+			    <input type="text" name="n_name" class="form-control" id="ipNname" value="${member.n_name}">
 			  </div>
 			  
 			  <div class="mb-3">
-			    <label for="ipIntroduce" class="form-label">소개글</label>
-			    <input type="text" name="introduce" class="form-control" id="ipIntroduce" placeholder="나를 간단히 소개하는 글을 입력해주세요">
+			    <label for="ipBdate" class="form-label">생년월일</label>
+			    <input type="number" name="b_date" class="form-control" id="ipBdate" value="${dto.b_date}">
 			  </div>
 			  
-			  <button type="submit" class="btn btn-outline-success">강사신청</button>
+			  <div class="mb-3">
+			    <label for="ipGender" class="form-label">성별</label>
+			    <input type="text" name="gender" class="form-control" id="ipGender" value="${member.gender}">
+			  </div>
+
+			  <div class="mb-3">
+			    <label for="ipEmail" class="form-label">이메일</label>
+			    <input type="text" name="email" class="form-control" id="ipEmail" value="${member.email}">
+			  </div>
+			  
+			  <div class="mb-3">
+			    <label for="ipPhone" class="form-label">연락처</label>
+			    <input type="tel" name="phone" class="form-control" id="ipPhone" value="${member.phone}">
+			  </div>
+			  
+			  <div class="mb-3">
+			    <input type="hidden" name="point" class="form-control" id="ipPoint">
+			  </div>
+			  
+			  <div>
+				  <button type="submit" class="btn btn-outline-success">프로필수정</button>
+			  </div>
 			  
 			</form>
 		</div>

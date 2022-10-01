@@ -40,7 +40,8 @@ public class LectureBoardService {
 	}
 	/* 별점 평점 */
 	public double getAvgScore(LectureBoardDTO lectureBoardDTO)throws Exception{
-		return lectureBoardDAO.getAvgScore(lectureBoardDTO);
+		double result = lectureBoardDAO.getAvgScore(lectureBoardDTO);
+		return result;
 	}
 	/* 정렬기능구현 */
 	public List<LectureBoardDTO> getL_boardNewList(LectureBoardDTO lectureBoardDTO)throws Exception{

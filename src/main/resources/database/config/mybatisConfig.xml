@@ -11,6 +11,7 @@
 		<typeAlias type="com.seok.home.lecture.LectureFileDTO" alias="LectureFileDTO"/>
 		<typeAlias type="com.seok.home.member.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.seok.home.member.RoleDTO" alias="RoleDTO"/>
+		<typeAlias type="com.seok.home.member.MemberFileDTO" alias="MemberFileDTO"/>
 		<typeAlias type="com.seok.home.lecture.add.LectureAddDTO" alias="LectureAddDTO" />
 		<typeAlias type="com.seok.home.lecture.teacher.TeacherDTO" alias="TeacherDTO" />
 		<typeAlias type="com.seok.home.cart.CartDTO" alias="CartDTO" />
@@ -24,6 +25,7 @@
 		<typeAlias type="com.seok.home.l_board.LectureBoardDTO" alias="LectureBoardDTO"/>
 		<typeAlias type="com.seok.home.l_board.L_heartDTO" alias="L_heartDTO"/>
 		<typeAlias type="com.seok.home.lecture.status.StatusDTO" alias="StatusDTO"/>
+		<typeAlias type="com.seok.home.f_board.FreeBoardDTO" alias="FreeBoardDTO"/>
 		
 		<typeAlias type="com.seok.home.pay.OrderDTO" alias="OrderDTO"/>
 		<typeAlias type="com.seok.home.pay.PaymentDTO" alias="PaymentDTO"/>

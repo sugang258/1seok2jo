@@ -2,6 +2,8 @@ package com.seok.home.member;
 
 import static org.junit.Assert.*;
 
+import javax.swing.plaf.metal.MetalMenuBarUI;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,7 +26,6 @@ public class MemberDAOTest extends MyAbstractTest {
 		memberDTO.setGender("여자");
 		memberDTO.setEmail("hyo@naver.com");
 		memberDTO.setPhone("010-2222-2222");
-//		memberDTO.setPoint(0L);
 		
 		System.out.println(memberDTO.getB_date());
 		int result  = memberDAO.setJoin(memberDTO);
@@ -33,7 +34,7 @@ public class MemberDAOTest extends MyAbstractTest {
 		
 	}
 	
-	@Test
+	//@Test
 	public void getLoginTest()throws Exception {
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setId("yj");
@@ -45,16 +46,29 @@ public class MemberDAOTest extends MyAbstractTest {
 	}
 	
 	//@Test
-	public void setProfileTest()throws Exception{
+	public void setEditProfileTest()throws Exception{
 		MemberDTO memberDTO = new MemberDTO();
-		memberDTO.setId("hyo");
-		memberDTO.setN_name("하이");
-		memberDTO.setGender("남자");
-		memberDTO.setEmail("hyo2@naver.com");
-		memberDTO.setPhone("010-3333-3333");
-		int result = memberDAO.setProfile(memberDTO);
+		memberDTO.setId("koo");
+		memberDTO.setN_name("9");
+		memberDTO.setGender("여자");
+		memberDTO.setEmail("koo@naver.com");
+		memberDTO.setPhone("010-1111-1111");
+		int result = memberDAO.setEditProfile(memberDTO);
 		
 		assertEquals(1, result);
+	}
+	
+	//@Test
+	public void getProfileTest()throws Exception{
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setId("koo");
+//		MemberFileDTO memberFileDTO = new MemberFileDTO();
+//		memberFileDTO.setNum(1L);
+//		memberFileDTO.setF_name("ㅎㅎ");
+		
+		memberDTO = memberDAO.getProfile(memberDTO);
+		
+		assertNotNull(memberDTO);
 	}
 
 }
