@@ -66,29 +66,16 @@ public class MemberService {
 		
 		int result = memberDAO.setEditProfile(memberDTO);
 		
-		System.out.println("서비스 파일 DTO : "+memberDTO.getMemberFileDTO());
+		memberDTO = memberDAO.getProfile(memberDTO);
+		System.out.println("서비스 파일디티오가 왔니? "+memberDTO.getMemberFileDTO());
 		MemberFileDTO memberFileDTO = memberDTO.getMemberFileDTO();
-		System.out.println("어디부터 에러인것이니?");
-		if(memberFileDTO == null) {
-			System.out.println("어디부터 에러인것이니?");
-			memberDAO.setDeleteFile(memberFileDTO);
-			System.out.println("어디부터 에러인것이니?");
-//			String path = "resources/upload/member";
-//			
-//			String fileName = fileManager.saveFile(path, servletContext, profile);
-//			
-////			int result = 0;
-//			if(!profile.isEmpty()) {
-//				MemberFileDTO memberFileDTO2 = new MemberFileDTO();
-//				memberFileDTO2.setF_name(fileName);
-//				memberFileDTO2.setF_oriname(profile.getOriginalFilename());
-//				memberFileDTO2.setId(memberDTO.getId());
-//				result = memberDAO.setAddFile(memberFileDTO2);
-//				memberDTO.setMemberFileDTO(memberFileDTO2);
+		System.out.println("넘이 있니? "+memberFileDTO.getNum());
+		if(memberFileDTO != null) {
+			result = memberDAO.setDeleteFile(memberFileDTO);
+			System.out.println("파일 삭제가 되었니? "+memberFileDTO);
 			}
-//			
-//			return result;
-//		}
+		
+		System.out.println("여기로 오시나용 ");
 		
 		String path = "resources/upload/member";
 		

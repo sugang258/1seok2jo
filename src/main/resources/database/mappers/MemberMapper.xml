@@ -93,7 +93,7 @@
 	</insert>
 	
 	<delete id="setDeleteFile" parameterType="MemberFileDTO">
-		DELETE FROM MEMBER_FILE WHERE NUM=#{num};
+		DELETE FROM MEMBER_FILE WHERE NUM=#{num}
 	</delete>
 	
 </mapper> 
