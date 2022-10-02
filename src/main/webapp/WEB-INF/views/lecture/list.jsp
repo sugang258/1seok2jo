@@ -45,7 +45,7 @@
 						<div class="col mb-5 lec" id="lec" data-ln-num ="${list.l_num}">
 							<div class="card h-100" >
 								<!-- Lecture image-->
-								<img class="card-img-top" src="../resources/upload/lecture/${list.lectureFileDTO[0].f_name}" alt="...">
+								<img class="card-img-top" src="http://20.249.88.100/resources/lecture/${list.lectureFileDTO[0].f_name}" alt="...">
 								<!-- Lecture details-->
 								<div class="card-body p-4">
 									<div class="text-center">

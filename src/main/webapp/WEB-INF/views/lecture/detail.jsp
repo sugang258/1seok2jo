@@ -33,7 +33,7 @@
                         </div>
                         
                         <!-- Preview image figure-->
-                        <figure class="mb-4"><img class="img-fluid rounded" src="../resources/upload/lecture/${detail.lectureFileDTO[0].f_name}" alt="..." width="600" height="350"></figure>
+                        <figure class="mb-4"><img class="img-fluid rounded" src="http://20.249.88.100/resources/lecture/${detail.lectureFileDTO[0].f_name}" alt="..." width="600" height="350"></figure>
                         <!-- Post content-->
                         <section class="mb-5">
                             ${detail.l_contents}

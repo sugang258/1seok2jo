@@ -31,24 +31,40 @@ public class LectureService {
 		return lectureDAO.getLecture(pager);
 	}
 	
-	public int setLecture(LectureDTO lectureDTO, MultipartFile[] files, ServletContext servletContext,LectureVideoDTO lectureVideoDTO) throws Exception {
+	public int setLecture(LectureDTO lectureDTO,List<LectureFileDTO> files,/*String path,*//* MultipartFile[] files,*/ ServletContext servletContext,LectureVideoDTO lectureVideoDTO) throws Exception {
 		int result = lectureDAO.setLecture(lectureDTO);
-		String path = "resources/upload/lecture";
+		//String path = "http://20.249.88.100/upload/lecture";
 		
-		for(MultipartFile mf : files) {
-			if(mf.isEmpty()) {
-				continue;
-			}
+//		for(MultipartFile mf : files) {
+//			if(mf.isEmpty()) {
+//				continue;
+//			}
 		
-		System.out.println(mf.getSize());
-		String fileName = fileManager.saveFile(path, servletContext,mf);
+//		System.out.println(mf.getSize());
+//		String fileName = fileManager.saveFile(path, servletContext,mf);
 
-		LectureFileDTO lectureFileDTO = new LectureFileDTO();
-		lectureFileDTO.setF_name(fileName);
-		lectureFileDTO.setF_oriname(mf.getOriginalFilename());
-		lectureFileDTO.setL_num(lectureDTO.getL_num());
-		lectureDAO.setAddFile(lectureFileDTO);
+		if(result == 1) {
+			System.out.println("어레이리스트"+files.size());
+			
+			for(LectureFileDTO lf : files) {
+				lf.setL_num(lectureDTO.getL_num());
+				result = lectureDAO.setAddFile(lf);
+				
+				
+				if(result!=1) {
+					System.out.println("파일 추가 오류");
+					break;
+				}
+			}
+		}else {
+			System.out.println("lecture에러");
 		}
+//		LectureFileDTO lectureFileDTO = new LectureFileDTO();
+//		lectureFileDTO.setF_name(fileName);
+//		lectureFileDTO.setF_oriname(mf.getOriginalFilename());
+//		lectureFileDTO.setL_num(lectureDTO.getL_num());
+//		lectureDAO.setAddFile(lectureFileDTO);
+//		}
 		String[] url =lectureVideoDTO.getV_url().split(",");
 		String[] context = lectureVideoDTO.getV_context().split(",");
 		for(int i=0; i<url.length; i++) {
@@ -77,7 +93,9 @@ public class LectureService {
 		
 		int result = lectureDAO.setUpdate(lectureDTO);
 		
+		if(lectureVideoDTO != null) {
 		lectureVideoDTO.setL_num(lectureDTO.getL_num());
+		//추가되는 비디오 순서 정해주기
 		List<LectureVideoDTO> ar = lectureDAO.getVideoDetails(lectureVideoDTO);
 		System.out.println("arrrr :" +ar.size());
 //		//마지막 SEQ 가져오기
@@ -87,7 +105,6 @@ public class LectureService {
 			seq = ar.get(i).getV_seq();
 			
 		}
-		if(lectureVideoDTO != null) {
 		String[] url =lectureVideoDTO.getV_url().split(",");
 		String[] context = lectureVideoDTO.getV_context().split(",");
 		for(int i=0; i<url.length; i++) {
@@ -131,7 +148,7 @@ public class LectureService {
 	public int setFileUpdate(LectureFileDTO lectureFileDTO, MultipartFile[] files, ServletContext servletContext) throws Exception{
 		
 		lectureFileDTO = lectureDAO.getFileDetail(lectureFileDTO);
-		String path = "resources/upload/lecture";
+		String path = "http://20.249.88.100/upload/lecture";
 		
 		for(MultipartFile mf : files) {
 			if(mf.isEmpty()) {

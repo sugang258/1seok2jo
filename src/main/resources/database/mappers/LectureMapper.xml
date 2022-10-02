@@ -19,8 +19,6 @@
 		    				(SELECT * FROM LECTURE L
 		    				JOIN L_FILE LF
 		    				ON L.L_NUM = LF.L_NUM
-		    				JOIN VIDEO VV
-							ON L.L_NUM = VV.L_NUM
 							JOIN "LEVEL" LV
 							ON L.LEVEL_NUM = LV.LEVEL_NUM
 							JOIN CATEGORY C

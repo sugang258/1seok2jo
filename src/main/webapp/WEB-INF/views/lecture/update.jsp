@@ -27,7 +27,7 @@ rel="stylesheet"
     <main class="container mt-3">
         <div class="py-3 text-center">
             <img class="ml-1 mb-2 " src="/resources/images/15.png" alt="" width="100" height="70" style="display: inline;">
-            <h2 style="display: inline;" id="update">강의 수정 Form</h2>
+            <h2 style="display: inline;" id="updateform">강의 수정 Form</h2>
         </div>
 
         <div class="py-3 text-center">
@@ -35,7 +35,7 @@ rel="stylesheet"
             <div>
                 <label for="files" class="form-label" id="file">썸네일 이미지</label>
             </div>
-            <img id="ori_img" src="../resources/upload/lecture/${update.lectureFileDTO[0].f_name}" style="display: inline;" data-file-num="${update.lectureFileDTO[0].f_name}" data-ori-num="${update.lectureFileDTO[0].f_oriname}">
+            <img id="ori_img" src="http://20.249.88.100/resources/lecture/${update.lectureFileDTO[0].f_name}" style="display: inline;" data-file-num="${update.lectureFileDTO[0].f_name}" data-ori-num="${update.lectureFileDTO[0].f_oriname}">
             <div class="img_change">
                 <input type="button" class="btn btn-primary" id="img_change" value="변경하기" data-f-num="${update.lectureFileDTO[0].num}" style="border :none; color: white; background-color: #66ba39;">
             </div>
@@ -130,8 +130,7 @@ rel="stylesheet"
                     </c:forEach>
                     
                     <div class="video_adds">
-                        <input type="button" class="btn btn-primary mt-1 video_add" id="video_add" value="동영상 추가하기"style="border :none; color: #66ba39; background-color: white;">
-                       
+                        <input type="button" class="btn btn-primary mt-1 video_add" id="video_add" value="동영상 추가하기"style="border :none; color: #66ba39; background-color: white;">                       
                     </div>
                     
                     <div>

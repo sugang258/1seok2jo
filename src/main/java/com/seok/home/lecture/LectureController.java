@@ -1,5 +1,6 @@
 package com.seok.home.lecture;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -24,6 +25,7 @@ import com.seok.home.lecture.status.StatusDTO;
 import com.seok.home.lecture.status.StatusService;
 import com.seok.home.member.MemberDTO;
 import com.seok.home.util.Pager;
+import com.seok.home.vm.TestFileDTO;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -65,12 +67,35 @@ public class LectureController {
 	}
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
-	public ModelAndView setLecture(LectureDTO lectureDTO, HttpServletRequest request, HttpSession session, MultipartFile[] files,LectureVideoDTO lectureVideoDTO) throws Exception {
+	public ModelAndView setLecture(LectureDTO lectureDTO,String f_name, String oriname, HttpServletRequest request, HttpSession session,/* MultipartFile[] files,*/LectureVideoDTO lectureVideoDTO) throws Exception {
 		System.out.println("강의 추가 POST");
+		
+		System.out.println("fileDTO_FNAME : "+f_name);
+		System.out.println("fileDTO_ORINAME : "+oriname);
+		
 		MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
 		ModelAndView mv = new ModelAndView();
 		lectureDTO.setId(mem.getId());
-		int result = lectureService.setLecture(lectureDTO, files, session.getServletContext(),lectureVideoDTO);
+		
+//		String [] f_names = f_name.split(",");
+//		String [] orinames = oriname.split(",");
+//		
+		List<LectureFileDTO> files = new ArrayList<LectureFileDTO>();
+		LectureFileDTO lectureFileDTO = new LectureFileDTO();
+
+		lectureFileDTO.setF_name(f_name);
+		lectureFileDTO.setF_oriname(oriname);
+		files.add(lectureFileDTO);
+		
+//		for(int i=0; i<orinames.length; i++) {
+//			LectureFileDTO lectureFileDTO = new LectureFileDTO();
+//			
+//			lectureFileDTO.setF_name(f_names[i]);
+//			lectureFileDTO.setF_oriname(orinames[i]);
+//			files.add(lectureFileDTO);
+//		}
+		
+		int result = lectureService.setLecture(lectureDTO,files, session.getServletContext(),lectureVideoDTO);
 		session.setAttribute("add", lectureDTO);
 		mv.addObject("result", result);
 		mv.setViewName("redirect:./list");
@@ -134,8 +159,8 @@ public class LectureController {
 	public ModelAndView setUpdate(LectureDTO lectureDTO, ModelAndView mv,MultipartFile[] files,HttpSession session,LectureVideoDTO lectureVideoDTO) throws Exception{
 		System.out.println("update post");
 		//System.out.println("l_nummmm"+lectureDTO.getL_num());
+		System.out.println("VIDEO : "+lectureVideoDTO);
 		lectureService.setUpdate(lectureDTO,lectureVideoDTO);
-		
 		mv.addObject("dto", lectureDTO);
 		mv.setViewName("redirect:./detail?l_num="+lectureDTO.getL_num());
 		

@@ -589,7 +589,6 @@ img_changee.addEventListener("click",function(event){
         alert("썸네일 사진 변경 취소");
     }
 
-
        }
     
 

@@ -60,9 +60,6 @@ rel="stylesheet"/>
                                     <div class="text-center" id="listen">
                                         <input type="button" class="btn btn-outline-dark mt-auto" id="listenbtn" data-ln-num="${ar.l_num}"  value="강의 들으러 가기"/>
                                     </div>
-                                    <div class="text-center" id="cancel">
-                                        <input type="button" class="btn btn-outline-dark mt-1" id="cancelbtn" data-ln-num="${ar.l_num}"  value="수강 취소하기"/>
-                                    </div>
                                 </div>
                             </div>
                         </div>
