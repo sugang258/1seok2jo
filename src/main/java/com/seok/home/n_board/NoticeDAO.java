@@ -28,6 +28,11 @@ public class NoticeDAO {
 		return session.insert(NAMESPACE+"setNoticeAdd", noticeDTO);
 	}
 	
+	/* 공지사항 글수정 */
+	public int setNoticeUpdate(NoticeDTO noticeDTO)throws Exception {
+		return session.update(NAMESPACE+"setNoticeUpdate", noticeDTO);
+	}
+	
 	/* 공지사항 글삭제 */
 	public int setNoticeDelete(NoticeDTO noticeDTO)throws Exception {
 		return session.delete(NAMESPACE+"setNoticeDelete", noticeDTO);

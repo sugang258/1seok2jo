@@ -31,7 +31,7 @@ prefix="c" %>
   <c:import url="../template/header.jsp"></c:import>
   <body>
   
-    <section class="container" style="width: 80%;">
+    <section class="container" style="width: 65%;">
     
       <div class="board">
         <div class="board_contents">
@@ -43,8 +43,8 @@ prefix="c" %>
           <div class="d-flex mb-4">
           	   <div>
                 <img
-                  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                  style="width: 23px; border-radius: 24px; margin-top: -10px; margin-right:4px;"/>
+                  src="/resources/images/ma.jpg"
+                  style="width: 30px; border-radius: 24px; margin-top: -10px; margin-right:5px;"/>
               </div>
              <div class="me-2" style="font-size:14px; font-weight: bold">작성자: <span>${noticeDTO.id}</span>✅</div>
              <div style="font-size:12px;"><span>${noticeDTO.reg_date}</span></div>
@@ -55,7 +55,7 @@ prefix="c" %>
           <div style="width: 100%">
             <img
               style="width: 80%; object-fit: fill"
-              src="../../../../resources/upload/board/ㅇㄶㅇㅎㅇㅎ"
+              src="../../../../resources/upload/board/df"
               alt=""
             />
           </div>
@@ -71,10 +71,36 @@ prefix="c" %>
                 ><button id="reply">댓글</button>
               </div>
             </div>
+            <!--Reply-Content-->
+            <div id="reply_content" style="display: none;">
+
+              <form action="./nb_reply"></form>
+              <div class="mb-4">
+                <hr>
+                <div class="d-flex">
+                  <div style="width: 40px;; text-align: center;">
+                    <img src="/resources/images/Q.jpg" alt="" style="width: 30px; border-radius: 24px;">
+                  </div>
+                  <div class="d-flex flex-column" style="width: 92%;">
+                    <div class="mb-4" style="font-size: 12px; line-height: 33px;"><span class="me-2">아이디1234564</span><span>🕓2022.10.10</span></div>
+                    <div><span>내용내용ㅎㅎㅎㅎ</span></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mt-4">
+                <div class="d-flex flex-column">
+                    <div><textarea name="contents" class="form-control mt-1" rows="4" placeholder="댓글입력"></textarea></div>
+                    <div class="mt-2 d-grid gap-2" style="width: 60%;"><button class="btn btn-warning"  style="color:white;" type="button">댓글작성</button></div>
+                </div>
+              </div>
+              
+              
+
+            </div>
+          </div>
           </div>
           
-          <!--Reply-Content-->
-          <div id="reply_content"></div>
         </div>
       </div>
 
@@ -102,10 +128,12 @@ prefix="c" %>
         <div class="p-2">
           <button
             type="button"
+            id="n_update"
             class="btn-st btn btn-outline-secondary"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            data-bs-target="#exampleModal_n"
             data-bs-whatever="@mdo"
+             data-notice-num="${noticeDTO.n_num}"
           >
             수정하기(작성자)
           </button>
@@ -115,7 +143,7 @@ prefix="c" %>
       <!--modal-->
       <div
         class="modal fade"
-        id="exampleModal"
+        id="exampleModal_n"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -124,7 +152,7 @@ prefix="c" %>
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
-                <b style="color: gray">글 수정하기📚</b>
+                <b style="color: gray">💁글 수정</b>
               </h5>
               <button
                 type="button"
@@ -134,47 +162,36 @@ prefix="c" %>
               ></button>
             </div>
             <div class="modal-body">
-              <form
-                action="sb_update"
-                method="post"
-                enctype="multipart/form-data"
-              >
                 <input
-                  value="${studyBoardDTO.getSb_num()}"
+                  value="${noticeDTO.n_num}"
                   style="display: none"
+                  id = "notice_num"
                 />
                 <div class="mb-3">
                   <label
                     for="recipient-name"
                     class="col-form-label"
                     style="color: gray"
-                    ><b>글제목</b></label
+                    ><b>제목</b></label
                   >
                   <input
                     type="text"
                     name="title"
-                    value="${studyBoardDTO.title}"
+                    value="${noticeDTO.title}"
                     class="form-control"
                     id="exampleFormControlInput1"
                   />
                 </div>
                 <div class="mb-3">
-                  <label
-                    for="message-text"
-                    class="col-form-label"
-                    style="color: gray"
-                    ><b>내용</b></label
-                  >
                   <textarea
                     name="contents"
                     class="form-control mt-1"
-                    id="contents"
+                    id="n_contents"
                     rows="3"
                   >
-${studyBoardDTO.contents}</textarea
+${noticeDTO.contents}</textarea
                   >
                 </div>
-              </form>
             </div>
             <div class="modal-footer">
               <button
@@ -186,9 +203,8 @@ ${studyBoardDTO.contents}</textarea
                 취소
               </button>
               <button
-                class="btn btn-warning"
+                class="update_btn btn btn-warning"
                 id="update_btn"
-                data-board-num="${studyBoardDTO.getSb_num()}"
               >
                 등록하기
               </button>
@@ -210,7 +226,7 @@ ${studyBoardDTO.contents}</textarea
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript">
-      $("#contents").summernote({
+      $("#n_contents").summernote({
         placeholder: "글 내용 수정",
         height: 260,
         minHeight: null,
@@ -219,10 +235,5 @@ ${studyBoardDTO.contents}</textarea
       });
     </script>
     <script src="/resources/js/nb_detail.js"></script>
-    <script>
-      getCommentDetail();
-      getReply();
-      teacherReply();
-    </script>
   </body>
 </html>

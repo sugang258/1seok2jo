@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -46,6 +47,14 @@ public class NoticeController {
 		mv.addObject("noticeDTO", noticeDTO);
 		mv.setViewName("board/nb_detail");
 		return mv;
+	}
+	
+	/* 공지사항 글수정 */
+	@PostMapping("nb_update")
+	@ResponseBody
+	public int setNoticeUpdate(NoticeDTO noticeDTO)throws Exception {
+		int result = noticeService.setNoticeUpdate(noticeDTO);
+		return result;
 	}
 	
 	/* 공지사항 글삭제 */

@@ -27,12 +27,6 @@
   font-weight: bold;
 }
 
-.reply_list {
-  margin-top: 5px;
-  margin: 5px -2em -2em -2em;
-  background-color: whitesmoke;
-}
-
 #reply_btn {
   border: none;
   background-color: rgba(0, 66, 0, 0.637);
@@ -42,14 +36,6 @@
   color: white;
   margin-left: -10px;
   margin-top: 5px;
-}
-#reply_text {
-  width: 60%;
-  height: 34px;
-  border: none;
-  font-size: 14px;
-  padding-left: 1.5em;
-  padding-right: 1.3em;
 }
 input:focus {
   outline: none;
@@ -65,7 +51,6 @@ input:focus {
   color: black;
   transform: scale(1.03);
 }
-
 
 /**button-style*/
 .btn-st {

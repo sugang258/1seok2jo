@@ -1,12 +1,12 @@
-main{
-    margin-top: 8em;
+main {
+  margin-top: 8em;
 }
 
 /**Board-Contents*/
 .board {
-  margin: 8em auto 28px auto;
+  margin: 8em auto 5px auto;
   width: 85%;
-   justify-content: center;
+  justify-content: center;
 }
 .board_contents {
   border-bottom: solid 1px rgba(131, 127, 127, 0.384);
@@ -14,27 +14,26 @@ main{
   padding: 10px 20px;
 }
 .board_contents:hover {
-	background-color: rgba(204, 200, 200, 0.452);
- 	cursor: pointer;
+  background-color: rgba(204, 200, 200, 0.452);
+  cursor: pointer;
+  justify-content: end;
 }
 
-@media screen and (max-width:995px) {
+@media screen and (max-width: 995px) {
   .board_contents {
     height: 120px;
   }
-  
 }
 
 .b1 {
   border: none;
-  width:18em;
+  width: 18em;
   padding: 8px 0px 0px 0px;
   font-size: 12px;
 }
 .b1 div {
   margin: 0px auto;
 }
-
 
 /**Fix_box*/
 .fix_box {
@@ -46,22 +45,18 @@ main{
   height: 40px;
   font-size: large;
   width: 6em;
-  background-color:transparent;
+  background-color: transparent;
   border-radius: 10px;
 }
 
-.fix_btn:active{
+.fix_btn:active {
   transform: scale(1.05);
 }
 
 /**PageNation*/
 .paging {
-  height: 100px;
+  height: 50px;
   margin-bottom: 2em;
-}
-.pagination {
-  justify-content: center;
-  padding-top: 2em;
 }
 
 /**sidebar*/
@@ -86,10 +81,10 @@ main{
   overflow-x: hidden;
   overflow-y: auto;
   text-align: center;
-  left:10em;
+  left: 10em;
 }
 
 #writer a {
-	text-decoration: none;
-	color: #000000;
+  text-decoration: none;
+  color: #000000;
 }

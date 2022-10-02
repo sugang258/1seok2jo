@@ -22,7 +22,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
   <body>
     <section class="container">
       <div class="d-flex mt-5">
-      <!--Sidebar-->
+        <!--Sidebar-->
         <div class="row" style="width: 8%">
           <div class="col-4 d-lg-block d-none">
             <div class="list-group sidebar">
@@ -65,83 +65,109 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                   href="#list-settings"
                   role="tab"
                   aria-controls="list-settings"
-                   onclick="location.href='./faq'"
+                  onclick="location.href='./faq'"
                   >자주묻는 질문</a
                 >
               </div>
             </div>
           </div>
         </div>
-      
+
         <div style="width: 92%">
           <div class="board">
-			<div style="width: 78%; margin: 0px auto;">
-            <div class="ps-3 mb-4 pt-4"><h1>📢 공지사항</h1></div>
-            
-	           	<c:forEach items="${list}" var="noticeDTO">
-		            <div class="board_contents" onclick="location.href='/board/nb_detail?n_num=${noticeDTO.n_num}';">
-		              <div style="padding: 12px 0px">
-		                <div>
-		                  <h5>
-		                    <b>💚[업데이트소식]${noticeDTO.title}</b>
-		                  </h5>
-		                </div>
-		                <div class="d-flex">
-		                  <div class="d-flex p-1 w-100">
-		                    <div class="b1 d-flex">
-		                      <div>${noticeDTO.reg_date}</div>
-		                      <div>글쓴이:${noticeDTO.id}✅</div>
-		                      <div>대상:전체</div>
-		                    </div>
-		                  </div>
-		                </div>
-		              </div>
-		            </div>
-	            </c:forEach>
-            
-               <div class="mt-4 mb-1" style="text-align: right">
-		       <button class="btn btn-light mt-4" id="writer">
-		         <a href="/board/nb_add">✏글작성(관리자)</a>
-		       </button>
-           	  </div>
-         	 </div>
+            <div style="width: 78%; margin: 0px auto">
+              <div class="ps-3 mb-4 pt-4"><h1>📢 공지사항</h1></div>
+
+              <c:forEach items="${list}" var="noticeDTO">
+                <div
+                  class="board_contents"
+                  onclick="location.href='/board/nb_detail?n_num=${noticeDTO.n_num}';"
+                >
+                  <div style="padding: 12px 0px">
+                    <div>
+                      <h5>
+                        <b>💚[업데이트소식]${noticeDTO.title}</b>
+                      </h5>
+                    </div>
+                    <div class="d-flex">
+                      <div class="d-flex p-1 w-100">
+                        <div class="b1 d-flex">
+                          <div>${noticeDTO.reg_date}</div>
+                          <div>글쓴이:${noticeDTO.id}✅</div>
+                          <div>대상:전체</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </c:forEach>
+            </div>
+
+            <div
+              class="d-flex"
+              style="width: 78%; margin: 80px auto 0px auto; text-align: end"
+            >
+              <!--PageNation-->
+              <div class="paging justify-content-end" style="width: 100%">
+                <nav
+                  aria-label="Page navigation example"
+                  class="justify-content-end"
+                  style="justify-content: end"
+                >
+                  <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                      <a
+                        class="page-link text-success"
+                        href="#"
+                        aria-label="Previous"
+                      >
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link text-success" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link text-success" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link text-success" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link text-success" href="#">4</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link text-success" href="#">5</a>
+                    </li>
+                    <li class="page-item">
+                      <a
+                        class="page-link text-success"
+                        href="#"
+                        aria-label="Next"
+                      >
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+
+              <div class="" style="width: 30%;">
+                <button
+                  class="btn btn-light"
+                  id="writer"
+                  style="
+                    background-color: transparent;
+                    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+                    font-size: 14px;
+                  "
+                >
+                  <a href="/board/nb_add">✏글작성(관리자)</a>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-        
-      </div>
-      
-
-      <!--PageNation-->
-      <div class="paging">
-        <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link text-success" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item">
-              <a class="page-link text-success" href="#">1</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link text-success" href="#">2</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link text-success" href="#">3</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link text-success" href="#">4</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link text-success" href="#">5</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link text-success" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
       </div>
 
       <!--Fixed Button-->
