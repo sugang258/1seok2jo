@@ -19,6 +19,10 @@
 					WHERE id=#{id}
 					ORDER BY REGDATE ASC
 		    	</select>
+		    			    	
+		    	<update id="setAnswerDefault" parameterType="CsBoardDTO">
+		    		UPDATE STUDY_BOARD SET answer=0 WHERE SB_NUM=#{sb_num}
+		    	</update>
 		    	
 		    	<select id="getBoardList" parameterType="Pager" resultType="StudyBoardDTO">
 		    		SELECT * FROM (
@@ -27,10 +31,6 @@
 		    				)N
 		    			)
 		    		WHERE R BETWEEN #{startRow} AND #{lastRow}
-		    	</select>
-		    	
-		    	<select id="getTotalCount" parameterType="Pager" resultType="Long">
-		    		SELECT COUNT(sb_num) FROM STUDY_BOARD
 		    	</select>
 		    	
 
@@ -57,32 +57,6 @@
 		    	<delete id="setBoardDelete" parameterType="StudyBoardDTO">
 		    		DELETE FROM STUDY_BOARD WHERE SB_NUM= #{sb_num}
 		    	</delete>
-		    	
-		    	<update id="setBoardUpdate" parameterType="StudyBoardDTO">
-		    		UPDATE STUDY_BOARD SET TITLE=#{title}, CONTENTS=#{contents} WHERE SB_NUM=#{sb_num}
-		    	</update>
-		    	
-		    	<update id="setBoardHit" parameterType="StudyBoardDTO">
-		    		UPDATE STUDY_BOARD SET HIT=HIT+1 WHERE SB_NUM=#{sb_num}
-		    	</update>
-		    	
-		    	<!-- 게시판 파일 등록 -->
-		    	<insert id="setBoardFile" parameterType="BoardFileDTO">
-		    		INSERT INTO BOARDFILE VALUES (FILE_SEQ.NEXTVAL, #{sb_num}, #{f_name}, #{f_oriname})
-		    	</insert>
-		   	   		    	
-		   	   	<!-- 게시판 댓글 수 -->	    	
-		    	<select id="getCount" parameterType="StudyBoardDTO" resultType="Long">
-		    		SELECT COUNT(NUM) FROM SB_COMMENT WHERE SB_NUM=#{sb_num} AND REF=1
-		    	</select>
-		    	
-		    	<!-- 댓글상태 -->
-		    	<update id="setAnsewer" parameterType="StudyBoardDTO">
-		    		UPDATE STUDY_BOARD SET answer=answer+1 WHERE SB_NUM=#{sb_num}
-		    	</update>
-		    	
-		    	<update id="setAnsewerDefault" parameterType="StudyBoardDTO">
-		    		UPDATE STUDY_BOARD SET answer=0 WHERE SB_NUM=#{sb_num}
-		    	</update>
+
 
 		    </mapper>
