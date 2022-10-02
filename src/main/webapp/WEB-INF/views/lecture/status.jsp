@@ -21,7 +21,7 @@ rel="stylesheet"/>
 <body>
     <main class="container mt-2">
         <div class="py-3 text-center">
-            <h1 style="display: inline;">내 학습</h1>
+            <h1 style="display: inline;">✏내 학습</h1>
         </div>
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">

@@ -42,6 +42,10 @@ public class LectureAddDAO {
 		return sqlSession.update(NAMESPACE+"setLectureCount", lectureAddDTO);
 	}
 	
+	public int setLectureCountM(LectureAddDTO lectureAddDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setLectureCountM", lectureAddDTO);
+	}
+	
 	public List<LectureAddDTO> getLectureAddAll() throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getLectureAddAll");
 	}
@@ -52,6 +56,10 @@ public class LectureAddDAO {
 	 
 	public int setLectureDeleteAll(LectureDTO lectureDTO) throws Exception{
 		return sqlSession.delete(NAMESPACE+"setLectureDeleteAll", lectureDTO);
+	}
+	
+	public LectureAddDTO getLectureCancel(LectureAddDTO lectureAddDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getLectureCancel", lectureAddDTO);
 	}
 
 }

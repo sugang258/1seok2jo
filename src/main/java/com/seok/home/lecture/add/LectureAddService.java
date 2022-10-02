@@ -40,4 +40,7 @@ public class LectureAddService {
 	public int setLectureDeleteAll(LectureDTO lectureDTO) throws Exception{
 		return lectureAddDAO.setLectureDeleteAll(lectureDTO);
 	}
+	public LectureAddDTO getLectureCancel(LectureAddDTO lectureAddDTO) throws Exception{
+		return lectureAddDAO.getLectureCancel(lectureAddDTO);
+	}
 }

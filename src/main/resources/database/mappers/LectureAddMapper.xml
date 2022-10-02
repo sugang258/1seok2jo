@@ -29,6 +29,10 @@
 		    		UPDATE LECTURE SET L_COUNT=L_COUNT+1 WHERE L_NUM= #{l_num}
 		    	</update>
 		    	
+		    	<update id="setLectureCountM" parameterType="LectureAddDTO">
+		    		UPDATE LECTURE SET L_COUNT=L_COUNT-1 WHERE L_NUM=#{l_num}
+		    	</update>
+		    	
 		    	<select id="getLectureAddAll" resultType="LectureAddDTO">
 		    		SELECT * FROM LECTURE_SIGN
 		    	</select>
@@ -40,5 +44,9 @@
 		    	<delete id="setLectureDeleteAll" parameterType="LectureDTO">
 		    		DELETE FROM LECTURE_SIGN WHERE L_NUM=#{l_num}
 		    	</delete>
+		    	
+		    	<select id="getLectureCancel" parameterType="LectureAddDTO" resultType="LectureAddDTO">
+		    		SELECT * FROM LECTURE_SIGN WHERE L_NUM=#{l_num} AND ID=#{id}
+		    	</select>
 		    
 		    </mapper>

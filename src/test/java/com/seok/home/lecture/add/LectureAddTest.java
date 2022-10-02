@@ -99,5 +99,17 @@ public class LectureAddTest extends MyAbstractTest {
 
 	}
 	
+	//@Test
+	public void getLectureCancel() throws Exception{
+		LectureAddDTO lectureAddDTO = new LectureAddDTO();
+		lectureAddDTO.setL_num(72L);
+		lectureAddDTO.setId("ss");
+		
+		lectureAddDTO = lectureAddDAO.getLectureCancel(lectureAddDTO);
+		
+		assertNotNull(lectureAddDTO);
+
+	}
+	
 
 }
