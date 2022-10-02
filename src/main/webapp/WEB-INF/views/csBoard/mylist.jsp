@@ -6,17 +6,11 @@ prefix="c" %>
   <head>
     <meta charset="UTF-8" />
     <title>게시판 상세보기</title>
-    <link rel="stylesheet" href="/resources/css/board/sb_detail.css" />
+    <link rel="stylesheet" href="/resources/css/board/cs_myList.css" />
     <!-- jquery -->
-    <script
-      type="text/javascript"
-      src="//code.jquery.com/jquery-3.6.0.min.js"
-    ></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js" ></script>
     <!-- include summernote css/js-->
-    <link
-      href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <%-- Bootstrap CSS --%>
     <link
@@ -34,58 +28,47 @@ prefix="c" %>
     <%-- favicon --%>
     <link rel="shortcut icon" href="/resources/images/favicon.ico" />
   </head>
-  <c:import url="../template/header.jsp"></c:import>
   <body>
-    <section class="container" style="width: 80%">
-      <div class="board">
-        <div class="board_contents">
-          <div style="padding: 12px 0px">
-            <div class="d-flex">
-              <div
-                class="flex-grow-1"
-                style="padding: 8px 8px 8px 0px; font-size: 14px"
-              >
-                <div>${requestScope.studyBoardDTO.category}</div>
-              </div>
-              <div class="p-2">
-                <i class="fa-regular fa-user"></i> ${studyBoardDTO.id}
-              </div>
-            </div>
-            <div>
-              <h5><b>${studyBoardDTO.title}</b></h5>
-            </div>
+    <div class="container-fluid" style="height: 80px;">
+      <c:import url="../template/header.jsp"></c:import>
+    </div>
+    <section class="container" >
+      <div class="row mt-5  text-center">
+        <h3>내 문의</h3>
+      </div>
+      <c:forEach items="${myList}" var="csboard">
 
-            <div class="d-flex mt-4">
-              <div class="d-flex p-1 w-100">
-                <div class="b1 d-flex">
-                  <div>${studyBoardDTO.hit} 조회</div>
-                  <div>
-                    <b>
-                      <c:choose>
-                        <c:when test="${studyBoardDTO.answer eq 0}">
-                          답변대기
-                        </c:when>
-                        <c:otherwise> 답변완료 </c:otherwise>
-                      </c:choose>
-                    </b>
-                  </div>
+      <div class="board">
+        <!--내가 문의한 부분-->
+        <div class="board_contents">
+          <div class="row py-2">
+            <div class="col-10 align-content-center" style="padding: 8px 8px 8px 0px; font-size: 14px; margin-top: 0.5rem">
+              <h5><b>${csboard.cs_title}</b></h5>
+            </div>
+            <div class="col-2 align-content-center my-auto">
+              <div class="b1 d-flex">
+                <div class="mx-auto">
+                  <b>
+                    ${csboard.cs_status}
+                  </b>
                 </div>
-              </div>
-              <div
-                class="p-2 flex-shrink-1"
-                style="width: 120px; font-size: 15px"
-              >
-                ${studyBoardDTO.reg_date}
               </div>
             </div>
           </div>
+          <hr style="margin: 0;">
+          <div class="row p-3 text-muted flex-row-reverse">
+            ${csboard.regdate}
+          </div>
+          <div class="row">
+            ${csboard.cs_contents}
+          </div>
         </div>
 
-        <!--Contents-->
+        <!--답변부분-->
         <div class="sb_contents">
           <div class="mb-3">
             <h5 style="text-align: justify; text-justify: auto">
-              ${studyBoardDTO.contents}
+              $내용
             </h5>
           </div>
           <div style="width: 100%">
@@ -95,56 +78,14 @@ prefix="c" %>
               alt=""
             />
           </div>
-
-          <div>
-            <div class="d-flex mt-4">
-              <div class="p-2 flex-grow-1">🗨 댓글 ${count}개</div>
-              <div class="p-2 share">
-                <a href="#" onclick="clip(); return false;"
-                  ><i
-                    class="fa-solid fa-share-nodes"
-                    style="color: rgb(15, 156, 50)"
-                  ></i>
-                  공유하기</a
-                >
-              </div>
-              <div class="p-2">
-                <i
-                  style="color: rgb(15, 156, 50)"
-                  class="fa-solid fa-caret-down"
-                ></i
-                ><button id="reply">댓글</button>
-              </div>
-            </div>
-          </div>
-          <!--Reply-Content-->
-          <div id="reply_content"></div>
         </div>
       </div>
 
       <!--board-Writer-Button-->
       <div
-        class="d-flex flex-row-reverse mb-5"
+        class="d-flex flex-row-reverse"
         style="width: 70%; margin: 0px auto"
       >
-        <div class="p-2">
-          <button
-            class="btn-st btn btn-outline-secondary"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal2"
-            data-bs-whatever="@mdo"
-          >
-            답변달기(강사)
-          </button>
-        </div>
-        <div class="p-2">
-          <button
-            class="btn-st btn btn-outline-secondary"
-            onclick="location.href='./sb_list';"
-          >
-            목록보기
-          </button>
-        </div>
         <div class="p-2">
           <button
             class="btn-st btn btn-outline-secondary"
@@ -165,7 +106,7 @@ prefix="c" %>
           </button>
         </div>
       </div>
-
+      </c:forEach>
       <!--modal-->
       <div
         class="modal fade"
@@ -213,20 +154,10 @@ prefix="c" %>
                   />
                 </div>
                 <div class="mb-3">
-                  <label
-                    for="message-text"
-                    class="col-form-label"
-                    style="color: gray"
-                    ><b>내용</b></label
-                  >
-                  <textarea
-                    name="contents"
-                    class="form-control mt-1"
-                    id="contents"
-                    rows="3"
-                  >
-${studyBoardDTO.contents}</textarea
-                  >
+                  <label for="message-text" class="col-form-label" style="color: gray"><b>내용</b></label>
+                  <textarea name="contents"  class="form-control mt-1"  id="contents"  rows="3" >
+                    ${studyBoardDTO.contents}
+                  </textarea>
                 </div>
               </form>
             </div>
@@ -329,17 +260,6 @@ ${studyBoardDTO.contents}</textarea
 
         <!--container-box-->
       </div>
-
-      <!--Fixed-button:back-->
-      <div class="d-flex flex-row-reverse fix_b">
-        <div class="fix_box d-flex">
-          <div class="d-grid gap-2 d-md-block">
-            <button class="fix_btn" type="button">
-              <i class="fa-solid fa-circle-chevron-left"></i>
-            </button>
-          </div>
-        </div>
-      </div>
     </section>
 
     <c:import url="../template/footer.jsp"></c:import>
@@ -357,11 +277,6 @@ ${studyBoardDTO.contents}</textarea
         focus: true,
       });
     </script>
-    <script src="/resources/js/sb_detail.js"></script>
-    <script>
-      getCommentDetail();
-      getReply();
-      teacherReply();
-    </script>
+
   </body>
 </html>

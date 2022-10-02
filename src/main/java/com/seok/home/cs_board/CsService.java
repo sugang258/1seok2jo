@@ -16,7 +16,7 @@ public class CsService {
 	}
 	
 	public List<CsBoardDTO> getMylist(CsBoardDTO csBoardDTO) throws Exception{
-		return CsDAO.getMylist(csBoardDTO);
+		return csDAO.getMylist(csBoardDTO);
 	}
 
 }
