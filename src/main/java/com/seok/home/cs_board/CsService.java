@@ -18,5 +18,6 @@ public class CsService {
 	public List<CsBoardDTO> getMylist(CsBoardDTO csBoardDTO) throws Exception{
 		return csDAO.getMylist(csBoardDTO);
 	}
+	
 
 }

@@ -17,6 +17,7 @@
 		    		SELECT *
 					FROM CS_BOARD
 					WHERE id=#{id}
+					ORDER BY REGDATE ASC
 		    	</select>
 		    	
 		    	<select id="getBoardList" parameterType="Pager" resultType="StudyBoardDTO">

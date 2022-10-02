@@ -20,5 +20,9 @@ public class CsDAO {
 	public List<CsBoardDTO> getMylist(CsBoardDTO csBoardDTO) throws Exception{
 		return session.selectList(NAMESPACE+"getMylist", csBoardDTO);
 	}
+	
+	public int setAnswerDefault(CsBoardDTO csBoardDTO) throws Exception{
+		return session.update(NAMESPACE+"setAnswerDefault", csBoardDTO);
+	}
 
 }
