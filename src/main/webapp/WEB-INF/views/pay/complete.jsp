@@ -64,7 +64,7 @@
             </div>
 
             <div class="col-sm-8 text-center">
-                <button type="button">내 강의목록으로 이동하기</button>
+                <button type="button" id="list">내 강의목록으로 이동하기</button>
             </div>
         </div>
     </div>
@@ -76,5 +76,6 @@
     
 <!--부트스트랩-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="/resources/js/complete.js"></script>
 </body>
 </html>
