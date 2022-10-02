@@ -77,55 +77,39 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           <div class="board">
 			<div style="width: 78%; margin: 0px auto;">
             <div class="ps-3 mb-4 pt-4"><h1>📢 공지사항</h1></div>
-            <div class="board_contents">
-              <div style="padding: 12px 0px">
-                <div>
-                  <h5>
-                    <b>💚[업데이트소식]9월 2주차 - 에디터기능 업데이트✍</b>
-                  </h5>
-                </div>
-                <div class="d-flex">
-                  <div class="d-flex p-1 w-100">
-                    <div class="b1 d-flex">
-                      <div>6일 전</div>
-                      <div>글쓴이:관리자✅</div>
-                      <div>대상:전체</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="board_contents">
-              <div style="padding: 12px 0px">
-                <div>
-                  <h5>
-                    <b>💚[업데이트소식]9월 2주차 - 에디터기능 업데이트✍</b>
-                  </h5>
-                </div>
-                <div class="d-flex">
-                  <div class="d-flex p-1 w-100">
-                    <div class="b1 d-flex">
-                      <div>6일 전</div>
-                      <div>글쓴이:관리자✅</div>
-                      <div>대상:전체</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="board_contents">게시글</div>
-            <div class="board_contents">게시글</div>
-            <div class="board_contents">게시글</div>
-            <div class="board_contents">게시글</div>
-            <div class="board_contents">게시글</div>
-            <div class="board_contents">게시글</div>
-            <div class="board_contents">게시글</div>
-          </div>
+            
+	           	<c:forEach items="${list}" var="noticeDTO">
+		            <div class="board_contents" onclick="location.href='/board/nb_detail?n_num=${noticeDTO.n_num}';">
+		              <div style="padding: 12px 0px">
+		                <div>
+		                  <h5>
+		                    <b>💚[업데이트소식]${noticeDTO.title}</b>
+		                  </h5>
+		                </div>
+		                <div class="d-flex">
+		                  <div class="d-flex p-1 w-100">
+		                    <div class="b1 d-flex">
+		                      <div>${noticeDTO.reg_date}</div>
+		                      <div>글쓴이:${noticeDTO.id}✅</div>
+		                      <div>대상:전체</div>
+		                    </div>
+		                  </div>
+		                </div>
+		              </div>
+		            </div>
+	            </c:forEach>
+            
+               <div class="mt-4 mb-1" style="text-align: right">
+		       <button class="btn btn-light mt-4" id="writer">
+		         <a href="/board/nb_add">✏글작성(관리자)</a>
+		       </button>
+           	  </div>
+         	 </div>
           </div>
         </div>
         
       </div>
+      
 
       <!--PageNation-->
       <div class="paging">

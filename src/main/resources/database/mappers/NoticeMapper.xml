@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		    
+		    <mapper namespace="com.seok.home.n_board.NoticeDAO">
+		    	<!-- 공지사항 목록 -->
+		    	<select id="getNoticeList" resultType="NoticeDTO">
+		    		SELECT * FROM NOTICE ORDER BY N_NUM DESC
+		    	</select>
+		    	
+		    	<!-- 공지사항 상세보기 -->
+		    	<select id="getNoticeDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
+		    		SELECT * FROM NOTICE WHERE N_NUM=#{n_num} ORDER BY N_NUM DESC
+		    	</select>
+		    	
+		    	<!-- 공지사항 작성 -->
+		    	<insert id="setNoticeAdd" parameterType="NoticeDTO">
+		    		INSERT INTO NOTICE VALUES (BOARD_SEQ.NEXTVAL, #{id}, #{title}, SYSDATE,#{contents})
+		    	</insert>
+		    		
+		    	<!-- 공지사항 글삭제 -->
+		    	<delete id="setNoticeDelete" parameterType="NoticeDTO">
+		    		DELETE NOTICE WHERE N_NUM = #{n_num}
+		    	</delete>
+		    </mapper>

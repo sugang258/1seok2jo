@@ -13,10 +13,14 @@ main{
   height: 100px;
   padding: 10px 20px;
 }
+.board_contents:hover {
+	background-color: rgba(204, 200, 200, 0.452);
+ 	cursor: pointer;
+}
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:995px) {
   .board_contents {
-    height: 130px;
+    height: 120px;
   }
   
 }
@@ -83,4 +87,9 @@ main{
   overflow-y: auto;
   text-align: center;
   left:10em;
+}
+
+#writer a {
+	text-decoration: none;
+	color: #000000;
 }
