@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		    
+		    <mapper namespace="com.seok.home.cs_board.CsDAO">
+		    
+		    	<insert id="setBoardAdd" parameterType="CsBoardDTO">
+		    		<selectKey order="BEFORE" keyProperty="cs_num" resultType="Long">
+		    			SELECT CSBOARD_SEQ.NEXTVAL FROM DUAL
+		    		</selectKey>
+			    	INSERT INTO CS_BOARD (CS_NUM, ID, CS_PHONE, CS_EMAIL, CS_TITLE, CS_CONTENTS, REGDATE, CS_STATUS)
+					VALUES (#{cs_num}, #{id}, #{cs_phone}, #{cs_email}, #{cs_title}, #{cs_contents}, SYSDATE, '미답변')
+		    	</insert>
+		    	
+		    	<select id="getMylist" parameterType="CsBoardDTO" resultType="CsBoardDTO">
+		    		SELECT *
+					FROM CS_BOARD
+					WHERE id=#{id}
+		    	</select>
+		    	
+		    	<select id="getBoardList" parameterType="Pager" resultType="StudyBoardDTO">
+		    		SELECT * FROM (
+		    			SELECT ROWNUM R, N.* FROM (
+		    				SELECT * FROM STUDY_BOARD ORDER BY SB_NUM DESC
+		    				)N
+		    			)
+		    		WHERE R BETWEEN #{startRow} AND #{lastRow}
+		    	</select>
+		    	
+		    	<select id="getTotalCount" parameterType="Pager" resultType="Long">
+		    		SELECT COUNT(sb_num) FROM STUDY_BOARD
+		    	</select>
+		    	
+
+		    	
+		    	<resultMap type="StudyBoardDTO" id="getBoardDetailResult">
+		    		<id column="SB_NUM" property="sb_num"/>
+		    		<result column="L_NUM" property="l_num"/>
+		    		<result column="ID" property="id"/>
+		    		<result column="TITLE" property="title"/>
+		    		<result column="REG_DATE" property="reg_date"/>
+		    		<result column="ANSWER" property="answer"/>
+		    		<result column="HIT" property="hit"/>
+		    		<result column="CONTENTS" property="contents"/>
+		    		<result column="CATEGORY" property="category"/>
+
+		    		<association property="boardFileDTO" javaType="BoardFileDTO">
+		    			<id column="NUM" property="num"/>
+		    			<result column="F_NAME" property="f_name"/>
+		    		</association>
+		    	</resultMap>
+		    	
+
+		    		
+		    	<delete id="setBoardDelete" parameterType="StudyBoardDTO">
+		    		DELETE FROM STUDY_BOARD WHERE SB_NUM= #{sb_num}
+		    	</delete>
+		    	
+		    	<update id="setBoardUpdate" parameterType="StudyBoardDTO">
+		    		UPDATE STUDY_BOARD SET TITLE=#{title}, CONTENTS=#{contents} WHERE SB_NUM=#{sb_num}
+		    	</update>
+		    	
+		    	<update id="setBoardHit" parameterType="StudyBoardDTO">
+		    		UPDATE STUDY_BOARD SET HIT=HIT+1 WHERE SB_NUM=#{sb_num}
+		    	</update>
+		    	
+		    	<!-- 게시판 파일 등록 -->
+		    	<insert id="setBoardFile" parameterType="BoardFileDTO">
+		    		INSERT INTO BOARDFILE VALUES (FILE_SEQ.NEXTVAL, #{sb_num}, #{f_name}, #{f_oriname})
+		    	</insert>
+		   	   		    	
+		   	   	<!-- 게시판 댓글 수 -->	    	
+		    	<select id="getCount" parameterType="StudyBoardDTO" resultType="Long">
+		    		SELECT COUNT(NUM) FROM SB_COMMENT WHERE SB_NUM=#{sb_num} AND REF=1
+		    	</select>
+		    	
+		    	<!-- 댓글상태 -->
+		    	<update id="setAnsewer" parameterType="StudyBoardDTO">
+		    		UPDATE STUDY_BOARD SET answer=answer+1 WHERE SB_NUM=#{sb_num}
+		    	</update>
+		    	
+		    	<update id="setAnsewerDefault" parameterType="StudyBoardDTO">
+		    		UPDATE STUDY_BOARD SET answer=0 WHERE SB_NUM=#{sb_num}
+		    	</update>
+
+		    </mapper>
