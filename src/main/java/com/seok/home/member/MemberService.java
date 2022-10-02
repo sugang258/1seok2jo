@@ -64,20 +64,44 @@ public class MemberService {
 	//프로필수정
 	public int setEditProfile(MemberDTO memberDTO, MultipartFile profile, ServletContext servletContext)throws Exception{
 		
-		int susess = memberDAO.setEditProfile(memberDTO);
+		int result = memberDAO.setEditProfile(memberDTO);
+		
+		System.out.println("서비스 파일 DTO : "+memberDTO.getMemberFileDTO());
+		MemberFileDTO memberFileDTO = memberDTO.getMemberFileDTO();
+		System.out.println("어디부터 에러인것이니?");
+		if(memberFileDTO == null) {
+			System.out.println("어디부터 에러인것이니?");
+			memberDAO.setDeleteFile(memberFileDTO);
+			System.out.println("어디부터 에러인것이니?");
+//			String path = "resources/upload/member";
+//			
+//			String fileName = fileManager.saveFile(path, servletContext, profile);
+//			
+////			int result = 0;
+//			if(!profile.isEmpty()) {
+//				MemberFileDTO memberFileDTO2 = new MemberFileDTO();
+//				memberFileDTO2.setF_name(fileName);
+//				memberFileDTO2.setF_oriname(profile.getOriginalFilename());
+//				memberFileDTO2.setId(memberDTO.getId());
+//				result = memberDAO.setAddFile(memberFileDTO2);
+//				memberDTO.setMemberFileDTO(memberFileDTO2);
+			}
+//			
+//			return result;
+//		}
 		
 		String path = "resources/upload/member";
 		
 		String fileName = fileManager.saveFile(path, servletContext, profile);
 		
-		int result = 0;
+//		int result = 0;
 		if(!profile.isEmpty()) {
-			MemberFileDTO memberFileDTO = new MemberFileDTO();
-			memberFileDTO.setF_name(fileName);
-			memberFileDTO.setF_oriname(profile.getOriginalFilename());
-			memberFileDTO.setId(memberDTO.getId());
-			result = memberDAO.setAddFile(memberFileDTO);
-			memberDTO.setMemberFileDTO(memberFileDTO);
+			MemberFileDTO memberFileDTO2 = new MemberFileDTO();
+			memberFileDTO2.setF_name(fileName);
+			memberFileDTO2.setF_oriname(profile.getOriginalFilename());
+			memberFileDTO2.setId(memberDTO.getId());
+			result = memberDAO.setAddFile(memberFileDTO2);
+			memberDTO.setMemberFileDTO(memberFileDTO2);
 		}
 		
 		return result;

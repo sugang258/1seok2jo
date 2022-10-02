@@ -92,7 +92,7 @@
 		VALUES(#{num}, #{id},#{f_name}, #{f_oriname})
 	</insert>
 	
-	<delete id="setDeleteFile">
+	<delete id="setDeleteFile" parameterType="MemberFileDTO">
 		DELETE FROM MEMBER_FILE WHERE NUM=#{num};
 	</delete>
 	
