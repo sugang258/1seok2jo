@@ -32,5 +32,13 @@
 		    	<select id="getLectureAddAll" resultType="LectureAddDTO">
 		    		SELECT * FROM LECTURE_SIGN
 		    	</select>
+		    	
+		    	<select id="getLectureSearch" parameterType="LectureAddDTO" resultType="LectureAddDTO">
+		    		SELECT S_NUM FROM LECTURE_SIGN WHERE L_NUM = #{l_num}
+		    	</select>
+		    	
+		    	<delete id="setLectureDeleteAll" parameterType="LectureDTO">
+		    		DELETE FROM LECTURE_SIGN WHERE L_NUM=#{l_num}
+		    	</delete>
 		    
 		    </mapper>

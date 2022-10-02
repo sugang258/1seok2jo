@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.seok.home.lecture.LectureDTO;
+
 @Repository
 public class LectureAddDAO {
 	
@@ -44,5 +46,12 @@ public class LectureAddDAO {
 		return sqlSession.selectList(NAMESPACE+"getLectureAddAll");
 	}
 	
+	public List<LectureAddDTO> getLectureSearch(LectureAddDTO lectureAddDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getLectureSearch", lectureAddDTO);
+	}
+	 
+	public int setLectureDeleteAll(LectureDTO lectureDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setLectureDeleteAll", lectureDTO);
+	}
 
 }

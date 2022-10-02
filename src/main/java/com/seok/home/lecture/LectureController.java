@@ -154,11 +154,45 @@ public class LectureController {
 	
 	@PostMapping("setDelete")
 	@ResponseBody
-	public int setDelete(LectureDTO lectureDTO) throws Exception {
-		lectureService.setFileDelete(lectureDTO);
-		lectureService.setVideoDele(lectureDTO);
-		int result = lectureService.setDelete(lectureDTO);
-		
+	public int setDelete(LectureDTO lectureDTO,HttpServletRequest request) throws Exception {
+		//실행시켜보기
+		//status -> lecture_sign 
+		System.out.println("delete");
+		int result = 0;
+		MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+
+		LectureAddDTO lectureAddDTO = new LectureAddDTO();
+		StatusDTO statusDTO = new StatusDTO();
+		lectureAddDTO.setL_num(lectureDTO.getL_num());
+		System.out.println(lectureAddDTO.getL_num());
+		lectureDTO = lectureService.getDetail(lectureDTO);
+		long s_count = lectureDTO.getL_count();
+		System.out.println(s_count);
+//		LectureVideoDTO lectureVideoDTO =new LectureVideoDTO();
+//		lectureVideoDTO.setL_num(lectureDTO.getL_num());
+		long v_count = lectureService.getListCount(lectureDTO);
+		System.out.println(v_count);
+		System.out.println(mem.getId());
+		System.out.println(lectureDTO.getId());
+		List<LectureAddDTO> ar = lectureAddService.getLectureSearch(lectureAddDTO);
+		if(mem.getId().equals(lectureDTO.getId())) {
+			
+			for(int x=0;x<ar.size();x++) {
+				statusDTO.setS_num(ar.get(x).getS_num());
+				for(int i=0;i<s_count*v_count;i++) {
+					//statusDTO S_NUM으로 다 삭제시키기
+					statusService.setStatusDelete(statusDTO);
+				}
+			}
+			lectureAddService.setLectureDeleteAll(lectureDTO);
+			lectureService.setFileDelete(lectureDTO);
+			lectureService.setVideoDele(lectureDTO);
+			result = lectureService.setDelete(lectureDTO);
+			
+		}else {
+			result =0;
+		}
+		System.out.println(result);
 		return result;
 	}
 	
