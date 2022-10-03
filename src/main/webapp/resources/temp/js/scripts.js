@@ -10,6 +10,7 @@
 window.addEventListener('DOMContentLoaded', event => {
 
     // Toggle the side navigation
+    //네비바에 적용되는 사이드바 토글
     const sidebarToggle = document.body.querySelector('#sidebarToggle');
     if (sidebarToggle) {
         // Uncomment Below to persist sidebar toggle between refreshes
@@ -24,14 +25,3 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
-let iframe = document.getElementsByTagName("iframe");
-iframe.onclick = function(){
-    console.log("ㅗㅑ   ")
-}
-
-let video = document.getElementById("video")
-video.addEventListener("click", function(){
-
-    console.log(video.children[0])
-    console.log(video.children[0].contentDocument.document)
-})

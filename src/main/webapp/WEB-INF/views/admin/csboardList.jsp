@@ -28,18 +28,20 @@
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
-                                <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
+                                <h6>
+                                    <b>검색 조건 설정</b>
+                                </h6>
+                                <span class="text-muted">시작날짜</span>
+                                <input type="date" id="start-date" name="start-date"></input>
+                                ~
+                                <span class="text-muted">끝날짜</span>
+                                <input type="date" id="end-date" name="end-date"></input>
+                                <button type="button">날짜 검색</button>
                             </div>
                         </div>
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                DataTable Example
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
+                                <table class="table table-striped table-hover">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
@@ -50,16 +52,6 @@
                                             <th>Salary</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                         <tr>
                                             <td>Tiger Nixon</td>
@@ -71,6 +63,42 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item">
+                                        <a class="page-link" href="./list.mg?page=1" aria-label="Previous">
+                                          <span aria-hidden="true">&laquo;&laquo;</span>
+                                        </a>
+                                      </li>
+                                      <!-- choose사용해서 해보기 -->
+                                      <c:choose>
+                                          <c:when test="${pager.pre}">
+                                      <li class="page-item disabled">
+                                          </c:when>
+                                          <c:otherwise>
+                                      <li class="page-item">
+                                          </c:otherwise>
+                                      </c:choose>
+                                        <a class="page-link" href="./list.mg?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
+                                          <span aria-hidden="true">이전</span>
+                                        </a>
+                                      </li>
+                                      <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+                                      <li class="page-item"><a class="page-link" href="./list.mg?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+                                      </c:forEach>
+                                      <!-- 삼항연산자 사용해서 해보기 -->
+                                      <li class="${pager.next? 'page-item disabled':'page-item'}">
+                                        <a class="page-link" href="./list.mg?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
+                                          <span aria-hidden="true">다음</span>
+                                        </a>
+                                      </li>
+                                      <li class="page-item">
+                                        <a class="page-link" href="./list.mg?page=${pager.totalPage}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
+                                          <span aria-hidden="true">&raquo;&raquo;</span>
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </nav>
                             </div>
                         </div>
                     </div>
