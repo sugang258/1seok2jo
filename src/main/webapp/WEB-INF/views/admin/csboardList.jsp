@@ -14,7 +14,7 @@
         <link href="/resources/temp/css/styles1.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
             <!-- jQuery -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
     </head>
     <body class="sb-nav-fixed">
     	<c:import url="./navbar.jsp"></c:import>
@@ -31,74 +31,34 @@
                                 <h6>
                                     <b>검색 조건 설정</b>
                                 </h6>
-                                <span class="text-muted">시작날짜</span>
-                                <input type="date" id="start-date" name="start-date"></input>
-                                ~
-                                <span class="text-muted">끝날짜</span>
-                                <input type="date" id="end-date" name="end-date"></input>
-                                <button type="button">날짜 검색</button>
+                                <div class="row">
+                                    <div class="col-7">
+                                        <span class="text-muted">시작날짜</span>
+                                        <input type="date" id="startDate" name="startDate" class="p-1"></input>
+                                        ~
+                                        <span class="text-muted">끝날짜</span>
+                                        <input type="date" id="endDate" name="endDate" class="p-1"></input>
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="input-group">
+                                        <select type="button" name="kind" id="kind" class="btn btn-outline-success dropdown-toggle" style="text-align: left;" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <option value="CS_STATUS">답변여부</option>
+                                            <option value="CS_TITLE">제목</option>
+                                            <option value="ID">아이디</option>
+                                            <option value="CS_PHONE">연락처</option>
+                                            <option value="CS_EMAIL">이메일</option>
+                                        </select>
+                                        <input type="text" name="search" id="search" class="form-control" value="미답변"></input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <button type="button" class="btn btn-outline-success mx-auto" id="btnSearch" style="width: 100px;">검색</button>
+                                </div>
                             </div>
                         </div>
                         <div class="card mb-4">
-                            <div class="card-header">
-                                <table class="table table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <nav aria-label="Page navigation">
-                                    <ul class="pagination justify-content-center">
-                                        <li class="page-item">
-                                        <a class="page-link" href="./list.mg?page=1" aria-label="Previous">
-                                          <span aria-hidden="true">&laquo;&laquo;</span>
-                                        </a>
-                                      </li>
-                                      <!-- choose사용해서 해보기 -->
-                                      <c:choose>
-                                          <c:when test="${pager.pre}">
-                                      <li class="page-item disabled">
-                                          </c:when>
-                                          <c:otherwise>
-                                      <li class="page-item">
-                                          </c:otherwise>
-                                      </c:choose>
-                                        <a class="page-link" href="./list.mg?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
-                                          <span aria-hidden="true">이전</span>
-                                        </a>
-                                      </li>
-                                      <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-                                      <li class="page-item"><a class="page-link" href="./list.mg?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
-                                      </c:forEach>
-                                      <!-- 삼항연산자 사용해서 해보기 -->
-                                      <li class="${pager.next? 'page-item disabled':'page-item'}">
-                                        <a class="page-link" href="./list.mg?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
-                                          <span aria-hidden="true">다음</span>
-                                        </a>
-                                      </li>
-                                      <li class="page-item">
-                                        <a class="page-link" href="./list.mg?page=${pager.totalPage}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
-                                          <span aria-hidden="true">&raquo;&raquo;</span>
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </nav>
+                            <div class="card-header" id="postResult">
                             </div>
                         </div>
                     </div>
@@ -119,7 +79,7 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="/resources/temp/js/scripts.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="/resources/temp/js/datatables-simple-demo.js"></script>
+        <script src="/resources/js/admin.js"></script>
+        <script>initlist()</script>
     </body>
 </html>

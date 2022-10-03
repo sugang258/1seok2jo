@@ -1,5 +1,7 @@
 package com.seok.home.admin;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.seok.home.cs_board.CsBoardDTO;
 import com.seok.home.member.MemberDTO;
 
 @Controller
@@ -42,7 +45,21 @@ public class AdminController {
 	
 	@GetMapping(value = "csboardList")
 	private String getCsList() {
+		
 		return "admin/csboardList";
+	}
+	
+	@PostMapping(value = "csboardList")
+	@ResponseBody
+	private ModelAndView getCsList(AdminPager pager, ModelAndView mv) throws Exception{
+		
+		List<CsBoardDTO> csList = service.getCsList(pager);
+		
+		mv.addObject("csList", csList);
+		mv.addObject("pager", pager);
+		mv.setViewName("admin/csboardListPost");
+		
+		return mv;
 	}
 	
 	@PostMapping
@@ -81,6 +98,13 @@ public class AdminController {
 		mv.setViewName("common/ajaxResult");
 		
 		return mv;
+	}
+	
+	@PostMapping(value = "memberList")
+	private String getMember(AdminPager pager) {
+		
+		
+		return "admin/memberList";
 	}
 
 }

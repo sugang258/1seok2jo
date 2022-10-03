@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.seok.home.admin.AdminPager;
+
 @Repository
 public class CsDAO {
 	
@@ -23,6 +25,14 @@ public class CsDAO {
 	
 	public int setAnswerDefault(CsBoardDTO csBoardDTO) throws Exception{
 		return session.update(NAMESPACE+"setAnswerDefault", csBoardDTO);
+	}
+	
+	public Long getTotalCount(AdminPager pager) throws Exception{
+		return session.selectOne(NAMESPACE+"getTotalCount", pager);
+	}
+	
+	public List<CsBoardDTO> getBoardList(AdminPager pager) throws Exception{
+		return session.selectList(NAMESPACE+"getBoardList", pager);
 	}
 
 }

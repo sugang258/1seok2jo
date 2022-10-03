@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.seok.home.cs_board.CsBoardDTO;
+import com.seok.home.cs_board.CsDAO;
 import com.seok.home.member.MemberDAO;
 import com.seok.home.member.MemberDTO;
 import com.seok.home.member.RoleDTO;
@@ -16,6 +18,15 @@ public class AdminService {
 	private AdminDAO adminDAO;
 	@Autowired
 	private MemberDAO memberDAO;
+	@Autowired
+	private CsDAO csDAO;
+	
+	public List<CsBoardDTO> getCsList(AdminPager pager)throws Exception{
+		pager.calNum(csDAO.getTotalCount(pager));
+		List<CsBoardDTO> csList = csDAO.getBoardList(pager);
+		
+		return csList;
+	}
 	
 	public boolean getLogin(MemberDTO memberDTO) throws Exception {
 		

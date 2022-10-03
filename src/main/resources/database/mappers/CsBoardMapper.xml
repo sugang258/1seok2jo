@@ -19,44 +19,43 @@
 					WHERE id=#{id}
 					ORDER BY REGDATE DESC
 		    	</select>
-		    			    	
+		    			
+	    		<sql id="search">
+					<!-- 마이바티스의 동적 sql 사용하기 -->
+					<choose>
+						<when test="kind == 'CS_STATUS'">CS_STATUS</when>
+						<when test="kind == 'CS_TITLE'">CS_TITLE</when>
+						<when test="kind == 'ID'">ID</when>
+						<when test="kind == 'CS_PHONE'">CS_PHONE</when>
+						<when test="kind == 'CS_EMAIL'">CS_EMAIL</when>
+						<otherwise>CS_STATUS</otherwise>
+					</choose>
+					LIKE '%'||#{search}||'%' 
+				</sql>
+				    	
 		    	<update id="setAnswerDefault" parameterType="CsBoardDTO">
 		    		update cs_board set cs_status='답변완료', cs_answer='#{cs_answer}',cs_admin='#{cs_admin}',re_regdate=sysdate
 					where cs_num=#{cs_num}
 		    	</update>
 		    	
-		    	<select id="getBoardList" parameterType="Pager" resultType="StudyBoardDTO">
-		    		SELECT * FROM (
-		    			SELECT ROWNUM R, N.* FROM (
-		    				SELECT * FROM STUDY_BOARD ORDER BY SB_NUM DESC
-		    				)N
-		    			)
-		    		WHERE R BETWEEN #{startRow} AND #{lastRow}
+		    	<select id="getTotalCount" parameterType="AdminPager" resultType="Long">
+			    	select count(*) from cs_board
+					where regdate between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+		    		and <include refid="search"></include>
 		    	</select>
 		    	
-
-		    	
-		    	<resultMap type="StudyBoardDTO" id="getBoardDetailResult">
-		    		<id column="SB_NUM" property="sb_num"/>
-		    		<result column="L_NUM" property="l_num"/>
-		    		<result column="ID" property="id"/>
-		    		<result column="TITLE" property="title"/>
-		    		<result column="REG_DATE" property="reg_date"/>
-		    		<result column="ANSWER" property="answer"/>
-		    		<result column="HIT" property="hit"/>
-		    		<result column="CONTENTS" property="contents"/>
-		    		<result column="CATEGORY" property="category"/>
-
-		    		<association property="boardFileDTO" javaType="BoardFileDTO">
-		    			<id column="NUM" property="num"/>
-		    			<result column="F_NAME" property="f_name"/>
-		    		</association>
-		    	</resultMap>
-		    	
-
+		    	<select id="getBoardList" parameterType="AdminPager" resultType="CsBoardDTO">
+		    		select * 
+		    		from (select rownum as rown, cs.* 
+		    			from (select * from cs_board
+							where regdate between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+							and <include refid="search"></include> 
+							ORDER BY REGDATE ASC) cs)
+					where rown between #{startRow} and #{lastRow}
+		    	</select>
 		    		
-		    	<delete id="setBoardDelete" parameterType="StudyBoardDTO">
-		    		DELETE FROM STUDY_BOARD WHERE SB_NUM= #{sb_num}
+		    	<delete id="setBoardDelete" parameterType="CsBoardDTO">
+		    		DELETE FROM CS_BOARD WHERE CS_NUM= #{cs_num}
 		    	</delete>
 
 
