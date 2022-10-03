@@ -16,6 +16,8 @@ const c_num = document.querySelector("#c_num");
 const category = document.querySelectorAll(".category");
 const level_num = document.querySelector("#level_num");
 const level=document.querySelectorAll(".level")
+const files = document.querySelector("#files");
+const file_sub = document.querySelector("#file_sub");
 
 let count = 0;
 let idx=0;
@@ -409,152 +411,155 @@ video_change.addEventListener("click",function(event){
 });
 
 //썸네일 이미지 변경
-img_change.addEventListener("click",function(){
+// img_change.addEventListener("click",function(){
 
-    if(idx>0) {
-        alert("추가 안됩니다.");
-    }else {
+//     if(idx>0) {
+//         alert("추가 안됩니다.");
+//     }else {
         
         
-        // let form = document.createElement("form");
-        // let action = document.createAttribute("action");
-        // action.value ="setFileUpdate";
-        // let id = document.createAttribute("id");
-        // id.value = "setFileUpdate";
-        // let method = document.createAttribute("method");
-        // method.value="post";
-        // let enctype = document.createAttribute("enctype");
-        // enctype.value="multipart/form-data"
+//         // let form = document.createElement("form");
+//         // let action = document.createAttribute("action");
+//         // action.value ="setFileUpdate";
+//         // let id = document.createAttribute("id");
+//         // id.value = "setFileUpdate";
+//         // let method = document.createAttribute("method");
+//         // method.value="post";
+//         // let enctype = document.createAttribute("enctype");
+//         // enctype.value="multipart/form-data"
 
-        // form.setAttribute(action);
-        // form.setAttribute(id);
-        // form.setAttribute(method);
-        // form.setAttribute(enctype);
+//         // form.setAttribute(action);
+//         // form.setAttribute(id);
+//         // form.setAttribute(method);
+//         // form.setAttribute(enctype);
         
-        let d = document.createElement("div");
+//         let d = document.createElement("div");
 
-        let c = document.createAttribute("class");
-        c.value = "mt-4 mb-3";
-        d.setAttributeNode(c);
-        c= document.createAttribute("id");
-        c.value = "file"+idx;
-        d.setAttributeNode(c);
-        let d1 = document.createElement("div");
-        let l = document.createElement("label");
-        let f = document.createAttribute("for");
-        f.value = "files";
-        let c1 = document.createAttribute("class");
-        c1.value = "form-label";
-        let t = document.createTextNode("File");
+//         let c = document.createAttribute("class");
+//         c.value = "mt-4 mb-3";
+//         d.setAttributeNode(c);
+//         c= document.createAttribute("id");
+//         c.value = "file"+idx;
+//         d.setAttributeNode(c);
+//         let d1 = document.createElement("div");
+//         let l = document.createElement("label");
+//         let f = document.createAttribute("for");
+//         f.value = "files";
+//         let c1 = document.createAttribute("class");
+//         c1.value = "form-label";
+//         let t = document.createTextNode("File");
 
-        l.setAttributeNode(f);
-        l.setAttributeNode(c1);
-        l.appendChild(t);
+//         l.setAttributeNode(f);
+//         l.setAttributeNode(c1);
+//         l.appendChild(t);
 
-        d1.appendChild(l);
-        d.appendChild(d1);
+//         d1.appendChild(l);
+//         d.appendChild(d1);
 
-        let d2 = document.createElement("div");
-        let i = document.createElement("input");
-        let c2 = document.createAttribute("class");
-        c2.value = "form-label";
-        let t1 = document.createAttribute("type");
-        t1.value="file";
-        let i1 = document.createAttribute("id");
-        i1.value = "files";
-        let n = document.createAttribute("name");
-        n.value = "files";
+//         let d2 = document.createElement("div");
+//         let i = document.createElement("input");
+//         let c2 = document.createAttribute("class");
+//         c2.value = "form-label";
+//         let t1 = document.createAttribute("type");
+//         t1.value="file";
+//         let i1 = document.createAttribute("id");
+//         i1.value = "files";
+//         let n = document.createAttribute("name");
+//         n.value = "files";
 
-        i.setAttributeNode(c2);
-        i.setAttributeNode(t1);
-        i.setAttributeNode(i1);
-        i.setAttributeNode(n);
+//         i.setAttributeNode(c2);
+//         i.setAttributeNode(t1);
+//         i.setAttributeNode(i1);
+//         i.setAttributeNode(n);
 
-        d2.appendChild(i);
-        d.appendChild(d2);
+//         d2.appendChild(i);
+//         d.appendChild(d2);
 
-        let div = document.createElement("div");
-        let button = document.createElement("button");
-        let cl = document.createAttribute("class");
-        cl.value = "change btn btn-danger mb-2";
-        let text = document.createTextNode("변경 확정");
-        let type = document.createAttribute("type");
-        type.value="button";
+//         let div = document.createElement("div");
+//         let button = document.createElement("button");
+//         let cl = document.createAttribute("class");
+//         cl.value = "change btn btn-danger mb-2";
+//         let text = document.createTextNode("변경 확정");
+//         let type = document.createAttribute("type");
+//         type.value="button";
 
-        button.setAttributeNode(cl);
-        button.setAttributeNode(type);
-        button.appendChild(text);
+//         button.setAttributeNode(cl);
+//         button.setAttributeNode(type);
+//         button.appendChild(text);
 
-        type = document.createAttribute("title");
-        type.value = count;
-        button.setAttributeNode(type);
+//         type = document.createAttribute("title");
+//         type.value = count;
+//         button.setAttributeNode(type);
 
-        div.appendChild(button);
-        d.appendChild(div);
+//         div.appendChild(button);
+//         d.appendChild(div);
 
-        let d3 = document.createElement("div");
-        let b = document.createElement("button");
-        let c3 = document.createAttribute("class");
-        c3.value = "idel btn btn-danger";
-        let t2 = document.createTextNode("삭제");
-        let t3 = document.createAttribute("type");
-        t3.value="button";
-
-
-        b.setAttributeNode(c3);
-        b.setAttributeNode(t3);
-        b.appendChild(t2);
+//         let d3 = document.createElement("div");
+//         let b = document.createElement("button");
+//         let c3 = document.createAttribute("class");
+//         c3.value = "idel btn btn-danger";
+//         let t2 = document.createTextNode("삭제");
+//         let t3 = document.createAttribute("type");
+//         t3.value="button";
 
 
-        t3 = document.createAttribute("title");
-        t3.value = idx;
-        b.setAttributeNode(t3);
-
-        d3.appendChild(b);
-        d.appendChild(d3);
-
-        //form.appendChild(d);
-
-        img_changee.appendChild(d);
-
-        idx++;
-        }
+//         b.setAttributeNode(c3);
+//         b.setAttributeNode(t3);
+//         b.appendChild(t2);
 
 
-})
+//         t3 = document.createAttribute("title");
+//         t3.value = idx;
+//         b.setAttributeNode(t3);
 
-img_changee.addEventListener("click",function(event){
-    let button = event.target;
+//         d3.appendChild(b);
+//         d.appendChild(d3);
 
-    if(button.classList[0] == 'idel') {
-        document.getElementById("file"+button.title).remove();
-        idx--;
+//         //form.appendChild(d);
 
-    }
+//         img_changee.appendChild(d);
 
-    if(button.classList[0] == 'change') {
-        let check = window.confirm("변경 확정하시겠습니까? (기존에 있던 사진은 삭제됩니다.)");
-        let num = img_change.getAttributeNode("data-f-num").value;
-        let f_name = ori_img.getAttributeNode("data-file-num").value;
-        let f_oriname = ori_img.getAttributeNode("data-ori-num").value;
-        let update = button.parentNode.parentNode.parentNode.parentNode;
-        let l_num = update_sub.getAttributeNode("data-l-num").value;
+//         idx++;
+//         }
+
+
+// })
+
+// img_changee.addEventListener("click",function(event){
+//     let button = event.target;
+
+//     if(button.classList[0] == 'idel') {
+//         document.getElementById("file"+button.title).remove();
+//         idx--;
+
+//     }
+
+    // if(button.classList[0] == 'change') {
+    //     let check = window.confirm("변경 확정하시겠습니까? (기존에 있던 사진은 삭제됩니다.)");
+    //     let num = img_change.getAttributeNode("data-f-num").value;
+    //     let f_name = ori_img.getAttributeNode("data-file-num").value;
+    //     let f_oriname = ori_img.getAttributeNode("data-ori-num").value;
+    //     let update = button.parentNode.parentNode.parentNode.parentNode;
+    //     let l_num = update_sub.getAttributeNode("data-l-num").value;
         
-        console.log(update);
+    //     console.log(update);
 
-        // var formData = new FormData();
-        // var inputFile = $("input[name='files']");
+    //     // var formData = new FormData();
+    //     // var inputFile = $("input[name='files']");
     
-        // var files = inputFile[0].files;
+    //     // var files = inputFile[0].files;
 
-        // console.log(files);
-        // console.log(inputFile);
+    //     // console.log(files);
+    //     // console.log(inputFile);
 
-        console.log(f_oriname);
-        console.log(f_name);
-        console.log(num);
+    //     console.log(f_oriname);
+    //     console.log(f_name);
+    //     console.log(num);
 
-        if(check) {
+    //     if(check) {
+
+
+
         //     const xhttp = new XMLHttpRequest();
 
         //     xhttp.open("POST","../lecture/setFileUpdate");
@@ -581,18 +586,18 @@ img_changee.addEventListener("click",function(event){
         //             }
         //         }
         // }
-        setFileUpdate.submit();
+//         setFileUpdate.submit();
         
         
         
-    }else {
-        alert("썸네일 사진 변경 취소");
-    }
+//     }else {
+//         alert("썸네일 사진 변경 취소");
+//     }
 
-       }
+//        }
     
 
-});
+// });
 
 update_sub.addEventListener("click",function(){
     let check = window.confirm("수정하시겠습니까?") 
@@ -610,7 +615,76 @@ update_sub.addEventListener("click",function(){
 const setAddVideo = document.querySelector("#setAddVideo");
 
 
+files.addEventListener("change",function(){
+    let filedata = new FormData();
+    filedata.append("file",files.files[0]);
+    filedata.append("path","lecture");
 
+    $.ajax({
+        type:"POST",
+        enctype: "multipart/form/data",
+        url: "http://20.249.88.100/uploadFile",
+        data: filedata,
+        processData: false,
+        contentType: false,
+        cache: false,
+        timeout: 600000,
 
+        success: function(dt) {
+            console.log(dt);
+            console.log(files.files[0].name)
+
+            let inputf_name = document.createElement("input")
+                let typei = document.createAttribute("type")
+                typei.value="text"
+                let typei2 = document.createAttribute("name")
+                typei2.value="oriname"
+                let typei3 = document.createAttribute("class")
+                typei3.value = "form-control"
+                let typei4 = document.createAttribute("value")
+                typei4.value= files.files[0].name
+                let typei5 = document.createAttribute("readonly")
+    
+                inputf_name.setAttributeNode(typei)
+                inputf_name.setAttributeNode(typei2)
+                inputf_name.setAttributeNode(typei3)
+                inputf_name.setAttributeNode(typei4)
+                inputf_name.setAttributeNode(typei5)
+                
+                img_changee.append(inputf_name)
+    
+                //fname input
+                inputf_name = document.createElement("input")
+                typei = document.createAttribute("type")
+                typei.value="text"
+                typei2 = document.createAttribute("name")
+                typei2.value="f_name"
+                typei3 = document.createAttribute("style")
+                typei3.value = "display: none"
+                typei4 = document.createAttribute("value")
+                typei4.value= dt
+    
+                inputf_name.setAttributeNode(typei)
+                inputf_name.setAttributeNode(typei2)
+                inputf_name.setAttributeNode(typei3)
+                inputf_name.setAttributeNode(typei4)
+                
+                img_changee.append(inputf_name);
+        },
+        error: function(e){
+            alert('파일 업데이트 실패');
+        }
+    })
+})
+
+file_sub.addEventListener("click",function(){
+    let check = window.confirm("썸네일 변경 확정하시겠습니까?");
+
+    if(check){
+        setFileUpdate.submit();
+    }else{
+        alert("썸네일 변경 취소");
+    }
+})
 
 
