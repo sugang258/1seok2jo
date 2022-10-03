@@ -117,9 +117,9 @@ public class LectureController {
 		System.out.println("ar : "+ar.size());
 		System.out.println("file : "+ file.size());
 		System.out.println("count : "+count);
-		lectureAddDTO.setId(mem.getId());
-		lectureAddDTO.setL_num(lectureDTO.getL_num());
-		lectureAddDTO = lectureAddService.getLectureAdd(lectureAddDTO);
+//		lectureAddDTO.setId(mem.getId());
+//		lectureAddDTO.setL_num(lectureDTO.getL_num());
+//		lectureAddDTO = lectureAddService.getLectureAdd(lectureAddDTO);
 		
 		//List<LectureDTO> ar = lectureService.getDetailVideo(lectureDTO);
 		ModelAndView mv = new ModelAndView();
