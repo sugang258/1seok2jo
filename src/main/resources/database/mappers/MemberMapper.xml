@@ -92,8 +92,8 @@
 		VALUES(#{num}, #{id},#{f_name}, #{f_oriname})
 	</insert>
 	
-	<delete id="setDeleteFile">
-		DELETE FROM MEMBER_FILE WHERE NUM=#{num};
+	<delete id="setDeleteFile" parameterType="MemberFileDTO">
+		DELETE FROM MEMBER_FILE WHERE NUM=#{num}
 	</delete>
 	
 </mapper> 

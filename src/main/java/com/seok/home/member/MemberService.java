@@ -64,20 +64,35 @@ public class MemberService {
 	//프로필수정
 	public int setEditProfile(MemberDTO memberDTO, MultipartFile profile, ServletContext servletContext)throws Exception{
 		
-		int susess = memberDAO.setEditProfile(memberDTO);
+		//정보수정 먼저
+		int result = memberDAO.setEditProfile(memberDTO);
 		
+		//수정된 정보를 조회해서 memberDTO에 대입
+		//그럼 memberDTO에는 insert가 되어 null이 아니다
+		memberDTO = memberDAO.getProfile(memberDTO);
+
+		//memberDTO안에 있는 한개의 memberFileDTO을 
+		//memberFileDTO변수에 대입
+		MemberFileDTO memberFileDTO = memberDTO.getMemberFileDTO();
+
+		//memberFileDTO가 있으면
+		if(memberFileDTO != null) {
+			//memberFileDTO을 삭제
+			result = memberDAO.setDeleteFile(memberFileDTO);
+			}
+		
+		//(삭제후) memberFileDTO없으면(없으니) 폴더에 추가
 		String path = "resources/upload/member";
 		
 		String fileName = fileManager.saveFile(path, servletContext, profile);
 		
-		int result = 0;
 		if(!profile.isEmpty()) {
-			MemberFileDTO memberFileDTO = new MemberFileDTO();
-			memberFileDTO.setF_name(fileName);
-			memberFileDTO.setF_oriname(profile.getOriginalFilename());
-			memberFileDTO.setId(memberDTO.getId());
-			result = memberDAO.setAddFile(memberFileDTO);
-			memberDTO.setMemberFileDTO(memberFileDTO);
+			MemberFileDTO memberFileDTO2 = new MemberFileDTO();
+			memberFileDTO2.setF_name(fileName);
+			memberFileDTO2.setF_oriname(profile.getOriginalFilename());
+			memberFileDTO2.setId(memberDTO.getId());
+			result = memberDAO.setAddFile(memberFileDTO2);
+			memberDTO.setMemberFileDTO(memberFileDTO2);
 		}
 		
 		return result;

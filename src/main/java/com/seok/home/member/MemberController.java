@@ -143,7 +143,6 @@ public class MemberController {
 		//세션정보(아이디, 이름, 닉네임, 성별, 이메일, 전화번호, 마일리지, 등급번호, 등급이름 조회)를 꺼내서
 		//memberDTO에 담음
 		memberDTO = (MemberDTO) session.getAttribute("member");
-		System.out.println("get에 session.memberDTO.닉네임 : "+memberDTO.getN_name());
 		
 		//프로필정보조회(아이디, 이름, 닉네임, *생년월일,* 성별, 이메일, 연락처 조회)
 		//getProfile을 갔다온 memberDTO를 respMemberDTO(responseMemberDTO)에 담음
@@ -160,30 +159,19 @@ public class MemberController {
 	@PostMapping("profile")
 	public ModelAndView getProfile(MemberDTO memberDTO, HttpSession session, MultipartFile profile)throws Exception {
 		System.out.println("프로필 정보(POST)");
-//		MemberDTO memberDTO2 = new MemberDTO();
-//	 	memberDTO2 = (MemberDTO)session.getAttribute("member");
-//		System.out.println(memberDTO2.getPw());
 		ModelAndView mv = new ModelAndView();
 		
-		System.out.println(profile);
-		System.out.println("upload 파일명 : "+profile.getOriginalFilename());
-		System.out.println("upload 파라미터명 : "+profile.getName());
-		System.out.println("upload 파일 크기 : "+profile.getSize());
-		
-		//구효입니당
-		System.out.println("수정 전 memberDTO.닉네임 : "+memberDTO.getN_name());
 		int result = memberService.setEditProfile(memberDTO, profile, session.getServletContext());
 		
-		//구효입니당
-		System.out.println("수정 후 memberDTO.닉네임 : "+memberDTO.getN_name());
-		
-		//memberService.getProfile(memberDTO);
-		
-		if(result > 0) {
+		if(result != 0) {
 			System.out.println("프로필 수정 성공!!");
-//			session.setAttribute("member", memberDTO);
-			mv.addObject("member", memberDTO);
-			//mv.addObject("memberFile", memberDTO.getMemberFileDTO());
+
+			//프로필정보조회(아이디, 이름, 닉네임, *생년월일,* 성별, 이메일, 연락처 조회)
+			//getProfile을 갔다온 memberDTO를 respMemberDTO(responseMemberDTO)에 담음
+			MemberDTO respMemberDTO = memberService.getProfile(memberDTO);
+			
+			//그 데이터를 "member"로 JSP에 보내줌
+			mv.addObject("member", respMemberDTO);
 			mv.setViewName("redirect:./profile");
 		}else {
 			System.out.println("프로필 수정 실패..");
