@@ -40,6 +40,11 @@ public class AdminController {
 		return "admin/paymentList";
 	}
 	
+	@GetMapping(value = "csboardList")
+	private String getCsList() {
+		return "admin/csboardList";
+	}
+	
 	@PostMapping
 	private void getLogin(MemberDTO member, HttpServletRequest request) throws Exception {
 		//아이디와 비밀번호를 체크한 뒤 admin 자격이 있으면 세션의 admin값에 true로 돌려준다.

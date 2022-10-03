@@ -21,7 +21,15 @@
   width: 5em;
   padding: 3px 5px;
   border-radius: 25px;
-  background-color: rgba(174, 241, 172, 0.473);
+  background-color: rgba(174, 241, 172, 0.5);
+}
+
+.b2 {
+  border: none;
+  width: 5em;
+  padding: 3px 5px;
+  border-radius: 25px;
+  background-color: rgba(231, 117, 117, 0.5);
 }
 
 /**Board-Contents-teacher*/

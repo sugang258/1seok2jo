@@ -17,11 +17,12 @@
 		    		SELECT *
 					FROM CS_BOARD
 					WHERE id=#{id}
-					ORDER BY REGDATE ASC
+					ORDER BY REGDATE DESC
 		    	</select>
 		    			    	
 		    	<update id="setAnswerDefault" parameterType="CsBoardDTO">
-		    		UPDATE STUDY_BOARD SET answer=0 WHERE SB_NUM=#{sb_num}
+		    		update cs_board set cs_status='답변완료', cs_answer='#{cs_answer}',cs_admin='#{cs_admin}',re_regdate=sysdate
+					where cs_num=#{cs_num}
 		    	</update>
 		    	
 		    	<select id="getBoardList" parameterType="Pager" resultType="StudyBoardDTO">

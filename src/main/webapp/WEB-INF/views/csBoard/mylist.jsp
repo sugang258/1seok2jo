@@ -46,6 +46,16 @@ prefix="c" %>
               <h5><b>${csboard.cs_title}</b></h5>
             </div>
             <div class="col-2 align-content-center my-auto">
+              <c:if test="${csboard.cs_status eq '미답변'}">  
+              <div class="b2 d-flex">
+                <div class="mx-auto">
+                  <b>
+                    ${csboard.cs_status}
+                  </b>
+                </div>
+              </div>
+              </c:if>
+              <c:if test="${csboard.cs_status eq '답변완료'}">  
               <div class="b1 d-flex">
                 <div class="mx-auto">
                   <b>
@@ -53,6 +63,8 @@ prefix="c" %>
                   </b>
                 </div>
               </div>
+              </c:if>
+
             </div>
           </div>
           <hr style="margin: 0;">
@@ -68,15 +80,13 @@ prefix="c" %>
         <div class="sb_contents">
           <div class="mb-3">
             <h5 style="text-align: justify; text-justify: auto">
-              $내용
+              <c:if test="${not empty csboard.cs_answer}">
+                ${csboard.cs_answer}
+              </c:if>
+              <c:if test="${empty csboard.cs_answer}">
+                <span><b>미답변 문의입니다. 답변을 기다려주세요</b></span>
+              </c:if>              
             </h5>
-          </div>
-          <div style="width: 100%">
-            <img
-              style="width: 80%; object-fit: fill"
-              src="../../../../resources/upload/board/${studyBoardDTO.boardFileDTO.f_name}"
-              alt=""
-            />
           </div>
         </div>
       </div>
