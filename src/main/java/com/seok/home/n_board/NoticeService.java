@@ -42,5 +42,15 @@ public class NoticeService {
 	public List<NoticeReplyDTO> getReplyList(NoticeReplyDTO noticeReplyDTO)throws Exception{
 		return noticeDAO.getReplyList(noticeReplyDTO);
 	}
+	
+	/* 공지사항 댓글작성 */
+	public int setReplyAdd(NoticeReplyDTO noticeReplyDTO)throws Exception{
+		return noticeDAO.setReplyAdd(noticeReplyDTO);
+	}
+	
+	/* 공지사항 댓글삭제 */
+	public int setReplyDelete(NoticeReplyDTO noticeReplyDTO)throws Exception{
+		return noticeDAO.setReplyDelete(noticeReplyDTO);
+	}
 
 }

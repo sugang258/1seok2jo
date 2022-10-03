@@ -1,6 +1,6 @@
 package com.seok.home.b_comment;
 
-public class NoticeReplyDTO {
+public class NoticeReplyDTO extends ReplyDTO{
 	private Long n_num;
 
 	public Long getN_num() {

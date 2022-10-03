@@ -33,4 +33,14 @@
 		    	<select id="getReplyList" parameterType="NoticeReplyDTO" resultType="NoticeReplyDTO">
 		    		SELECT * FROM NOTICE_REPLY WHERE N_NUM = #{n_num} ORDER BY NUM DESC
 		    	</select>
+		    	
+		    	<!-- 공지사항 댓글 작성 -->
+		    	<insert id="setReplyAdd" parameterType="NoticeReplyDTO">
+		    		INSERT INTO NOTICE_REPLY VALUES (BOARD_SEQ.NEXTVAL, #{n_num},#{id}, #{contents}, SYSDATE)
+		    	</insert>
+		    	
+		    	<!-- 공지사항 댓글 삭제 -->
+		    	<delete id="setReplyDelete" parameterType="NoticeReplyDTO">
+		    		DELETE NOTICE_REPLY WHERE NUM = #{num}
+		    	</delete>
 		    </mapper>

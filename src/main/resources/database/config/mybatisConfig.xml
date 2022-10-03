@@ -29,7 +29,7 @@
 		<typeAlias type="com.seok.home.pay.OrderDTO" alias="OrderDTO"/>
 		<typeAlias type="com.seok.home.pay.PaymentDTO" alias="PaymentDTO"/>
 		<typeAlias type="com.seok.home.pay.RefundDTO" alias="RefundDTO"/>
-		<typeAlias type="com.seok.home.b_comment." alias="BoardFileDTO"/>
+		<typeAlias type="com.seok.home.s_board.BoardFileDTO" alias="BoardFileDTO"/>
 	</typeAliases>
 
 </configuration>

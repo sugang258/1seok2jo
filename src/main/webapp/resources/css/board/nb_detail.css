@@ -49,7 +49,12 @@ input:focus {
 }
 #plus:active {
   color: black;
-  transform: scale(1.03);
+  transform: scale(1.1);
+}
+
+.reply_delete:hover {
+  cursor: pointer;
+  transform: scale(1.08);
 }
 
 /**button-style*/

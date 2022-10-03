@@ -34,7 +34,7 @@ prefix="c" %>
     <section class="container" style="width: 65%;">
     
       <div class="board">
-        <div class="board_contents">
+        <div class="board_contents" id="board_contents" data-notice-num="${noticeDTO.n_num}"> 
               <h5><b>[💛업데이트 소식] <span>${noticeDTO.title}</span></b></h5>
         </div>
 
@@ -55,7 +55,7 @@ prefix="c" %>
           <div style="width: 100%">
             <img
               style="width: 80%; object-fit: fill"
-              src="../../../../resources/upload/board/df"
+              src=""
               alt=""
             />
           </div>
@@ -71,33 +71,11 @@ prefix="c" %>
                 ><button id="reply">댓글</button>
               </div>
             </div>
+            
             <!--Reply-Content-->
             <div id="reply_content" style="display: none;">
-
-              <form action="./nb_reply"></form>
-              <div class="mb-4">
-                <hr>
-                <div class="d-flex">
-                  <div style="width: 40px;; text-align: center;">
-                    <img src="/resources/images/Q.jpg" alt="" style="width: 30px; border-radius: 24px;">
-                  </div>
-                  <div class="d-flex flex-column" style="width: 92%;">
-                    <div class="mb-4" style="font-size: 12px; line-height: 33px;"><span class="me-2">아이디1234564</span><span>🕓2022.10.10</span></div>
-                    <div><span>내용내용ㅎㅎㅎㅎ</span></div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="mt-4">
-                <div class="d-flex flex-column">
-                    <div><textarea name="contents" class="form-control mt-1" rows="4" placeholder="댓글입력"></textarea></div>
-                    <div class="mt-2 d-grid gap-2" style="width: 60%;"><button class="btn btn-warning"  style="color:white;" type="button">댓글작성</button></div>
-                </div>
-              </div>
-              
-              
-
             </div>
+            
           </div>
           </div>
           
@@ -129,7 +107,7 @@ prefix="c" %>
           <button
             type="button"
             id="n_update"
-            class="btn-st btn btn-outline-secondary"
+            class="num_btn btn-st btn btn-outline-secondary"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal_n"
             data-bs-whatever="@mdo"
@@ -235,5 +213,8 @@ ${noticeDTO.contents}</textarea
       });
     </script>
     <script src="/resources/js/nb_detail.js"></script>
+    <script>
+      getNoticeReply();
+    </script>
   </body>
 </html>

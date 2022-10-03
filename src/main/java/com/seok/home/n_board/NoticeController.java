@@ -48,6 +48,7 @@ public class NoticeController {
 		noticeDTO = noticeService.getNoticeDetail(noticeDTO);
 		mv.addObject("noticeDTO", noticeDTO);
 		mv.setViewName("board/nb_detail");
+		
 		return mv;
 	}
 	
@@ -67,9 +68,31 @@ public class NoticeController {
 	}
 	
 	/* 공지사항 댓글목록 */
-	public List<NoticeReplyDTO> getReplyList(NoticeReplyDTO noticeReplyDTO)throws Exception{
+	@PostMapping("nb_detail")
+	@ResponseBody
+	public ModelAndView getNoticeDetail(NoticeReplyDTO noticeReplyDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		/* 공지사항 댓글 불러오기 */
 		List<NoticeReplyDTO> ar = noticeService.getReplyList(noticeReplyDTO);
-		return ar;
+		mv.addObject("list", ar);
+		mv.setViewName("board/noticeReply");
+		return mv;
+	}
+	
+	/* 공지사항 댓글작성 */
+	@PostMapping("reply_add")
+	@ResponseBody
+	public int setReplyAdd(NoticeReplyDTO noticeReplyDTO)throws Exception{
+		int result = noticeService.setReplyAdd(noticeReplyDTO);
+		return result;
+	}
+	
+	/* 공지사항 댓글삭제 */
+	@PostMapping("reply_delete")
+	@ResponseBody
+	public int setReplyDelete(NoticeReplyDTO noticeReplyDTO)throws Exception{
+		int result = noticeService.setReplyDelete(noticeReplyDTO);
+		return result;
 	}
 	
 	//자주묻는질문(FAQ jsp연결)
