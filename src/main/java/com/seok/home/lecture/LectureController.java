@@ -117,9 +117,9 @@ public class LectureController {
 		System.out.println("ar : "+ar.size());
 		System.out.println("file : "+ file.size());
 		System.out.println("count : "+count);
-		lectureAddDTO.setId(mem.getId());
-		lectureAddDTO.setL_num(lectureDTO.getL_num());
-		lectureAddDTO = lectureAddService.getLectureAdd(lectureAddDTO);
+//		lectureAddDTO.setId(mem.getId());
+//		lectureAddDTO.setL_num(lectureDTO.getL_num());
+//		lectureAddDTO = lectureAddService.getLectureAdd(lectureAddDTO);
 		
 		//List<LectureDTO> ar = lectureService.getDetailVideo(lectureDTO);
 		ModelAndView mv = new ModelAndView();
@@ -223,14 +223,33 @@ public class LectureController {
 	
 	@PostMapping("setFileUpdate")
 	@ResponseBody
-	public ModelAndView setFileUpdate(LectureDTO lectureDTO, MultipartFile[] files, HttpSession session) throws Exception{
+	public ModelAndView setFileUpdate(LectureDTO lectureDTO,/* MultipartFile[] files,*/String f_name, String oriname, HttpSession session) throws Exception{
 		System.out.println("파일 업데이트");
-		ModelAndView mv = new ModelAndView();
 		LectureFileDTO lectureFileDTO = new LectureFileDTO();
+		
+		lectureDTO = (LectureDTO) session.getAttribute("detail");
+        
+		
+		System.out.println("fileDTO_FNAME : "+f_name);
+        System.out.println("fileDTO_ORINAME : "+oriname);
+        
+        List<LectureFileDTO> files = new ArrayList<LectureFileDTO>();
+		ModelAndView mv = new ModelAndView();
+		
+		lectureFileDTO.setF_name(f_name);
+        lectureFileDTO.setF_oriname(oriname);
+        files.add(lectureFileDTO);
+        
+        
+		
 		lectureDTO = (LectureDTO) session.getAttribute("detail");
 		lectureFileDTO.setL_num(lectureDTO.getL_num());
 		System.out.println(lectureFileDTO.getL_num());
+
 		int result = lectureService.setFileUpdate(lectureFileDTO,files,session.getServletContext());
+		
+		//lectureService.setFileDelete(lectureDTO);
+		
 		
 		mv.setViewName("redirect:./detail?l_num="+lectureDTO.getL_num());
 		

@@ -44,35 +44,38 @@ public class StatusController {
 		ModelAndView mv = new ModelAndView();
 		//LectureDTO lectureDTO = new LectureDTO();
 		MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
-		
-		lectureAddDTO.setId(mem.getId());
-		List<LectureDTO> ar = statusService.getSignList(lectureAddDTO);
-		Long count = 0L;
-		Long total = 0L;
-		List<Double> status = new ArrayList<Double>();
-		double percent=0L;
-		for(int i=0; i<ar.size();i++) {
-			lectureAddDTO.setId(mem.getId());
-			lectureAddDTO.setS_num(ar.get(i).getLectureAddDTO().getS_num());
-			count = statusService.getStatusCount(lectureAddDTO);
-			total = statusService.getStatusTotal(lectureAddDTO);
-			percent =((double)count/(double)total)*100;
-			
-			System.out.println("count"+count);
-			System.out.println("t"+total);
-			System.out.println("percent"+percent);
-			status.add(i, percent);
-			count =0L;
-			total=0L;
-			percent=0L;
-		}
-		System.out.println(ar.size());
-		System.out.println(status.get(0));
-		mv.addObject("ar", ar);
-		mv.addObject("status", status);
-		mv.setViewName("/lecture/status");
+		System.out.println(lectureAddDTO.getS_num());
+		   
+    		lectureAddDTO.setId(mem.getId());
+    		List<LectureDTO> ar = statusService.getSignList(lectureAddDTO);
+    		if(ar.size() == 0) {
+    		    mv.setViewName("/lecture/status");
+    		}else {
+    		Long count = 0L;
+    		Long total = 0L;
+    		List<Double> status = new ArrayList<Double>();
+    		double percent=0L;
+        		for(int i=0; i<ar.size();i++) {
+        			lectureAddDTO.setId(mem.getId());
+        			lectureAddDTO.setS_num(ar.get(i).getLectureAddDTO().getS_num());
+        			count = statusService.getStatusCount(lectureAddDTO);
+        			total = statusService.getStatusTotal(lectureAddDTO);
+        			percent =((double)count/(double)total)*100;
+        			
+        			System.out.println("count"+count);
+        			System.out.println("t"+total);
+        			System.out.println("percent"+percent);
+        			status.add(i, percent);
+        			count =0L;
+        			total=0L;
+        			percent=0L;
+        		}
+    		System.out.println(ar.size());
+    		mv.addObject("ar", ar);
+    		mv.addObject("status", status);
+    		mv.setViewName("/lecture/status");
+            }
 		return mv;
-	}
-	
-	
-}
+        }
+    	
+ }

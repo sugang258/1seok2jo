@@ -28,7 +28,7 @@
 			<form action="./profile" method="post" enctype="multipart/form-data">
 			
 			  <div class="mb-3">
-			    <img alt="" src="../resources/upload/member/${member.memberFileDTO.f_name}">
+			    <img src="../resources/upload/member/${member.memberFileDTO.f_name}" style=" max-width: 300px;  height: 300px;">
 			  </div>
 			
 			  <div class="mb-3">

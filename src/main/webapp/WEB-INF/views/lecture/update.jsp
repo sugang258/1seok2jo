@@ -37,7 +37,9 @@ rel="stylesheet"
             </div>
             <img id="ori_img" src="http://20.249.88.100/resources/lecture/${update.lectureFileDTO[0].f_name}" style="display: inline;" data-file-num="${update.lectureFileDTO[0].f_name}" data-ori-num="${update.lectureFileDTO[0].f_oriname}">
             <div class="img_change">
-                <input type="button" class="btn btn-primary" id="img_change" value="변경하기" data-f-num="${update.lectureFileDTO[0].num}" style="border :none; color: white; background-color: #66ba39;">
+                <h4>변경하기</h4>
+                <input type="file" class="btn btn-primary" id="files" value="변경하기" data-f-num="${update.lectureFileDTO[0].num}" style="border :none; color: white; background-color: #66ba39;">
+                <input type="button" id="file_sub" value="변경확정">
             </div>
             </form>
         </div>
