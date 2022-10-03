@@ -29,11 +29,19 @@ rel="stylesheet"/>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
                    
+                    <c:if test="${ar == null}">
+                        <div class="text-center">
+                            <div id="null">아직 수강중인 강의가 없습니다.</div>
+                            <div id="null2">강의를 수강해 보세요!</div>
+                            <input type="button" id="lecture_list" value="강의 보러 가기">
+
+                        </div>
+                    </c:if>
                     <c:forEach items="${ar}" var="ar" varStatus="arNm">
                         <div class="col mb-5" id="detail" data-l-num="${ar.l_num}">
                             <div class="card h-100">
                                 <!-- Product image-->
-                                <img class="card-img-top" src="../resources/upload/lecture/${ar.lectureFileDTO[0].f_name}" alt="...">
+                                <img class="card-img-top" src="http://20.249.88.100/resources/lecture/${ar.lectureFileDTO[0].f_name}" alt="...">
                                 <!-- Product details-->
                                 <div class="card-body p-4">
                                     <div class="text-center">

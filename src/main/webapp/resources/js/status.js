@@ -4,6 +4,7 @@ const listenbtn = document.querySelectorAll("#listenbtn");
 const listen = document.querySelectorAll("#listen");
 const cancel = document.querySelectorAll("#cancel");
 const cancelbtn = document.querySelectorAll("cancelbtn");
+const lecture_list = document.querySelector("#lecture_list");
 
 
 
@@ -43,6 +44,9 @@ listen.forEach(function(listenbtn){
         })
 })
 
+lecture_list.addEventListener("click",function(){
+    window.location.href="../lecture/list";
+})
 
 
 

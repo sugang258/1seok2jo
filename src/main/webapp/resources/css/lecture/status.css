@@ -5,3 +5,17 @@
 #detail{
     width: 30%;
 }
+
+#null,#null2{
+    margin: -70px;
+    width: 400px;
+    font-size: large;
+    font-weight: bold;
+    display: inline-block;
+}
+#lecture_list{
+    background-color: white;
+    color: #66ba39;
+    border: none;
+    font-weight: bold;
+}
