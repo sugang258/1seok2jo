@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.seok.home.cart.CartDAO;
 import com.seok.home.cart.CartDTO;
+import com.seok.home.lecture.LectureFileDTO;
 import com.seok.home.lecture.teacher.TeacherDAO;
 import com.seok.home.lecture.teacher.TeacherDTO;
 import com.seok.home.util.FileManager;
@@ -62,38 +63,68 @@ public class MemberService {
 	}
 	
 	//프로필수정
-	public int setEditProfile(MemberDTO memberDTO, MultipartFile profile, ServletContext servletContext)throws Exception{
+	public int setEditProfile(MemberDTO memberDTO, MemberFileDTO file, ServletContext servletContext)throws Exception{
 		
 		//정보수정 먼저
 		int result = memberDAO.setEditProfile(memberDTO);
 		
-		//수정된 정보를 조회해서 memberDTO에 대입
-		//그럼 memberDTO에는 insert가 되어 null이 아니다
-		memberDTO = memberDAO.getProfile(memberDTO);
-
-		//memberDTO안에 있는 한개의 memberFileDTO을 
-		//memberFileDTO변수에 대입
-		MemberFileDTO memberFileDTO = memberDTO.getMemberFileDTO();
-
-		//memberFileDTO가 있으면
-		if(memberFileDTO != null) {
-			//memberFileDTO을 삭제
-			result = memberDAO.setDeleteFile(memberFileDTO);
-			}
 		
-		//(삭제후) memberFileDTO없으면(없으니) 폴더에 추가
-		String path = "resources/upload/member";
+		if(result == 1) {
+			System.out.println("파일이왔니? "+file);
+			
+//			for(LectureFileDTO lf : files) {
+//				lf.setL_num(lectureDTO.getL_num());
+//				result = lectureDAO.setAddFile(lf);
+//				
+//				
+//				if(result!=1) {
+//					System.out.println("파일 추가 오류");
+//					break;
+//				}
+//			}
+//		}else {
+//			System.out.println("lecture에러");
+//		}
+			
+			//수정된 정보를 조회해서 memberDTO에 대입
+			//그럼 memberDTO에는 insert가 되어 null이 아니다
+			memberDTO = memberDAO.getProfile(memberDTO);
+	
+			//memberDTO안에 있는 한개의 memberFileDTO을 
+			//memberFileDTO변수에 대입
+			MemberFileDTO memberFileDTO = memberDTO.getMemberFileDTO();
+	
+			//memberFileDTO가 있으면
+			if(memberFileDTO != null) {
+				//memberFileDTO을 삭제
+				result = memberDAO.setDeleteFile(memberFileDTO);
+				}
 		
-		String fileName = fileManager.saveFile(path, servletContext, profile);
-		
-		if(!profile.isEmpty()) {
-			MemberFileDTO memberFileDTO2 = new MemberFileDTO();
-			memberFileDTO2.setF_name(fileName);
-			memberFileDTO2.setF_oriname(profile.getOriginalFilename());
-			memberFileDTO2.setId(memberDTO.getId());
-			result = memberDAO.setAddFile(memberFileDTO2);
-			memberDTO.setMemberFileDTO(memberFileDTO2);
+//			String[] url =lectureVideoDTO.getV_url().split(",");
+//			String[] context = lectureVideoDTO.getV_context().split(",");
+//			for(int i=0; i<url.length; i++) {
+//				lectureVideoDTO.setL_num(lectureDTO.getL_num());
+//				lectureVideoDTO.setV_url(url[i]);
+//				lectureVideoDTO.setV_context(context[i]);
+//				lectureVideoDTO.setV_seq((long)i);
+//				lectureDAO.setAddVideo(lectureVideoDTO);
+//				
+//			}
+			
 		}
+		//(삭제후) memberFileDTO없으면(없으니) 폴더에 추가
+//		String path = "resources/upload/member";
+//		
+//		String fileName = fileManager.saveFile(path, servletContext, profile);
+//		
+//		if(!profile.isEmpty()) {
+//			MemberFileDTO memberFileDTO2 = new MemberFileDTO();
+//			memberFileDTO2.setF_name(fileName);
+//			memberFileDTO2.setF_oriname(profile.getOriginalFilename());
+//			memberFileDTO2.setId(memberDTO.getId());
+//			result = memberDAO.setAddFile(memberFileDTO2);
+//			memberDTO.setMemberFileDTO(memberFileDTO2);
+//		}
 		
 		return result;
 	}

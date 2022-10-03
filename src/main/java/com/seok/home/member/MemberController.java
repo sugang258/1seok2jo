@@ -157,11 +157,19 @@ public class MemberController {
 	
 	//프로필 내 정보 수정 로직 처리(POST)
 	@PostMapping("profile")
-	public ModelAndView getProfile(MemberDTO memberDTO, HttpSession session, MultipartFile profile)throws Exception {
+	@ResponseBody
+	public ModelAndView getProfile(MemberDTO memberDTO, HttpSession session, String f_name, String oriname)throws Exception {
 		System.out.println("프로필 정보(POST)");
 		ModelAndView mv = new ModelAndView();
 		
-		int result = memberService.setEditProfile(memberDTO, profile, session.getServletContext());
+		System.out.println("fileDTO_FNAME : "+f_name);
+		System.out.println("fileDTO_ORINAME : "+oriname);
+		
+		MemberFileDTO file = new MemberFileDTO();
+		file.setF_name(f_name);
+		file.setF_oriname(oriname);
+		
+		int result = memberService.setEditProfile(memberDTO, file, session.getServletContext());
 		
 		if(result != 0) {
 			System.out.println("프로필 수정 성공!!");
