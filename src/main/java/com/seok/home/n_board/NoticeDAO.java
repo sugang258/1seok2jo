@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.seok.home.b_comment.NoticeReplyDTO;
+
 @Repository
 public class NoticeDAO {
 	
@@ -36,6 +38,11 @@ public class NoticeDAO {
 	/* 공지사항 글삭제 */
 	public int setNoticeDelete(NoticeDTO noticeDTO)throws Exception {
 		return session.delete(NAMESPACE+"setNoticeDelete", noticeDTO);
+	}
+	
+	/* 공지사항 댓글목록 */
+	public List<NoticeReplyDTO> getReplyList(NoticeReplyDTO noticeReplyDTO)throws Exception{
+		return session.selectList(NAMESPACE+"getReplyList", noticeReplyDTO);
 	}
 
 }

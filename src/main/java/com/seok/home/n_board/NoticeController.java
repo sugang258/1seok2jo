@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.seok.home.b_comment.NoticeReplyDTO;
+
 @Controller
 @RequestMapping("/board/*")
 public class NoticeController {
@@ -62,6 +64,12 @@ public class NoticeController {
 	public String setNoticeDelete(NoticeDTO noticeDTO)throws Exception {
 		int result = noticeService.setNoticeDelete(noticeDTO);
 		return "redirect:./notice";
+	}
+	
+	/* 공지사항 댓글목록 */
+	public List<NoticeReplyDTO> getReplyList(NoticeReplyDTO noticeReplyDTO)throws Exception{
+		List<NoticeReplyDTO> ar = noticeService.getReplyList(noticeReplyDTO);
+		return ar;
 	}
 	
 	//자주묻는질문(FAQ jsp연결)

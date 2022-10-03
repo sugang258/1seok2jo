@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.seok.home.b_comment.NoticeReplyDTO;
+
 @Service
 public class NoticeService {
 	
@@ -34,6 +36,11 @@ public class NoticeService {
 	/* 공지사항 글삭제 */
 	public int setNoticeDelete(NoticeDTO noticeDTO)throws Exception {
 		return noticeDAO.setNoticeDelete(noticeDTO);
+	}
+	
+	/* 공지사항 댓글목록 */
+	public List<NoticeReplyDTO> getReplyList(NoticeReplyDTO noticeReplyDTO)throws Exception{
+		return noticeDAO.getReplyList(noticeReplyDTO);
 	}
 
 }
