@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.seok.home.MyAbstractTest;
+import com.seok.home.lecture.LectureDTO;
 
 public class LectureAddTest extends MyAbstractTest {
 	
@@ -73,6 +74,41 @@ public class LectureAddTest extends MyAbstractTest {
 		List<LectureAddDTO> ar =lectureAddDAO.getLectureAddAll();
 		
 		assertNotEquals(0, ar.size());
+	}
+	
+	//@Test
+	public void getLectureSearch() throws Exception{
+		LectureAddDTO lectureAddDTO = new LectureAddDTO();
+		
+		lectureAddDTO.setL_num(72L);
+		
+		List<LectureAddDTO> ar = lectureAddDAO.getLectureSearch(lectureAddDTO);
+		assertNotEquals(0, ar.size());
+
+	}
+	
+	//@Test
+	public void setLectureDeleteAll() throws Exception{
+		LectureDTO lectureDTO = new LectureDTO();
+		
+		lectureDTO.setL_num(73L);
+		
+		int result = lectureAddDAO.setLectureDeleteAll(lectureDTO);
+		
+		assertEquals(1,result);
+
+	}
+	
+	//@Test
+	public void getLectureCancel() throws Exception{
+		LectureAddDTO lectureAddDTO = new LectureAddDTO();
+		lectureAddDTO.setL_num(72L);
+		lectureAddDTO.setId("ss");
+		
+		lectureAddDTO = lectureAddDAO.getLectureCancel(lectureAddDTO);
+		
+		assertNotNull(lectureAddDTO);
+
 	}
 	
 

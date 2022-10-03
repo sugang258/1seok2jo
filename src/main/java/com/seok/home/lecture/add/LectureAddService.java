@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.seok.home.lecture.LectureDTO;
+
 @Service
 public class LectureAddService {
 
@@ -29,5 +31,16 @@ public class LectureAddService {
 	
 	public List<LectureAddDTO> getLectureAddAll() throws Exception{
 		return lectureAddDAO.getLectureAddAll();
+	}
+	
+	public List<LectureAddDTO> getLectureSearch(LectureAddDTO lectureAddDTO) throws Exception{
+		return lectureAddDAO.getLectureSearch(lectureAddDTO);
+	}
+	
+	public int setLectureDeleteAll(LectureDTO lectureDTO) throws Exception{
+		return lectureAddDAO.setLectureDeleteAll(lectureDTO);
+	}
+	public LectureAddDTO getLectureCancel(LectureAddDTO lectureAddDTO) throws Exception{
+		return lectureAddDAO.getLectureCancel(lectureAddDTO);
 	}
 }

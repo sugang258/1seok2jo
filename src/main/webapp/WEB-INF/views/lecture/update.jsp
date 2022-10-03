@@ -27,7 +27,7 @@ rel="stylesheet"
     <main class="container mt-3">
         <div class="py-3 text-center">
             <img class="ml-1 mb-2 " src="/resources/images/15.png" alt="" width="100" height="70" style="display: inline;">
-            <h2 style="display: inline;">강의 수정 Form</h2>
+            <h2 style="display: inline;" id="updateform">강의 수정 Form</h2>
         </div>
 
         <div class="py-3 text-center">
@@ -35,7 +35,7 @@ rel="stylesheet"
             <div>
                 <label for="files" class="form-label" id="file">썸네일 이미지</label>
             </div>
-            <img id="ori_img" src="../resources/upload/lecture/${update.lectureFileDTO[0].f_name}" style="display: inline;" data-file-num="${update.lectureFileDTO[0].f_name}" data-ori-num="${update.lectureFileDTO[0].f_oriname}">
+            <img id="ori_img" src="http://20.249.88.100/resources/lecture/${update.lectureFileDTO[0].f_name}" style="display: inline;" data-file-num="${update.lectureFileDTO[0].f_name}" data-ori-num="${update.lectureFileDTO[0].f_oriname}">
             <div class="img_change">
                 <input type="button" class="btn btn-primary" id="img_change" value="변경하기" data-f-num="${update.lectureFileDTO[0].num}" style="border :none; color: white; background-color: #66ba39;">
             </div>
@@ -66,13 +66,13 @@ rel="stylesheet"
                     </div>
     
                     <div class="col-md-3">
-                        <label for="c_num" class="form-label">Category</label>
-                        <select class="form-select" id="c_num" name="c_num" required=""  >
-                            <option value="">Choose...</option>
-                            <option value="1">Java</option>
-                            <option value="2">Python</option>
-                            <option value="3">JavaScript</option>
-                            <option value="4">HTML/CSS</option>
+                        <label for="c_num" class="form-label" id="cc">Category</label>
+                        <select class="form-select" id="c_num" name="c_num" required="" data-c-num="${update.c_num}" >
+                            <option class="category" value="">Choose...</option>
+                            <option class="category" value="1">Java</option>
+                            <option class="category" value="2">Python</option>
+                            <option class="category" value="3">JavaScript</option>
+                            <option class="category" value="4">HTML/CSS</option>
                         </select>
                         <div class="invalid-feedback">
                             Please select a valid category.
@@ -81,11 +81,11 @@ rel="stylesheet"
     
                     <div class="col-md-3">
                         <label for="level_num" class="form-label">Level</label>
-                        <select class="form-select" id="level_num" name="level_num" required="">
-                            <option value="">Choose...</option>
-                            <option value="3">상</option>
-                            <option value="2">중</option>
-                            <option value="1">하</option>
+                        <select class="form-select" id="level_num" name="level_num" required="" data-level-num="${update.level_num}">
+                            <option class="level" value="">Choose...</option>
+                            <option class="level" value="3">상</option>
+                            <option class="level" value="2">중</option>
+                            <option class="level" value="1">하</option>
                         </select>
                         <div class="invalid-feedback">
                             Please provide a valid level.
@@ -130,8 +130,7 @@ rel="stylesheet"
                     </c:forEach>
                     
                     <div class="video_adds">
-                        <input type="button" class="btn btn-primary mt-1 video_add" id="video_add" value="동영상 추가하기"style="border :none; color: #66ba39; background-color: white;">
-                       
+                        <input type="button" class="btn btn-primary mt-1 video_add" id="video_add" value="동영상 추가하기"style="border :none; color: #66ba39; background-color: white;">                       
                     </div>
                     
                     <div>

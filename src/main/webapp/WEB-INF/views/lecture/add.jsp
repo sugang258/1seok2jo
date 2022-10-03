@@ -91,13 +91,9 @@
             </div>
 
             <!-- 파일 추가, 동영상 추가-->
-            <div class="mt-4 mb-3">
+            <div class="mt-4 mb-3" id="addFiles">
                 <label for="files" class="form-label">강의 썸네일 사진</label>
                 <input class="form-control" type="file" id="files" name="files">
-            </div>
-
-            <div class="mb-4" id="addFiles">
-                <button type="button" class="btn btn-danger" id="fileAdd" style="border: none; color: #66ba39; background-color: white;">파일 추가</button>
             </div>
 
             <div class="mt-4 mb-3">

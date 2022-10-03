@@ -21,7 +21,7 @@ rel="stylesheet"/>
 <body>
     <main class="container mt-2">
         <div class="py-3 text-center">
-            <h1 style="display: inline;">내 학습</h1>
+            <h1 style="display: inline;">✏내 학습</h1>
         </div>
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
@@ -59,9 +59,6 @@ rel="stylesheet"/>
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <div class="text-center" id="listen">
                                         <input type="button" class="btn btn-outline-dark mt-auto" id="listenbtn" data-ln-num="${ar.l_num}"  value="강의 들으러 가기"/>
-                                    </div>
-                                    <div class="text-center" id="cancel">
-                                        <input type="button" class="btn btn-outline-dark mt-1" id="cancelbtn" data-ln-num="${ar.l_num}"  value="수강 취소하기"/>
                                     </div>
                                 </div>
                             </div>

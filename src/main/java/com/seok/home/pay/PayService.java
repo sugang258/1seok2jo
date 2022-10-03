@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,10 @@ import com.seok.home.cart.CartDAO;
 import com.seok.home.cart.CartDTO;
 import com.seok.home.lecture.LectureDAO;
 import com.seok.home.lecture.LectureDTO;
+import com.seok.home.lecture.add.LectureAddDAO;
+import com.seok.home.lecture.add.LectureAddDTO;
+import com.seok.home.lecture.status.StatusDAO;
+import com.seok.home.lecture.status.StatusDTO;
 import com.seok.home.member.MemberDTO;
 
 @Service
@@ -19,8 +25,14 @@ public class PayService {
 	PayDAO payDAO;
 	@Autowired
 	CartDAO cartDAO;
-	
-	public int cancelSuccess(RefundDTO refundDTO, Long l_num) throws Exception{
+	@Autowired
+	LectureAddDAO lectureAddDAO;
+	@Autowired
+	StatusDAO statusDAO;
+	@Autowired
+	LectureDAO lectureDAO;
+	public int cancelSuccess(RefundDTO refundDTO, Long l_num,HttpServletRequest request) throws Exception{
+		
 		//결제 취소에 성공하면 refundDTO DB에 저장
 		int result = payDAO.saveRefund(refundDTO);
 		
@@ -33,6 +45,21 @@ public class PayService {
 		payment.setP_remains(premains - refundDTO.getPr_amount());
 		//업데이트
 		result = payDAO.updatePaymentRemains(payment);
+		
+		MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+
+		LectureAddDTO lectureAddDTO = new LectureAddDTO();
+		StatusDTO statusDTO = new StatusDTO();
+		lectureAddDTO.setL_num(l_num);
+		lectureAddDTO.setId(mem.getId());
+		
+		lectureAddDTO = lectureAddDAO.getLectureCancel(lectureAddDTO);
+		
+		statusDTO.setS_num(lectureAddDTO.getS_num());
+		
+		statusDAO.setStatusDelete(statusDTO);
+		lectureAddDAO.setLectureAddDelete(lectureAddDTO);
+		lectureAddDAO.setLectureCountM(lectureAddDTO);
 		
 		return result;
 	}

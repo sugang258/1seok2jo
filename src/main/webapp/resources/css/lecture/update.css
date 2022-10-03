@@ -1,3 +1,8 @@
 #file,#num,#name,#contents,.form-label{
     font-weight: bold;
+    font-size: 20px;
+}
+
+#updateform{
+    font-weight: bold;
 }
