@@ -36,7 +36,7 @@ prefix="c" %>
   </head>
   <c:import url="../template/header.jsp"></c:import>
   <body>
-    <section class="container" style="width: 80%">
+    <section class="container" style="width: 75%">
       <div class="board">
         <div class="board_contents">
           <div style="padding: 12px 0px">
@@ -331,7 +331,7 @@ ${studyBoardDTO.contents}</textarea
       <div class="d-flex flex-row-reverse fix_b">
         <div class="fix_box d-flex">
           <div class="d-grid gap-2 d-md-block">
-            <button class="fix_btn" type="button">
+            <button class="fix_btn" type="button" onclick="location.href='./sb_list';">
               <i class="fa-solid fa-circle-chevron-left"></i>
             </button>
           </div>

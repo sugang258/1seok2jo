@@ -26,7 +26,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
   </head>
   <c:import url="../template/header.jsp"></c:import>
   <body>
-    <section class="container" style="width: 75%">
+    <section class="container" style="width: 70%">
       <!--Board-Main-Top-->
       <div style="height: 190px; margin-top: 125px">
         <div style="height: 70px">
