@@ -1,31 +1,59 @@
-//리스트 페이지에서 초기화 시키는 js
+//리스트 페이지 js
 function initlist(){
     //오늘날짜로 초기화
     let startDate = document.getElementById("startDate");
     let endDate = document.getElementById("endDate");
     let today = new Date().toISOString().substring(0,10);
+    let orderby = document.querySelectorAll('input[name="orderby"]')
+    let orderbyVal = document.querySelector('input[name="orderby"]:checked').value;
+    console.log(orderbyVal)
 
     startDate.value = today
     endDate.value= today
 
+    //search버튼 클릭하면 리스트 요청
     let btnSearch = document.getElementById("btnSearch");
     btnSearch.addEventListener("click", function(){
         csList()
     })
+
+    //boardList 클릭하면
     let postResult = document.getElementById("postResult");
     postResult.addEventListener("click", function(event){
-        console.log(event.target)
+        let cs_num = event.target.parentNode.getAttribute("data-csnum");
+        if(cs_num==null){
+        }else{
+            location.href="./csAnswer?cs_num="+cs_num;
+        }
     })
+
+    //order 값 바뀌면 변경하고 리스트 요청
+    let newlb = document.getElementById("newlb")
+    let oldlb = document.getElementById("oldlb")
+    for(let i = 0 ; i<orderby.length; i++){
+        orderby[i].addEventListener("change", function(){
+            orderbyVal = document.querySelector('input[name="orderby"]:checked').value;
+            if(orderbyVal=='old'){
+                newlb.setAttribute("style", "");
+                oldlb.setAttribute("style", "font-weight:bold; color:black");
+            }else if(orderbyVal=='new'){
+                oldlb.setAttribute("style", "");
+                newlb.setAttribute("style", "font-weight:bold; color:black");
+            }
+            csList()
+        })
+    }
 
 }
 
-//csboardList받아오기
+//csboardList요청하기
 function csList(){
     let postResult = document.getElementById("postResult");
+    orderbyVal = document.querySelector('input[name="orderby"]:checked').value
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST","./csboardList");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-    xhttp.send("page="+1+"&startDate="+startDate.value+"&endDate="+endDate.value+"&kind="+kind.value+"&search="+search.value)
+    xhttp.send("page="+1+"&startDate="+startDate.value+"&endDate="+endDate.value+"&kind="+kind.value+"&search="+search.value+"&orderby="+orderbyVal)
     xhttp.addEventListener("readystatechange", function(){
         if(this.readyState==4 && this.status==200){
             postResult.innerHTML = xhttp.responseText;
@@ -116,3 +144,4 @@ function getCookie(name) { //가져올 쿠키의 이름을 파라미터 값으�
         } 
         return ""; //빈값 반환
 }
+

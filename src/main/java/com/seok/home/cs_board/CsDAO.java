@@ -34,5 +34,9 @@ public class CsDAO {
 	public List<CsBoardDTO> getBoardList(AdminPager pager) throws Exception{
 		return session.selectList(NAMESPACE+"getBoardList", pager);
 	}
+	
+	public CsBoardDTO getBoardDetail(CsBoardDTO csBoardDTO) throws Exception{
+		return session.selectOne(NAMESPACE+"getBoardDetail", csBoardDTO);
+	}
 
 }

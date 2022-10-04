@@ -14,7 +14,7 @@
     </thead>
     <tbody>
         <c:forEach items="${csList}" var="cs">
-            <tr>
+            <tr data-csnum="${cs.cs_num}">
                 <td>${cs.regdate}</td>
                 <td>${cs.cs_title}</td>
                 <td>${cs.id}</td>

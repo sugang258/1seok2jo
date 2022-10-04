@@ -21,6 +21,23 @@ public class AdminService {
 	@Autowired
 	private CsDAO csDAO;
 	
+	public String setCsAnswer(CsBoardDTO csBoardDTO) throws Exception{
+		int result = csDAO.setAnswerDefault(csBoardDTO);
+		
+		String message = "";
+		if(result==1) {
+			message = "답변이 완료되었습니다";
+		}else {
+			message = "답변 등록에 실패하였습니다";
+		}
+		return message;
+	}
+	
+	public CsBoardDTO getCsAnswer(CsBoardDTO csBoardDTO) throws Exception{
+		csBoardDTO = csDAO.getBoardDetail(csBoardDTO);
+		return csBoardDTO;
+	}
+	
 	public List<CsBoardDTO> getCsList(AdminPager pager)throws Exception{
 		pager.calNum(csDAO.getTotalCount(pager));
 		List<CsBoardDTO> csList = csDAO.getBoardList(pager);

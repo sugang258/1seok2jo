@@ -117,18 +117,18 @@ prefix="c" %>
             type="button"
             class="btn-st btn btn-outline-secondary"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            data-bs-target="#updateModal${csboard.getCs_num()}"
             data-bs-whatever="@mdo"
           >
             수정하기(작성자)
           </button>
         </div>
       </div>
-      </c:forEach>
+
       <!--modal-->
       <div
         class="modal fade"
-        id="exampleModal"
+        id="updateModal${csboard.getCs_num()}"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -153,7 +153,7 @@ prefix="c" %>
                 enctype="multipart/form-data"
               >
                 <input
-                  value="${studyBoardDTO.getSb_num()}"
+                  value="${csboard.getCs_num()}"
                   style="display: none"
                 />
                 <div class="mb-3">
@@ -166,15 +166,15 @@ prefix="c" %>
                   <input
                     type="text"
                     name="title"
-                    value="${studyBoardDTO.title}"
+                    value="${csboard.cs_title}"
                     class="form-control"
                     id="exampleFormControlInput1"
                   />
                 </div>
                 <div class="mb-3">
                   <label for="message-text" class="col-form-label" style="color: gray"><b>내용</b></label>
-                  <textarea name="contents"  class="form-control mt-1"  id="contents"  rows="3" >
-                    ${studyBoardDTO.contents}
+                  <textarea name="contents"  class="form-control mt-1 cs_contents"  rows="3" >
+                    ${csboard.cs_contents}
                   </textarea>
                 </div>
               </form>
@@ -199,85 +199,7 @@ prefix="c" %>
           </div>
         </div>
       </div>
-
-      <!--modal/강사답글-->
-      <div
-        class="modal fade"
-        id="exampleModal2"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                <b style="color: gray">답글작성 😺</b>
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <form
-                action="sb_update"
-                method="post"
-                enctype="multipart/form-data"
-              >
-                <input
-                  value="${studyBoardDTO.getSb_num()}"
-                  style="display: none"
-                />
-                <div class="mb-3">
-                  <label
-                    for="message-text"
-                    class="col-form-label"
-                    style="color: gray"
-                    ><b>내용</b></label
-                  >
-                  <textarea
-                    name="contents"
-                    class="form-control mt-1"
-                    id="t_answer"
-                    rows="2"
-                    style="height: 150px"
-                  ></textarea>
-                </div>
-                <div id="addFiles">
-                  <button class="mt-2 file_add"><b>파일추가📂</b></button>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                id="close"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                취소
-              </button>
-              <button
-                class="btn btn-warning"
-                id="answer_btn"
-                data-board-num="${studyBoardDTO.sb_num}"
-              >
-                작성하기
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <!-- 강사 답글 위치-->
-        <div id="teacher"></div>
-
-        <!--container-box-->
-      </div>
+      </c:forEach>
     </section>
 
     <c:import url="../template/footer.jsp"></c:import>
@@ -286,8 +208,8 @@ prefix="c" %>
       integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
       crossorigin="anonymous"
     ></script>
-    <script type="text/javascript">
-      $("#contents").summernote({
+     <script type="text/javascript">
+      $(".cs_contents").summernote({
         placeholder: "글 내용 수정",
         height: 260,
         minHeight: null,
@@ -295,6 +217,5 @@ prefix="c" %>
         focus: true,
       });
     </script>
-
   </body>
 </html>

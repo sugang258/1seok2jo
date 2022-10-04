@@ -28,6 +28,7 @@ public class AdminPager {
 	private String search;//검색어
 	private String startDate;
 	private String endDate;
+	private String orderby;
 	
 	
 	public AdminPager() {
@@ -220,5 +221,15 @@ public class AdminPager {
 
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
+	}
+
+
+	public String getOrderby() {
+		return orderby;
+	}
+
+
+	public void setOrderby(String orderby) {
+		this.orderby = orderby;
 	}
 }

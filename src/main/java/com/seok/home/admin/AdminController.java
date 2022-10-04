@@ -1,5 +1,6 @@
 package com.seok.home.admin;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,6 +60,30 @@ public class AdminController {
 		mv.addObject("pager", pager);
 		mv.setViewName("admin/csboardListPost");
 		
+		return mv;
+	}
+	
+	@GetMapping("csAnswer")
+	private ModelAndView getCsAnswer(CsBoardDTO csBoardDTO, ModelAndView mv) throws Exception{
+		
+		csBoardDTO = service.getCsAnswer(csBoardDTO);
+		mv.addObject("csboard", csBoardDTO);
+		mv.setViewName("admin/csAnswer");
+		
+		return mv;
+	}
+	
+	@PostMapping("csAnswer")
+	private ModelAndView setCsAnswer(CsBoardDTO csBoardDTO, HttpSession session, ModelAndView mv) throws Exception{
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		
+		csBoardDTO.setCs_admin(member.getId());
+		
+		String message = service.setCsAnswer(csBoardDTO);
+		mv.addObject("message", message);
+		mv.addObject("url", "/admin/csboardList");
+		mv.setViewName("common/result");
+
 		return mv;
 	}
 	
