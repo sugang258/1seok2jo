@@ -11,11 +11,16 @@
 		    	
 		    	<!-- 자유게시판 글작성 -->
 		    	<insert id="setF_boardAdd" parameterType="FreeBoardDTO">
-		    		INSERT INTO FREE_BOARD VALUES (BOARD_SEQ.NEXTVAL, #{id}, #{title},SYSDATE, #{answer}, #{hit}, #{contents}, #{category},0)
+		    		INSERT INTO FREE_BOARD VALUES (BOARD_SEQ.NEXTVAL, #{id}, #{title},SYSDATE, #{hit}, #{contents}, #{category},0)
 		    	</insert>
 		    	
 		    	<!-- 자유게시판 상세보기 -->
 		    	<select id="getF_boardDetail" parameterType="FreeBoardDTO" resultType="FreeBoardDTO">
 		    		SELECT * FROM FREE_BOARD WHERE FB_NUM= #{fb_num}
 		    	</select>
+		    	
+		    	<!-- 자유게시판 글수정 -->
+		    	<update id="setF_boardUpdate" parameterType="FreeBoardDTO">
+		    		UPDATE FREE_BOARD SET TITLE = #{title}, CONTENTS=#{contents} WHERE FB_NUM=#{fb_num}
+		    	</update>
 		    </mapper>

@@ -297,9 +297,6 @@ ${studyBoardDTO.contents}</textarea
                     style="height: 150px"
                   ></textarea>
                 </div>
-                <div id="addFiles">
-                  <button class="mt-2 file_add"><b>파일추가📂</b></button>
-                </div>
               </form>
             </div>
             <div class="modal-footer">

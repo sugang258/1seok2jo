@@ -23,5 +23,9 @@ public class FreeBoardService {
 	public FreeBoardDTO getF_boardDetail(FreeBoardDTO freeBoardDTO)throws Exception{
 		return freeBoardDAO.getF_boardDetail(freeBoardDTO);
 	}
+	/* 자유게시판 글 수정 */
+	public int setF_boardUpdate(FreeBoardDTO freeBoardDTO)throws Exception{
+		return freeBoardDAO.setF_boardUpdate(freeBoardDTO);
+	}
 
 }

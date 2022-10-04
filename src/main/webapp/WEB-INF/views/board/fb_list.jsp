@@ -84,11 +84,11 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               </div>
               <div class="p-2"><i class="fa-regular fa-user"></i> ${freeBoardDTO.id}</div>
             </div>
-            <div  style="margin-bottom: 8px; margin-top: -2px; margin-left:2px;">
-              <h5><b>${freeBoardDTO.title}</b></h5>
+            <div  style="margin-bottom: 33px; margin-top: 5px; margin-left:2px;">
+              <h5 style="padding-left:4px;"><b>${freeBoardDTO.title}</b></h5>
             </div>
 	            
-            <div>
+            <div style="display: none">
            		<div class="list_contents pt-1 mb-2" style="word-break: break-all; margin-left:2px;">
                     <c:choose>
                       <c:when test="${fn:length(freeBoardDTO.contents) > 55}">

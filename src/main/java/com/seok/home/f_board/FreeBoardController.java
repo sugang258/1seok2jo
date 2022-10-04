@@ -47,5 +47,13 @@ public class FreeBoardController {
 		mv.setViewName("/board/fb_detail");
 		return mv;
 	}
+	
+	/* 자유게시판 글 수정 */
+	@PostMapping("fb_update")
+	@ResponseBody
+	public int setF_boardUpdate(FreeBoardDTO freeBoardDTO)throws Exception{
+		int result = freeBoardService.setF_boardUpdate(freeBoardDTO);
+		return result;
+	}
 
 }

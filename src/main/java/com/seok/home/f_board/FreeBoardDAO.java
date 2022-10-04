@@ -25,5 +25,9 @@ public class FreeBoardDAO {
 	public FreeBoardDTO getF_boardDetail(FreeBoardDTO freeBoardDTO)throws Exception{
 		return session.selectOne(NAMESPCE+"getF_boardDetail", freeBoardDTO);
 	}
+	/* 자유게시판 글 수정 */
+	public int setF_boardUpdate(FreeBoardDTO freeBoardDTO)throws Exception{
+		return session.update(NAMESPCE+"setF_boardUpdate", freeBoardDTO);
+	}
 
 }

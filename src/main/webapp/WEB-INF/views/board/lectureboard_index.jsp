@@ -21,15 +21,14 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
   <c:import url="../template/header.jsp"></c:import>
   <body>
     <section class="container" style="width: 90%; margin-top: 150px">
-      강의상세보기 페이지 수강평 구현
       <!-- 임시로 보내는값 -->
-      <input type="text" name="l_num" value="${param.l_num}" id="l_num" /> 강의
-      번호 입력
+      <input type="text" name="l_num" value="${param.l_num}" id="l_num"  style="display: none"/>
+      
       <input
         type="text"
         style="display: none"
         name="id"
-        value="지나가는사람"
+        value="${member.id}"
         id="l_board_id"
       />
 

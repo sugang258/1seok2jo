@@ -89,10 +89,8 @@ prefix="c" %>
           </div>
 
           <!--                     임시로 보내는 값 -->
-          <input type="text" style="display: none" name="answer" value="0" />
           <input type="text" style="display: none" name="hit" value="0" />
-          <!--                     임시로 보내는 값 -->
-
+          
           <div class="form-group pt-3">
             <input
               type="text"
@@ -115,7 +113,7 @@ prefix="c" %>
           </div>
           <div class="d-flex justify-content-between">
             <div class="file_box mt-4">
-              <label for="file" class="file"><b>파일추가📂</b></label>
+              <label for="file" class="file" style="display: none;"><b>파일추가📂</b></label>
               <input type="file" name="file" id="file" style="display: none" />
             </div>
 
