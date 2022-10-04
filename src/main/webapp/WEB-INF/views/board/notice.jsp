@@ -55,7 +55,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                   href="#list-messages"
                   role="tab"
                   aria-controls="list-messages"
-                  onclick="location.href='#'"
+                  onclick="location.href='/csBoard/mylist'"
                   >1대 1문의</a
                 >
                 <a
