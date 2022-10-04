@@ -11,21 +11,23 @@
             <th>강사명</th>
             <th>환불여부</th>
             <th>결제번호</th>
-            <th>결제금액</th>
+            <th>실 결제금액</th>
         </tr>
     </thead>
     <tbody>
         <c:forEach items="${payList}" var="pay">
+            <c:forEach items="${pay.orders}" var="order">
             <tr data-csnum="${pay.p_uid}">
+                <td>${order.o_num}</td>
+                <td>${order.lectureDTO.l_name}</td>
+                <td>${pay.id}</td>
+                <td>${order.o_amount}</td>
+                <td>${order.lectureDTO.id}</td>
+                <td>${order.pr_num==""? '결제완료':'환불완료'}</td>
                 <td>${pay.p_uid}</td>
-                <td>${pay.p_uid}</td>
-                <td>${pay.p_uid}</td>
-                <td>${pay.p_uid}</td>
-                <td>${pay.p_uid}</td>
-                <td>${pay.p_uid}</td>
-                <td>${pay.p_uid}</td>
-                <td>${pay.p_uid}</td>
+                <td>${pay.p_realamount}</td>
             </tr>
+            </c:forEach>
         </c:forEach>
     </tbody>
 </table>
