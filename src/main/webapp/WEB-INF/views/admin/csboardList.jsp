@@ -57,7 +57,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card mb-4">
+                        <div class="card">
+                            안녕 난 카드야
+                        </div>
+                        <div class="card mb-4 mt-2">
                             <div class="card-header" id="postResult">
                             </div>
                         </div>

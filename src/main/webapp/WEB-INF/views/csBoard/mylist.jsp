@@ -36,6 +36,14 @@ prefix="c" %>
       <div class="row mt-5  text-center">
         <h3>내 문의</h3>
       </div>
+      <div class="row text-end mx-auto mt-1" style="width: 70%;">
+        <button
+        class="btn-st btn btn-outline-secondary"
+        onclick="location.href='./add';"
+      >
+        문의하기
+      </button>
+      </div> 
       <c:forEach items="${myList}" var="csboard">
 
       <div class="board">
