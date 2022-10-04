@@ -80,6 +80,7 @@
 	</resultMap>
 	
 	<update id="setEditProfile" parameterType="MemberDTO">
+		/* 프로필정보 수정 */
 		UPDATE MEMBER SET N_NAME=#{n_name}, GENDER=#{gender}, EMAIL=#{email}, PHONE=#{phone} WHERE ID=#{id}
 	</update>
 	
@@ -93,7 +94,18 @@
 	</insert>
 	
 	<delete id="setDeleteFile" parameterType="MemberFileDTO">
+		/* 프로필사진 데이터 삭제 */
 		DELETE FROM MEMBER_FILE WHERE NUM=#{num}
+	</delete>
+	
+	<delete id="setDeleteMemberRole" parameterType="MemberDTO">
+		/* 회원등급 데이터 삭제 */
+		DELETE FROM MEMBER_ROLE WHERE ID=#{id}
+	</delete>
+	
+	<delete id="setDeleteJoin" parameterType="MemberDTO">
+		/* 회원 데이터 삭제 */
+		DELETE FROM MEMBER WHERE ID=#{id}
 	</delete>
 	
 </mapper> 

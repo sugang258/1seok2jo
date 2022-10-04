@@ -71,4 +71,14 @@ public class MemberDAOTest extends MyAbstractTest {
 		assertNotNull(memberDTO);
 	}
 
+	//@Test
+	public void setDeleteMemberRole()throws Exception{
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setId("hyo");
+		
+		int result = memberDAO.setDeleteMemberRole(memberDTO);
+		
+		assertNotEquals(0, result);
+	}
+	
 }

@@ -100,7 +100,7 @@ public class MemberController {
 		//새로운 회원데이터추가 성공 실패 확인
 		if(result>0) {
 			System.out.println("회원가입 성공!!");
-			return "redirect:member/login";
+			return "redirect:../member/login";
 		}else {
 			System.out.println("회원가입 실패..");
 			return "member/join";
@@ -132,6 +132,10 @@ public class MemberController {
 		return "member/teacherAdd";
 	}
 	
+	//회원탈퇴 화면(GET)
+	
+	//회원탈퇴 로직 처리(POST)
+	
 	/************************ 마이페이지 **************************/
 	
 	//프로필정보조회 화면(GET)
@@ -158,11 +162,19 @@ public class MemberController {
 	
 	//프로필 내 정보 수정 로직 처리(POST)
 	@PostMapping("profile")
-	public ModelAndView getProfile(MemberDTO memberDTO, HttpSession session, MultipartFile profile)throws Exception {
+	@ResponseBody
+	public ModelAndView getProfile(MemberDTO memberDTO, HttpSession session, String f_name, String oriname)throws Exception {
 		System.out.println("프로필 정보(POST)");
 		ModelAndView mv = new ModelAndView();
 		
-		int result = memberService.setEditProfile(memberDTO, profile, session.getServletContext());
+		System.out.println("fileDTO_FNAME : "+f_name);
+		System.out.println("fileDTO_ORINAME : "+oriname);		
+		
+		MemberFileDTO file = new MemberFileDTO();
+		file.setF_name(f_name);
+		file.setF_oriname(oriname);
+		
+		int result = memberService.setEditProfile(memberDTO, file, session.getServletContext());
 		
 		if(result != 0) {
 			System.out.println("프로필 수정 성공!!");
