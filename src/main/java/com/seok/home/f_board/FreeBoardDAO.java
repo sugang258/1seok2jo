@@ -40,5 +40,20 @@ public class FreeBoardDAO {
 	public List<FreeBoardReplyDTO> getFb_replyList(FreeBoardReplyDTO freeBoardReplyDTO)throws Exception{
 		return session.selectList(NAMESPCE+"getFb_replyList", freeBoardReplyDTO);
 	}
+	
+	/* 자유게시판 댓글작성 */
+	public int setFb_replyAdd(FreeBoardReplyDTO freeBoardReplyDTO)throws Exception{
+		return session.insert(NAMESPCE+"setFb_replyAdd", freeBoardReplyDTO);
+	}
+	
+	/* 자유게시판 댓글삭제 */
+	public int setFb_replyDelete(FreeBoardReplyDTO freeBoardReplyDTO)throws Exception{
+		return session.delete(NAMESPCE+"setFb_replyDelete", freeBoardReplyDTO);
+	}
+	
+	/* 자유게시판 댓글수 */
+	public Long getReplyCount(FreeBoardReplyDTO freeBoardReplyDTO)throws Exception{
+		return session.selectOne(NAMESPCE+"getReplyCount", freeBoardReplyDTO);
+	}
 
 }

@@ -94,7 +94,9 @@ prefix="c" %>
 
           <div>
             <div class="d-flex mt-4">
-              <div class="p-2 flex-grow-1">🗨 댓글 0개</div>
+              <div class="p-2 flex-grow-1">
+                🗨 댓글 <span id="getReplyCount"></span> 개
+              </div>
               <div class="p-2 share">
                 <a href="#" onclick="clip(); return false;">
                   <i

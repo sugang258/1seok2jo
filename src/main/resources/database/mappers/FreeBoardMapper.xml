@@ -33,4 +33,19 @@
 		    	<select id="getFb_replyList" parameterType="FreeBoardReplyDTO" resultType="FreeBoardReplyDTO">
 		    		SELECT * FROM FB_REPLY WHERE FB_NUM=#{fb_num} ORDER BY NUM DESC
 		    	</select>
+		    	
+		    	<!-- 자유게시판 댓글 작성 -->
+		    	<insert id="setFb_replyAdd" parameterType="FreeBoardReplyDTO">
+		    		INSERT INTO FB_REPLY VALUES(BOARD_SEQ.NEXTVAL, #{fb_num}, #{id}, #{contents}, SYSDATE)
+		    	</insert>
+		    	
+		    	<!-- 자유게시판 댓글 삭제 -->
+		    	<delete id="setFb_replyDelete" parameterType="FreeBoardReplyDTO">
+		    		DELETE FB_REPLY WHERE NUM = #{num}
+		    	</delete>
+		    	
+		    	<!-- 자유게시판 댓글 수 -->
+		    	<select id="getReplyCount" parameterType="FreeBoardReplyDTO" resultType="Long">
+		    		SELECT COUNT(NUM) FROM FB_REPLY WHERE FB_NUM = #{fb_num}
+		    	</select>
 		    </mapper>

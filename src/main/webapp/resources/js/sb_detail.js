@@ -15,6 +15,7 @@ function clip() {
   alert("URL이 복사되었습니다.");
 }
 
+//댓글보기 토글
 reply.addEventListener("click", function () {
   const reply_content = document.getElementById("reply_content");
   if (document.getElementById("reply_content").style.display == "none") {
@@ -69,7 +70,6 @@ update_btn.addEventListener("click", function () {
     if (this.readyState == 4 && this.status == 200) {
       if (this.responseText.trim() == "1") {
         alert("수정 성공");
-        document.querySelector("#close").click();
         window.location.reload();
       } else {
         alert("수정 실패");
@@ -176,6 +176,7 @@ function getReply() {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       reply_content.innerHTML = xhttp.responseText;
+      getReplyCount();
     }
   };
 }
@@ -199,7 +200,8 @@ reply_content.addEventListener("click", function (event) {
       if (this.readyState == 4 && this.status == 200) {
         let result = xhttp.responseText;
         if (result == 1) {
-          window.location.reload();
+          getReply();
+          getReplyCount();
         }
       }
     };
@@ -228,7 +230,8 @@ reply_content.addEventListener("keydown", function (event) {
         if (this.readyState == 4 && this.status == 200) {
           let result = xhttp.responseText;
           if (result == 1) {
-            window.location.reload();
+            getReply();
+            getReplyCount();
           }
         }
       };
@@ -249,12 +252,27 @@ reply_content.addEventListener("click", function (event) {
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         if (xhttp.responseText == 1) {
-          window.location.reload();
+          getReply();
+          getReplyCount();
         }
       }
     };
   }
 });
+
+/*게시판 댓글 수*/
+function getReplyCount() {
+  const sb_count = document.getElementById("sb_count");
+  let sb_num = update_btn.getAttribute("data-board-num");
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "sb_count?sb_num=" + sb_num);
+  xhttp.send();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      sb_count.innerHTML = xhttp.responseText;
+    }
+  };
+}
 
 /**강사답글 - 댓글가져오기 */
 function teacherReply() {
@@ -350,9 +368,7 @@ teacher.addEventListener("click", function (event) {
 teacher.addEventListener("click", function (event) {
   if (event.target.className == "delete_btn") {
     const delete_num = document.getElementById("delete_num");
-    console.log(event.target.getAttribute("data-comment-num"));
     let num = event.target.getAttribute("data-comment-num");
-    console.log(num);
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/comment/t_commentDelete");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

@@ -76,6 +76,29 @@ public class FreeBoardController {
 		mv.setViewName("comment/all_comment");
 		return mv;
 	}
-
+	
+	/* 자유게시판 댓글작성 */
+	@PostMapping("fb_replyAdd")
+	@ResponseBody
+	public int setFb_replyAdd(FreeBoardReplyDTO freeBoardReplyDTO)throws Exception{
+		int result = freeBoardService.setFb_replyAdd(freeBoardReplyDTO);
+		return result;
+	}
+	
+	/* 자유게시판 댓글삭제 */
+	@PostMapping("fb_replyDelete")
+	@ResponseBody
+	public int setFb_replyDelete(FreeBoardReplyDTO freeBoardReplyDTO)throws Exception{
+		int result = freeBoardService.setFb_replyDelete(freeBoardReplyDTO);
+		return result;
+	}
+	
+	/* 자유게시판 댓글수 */
+	@GetMapping("reply_count")
+	@ResponseBody
+	public Long getReplyCount(FreeBoardReplyDTO freeBoardReplyDTO)throws Exception{
+		Long count = freeBoardService.getReplyCount(freeBoardReplyDTO);
+		return count;
+	}
 
 }

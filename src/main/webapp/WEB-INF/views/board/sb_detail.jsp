@@ -98,7 +98,9 @@ prefix="c" %>
 
           <div>
             <div class="d-flex mt-4">
-              <div class="p-2 flex-grow-1">🗨 댓글 ${count}개</div>
+              <div class="p-2 flex-grow-1">
+                🗨 댓글 <span id="sb_count"></span>개
+              </div>
               <div class="p-2 share">
                 <a href="#" onclick="clip(); return false;"
                   ><i
@@ -331,7 +333,11 @@ ${studyBoardDTO.contents}</textarea
       <div class="d-flex flex-row-reverse fix_b">
         <div class="fix_box d-flex">
           <div class="d-grid gap-2 d-md-block">
-            <button class="fix_btn" type="button" onclick="location.href='./sb_list';">
+            <button
+              class="fix_btn"
+              type="button"
+              onclick="location.href='./sb_list';"
+            >
               <i class="fa-solid fa-circle-chevron-left"></i>
             </button>
           </div>
