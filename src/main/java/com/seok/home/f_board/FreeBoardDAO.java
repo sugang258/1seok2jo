@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.seok.home.b_comment.FreeBoardReplyDTO;
+
 @Repository
 public class FreeBoardDAO {
 	
@@ -28,6 +30,15 @@ public class FreeBoardDAO {
 	/* 자유게시판 글 수정 */
 	public int setF_boardUpdate(FreeBoardDTO freeBoardDTO)throws Exception{
 		return session.update(NAMESPCE+"setF_boardUpdate", freeBoardDTO);
+	}
+	/* 자유게시판 글 삭제 */
+	public int setF_boardDelete(FreeBoardDTO freeBoardDTO)throws Exception{
+		return session.delete(NAMESPCE+"setF_boardDelete", freeBoardDTO);
+	}
+	
+	/* 자유게시판 댓글리스트 */
+	public List<FreeBoardReplyDTO> getFb_replyList(FreeBoardReplyDTO freeBoardReplyDTO)throws Exception{
+		return session.selectList(NAMESPCE+"getFb_replyList", freeBoardReplyDTO);
 	}
 
 }

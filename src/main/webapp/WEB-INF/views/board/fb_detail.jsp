@@ -133,7 +133,7 @@ prefix="c" %>
           </button>
         </div>
         <div class="p-2">
-          <button class="btn-st btn btn-outline-secondary">
+          <button class="btn-st btn btn-outline-secondary" id="fb_delete">
             삭제하기(작성자)
           </button>
         </div>
@@ -268,6 +268,8 @@ ${freeBoardDTO.contents}</textarea
       });
     </script>
     <script src="/resources/js/fb_detail.js"></script>
-    <script></script>
+    <script>
+      getFb_reply();
+    </script>
   </body>
 </html>

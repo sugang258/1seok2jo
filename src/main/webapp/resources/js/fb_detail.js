@@ -39,3 +39,39 @@ update_free_board = document.addEventListener("click", function (event) {
     };
   }
 });
+
+//자유게시판 글삭제
+const fb_delete = document.getElementById("fb_delete");
+fb_delete.addEventListener("click", function () {
+  let check = window.confirm("삭제하시겠습니까?😶‍🌫️");
+  if (check) {
+    let fb_num = update_btn.getAttribute("data-board-num");
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "fb_delete");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("fb_num=" + fb_num);
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        let result = xhttp.responseText;
+        if (result == 1) {
+          location.replace("/board/fb_list");
+        }
+      }
+    };
+  }
+});
+
+//자유게시판 댓글 불러오기
+function getFb_reply() {
+  const reply_content = document.getElementById("reply_content");
+  let fb_num = update_btn.getAttribute("data-board-num");
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "fb_reply?fb_num=" + fb_num);
+  xhttp.send();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(xhttp.responseText);
+      reply_content.innerHTML = xhttp.responseText;
+    }
+  };
+}

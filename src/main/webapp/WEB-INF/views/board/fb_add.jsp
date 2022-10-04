@@ -121,7 +121,7 @@ prefix="c" %>
               <input
                 class="btn btn-success text-white"
                 type="submit"
-                value="작성하기"
+                value="✍️작성하기"
               />
             </div>
           </div>

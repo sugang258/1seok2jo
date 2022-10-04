@@ -23,4 +23,14 @@
 		    	<update id="setF_boardUpdate" parameterType="FreeBoardDTO">
 		    		UPDATE FREE_BOARD SET TITLE = #{title}, CONTENTS=#{contents} WHERE FB_NUM=#{fb_num}
 		    	</update>
+		    	
+		    	<!-- 자유게시판 글삭제 -->
+		    	<delete id="setF_boardDelete" parameterType="FreeBoardDTO">
+		    		DELETE FREE_BOARD WHERE FB_NUM = #{fb_num}
+		    	</delete>
+		    	
+		    	<!-- 자유게시판 댓글 목록 -->
+		    	<select id="getFb_replyList" parameterType="FreeBoardReplyDTO" resultType="FreeBoardReplyDTO">
+		    		SELECT * FROM FB_REPLY WHERE FB_NUM=#{fb_num} ORDER BY NUM DESC
+		    	</select>
 		    </mapper>
