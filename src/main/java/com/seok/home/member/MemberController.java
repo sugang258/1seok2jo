@@ -2,6 +2,7 @@ package com.seok.home.member;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -195,13 +196,14 @@ public class MemberController {
 	
 	//장바구니 화면(GET)
 	@RequestMapping(value="cart", method=RequestMethod.GET)
-	public ModelAndView getCartList(CartDTO cartDTO) throws Exception {
+	public ModelAndView getCartList(CartDTO cartDTO,HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
-		cartDTO.setId("gang");
+	    MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+
+		cartDTO.setId(mem.getId());
 		List<LectureDTO> ar = cartService.getCartDetail(cartDTO);
 		
-		System.out.println(ar.size());
+		System.out.println("ararararar:"+ar.size());
 		
 		mv.addObject("lectureDTO", ar);
 		mv.setViewName("/member/cart");

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart page</title>
     <link rel="stylesheet" href="/resources/css/index.css" />
-    <link rel="stylesheet" href="/resources/css/list.css" />
+    <link rel="stylesheet" href="/resources/css/lecture/cart.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -48,7 +48,7 @@
         <c:forEach items="${lectureDTO}" var="lecturedto">
         <div class="row gx-2 gx-lg-2 align-items-center my-3 cart" id="cart" style="border-style: groove; border-width :thin;" data-l-num ="${lecturedto.l_num}">
             <div class="col-lg-2">
-                <img class="img-fluid rounded mb-4 mb-lg-0" src="../resources/upload/lecture/${lecturedto.lectureFileDTO[0].f_name}" alt="...">
+                <img class="img-fluid rounded mb-4 mb-lg-0" src="http://20.249.88.100/resources/lecture/${lecturedto.lectureFileDTO[0].f_name}" alt="...">
                 <h3>${lecturedto.l_name}</h3>
             </div>
             <div class="col-lg-2">
@@ -71,7 +71,7 @@
         </div>
     
         </c:forEach>
-        <input type="button" class="btn btn-primary mt-3 sign" id="all" value="수강신청 하기" style="border :none; color: #66ba39; background-color: white;">
+        <input type="button" class="btn btn-primary mt-3 sign" id="all" value="모두 수강신청 하기" style="border :none; color: #66ba39; background-color: white;">
 
     </main>
     <c:import url="../template/footer.jsp"></c:import>
