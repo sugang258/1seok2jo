@@ -17,5 +17,13 @@ public class FreeBoardDAO {
 	public List<FreeBoardDTO> getF_boardList()throws Exception{
 		return session.selectList(NAMESPCE+"getF_boardList");
 	}
+	/* 자유게시판 글작성 */
+	public int setF_boardAdd(FreeBoardDTO freeBoardDTO)throws Exception{
+		return session.insert(NAMESPCE+"setF_boardAdd", freeBoardDTO);
+	}
+	/* 자유게시판 글 상세보기 */
+	public FreeBoardDTO getF_boardDetail(FreeBoardDTO freeBoardDTO)throws Exception{
+		return session.selectOne(NAMESPCE+"getF_boardDetail", freeBoardDTO);
+	}
 
 }

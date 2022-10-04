@@ -1,0 +1,133 @@
+/** main*/
+.container {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.banner {
+  margin: 8em auto 28px auto;
+  width: 85%;
+  padding: 10px 10px;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  background-image: url(/resources/images/5.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  vertical-align: middle;
+  height: 45vh;
+  border-radius: 13px;
+}
+
+.banner_box {
+  padding: 20px 50px;
+  box-sizing: inherit;
+  background-color: transparent;
+}
+
+.FaqContainer__banner--title {
+  font-size: 2rem;
+  color: #fff;
+  font-weight: bolder;
+}
+.FaqContainer__banner--content {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.8;
+  max-width: 100%;
+}
+@media screen and (max-width: 760px) {
+  .FaqContainer__banner--title {
+    font-size: 1rem;
+  }
+  .FaqContainer__banner--content {
+    font-size: 0.2rem;
+  }
+  .banner_box {
+    padding: 20px 10px;
+  }
+  .banner_box p {
+    margin-bottom: 10px;
+  }
+}
+@media screen and (min-width: 761px) and (max-width: 992px) {
+  .FaqContainer__banner--title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .FaqContainer__banner--content {
+    font-size: 0.8rem;
+  }
+  .banner_box {
+    padding: 60px 20px;
+  }
+}
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+  .FaqContainer__banner--title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .FaqContainer__banner--content {
+    font-size: 1rem;
+  }
+  .banner_box {
+    padding: 50px 40px;
+  }
+}
+
+.cate-div {
+  height: 100px;
+  margin-top: -30px;
+}
+
+.cate {
+  width: 15%;
+  line-height: 85px;
+  text-align: center;
+  font-weight: bolder;
+  color: rgb(109, 106, 106);
+}
+
+.cate:active {
+  color: black;
+  transform: scale(1.04);
+}
+
+/**main-div*/
+.show1 {
+  padding: 2em;
+}
+.show2 {
+  padding: 2em;
+}
+.show3 {
+  padding: 2em;
+}
+.show4 {
+  padding: 2em;
+}
+
+/**sidebar*/
+.list-group {
+  left: auto;
+}
+
+.container {
+  position: relative;
+}
+.sidebar {
+  width: fit-content;
+  font-size: 13px;
+  position: absolute;
+  position: fixed;
+  top: 160px;
+  bottom: 0;
+  margin: 0 auto;
+  z-index: 1000;
+  display: block;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: center;
+}

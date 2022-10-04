@@ -15,5 +15,13 @@ public class FreeBoardService {
 	public List<FreeBoardDTO> getF_boardList()throws Exception{
 		return freeBoardDAO.getF_boardList();
 	}
+	/* 자유게시판 글작성 */
+	public int setF_boardAdd(FreeBoardDTO freeBoardDTO)throws Exception{
+		return freeBoardDAO.setF_boardAdd(freeBoardDTO);
+	}
+	/* 자유게시판 글 상세보기 */
+	public FreeBoardDTO getF_boardDetail(FreeBoardDTO freeBoardDTO)throws Exception{
+		return freeBoardDAO.getF_boardDetail(freeBoardDTO);
+	}
 
 }

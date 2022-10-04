@@ -55,7 +55,7 @@
             <li class="nav-item">
               <a class="nav-link" href="#">멘토링</a>
             </li>
-             <li class="nav-item dropdown">
+          <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             커뮤니티
           </a>
@@ -63,8 +63,17 @@
             <li><a class="dropdown-item" href="/board/sb_list">학습게시판</a></li>
             <li><a class="dropdown-item" href="/board/fb_list">자유게시판</a></li>
           </ul>
-        </li>
-          </ul>
+         </li>
+         <li class="nav-item dropdown">
+	         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+	           공지사항
+	         </a>
+	         <ul class="dropdown-menu">
+	           <li><a class="dropdown-item" href="/board/notice">공지사항</a></li>
+	           <li><a class="dropdown-item" href="/board/faq">자주묻는질문</a></li>
+	         </ul>
+          </li>
+        </ul>
 
           <form style="width: 190px">
             <button

@@ -26,7 +26,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
   </head>
   <c:import url="../template/header.jsp"></c:import>
   <body>
-    <section class="container" style="width: 75%">
+    <section class="container" style="width: 70%">
           <!--Board-Main-Top-->
       <div class="mt-5" style="height: 190px; margin-top: 125px">
         <div style="height: 70px">
@@ -75,21 +75,21 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       <div class="contents_box">
 	       <div 
 	        class="board_contents"
-	        onclick="location.href='/board/sb_detail?sb_num=';"
+	        onclick="location.href='/board/fb_detail?fb_num=${freeBoardDTO.fb_num}';"
 	       >
           <div style="padding: 12px 0px">
             <div class="d-flex">
-              <div class="p-2 flex-grow-1" style="font-size:14px; margin-left:-6.5px;">
-                <div>${freeBoardDTO.category}</div>
+              <div class="p-2 flex-grow-1" style="font-size:13.5px; margin-left:-6.5px;">
+                <div>🏷️${freeBoardDTO.category}</div>
               </div>
               <div class="p-2"><i class="fa-regular fa-user"></i> ${freeBoardDTO.id}</div>
             </div>
-            <div  style="margin-bottom: 8px; margin-top: -2px;">
+            <div  style="margin-bottom: 8px; margin-top: -2px; margin-left:2px;">
               <h5><b>${freeBoardDTO.title}</b></h5>
             </div>
 	            
             <div>
-           		<div class="list_contents pt-1 mb-2" style="word-break: break-all;">
+           		<div class="list_contents pt-1 mb-2" style="word-break: break-all; margin-left:2px;">
                     <c:choose>
                       <c:when test="${fn:length(freeBoardDTO.contents) > 55}">
                         <c:out
@@ -103,7 +103,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
 
             <div class="d-flex">
               <div class="d-flex p-1 w-100">
-                <div class="b1 d-flex"  style="font-size: 15px">
+                <div class="b1 p-1 d-flex sort"  style="font-size: 14.5px">
                   <div>0 조회</div>
                   <div>0 좋아요</div>
                   <div><b>0 댓글</b></div>
