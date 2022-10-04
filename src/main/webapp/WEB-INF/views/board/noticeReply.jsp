@@ -13,7 +13,7 @@ prefix="c" %>
      <div class="d-flex flex-column" style="width: 92%;">
       <div class="d-flex justify-content-between">
         <div class="mb-4" style="font-size: 12px; line-height: 33px;"><span class="me-2">${noticeReplyDTO.id}</span><span>🕓${noticeReplyDTO.reg_date}</span></div>
-        <div class="reply_delete" style="font-size:15px; line-height: 27px;">🗑️</div>
+        <div class="reply_delete" data-reply-num="${noticeReplyDTO.num}" style="font-size:15px; line-height: 27px;">🗑️</div>
       </div>
        <div><span>${noticeReplyDTO.contents}</span></div>
      </div>
