@@ -100,7 +100,6 @@ public class MemberService {
 			//memberFileDTO을 삭제
 			result = memberDAO.setDeleteFile(memberFileDTO);
 		}
-		memberDTO.setMemberFileDTO(memberFileDTO);
 		
 		//insert 가 되면
 		if(result == 1) {
