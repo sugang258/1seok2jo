@@ -47,11 +47,7 @@ public class NoticeController {
 	public ModelAndView getNoticeDetail(NoticeDTO noticeDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		noticeDTO = noticeService.getNoticeDetail(noticeDTO);
-		NoticeReplyDTO noticeReplyDTO = new NoticeReplyDTO();
-		noticeReplyDTO.setN_num(noticeDTO.getN_num());
-		Long count = noticeService.getReplyCount(noticeReplyDTO);
 		mv.addObject("noticeDTO", noticeDTO);
-		mv.addObject("count", count);
 		mv.setViewName("board/nb_detail");
 		
 		return mv;
@@ -82,6 +78,14 @@ public class NoticeController {
 		mv.addObject("list", ar);
 		mv.setViewName("board/noticeReply");
 		return mv;
+	}
+	
+	/* 공지사항 댓글 수 */  
+	@GetMapping("reply_count")
+	@ResponseBody
+	public Long getReplyCount(NoticeReplyDTO noticeReplyDTO)throws Exception{
+		Long count = noticeService.getReplyCount(noticeReplyDTO);
+		return count;
 	}
 	
 	/* 공지사항 댓글작성 */

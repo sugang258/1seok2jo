@@ -62,7 +62,7 @@ prefix="c" %>
 
           <div>
             <div class="d-flex mt-4">
-              <div class="flex-grow-1">🌞 댓글 ${count}개</div>
+              <div class="flex-grow-1">🌞 댓글 <span id="count"></span>개</div>
               <div class="">
                 <i
                   style="color: orange;"
@@ -215,6 +215,7 @@ ${noticeDTO.contents}</textarea
     <script src="/resources/js/nb_detail.js"></script>
     <script>
       getNoticeReply();
+      getReplyCount();
     </script>
   </body>
 </html>
