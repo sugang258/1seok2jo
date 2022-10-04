@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.seok.home.cs_board.CsBoardDTO;
 import com.seok.home.member.MemberDTO;
+import com.seok.home.pay.PaymentDTO;
+import com.seok.home.util.paymentSeacher;
 
 @Controller
 @RequestMapping(value = "/admin/*")
@@ -44,6 +46,20 @@ public class AdminController {
 		return "admin/paymentList";
 	}
 	
+	@PostMapping(value = "paymentList")
+	@ResponseBody
+	private ModelAndView getPayments(AdminPager pager, ModelAndView mv) throws Exception{
+		
+		System.out.println(pager.getChkstatus());
+		
+		List<PaymentDTO> payList = service.getPaymentsList(pager);
+		
+		mv.addObject("payList", payList);
+		mv.addObject("pager", pager);
+		mv.setViewName("admin/paymentListPost");
+		return mv;
+	}
+	
 	@GetMapping(value = "csboardList")
 	private String getCsList() {
 		
@@ -59,7 +75,7 @@ public class AdminController {
 		mv.addObject("csList", csList);
 		mv.addObject("pager", pager);
 		mv.setViewName("admin/csboardListPost");
-		
+
 		return mv;
 	}
 	

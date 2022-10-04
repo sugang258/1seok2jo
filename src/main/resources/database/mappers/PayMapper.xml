@@ -39,6 +39,48 @@
    				<result column="l_date" property="l_date"/>
    			</association>
     	</resultMap>
+    	
+    	<select id="getPayAdminList" parameterType="AdminPager" resultMap="adminListResult">
+    		select P.*, O.O_NUM, O.L_NUM, O.O_AMOUNT, L.ID TEACHER, L.LEVEL_NUM, L.L_NAME, L.L_PRICE, R.PR_NUM
+			FROM payments P
+			left join ORDERS O
+			on P.p_uid = O.P_UID
+			left join Lecture L
+			on O.l_num = L.l_num
+			left join refund R
+			on O.O_num = R.O_num    	
+    	</select>
+    	<resultMap type="PaymentDTO" id="adminListResult">
+    		<id column="p_uid" property="p_uid"/>
+    		<result column="id" property="id"/>
+    		<result column="p_point" property="p_point"/>
+    		<result column="p_amount" property="p_amount"/>
+    		<result column="p_realamount" property="p_realamount"/>
+    		<result column="p_regdate" property="p_regdate"/>
+    		<result column="p_method" property="p_method"/>
+    		<result column="p_c_name" property="p_c_name"/>
+    		<result column="p_c_num" property="p_c_num"/>
+			<result column="p_c_quota" property="p_c_quota"/>
+    		<result column="p_remains" property="p_remains"/>
+    		<result column="P_RECEIPT" property="p_receipt"/>
+    		<result column="p_c_apply" property="p_c_apply"/>
+    		<collection property="orders" javaType="List" ofType="OrderDTO">
+    			<id column="O_NUM" property="o_num"/>
+    			<result column="L_NUM" property="l_num"/>
+    			<result column="O_AMOUNT" property="o_amount"/>
+    			<result column="pr_num" property="pr_num"/>
+    			<association property="lectureDTO" javaType="LectureDTO">
+    				<id column="l_num" property="l_num"/>
+    				<result column="TEACHER" property="id"/>
+    				<result column="l_name" property="l_name"/>
+    				<result column="l_price" property="l_price"/>
+    				<result column="l_date" property="l_date"/>
+    			</association>
+    		</collection>
+   		    <collection property="refunds" javaType="List"  ofType="RefundDTO">
+   				<id column="pr_num" property="pr_num"/>
+   			</collection>
+    	</resultMap>
     
     	<select id="getPaymentList" parameterType="PaymentDTO" resultMap="allPaymentsResult">
     		select P.*, O.O_NUM, O.L_NUM, O.O_AMOUNT, L.ID TEACHER, L.LEVEL_NUM, L.L_NAME, L.L_PRICE, R.PR_NUM, R.PR_REASON, R.PR_AMOUNT, R.PR_POINT, R.PR_REGDATE

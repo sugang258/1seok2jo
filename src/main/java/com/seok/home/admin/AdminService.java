@@ -10,6 +10,8 @@ import com.seok.home.cs_board.CsDAO;
 import com.seok.home.member.MemberDAO;
 import com.seok.home.member.MemberDTO;
 import com.seok.home.member.RoleDTO;
+import com.seok.home.pay.PayDAO;
+import com.seok.home.pay.PaymentDTO;
 
 @Service
 public class AdminService {
@@ -20,6 +22,12 @@ public class AdminService {
 	private MemberDAO memberDAO;
 	@Autowired
 	private CsDAO csDAO;
+	@Autowired
+	private PayDAO payDAO;
+	
+	public List<PaymentDTO> getPaymentsList(AdminPager adminPager) throws Exception{
+		return payDAO.getPayAdminList(adminPager);
+	}
 	
 	public String setCsAnswer(CsBoardDTO csBoardDTO) throws Exception{
 		int result = csDAO.setAnswerDefault(csBoardDTO);

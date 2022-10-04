@@ -14,63 +14,65 @@
         <link href="/resources/temp/css/styles1.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
             <!-- jQuery -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
     </head>
     <body class="sb-nav-fixed">
     	<c:import url="./navbar.jsp"></c:import>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">회원 목록</h1>
+                        <h1 class="mt-4">문의 내역 목록</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                             <li class="breadcrumb-item active">Tables</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
-                                DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
-                                <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-                                .
+                                <h6>
+                                    <b>검색 조건 설정</b>
+                                </h6>
+                                <div class="row">
+                                    <div class="col-7">
+                                        <span class="text-muted">시작날짜</span>
+                                        <input type="date" id="startDate" name="startDate" class="p-1"></input>
+                                        ~
+                                        <span class="text-muted">끝날짜</span>
+                                        <input type="date" id="endDate" name="endDate" class="p-1"></input>
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="input-group">
+                                        <select type="button" name="kind" id="kind" class="btn btn-outline-success dropdown-toggle" style="text-align: left;" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <option value="CS_STATUS">답변여부</option>
+                                            <option value="CS_TITLE">제목</option>
+                                            <option value="ID">아이디</option>
+                                            <option value="CS_PHONE">연락처</option>
+                                            <option value="CS_EMAIL">이메일</option>
+                                        </select>
+                                        <input type="text" name="search" id="search" class="form-control" value="미답변"></input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <button type="button" class="btn btn-outline-success mx-auto" id="btnSearch" style="width: 100px;">검색</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                DataTable Example
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="card">
+                            <div class="d-flex ms-3 justify-content: flex-start;">
+                                <div class="p-2 flex-grow-3"><b>VIEW</b></div>
+                                <div class="p-2 flex-grow-3" style="color: gray">|</div>
+                                <div class="p-2 flex-grow-3">
+                                    <input type="radio" id="new" name="orderby" value="new" checked>
+                                    <label id="newlb" for="new" style="font-weight:bold; color:black">⏳ 최신 순</label>
+                                </div>
+                                <div class="p-2 flex-grow-3">
+                                    <input type="radio" id="old" name="orderby" value="old" >
+                                    <label id="oldlb" for="old">⌛ 오래된 순</label>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="card mb-4 mt-2">
+                            <div class="card-header" id="postResult">
                             </div>
                         </div>
                     </div>
@@ -91,7 +93,10 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="/resources/temp/js/scripts.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="/resources/temp/js/datatables-simple-demo.js"></script>
+        <script src="/resources/js/admin.js"></script>
+        <script>
+        initlist()
+        </script>
+        
     </body>
 </html>

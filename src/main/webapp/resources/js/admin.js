@@ -1,5 +1,65 @@
+function initpay(){
+    let startDate = document.getElementById("startDate");
+    let endDate = document.getElementById("endDate");
+    
+    let page = 1;
+    let offset = new Date().getTimezoneOffset() * 60000;
+    let today = new Date(Date.now() - offset).toISOString().substring(0,10);
+
+    let orderby = document.querySelectorAll('input[name="orderby"]')
+    let orderbyVal = document.querySelector('input[name="orderby"]:checked').value;
+
+    startDate.value = today
+    endDate.value= today
+
+    payList(page)
+
+    //search버튼 클릭하면 리스트 요청
+    let btnSearch = document.getElementById("btnSearch");
+    btnSearch.addEventListener("click", function(){
+        page = 1;
+        payList(page)
+        
+    })
+
+    //order 값 바뀌면 변경하고 리스트 요청
+    let newlb = document.getElementById("newlb")
+    let oldlb = document.getElementById("oldlb")
+    for(let i = 0 ; i<orderby.length; i++){
+        orderby[i].addEventListener("change", function(){
+            orderbyVal = document.querySelector('input[name="orderby"]:checked').value;
+            if(orderbyVal=='old'){
+                newlb.setAttribute("style", "");
+                oldlb.setAttribute("style", "font-weight:bold; color:black");
+            }else if(orderbyVal=='new'){
+                oldlb.setAttribute("style", "");
+                newlb.setAttribute("style", "font-weight:bold; color:black");
+            }
+            page = 1
+            payList(page)
+        })
+    }
+}
+
+//payList요청하기
+function payList(page){
+    let postResult = document.getElementById("postResult");
+    let chkstatus = getCheckboxValue("status")
+    orderbyVal = document.querySelector('input[name="orderby"]:checked').value
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST","./paymentList");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    xhttp.send("page="+page+"&chkstatus="+chkstatus+"&startDate="+startDate.value+"&endDate="+endDate.value+"&kind="+kind.value+"&search="+search.value+"&orderby="+orderbyVal)
+    xhttp.addEventListener("readystatechange", function(){
+        if(this.readyState==4 && this.status==200){
+            postResult.innerHTML = xhttp.responseText;
+        }
+    })
+
+}
+
 //리스트 페이지 js
-function initlist(){
+function initcs(){
     //오늘날짜로 초기화
     let startDate = document.getElementById("startDate");
     let endDate = document.getElementById("endDate");
@@ -142,14 +202,29 @@ function getCookie(name) { //가져올 쿠키의 이름을 파라미터 값으�
         while (x <= document.cookie.length) { //현재 세션에 가지고 있는 쿠키의 총 길이를 가지고 반복
             var y = (x + nameOfCookie.length); //substring으로 찾아낼 쿠키의 이름 길이 저장
             if (document.cookie.substring(x, y) == nameOfCookie) { //잘라낸 쿠키와 쿠키의 이름이 같다면
-                if ((endOfCookie = document.cookie.indexOf(";", y)) == -1) //y의 위치로부터 ;값까지 값이 있으면 
+                if ((endOfCookie = document.cookie.indexOf(";", y)) == -1) //y의 위치로부터 ;값까지 값이 있으면 
                      endOfCookie = document.cookie.length; //쿠키의 길이로 적용하고
                     return (document.cookie.substring(y, endOfCookie)); //쿠키의 시작점과 끝점을 찾아서 값을 반환
                  } 
              x = document.cookie.indexOf(" ", x) + 1; //다음 쿠키를 찾기 위해 시작점을 반환
-             if (x == 0) //쿠키 마지막이면 
+             if (x == 0) //쿠키 마지막이면 
                 break; //반복문 빠져나오기
         } 
         return ""; //빈값 반환
 }
 
+function getCheckboxValue(chkboxname)  {
+    // 선택된 목록 가져오기
+    const query = 'input[name='+'"'+chkboxname+'"'+']:checked';
+    const selectedEls = 
+        document.querySelectorAll(query);
+    
+    // 선택된 목록에서 value 찾기
+    let result = '';
+    selectedEls.forEach((el) => {
+      result += el.value + ',';
+    });
+    
+    // 출력
+    return (result.substring(0,result.length-1));
+}

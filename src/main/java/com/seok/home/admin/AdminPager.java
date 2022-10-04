@@ -30,6 +30,8 @@ public class AdminPager {
 	private String endDate;
 	private String orderby;
 	
+	private String chkstatus;
+	
 	
 	public AdminPager() {
 		this.perPage= 15L;
@@ -231,5 +233,15 @@ public class AdminPager {
 
 	public void setOrderby(String orderby) {
 		this.orderby = orderby;
+	}
+
+
+	public String getChkstatus() {
+		return chkstatus;
+	}
+
+
+	public void setChkstatus(String chkstatus) {
+		this.chkstatus = chkstatus;
 	}
 }
