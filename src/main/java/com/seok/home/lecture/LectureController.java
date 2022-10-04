@@ -125,7 +125,7 @@ public class LectureController {
 		ModelAndView mv = new ModelAndView();
 		session.setAttribute("num", lectureDTO.getL_num());
 		session.setAttribute("detail", lectureDTO);
-		session.setAttribute("sign", lectureAddDTO);
+		//session.setAttribute("sign", lectureAddDTO);
 		mv.addObject("count", count);
 		mv.addObject("detail", lectureDTO);
 		mv.addObject("ar", ar);
@@ -269,13 +269,16 @@ public class LectureController {
 	public ModelAndView getDetailVideo(LectureAddDTO lectureAddDTO,HttpServletRequest request, LectureDTO lectureDTO, ModelAndView mv, HttpSession session) throws Exception{
 		System.out.println("detailLecture");
 		MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
-		lectureAddDTO = (LectureAddDTO) session.getAttribute("sign");
+		//lectureAddDTO = (LectureAddDTO) session.getAttribute("sign");
 		lectureDTO = lectureService.getDetail(lectureDTO);
 		//lectureDTO = (LectureDTO) session.getAttribute("detail");
 		//lectureDTO.setL_num((Long)session.getAttribute("num"));
 		System.out.println(lectureDTO.getL_num());
+		lectureAddDTO.setId(mem.getId());
+		lectureAddDTO.setL_num(lectureDTO.getL_num());
+		lectureAddDTO = lectureAddService.getLectureCancel(lectureAddDTO);
 		long count = lectureService.getListCount(lectureDTO);
-		
+	
 		//System.out.println(lectureVideoDTO.getV_seq());
 		List<LectureVideoDTO> video = lectureDTO.getLectureVideoDTO();
 		List<LectureFileDTO> file = lectureDTO.getLectureFileDTO();
@@ -348,6 +351,28 @@ public class LectureController {
 		
 		return lectureVideoDTO;
 	}
+	
+	@PostMapping("setTeacherCheck")
+	@ResponseBody
+	public int setTeacherCheck(LectureDTO lectureDTO, HttpServletRequest request) throws Exception{
+	    System.out.println("Teacher check");
+        MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+        
+        lectureDTO.setId(mem.getId());
+        System.out.println("teacher id" +lectureDTO.getId());
+        System.out.println(lectureDTO.getL_num());
+        
+        lectureDTO = lectureService.setTeacherCheck(lectureDTO);
+        int result = 0;
+        if(lectureDTO != null) {
+            result = 1;
+        }else {
+            result = 0;
+        }
+
+	    return result;
+	}
+	
 	
 	
 	

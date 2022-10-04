@@ -16,6 +16,4 @@
 		    		SELECT * FROM CART WHERE ID = #{id}
 		    	</select>
 		    	
-		    	
-		    	
 		    </mapper>

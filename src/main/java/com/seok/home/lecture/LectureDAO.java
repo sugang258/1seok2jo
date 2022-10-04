@@ -119,6 +119,10 @@ public class LectureDAO {
 	public LectureVideoDTO getVideoList(LectureVideoDTO lectureVideoDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getVideoList", lectureVideoDTO);
 	}
+	
+	public LectureDTO setTeacherCheck(LectureDTO lectureDTO) throws Exception{
+	    return sqlSession.selectOne(NAMESPACE+"setTeacherCheck", lectureDTO);
+	}
 
 
 	

@@ -83,4 +83,25 @@ public class LectureAddController {
 		//session.setAttribute("sign", lectureAddDTO);
 		return result;
 	}
+	
+	@PostMapping("SignCheck")
+    @ResponseBody
+    public int SignCheck(LectureAddDTO lectureAddDTO, HttpServletRequest request) throws Exception{
+        System.out.println("signCheck");
+        MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+        lectureAddDTO.setId(mem.getId());
+        System.out.println(lectureAddDTO.getId());
+        System.out.println("llllnnnnn"+lectureAddDTO.getL_num());
+        lectureAddDTO = lectureAddService.getLectureCancel(lectureAddDTO);
+        System.out.println("SSSNNNN"+lectureAddDTO);
+        int result = 0;
+        if(lectureAddDTO == null) {
+            result = 0;
+        }else {
+            result = 1;
+        }
+        
+        
+        return result;
+    }
 }
