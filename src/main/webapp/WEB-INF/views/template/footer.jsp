@@ -61,7 +61,29 @@
                 </div>
               </div>
               <div class="second-menu">
-                <div class="icon" style="color: rgb(0, 140, 255)">
+                <div id="map" style="width:300px;height:170px;"></div>
+                <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=67a15d0ede53def65514d5bb44685f5a"></script>
+                <script>
+                  var container = document.getElementById('map');
+                  var options = {
+                    center: new kakao.maps.LatLng(37.47807428498916, 126.87930082685244),
+                    level: 3
+                  };
+
+                  var map = new kakao.maps.Map(container, options);
+
+                  var markerPosition  = new kakao.maps.LatLng(37.47807428498916, 126.87930082685244); 
+
+                  // 마커를 생성합니다
+                  var marker = new kakao.maps.Marker({
+                      position: markerPosition
+                  });
+
+                  // 마커가 지도 위에 표시되도록 설정합니다
+                  marker.setMap(map);
+                </script>
+                <div></div>
+                <!-- <div class="icon" style="color: rgb(0, 140, 255)">
                   <a style="color: rgb(0, 140, 255);" href="https://twitter.com/?lang=ko"><i class="fa-brands fa-twitter"></i></a>
                 </div>
                 <div class="icon" style="color: rgb(208, 34, 98)">
@@ -70,7 +92,7 @@
                 <div class="icon" style="color: rgb(0, 85, 255)">
                   <a style="color: rgb(0, 85, 255)" href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
                 </div>
-                <div></div>
+                <div></div> -->
               </div>
             </div>
   
@@ -84,7 +106,7 @@
                 <a class="topmenu" href="#">Sign up |</a>
                 <a class="topmenu" href="#">Log in</a>
               </div>
-              <div">
+              <div>
                 @2022 일석이조 프로젝트 <br />구효경 심예지 김설희 홍수경
               </div>
             </div>
@@ -97,4 +119,5 @@
 src="https://kit.fontawesome.com/6e23c67242.js"
 crossorigin="anonymous"
 ></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
 </html>
