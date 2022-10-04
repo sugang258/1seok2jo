@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.seok.home.b_comment.NoticeReplyDTO;
+import com.seok.home.s_board.Pager;
 
 @Repository
 public class NoticeDAO {
@@ -16,13 +17,23 @@ public class NoticeDAO {
 	private String NAMESPACE="com.seok.home.n_board.NoticeDAO.";
 	
 	/* 공지사항 목록 */
-	public List<NoticeDTO> getNoticeList()throws Exception{
-		return session.selectList(NAMESPACE+"getNoticeList");
+	public List<NoticeDTO> getNoticeList(Pager pager)throws Exception{
+		return session.selectList(NAMESPACE+"getNoticeList", pager);
+	}
+	
+	/* 공지사항 총글수 */
+	public Long getTotalCount(Pager pager)throws Exception{
+		return session.selectOne(NAMESPACE+"getTotalCount", pager);
 	}
 	
 	/* 공지사항 상세보기 */
 	public NoticeDTO getNoticeDetail(NoticeDTO noticeDTO)throws Exception{
 		return session.selectOne(NAMESPACE+"getNoticeDetail", noticeDTO);
+	}
+	
+	/* 공지사항 댓글수 */
+	public Long getReplyCount(NoticeReplyDTO noticeReplyDTO)throws Exception{
+		return session.selectOne(NAMESPACE+"getReplyCount", noticeReplyDTO);
 	}
 
 	/* 공지사항 글작성 */

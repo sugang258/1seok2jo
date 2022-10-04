@@ -115,38 +115,32 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                   style="justify-content: end"
                 >
                   <ul class="pagination justify-content-center">
+                  <c:if test="${pager.pre}">
                     <li class="page-item">
                       <a
                         class="page-link text-success"
-                        href="#"
+                        href="./notice?page=${pager.startNum-1}"
                         aria-label="Previous"
                       >
                         <span aria-hidden="true">&laquo;</span>
                       </a>
                     </li>
+                    </c:if>
+                    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
                     <li class="page-item">
-                      <a class="page-link text-success" href="#">1</a>
+                      <a class="page-link text-success" href="./notice?page=${i}">${i}</a>
                     </li>
+                    </c:forEach>
                     <li class="page-item">
-                      <a class="page-link text-success" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link text-success" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link text-success" href="#">4</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link text-success" href="#">5</a>
-                    </li>
-                    <li class="page-item">
+                    <c:if test="${pager.next}">
                       <a
                         class="page-link text-success"
-                        href="#"
+                        href="./notice?page=${pager.lastNum+1}"
                         aria-label="Next"
                       >
                         <span aria-hidden="true">&raquo;</span>
                       </a>
+                      </c:if>
                     </li>
                   </ul>
                 </nav>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.seok.home.b_comment.NoticeReplyDTO;
+import com.seok.home.s_board.Pager;
 
 @Service
 public class NoticeService {
@@ -14,13 +15,21 @@ public class NoticeService {
 	private NoticeDAO noticeDAO;
 	
 	/* 공지사항 목록 */
-	public List<NoticeDTO> getNoticeList()throws Exception{
-		return noticeDAO.getNoticeList();
+	public List<NoticeDTO> getNoticeList(Pager pager)throws Exception{
+		Long totalCount = noticeDAO.getTotalCount(pager);
+		pager.getBlockNum(totalCount);
+		pager.getRowNum();
+		return noticeDAO.getNoticeList(pager);
 	}
 	
 	/* 공지사항 상세보기 */
 	public NoticeDTO getNoticeDetail(NoticeDTO noticeDTO)throws Exception{
 		return noticeDAO.getNoticeDetail(noticeDTO);
+	}
+	
+	/* 공지사항 댓글수 */
+	public Long getReplyCount(NoticeReplyDTO noticeReplyDTO)throws Exception{
+		return noticeDAO.getReplyCount(noticeReplyDTO);
 	}
 	
 	/* 공지사항 글작성 */

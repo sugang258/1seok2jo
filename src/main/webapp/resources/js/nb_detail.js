@@ -102,6 +102,7 @@ function replyDelete() {
     const reply_num = document.getElementsByClassName("reply_num");
     let num = reply_num[i].value;
     reply_delete[i].addEventListener("click", function () {
+      console.log(num);
       const xhttp = new XMLHttpRequest();
       xhttp.open("POST", "reply_delete");
       xhttp.setRequestHeader(

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.seok.home.b_comment.NoticeReplyDTO;
+import com.seok.home.s_board.Pager;
 
 @Controller
 @RequestMapping("/board/*")
@@ -22,9 +23,9 @@ public class NoticeController {
 	
 	/* 공지사항 목록 */
 	@GetMapping("notice")
-	public ModelAndView getNoticeList()throws Exception {
+	public ModelAndView getNoticeList(Pager pager)throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<NoticeDTO> ar = noticeService.getNoticeList();
+		List<NoticeDTO> ar = noticeService.getNoticeList(pager);
 		mv.addObject("list", ar);
 		mv.setViewName("/board/notice");
 		
@@ -46,7 +47,11 @@ public class NoticeController {
 	public ModelAndView getNoticeDetail(NoticeDTO noticeDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		noticeDTO = noticeService.getNoticeDetail(noticeDTO);
+		NoticeReplyDTO noticeReplyDTO = new NoticeReplyDTO();
+		noticeReplyDTO.setN_num(noticeDTO.getN_num());
+		Long count = noticeService.getReplyCount(noticeReplyDTO);
 		mv.addObject("noticeDTO", noticeDTO);
+		mv.addObject("count", count);
 		mv.setViewName("board/nb_detail");
 		
 		return mv;

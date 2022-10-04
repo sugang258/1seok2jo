@@ -5,13 +5,28 @@
 		    
 		    <mapper namespace="com.seok.home.n_board.NoticeDAO">
 		    	<!-- 공지사항 목록 -->
-		    	<select id="getNoticeList" resultType="NoticeDTO">
-		    		SELECT * FROM NOTICE ORDER BY N_NUM DESC
+		    	<select id="getNoticeList" resultType="NoticeDTO" parameterType="Pager">
+		    		SELECT * FROM (
+		    			SELECT ROWNUM R, N.* FROM (
+		    				SELECT * FROM NOTICE ORDER BY N_NUM DESC
+		    				)N
+		    			)
+		    		WHERE R BETWEEN #{startRow} AND #{lastRow}
+		    	</select>
+		   		
+		   		<!-- 공지사항 총 글수 -->  	
+		    	<select id="getTotalCount" parameterType="Pager" resultType="Long">
+		    		SELECT COUNT(n_num) FROM NOTICE
 		    	</select>
 		    	
 		    	<!-- 공지사항 상세보기 -->
 		    	<select id="getNoticeDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
 		    		SELECT * FROM NOTICE WHERE N_NUM=#{n_num} ORDER BY N_NUM DESC
+		    	</select>
+		    	
+		    	<!-- 공지사항 댓글수 -->
+		    	<select id="getReplyCount" parameterType="NoticeReplyDTO" resultType="Long">
+		    		SELECT COUNT(NUM) FROM NOTICE_REPLY WHERE N_NUM = #{n_num}
 		    	</select>
 		    	
 		    	<!-- 공지사항 작성 -->
@@ -42,5 +57,5 @@
 		    	<!-- 공지사항 댓글 삭제 -->
 		    	<delete id="setReplyDelete" parameterType="NoticeReplyDTO">
 		    		DELETE NOTICE_REPLY WHERE NUM = #{num}
-		    	</delete>
+		    	</delete>    	
 		    </mapper>
