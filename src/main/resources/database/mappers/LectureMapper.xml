@@ -263,4 +263,8 @@
 		    		</association>
 		    		
 		    	</resultMap>
+		    	
+		    	<select id="setTeacherCheck" parameterType="LectureDTO" resultType="LectureDTO">
+		    		SELECT * FROM LECTURE WHERE L_NUM=#{l_num} AND ID=#{id}
+		    	</select>
 		    </mapper>

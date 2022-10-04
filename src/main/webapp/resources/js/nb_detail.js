@@ -77,6 +77,7 @@ reply_content.addEventListener("click", function (event) {
         let result = xhttp.responseText;
         if (result == 1) {
           getNoticeReply();
+          getReplyCount();
         } else {
           alert("등록실패");
         }
@@ -85,41 +86,49 @@ reply_content.addEventListener("click", function (event) {
   }
 });
 
-//공지사항 댓글삭제(두번눌러야 삭제 되는데 해결 ㅠㅠ해야함)
+//공지사항 댓글삭제
 const reply_delete = document.getElementsByClassName("reply_delete");
 
 reply_content.addEventListener("click", function (event) {
   if (event.target.classList[0] == "reply_delete") {
+    console.log(event.target.getAttribute("data-reply-num"));
     let check = window.confirm("삭제하시겠습니까?");
     if (check) {
-      replyDelete();
+      let num = event.target.getAttribute("data-reply-num");
+      replyDelete(num);
     }
   }
 });
 
-function replyDelete() {
-  for (let i = 0; i < reply_delete.length; i++) {
-    const reply_num = document.getElementsByClassName("reply_num");
-    let num = reply_num[i].value;
-    reply_delete[i].addEventListener("click", function () {
-      console.log(num);
-      const xhttp = new XMLHttpRequest();
-      xhttp.open("POST", "reply_delete");
-      xhttp.setRequestHeader(
-        "Content-type",
-        "application/x-www-form-urlencoded"
-      );
-      xhttp.send("num=" + num);
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          let result = xhttp.responseText;
-          if (result == 1) {
-            getNoticeReply();
-          } else {
-            alert("등록실패");
-          }
-        }
-      };
-    });
-  }
+function replyDelete(num) {
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "reply_delete");
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("num=" + num);
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      let result = xhttp.responseText;
+      if (result == 1) {
+        getNoticeReply();
+        getReplyCount();
+      } else {
+        alert("등록실패");
+      }
+    }
+  };
+}
+
+//공지사항 댓글수
+function getReplyCount() {
+  const notice_num = document.getElementById("notice_num");
+  const count = document.getElementById("count");
+  let n_num = notice_num.value;
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "reply_count?n_num=" + n_num);
+  xhttp.send();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      count.innerHTML = xhttp.responseText;
+    }
+  };
 }

@@ -83,7 +83,8 @@ function requestPay() {
 
                 if(this.readyState==4 && this.status==200){
                     if(xhttp.response==1){
-                        let l_num = num[0].getAttributeNode("data-l-num").value;
+                        for(let i=0;i<num.length;i++) {
+                        let l_num = num[i].getAttributeNode("data-l-num").value;
                         let name = document.getElementById("name");
                         console.log(name.value);
                         console.log(l_num);
@@ -105,7 +106,6 @@ function requestPay() {
                                 result = JSON.parse(result);
                                 if(result == 1) {
                                     alert("수강 신청 완료");
-                                    location.href="./complete?p_uid="+uid;
                                                                         
                                 }else {
                                     alert("이미 수강하고 있는 강의입니다.");
@@ -114,6 +114,9 @@ function requestPay() {
                         }
                         
                     }
+                    location.href="./complete?p_uid="+uid;
+
+                }
                 }
             })
         } else {

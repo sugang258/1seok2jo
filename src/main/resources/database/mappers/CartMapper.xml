@@ -16,6 +16,8 @@
 		    		SELECT * FROM CART WHERE ID = #{id}
 		    	</select>
 		    	
-		    	
+		    	<select id="getCartOne" parameterType="CartDTO" resultType="CartDTO">
+		    		SELECT * FROM CART WHERE L_NUM=#{l_num} AND ID=#{id}
+		    	</select>
 		    	
 		    </mapper>

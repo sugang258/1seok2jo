@@ -33,6 +33,17 @@ public class MemberDAO {
 		return sqlSession.insert(NAMESPACE+"setAdminRole", memberDTO);
 	}
 	
+	/************************ 회원탈퇴 **************************/
+	//회원등급삭제
+	public int setDeleteMemberRole(MemberDTO memberDTO)throws Exception{
+		return sqlSession.delete(NAMESPACE+"setDeleteMemberRole", memberDTO);
+	}
+	
+	//회원탈퇴
+	public int setDeleteJoin(MemberDTO memberDTO)throws Exception{
+		return sqlSession.delete(NAMESPACE+"setDeleteJoin", memberDTO);
+	}
+	
 	/************************ 마이페이지 **************************/
 	
 	//프로필정보조회 화면

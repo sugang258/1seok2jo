@@ -48,5 +48,7 @@
 		    	<select id="getLectureCancel" parameterType="LectureAddDTO" resultType="LectureAddDTO">
 		    		SELECT * FROM LECTURE_SIGN WHERE L_NUM=#{l_num} AND ID=#{id}
 		    	</select>
+		    	
+		    	
 		    
 		    </mapper>

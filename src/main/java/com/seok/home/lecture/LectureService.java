@@ -205,6 +205,8 @@ public class LectureService {
 	public LectureVideoDTO getVideoList(LectureVideoDTO lectureVideoDTO) throws Exception{
 		return lectureDAO.getVideoList(lectureVideoDTO);
 	}
-	
+	public LectureDTO setTeacherCheck(LectureDTO lectureDTO) throws Exception{
+	    return lectureDAO.setTeacherCheck(lectureDTO);
+	}
 	
 }

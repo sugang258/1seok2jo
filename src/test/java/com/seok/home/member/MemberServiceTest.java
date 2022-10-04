@@ -8,14 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.seok.home.MyAbstractTest;
+import com.seok.home.lecture.teacher.TeacherDTO;
 
 public class MemberServiceTest extends MyAbstractTest {
 
 	@Autowired
 	private MemberService memberService;
 	
+	//회원가입시 회원등급설정이 들어가나 테스트
 	//@Test
-	public void setMemberRole()throws Exception {
+	public void setJoinTest()throws Exception {
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setId("hyo");
 		memberDTO.setPw("123");
@@ -30,16 +32,28 @@ public class MemberServiceTest extends MyAbstractTest {
 		assertEquals(1, result);
 	}
 
+	//강사신청시 강사등급설정이 들어가나 테스트
 	//@Test
-	public void setAddFileTest()throws Exception{
-		MemberFileDTO memberFileDTO = new MemberFileDTO();
-		memberFileDTO.setNum(1L);
-		memberFileDTO.setF_name("file");
+	public void setTeacherAddTest()throws Exception{
+		TeacherDTO teacherDTO = new TeacherDTO();
+		teacherDTO.setId("koo");
+		teacherDTO.setBank_num("1111-1111");
+		teacherDTO.setBank_name("신한은행");
+		teacherDTO.setIntroduce("반갑습니다");
+		//int result = memberService.setTeacherAdd(teacherDTO);
 		
-		int result = memberService.setEditProfile(null, null, null);
+		//assertEquals(1, result);
+	}
+	
+	//회원탈퇴시 회원등급설정이 지워지고 회원도 탈퇴되는지 확인
+	//@Test
+	public void setDeleteMemberTest()throws Exception{
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setId("hyo");
 		
-		assertEquals(1, result);
+		int result = memberService.setDeleteMember(memberDTO);
 		
+		assertNotEquals(0, result);
 	}
 	
 }

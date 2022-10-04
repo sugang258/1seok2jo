@@ -14,6 +14,8 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Arvo&family=Dongle&family=Montserrat:wght@200&family=PT+Serif&family=Playfair+Display:wght@600&family=Prompt&family=Vollkorn:wght@500&display=swap" rel="stylesheet"/>
+		<!-- jquery -->
+		<script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 		<%-- favicon --%>
 		<link rel="shortcut icon" href="/resources/images/favicon.ico">
 		<link rel="stylesheet" href="/resources/css/admin/bscommon.css">
@@ -28,21 +30,20 @@
 			<form action="./profile" method="post" enctype="multipart/form-data">
 			
 			  <div class="mb-3">
-			    <img src="../resources/upload/member/${member.memberFileDTO.f_name}" style=" max-width: 300px;  height: 300px;">
+			    <img src="http://20.249.88.100/resources/member/${member.memberFileDTO.f_name}" style=" max-width: 300px;  height: 300px;">
 			  </div>
-			
-			  <div class="mb-3">
+
+			  <!-- <div class="mb-3">
 			    <label for="ipId" class="form-label">프로필사진 변경</label>
 			    <input type="file" name="profile" class="form-control" id="file">
-			  </div>
+			  </div> -->
 			  
-			  <%-- 			  <div id="addFiles">
-                  <!--하단 파일 추가 input과 연결된 라벨-->
-                  <label for="file" class="mt-2 file_add"><b>파일추가📂</b></button>
-
-              </div>					
-                <!-- 파일 추가 input -->
-                <input type="file" id="file" style="display: none;" > --%>
+			  <div id="addFile">
+				<!--하단 파일 추가 input과 연결된 라벨-->
+				<label for="file" name class="mt-2 file_add"><b>파일추가📂</b></button>
+			  </div>					
+			  <!-- 파일 추가 input -->
+			  <input type="file" id="file" style="display: none;">
 			
 			  <div class="mb-3">
 			    <input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}">
@@ -91,8 +92,7 @@
 	</section>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-<%-- </script>
-<script src="/resources/js/fileTest.js"></script>
-<script>save()</script> --%>
+<script src="/resources/js/member_file.js"></script>
+<script>save()</script>
 </body>
 </html>

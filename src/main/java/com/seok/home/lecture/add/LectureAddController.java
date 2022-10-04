@@ -15,7 +15,8 @@ import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-
+import com.seok.home.cart.CartDTO;
+import com.seok.home.cart.CartService;
 import com.seok.home.lecture.LectureDTO;
 import com.seok.home.lecture.LectureService;
 import com.seok.home.lecture.LectureVideoDTO;
@@ -33,13 +34,15 @@ public class LectureAddController {
 	private LectureService lectureService;
 	@Autowired
 	private StatusService statusService;
+	@Autowired
+	private CartService cartService;
 	
 	@PostMapping("setLectureAdd")
 	@ResponseBody
 	public int setLectureAdd(LectureDTO lectureDTO, LectureAddDTO lectureAddDTO, HttpServletRequest request,HttpSession session) throws Exception{
 		int result = 1;
 		System.out.println("수강완료");
-		
+		CartDTO cartDTO = new CartDTO();
 		lectureDTO = lectureService.getDetail(lectureDTO);
 		MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
 		List<LectureAddDTO> list = lectureAddService.getLectureAddAll();
@@ -79,8 +82,36 @@ public class LectureAddController {
 				//System.out.println(lectureAddDTO.getS_num());
 				statusService.setStatusAdd(statusDTO);
 			}
+			
+			cartDTO.setId(mem.getId());
+			cartDTO.setL_num(lectureDTO.getL_num());
+			cartDTO = cartService.getCartOne(cartDTO);
+			if(cartDTO != null) {			    
+			    cartService.setCartDelete(cartDTO);
+			}
 		}
 		//session.setAttribute("sign", lectureAddDTO);
 		return result;
 	}
+	
+	@PostMapping("SignCheck")
+    @ResponseBody
+    public int SignCheck(LectureAddDTO lectureAddDTO, HttpServletRequest request) throws Exception{
+        System.out.println("signCheck");
+        MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+        lectureAddDTO.setId(mem.getId());
+        System.out.println(lectureAddDTO.getId());
+        System.out.println("llllnnnnn"+lectureAddDTO.getL_num());
+        lectureAddDTO = lectureAddService.getLectureCancel(lectureAddDTO);
+        System.out.println("SSSNNNN"+lectureAddDTO);
+        int result = 0;
+        if(lectureAddDTO == null) {
+            result = 0;
+        }else {
+            result = 1;
+        }
+        
+        
+        return result;
+    }
 }
