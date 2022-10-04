@@ -133,8 +133,31 @@ public class MemberController {
 	}
 	
 	//회원탈퇴 화면(GET)
+	@GetMapping("deleteMember")
+	public String setDeleteMember()throws Exception{
+		System.out.println("회원탈퇴 접속(GET)");
+		return "member/deleteMember";
+	}
 	
 	//회원탈퇴 로직 처리(POST)
+	@PostMapping("deleteMember")
+	public String setDeleteMember(MemberDTO memberDTO, HttpSession session)throws Exception{
+		System.out.println("회원탈퇴 접속(POST)");
+		
+		//DB에 있는 회원정보(등급까지)를 삭제
+		int result = memberService.setDeleteMember(memberDTO);
+		
+		//회원탈퇴 성공 실패 확인
+		if(result!=0) {
+			System.out.println("회원탈퇴 성공!!");
+			//세션삭제
+			session.invalidate();
+		}else {
+			System.out.println("회원탈퇴 실패..");
+		}
+		
+		return "member/deleteMember";
+	}
 	
 	/************************ 마이페이지 **************************/
 	

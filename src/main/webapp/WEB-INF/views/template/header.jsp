@@ -62,7 +62,7 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/board/sb_list">학습게시판</a></li>
             <li><a class="dropdown-item" href="/board/fb_list">자유게시판</a></li>
-          </ul>
+          </ul> 
          </li>
          <li class="nav-item dropdown">
 	         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -81,10 +81,11 @@
               type="button"
               class="top_button"
               style="margin-right: 10px"
+              onclick="location.href='/member/login';"
             >
               🔐로그인
             </button>
-            <button type="button" class="top_button">👩‍💻회원가입</button>
+            <button type="button" class="top_button" onclick="location.href='/member/join';">👩‍💻회원가입</button>
           </form>
         </div>
       </div>
