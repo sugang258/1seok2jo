@@ -60,7 +60,7 @@ public class PayDAOTest extends MyAbstractTest{
 		
 		dto.setL_num(2L);
 		
-		dto = dao.getSimpleLecture(dto);
+
 		for(LectureFileDTO f: dto.getLectureFileDTO()) {
 			System.out.println(f.getF_oriname());
 		}

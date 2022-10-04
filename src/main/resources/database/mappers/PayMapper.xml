@@ -18,29 +18,6 @@
     		insert into REFUND (PR_NUM,	O_NUM,PR_REASON,PR_AMOUNT,PR_POINT,	PR_REGDATE,	P_UID)
     		values (#{pr_num}, #{o_num}, #{pr_reason}, #{pr_amount}, #{pr_point}, sysdate, #{p_uid})
     	</insert>
-    
-    	<select id="getSimpleLecture" parameterType="LectureDTO" resultMap="simpleLectureResult">
-    		select *
-    		from lecture L
-    		left join l_file F
-    		ON L.l_num=F.l_num
-    		where L.l_num=#{l_num}
-    		order by NUM ASC
-    	</select>
-    	<resultMap type="LectureDTO" id="simpleLectureResult">
-    		<id column="l_num" property="l_num"/>
-    		<result column="id" property="id"/>
-    		<result column="l_name" property="l_name"/>
-    		<result column="l_price" property="l_price"/>
-    		<result column="l_date" property="l_date"/>
-    		<result column="p_c_name" property="p_c_name"/>
-    		<result column="p_c_num" property="p_c_num"/>
-			<collection property="lectureFileDTO" javaType="List" ofType="LectureFileDTO">
-   				<id column="num" property="num"/>
-   				<result column="f_name" property="f_name"/>
-   				<result column="f_oriname" property="f_oriname"/>
-   			</collection>
-    	</resultMap>
     	
     	<select id="getOrder" parameterType="OrderDTO" resultMap="getOrderResult">
     		select *

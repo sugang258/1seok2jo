@@ -45,10 +45,6 @@ public class PayDAO {
 		return session.selectList(NAMESPACE+"getPaymentList", dto);
 	}
 	
-	public LectureDTO getSimpleLecture(LectureDTO lectureDTO) throws Exception{
-		return session.selectOne(NAMESPACE+"getSimpleLecture", lectureDTO);
-	}
-	
 	public OrderDTO getOrder(OrderDTO orderDTO) throws Exception{
 		return session.selectOne(NAMESPACE+"getOrder", orderDTO);
 	}
