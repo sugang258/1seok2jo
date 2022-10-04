@@ -107,7 +107,7 @@ prefix="c" %>
         <div class="p-2">
           <button
             class="btn-st btn btn-outline-secondary"
-            onclick="location.href='sb_delete?sb_num=${studyBoardDTO.getSb_num()}';"
+            onclick="location.href='delete?cs_num=${csboard.cs_num}';"
           >
             삭제하기(작성자)
           </button>
@@ -146,14 +146,15 @@ prefix="c" %>
                 aria-label="Close"
               ></button>
             </div>
+          <form
+              action="update"
+              method="post"
+              enctype="multipart/form-data"
+            >
             <div class="modal-body">
-              <form
-                action="sb_update"
-                method="post"
-                enctype="multipart/form-data"
-              >
                 <input
                   value="${csboard.getCs_num()}"
+                  name = "cs_num"
                   style="display: none"
                 />
                 <div class="mb-3">
@@ -165,7 +166,7 @@ prefix="c" %>
                   >
                   <input
                     type="text"
-                    name="title"
+                    name="cs_title"
                     value="${csboard.cs_title}"
                     class="form-control"
                     id="exampleFormControlInput1"
@@ -173,30 +174,29 @@ prefix="c" %>
                 </div>
                 <div class="mb-3">
                   <label for="message-text" class="col-form-label" style="color: gray"><b>내용</b></label>
-                  <textarea name="contents"  class="form-control mt-1 cs_contents"  rows="3" >
+                  <textarea name="cs_contents"  class="form-control mt-1 cs_contents"  rows="3" >
                     ${csboard.cs_contents}
                   </textarea>
                 </div>
-              </form>
             </div>
             <div class="modal-footer">
               <button
-                type="button"
-                id="close"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
+              type="button"
+              id="close"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
               >
-                취소
+              취소
               </button>
               <button
-                class="btn btn-warning"
-                id="update_btn"
-                data-board-num="${studyBoardDTO.getSb_num()}"
-              >
-                등록하기
+              class="btn btn-warning"
+              id="update_btn"
+              type="submit">
+              등록하기
               </button>
             </div>
-          </div>
+          </form>
+        </div>
         </div>
       </div>
       </c:forEach>

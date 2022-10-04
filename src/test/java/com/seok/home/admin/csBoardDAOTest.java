@@ -14,7 +14,7 @@ public class csBoardDAOTest extends MyAbstractTest{
 	@Autowired
 	private CsDAO dao;
 	
-	@Test
+//	@Test
 	public void setBoardAddtest() throws Exception {
 		CsBoardDTO boardDTO = new CsBoardDTO();
 		

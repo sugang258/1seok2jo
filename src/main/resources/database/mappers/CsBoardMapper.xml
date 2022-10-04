@@ -69,6 +69,10 @@
 		    	<delete id="setBoardDelete" parameterType="CsBoardDTO">
 		    		DELETE FROM CS_BOARD WHERE CS_NUM= #{cs_num}
 		    	</delete>
-
+		    	
+				<update id="setBoardUpdate" parameterType="CsBoardDTO">
+		    		update cs_board set cs_title=#{cs_title}, cs_contents=#{cs_contents}
+					where cs_num=#{cs_num}
+		    	</update>
 
 		    </mapper>
