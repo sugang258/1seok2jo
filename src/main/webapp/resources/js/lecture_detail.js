@@ -1,6 +1,7 @@
 const signs = document.querySelector("#signs");
 const update = document.querySelector("#update");
 const de = document.querySelector("#de");
+const board = document.querySelector("#board");
 
 signs.addEventListener("click",function(){
     let check = window.confirm("수강신청 하시겠습니까?");
@@ -64,6 +65,12 @@ const listen = document.querySelector("#listen");
 listen.addEventListener("click",function(){
     let l_num = listen.getAttributeNode("data-listen-num").value;
     window.location.href="../lecture/listen?l_num="+l_num;
+})
+
+board.addEventListener("click",function(){
+    let l_num = board.getAttributeNode("data-lnum-num").value;
+
+    window.location.href="../board/list?l_num="+l_num;
 })
 
 

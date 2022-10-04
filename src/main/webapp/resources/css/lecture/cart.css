@@ -2,3 +2,14 @@
     font-size: x-large;
     font-weight: bold;
 }
+
+#del, #sign{
+    font-weight: bold;
+    font-size: large;
+}
+
+#cart,#title{
+    border-style: solid;
+    border-width: thin;
+    border-radius: 10px;
+}
