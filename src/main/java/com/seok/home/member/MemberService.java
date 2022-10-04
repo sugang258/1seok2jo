@@ -52,8 +52,7 @@ public class MemberService {
 	
 	//강사신청
 	public int setTeacherAdd(TeacherDTO teacherDTO, ServletContext servletContext)throws Exception{
-		teacherDTO = teacherDAO.getTeacherDetail(teacherDTO);
-		System.out.println("강사DTO 안에 아이디가 있니?"+teacherDTO.getId());
+		System.out.println("강사DTO 안에 아이디가 있니?"+teacherDTO.getT_num());
 		//강사신청 성공하면 등급을 추가
 		int susess = teacherDAO.setTeacherAdd(teacherDTO);
 		int result = 0;
