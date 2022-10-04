@@ -6,7 +6,7 @@ prefix="c" %>
   <head>
     <meta charset="UTF-8" />
     <title>글 작성</title>
-    <link rel="stylesheet" href="/resources/css/board/sb_list.css" />
+    <link rel="stylesheet" href="/resources/css/board/fb_list.css" />
     <%-- Bootstrap CSS --%>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
@@ -48,9 +48,11 @@ prefix="c" %>
             rgba(17, 17, 26, 0.1) 0px 16px 56px;
         "
       >
-        <div class="mb-4"><h2 style="text-align: center">질문하기📬</h2></div>
+        <div class="mb-4">
+          <h2 style="text-align: center">🌹게시글 작성🥀</h2>
+        </div>
 
-        <form action="./sb_add" method="post" enctype="multipart/form-data">
+        <form action="./fb_add" method="post" enctype="multipart/form-data">
           <div class="d-flex row">
             <div class="flex-fill col-8">
               <div class="mb-1">
@@ -77,18 +79,16 @@ prefix="c" %>
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <option value="JAVA">JAVA</option>
-                  <option value="SPRING">SPRING</option>
-                  <option value="SPRING">JAVASCRIPT</option>
-                  <option value="HTML">HTML</option>
-                  <option value="CSS">CSS</option>
+                  <option value="스터디모집">스터디모집</option>
+                  <option value="자료실">자료실</option>
+                  <option value="공부인증">공부인증</option>
+                  <option value="수다">수다</option>
                 </select>
               </div>
             </div>
           </div>
 
           <!--                     임시로 보내는 값 -->
-          <input type="text" style="display: none" name="l_num" value="1" />
           <input type="text" style="display: none" name="answer" value="0" />
           <input type="text" style="display: none" name="hit" value="0" />
           <!--                     임시로 보내는 값 -->

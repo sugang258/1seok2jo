@@ -6,7 +6,7 @@ prefix="c" %>
   <head>
     <meta charset="UTF-8" />
     <title>글 작성</title>
-    <link rel="stylesheet" href="/resources/css/board/sb_list.css" />
+    <link rel="stylesheet" href="/resources/css/board/fb_list.css" />
     <%-- Bootstrap CSS --%>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
@@ -48,9 +48,11 @@ prefix="c" %>
             rgba(17, 17, 26, 0.1) 0px 16px 56px;
         "
       >
-        <div class="mb-4"><h2 style="text-align: center">질문하기📬</h2></div>
+        <div class="mb-4">
+          <h2 style="text-align: center">공지글 작성📋</h2>
+        </div>
 
-        <form action="./sb_add" method="post" enctype="multipart/form-data">
+        <form action="./nb_add" method="post" enctype="multipart/form-data">
           <div class="d-flex row">
             <div class="flex-fill col-8">
               <div class="mb-1">
@@ -59,47 +61,20 @@ prefix="c" %>
               <input
                 type="text"
                 name="title"
-                placeholder="글제목"
+                placeholder="몇 월 몇주차 업데이트 내용 공지"
                 class="form-control"
                 id="exampleFormControlInput1"
               />
             </div>
-            <div class="flex-fill col-4">
-              <div class="mb-1">
-                <label for="exampleFormControlInput1">카테고리</label>
-              </div>
-              <div class="dropdown">
-                <select
-                  type="button"
-                  name="category"
-                  class="btn btn-success dropdown-toggle"
-                  style="text-align: left"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <option value="JAVA">JAVA</option>
-                  <option value="SPRING">SPRING</option>
-                  <option value="SPRING">JAVASCRIPT</option>
-                  <option value="HTML">HTML</option>
-                  <option value="CSS">CSS</option>
-                </select>
-              </div>
-            </div>
           </div>
-
-          <!--                     임시로 보내는 값 -->
-          <input type="text" style="display: none" name="l_num" value="1" />
-          <input type="text" style="display: none" name="answer" value="0" />
-          <input type="text" style="display: none" name="hit" value="0" />
-          <!--                     임시로 보내는 값 -->
-
+          
           <div class="form-group pt-3">
             <input
               type="text"
               style="display: none"
               name="id"
               readonly
-              value="USER2"
+              value="관리자"
               class="form-control"
               id="exampleFormControlInput1"
             />
@@ -111,6 +86,7 @@ prefix="c" %>
               class="form-control mt-1"
               id="contents"
               rows="3"
+              placeholder="공지글을 입력해주세요."
             ></textarea>
           </div>
           <div class="d-flex justify-content-between">
@@ -121,9 +97,9 @@ prefix="c" %>
 
             <div class="mt-4 mb-1" style="text-align: right">
               <input
-                class="btn btn-success text-white"
+                class="btn btn-light"
                 type="submit"
-                value="작성하기"
+                value="✍️글작성"
               />
             </div>
           </div>
