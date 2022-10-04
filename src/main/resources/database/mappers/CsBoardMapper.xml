@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		    
+		    <mapper namespace="com.seok.home.cs_board.CsDAO">
+		    
+		    	<insert id="setBoardAdd" parameterType="CsBoardDTO">
+		    		<selectKey order="BEFORE" keyProperty="cs_num" resultType="Long">
+		    			SELECT CSBOARD_SEQ.NEXTVAL FROM DUAL
+		    		</selectKey>
+			    	INSERT INTO CS_BOARD (CS_NUM, ID, CS_PHONE, CS_EMAIL, CS_TITLE, CS_CONTENTS, REGDATE, CS_STATUS)
+					VALUES (#{cs_num}, #{id}, #{cs_phone}, #{cs_email}, #{cs_title}, #{cs_contents}, SYSDATE, '미답변')
+		    	</insert>
+		    	
+		    	<select id="getMylist" parameterType="CsBoardDTO" resultType="CsBoardDTO">
+		    		SELECT *
+					FROM CS_BOARD
+					WHERE id=#{id}
+					ORDER BY REGDATE DESC
+		    	</select>
+		    			
+	    		<sql id="search">
+					<!-- 마이바티스의 동적 sql 사용하기 -->
+					<choose>
+						<when test="kind == 'CS_STATUS'">CS_STATUS</when>
+						<when test="kind == 'CS_TITLE'">CS_TITLE</when>
+						<when test="kind == 'ID'">ID</when>
+						<when test="kind == 'CS_PHONE'">CS_PHONE</when>
+						<when test="kind == 'CS_EMAIL'">CS_EMAIL</when>
+						<otherwise>CS_STATUS</otherwise>
+					</choose>
+					LIKE '%'||#{search}||'%' 
+				</sql>
+				    	
+		    	<update id="setAnswerDefault" parameterType="CsBoardDTO">
+		    		update cs_board set cs_status='답변완료', cs_answer='#{cs_answer}',cs_admin='#{cs_admin}',re_regdate=sysdate
+					where cs_num=#{cs_num}
+		    	</update>
+		    	
+		    	<select id="getTotalCount" parameterType="AdminPager" resultType="Long">
+			    	select count(*) from cs_board
+					where regdate between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+		    		and <include refid="search"></include>
+		    	</select>
+		    	
+		    	<select id="getBoardList" parameterType="AdminPager" resultType="CsBoardDTO">
+		    		select * 
+		    		from (select rownum as rown, cs.* 
+		    			from (select * from cs_board
+							where regdate between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+							and <include refid="search"></include> 
+							ORDER BY REGDATE ASC) cs)
+					where rown between #{startRow} and #{lastRow}
+		    	</select>
+		    		
+		    	<delete id="setBoardDelete" parameterType="CsBoardDTO">
+		    		DELETE FROM CS_BOARD WHERE CS_NUM= #{cs_num}
+		    	</delete>
+
+
+		    </mapper>

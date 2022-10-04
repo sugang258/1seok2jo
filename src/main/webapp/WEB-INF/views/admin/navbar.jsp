@@ -26,7 +26,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">고객 문의</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="/admin/csboardList">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 문의 관리
                             </a>

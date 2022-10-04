@@ -1,4 +1,38 @@
+//리스트 페이지에서 초기화 시키는 js
+function initlist(){
+    //오늘날짜로 초기화
+    let startDate = document.getElementById("startDate");
+    let endDate = document.getElementById("endDate");
+    let today = new Date().toISOString().substring(0,10);
 
+    startDate.value = today
+    endDate.value= today
+
+    let btnSearch = document.getElementById("btnSearch");
+    btnSearch.addEventListener("click", function(){
+        csList()
+    })
+    let postResult = document.getElementById("postResult");
+    postResult.addEventListener("click", function(event){
+        console.log(event.target)
+    })
+
+}
+
+//csboardList받아오기
+function csList(){
+    let postResult = document.getElementById("postResult");
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST","./csboardList");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    xhttp.send("page="+1+"&startDate="+startDate.value+"&endDate="+endDate.value+"&kind="+kind.value+"&search="+search.value)
+    xhttp.addEventListener("readystatechange", function(){
+        if(this.readyState==4 && this.status==200){
+            postResult.innerHTML = xhttp.responseText;
+        }
+    })
+
+}
 
 //로그인 페이지에서 실행되는 js
 function login(){
@@ -81,4 +115,4 @@ function getCookie(name) { //가져올 쿠키의 이름을 파라미터 값으�
                 break; //반복문 빠져나오기
         } 
         return ""; //빈값 반환
-    }
+}
