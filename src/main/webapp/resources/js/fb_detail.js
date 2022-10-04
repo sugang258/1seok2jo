@@ -179,7 +179,7 @@ function getReplyCount() {
   let fb_num = update_btn.getAttribute("data-board-num");
   const getReplyCount = document.getElementById("getReplyCount");
   const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "reply_count?fb_num=" + fb_num);
+  xhttp.open("GET", "fb_reply_count?fb_num=" + fb_num);
   xhttp.send();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {

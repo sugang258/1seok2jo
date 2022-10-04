@@ -94,7 +94,7 @@ public class FreeBoardController {
 	}
 	
 	/* 자유게시판 댓글수 */
-	@GetMapping("reply_count")
+	@GetMapping("fb_reply_count")
 	@ResponseBody
 	public Long getReplyCount(FreeBoardReplyDTO freeBoardReplyDTO)throws Exception{
 		Long count = freeBoardService.getReplyCount(freeBoardReplyDTO);
