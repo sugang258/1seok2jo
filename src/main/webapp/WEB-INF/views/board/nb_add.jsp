@@ -89,11 +89,6 @@ prefix="c" %>
               placeholder="공지글을 입력해주세요."
             ></textarea>
           </div>
-          <div class="d-flex justify-content-between">
-            <div class="file_box mt-4">
-              <label for="file" class="file"><b>파일추가📂</b></label>
-              <input type="file" name="file" id="file" style="display: none" />
-            </div>
 
             <div class="mt-4 mb-1" style="text-align: right">
               <input

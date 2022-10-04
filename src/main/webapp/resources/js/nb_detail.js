@@ -77,6 +77,7 @@ reply_content.addEventListener("click", function (event) {
         let result = xhttp.responseText;
         if (result == 1) {
           getNoticeReply();
+          getReplyCount();
         } else {
           alert("등록실패");
         }
@@ -115,6 +116,7 @@ function replyDelete() {
           let result = xhttp.responseText;
           if (result == 1) {
             getNoticeReply();
+            getReplyCount();
           } else {
             alert("등록실패");
           }
@@ -122,4 +124,18 @@ function replyDelete() {
       };
     });
   }
+}
+
+function getReplyCount() {
+  const notice_num = document.getElementById("notice_num");
+  const count = document.getElementById("count");
+  let n_num = notice_num.value;
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "reply_count?n_num=" + n_num);
+  xhttp.send();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      count.innerHTML = xhttp.responseText;
+    }
+  };
 }
