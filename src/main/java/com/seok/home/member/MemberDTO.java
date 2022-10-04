@@ -2,6 +2,8 @@ package com.seok.home.member;
 
 import java.util.List;
 
+import com.seok.home.lecture.teacher.TeacherDTO;
+
 public class MemberDTO {
 	//회원의 정보를 담을 DTO
 	
@@ -28,8 +30,17 @@ public class MemberDTO {
 	private MemberFileDTO memberFileDTO;
 	//등급을 여러개
 	private List<RoleDTO> roleDTOs;
+	//강사신청 한번
+	private TeacherDTO teacherDTO;
 	
 	/********************** getter setter ************************/
+	
+	public TeacherDTO getTeacherDTO() {
+		return teacherDTO;
+	}
+	public void setTeacherDTO(TeacherDTO teacherDTO) {
+		this.teacherDTO = teacherDTO;
+	}
 	public List<RoleDTO> getRoleDTOs() {
 		return roleDTOs;
 	}
