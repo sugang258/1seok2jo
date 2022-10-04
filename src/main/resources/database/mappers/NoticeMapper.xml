@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		    
+		    <mapper namespace="com.seok.home.n_board.NoticeDAO">
+		    	<!-- 공지사항 목록 -->
+		    	<select id="getNoticeList" resultType="NoticeDTO" parameterType="Pager">
+		    		SELECT * FROM (
+		    			SELECT ROWNUM R, N.* FROM (
+		    				SELECT * FROM NOTICE ORDER BY N_NUM DESC
+		    				)N
+		    			)
+		    		WHERE R BETWEEN #{startRow} AND #{lastRow}
+		    	</select>
+		   		
+		   		<!-- 공지사항 총 글수 -->  	
+		    	<select id="getTotalCount" parameterType="Pager" resultType="Long">
+		    		SELECT COUNT(n_num) FROM NOTICE
+		    	</select>
+		    	
+		    	<!-- 공지사항 상세보기 -->
+		    	<select id="getNoticeDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
+		    		SELECT * FROM NOTICE WHERE N_NUM=#{n_num} ORDER BY N_NUM DESC
+		    	</select>
+		    	
+		    	<!-- 공지사항 댓글수 -->
+		    	<select id="getReplyCount" parameterType="NoticeReplyDTO" resultType="Long">
+		    		SELECT COUNT(NUM) FROM NOTICE_REPLY WHERE N_NUM = #{n_num}
+		    	</select>
+		    	
+		    	<!-- 공지사항 작성 -->
+		    	<insert id="setNoticeAdd" parameterType="NoticeDTO">
+		    		INSERT INTO NOTICE VALUES (BOARD_SEQ.NEXTVAL, #{id}, #{title}, SYSDATE,#{contents})
+		    	</insert>
+		    	
+		    	<!-- 공지사항 글수정 -->
+		    	<update id="setNoticeUpdate" parameterType="NoticeDTO">
+		    		UPDATE NOTICE SET TITLE = #{title}, CONTENTS=#{contents} WHERE N_NUM = #{n_num}
+		    	</update>
+		    		
+		    	<!-- 공지사항 글삭제 -->
+		    	<delete id="setNoticeDelete" parameterType="NoticeDTO">
+		    		DELETE NOTICE WHERE N_NUM = #{n_num}
+		    	</delete>
+		    			    	
+		    	<!-- 공지사항 댓글 목록 -->
+		    	<select id="getReplyList" parameterType="NoticeReplyDTO" resultType="NoticeReplyDTO">
+		    		SELECT * FROM NOTICE_REPLY WHERE N_NUM = #{n_num} ORDER BY NUM DESC
+		    	</select>
+		    	
+		    	<!-- 공지사항 댓글 작성 -->
+		    	<insert id="setReplyAdd" parameterType="NoticeReplyDTO">
+		    		INSERT INTO NOTICE_REPLY VALUES (BOARD_SEQ.NEXTVAL, #{n_num},#{id}, #{contents}, SYSDATE)
+		    	</insert>
+		    	
+		    	<!-- 공지사항 댓글 삭제 -->
+		    	<delete id="setReplyDelete" parameterType="NoticeReplyDTO">
+		    		DELETE NOTICE_REPLY WHERE NUM = #{num}
+		    	</delete>    	
+		    </mapper>

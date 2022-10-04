@@ -1,0 +1,86 @@
+/**Board-Contents*/
+.board {
+  margin-top: 9.5em;
+  width: 75%;
+  margin-bottom: 2em;
+  margin-left: auto;
+  margin-right: auto;
+}
+.board_contents {
+  border-bottom: solid 1px rgba(156, 152, 152, 0.664);
+  height: 50px;
+  width: 100%;
+}
+
+/**nb_contents*/
+.nb_contents {
+  padding: 1em 0em;
+  width: 100%;
+}
+/**게시판 댓글*/
+#reply {
+  border: none;
+  background-color: transparent;
+}
+
+#reply:hover {
+  font-weight: bold;
+}
+
+#reply_btn {
+  border: none;
+  background-color: rgba(0, 66, 0, 0.637);
+  border-radius: 6px;
+  padding: 3px;
+  padding: 5px 10px 7px 10px;
+  color: white;
+  margin-left: -10px;
+  margin-top: 5px;
+}
+input:focus {
+  outline: none;
+}
+
+#plus {
+  border: none;
+  background-color: transparent;
+  font-weight: bolder;
+  color: rgb(70, 70, 70);
+}
+#plus:active {
+  color: black;
+  transform: scale(1.1);
+}
+
+.reply_delete:hover {
+  cursor: pointer;
+  transform: scale(1.08);
+}
+
+/**button-style*/
+.btn-st {
+  border: none;
+  background-color: transparent;
+  font-weight: bolder;
+}
+
+/**add.html */
+.file_add {
+  border: none;
+  background-color: transparent;
+  color: rgba(28, 28, 29, 0.678);
+}
+.file_add:hover {
+  color: black;
+  transform: scale(1.03);
+}
+
+/**sb_reply delete_button*/
+.text_delete_btn {
+  border: none;
+  background-color: transparent;
+  color: rgba(255, 0, 0, 0.87);
+}
+.text_delete_btn:active {
+  transform: scale(1.03);
+}
