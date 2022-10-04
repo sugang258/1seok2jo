@@ -60,6 +60,10 @@
                     <option value="2">Python</option>
                     <option value="3">JavaScript</option>
                     <option value="4">HTML/CSS</option>
+                    <option value="5">React</option>
+                    <option value="6">Node.js</option>
+                    <option value="7">Spring</option>
+                    <option value="8">SQL</option>
                   </select>
                   <div class="invalid-feedback">
                     Please select a valid category.

@@ -37,9 +37,9 @@ rel="stylesheet"
             </div>
             <img id="ori_img" src="http://20.249.88.100/resources/lecture/${update.lectureFileDTO[0].f_name}" style="display: inline;" data-file-num="${update.lectureFileDTO[0].f_name}" data-ori-num="${update.lectureFileDTO[0].f_oriname}">
             <div class="img_change">
-                <h4>변경하기</h4>
-                <input type="file" class="btn btn-primary" id="files" value="변경하기" data-f-num="${update.lectureFileDTO[0].num}" style="border :none; color: white; background-color: #66ba39;">
-                <input type="button" id="file_sub" value="변경확정">
+                <h4 id="sum">썸네일 변경하기</h4>
+                <input type="file" class="btn btn-primary text-center" id="files" value="썸네일 변경하기" data-f-num="${update.lectureFileDTO[0].num}" style="margin-left: 450px; border: none; background-color: white; color: black; display: block;">
+                <input type="button" id="file_sub" value="썸네일 변경확정" style="border :none; background-color: white; color: #66ba39;">
             </div>
             </form>
         </div>
@@ -75,6 +75,10 @@ rel="stylesheet"
                             <option class="category" value="2">Python</option>
                             <option class="category" value="3">JavaScript</option>
                             <option class="category" value="4">HTML/CSS</option>
+                            <option class="category" value="5">React</option>
+                            <option class="category" value="6">Node.js</option>
+                            <option class="category" value="7">Spring</option>
+                            <option class="category" value="8">SQL</option>
                         </select>
                         <div class="invalid-feedback">
                             Please select a valid category.
