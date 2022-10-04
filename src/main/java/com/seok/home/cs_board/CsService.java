@@ -19,5 +19,13 @@ public class CsService {
 		return csDAO.getMylist(csBoardDTO);
 	}
 	
+	public int setBoardUpdate(CsBoardDTO boardDTO) throws Exception{
+		return csDAO.setBoardUpdate(boardDTO);
+	}
+	
+	public int setBoardDelete(CsBoardDTO boardDTO) throws Exception{
+		return csDAO.setBoardDelete(boardDTO);
+	}
+	
 
 }

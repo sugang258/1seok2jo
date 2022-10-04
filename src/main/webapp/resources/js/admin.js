@@ -6,15 +6,17 @@ function initlist(){
     let today = new Date().toISOString().substring(0,10);
     let orderby = document.querySelectorAll('input[name="orderby"]')
     let orderbyVal = document.querySelector('input[name="orderby"]:checked').value;
-    console.log(orderbyVal)
+    let page = 1;
 
     startDate.value = today
     endDate.value= today
+    csList(page)
 
     //search버튼 클릭하면 리스트 요청
     let btnSearch = document.getElementById("btnSearch");
     btnSearch.addEventListener("click", function(){
-        csList()
+        page = 1;
+        csList(page)
     })
 
     //boardList 클릭하면
@@ -22,6 +24,11 @@ function initlist(){
     postResult.addEventListener("click", function(event){
         let cs_num = event.target.parentNode.getAttribute("data-csnum");
         if(cs_num==null){
+            if(event.target.getAttribute("class")=="page-link"){
+                page = event.target.getAttribute("data-page")
+                csList(page)
+            }else{
+            }
         }else{
             location.href="./csAnswer?cs_num="+cs_num;
         }
@@ -40,20 +47,21 @@ function initlist(){
                 oldlb.setAttribute("style", "");
                 newlb.setAttribute("style", "font-weight:bold; color:black");
             }
-            csList()
+            page = 1
+            csList(page)
         })
     }
 
 }
 
 //csboardList요청하기
-function csList(){
+function csList(page){
     let postResult = document.getElementById("postResult");
     orderbyVal = document.querySelector('input[name="orderby"]:checked').value
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST","./csboardList");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-    xhttp.send("page="+1+"&startDate="+startDate.value+"&endDate="+endDate.value+"&kind="+kind.value+"&search="+search.value+"&orderby="+orderbyVal)
+    xhttp.send("page="+page+"&startDate="+startDate.value+"&endDate="+endDate.value+"&kind="+kind.value+"&search="+search.value+"&orderby="+orderbyVal)
     xhttp.addEventListener("readystatechange", function(){
         if(this.readyState==4 && this.status==200){
             postResult.innerHTML = xhttp.responseText;

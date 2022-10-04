@@ -15,6 +15,14 @@ public class CsDAO {
 	private SqlSession session;
 	private String NAMESPACE="com.seok.home.cs_board.CsDAO.";
 	
+	public int setBoardDelete(CsBoardDTO boardDTO) throws Exception{
+		return session.delete(NAMESPACE+"setBoardDelete", boardDTO);
+	}
+	
+	public int setBoardUpdate(CsBoardDTO boardDTO) throws Exception{
+		return session.update(NAMESPACE+"setBoardUpdate", boardDTO);
+	}
+	
 	public int setBoardAdd(CsBoardDTO boardDTO) throws Exception{
 		return session.insert(NAMESPACE+"setBoardAdd", boardDTO);
 	}

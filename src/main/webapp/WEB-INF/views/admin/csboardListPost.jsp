@@ -28,36 +28,27 @@
 <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
         <li class="page-item">
-        <a class="page-link" href="./list.mg?page=1" aria-label="Previous">
-            <span aria-hidden="true">&laquo;&laquo;</span>
-        </a>
+        <span class="page-link" aria-label="Previous" data-page="1">
+            &laquo;&laquo;
+        </span>
         </li>
-        <!-- choose사용해서 해보기 -->
-        <c:choose>
-            <c:when test="${pager.pre}">
-        <li class="page-item disabled">
-            </c:when>
-            <c:otherwise>
-        <li class="page-item">
-            </c:otherwise>
-        </c:choose>
-        <a class="page-link" href="./list.mg?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
-            <span aria-hidden="true">이전</span>
-        </a>
+        <li class="${pager.pre? 'page-item disabled':'page-item'}">
+        <span class="page-link" data-page="${pager.startNum-1}" aria-label="Previous">
+            이전
+        </span>
         </li>
         <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-        <li class="page-item"><a class="page-link" href="#">${i}</a></li>
+        <li class="page-item"><span class="page-link" data-page="${i}">${i}</span></li>
         </c:forEach>
-        <!-- 삼항연산자 사용해서 해보기 -->
         <li class="${pager.next? 'page-item disabled':'page-item'}">
-        <a class="page-link" href="./list.mg?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
-            <span aria-hidden="true">다음</span>
-        </a>
+        <span class="page-link" data-page="${pager.lastNum+1}" aria-label="Next">
+            다음
+        </span>
         </li>
         <li class="page-item">
-        <a class="page-link" href="./list.mg?page=${pager.totalPage}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
-            <span aria-hidden="true">&raquo;&raquo;</span>
-        </a>
+        <span class="page-link" data-page="${pager.totalPage}" aria-label="Next">
+            &raquo;&raquo;
+        </span>
         </li>
     </ul>
     </nav>

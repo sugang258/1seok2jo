@@ -27,6 +27,20 @@ public class CsController {
 		
 	}
 	
+	@GetMapping("delete")
+	public String setBoardDelete(CsBoardDTO csBoardDTO) throws Exception{
+		int result = csService.setBoardDelete(csBoardDTO);
+		
+		return "redirect:/csBoard/mylist";
+	}
+	
+	@PostMapping("update")
+	public String setBoardUpdate(CsBoardDTO csBoardDTO) throws Exception{
+		int result = csService.setBoardUpdate(csBoardDTO);
+		
+		return "redirect:/csBoard/mylist";
+	}
+	
 	@PostMapping("add")
 	public String setBoardAdd(CsBoardDTO csBoardDTO) throws Exception {
 		int result = csService.setBoardAdd(csBoardDTO);
