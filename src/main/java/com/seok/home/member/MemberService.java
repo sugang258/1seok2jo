@@ -87,35 +87,35 @@ public class MemberService {
 		//정보수정 먼저
 		int result = memberDAO.setEditProfile(memberDTO);
 		
+		//수정된 정보를 조회해서 memberDTO에 대입
+		//그럼 memberDTO에는 insert가 되어 null이 아니다
+		memberDTO = memberDAO.getProfile(memberDTO);
+		
+		//memberDTO안에 있는 한개의 memberFileDTO을 
+		//memberFileDTO변수에 대입
+		MemberFileDTO memberFileDTO = memberDTO.getMemberFileDTO();
+		
+		//memberFileDTO가 있으면
+		if(memberFileDTO != null) {
+			//memberFileDTO을 삭제
+			result = memberDAO.setDeleteFile(memberFileDTO);
+		}
+		memberDTO.setMemberFileDTO(memberFileDTO);
+		
 		//insert 가 되면
 		if(result == 1) {
-			System.out.println("파일이왔니? "+file);
+			System.out.println("파일이왔니? "+file.getF_name());
 			
 			//파일 리스트를 파일 DB에 저장
 			file.setId(memberDTO.getId());
 			result = memberDAO.setAddFile(file);
-			
-			//수정된 정보를 조회해서 memberDTO에 대입
-			//그럼 memberDTO에는 insert가 되어 null이 아니다
-			memberDTO = memberDAO.getProfile(memberDTO);
-			
-			//memberDTO안에 있는 한개의 memberFileDTO을 
-			//memberFileDTO변수에 대입
-			MemberFileDTO memberFileDTO = memberDTO.getMemberFileDTO();
-			
-			//memberFileDTO가 있으면
-			if(memberFileDTO != null) {
-				//memberFileDTO을 삭제
-				result = memberDAO.setDeleteFile(memberFileDTO);
-			}
-			memberDTO.setMemberFileDTO(memberFileDTO);
 			
 			if(result!=1) {
 				System.out.println("파일 추가 오류");
 			}
 			
 		}else {
-			System.out.println("lecture에러");
+			System.out.println("EditProfile에러");
 		}
 		
 		//(삭제후) memberFileDTO없으면(없으니) 폴더에 추가

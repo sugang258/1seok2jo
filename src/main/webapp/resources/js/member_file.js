@@ -19,8 +19,8 @@ function save(){
             cache: false,
             timeout: 600000,
             success: function (dt) {
-                console.log(dt) //f_name
-                console.log(file.files[0].name) //oriname
+                console.log("f_name : "+dt) //f_name
+                console.log("oriname : "+file.files[0].name) //oriname
                 // 라벨 하단에 file 값을 담은 text input을 만들어준다.
 
                 //oriname input
