@@ -52,8 +52,25 @@ public class MemberService {
 	
 	//강사신청
 	public int setTeacherAdd(TeacherDTO teacherDTO, ServletContext servletContext)throws Exception{
-		return teacherDAO.setTeacherAdd(teacherDTO);
+		//강사신청 성공하면 등급을 추가
+		int susess = teacherDAO.setTeacherAdd(teacherDTO);
+		int result = 0;
+		if(susess == 1) {
+			result = teacherDAO.setTeacherRole(teacherDTO);
+		}
+		return result;
 	}
+	
+	//회원탈퇴
+	public int setDeleteMember(MemberDTO memberDTO)throws Exception{
+		int susess = memberDAO.setDeleteMemberRole(memberDTO);
+		int result = 0;
+		if(susess != 0) {
+			result = memberDAO.setDeleteJoin(memberDTO);
+		}
+		return result;
+	}
+	
 	
 	/************************ 마이페이지 **************************/
 	
@@ -68,10 +85,11 @@ public class MemberService {
 		//정보수정 먼저
 		int result = memberDAO.setEditProfile(memberDTO);
 		
-		
+		//insert 가 되면
 		if(result == 1) {
 			System.out.println("파일이왔니? "+file);
 			
+			//파일 리스트를 파일 DB에 저장
 			file.setId(memberDTO.getId());
 			result = memberDAO.setAddFile(file);
 			
@@ -97,7 +115,6 @@ public class MemberService {
 		}else {
 			System.out.println("lecture에러");
 		}
-			
 		
 		//(삭제후) memberFileDTO없으면(없으니) 폴더에 추가
 //		String path = "resources/upload/member";

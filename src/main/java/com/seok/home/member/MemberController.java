@@ -99,7 +99,7 @@ public class MemberController {
 		//새로운 회원데이터추가 성공 실패 확인
 		if(result>0) {
 			System.out.println("회원가입 성공!!");
-			return "redirect:member/login";
+			return "redirect:../member/login";
 		}else {
 			System.out.println("회원가입 실패..");
 			return "member/join";
@@ -130,6 +130,10 @@ public class MemberController {
 
 		return "member/teacherAdd";
 	}
+	
+	//회원탈퇴 화면(GET)
+	
+	//회원탈퇴 로직 처리(POST)
 	
 	/************************ 마이페이지 **************************/
 	
@@ -163,7 +167,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		
 		System.out.println("fileDTO_FNAME : "+f_name);
-		System.out.println("fileDTO_ORINAME : "+oriname);
+		System.out.println("fileDTO_ORINAME : "+oriname);		
 		
 		MemberFileDTO file = new MemberFileDTO();
 		file.setF_name(f_name);

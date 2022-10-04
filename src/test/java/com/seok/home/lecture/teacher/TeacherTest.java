@@ -27,6 +27,7 @@ public class TeacherTest extends MyAbstractTest {
 		
 		assertEquals(1, result);
 	}
+	
 	//@Test
 	public void setTeacherUpdate() throws Exception {
 		TeacherDTO teacherDTO = new TeacherDTO();

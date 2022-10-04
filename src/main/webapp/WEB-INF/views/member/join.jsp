@@ -93,6 +93,6 @@
 		</div>
 	</section>
 <c:import url="../template/footer.jsp"></c:import>
-<script src="/resources/js/member.js"></script>
+<!-- <script src="/resources/js/member.js"></script> -->
 </body>
 </html>

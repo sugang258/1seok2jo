@@ -18,6 +18,11 @@ public class TeacherDAO {
 		return sqlSession.insert(NAMESPACE+"setTeacherAdd", teacherDTO);
 	}
 	
+	//강사등급설정
+	public int setTeacherRole(TeacherDTO teacherDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setTeacherRole", teacherDTO);
+	}
+	
 	//강사 수정
 	public int setTeacherUpdate(TeacherDTO teacherDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"setTeacherUpdate", teacherDTO);

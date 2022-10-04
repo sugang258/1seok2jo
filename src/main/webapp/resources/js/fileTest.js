@@ -1,13 +1,13 @@
 function save(){
 
     let file = document.getElementById("file");
-    let addFile = document.getElementById("addFile")
+    let addFiles = document.getElementById("addFiles")
     
     file.addEventListener("change", function(){
         let filedata = new FormData();
         filedata.append("file",file.files[0])
         //path 에 저장할 폴더 경로를 담아준다.
-        filedata.append("path","member")
+        filedata.append("path","test")
     
         $.ajax({
             type: "POST",
@@ -41,7 +41,7 @@ function save(){
                 inputf_name.setAttributeNode(typei4)
                 inputf_name.setAttributeNode(typei5)
                 
-                addFile.append(inputf_name)
+                addFiles.append(inputf_name)
     
                 //fname input
                 inputf_name = document.createElement("input")
