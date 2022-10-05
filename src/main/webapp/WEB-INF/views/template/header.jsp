@@ -86,15 +86,16 @@
           </li>
         </ul>
 
-          <form style="width: 190px">
+          <form style="width: 230px">
             <button
               type="button"
               class="top_button"
               style="margin-right: 10px"
             >
-              🔐로그인
+            🔐로그인
             </button>
-            <button type="button" class="top_button">👩‍💻회원가입</button>
+            <button type="button" class="top_button" style="margin-right: 10px;">👩‍💻회원가입</button>
+            <button type="button" class="top_button" id="cart" onclick="location.href='/member/cart'">🛒</button>
           </form>
         </div>
       </div>

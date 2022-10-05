@@ -1,6 +1,7 @@
 const empty = document.querySelector(".empty");
 const add = document.querySelector(".add");
 const service = document.querySelector(".service");
+const cart = document.querySelector("#cart");
 
 function setTeacherLecture() {
 
@@ -31,3 +32,4 @@ function setTeacherLecture() {
         }
 
 }
+
