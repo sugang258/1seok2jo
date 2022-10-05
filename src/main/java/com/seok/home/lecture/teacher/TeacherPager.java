@@ -30,7 +30,7 @@ public class TeacherPager {
 	private String endDate;
 	private String orderby;
 	
-	private String chkstatus;
+	private String teacher;
 	
 	
 	public TeacherPager() {
@@ -236,12 +236,14 @@ public class TeacherPager {
 	}
 
 
-	public String getChkstatus() {
-		return chkstatus;
+	public String getTeacher() {
+		return teacher;
 	}
 
 
-	public void setChkstatus(String chkstatus) {
-		this.chkstatus = chkstatus;
+	public void setTeacher(String teacher) {
+		this.teacher = teacher;
 	}
+
+
 }

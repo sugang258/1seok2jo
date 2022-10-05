@@ -33,6 +33,7 @@
 		<typeAlias type="com.seok.home.pay.PaymentDTO" alias="PaymentDTO"/>
 		<typeAlias type="com.seok.home.pay.RefundDTO" alias="RefundDTO"/>
 		<typeAlias type="com.seok.home.admin.AdminPager" alias="AdminPager"/>
+		<typeAlias type="com.seok.home.lecture.teacher.TeacherPager" alias="TeacherPager"/>		
 	</typeAliases>
 
 </configuration>

@@ -13,7 +13,7 @@
                     on O.L_NUM = L.L_NUM
                     INNER join Lecture_sign LS
                     on L.L_NUM = LS.L_NUM and P.ID = LS.ID
-                    where L.ID = 'sg';
+                    where L.ID = #{teacher}
     	</select>
     	<resultMap type="OrderDTO" id="teacherListResult">
     		<id column="O_NUM" property="o_num"/>
@@ -26,8 +26,9 @@
    				<result column="l_name" property="l_name"/>
    				<association property="lectureAddDTO" javaType="LectureAddDTO">
 	   				<id column="s_num" property="s_num"/>
-	   				<result column="S_START" property="S_START"/>
-	   				<result column="S_END" property="S_END"/>
+	   				<result column="CUS" property="id"/>
+	   				<result column="S_START" property="s_start"/>
+	   				<result column="S_END" property="s_end"/>
 	   				<result column="STATUS" property="STATUS"/>
    				</association>
    			</association>
