@@ -25,7 +25,7 @@
   <main class="container px-4">
   	<div class="row">
       <div class="col col-xl-10">
-        <h3 style="line-height: 80px"><strong>💰 강의 판매 현황</strong></h3>
+        <h3 style="line-height: 80px"><strong>💰 강의 매출 목록</strong></h3>
       </div>
     </div>
 
