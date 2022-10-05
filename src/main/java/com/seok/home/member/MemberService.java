@@ -49,15 +49,25 @@ public class MemberService {
 		
 		return result;	
 	}
+	//강사정보 조회
+	public TeacherDTO getTeacherDetail(TeacherDTO teacherDTO)throws Exception{
+		return teacherDAO.getTeacherDetail(teacherDTO);
+	}
 	
 	//강사신청
 	public int setTeacherAdd(TeacherDTO teacherDTO, ServletContext servletContext)throws Exception{
-		System.out.println("강사DTO 안에 아이디가 있니?"+teacherDTO.getT_num());
-		//강사신청 성공하면 등급을 추가
-		int susess = teacherDAO.setTeacherAdd(teacherDTO);
+		System.out.println("강사신청한거에 너의 강사신청번호가 있니? "+teacherDTO.getT_num());
 		int result = 0;
-		if(susess == 1) {
-			result = teacherDAO.setTeacherRole(teacherDTO);
+		if(teacherDTO.getT_num() == null) {
+			//강사신청 성공하면 등급을 추가
+			int susess = teacherDAO.setTeacherAdd(teacherDTO);
+			if(susess == 1) {
+				result = teacherDAO.setTeacherRole(teacherDTO);
+			}
+		
+		teacherDTO = teacherDAO.getTeacherDetail(teacherDTO);
+		System.out.println("강사신청한거에 강사신청번호가있니? "+teacherDTO.getT_num());
+		
 		}
 		return result;
 	}

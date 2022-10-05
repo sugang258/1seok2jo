@@ -110,8 +110,18 @@ public class MemberController {
 	
 	//강사신청 화면(GET)
 	@GetMapping("teacherAdd")
-	public void setTeacherAdd()throws Exception{
+	public ModelAndView setTeacherAdd()throws Exception{
 		System.out.println("강사신청 접속(GET)");
+		ModelAndView mv = new ModelAndView();
+		TeacherDTO teacherDTO = new TeacherDTO();
+		
+		//강사정보 조회(강사DTO에 담음)
+		teacherDTO = memberService.getTeacherDetail(teacherDTO);
+		
+		mv.addObject("teacher", teacherDTO);
+		mv.setViewName("member/teacherAdd");
+		
+		return mv;
 	}
 	
 	//강사신청 로직 처리(POST)
