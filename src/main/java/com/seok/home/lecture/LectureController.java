@@ -417,4 +417,18 @@ public class LectureController {
 	    return result;
 	}
 	
+	@PostMapping("setLoginCheck")
+	@ResponseBody
+	public int setLoginCheck(HttpServletRequest request) throws Exception{
+	    MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+	    int result = 0;
+	    if(mem == null) {
+	        result = 0;
+	    }else {
+	        result = 1;
+	    }
+
+	    return result;
+	}
+	
 }
