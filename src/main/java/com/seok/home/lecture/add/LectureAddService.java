@@ -43,4 +43,7 @@ public class LectureAddService {
 	public LectureAddDTO getLectureCancel(LectureAddDTO lectureAddDTO) throws Exception{
 		return lectureAddDAO.getLectureCancel(lectureAddDTO);
 	}
+	public List<LectureAddDTO> getLectureEnd(LectureAddDTO lectureAddDTO) throws Exception{
+	    return lectureAddDAO.getLectureEnd(lectureAddDTO);
+	}
 }

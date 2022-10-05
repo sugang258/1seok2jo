@@ -61,5 +61,9 @@ public class LectureAddDAO {
 	public LectureAddDTO getLectureCancel(LectureAddDTO lectureAddDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getLectureCancel", lectureAddDTO);
 	}
+	
+	public List<LectureAddDTO> getLectureEnd(LectureAddDTO lectureAddDTO) throws Exception{
+	    return sqlSession.selectList(NAMESPACE+"getLectureEnd", lectureAddDTO);
+	}
 
 }

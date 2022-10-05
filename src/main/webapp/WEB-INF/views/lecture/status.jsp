@@ -54,15 +54,15 @@ rel="stylesheet"/>
                                         <div class="fw-bolder">진도율</div>
                                             <div class="progress">
                                                 
-                                                    <div class="progress-bar progress-bar-success progress-bar-striped" id="bar" role="progressbar" aria-valuenow="${status[arNm.index]}"
+                                                <div class="progress-bar progress-bar-success progress-bar-striped" id="bar" role="progressbar" aria-valuenow="${status[arNm.index]}"
                                                     aria-valuemin="0" aria-valuemax="100">
                                                     ${status[arNm.index]}% Complete
                                                 </div>
-                                                
                                             </div>
+                                            <div class="fw-bolder mt-2">수강 종료 날짜</div>
+                                            ${end[arNm.index].s_end}
                                         </div>
-                                    
-                                </div>
+                                    </div>
                                 <!-- Product actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <div class="text-center" id="listen">

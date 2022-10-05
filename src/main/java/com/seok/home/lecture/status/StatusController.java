@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.seok.home.lecture.LectureDTO;
 import com.seok.home.lecture.LectureService;
 import com.seok.home.lecture.add.LectureAddDTO;
+import com.seok.home.lecture.add.LectureAddService;
 import com.seok.home.member.MemberDTO;
 
 @Controller
@@ -25,6 +26,8 @@ public class StatusController {
 	
 	@Autowired
 	private StatusService statusService;
+	@Autowired
+	private LectureAddService lectureAddService;
 
 	
 	@PostMapping("setStatusUpdate")
@@ -48,6 +51,7 @@ public class StatusController {
 		   
     		lectureAddDTO.setId(mem.getId());
     		List<LectureDTO> ar = statusService.getSignList(lectureAddDTO);
+    		List<LectureAddDTO> end = lectureAddService.getLectureEnd(lectureAddDTO);
     		if(ar.size() == 0) {
     		    mv.setViewName("/lecture/status");
     		}else {
@@ -70,7 +74,9 @@ public class StatusController {
         			total=0L;
         			percent=0L;
         		}
+        		
     		System.out.println(ar.size());
+    		mv.addObject("end", end);
     		mv.addObject("ar", ar);
     		mv.addObject("status", status);
     		mv.setViewName("/lecture/status");
