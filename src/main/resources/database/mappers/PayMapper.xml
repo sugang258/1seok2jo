@@ -40,15 +40,44 @@
    			</association>
     	</resultMap>
     	
+  		<sql id="search">
+			<choose>
+				<when test="kind == 'P_UID'">P.P_UID = #{search}</when>
+				<when test="kind == 'TEACHER'">L.ID = #{search}</when>
+				<when test="kind == 'L_NAME'">L.L_NAME LIKE '%'||#{search}||'%'</when>
+				<when test="kind == 'ID'">P.ID = #{search}</when>
+				<otherwise>'a' = 'a'</otherwise>
+			</choose>
+		</sql>
+		<sql id="orderby">
+			<choose>
+				<when test="orderby == 'old'">ORDER BY  P.P_REGDATE ASC</when>
+				<when test="orderby == 'new'">ORDER BY  P.P_REGDATE DESC</when>
+				<otherwise>ORDER BY P.P_REGDATE DESC</otherwise>
+			</choose> 
+		</sql>
+    	<sql id="chkstatus">
+			<choose>
+				<when test="chkstatus == 'old'">ORDER BY  P.P_REGDATE ASC</when>
+				<when test="orderby == 'new'">ORDER BY  P.P_REGDATE DESC</when>
+				<otherwise>ORDER BY P.P_REGDATE DESC</otherwise>
+			</choose> 
+		</sql>
     	<select id="getPayAdminList" parameterType="AdminPager" resultMap="adminListResult">
-    		select P.*, O.O_NUM, O.L_NUM, O.O_AMOUNT, L.ID TEACHER, L.LEVEL_NUM, L.L_NAME, L.L_PRICE, R.PR_NUM
-			FROM payments P
-			left join ORDERS O
-			on P.p_uid = O.P_UID
-			left join Lecture L
-			on O.l_num = L.l_num
-			left join refund R
-			on O.O_num = R.O_num    	
+    		select *
+    		from (select rownum as rown, ADMINP.*
+    			from(select P.*, O.O_NUM, O.L_NUM, O.O_AMOUNT, L.ID TEACHER, L.LEVEL_NUM, L.L_NAME, L.L_PRICE, R.PR_NUM
+					FROM payments P
+					left join ORDERS O
+					on P.p_uid = O.P_UID
+					left join Lecture L
+					on O.l_num = L.l_num
+					left join refund R
+					on O.O_num = R.O_num   
+					where P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+					and <include refid="search"></include> 
+					<include refid="orderby"></include>) ADMINP)
+			where rown between #{startRow} and #{lastRow}
     	</select>
     	<resultMap type="PaymentDTO" id="adminListResult">
     		<id column="p_uid" property="p_uid"/>

@@ -63,7 +63,8 @@ function initcs(){
     //오늘날짜로 초기화
     let startDate = document.getElementById("startDate");
     let endDate = document.getElementById("endDate");
-    let today = new Date().toISOString().substring(0,10);
+    let offset = new Date().getTimezoneOffset() * 60000;
+    let today = new Date(Date.now() - offset).toISOString().substring(0,10);
     let orderby = document.querySelectorAll('input[name="orderby"]')
     let orderbyVal = document.querySelector('input[name="orderby"]:checked').value;
     let page = 1;
