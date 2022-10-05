@@ -52,6 +52,7 @@ public class StatusController {
     		lectureAddDTO.setId(mem.getId());
     		List<LectureDTO> ar = statusService.getSignList(lectureAddDTO);
     		List<LectureAddDTO> end = lectureAddService.getLectureEnd(lectureAddDTO);
+    		
     		if(ar.size() == 0) {
     		    mv.setViewName("/lecture/status");
     		}else {

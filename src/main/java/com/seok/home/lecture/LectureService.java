@@ -208,5 +208,7 @@ public class LectureService {
 	public LectureDTO setTeacherCheck(LectureDTO lectureDTO) throws Exception{
 	    return lectureDAO.setTeacherCheck(lectureDTO);
 	}
-	
+	public List<LectureDTO> getTeacherLecture(LectureDTO lectureDTO) throws Exception{
+	    return lectureDAO.getTeacherLecture(lectureDTO);
+	}
 }

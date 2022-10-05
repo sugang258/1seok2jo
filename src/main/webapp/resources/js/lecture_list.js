@@ -3,6 +3,7 @@ const cart = document.querySelectorAll(".cart");
 const lecturebtn = document.querySelectorAll(".lec");
 const cate = document.querySelectorAll(".cate");
 const cate1 = document.querySelectorAll("#cate1");
+const board = document.querySelectorAll("#board");
 
 lecture.forEach(function(lecturebtn){
     lecturebtn.addEventListener("click",function(){
@@ -71,4 +72,13 @@ cart.forEach(function(cartbtn) {
 
      })
 });
+
+board.forEach(function(board){
+    board.addEventListener("click",function(event){
+        event.stopPropagation();
+        let l_num = board.getAttributeNode("data-ll-num").value;
+        console.log(l_num);
+        window.location.href="../board/list?l_num="+l_num;
+    })
+})
 

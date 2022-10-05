@@ -23,6 +23,8 @@ import com.seok.home.lecture.add.LectureAddDTO;
 import com.seok.home.lecture.add.LectureAddService;
 import com.seok.home.lecture.status.StatusDTO;
 import com.seok.home.lecture.status.StatusService;
+import com.seok.home.lecture.teacher.TeacherDTO;
+import com.seok.home.lecture.teacher.TeacherService;
 import com.seok.home.member.MemberDTO;
 import com.seok.home.util.Pager;
 import com.seok.home.vm.TestFileDTO;
@@ -41,6 +43,8 @@ public class LectureController {
 	private LectureAddService lectureAddService;
 	@Autowired
 	private StatusService statusService;
+	@Autowired
+	private TeacherService teacherService;
 	
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
@@ -373,8 +377,58 @@ public class LectureController {
 	    return result;
 	}
 	
+	@GetMapping("teacher")
+	public ModelAndView getTeacherLecture(LectureDTO lectureDTO, HttpServletRequest request) throws Exception{
+	    System.out.println("teacherLecture");
+	    ModelAndView mv = new ModelAndView();
+        MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+        lectureDTO.setId(mem.getId());
+        
+        List<LectureDTO> ar = lectureService.getTeacherLecture(lectureDTO);
+        
+        mv.addObject("lecture", ar);
+	    mv.setViewName("/lecture/teacher");
+	    return mv;
+	}
 	
+	@SuppressWarnings({ "null", "unused" })
+    @PostMapping("setTeacherLecture")
+	@ResponseBody
+	public int getTeacherLecture(TeacherDTO teacherDTO,HttpServletRequest request) throws Exception{
+	    System.out.println("teacherLecturePOST");
+
+	    int result = 0;
+	    MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+	    //로그인 안했을경우
+	    if(mem != null) {
+	    
+	        teacherDTO.setId(mem.getId());
+	        teacherDTO = teacherService.getTeacherCheck(teacherDTO);
+	        System.out.println(teacherDTO);
+	        
+	        if(teacherDTO != null) {
+	            result = 1;
+	        }
+	    }else {
+	        result = 0;
+	    }
+	    
+	    
+	    return result;
+	}
 	
-	
+	@PostMapping("setLoginCheck")
+	@ResponseBody
+	public int setLoginCheck(HttpServletRequest request) throws Exception{
+	    MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+	    int result = 0;
+	    if(mem == null) {
+	        result = 0;
+	    }else {
+	        result = 1;
+	    }
+
+	    return result;
+	}
 	
 }
