@@ -94,7 +94,11 @@
 			  <div class="mb-3">
 				<div class="form-group">
 					<label for="ipGender" class="form-label mt-4">성별</label>
-					<select class="form-select" id="exampleSelect1"></select>
+					<select class="form-select" id="exampleSelect1">
+						<option value="">남자</option>
+						<option value="">여자</option>
+						<option value="">선택안함</option>
+					</select>
 				</div>
 			    <input type="text" name="gender" class="form-control" id="ipGender" placeholder="성별을 입력해주세요">
 					<div id="ipGenderResult"></div>
