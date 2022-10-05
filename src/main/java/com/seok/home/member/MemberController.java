@@ -12,15 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.seok.home.cart.CartDTO;
 import com.seok.home.cart.CartService;
 import com.seok.home.lecture.LectureDTO;
-import com.seok.home.lecture.LectureService;
 import com.seok.home.lecture.teacher.TeacherDTO;
-import com.seok.home.util.Pager;
 
 @Controller
 @RequestMapping("/member/*")
@@ -79,6 +76,14 @@ public class MemberController {
 		session.invalidate();
 		
 		return "redirect:../";
+	}
+	
+	//아이디중복 확인 로직 처리 (POST)
+	@ResponseBody
+	@PostMapping("/idcheck")
+	public int getIdCheck(MemberDTO memberDTO)throws Exception{
+		int result = memberService.getIdCheck(memberDTO);
+		return result;
 	}
 	
 	//회원가입 화면(GET)

@@ -6,21 +6,15 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.seok.home.cart.CartDAO;
 import com.seok.home.cart.CartDTO;
-import com.seok.home.lecture.LectureFileDTO;
 import com.seok.home.lecture.teacher.TeacherDAO;
 import com.seok.home.lecture.teacher.TeacherDTO;
-import com.seok.home.util.FileManager;
 
 @Service
 public class MemberService {
 
-	//파일매니저
-	@Autowired
-	private FileManager fileManager;
 	//회원
 	@Autowired
 	private MemberDAO memberDAO;
@@ -36,6 +30,11 @@ public class MemberService {
 	//회원로그인
 	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
 		return memberDAO.getLogin(memberDTO);
+	}
+	
+	//아이디중복 확인
+	public int getIdCheck(MemberDTO memberDTO)throws Exception{
+		return memberDAO.getIdCheck(memberDTO);
 	}
 	
 	//회원가입
