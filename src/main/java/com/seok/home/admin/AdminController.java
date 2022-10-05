@@ -42,7 +42,6 @@ public class AdminController {
 	@PostMapping(value = "memberList")
 	@ResponseBody
 	private ModelAndView getMember(AdminPager pager, ModelAndView mv) throws Exception{
-		System.out.println(pager.getChkstatus());
 		
 		mv.addObject("memberList", service.getMember(pager));
 		mv.setViewName("admin/memberListPost");

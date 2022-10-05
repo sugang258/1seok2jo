@@ -31,11 +31,10 @@ function initmembers(){
 //memberList요청하기
 function memberList(page){
     let postResult = document.getElementById("postResult");
-    let chkstatus = getCheckboxValue("status")
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST","./memberList");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-    xhttp.send("page="+page+"&chkstatus="+chkstatus+"&kind="+kind.value+"&search="+search.value)
+    xhttp.send("page="+page+"&kind="+kind.value+"&search="+search.value)
     xhttp.addEventListener("readystatechange", function(){
         if(this.readyState==4 && this.status==200){
             postResult.innerHTML = xhttp.responseText;

@@ -45,15 +45,6 @@
                                         <input type="text" name="search" id="search" class="form-control" ></input>
                                         </div>
                                     </div>
-                                    <div class="col-7">
-                                        <span class="text-muted">회원 등급</span>
-                                        <input type="checkbox" id="normal" name="status" value="3" checked>
-                                        <label id="plb" for="normal" style="font-weight:bold; color:black">회원</label>
-                                        <input type="checkbox" id="teachr" name="status" value="2" checked>
-                                        <label id="clb" for="teachr" style="font-weight:bold; color:black">강사</label>
-                                        <input type="checkbox" id="admn" name="status" value="1" checked>
-                                        <label id="clb" for="admn" style="font-weight:bold; color:black">관리자</label>
-                                    </div>
                                 </div>
                                 <div class="row mt-2">
                                     <button type="button" class="btn btn-outline-success mx-auto" id="btnSearch" style="width: 100px;">검색</button>
