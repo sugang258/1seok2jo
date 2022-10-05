@@ -5,10 +5,16 @@ import java.util.List;
 import com.seok.home.member.RoleDTO;
 
 public class TeacherDTO {
+	
+	//강사신청번호
 	private Long t_num;
+	//아이디
 	private String id;
+	//은행계좌번호
 	private String bank_num;
+	//은행이름
 	private String bank_name;
+	//소개글
 	private String introduce;
 	//등급을 여러개
 	private List<RoleDTO> roleDTOs;

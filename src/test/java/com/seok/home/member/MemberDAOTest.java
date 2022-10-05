@@ -81,4 +81,14 @@ public class MemberDAOTest extends MyAbstractTest {
 		assertNotEquals(0, result);
 	}
 	
+	//@Test
+	public void getIdCheckTest()throws Exception{
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setId("koo");
+		
+		int result = memberDAO.getIdCheck(memberDTO);
+		
+		assertEquals(1, result);
+	}
+	
 }
