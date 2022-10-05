@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.seok.home.admin.AdminPager;
 import com.seok.home.lecture.LectureDTO;
 import com.seok.home.member.MemberDTO;
 
@@ -15,7 +16,10 @@ public class PayDAO {
 	@Autowired
 	private SqlSession session;
 	private final String NAMESPACE = "com.seok.home.pay.PayDAO.";
-
+	
+	public List<PaymentDTO> getPayAdminList(AdminPager pager) throws Exception{
+		return session.selectList(NAMESPACE+"getPayAdminList", pager);
+	}
 	
 	public int updatePaymentRemains(PaymentDTO paymentDTO) throws Exception{
 		return session.update(NAMESPACE+"updatePaymentRemains", paymentDTO);
@@ -43,10 +47,6 @@ public class PayDAO {
 	
 	public List<PaymentDTO> getPaymentList(PaymentDTO dto) throws Exception{
 		return session.selectList(NAMESPACE+"getPaymentList", dto);
-	}
-	
-	public LectureDTO getSimpleLecture(LectureDTO lectureDTO) throws Exception{
-		return session.selectOne(NAMESPACE+"getSimpleLecture", lectureDTO);
 	}
 	
 	public OrderDTO getOrder(OrderDTO orderDTO) throws Exception{

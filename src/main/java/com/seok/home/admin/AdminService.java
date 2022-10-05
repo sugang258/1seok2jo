@@ -10,6 +10,8 @@ import com.seok.home.cs_board.CsDAO;
 import com.seok.home.member.MemberDAO;
 import com.seok.home.member.MemberDTO;
 import com.seok.home.member.RoleDTO;
+import com.seok.home.pay.PayDAO;
+import com.seok.home.pay.PaymentDTO;
 
 @Service
 public class AdminService {
@@ -20,6 +22,30 @@ public class AdminService {
 	private MemberDAO memberDAO;
 	@Autowired
 	private CsDAO csDAO;
+	@Autowired
+	private PayDAO payDAO;
+	
+	public List<PaymentDTO> getPaymentsList(AdminPager adminPager) throws Exception{
+		List<PaymentDTO> paylist = payDAO.getPayAdminList(adminPager);
+		return paylist;
+	}
+	
+	public String setCsAnswer(CsBoardDTO csBoardDTO) throws Exception{
+		int result = csDAO.setAnswerDefault(csBoardDTO);
+		
+		String message = "";
+		if(result==1) {
+			message = "답변이 완료되었습니다";
+		}else {
+			message = "답변 등록에 실패하였습니다";
+		}
+		return message;
+	}
+	
+	public CsBoardDTO getCsAnswer(CsBoardDTO csBoardDTO) throws Exception{
+		csBoardDTO = csDAO.getBoardDetail(csBoardDTO);
+		return csBoardDTO;
+	}
 	
 	public List<CsBoardDTO> getCsList(AdminPager pager)throws Exception{
 		pager.calNum(csDAO.getTotalCount(pager));

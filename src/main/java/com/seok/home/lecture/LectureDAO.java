@@ -17,6 +17,11 @@ public class LectureDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.seok.home.lecture.LectureDAO.";
 	
+	//결제에서 가져오는 간단한 lecture정보
+	public LectureDTO getSimpleLecture(LectureDTO lectureDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getSimpleLecture", lectureDTO);
+	}
+	
 	public int setLecture(LectureDTO lectureDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setLecture", lectureDTO);
 	}

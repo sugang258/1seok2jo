@@ -4,24 +4,30 @@
 <table class="table table-striped table-hover">
     <thead>
         <tr>
-            <th>등록일자</th>
-            <th>제목</th>
-            <th>아이디</th>
-            <th>연락처</th>
-            <th>이메일</th>
-            <th>답변여부</th>
+            <th>주문번호</th>
+            <th>강의명</th>
+            <th>구매자아이디</th>
+            <th>강의금액</th>
+            <th>강사명</th>
+            <th>환불여부</th>
+            <th>결제번호</th>
+            <th>실 결제금액</th>
         </tr>
     </thead>
     <tbody>
-        <c:forEach items="${csList}" var="cs">
-            <tr data-csnum="${cs.cs_num}">
-                <td>${cs.regdate}</td>
-                <td>${cs.cs_title}</td>
-                <td>${cs.id}</td>
-                <td>${cs.cs_phone}</td>
-                <td>${cs.cs_email}</td>
-                <td>${cs.cs_status}</td>
+        <c:forEach items="${payList}" var="pay">
+            <c:forEach items="${pay.orders}" var="order">
+            <tr data-csnum="${pay.p_uid}">
+                <td>${order.o_num}</td>
+                <td>${order.lectureDTO.l_name}</td>
+                <td>${pay.id}</td>
+                <td>${order.o_amount}</td>
+                <td>${order.lectureDTO.id}</td>
+                <td>${order.pr_num==""? '결제완료':'환불완료'}</td>
+                <td>${pay.p_uid}</td>
+                <td>${pay.p_realamount}</td>
             </tr>
+            </c:forEach>
         </c:forEach>
     </tbody>
 </table>

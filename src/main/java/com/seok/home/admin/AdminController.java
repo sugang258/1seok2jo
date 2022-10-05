@@ -1,5 +1,6 @@
 package com.seok.home.admin;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.seok.home.cs_board.CsBoardDTO;
 import com.seok.home.member.MemberDTO;
+import com.seok.home.pay.PaymentDTO;
+import com.seok.home.util.paymentSeacher;
 
 @Controller
 @RequestMapping(value = "/admin/*")
@@ -43,6 +46,20 @@ public class AdminController {
 		return "admin/paymentList";
 	}
 	
+	@PostMapping(value = "paymentList")
+	@ResponseBody
+	private ModelAndView getPayments(AdminPager pager, ModelAndView mv) throws Exception{
+		
+		System.out.println(pager.getChkstatus());
+		
+		List<PaymentDTO> payList = service.getPaymentsList(pager);
+		
+		mv.addObject("payList", payList);
+		mv.addObject("pager", pager);
+		mv.setViewName("admin/paymentListPost");
+		return mv;
+	}
+	
 	@GetMapping(value = "csboardList")
 	private String getCsList() {
 		
@@ -58,7 +75,31 @@ public class AdminController {
 		mv.addObject("csList", csList);
 		mv.addObject("pager", pager);
 		mv.setViewName("admin/csboardListPost");
+
+		return mv;
+	}
+	
+	@GetMapping("csAnswer")
+	private ModelAndView getCsAnswer(CsBoardDTO csBoardDTO, ModelAndView mv) throws Exception{
 		
+		csBoardDTO = service.getCsAnswer(csBoardDTO);
+		mv.addObject("csboard", csBoardDTO);
+		mv.setViewName("admin/csAnswer");
+		
+		return mv;
+	}
+	
+	@PostMapping("csAnswer")
+	private ModelAndView setCsAnswer(CsBoardDTO csBoardDTO, HttpSession session, ModelAndView mv) throws Exception{
+		MemberDTO member = (MemberDTO)session.getAttribute("member");
+		
+		csBoardDTO.setCs_admin(member.getId());
+		
+		String message = service.setCsAnswer(csBoardDTO);
+		mv.addObject("message", message);
+		mv.addObject("url", "/admin/csboardList");
+		mv.setViewName("common/result");
+
 		return mv;
 	}
 	

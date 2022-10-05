@@ -4,12 +4,12 @@
 <table class="table table-striped table-hover">
     <thead>
         <tr>
-            <th>등록일자</th>
-            <th>제목</th>
+            <th><input type="checkbox" id="all"></th>
             <th>아이디</th>
+            <th>이름</th>
             <th>연락처</th>
             <th>이메일</th>
-            <th>답변여부</th>
+            <th>등급</th>
         </tr>
     </thead>
     <tbody>

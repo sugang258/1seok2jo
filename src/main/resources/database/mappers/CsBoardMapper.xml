@@ -19,9 +19,14 @@
 					WHERE id=#{id}
 					ORDER BY REGDATE DESC
 		    	</select>
+		    	
+		    	<select id="getBoardDetail" parameterType="CsBoardDTO" resultType="CsBoardDTO">
+		    		SELECT *
+					FROM CS_BOARD
+					WHERE cs_num = #{cs_num}
+		    	</select>
 		    			
 	    		<sql id="search">
-					<!-- 마이바티스의 동적 sql 사용하기 -->
 					<choose>
 						<when test="kind == 'CS_STATUS'">CS_STATUS</when>
 						<when test="kind == 'CS_TITLE'">CS_TITLE</when>
@@ -32,9 +37,16 @@
 					</choose>
 					LIKE '%'||#{search}||'%' 
 				</sql>
+				<sql id="orderby">
+					<choose>
+						<when test="orderby == 'old'">ORDER BY REGDATE ASC</when>
+						<when test="orderby == 'new'">ORDER BY REGDATE DESC</when>
+						<otherwise>ORDER BY REGDATE ASC</otherwise>
+					</choose> 
+				</sql>
 				    	
 		    	<update id="setAnswerDefault" parameterType="CsBoardDTO">
-		    		update cs_board set cs_status='답변완료', cs_answer='#{cs_answer}',cs_admin='#{cs_admin}',re_regdate=sysdate
+		    		update cs_board set cs_status='답변완료', cs_answer=#{cs_answer},cs_admin=#{cs_admin},re_regdate=sysdate
 					where cs_num=#{cs_num}
 		    	</update>
 		    	
@@ -50,13 +62,17 @@
 		    			from (select * from cs_board
 							where regdate between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
 							and <include refid="search"></include> 
-							ORDER BY REGDATE ASC) cs)
+							<include refid="orderby"></include>) cs)
 					where rown between #{startRow} and #{lastRow}
 		    	</select>
 		    		
 		    	<delete id="setBoardDelete" parameterType="CsBoardDTO">
 		    		DELETE FROM CS_BOARD WHERE CS_NUM= #{cs_num}
 		    	</delete>
-
+		    	
+				<update id="setBoardUpdate" parameterType="CsBoardDTO">
+		    		update cs_board set cs_title=#{cs_title}, cs_contents=#{cs_contents}
+					where cs_num=#{cs_num}
+		    	</update>
 
 		    </mapper>
