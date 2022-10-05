@@ -12,15 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.seok.home.cart.CartDTO;
 import com.seok.home.cart.CartService;
 import com.seok.home.lecture.LectureDTO;
-import com.seok.home.lecture.LectureService;
 import com.seok.home.lecture.teacher.TeacherDTO;
-import com.seok.home.util.Pager;
 
 @Controller
 @RequestMapping("/member/*")
@@ -81,6 +78,14 @@ public class MemberController {
 		return "redirect:../";
 	}
 	
+	//아이디중복 확인 로직 처리 (POST)
+	@ResponseBody
+	@PostMapping("/idcheck")
+	public int getIdCheck(MemberDTO memberDTO)throws Exception{
+		int result = memberService.getIdCheck(memberDTO);
+		return result;
+	}
+	
 	//회원가입 화면(GET)
 	@GetMapping("join")
 	public String setJoin()throws Exception{
@@ -110,8 +115,18 @@ public class MemberController {
 	
 	//강사신청 화면(GET)
 	@GetMapping("teacherAdd")
-	public void setTeacherAdd()throws Exception{
+	public ModelAndView setTeacherAdd()throws Exception{
 		System.out.println("강사신청 접속(GET)");
+		ModelAndView mv = new ModelAndView();
+		TeacherDTO teacherDTO = new TeacherDTO();
+		
+		//강사정보 조회(강사DTO에 담음)
+		teacherDTO = memberService.getTeacherDetail(teacherDTO);
+		
+		mv.addObject("teacher", teacherDTO);
+		mv.setViewName("member/teacherAdd");
+		
+		return mv;
 	}
 	
 	//강사신청 로직 처리(POST)
@@ -133,8 +148,31 @@ public class MemberController {
 	}
 	
 	//회원탈퇴 화면(GET)
+	@GetMapping("deleteMember")
+	public String setDeleteMember()throws Exception{
+		System.out.println("회원탈퇴 접속(GET)");
+		return "member/deleteMember";
+	}
 	
 	//회원탈퇴 로직 처리(POST)
+	@PostMapping("deleteMember")
+	public String setDeleteMember(MemberDTO memberDTO, HttpSession session)throws Exception{
+		System.out.println("회원탈퇴 접속(POST)");
+		
+		//DB에 있는 회원정보(등급까지)를 삭제
+		int result = memberService.setDeleteMember(memberDTO);
+		
+		//회원탈퇴 성공 실패 확인
+		if(result!=0) {
+			System.out.println("회원탈퇴 성공!!");
+			//세션삭제
+			session.invalidate();
+		}else {
+			System.out.println("회원탈퇴 실패..");
+		}
+		
+		return "member/deleteMember";
+	}
 	
 	/************************ 마이페이지 **************************/
 	

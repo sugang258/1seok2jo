@@ -18,6 +18,11 @@ public class MemberDAO {
 		return sqlSession.selectOne(NAMESPACE+"getLogin", memberDTO);
 	}
 	
+	//아이디중복 확인
+	public int getIdCheck(MemberDTO memberDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getIdCheck", memberDTO);
+	}
+	
 	//회원가입
 	public int setJoin(MemberDTO memberDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"setJoin", memberDTO);
