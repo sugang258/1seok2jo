@@ -39,6 +39,16 @@ public class AdminController {
 	private String getMember() {
 		return "admin/memberList";
 	}
+	@PostMapping(value = "memberList")
+	@ResponseBody
+	private ModelAndView getMember(AdminPager pager, ModelAndView mv) throws Exception{
+		System.out.println(pager.getChkstatus());
+		
+		mv.addObject("memberList", service.getMember(pager));
+		mv.setViewName("admin/memberListPost");
+		
+		return mv;
+	}
 	
 	@GetMapping(value = "paymentList")
 	private String getPayments() {
@@ -48,8 +58,6 @@ public class AdminController {
 	@PostMapping(value = "paymentList")
 	@ResponseBody
 	private ModelAndView getPayments(AdminPager pager, ModelAndView mv) throws Exception{
-		
-		System.out.println(pager.getChkstatus());
 		
 		List<PaymentDTO> payList = service.getPaymentsList(pager);
 		
@@ -140,11 +148,6 @@ public class AdminController {
 		return mv;
 	}
 	
-	@PostMapping(value = "memberList")
-	private String getMember(AdminPager pager) {
-		
-		
-		return "admin/memberList";
-	}
+
 
 }

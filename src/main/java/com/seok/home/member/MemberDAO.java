@@ -1,8 +1,12 @@
 package com.seok.home.member;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.seok.home.admin.AdminPager;
 
 @Repository
 public class MemberDAO {
@@ -12,6 +16,11 @@ public class MemberDAO {
 	private final String NAMESPACE="com.seok.home.member.MemberDAO.";
 	
 	/************************ 회원 **************************/
+	
+	//관리자 페이지 회원목록 출력
+	public List<MemberDTO> getAdminMemberList(AdminPager adminPager) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getAdminMemberList", adminPager);
+	}
 	
 	//회원로그인
 	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{

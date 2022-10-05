@@ -1,6 +1,9 @@
 package com.seok.home.member;
 
 import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
+import java.util.List;
 
 import javax.swing.plaf.metal.MetalMenuBarUI;
 
@@ -8,11 +11,26 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.seok.home.MyAbstractTest;
+import com.seok.home.admin.AdminPager;
 
 public class MemberDAOTest extends MyAbstractTest {
 
 	@Autowired
 	private MemberDAO memberDAO;
+	
+//	@Test
+	public void getAdminMemberListTest() throws Exception{
+		AdminPager pager = new AdminPager();
+		List<MemberDTO> memlist = memberDAO.getAdminMemberList(pager);
+		
+		for(MemberDTO mem:memlist) {
+			System.out.println(mem.getId());
+			for(RoleDTO r:mem.getRoleDTOs()) {
+				System.out.println(r.getRoleName());
+			}
+		}
+		assertNotNull(memlist);
+	}
 	
 	//@Test
 	public void setJoinTest()throws Exception{

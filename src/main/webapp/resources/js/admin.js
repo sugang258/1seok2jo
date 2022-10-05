@@ -1,3 +1,50 @@
+//회원관리 페이지
+function initmembers(){
+    let page = 1;
+    memberList(page)
+
+    //search버튼 클릭하면 리스트 요청
+    let btnSearch = document.getElementById("btnSearch");
+    btnSearch.addEventListener("click", function(){
+        page = 1;
+        memberList(page)
+        
+    })
+
+    //페이징 클릭하면
+    let postResult = document.getElementById("postResult");
+    postResult.addEventListener("click", function(event){
+        let cs_num = event.target.parentNode.getAttribute("data-csnum");
+        if(event.target.getAttribute("class")=="page-link"){
+            page = event.target.getAttribute("data-page")
+            memberList(page)
+        }else{
+        }
+
+    })
+
+    //회원삭제버튼 클릭하면
+
+    //강사권한삭제버튼 클릭하면
+
+}
+//memberList요청하기
+function memberList(page){
+    let postResult = document.getElementById("postResult");
+    let chkstatus = getCheckboxValue("status")
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST","./memberList");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    xhttp.send("page="+page+"&chkstatus="+chkstatus+"&kind="+kind.value+"&search="+search.value)
+    xhttp.addEventListener("readystatechange", function(){
+        if(this.readyState==4 && this.status==200){
+            postResult.innerHTML = xhttp.responseText;
+        }
+    })
+
+}
+
+//매출관리 페이지
 function initpay(){
     let startDate = document.getElementById("startDate");
     let endDate = document.getElementById("endDate");

@@ -7,20 +7,32 @@
             <th><input type="checkbox" id="all"></th>
             <th>아이디</th>
             <th>이름</th>
+            <th>닉네임</th>
+            <th>생년월일</th>
             <th>연락처</th>
             <th>이메일</th>
-            <th>등급</th>
+            <th>회원</th>
+            <th>강사</th>
+            <th>관리자</th>
         </tr>
     </thead>
     <tbody>
-        <c:forEach items="${csList}" var="cs">
-            <tr data-csnum="${cs.cs_num}">
-                <td>${cs.regdate}</td>
-                <td>${cs.cs_title}</td>
-                <td>${cs.id}</td>
-                <td>${cs.cs_phone}</td>
-                <td>${cs.cs_email}</td>
-                <td>${cs.cs_status}</td>
+        <c:forEach items="${memberList}" var="mem">
+            <tr data-id="${mem.id}">
+                <td><input type="checkbox" class="chk"></td>
+                <td>${mem.id}</td>
+                <td>${mem.name}</td>
+                <td>${mem.n_name}</td>
+                <td>${mem.b_date}</td>
+                <td>${mem.phone}</td>
+                <td>${mem.email}</td>
+                <td>${mem.roleDTOs[0].roleName}</td>
+                <c:if test="${null eq mem.roleDTOs[1].roleName}"><td></td><td></td></c:if>
+                <c:if test="${mem.roleDTOs[1].roleName eq '관리자'}"><td></td><td>관리자</td></c:if>
+                <c:if test="${mem.roleDTOs[1].roleName eq '강사'}"><td>강사</td>
+                    <c:if test="${mem.roleDTOs[2].roleName eq '관리자'}"><td>관리자</td></c:if>
+                    <c:if test="${mem.roleDTOs[2].roleName eq null}"><td></td></c:if>
+                </c:if>
             </tr>
         </c:forEach>
     </tbody>
