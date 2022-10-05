@@ -16,10 +16,14 @@
     color: #66ba39;
     font-weight: bold;
     border: none;
+    font-size: large;
 }
 
-#video,#btn{
+#video{
     margin-left: 500px;
+}
+#btn{
+    margin-left: 530px;
 }
 .num{
     margin-bottom: 30px;

@@ -373,8 +373,18 @@ public class LectureController {
 	    return result;
 	}
 	
-	
-	
-	
+	@GetMapping("teacher")
+	public ModelAndView getTeacherLecture(LectureDTO lectureDTO, HttpServletRequest request) throws Exception{
+	    System.out.println("teacherLecture");
+	    ModelAndView mv = new ModelAndView();
+        MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+        lectureDTO.setId(mem.getId());
+        
+        List<LectureDTO> ar = lectureService.getTeacherLecture(lectureDTO);
+        
+        mv.addObject("lecture", ar);
+	    mv.setViewName("/lecture/teacher");
+	    return mv;
+	}
 	
 }

@@ -49,11 +49,21 @@
             <li class="nav-item">
               <a class="nav-link" href="/lecture/list">강의</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">로드맵</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">강사</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/member/teacherAdd">강사 신청</a></li>
+                <li><a class="dropdown-item" href="/lecture/add">강의 추가</a></li>
+                <li><a class="dropdown-item" href="/lecture/teacher">내 강의 관리</a></li>
+                </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">멘토링</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/member/profile">프로필</a></li>
+                <li><a class="dropdown-item" href="/status/sign">내 학습</a></li>
+                <li><a class="dropdown-item" href="#">내 게시판</a></li>
+              </ul>
             </li>
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

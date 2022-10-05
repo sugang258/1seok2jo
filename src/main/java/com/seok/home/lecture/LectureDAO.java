@@ -128,6 +128,10 @@ public class LectureDAO {
 	public LectureDTO setTeacherCheck(LectureDTO lectureDTO) throws Exception{
 	    return sqlSession.selectOne(NAMESPACE+"setTeacherCheck", lectureDTO);
 	}
+	
+	public List<LectureDTO> getTeacherLecture(LectureDTO lectureDTO) throws Exception {
+	    return sqlSession.selectList(NAMESPACE+"getTeacherLecture", lectureDTO);
+	}
 
 
 	
