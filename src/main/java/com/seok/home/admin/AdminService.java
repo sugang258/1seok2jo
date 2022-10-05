@@ -26,6 +26,7 @@ public class AdminService {
 	private PayDAO payDAO;
 	
 	public List<PaymentDTO> getPaymentsList(AdminPager adminPager) throws Exception{
+		adminPager.calNum(payDAO.getPayAdminTotal(adminPager));
 		List<PaymentDTO> paylist = payDAO.getPayAdminList(adminPager);
 		return paylist;
 	}

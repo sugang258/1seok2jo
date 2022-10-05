@@ -42,7 +42,7 @@
     	
   		<sql id="search">
 			<choose>
-				<when test="kind == 'P_UID'">P.P_UID = #{search}</when>
+				<when test="kind == 'P_UID'">P.P_UID LIKE '%'||#{search}||'%'</when>
 				<when test="kind == 'TEACHER'">L.ID = #{search}</when>
 				<when test="kind == 'L_NAME'">L.L_NAME LIKE '%'||#{search}||'%'</when>
 				<when test="kind == 'ID'">P.ID = #{search}</when>
@@ -58,11 +58,25 @@
 		</sql>
     	<sql id="chkstatus">
 			<choose>
-				<when test="chkstatus == 'old'">ORDER BY  P.P_REGDATE ASC</when>
-				<when test="orderby == 'new'">ORDER BY  P.P_REGDATE DESC</when>
-				<otherwise>ORDER BY P.P_REGDATE DESC</otherwise>
+				<when test="chkstatus == 'paid,canceled'">'a' = 'a'</when>
+				<when test="chkstatus == 'canceled'">R.pr_num is not null</when>
+				<when test="chkstatus == 'paid'">R.pr_num is null</when>
+				<otherwise>'a' = 'a'</otherwise>
 			</choose> 
 		</sql>
+		<select id="getPayAdminTotal" parameterType="AdminPager" resultType="Long">
+    		select count(*)
+			FROM payments P
+			left join ORDERS O
+			on P.p_uid = O.P_UID
+			left join Lecture L
+			on O.l_num = L.l_num
+			left join refund R
+			on O.O_num = R.O_num   
+			where P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+			and <include refid="search"></include>
+			and <include refid="chkstatus"></include>
+    	</select>
     	<select id="getPayAdminList" parameterType="AdminPager" resultMap="adminListResult">
     		select *
     		from (select rownum as rown, ADMINP.*
@@ -75,7 +89,8 @@
 					left join refund R
 					on O.O_num = R.O_num   
 					where P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
-					and <include refid="search"></include> 
+					and <include refid="search"></include>
+					and <include refid="chkstatus"></include>
 					<include refid="orderby"></include>) ADMINP)
 			where rown between #{startRow} and #{lastRow}
     	</select>

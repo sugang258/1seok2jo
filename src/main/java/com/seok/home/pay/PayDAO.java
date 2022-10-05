@@ -17,6 +17,10 @@ public class PayDAO {
 	private SqlSession session;
 	private final String NAMESPACE = "com.seok.home.pay.PayDAO.";
 	
+	public Long getPayAdminTotal(AdminPager pager) throws Exception{
+		return session.selectOne(NAMESPACE+"getPayAdminTotal", pager);
+	}
+	
 	public List<PaymentDTO> getPayAdminList(AdminPager pager) throws Exception{
 		return session.selectList(NAMESPACE+"getPayAdminList", pager);
 	}
