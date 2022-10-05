@@ -64,8 +64,8 @@ public class MemberService {
 				result = teacherDAO.setTeacherRole(teacherDTO);
 			}
 		
-		teacherDTO = teacherDAO.getTeacherDetail(teacherDTO);
-		System.out.println("강사신청한거에 강사신청번호가있니? "+teacherDTO.getT_num());
+//		teacherDTO = teacherDAO.getTeacherDetail(teacherDTO);
+//		System.out.println("강사신청한거에 강사신청번호가있니? "+teacherDTO.getT_num());
 		
 		}
 		return result;
