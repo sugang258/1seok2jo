@@ -176,7 +176,7 @@ public class MemberController {
 	
 	/************************ 마이페이지 **************************/
 	
-	//프로필정보조회 화면(GET)
+	//회원프로필정보조회 화면(GET)
 	@GetMapping("profile")
 	public ModelAndView getProfile(HttpSession session)throws Exception {
 		System.out.println("프로필 정보(GET)");
@@ -198,7 +198,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	//프로필 내 정보 수정 로직 처리(POST)
+	//회원프로필 내 정보 수정 로직 처리(POST)
 	@PostMapping("profile")
 	@ResponseBody
 	public ModelAndView getProfile(MemberDTO memberDTO, HttpSession session, String f_name, String oriname)throws Exception {
@@ -243,6 +243,8 @@ public class MemberController {
 		
 		return mv;
 	}
+	
+	
 	
 	//장바구니 화면(GET)
 	@RequestMapping(value="cart", method=RequestMethod.GET)

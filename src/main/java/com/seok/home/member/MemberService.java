@@ -56,6 +56,8 @@ public class MemberService {
 	//강사신청
 	public int setTeacherAdd(TeacherDTO teacherDTO, ServletContext servletContext)throws Exception{
 		System.out.println("강사신청한거에 너의 강사신청번호가 있니? "+teacherDTO.getT_num());
+		teacherDTO = teacherDAO.getTeacherDetail(teacherDTO);
+		System.out.println("강사신청한거에 너의 강사신청번호가 있니? "+teacherDTO.getT_num());
 		int result = 0;
 		if(teacherDTO.getT_num() == null) {
 			//강사신청 성공하면 등급을 추가

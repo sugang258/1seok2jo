@@ -43,7 +43,7 @@
 						</div>
 
 						<div class="col-sm-10 mb-3">
-							<button type="button" class="btn ms-auto btn-outline-success">로그인</button>
+							<button type="submit" class="btn ms-auto btn-outline-success">로그인</button>
 						</div>
 					</div>
 				</div>

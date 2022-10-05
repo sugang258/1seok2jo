@@ -58,6 +58,18 @@
 			  </div>
 			  
 			  <div class="mb-3">
+			    <label for="ipBdate" class="form-label">생년월일</label>
+			    <input type="number" name="b_date" class="form-control" id="ipBdate" placeholder="생년월일을 입력해주세요">
+					<div id="ipBdateResult"></div>
+			  </div>
+
+			  <div class="mb-3">
+			    <label for="ipGender" class="form-label">성별</label>
+			    <input type="text" name="gender" class="form-control" id="ipGender" placeholder="성별을 입력해주세요">
+					<div id="ipGenderResult"></div>
+			  </div>
+
+			  <!-- <div class="mb-3">
 			    <label for="ipBdate" class="form-label mt-4">생년월일</label>
 				<div class="bir_yy">
 					<span class="ps_box">
@@ -102,7 +114,7 @@
 				</div>
 			    <input type="text" name="gender" class="form-control" id="ipGender" placeholder="성별을 입력해주세요">
 					<div id="ipGenderResult"></div>
-			  </div>
+			  </div> -->
 
 			  <div class="mb-3">
 			    <label for="ipEmail" class="form-label">이메일</label>

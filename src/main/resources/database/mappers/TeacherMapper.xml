@@ -10,7 +10,7 @@
 						SELECT TEACHER_SEQ.NEXTVAL FROM DUAL
 					</selectKey>
 		    		INSERT INTO TEACHER(T_NUM, ID, BANK_NUM, BANK_NAME, INTRODUCE)
-					VALUES(TEACHER_SEQ.NEXTVAL,#{id}, #{bank_num},#{bank_name},#{introduce})
+					VALUES(#{t_num},#{id}, #{bank_num},#{bank_name},#{introduce})
 		    	</insert>
 		    	
 		    	<insert id="setTeacherRole" parameterType="MemberDTO">
