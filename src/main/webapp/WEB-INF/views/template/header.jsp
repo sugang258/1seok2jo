@@ -52,9 +52,9 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">강사</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/member/teacherAdd">강사 신청</a></li>
-                <li><a class="dropdown-item" href="/lecture/add">강의 추가</a></li>
-                <li><a class="dropdown-item" href="/lecture/teacher">내 강의 관리</a></li>
+                <li><a class="dropdown-item empty" href="/member/teacherAdd">강사 신청</a></li>
+                <li><a class="dropdown-item add"  href="/lecture/add">강의 추가</a></li>
+                <li><a class="dropdown-item service" href="/lecture/teacher">내 강의 관리</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
@@ -101,6 +101,8 @@
     </nav>
   </header>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  <script src="/resources/js/header.js"></script>
+  <script>setTeacherLecture()</script>
 </body>
 
 </html>

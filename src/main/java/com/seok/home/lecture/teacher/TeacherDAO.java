@@ -43,5 +43,9 @@ public class TeacherDAO {
 		return sqlSession.selectList(NAMESPACE+"getTeacher");
 	}
 	
+	public TeacherDTO getTeacherCheck(TeacherDTO teacherDTO) throws Exception{
+	    return sqlSession.selectOne(NAMESPACE+"getTeacherCheck", teacherDTO);
+	}
+	
 	
 }
