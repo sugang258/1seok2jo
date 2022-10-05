@@ -58,13 +58,44 @@
 			  </div>
 			  
 			  <div class="mb-3">
-			    <label for="ipBdate" class="form-label">생년월일</label>
-			    <input type="number" name="b_date" class="form-control" id="ipBdate" placeholder="생년월일을 입력해주세요">
-					<div id="ipBdateResult"></div>
+			    <label for="ipBdate" class="form-label mt-4">생년월일</label>
+				<div class="bir_yy">
+					<span class="ps_box">
+						<input type="text" class="form-control" id="yy" placeholder="년(4자)" maxlength="4">
+					</span>
+				</div>
+				<div class="bir_mm">
+					<span class="ps_box focus">
+						<select class="form-select" name="" id="mm" id="exampleSelect1">
+							<option value="">월</option>
+							<option value="">1</option>
+							<option value="">2</option>
+							<option value="">3</option>
+							<option value="">4</option>
+							<option value="">5</option>
+							<option value="">6</option>
+							<option value="">7</option>
+							<option value="">8</option>
+							<option value="">9</option>
+							<option value="">10</option>
+							<option value="">11</option>
+							<option value="">12</option>
+						</select>
+					</span>
+				</div>
+				<div class="bir_dd">
+					<span class="ps_box">
+						<input type="text" class="form-control" id="dd" placeholder="일" maxlength="2">
+					</span>
+				</div>
+				<div id="ipBdateResult"></div>
 			  </div>
 
 			  <div class="mb-3">
-			    <label for="ipGender" class="form-label">성별</label>
+				<div class="form-group">
+					<label for="ipGender" class="form-label mt-4">성별</label>
+					<select class="form-select" id="exampleSelect1"></select>
+				</div>
 			    <input type="text" name="gender" class="form-control" id="ipGender" placeholder="성별을 입력해주세요">
 					<div id="ipGenderResult"></div>
 			  </div>
@@ -93,6 +124,7 @@
 		</div>
 	</section>
 <c:import url="../template/footer.jsp"></c:import>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <!-- <script src="/resources/js/member.js"></script> -->
 </body>
 </html>
