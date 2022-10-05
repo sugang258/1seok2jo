@@ -27,7 +27,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
   <c:import url="../template/header.jsp"></c:import>
   <body>
     <section class="container" style="width: 70%">
-          <!--Board-Main-Top-->
+      <!--Board-Main-Top-->
       <div class="mt-5" style="height: 190px; margin-top: 125px">
         <div style="height: 70px">
           <h3 style="line-height: 80px"><strong>🐸 자유게시판</strong></h3>
@@ -71,25 +71,37 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
 
       <!--Board_Contents-->
       <div class="board">
-      <c:forEach items="${list}" var="freeBoardDTO">
-      <div class="contents_box">
-	       <div 
-	        class="board_contents"
-	        onclick="location.href='/board/fb_detail?fb_num=${freeBoardDTO.fb_num}';"
-	       >
-          <div style="padding: 12px 0px">
-            <div class="d-flex">
-              <div class="p-2 flex-grow-1" style="font-size:13.5px; margin-left:-6.5px;">
-                <div>🏷️${freeBoardDTO.category}</div>
-              </div>
-              <div class="p-2"><i class="fa-regular fa-user"></i> ${freeBoardDTO.id}</div>
-            </div>
-            <div  style="margin-bottom: 33px; margin-top: 5px; margin-left:2px;">
-              <h5 style="padding-left:4px;"><b>${freeBoardDTO.title}</b></h5>
-            </div>
-	            
-            <div style="display: none">
-           		<div class="list_contents pt-1 mb-2" style="word-break: break-all; margin-left:2px;">
+        <c:forEach items="${list}" var="freeBoardDTO" varStatus="i">
+          <div class="contents_box">
+            <div
+              class="board_contents"
+              onclick="location.href='/board/fb_detail?fb_num=${freeBoardDTO.fb_num}';"
+            >
+              <div style="padding: 12px 0px">
+                <div class="d-flex">
+                  <div
+                    class="p-2 flex-grow-1"
+                    style="font-size: 13.5px; margin-left: -6.5px"
+                  >
+                    <div>🏷️${freeBoardDTO.category}</div>
+                  </div>
+                  <div class="p-2">
+                    <i class="fa-regular fa-user"></i> ${freeBoardDTO.id}
+                  </div>
+                </div>
+                <div
+                  style="margin-bottom: 33px; margin-top: 5px; margin-left: 2px"
+                >
+                  <h5 style="padding-left: 4px">
+                    <b>${freeBoardDTO.title}</b>
+                  </h5>
+                </div>
+
+                <div style="display: none">
+                  <div
+                    class="list_contents pt-1 mb-2"
+                    style="word-break: break-all; margin-left: 2px"
+                  >
                     <c:choose>
                       <c:when test="${fn:length(freeBoardDTO.contents) > 55}">
                         <c:out
@@ -98,54 +110,63 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                       </c:when>
                       <c:otherwise> ${freeBoardDTO.contents} </c:otherwise>
                     </c:choose>
-            	</div>
-            </div>
+                  </div>
+                </div>
 
-            <div class="d-flex">
-              <div class="d-flex p-1 w-100">
-                <div class="b1 p-1 d-flex sort"  style="font-size: 14.5px">
-                  <div>0 조회</div>
-                  <div>0 좋아요</div>
-                  <div><b>0 댓글</b></div>
+                <div class="d-flex">
+                  <div class="d-flex p-1 w-100">
+                    <div class="b1 p-1 d-flex sort" style="font-size: 14.5px">
+                      <div>${freeBoardDTO.hit} 조회</div>
+                      <div><span>${count_list[i.index]}</span> 좋아요</div>
+                    </div>
+                  </div>
+                  <div
+                    class="p-2 flex-shrink-1"
+                    style="width: 116px; font-size: 14px; text-align: right"
+                  >
+                    ${freeBoardDTO.reg_date}
+                  </div>
                 </div>
               </div>
-              <div class="p-2 flex-shrink-1" style="width: 116px; font-size: 14px; text-align: right;">${freeBoardDTO.reg_date}</div>
             </div>
           </div>
-        </div>
-       </div>
-		</c:forEach>
-    </div>
+        </c:forEach>
+      </div>
 
       <!--PageNation-->
       <div class="paging">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link text-success" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item">
-              <a class="page-link text-success" href="#">1</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link text-success" href="#">2</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link text-success" href="#">3</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link text-success" href="#">4</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link text-success" href="#">5</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link text-success" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
+            <c:if test="${pager.pre}">
+              <li class="page-item">
+                <a
+                  class="page-link text-success"
+                  href="./fb_list?page=${pager.startNum-1}"
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+            </c:if>
+            <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+              <li class="page-item">
+                <a class="page-link text-success" href="fb_list?page=${i}"
+                  >${i}</a
+                >
+              </li>
+            </c:forEach>
+
+            <c:if test="${pager.next}">
+              <li class="page-item">
+                <a
+                  class="page-link text-success"
+                  href="./fb_list?page=${pager.lastNum+1}"
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </c:if>
           </ul>
         </nav>
       </div>

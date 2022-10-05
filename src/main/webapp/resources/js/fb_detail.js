@@ -74,11 +74,11 @@ fb_delete.addEventListener("click", function () {
 });
 
 //자유게시판 댓글 불러오기
-function getFb_reply() {
+function getFb_reply(page) {
   const reply_content = document.getElementById("reply_content");
   let fb_num = update_btn.getAttribute("data-board-num");
   const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "fb_reply?fb_num=" + fb_num);
+  xhttp.open("GET", "fb_reply?fb_num=" + fb_num + "&page=" + page);
   xhttp.send();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -106,7 +106,7 @@ reply_content.addEventListener("click", function (event) {
       if (this.readyState == 4 && this.status == 200) {
         let result = xhttp.responseText;
         if (result == 1) {
-          getFb_reply();
+          getFb_reply(page);
           getReplyCount();
         } else {
           alert("작성실패");
@@ -135,7 +135,7 @@ reply_content.addEventListener("keydown", function (event) {
         if (this.readyState == 4 && this.status == 200) {
           let result = xhttp.responseText;
           if (result == 1) {
-            getFb_reply();
+            getFb_reply(page);
             getReplyCount();
           } else {
             alert("작성실패");
@@ -163,7 +163,7 @@ reply_content.addEventListener("click", function (event) {
         if (this.readyState == 4 && this.status == 200) {
           let result = xhttp.responseText;
           if (result == 1) {
-            getFb_reply();
+            getFb_reply(page);
             getReplyCount();
           } else {
             alert("삭제실패");
@@ -187,3 +187,58 @@ function getReplyCount() {
     }
   };
 }
+
+//자유게시판 추천
+function setFb_heart() {
+  const fb_heart = document.getElementById("fb_heart");
+  const fb_heart_count = document.getElementById("fb_heart_count");
+  fb_heart.addEventListener("click", function () {
+    let heart_count_value = fb_heart_count.innerHTML;
+    let id = document.getElementById("session_id");
+    id = id.value;
+    let fb_num = document.getElementById("free_board_num");
+    fb_num = fb_num.value;
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "fb_heart");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("id=" + id + "&fb_num=" + fb_num);
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        let result = xhttp.responseText.trim();
+        if (result == 1) {
+          //카운트가 1씩 증가 ++count
+          fb_heart.setAttribute("style", "color:red");
+          fb_heart_count.innerHTML = ++heart_count_value;
+        } else {
+          //카운트가 1씩 감소 --count
+          fb_heart.setAttribute("style", "color: rgb(189, 185, 185)");
+          fb_heart_count.innerHTML = --heart_count_value;
+        }
+      }
+    };
+  });
+}
+
+//자유게시판 좋아요수
+function getFb_replyCount() {
+  const fb_heart_count = document.getElementById("fb_heart_count");
+  let fb_num = document.getElementById("free_board_num");
+  fb_num = fb_num.value;
+
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "fb_heart_count?fb_num=" + fb_num);
+  xhttp.send();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      let count = xhttp.responseText.trim();
+      fb_heart_count.innerHTML = count;
+    }
+  };
+}
+let page = 1;
+reply_content.addEventListener("click", function (event) {
+  if (event.target.className == "plus") {
+    page++;
+    getFb_reply(page);
+  }
+});

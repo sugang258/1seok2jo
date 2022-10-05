@@ -70,16 +70,16 @@ section {
 }
 
 button a {
-	text-decoration: none;
-	color: white;
+  text-decoration: none;
+  color: white;
 }
 
 #writer:active {
-	transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 button a:hover {
-	color: white;
+  color: white;
 }
 
 /**Board-Contents*/
@@ -105,16 +105,16 @@ button a:hover {
     height: 190px;
   }
   .sort {
-  	margin-top: 10px;
+    margin-top: 10px;
   }
   .list_contents {
-  	margin-top: 10px;
+    margin-top: 10px;
   }
 }
 
 .b1 {
   border: none;
-  width: 12em;
+  width: 9em;
   padding: 3px 5px;
   border-radius: 25px;
   background-color: rgba(174, 241, 172, 0.473);

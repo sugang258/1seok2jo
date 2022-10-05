@@ -63,9 +63,11 @@ prefix="c" %>
               <div class="d-flex p-1 w-100 justify-content-between">
                 <div class="b1 d-flex" style="height: 32px; line-height: 28px">
                   <div class="me-2" style="font-size: 14px; color: #6c6969">
-                    0 조회
+                    ${freeBoardDTO.hit} 조회
                   </div>
-                  <div style="font-size: 14px; color: #6c6969">0 좋아요</div>
+                  <div style="font-size: 14px; color: #6c6969">
+                    <span id="fb_heart_count"></span> 좋아요
+                  </div>
                 </div>
                 <div
                   class="p-2"
@@ -76,7 +78,39 @@ prefix="c" %>
                     bottom: -12px;
                   "
                 >
-                  <div><i class="fa-solid fa-heart"></i></div>
+                  <!-- 나중에 member.id값 받아와서 작성하기 -->
+                  <input
+                    type="text"
+                    name="id"
+                    value="USER2"
+                    id="session_id"
+                    style="display: none"
+                  />
+                  <input
+                    type="text"
+                    name="fb_num"
+                    value="${freeBoardDTO.fb_num}"
+                    id="free_board_num"
+                    style="display: none"
+                  />
+                  <div>
+                    <c:choose>
+                      <c:when test="${color eq null}">
+                        <i
+                          class="fa-solid fa-heart"
+                          id="fb_heart"
+                          style="color: rgb(189, 185, 185)"
+                        ></i>
+                      </c:when>
+                      <c:otherwise>
+                        <i
+                          class="fa-solid fa-heart"
+                          id="fb_heart"
+                          style="color: red"
+                        ></i>
+                      </c:otherwise>
+                    </c:choose>
+                  </div>
                   <div style="font-size: 10px"><b>좋아요</b></div>
                 </div>
               </div>
@@ -271,7 +305,9 @@ ${freeBoardDTO.contents}</textarea
     </script>
     <script src="/resources/js/fb_detail.js"></script>
     <script>
-      getFb_reply();
+      getFb_reply(1);
+      setFb_heart();
+      getFb_replyCount();
     </script>
   </body>
 </html>

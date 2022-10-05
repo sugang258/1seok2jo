@@ -5,9 +5,19 @@
 		    
 		    <mapper namespace="com.seok.home.f_board.FreeBoardDAO">
 		    	<!-- 자유게시판 목록 -->
-		    	<select id="getF_boardList" resultType="FreeBoardDTO">
-		    		SELECT * FROM FREE_BOARD ORDER BY FB_NUM DESC
-		    	</select>	
+		    	<select id="getF_boardList" parameterType="Pager" resultType="FreeBoardDTO">
+		    		SELECT * FROM (
+		    			SELECT ROWNUM R, N.* FROM (
+		    				SELECT * FROM FREE_BOARD ORDER BY FB_NUM DESC
+		    				)N
+		    			)
+		    		WHERE R BETWEEN #{startRow} AND #{lastRow}
+		    	</select>
+		    	
+		    	<!-- 자유게시판 총 글수 -->	
+		    	<select id="getTotalCount" parameterType="Pager" resultType="Long">
+		    		SELECT COUNT(fb_num) FROM FREE_BOARD
+		    	</select>
 		    	
 		    	<!-- 자유게시판 글작성 -->
 		    	<insert id="setF_boardAdd" parameterType="FreeBoardDTO">
@@ -29,9 +39,37 @@
 		    		DELETE FREE_BOARD WHERE FB_NUM = #{fb_num}
 		    	</delete>
 		    	
+		    	<!-- 자유게시판 조회 수 -->
+		    	<update id="setFb_hit" parameterType="FreeBoardDTO">
+		    		UPDATE FREE_BOARD SET HIT = HIT+1 WHERE FB_NUM = #{fb_num}
+		    	</update>
+		    	
+		    	<!-- 자유게시판 추천조회 -->
+		    	<select id="getFb_heart" parameterType="Fb_heartDTO" resultType="Fb_heartDTO">
+		    		SELECT * FROM FB_HEART WHERE FB_NUM = #{fb_num} AND ID = #{id}
+		    	</select> 
+		    	<!-- 자유게시판 추천등록 -->
+		    	<insert id="setFb_heartAdd" parameterType="Fb_heartDTO">
+		    		INSERT INTO FB_HEART VALUES (LIKE_SEQ.NEXTVAL,#{id}, #{fb_num})
+		    	</insert> 
+		    	<!-- 자유게시판 추천취소 -->
+		    	<delete id="setFb_heartDelete" parameterType="Fb_heartDTO">
+		    		DELETE FB_HEART WHERE FB_NUM = #{fb_num} AND ID = #{id}
+		    	</delete> 
+		    	<!-- 자유게시판 추천 갯수 -->
+		    	<select id="getFb_heartCount" parameterType="Fb_heartDTO" resultType="Long">
+		    		SELECT COUNT(LIKE_NUM) FROM FB_HEART WHERE FB_NUM = #{fb_num}
+		    	</select> 
+		    	
+		    	
 		    	<!-- 자유게시판 댓글 목록 -->
-		    	<select id="getFb_replyList" parameterType="FreeBoardReplyDTO" resultType="FreeBoardReplyDTO">
-		    		SELECT * FROM FB_REPLY WHERE FB_NUM=#{fb_num} ORDER BY NUM DESC
+		    	<select id="getFb_replyList" parameterType="CommentPager" resultType="FreeBoardReplyDTO">
+		    		SELECT * FROM (
+		    			SELECT ROWNUM R, N.* FROM (
+		    				SELECT * FROM FB_REPLY WHERE FB_NUM=#{fb_num} ORDER BY NUM DESC
+		    				)N
+		    			)
+		    		WHERE R BETWEEN #{startRow} AND #{lastRow}
 		    	</select>
 		    	
 		    	<!-- 자유게시판 댓글 작성 -->

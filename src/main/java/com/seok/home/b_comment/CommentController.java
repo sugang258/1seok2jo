@@ -12,12 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.seok.home.s_board.CommentPager;
+import com.seok.home.s_board.StudyBoardDTO;
+import com.seok.home.s_board.StudyBoardService;
+
 @Controller
 @RequestMapping("/comment/*")
 public class CommentController {
 	
 	@Autowired
 	private CommentService commentService;
+	@Autowired
+	private StudyBoardService studyBoardService;
 	
 	//강사 답글 불러오기 및 댓글 불러오기 
 	//강사 답글을 가져올때 댓글DTO의 값을 리스트에 담아서 해당 리스트를 Model로 보내준다.
@@ -26,10 +32,20 @@ public class CommentController {
 	public ModelAndView getCommentDetail(CommentDTO commentDTO)throws Exception {
 		ModelAndView mv = new ModelAndView();
 		CommentDTO t_comment = commentService.getCommentDetail(commentDTO);
-		List<CommentDTO> tCommentDTOs = commentService.getT_CommentList(commentDTO);
+		CommentPager commentPager = new CommentPager();
+		commentPager.setSb_num(commentDTO.getSb_num());
+		
+		//댓글 더보기(댓글 수, 총페이지 수 보내기)
+		commentPager.getRowNum();
+		List<CommentDTO> tCommentDTOs = commentService.getT_CommentList(commentPager);
 		Long result = commentService.getComment_Count(commentDTO);
-		mv.addObject("commentDTO", t_comment);
+		
+		Long totalPage = commentPager.getTotalPage(result);	
+		mv.addObject("commentPager", commentPager);
+		mv.addObject("totalPage", totalPage);
 		mv.addObject("count", result);
+		
+		mv.addObject("commentDTO", t_comment);
 		mv.setViewName("comment/t_comment");
 		if(tCommentDTOs.size() != 0) {
 		mv.addObject("tCommentDTO", tCommentDTOs);
@@ -77,9 +93,19 @@ public class CommentController {
 	//게시글 댓글
 	@GetMapping("sb_comment")
 	@ResponseBody
-	public ModelAndView getSB_CommentList(CommentDTO commentDTO)throws Exception{
+	public ModelAndView getSB_CommentList(CommentPager commentPager)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<CommentDTO>ar = commentService.getSB_CommentList(commentDTO);
+		commentPager.getRowNum();
+		List<CommentDTO>ar = commentService.getSB_CommentList(commentPager);
+		//게시판 댓글 수
+		StudyBoardDTO studyBoardDTO = new StudyBoardDTO();
+		studyBoardDTO.setSb_num(commentPager.getSb_num());
+		Long count = studyBoardService.getCount(studyBoardDTO);
+		Long totalPage = commentPager.getTotalPage(count);
+		
+		mv.addObject("commentPager", commentPager);
+		mv.addObject("totalPage", totalPage);
+		mv.addObject("reply_count", count);
 		mv.addObject("list", ar);
 		mv.setViewName("comment/all_comment");
 		
@@ -104,11 +130,13 @@ public class CommentController {
 	//강사답글 - 댓글
 	@PostMapping("t_comment")
 	@ResponseBody
-	public ModelAndView getT_CommentList(CommentDTO commentDTO)throws Exception{
+	public ModelAndView getT_CommentList(CommentPager commentPager)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<CommentDTO> ar = commentService.getT_CommentList(commentDTO);
+		commentPager.getRowNum();
+		List<CommentDTO> ar = commentService.getT_CommentList(commentPager);
+		
 		mv.addObject("list", ar);
-		mv.setViewName("comment/all_comment");
+		mv.setViewName("comment/t_comment");
 		
 		return mv;
 	}

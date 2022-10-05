@@ -89,11 +89,7 @@ prefix="c" %>
             </h5>
           </div>
           <div style="width: 100%">
-            <img
-              style="width: 80%; object-fit: fill"
-              src="../../../../resources/upload/board/${studyBoardDTO.boardFileDTO.f_name}"
-              alt=""
-            />
+            <img style="width: 80%; object-fit: fill" src="" alt="" />
           </div>
 
           <div>
@@ -363,8 +359,8 @@ ${studyBoardDTO.contents}</textarea
     <script src="/resources/js/sb_detail.js"></script>
     <script>
       getCommentDetail();
-      getReply();
-      teacherReply();
+      getReply(1);
+      teacherReply(1);
     </script>
   </body>
 </html>

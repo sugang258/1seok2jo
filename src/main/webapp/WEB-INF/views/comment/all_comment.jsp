@@ -23,8 +23,15 @@
             
           </div>
           </c:forEach>
-
-            <div class="mb-3" style="text-align: center;"><button id="plus">더보기</button></div>
+			<c:choose>
+				<c:when test="${reply_count le 5 || totalPage eq commentPager.page}">
+				</c:when>
+				<c:otherwise>
+					<div class="mb-3" style="text-align: center;">
+		            <button id="plus" class="plus">더보기</button
+		            ></div>
+				</c:otherwise>
+            </c:choose>
             <div>
               <form action="sb_commentAdd" method="post">
                  <input id="c_id" name="id" style="display:none;" type="text" value="유저"/>
