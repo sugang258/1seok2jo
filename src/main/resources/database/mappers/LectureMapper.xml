@@ -267,4 +267,16 @@
 		    	<select id="setTeacherCheck" parameterType="LectureDTO" resultType="LectureDTO">
 		    		SELECT * FROM LECTURE WHERE L_NUM=#{l_num} AND ID=#{id}
 		    	</select>
+		    	
+		    	<select id="getTeacherLecture" parameterType="LectureDTO" resultMap="getDetailResult">
+		    		SELECT L.*,LV.LEVEL_NAME,F.F_NAME,C.C_NAME
+					FROM LECTURE L
+					JOIN "LEVEL" LV
+					ON L.LEVEL_NUM = LV.LEVEL_NUM
+                    JOIN CATEGORY C
+                    ON L.C_NUM = C.C_NUM
+                    LEFT JOIN L_FILE F
+					ON L.L_NUM = F.L_NUM
+					WHERE L.ID=#{id}
+		    	</select>
 		    </mapper>

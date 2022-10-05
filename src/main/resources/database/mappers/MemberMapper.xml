@@ -34,6 +34,10 @@
 		</collection>
 	</resultMap>
 	
+	<select id="getIdCheck" parameterType="MemberDTO" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER WHERE ID=#{id}
+	</select>
+	
 	<insert id="setMemberRole" parameterType="MemberDTO">
 		/* 회원 등급 데이터 추가 */
 		

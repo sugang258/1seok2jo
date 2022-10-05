@@ -47,7 +47,7 @@ public class TeacherTest extends MyAbstractTest {
 	public void getTeacherDetail() throws Exception {
 		TeacherDTO teacherDTO = new TeacherDTO();
 		
-		teacherDTO.setT_num(3L);
+		teacherDTO.setId("koo");
 		teacherDTO = teacherDAO.getTeacherDetail(teacherDTO);
 		
 		assertNotNull(teacherDTO);

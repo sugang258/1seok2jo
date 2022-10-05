@@ -49,11 +49,21 @@
             <li class="nav-item">
               <a class="nav-link" href="/lecture/list">강의</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">로드맵</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">강사</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item empty" href="/member/teacherAdd">강사 신청</a></li>
+                <li><a class="dropdown-item add"  href="/lecture/add">강의 추가</a></li>
+                <li><a class="dropdown-item service" href="/lecture/teacher">내 강의 관리</a></li>
+                </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">멘토링</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/member/profile">프로필</a></li>
+                <li><a class="dropdown-item" href="/status/sign">내 학습</a></li>
+                <li><a class="dropdown-item" href="#">내 게시판</a></li>
+              </ul>
             </li>
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -62,7 +72,7 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/board/sb_list">학습게시판</a></li>
             <li><a class="dropdown-item" href="/board/fb_list">자유게시판</a></li>
-          </ul>
+          </ul> 
          </li>
          <li class="nav-item dropdown">
 	         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -76,21 +86,27 @@
           </li>
         </ul>
 
-          <form style="width: 190px">
+          <form style="width: 230px">
             <button
               type="button"
               class="top_button"
               style="margin-right: 10px"
+              onclick="location.href='/member/login';"
             >
-              🔐로그인
+            🔐로그인
             </button>
-            <button type="button" class="top_button">👩‍💻회원가입</button>
+
+            <button type="button" class="top_button" style="margin-right: 10px;" onclick="location.href='/member/join';">👩‍💻회원가입</button>
+            <button type="button" class="top_button" id="cart" onclick="location.href='/member/cart'">🛒</button>
           </form>
         </div>
       </div>
     </nav>
   </header>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  <script src="/resources/js/header.js"></script>
+  <script>setTeacherLecture()</script>
+  <script>setLoginCheck()</script>
 </body>
 
 </html>

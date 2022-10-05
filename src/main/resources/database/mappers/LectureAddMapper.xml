@@ -49,6 +49,10 @@
 		    		SELECT * FROM LECTURE_SIGN WHERE L_NUM=#{l_num} AND ID=#{id}
 		    	</select>
 		    	
+		    	<select id="getLectureEnd" parameterType="LectureAddDTO" resultType="LectureAddDTO">
+		    		SELECT * FROM LECTURE_SIGN WHERE ID=#{id}
+		    	</select>
+		    	
 		    	
 		    
 		    </mapper>

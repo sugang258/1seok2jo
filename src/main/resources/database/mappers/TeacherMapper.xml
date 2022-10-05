@@ -5,13 +5,16 @@
 		    
 		    <mapper namespace="com.seok.home.lecture.teacher.TeacherDAO">
 		    	<insert id="setTeacherAdd" parameterType="TeacherDTO">
+		    		/* 강사 데이터 추가 */
+		    		<selectKey keyProperty="t_num" order="BEFORE" resultType="Long">
+						SELECT TEACHER_SEQ.NEXTVAL FROM DUAL
+					</selectKey>
 		    		INSERT INTO TEACHER(T_NUM, ID, BANK_NUM, BANK_NAME, INTRODUCE)
 					VALUES(TEACHER_SEQ.NEXTVAL,#{id}, #{bank_num},#{bank_name},#{introduce})
 		    	</insert>
 		    	
 		    	<insert id="setTeacherRole" parameterType="MemberDTO">
 					/* 강사 등급 데이터 추가 */
-					
 					INSERT INTO MEMBER_ROLE(R_NUM, ROLENUM, ID)
 					VALUES(MEMBER_ROLE_SEQ.NEXTVAL, 2, #{id})
 				</insert>
@@ -22,11 +25,16 @@
 		    	</update>
 		    	
 		    	<select id="getTeacherDetail" parameterType="TeacherDTO" resultType="TeacherDTO">
-		    		SELECT * FROM TEACHER WHERE T_NUM = #{t_num}
+		    		/* 강사 데이터 조회 */
+		    		SELECT * FROM TEACHER WHERE ID = #{id}
 		    	</select>
 		    	
 		    	<select id="getTeacher" resultType="TeacherDTO">
 		    		SELECT * FROM TEACHER
+		    	</select>
+		    	
+		    	<select id="getTeacherCheck" parameterType="TeacherDTO" resultType="TeacherDTO">
+		    		SELECT * FROM TEACHER WHERE ID = #{id}
 		    	</select>
 		    </mapper>
 		    
