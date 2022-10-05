@@ -5,6 +5,34 @@
     
     <mapper namespace="com.seok.home.pay.PayDAO">
     
+    	<select id="getteacherList" parameterType="TeacherPager" resultMap="teacherListResult">
+    	            select O.P_UID, O.O_NUM, O.O_AMOUNT, P.ID as CUS, LS.ID, L.L_NUM,L.L_NAME, L.ID AS TEACHER, LS.S_START, LS.S_END, LS.STATUS from Orders O
+                    left join Payments p
+                    on P.p_uid = O.p_uid
+                    left join Lecture L
+                    on O.L_NUM = L.L_NUM
+                    INNER join Lecture_sign LS
+                    on L.L_NUM = LS.L_NUM and P.ID = LS.ID
+                    where L.ID = 'sg';
+    	</select>
+    	<resultMap type="OrderDTO" id="teacherListResult">
+    		<id column="O_NUM" property="o_num"/>
+    		<result column="P_UID" property="p_uid"/>
+   			<result column="L_NUM" property="l_num"/>
+   			<result column="O_AMOUNT" property="o_amount"/>
+   			<association property="lectureDTO" javaType="LectureDTO">
+   				<id column="l_num" property="l_num"/>
+   				<result column="TEACHER" property="id"/>
+   				<result column="l_name" property="l_name"/>
+   				<association property="lectureAddDTO" javaType="LectureAddDTO">
+	   				<id column="s_num" property="s_num"/>
+	   				<result column="S_START" property="S_START"/>
+	   				<result column="S_END" property="S_END"/>
+	   				<result column="STATUS" property="STATUS"/>
+   				</association>
+   			</association>
+    	</resultMap>
+    
     	<select id="getPaymentRemains" parameterType="PaymentDTO" resultType="Long">
     		select p_remains from payments where p_uid=#{p_uid}
     	</select>

@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.seok.home.member.MemberDTO;
 
 @Controller
-@RequestMapping("/member/*")
+@RequestMapping("/teacher/*")
 public class TeacherController {
 
 	@Autowired
 	private TeacherService teacherService;
 	
+	@GetMapping("/salesList")
+	public String getTeacherList() throws Exception{
+		return "pay/teacherList";
+	}
 
 	
 }
