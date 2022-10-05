@@ -39,6 +39,7 @@ function setTeacherCheck(){
                 if(result == 1) {
                     
                     console.log("본인 강의 되어있음");
+                    signs.setAttribute("style","display:none;");
                     
                 }else {
                     update.setAttribute("style","display : none;");

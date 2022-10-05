@@ -9,6 +9,10 @@ public class TeacherService {
 	@Autowired
 	private TeacherDAO teacherDAO;
 	
+	public TeacherDTO getTeacherCheck(TeacherDTO teacherDTO) throws Exception{
+	    return teacherDAO.getTeacherCheck(teacherDTO);
+	}
+	
 
 	
 }

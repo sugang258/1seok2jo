@@ -32,5 +32,9 @@
 		    	<select id="getTeacher" resultType="TeacherDTO">
 		    		SELECT * FROM TEACHER
 		    	</select>
+		    	
+		    	<select id="getTeacherCheck" parameterType="TeacherDTO" resultType="TeacherDTO">
+		    		SELECT * FROM TEACHER WHERE ID = #{id}
+		    	</select>
 		    </mapper>
 		    
