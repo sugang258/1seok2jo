@@ -18,6 +18,14 @@ public class PayDAO {
 	private SqlSession session;
 	private final String NAMESPACE = "com.seok.home.pay.PayDAO.";
 	
+	public Long getOamountTotal(TeacherPager pager) throws Exception{
+		return session.selectOne(NAMESPACE+"getOamountTotal", pager);
+	}
+	
+	public Long getteacherListTotal(TeacherPager pager) throws Exception{
+		return session.selectOne(NAMESPACE+"getteacherListTotal", pager);
+	}
+	
 	public List<OrderDTO> getteacherList(TeacherPager pager) throws Exception{
 		return session.selectList(NAMESPACE+"getteacherList", pager);
 	}

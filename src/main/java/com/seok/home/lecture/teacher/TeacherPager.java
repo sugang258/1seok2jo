@@ -31,6 +31,7 @@ public class TeacherPager {
 	private String orderby;
 	
 	private String teacher;
+	private String chkstatus;
 	
 	
 	public TeacherPager() {
@@ -243,6 +244,16 @@ public class TeacherPager {
 
 	public void setTeacher(String teacher) {
 		this.teacher = teacher;
+	}
+
+
+	public String getChkstatus() {
+		return chkstatus;
+	}
+
+
+	public void setChkstatus(String chkstatus) {
+		this.chkstatus = chkstatus;
 	}
 
 

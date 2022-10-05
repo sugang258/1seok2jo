@@ -18,7 +18,7 @@ public class PayDAOTest extends MyAbstractTest{
 	@Autowired
 	PayDAO dao;
 	
-	@Test
+//	@Test
 	public void getteacherListTest() throws Exception{
 		TeacherPager pager = new TeacherPager();
 		pager.setTeacher("sg");

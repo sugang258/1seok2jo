@@ -24,9 +24,19 @@
   </div>
   <main class="container px-4">
   	<div class="row">
-  	<div class="col col-xl-10">
-      <h3 style="line-height: 80px"><strong>💰 강의 판매 현황</strong></h3>
-	</div>
+      <div class="col col-xl-10">
+        <h3 style="line-height: 80px"><strong>💰 강의 판매 현황</strong></h3>
+      </div>
+    </div>
+
+    <div class="card card-header mb-4">
+      <h6 class="">
+        <b>정산 안내</b>
+      </h6>
+      정산 지급 예정일 : 익월 15일(전월 1일 ~ 전월 말일의 판매금액)<br>
+      정산예정금액 : 전월 매출액의 85% (수수료 15%를 제외)
+    </div>
+
     <div class="card mb-4">
         <div class="card-body">
             <h6>
@@ -43,10 +53,8 @@
                 <div class="col-5">
                     <div class="input-group">
                     <select type="button" name="kind" id="kind" class="btn btn-outline-success dropdown-toggle" style="text-align: left;" data-bs-toggle="dropdown" aria-expanded="false">
-                        <option value="P_UID">결제번호</option>
-                        <option value="TEACHER">강사아이디</option>
                         <option value="L_NAME">강의명</option>
-                        <option value="ID">구매자아이디</option>
+                        <option value="ID">학생명</option>
                     </select>
                     <input type="text" name="search" id="search" class="form-control"></input>
                     </div>
@@ -55,10 +63,10 @@
             <div class="row mt-2">
                 <div class="col-12">
                     <span class="text-muted">상태</span>
-                    <input type="checkbox" id="paid" name="status" value="paid" checked>
-                    <label id="plb" for="paid" style="font-weight:bold; color:black">결제</label>
-                    <input type="checkbox" id="canceled" name="status" value="canceled" checked>
-                    <label id="clb" for="canceled" style="font-weight:bold; color:black">환불</label>
+                    <input type="checkbox" id="paid" name="status" value="ing" checked>
+                    <label id="plb" for="paid" style="font-weight:bold; color:black">수강중</label>
+                    <input type="checkbox" id="canceled" name="status" value="end" checked>
+                    <label id="clb" for="canceled" style="font-weight:bold; color:black">수강종료</label>
                 </div>
             </div>
             <div class="row mt-2">
@@ -67,18 +75,22 @@
         </div>
     </div>
     <div class="card">
-        <div class="d-flex ms-3 justify-content: flex-start;">
-            <div class="p-2 flex-grow-3"><b>VIEW</b></div>
-            <div class="p-2 flex-grow-3" style="color: gray">|</div>
-            <div class="p-2 flex-grow-3">
-                <input type="radio" id="new" name="orderby" value="new" style="display: none;" checked>
-                <label id="newlb" for="new" style="font-weight:bold; color:black">⏳ 최신 순</label>
-            </div>
-            <div class="p-2 flex-grow-3">
-                <input type="radio" id="old" name="orderby" value="old" style="display: none;" >
-                <label id="oldlb" for="old">⌛ 오래된 순</label>
-            </div>
-          </div>
+      <div class="d-flex ms-3 justify-content: flex-start;">
+        
+        <div class="p-2 flex-grow-3"><b>VIEW</b></div>
+        <div class="p-2 flex-grow-3" style="color: gray">|</div>
+        <div class="p-2 flex-grow-3">
+            <input type="radio" id="new" name="orderby" value="new" style="display: none;" checked>
+            <label id="newlb" for="new" style="font-weight:bold; color:black">⏳ 최신 순</label>
+        </div>
+        <div class="p-2 flex-grow-3">
+          <input type="radio" id="old" name="orderby" value="old" style="display: none;" >
+          <label id="oldlb" for="old">⌛ 오래된 순</label>
+        </div>
+        <div class="p-2 flex-fill text-end" style="font-weight:bold; color:black">
+          총 매출액 : <span id="totalAmount"></span>원
+        </div>
+      </div>
     </div>
     <div class="card mb-4 mt-2">
         <div class="card-header" id="postResult">
@@ -86,7 +98,8 @@
     </div>
     </div>
 </main>
-
+  <script src="/resources/js/teacherPay.js"></script>
+  <script>init()</script>
   <c:import url="../template/footer.jsp"></c:import>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
