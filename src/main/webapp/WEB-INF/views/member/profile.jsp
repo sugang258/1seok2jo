@@ -35,11 +35,13 @@
 			  
 			  <div id="addFile">
 				<!--하단 파일 추가 input과 연결된 라벨-->
-				<label for="file" name class="mt-2 file_add"><b>파일추가📂</b></button>
+				<label for="file" name class="mt-2 file_add"><b>파일추가📂</b>
 			  </div>					
 			  <!-- 파일 추가 input -->
 			  <input type="file" id="file" style="display: none;">
 			
+			  
+
 			  <div class="mb-3">
 			    <input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}">
 			  </div>
