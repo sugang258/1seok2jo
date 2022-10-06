@@ -21,7 +21,7 @@
 		    	
 		    	<update id="setTeacherUpdate" parameterType="TeacherDTO">
 		    		UPDATE TEACHER SET BANK_NUM = #{bank_num}, BANK_NAME=#{bank_name}, INTRODUCE=#{introduce}
-		    		WHERE T_NUM = #{t_num}
+		    		WHERE ID = #{id}
 		    	</update>
 		    	
 		    	<select id="getTeacherDetail" parameterType="TeacherDTO" resultType="TeacherDTO">

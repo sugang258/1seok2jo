@@ -48,17 +48,12 @@ public class MemberService {
 		
 		return result;	
 	}
-	//강사정보 조회
-	public TeacherDTO getTeacherDetail(TeacherDTO teacherDTO)throws Exception{
-		return teacherDAO.getTeacherDetail(teacherDTO);
-	}
 	
 	//강사신청
 	public int setTeacherAdd(TeacherDTO teacherDTO, ServletContext servletContext, MemberDTO memberDTO)throws Exception{
 		
 		List<RoleDTO> roleDTOs = memberDTO.getRoleDTOs();
 		TeacherDTO teacherDTO2 = memberDTO.getTeacherDTO();
-		System.out.println("강사신청서비스의 티처디티오2 : "+teacherDTO2.getT_num());
 		//2
 		System.out.println("강사신청서비스 : "+roleDTOs.get(0).getRoleNum());
 		//강사
@@ -112,6 +107,7 @@ public class MemberService {
 		
 		//memberFileDTO가 있으면
 		if(memberFileDTO != null) {
+			
 			//memberFileDTO을 삭제
 			result = memberDAO.setDeleteFile(memberFileDTO);
 		}
@@ -147,6 +143,16 @@ public class MemberService {
 //		}
 		
 		return result;
+	}
+	
+	//강사프로필정보조회
+	public TeacherDTO getTcherProfile(TeacherDTO teacherDTO)throws Exception{
+		return teacherDAO.getTeacherDetail(teacherDTO);
+	}
+	
+	//강사프로필수정
+	public int setEditTcherProfile(TeacherDTO teacherDTO)throws Exception{
+		return teacherDAO.setTeacherUpdate(teacherDTO);
 	}
 	
 	//장바구니

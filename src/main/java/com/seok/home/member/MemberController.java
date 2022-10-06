@@ -51,7 +51,6 @@ public class MemberController {
 		//DB에 아이디 패스워드 확인->(아이디, 이름, 닉네임, 성별, 이메일, 전화번호, 마일리지, 등급번호, 등급이름 조회)
 		memberDTO = memberService.getLogin(memberDTO);
 		
-		
 		//로그인 성공 실패 확인
 		if(memberDTO!=null) {
 			System.out.println("로그인 성공!!");
@@ -117,14 +116,6 @@ public class MemberController {
 	@GetMapping("teacherAdd")
 	public String setTeacherAdd()throws Exception{
 		System.out.println("강사신청 접속(GET)");
-//		ModelAndView mv = new ModelAndView();
-//		TeacherDTO teacherDTO = new TeacherDTO();
-//		
-//		//강사정보 조회(강사DTO에 담음)
-//		teacherDTO = memberService.getTeacherDetail(teacherDTO);
-//		
-//		mv.addObject("teacher", teacherDTO);
-//		mv.setViewName("member/teacherAdd");
 		
 		return "member/teacherAdd";
 	}
@@ -136,6 +127,7 @@ public class MemberController {
 		
 		//세션에 있는 한 회원정보를 memberDTO에 담음
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		System.out.println("강사신청POST : "+memberDTO);
 		
 		//DB에 새로운 강사데이터추가
 		int result = memberService.setTeacherAdd(teacherDTO, session.getServletContext(), memberDTO);
@@ -190,7 +182,7 @@ public class MemberController {
 		//memberDTO에 담음
 		memberDTO = (MemberDTO) session.getAttribute("member");
 		
-		//프로필정보조회(아이디, 이름, 닉네임, *생년월일,* 성별, 이메일, 연락처 조회)
+		//프로필정보조회(아이디, 이름, 닉네임, *생년월일*, 성별, 이메일, 연락처 조회)
 		//getProfile을 갔다온 memberDTO를 respMemberDTO(responseMemberDTO)에 담음
 		MemberDTO respMemberDTO = memberService.getProfile(memberDTO);
 		
@@ -204,7 +196,7 @@ public class MemberController {
 	//회원프로필 내 정보 수정 로직 처리(POST)
 	@PostMapping("profile")
 	@ResponseBody
-	public ModelAndView getProfile(MemberDTO memberDTO, HttpSession session, String f_name, String oriname)throws Exception {
+	public ModelAndView setProfile(MemberDTO memberDTO, HttpSession session, String f_name, String oriname)throws Exception {
 		System.out.println("프로필 정보(POST)");
 		ModelAndView mv = new ModelAndView();
 		
@@ -226,7 +218,7 @@ public class MemberController {
 			
 			//그 데이터를 "member"로 JSP에 보내줌
 			mv.addObject("member", respMemberDTO);
-			mv.setViewName("redirect:./profile");
+			mv.setViewName("redirect:../member/profile");
 		}else {
 			System.out.println("프로필 수정 실패..");
 			mv.setViewName("member/profile");
@@ -248,10 +240,50 @@ public class MemberController {
 	}
 	
 	//강사프로필 정보조회 화면(GET)
-	
+	@GetMapping("tcherProfile")
+	public ModelAndView getTcherProfile(HttpSession session)throws Exception{
+		System.out.println("강사프로필 정보(GET)");
+		ModelAndView mv = new ModelAndView();
+		TeacherDTO teacherDTO = new TeacherDTO();
+		MemberDTO memberDTO = new MemberDTO();
+		
+		//세션에서 아이디를 꺼냅니다
+		memberDTO = (MemberDTO) session.getAttribute("member");
+		//꺼낸 아이디를 teacherDTO에 담습니다
+		teacherDTO.setId(memberDTO.getId());
+		//DB에 갔다온 teacherDTO에는 신청번호, 계좌번호, 은행이름, 소개글이 있습니다.
+		teacherDTO = memberService.getTcherProfile(teacherDTO);
+
+		mv.addObject("teacher", teacherDTO);
+		mv.setViewName("member/tcherProfile");
+		
+		return mv;
+	}
 	
 	//강사프로필 정보수정 로직(POST)
-	
+	@PostMapping("tcherProfile")
+	public ModelAndView setTcherProfile(TeacherDTO teacherDTO, HttpSession session)throws Exception{
+		System.out.println("강사프로필 정보(POST)");
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = new MemberDTO();
+		
+		int result = memberService.setEditTcherProfile(teacherDTO);
+
+		if(result!=0) {
+			System.out.println("강사프로필 수정 성공!!");
+			//바뀐 강사정보를 조회(계좌번호, 은행이름, 소개글)
+			teacherDTO = memberService.getTcherProfile(teacherDTO);
+			//teacher로 JSP에 보내줌
+			mv.addObject("teacher", teacherDTO);
+			mv.setViewName("redirect:../member/tcherProfile");
+		}else {
+			System.out.println("강사프로필 수정 실패..");
+			mv.setViewName("member/tcherProfile");
+		}
+		
+		
+		return mv;
+	}
 	
 	//장바구니 화면(GET)
 	@RequestMapping(value="cart", method=RequestMethod.GET)
