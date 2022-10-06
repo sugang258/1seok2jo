@@ -32,11 +32,6 @@
 			  <div class="mb-3">
 			    <img src="http://20.249.88.100/resources/member/${member.memberFileDTO.f_name}" style=" max-width: 300px;  height: 300px;">
 			  </div>
-
-			  <!-- <div class="mb-3">
-			    <label for="ipId" class="form-label">프로필사진 변경</label>
-			    <input type="file" name="profile" class="form-control" id="file">
-			  </div> -->
 			  
 			  <div id="addFile">
 				<!--하단 파일 추가 input과 연결된 라벨-->

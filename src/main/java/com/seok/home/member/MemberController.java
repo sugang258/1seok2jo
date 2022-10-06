@@ -265,7 +265,6 @@ public class MemberController {
 	public ModelAndView setTcherProfile(TeacherDTO teacherDTO, HttpSession session)throws Exception{
 		System.out.println("강사프로필 정보(POST)");
 		ModelAndView mv = new ModelAndView();
-		MemberDTO memberDTO = new MemberDTO();
 		
 		int result = memberService.setEditTcherProfile(teacherDTO);
 
