@@ -50,11 +50,11 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 매출관리
                             </a>
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="/admin/boardsList">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 게시판관리
                             </a>
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="/admin/lectureList">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 강의관리
                             </a>

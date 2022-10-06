@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.seok.home.cs_board.CsBoardDTO;
 import com.seok.home.cs_board.CsDAO;
+import com.seok.home.lecture.LectureDAO;
+import com.seok.home.lecture.LectureDTO;
 import com.seok.home.member.MemberDAO;
 import com.seok.home.member.MemberDTO;
 import com.seok.home.member.RoleDTO;
@@ -21,9 +23,19 @@ public class AdminService {
 	@Autowired
 	private MemberDAO memberDAO;
 	@Autowired
+	private LectureDAO lectureDAO;
+	@Autowired
 	private CsDAO csDAO;
 	@Autowired
 	private PayDAO payDAO;
+	
+	public List<LectureDTO> getLectureList(AdminPager pager) throws Exception{
+		Long totalCount = lectureDAO.getCount(pager);
+		pager.calNum(totalCount);
+		
+		List<LectureDTO> dtos = lectureDAO.getLecture(pager);
+		return dtos;
+	}
 	
 	public List<MemberDTO> getMember(AdminPager adminPager) throws Exception{
 		return memberDAO.getAdminMemberList(adminPager);
@@ -86,7 +98,13 @@ public class AdminService {
 		
 		if(member==null) {
 			return "일석이조 회원 인증 실패";
-		}else {			
+		}else {
+			//이미 권한이 있는지 확인
+			for(RoleDTO role:member.getRoleDTOs()) {
+				if(role.getRoleNum()==1L) {
+					return "관리자 권한이 있는 계정입니다.";
+				}
+			}
 			//권한추가
 			int result = memberDAO.setAdminRole(member);
 			if(result==1) {

@@ -3,7 +3,9 @@ package com.seok.home.admin;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class AdminPager {
+import com.seok.home.util.Pager;
+
+public class AdminPager extends Pager{
 	
 	//멤버변수
 	//내가 정하는 변수

@@ -1,3 +1,43 @@
+//강의관리 페이지
+function initlectures(){
+    let page = 1;
+    lectureList(page)
+
+    //search버튼 클릭하면 리스트 요청
+    let btnSearch = document.getElementById("btnSearch");
+    btnSearch.addEventListener("click", function(){
+        page = 1;
+        lectureList(page)    
+    })
+
+    //페이징 클릭하면
+    let postResult = document.getElementById("postResult");
+    postResult.addEventListener("click", function(event){
+        let cs_num = event.target.parentNode.getAttribute("data-csnum");
+        if(event.target.getAttribute("class")=="page-link"){
+            page = event.target.getAttribute("data-page")
+            lectureList(page)
+        }else{
+        }
+    })
+
+    //강의 삭제 버튼 누르면
+}
+//강의리스트 요청하기
+function lectureList(page){
+    let postResult = document.getElementById("postResult");
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST","./lectureList");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    xhttp.send("page="+page+"&kind="+kind.value+"&search="+search.value)
+    xhttp.addEventListener("readystatechange", function(){
+        if(this.readyState==4 && this.status==200){
+            postResult.innerHTML = xhttp.responseText;
+        }
+    })
+
+}
+
 //회원관리 페이지
 function initmembers(){
     let page = 1;

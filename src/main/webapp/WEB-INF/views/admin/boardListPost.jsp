@@ -5,34 +5,28 @@
     <thead>
         <tr>
             <th><input type="checkbox" id="all"></th>
-            <th>아이디</th>
-            <th>이름</th>
-            <th>닉네임</th>
-            <th>생년월일</th>
-            <th>연락처</th>
-            <th>이메일</th>
-            <th>회원</th>
-            <th>강사</th>
-            <th>관리자</th>
+            <th>주문번호</th>
+            <th>결제번호</th>
+            <th>강의명</th>
+            <th>구매자아이디</th>
+            <th>강의금액</th>
+            <th>강사명</th>
+            <th>환불여부</th>
+            <th>실 결제금액</th>
         </tr>
     </thead>
     <tbody>
-        <c:forEach items="${memberList}" var="mem">
-            <tr data-id="${mem.id}">
-                <td><input type="checkbox" class="chk"></td>
-                <td>${mem.id}</td>
-                <td>${mem.name}</td>
-                <td>${mem.n_name}</td>
-                <td>${mem.b_date}</td>
-                <td>${mem.phone}</td>
-                <td>${mem.email}</td>
-                <td><a href='/member/profile?id=${mem.id}' target="_blank">${mem.roleDTOs[0].roleName}</a></td>
-                <c:if test="${null eq mem.roleDTOs[1].roleName}"><td></td><td></td></c:if>
-                <c:if test="${mem.roleDTOs[1].roleName eq '관리자'}"><td></td><td>관리자</td></c:if>
-                <c:if test="${mem.roleDTOs[1].roleName eq '강사'}"><td>강사</td>
-                    <c:if test="${mem.roleDTOs[2].roleName eq '관리자'}"><td>관리자</td></c:if>
-                    <c:if test="${mem.roleDTOs[2].roleName eq null}"><td></td></c:if>
-                </c:if>
+        <c:forEach items="${boardsList}" var="board">
+            <tr data-csnum="${pay.p_uid}">
+                <td><input type="checkbox"></td>
+                <td>${order.o_num}</td>
+                <td>${pay.p_uid}</td>
+                <td>${order.lectureDTO.l_name}</td>
+                <td>${pay.id}</td>
+                <td>${order.o_amount}</td>
+                <td>${order.lectureDTO.id}</td>
+                <td>${null eq order.pr_num? '결제완료':'환불완료'}</td>
+                <td>${pay.p_realamount}</td>
             </tr>
         </c:forEach>
     </tbody>

@@ -4,5 +4,17 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 	<mapper namespace="com.seok.home.admin.AdminDAO">
+	
+	<select id="getBoardList" parameterType="AdminPager" resultType="FreeBoardDTO">
+		select * from (select fb_num , title, contents,category, id, reg_date, '자유게시판' as bd_name from free_board
+		union all
+		select sb_num, title, contents, category, id, reg_date, '학습게시판' as bd_name from study_board
+		union all
+		select n_num, title, contents,'공지사항' as category, id, reg_date, '공지사항' as bd_name from notice) board
+		where 'a' = 'a'
+		and REG_DATE between TO_DATE('2022-09-01 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE('2022-10-06 23:59:59','YYYY-MM-DD HH24:MI:SS')
+		order by reg_date desc
+	</select>
+	
 	</mapper>
 		    	
