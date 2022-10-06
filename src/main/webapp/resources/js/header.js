@@ -1,7 +1,7 @@
 const empty = document.querySelector(".empty");
 const add = document.querySelector(".add");
 const service = document.querySelector(".service");
-const cart = document.querySelector("#cart");
+const cartt = document.querySelector("#cartt");
 
 function setTeacherLecture() {
 
@@ -51,7 +51,7 @@ function setLoginCheck() {
                 console.log("로그인 완료");
                 
             }else {
-                cart.setAttribute("style","display : none;");
+                cartt.setAttribute("style","display : none;");
                 console.log("로그인 안함");
             }
         }

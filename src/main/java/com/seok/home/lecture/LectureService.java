@@ -235,4 +235,14 @@ public class LectureService {
 	public List<LectureDTO> getTeacherLecture(LectureDTO lectureDTO) throws Exception{
 	    return lectureDAO.getTeacherLecture(lectureDTO);
 	}
+	
+	public List<LectureDTO> getLectureCate(Pager pager) throws Exception{
+	    System.out.println(pager.getPage());
+        System.out.println("seaaaa :"+pager.getSearch());
+        Long totalCount = lectureDAO.getCount(pager);
+        pager.getNum(totalCount);
+        pager.getRowNum();
+        System.out.println(totalCount);
+	    return lectureDAO.getLectureCate(pager);
+	}
 }

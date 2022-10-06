@@ -136,6 +136,10 @@ public class LectureDAO {
 	public List<LectureVideoDTO> getVideoCount(LectureVideoDTO lectureVideoDTO) throws Exception{
 	    return sqlSession.selectList(NAMESPACE+"getVideoCount", lectureVideoDTO);
 	}
+	
+	public List<LectureDTO> getLectureCate(Pager pager) throws Exception{
+	    return sqlSession.selectList(NAMESPACE+"getLectureCate", pager);
+	}
 
 
 

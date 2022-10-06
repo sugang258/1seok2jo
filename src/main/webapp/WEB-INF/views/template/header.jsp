@@ -98,7 +98,7 @@
             </button>
 
             <button type="button" class="top_button" style="margin-right: 10px;" onclick="location.href='/member/join';">👩‍💻회원가입</button>
-            <button type="button" class="top_button" id="cart" onclick="location.href='/member/cart'">🛒</button>
+            <button type="button" class="top_button" id="cartt" onclick="location.href='/member/cart'">🛒</button>
           </form>
         </div>
       </div>

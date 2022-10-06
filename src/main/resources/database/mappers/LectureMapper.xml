@@ -289,4 +289,20 @@
 				    ORDER BY V_SEQ DESC)
 				    <![CDATA[WHERE ROWNUM <= #{rowNum}]]>
 		    	</select>
+		    	
+		    	<select id="getLectureCate" parameterType="com.seok.home.util.Pager" resultMap="getDetailResult">
+		    		SELECT * FROM
+		    			(SELECT ROWNUM R, L.* FROM
+		    				(SELECT * FROM LECTURE L
+		    				JOIN L_FILE LF
+		    				ON L.L_NUM = LF.L_NUM
+							JOIN "LEVEL" LV
+							ON L.LEVEL_NUM = LV.LEVEL_NUM
+							JOIN CATEGORY C
+							ON L.C_NUM = C.C_NUM
+							WHERE
+	                  		L.C_NUM=#{c_num}
+                 	 		ORDER BY L.L_NUM DESC) L)
+                 	 		WHERE R BETWEEN #{startRow} AND #{lastRow}
+		    	</select>
 		    </mapper>

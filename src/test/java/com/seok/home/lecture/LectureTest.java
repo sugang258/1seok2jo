@@ -269,4 +269,19 @@ public class LectureTest extends MyAbstractTest {
 	    assertNotEquals(1, ar.size());
 
 	}
+	
+	//@Test
+	public void getLectureCate() throws Exception{
+	    Pager pager = new Pager();
+	    pager.setC_num(1L);
+	    pager.setSearch("Java");
+	    pager.setStartRow(1L);
+	    pager.setLastRow(10L);
+	    
+	    List<LectureDTO> ar = lectureDAO.getLectureCate(pager);
+	    
+	    assertNotEquals(1, ar.size());
+
+	    
+	}
 }
