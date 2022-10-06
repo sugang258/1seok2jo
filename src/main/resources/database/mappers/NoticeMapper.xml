@@ -21,7 +21,11 @@
 		    	
 		    	<!-- 공지사항 상세보기 -->
 		    	<select id="getNoticeDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
-		    		SELECT * FROM NOTICE WHERE N_NUM=#{n_num} ORDER BY N_NUM DESC
+		    		SELECT N.*,MF.F_NAME FROM NOTICE N
+					    LEFT JOIN
+					    MEMBER_FILE MF
+					    ON N.ID = MF.ID
+					WHERE N_NUM=#{n_num} ORDER BY N_NUM DESC
 		    	</select>
 		    	
 		    	<!-- 공지사항 댓글수 -->
@@ -46,7 +50,11 @@
 		    			    	
 		    	<!-- 공지사항 댓글 목록 -->
 		    	<select id="getReplyList" parameterType="NoticeReplyDTO" resultType="NoticeReplyDTO">
-		    		SELECT * FROM NOTICE_REPLY WHERE N_NUM = #{n_num} ORDER BY NUM DESC
+		    		SELECT NR.*, MF.F_NAME FROM NOTICE_REPLY NR
+					    LEFT JOIN
+					    MEMBER_FILE MF
+					    ON NR.ID = MF.ID
+				    WHERE NR.N_NUM = #{n_num} ORDER BY NR.NUM DESC
 		    	</select>
 		    	
 		    	<!-- 공지사항 댓글 작성 -->

@@ -143,12 +143,13 @@ prefix="c" %>
             목록보기
           </button>
         </div>
+        <c:if test="${member.id eq studyBoardDTO.id}">
         <div class="p-2">
           <button
             class="btn-st btn btn-outline-secondary"
             onclick="location.href='sb_delete?sb_num=${studyBoardDTO.getSb_num()}';"
           >
-            삭제하기(작성자)
+            삭제하기
           </button>
         </div>
         <div class="p-2">
@@ -159,9 +160,10 @@ prefix="c" %>
             data-bs-target="#exampleModal"
             data-bs-whatever="@mdo"
           >
-            수정하기(작성자)
+            수정하기
           </button>
         </div>
+        </c:if>
       </div>
 
       <!--modal-->

@@ -2,6 +2,8 @@ package com.seok.home.n_board;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.seok.home.b_comment.NoticeReplyDTO;
+import com.seok.home.member.MemberDTO;
+import com.seok.home.member.MemberService;
 import com.seok.home.s_board.Pager;
 
 @Controller
@@ -20,6 +24,10 @@ public class NoticeController {
 	
 	@Autowired
 	private NoticeService noticeService;
+	
+	/*
+	 * @Autowired private MemberService memberService;
+	 */
 	
 	/* 공지사항 목록 */
 	@GetMapping("notice")
@@ -46,6 +54,7 @@ public class NoticeController {
 	@GetMapping("nb_detail")
 	public ModelAndView getNoticeDetail(NoticeDTO noticeDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
+
 		noticeDTO = noticeService.getNoticeDetail(noticeDTO);
 		mv.addObject("noticeDTO", noticeDTO);
 		mv.setViewName("board/nb_detail");

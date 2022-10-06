@@ -38,8 +38,10 @@ const reply_content = document.getElementById("reply_content");
 reply.addEventListener("click", function () {
   if (reply_content.style.display != "none") {
     reply_content.style.display = "none";
+    reply.innerHTML = "➖접기";
   } else {
     reply_content.style.display = "block";
+    reply.innerHTML = "✖️더보기";
   }
 });
 
@@ -91,7 +93,7 @@ const reply_delete = document.getElementsByClassName("reply_delete");
 
 reply_content.addEventListener("click", function (event) {
   if (event.target.classList[0] == "reply_delete") {
-    let check = window.confirm("삭제하시겠습니까?");
+    let check = window.confirm("삭제하시겠습니까?😶‍🌫️");
     if (check) {
       let num = event.target.getAttribute("data-reply-num");
       replyDelete(num);

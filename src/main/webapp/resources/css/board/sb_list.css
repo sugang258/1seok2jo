@@ -127,6 +127,7 @@ button a:hover {
   border-radius: 24px;
   position: fixed;
   bottom: 3em;
+  z-index: 30;
 }
 .fix_btn {
   border: none;
