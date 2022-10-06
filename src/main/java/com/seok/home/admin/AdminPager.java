@@ -36,7 +36,7 @@ public class AdminPager extends Pager{
 	
 	
 	public AdminPager() {
-		this.perPage= 15L;
+		this.perPage= 10L;
 		this.perBlock = 5L;
 	}
 	

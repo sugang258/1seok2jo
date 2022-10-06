@@ -45,11 +45,14 @@ public class AdminService {
 	}
 	
 	public List<MemberDTO> getMember(AdminPager adminPager) throws Exception{
+		adminPager.calNum(memberDAO.getAdminMemberTotal(adminPager));
+		
 		return memberDAO.getAdminMemberList(adminPager);
 	}
 	
 	public List<PaymentDTO> getPaymentsList(AdminPager adminPager) throws Exception{
 		adminPager.calNum(payDAO.getPayAdminTotal(adminPager));
+		
 		List<PaymentDTO> paylist = payDAO.getPayAdminList(adminPager);
 		return paylist;
 	}
@@ -73,6 +76,7 @@ public class AdminService {
 	
 	public List<CsBoardDTO> getCsList(AdminPager pager)throws Exception{
 		pager.calNum(csDAO.getTotalCount(pager));
+
 		List<CsBoardDTO> csList = csDAO.getBoardList(pager);
 		
 		return csList;

@@ -22,6 +22,10 @@ public class MemberDAO {
 		return sqlSession.selectList(NAMESPACE+"getAdminMemberList", adminPager);
 	}
 	
+	public Long getAdminMemberTotal(AdminPager adminPager) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getAdminMemberTotal", adminPager);
+	}
+	
 	//회원로그인
 	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getLogin", memberDTO);

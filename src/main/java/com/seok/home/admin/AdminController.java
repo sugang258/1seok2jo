@@ -45,6 +45,7 @@ public class AdminController {
 	private ModelAndView getBoards(AdminPager pager, ModelAndView mv) throws Exception{
 
 		mv.addObject("boardsList", service.getBoardsList(pager));
+		mv.addObject("pager", pager);
 		mv.setViewName("admin/boardListPost");
 		
 		return mv;
@@ -60,6 +61,7 @@ public class AdminController {
 	private ModelAndView getLecture(AdminPager pager, ModelAndView mv) throws Exception{
 		
 		mv.addObject("lectureList", service.getLectureList(pager));
+		mv.addObject("pager", pager);
 		mv.setViewName("admin/lectureListPost");
 		
 		return mv;
@@ -74,6 +76,7 @@ public class AdminController {
 	private ModelAndView getMember(AdminPager pager, ModelAndView mv) throws Exception{
 		
 		mv.addObject("memberList", service.getMember(pager));
+		mv.addObject("pager", pager);
 		mv.setViewName("admin/memberListPost");
 		
 		return mv;
