@@ -224,7 +224,7 @@
 			on O.l_num = L.l_num
 			left join refund R
 			on O.O_num = R.O_num
-			where P.p_uid=#{p_uid}
+			where P.id=#{id}
     	</select>
     	<resultMap type="PaymentDTO" id="allPaymentsResult">
     		<id column="p_uid" property="p_uid"/>
