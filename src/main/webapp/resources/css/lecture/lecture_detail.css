@@ -12,6 +12,7 @@
     height: 1500px;
     position: sticky;
     font-weight: bold;
+    top: 80px;
   }
 
   .card{
@@ -39,4 +40,24 @@
  #ot{
   width: 600px;
  }
+ 
+ .main-content{
+  display: flex;
+  flex-flow: row nowrap;
+ }
 
+ /* .content{
+    height : 5000px;
+ } */
+#leftside{
+  height: 400px;
+  font-weight: bold;
+  position: sticky;
+  top: 60px;
+  padding-top: 80px;
+
+}
+.left{
+  width: 140px;
+
+}

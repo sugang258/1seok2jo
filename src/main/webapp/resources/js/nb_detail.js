@@ -91,7 +91,6 @@ const reply_delete = document.getElementsByClassName("reply_delete");
 
 reply_content.addEventListener("click", function (event) {
   if (event.target.classList[0] == "reply_delete") {
-    console.log(event.target.getAttribute("data-reply-num"));
     let check = window.confirm("삭제하시겠습니까?");
     if (check) {
       let num = event.target.getAttribute("data-reply-num");

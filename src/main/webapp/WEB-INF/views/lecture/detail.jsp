@@ -23,6 +23,30 @@
     <main class="container mt-5">
         
             <div class="row main-content">
+                <div class="col-lg-2 sidebar" id="leftside">
+                    <!-- Categories widget-->
+                    <div class="card mb-4 sidebar__inner text-center left" style="display: block;" >
+                        <div class="card-header">Category</div>
+                        <div class="card-body">
+                            <div>${detail.c_name}</div>
+                        </div>
+                    </div>
+
+                        <!--Level-->
+                    <div class="card mb-4 sidebar__inner text-center left" style="display: block;">
+                        <div class="card-header">Level</div>
+                        <div class="card-body">
+                            <div>${detail.level_name}</div>
+                        </div>
+                    </div>
+                        <!--Student Count-->
+                    <div class="card mb-4 sidebar__inner text-center left" style="display: block;">
+                        <div class="card-header">수강중인 학생 수</div>
+                        <div class="card-body">
+                            <div>${detail.l_count}명</div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-8 content" id="content">
                     <!-- Post content-->
                     <article>
@@ -48,30 +72,8 @@
                     </article>
                 </div>
                 <!-- Side widgets-->
-                <div class="col-lg-4 sidebar" id="aside">
-                    <!-- Categories widget-->
-                    <div class="card mb-4 sidebar__inner text-center" style="display: block;" >
-                        <div class="card-header">Category</div>
-                        <div class="card-body">
-                            <div>${detail.c_name}</div>
-                        </div>
-                    </div>
-
-                        <!--Level-->
-                    <div class="card mb-4 sidebar__inner text-center" style="display: block;">
-                        <div class="card-header">Level</div>
-                        <div class="card-body">
-                            <div>${detail.level_name}</div>
-                        </div>
-                    </div>
-                        <!--Student Count-->
-                    <div class="card mb-4 sidebar__inner text-center" style="display: block;">
-                        <div class="card-header">수강중인 학생 수</div>
-                        <div class="card-body">
-                            <div>${detail.l_count}명</div>
-                        </div>
-                    </div>
-               
+                <div class="col-lg-2 sidebar" id="aside">
+                    
                     <!-- Side widget-->
                     <div class="card mb-4 sidebar__inner" style="display: block;">
                         <div class="card-header text-center">목 차 (총 ${count} 강의)</div>

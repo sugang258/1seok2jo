@@ -115,7 +115,7 @@ prefix="c" %>
           </div>
           <div class="d-flex justify-content-between">
             <div class="file_box mt-4">
-              <label for="file" class="file"><b>파일추가📂</b></label>
+              <label for="file" class="file" style="display: none;"><b>파일추가📂</b></label>
               <input type="file" name="file" id="file" style="display: none" />
             </div>
 
@@ -123,7 +123,7 @@ prefix="c" %>
               <input
                 class="btn btn-success text-white"
                 type="submit"
-                value="작성하기"
+                value="✍️작성하기"
               />
             </div>
           </div>

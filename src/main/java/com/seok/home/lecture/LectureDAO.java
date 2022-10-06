@@ -132,6 +132,14 @@ public class LectureDAO {
 	public List<LectureDTO> getTeacherLecture(LectureDTO lectureDTO) throws Exception {
 	    return sqlSession.selectList(NAMESPACE+"getTeacherLecture", lectureDTO);
 	}
+	
+	public List<LectureVideoDTO> getVideoCount(LectureVideoDTO lectureVideoDTO) throws Exception{
+	    return sqlSession.selectList(NAMESPACE+"getVideoCount", lectureVideoDTO);
+	}
+	
+	public List<LectureDTO> getLectureCate(Pager pager) throws Exception{
+	    return sqlSession.selectList(NAMESPACE+"getLectureCate", pager);
+	}
 
 
 

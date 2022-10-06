@@ -228,7 +228,7 @@
                     LEFT JOIN STATUS S
                     ON V.V_NUM = S.V_NUM
 					WHERE V.L_NUM = #{l_num} AND 
-					V.V_SEQ =(SELECT MIN(V_SEQ) FROM VIDEO WHERE V_SEQ>#{v_seq}) 
+					V.V_SEQ =(SELECT MIN(V_SEQ) FROM VIDEO WHERE L_NUM = #{l_num} AND V_SEQ>#{v_seq}) 
 				</select>
 				
 				<select id="getLecturePre" parameterType="LectureVideoDTO" resultMap="getVideoList">
@@ -237,7 +237,7 @@
                     LEFT JOIN STATUS S
                     ON V.V_NUM = S.V_NUM
 					WHERE V.L_NUM = #{l_num} AND 
-					V.V_SEQ =(SELECT MAX(V_SEQ) FROM VIDEO <![CDATA[WHERE V_SEQ < #{v_seq})]]>
+					V.V_SEQ =(SELECT MAX(V_SEQ) FROM VIDEO WHERE L_NUM = #{l_num} AND <![CDATA[V_SEQ < #{v_seq})]]>
 				</select>
 				
 				<select id="getVideoList" parameterType="LectureVideoDTO" resultMap="getVideoList">
@@ -278,5 +278,31 @@
                     LEFT JOIN L_FILE F
 					ON L.L_NUM = F.L_NUM
 					WHERE L.ID=#{id}
+		    	</select>
+		    	
+		    	<select id="getVideoCount" parameterType="LectureVideoDTO" resultType="LectureVideoDTO">
+		    		SELECT * 
+				    FROM 
+				    (SELECT  * 
+				    FROM VIDEO
+				    WHERE L_NUM = #{l_num}
+				    ORDER BY V_SEQ DESC)
+				    <![CDATA[WHERE ROWNUM <= #{rowNum}]]>
+		    	</select>
+		    	
+		    	<select id="getLectureCate" parameterType="com.seok.home.util.Pager" resultMap="getDetailResult">
+		    		SELECT * FROM
+		    			(SELECT ROWNUM R, L.* FROM
+		    				(SELECT * FROM LECTURE L
+		    				JOIN L_FILE LF
+		    				ON L.L_NUM = LF.L_NUM
+							JOIN "LEVEL" LV
+							ON L.LEVEL_NUM = LV.LEVEL_NUM
+							JOIN CATEGORY C
+							ON L.C_NUM = C.C_NUM
+							WHERE
+	                  		L.C_NUM=#{c_num}
+                 	 		ORDER BY L.L_NUM DESC) L)
+                 	 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 		    	</select>
 		    </mapper>

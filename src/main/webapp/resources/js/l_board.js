@@ -8,7 +8,7 @@ lecture_add.addEventListener("click", function (event) {
     const ratingNodeList = document.getElementsByName("rating");
     const contents = document.getElementById("contents");
 
-    let num = l_num.value; //나중에 파라미터 값을 받기
+    let num = l_num.value;
     let id = l_board_id.value;
     let score;
     ratingNodeList.forEach((node) => {

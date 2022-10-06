@@ -10,6 +10,7 @@ public class LectureVideoDTO {
 	private String v_context;
 	private Long v_seq;
 	private StatusDTO statusDTO;
+	private Long rowNum;
 	
 	
 	
@@ -49,6 +50,13 @@ public class LectureVideoDTO {
 	public void setStatusDTO(StatusDTO statusDTO) {
 		this.statusDTO = statusDTO;
 	}
+    public Long getRowNum() {
+        return rowNum;
+    }
+    public void setRowNum(Long rowNum) {
+        this.rowNum = rowNum;
+    }
+	
 	
 	
 	

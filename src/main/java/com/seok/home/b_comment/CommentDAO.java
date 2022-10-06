@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.seok.home.s_board.CommentPager;
+
 @Repository
 public class CommentDAO {
 	
@@ -46,8 +48,8 @@ public class CommentDAO {
 	}
 		
 	//게시글 댓글
-	public List<CommentDTO> getSB_CommentList(CommentDTO commentDTO)throws Exception{
-		return session.selectList(NAMESPACE+"getSB_CommentList", commentDTO);
+	public List<CommentDTO> getSB_CommentList(CommentPager commentPager)throws Exception{
+		return session.selectList(NAMESPACE+"getSB_CommentList", commentPager);
 	}
 	
 	public int setSB_CommentAdd(CommentDTO commentDTO)throws Exception{
@@ -60,8 +62,8 @@ public class CommentDAO {
 	
 	
 	//강사답글 - 댓글
-	public List<CommentDTO> getT_CommentList(CommentDTO commentDTO)throws Exception{
-		return session.selectList(NAMESPACE+"getT_CommentList", commentDTO);
+	public List<CommentDTO> getT_CommentList(CommentPager commentPager)throws Exception{
+		return session.selectList(NAMESPACE+"getT_CommentList", commentPager);
 	}
 	
 	public int setT_CommentAdd(CommentDTO commentDTO)throws Exception{
