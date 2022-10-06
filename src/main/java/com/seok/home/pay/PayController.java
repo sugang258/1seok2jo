@@ -36,7 +36,7 @@ public class PayController {
 	@Autowired
 	private PayService payService;
 
-	IamportClient client = new IamportClient("6833265443546261", "SiEfYqnG3G0yBBQRFMvspUyp9l0UAJ0ytmsMxyHJBQftWtJHoRKQvJvB59QljGoZBNLS6wXZSGJ5p5Mg");
+	private IamportClient client = new IamportClient("6833265443546261", "SiEfYqnG3G0yBBQRFMvspUyp9l0UAJ0ytmsMxyHJBQftWtJHoRKQvJvB59QljGoZBNLS6wXZSGJ5p5Mg");
 	
 	@GetMapping(value="status")
 	public ModelAndView getPayDetail(PaymentDTO paymentDTO, ModelAndView mv) throws Exception{
@@ -48,29 +48,6 @@ public class PayController {
 		
 		return mv;
 	}
-	
-	@PostMapping(value="getTk")
-	@ResponseBody
-	public ModelAndView getTk(ModelAndView mv) throws Exception{
-		IamportResponse<AccessToken> auth_response = client.getAuth();
-		String token = auth_response.getResponse().getToken();
-		
-		mv.addObject("result", token);
-		mv.setViewName("common/ajaxResult");
-		
-		return mv;
-	}
-
-	//환불 요청 창(삭제 필요! 안씀)
-//	@GetMapping(value="cancel")
-//	public String requestCancle(OrderDTO orderDTO, Model model) throws Exception{
-//		
-//		orderDTO = payService.requestCancle(orderDTO);
-//
-//		model.addAttribute("orderDTO", orderDTO);
-//		
-//		return "pay/cancel";
-//	}
 	
 	@PostMapping(value="cancel")
 	@ResponseBody
@@ -183,6 +160,19 @@ public class PayController {
 		
 		mv.addObject("result",result);
 		mv.setViewName("pay/complete");
+		return mv;
+	}
+	
+	//아임포트 관련/ 현재 필요없음
+	@PostMapping(value="getTk")
+	@ResponseBody
+	public ModelAndView getTk(ModelAndView mv) throws Exception{
+		IamportResponse<AccessToken> auth_response = client.getAuth();
+		String token = auth_response.getResponse().getToken();
+		
+		mv.addObject("result", token);
+		mv.setViewName("common/ajaxResult");
+		
 		return mv;
 	}
 

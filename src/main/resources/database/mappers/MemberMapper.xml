@@ -4,6 +4,42 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 <mapper namespace="com.seok.home.member.MemberDAO">
+ 	<sql id="search">
+		<choose>
+			<when test="kind == 'ID'">ID LIKE '%'||#{search}||'%'</when>
+			<when test="kind == 'NAME'">NAME LIKE '%'||#{search}||'%'</when>
+			<when test="kind == 'N_NAME'">N_NAME LIKE '%'||#{search}||'%'</when>
+			<when test="kind == 'PHONE'">PHONE = #{search}</when>
+			<when test="kind == 'EMAIL'">EMAIL = #{search}</when>
+			<when test="kind == 'B_DATE'">B_DATE = #{search}</when>
+			<otherwise>'a' = 'a'</otherwise>
+		</choose>
+	</sql>
+	<select id="getAdminMemberList" parameterType="AdminPager" resultMap="getAdminList">
+		select distinct rolenum, id, name, n_name, b_date, gender, email, phone, point, rolename 
+            from member m
+            left join member_role r
+            using (id)
+            left join role rr
+            using (rolenum)
+            where <include refid="search"></include>
+            order by id asc , rolenum desc
+	</select>
+	
+	<resultMap type="MemberDTO" id="getAdminList">
+		<id column="ID" property="id"/>
+		<result column="NAME" property="name"/>
+		<result column="N_NAME" property="n_name"/>
+		<result column="B_DATE" property="b_date"/>
+		<result column="GENDER" property="gender"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<result column="point" property="point"/>
+		<collection property="roleDTOs" javaType="List" ofType="RoleDTO">
+			<id column="roleNum" property="roleNum"/>
+			<result column="roleName" property="roleName"/>
+		</collection>
+	</resultMap>
 
 	<select id="getLogin" parameterType="MemberDTO" resultMap="getLoginResult">
 		/* 로그인시(아이디와 비밀번호가 맞으면) */

@@ -21,7 +21,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">문의 내역 목록</h1>
+                        <h1 class="mt-4">회원 관리</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                             <li class="breadcrumb-item active">Tables</li>
@@ -32,23 +32,17 @@
                                     <b>검색 조건 설정</b>
                                 </h6>
                                 <div class="row">
-                                    <div class="col-7">
-                                        <span class="text-muted">시작날짜</span>
-                                        <input type="date" id="startDate" name="startDate" class="p-1"></input>
-                                        ~
-                                        <span class="text-muted">끝날짜</span>
-                                        <input type="date" id="endDate" name="endDate" class="p-1"></input>
-                                    </div>
                                     <div class="col-5">
                                         <div class="input-group">
                                         <select type="button" name="kind" id="kind" class="btn btn-outline-success dropdown-toggle" style="text-align: left;" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <option value="CS_STATUS">답변여부</option>
-                                            <option value="CS_TITLE">제목</option>
                                             <option value="ID">아이디</option>
-                                            <option value="CS_PHONE">연락처</option>
-                                            <option value="CS_EMAIL">이메일</option>
+                                            <option value="NAME">이름</option>
+                                            <option value="N_NAME">닉네임</option>
+                                            <option value="PHONE">연락처</option>
+                                            <option value="EMAIL">이메일</option>
+                                            <option value="B_DATE">생년월일</option>
                                         </select>
-                                        <input type="text" name="search" id="search" class="form-control" value="미답변"></input>
+                                        <input type="text" name="search" id="search" class="form-control" ></input>
                                         </div>
                                     </div>
                                 </div>
@@ -59,15 +53,13 @@
                         </div>
                         <div class="card">
                             <div class="d-flex ms-3 justify-content: flex-start;">
-                                <div class="p-2 flex-grow-3"><b>VIEW</b></div>
+                                <div class="p-2 flex-grow-3"><b>관리</b></div>
                                 <div class="p-2 flex-grow-3" style="color: gray">|</div>
                                 <div class="p-2 flex-grow-3">
-                                    <input type="radio" id="new" name="orderby" value="new" checked>
-                                    <label id="newlb" for="new" style="font-weight:bold; color:black">⏳ 최신 순</label>
+                                    <button type="button" style="font-weight:bold; color:black">회원 삭제</button>
                                 </div>
                                 <div class="p-2 flex-grow-3">
-                                    <input type="radio" id="old" name="orderby" value="old" >
-                                    <label id="oldlb" for="old">⌛ 오래된 순</label>
+                                    <button type="button" style="font-weight:bold; color:black">강사 권한 삭제</button>
                                 </div>
                               </div>
                         </div>
@@ -95,7 +87,7 @@
         <script src="/resources/temp/js/scripts.js"></script>
         <script src="/resources/js/admin.js"></script>
         <script>
-        initlist()
+            initmembers()
         </script>
         
     </body>

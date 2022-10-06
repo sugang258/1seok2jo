@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.seok.home.admin.AdminPager;
 import com.seok.home.lecture.LectureDTO;
+import com.seok.home.lecture.teacher.TeacherPager;
 import com.seok.home.member.MemberDTO;
 
 @Repository
@@ -16,6 +17,22 @@ public class PayDAO {
 	@Autowired
 	private SqlSession session;
 	private final String NAMESPACE = "com.seok.home.pay.PayDAO.";
+	
+	public Long getOamountTotal(TeacherPager pager) throws Exception{
+		return session.selectOne(NAMESPACE+"getOamountTotal", pager);
+	}
+	
+	public Long getteacherListTotal(TeacherPager pager) throws Exception{
+		return session.selectOne(NAMESPACE+"getteacherListTotal", pager);
+	}
+	
+	public List<OrderDTO> getteacherList(TeacherPager pager) throws Exception{
+		return session.selectList(NAMESPACE+"getteacherList", pager);
+	}
+	
+	public Long getPayAdminTotal(AdminPager pager) throws Exception{
+		return session.selectOne(NAMESPACE+"getPayAdminTotal", pager);
+	}
 	
 	public List<PaymentDTO> getPayAdminList(AdminPager pager) throws Exception{
 		return session.selectList(NAMESPACE+"getPayAdminList", pager);
