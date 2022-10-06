@@ -1,5 +1,6 @@
 package com.seok.home.lecture;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -10,6 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.seok.home.lecture.add.LectureAddDAO;
+import com.seok.home.lecture.add.LectureAddDTO;
+import com.seok.home.lecture.status.StatusDAO;
+import com.seok.home.lecture.status.StatusDTO;
 import com.seok.home.util.FileManager;
 import com.seok.home.util.Pager;
 
@@ -20,6 +25,10 @@ public class LectureService {
 	private LectureDAO lectureDAO;
 	@Autowired
 	private FileManager fileManager;
+	@Autowired
+	private LectureAddDAO lectureAddDAO;
+	@Autowired
+	private StatusDAO statusDAO;
 	
 	public List<LectureDTO> getLecture(Pager pager) throws Exception {
 		System.out.println(pager.getPage());
@@ -117,6 +126,21 @@ public class LectureService {
     			lectureVideoDTO.setV_seq(seq+1);
     			lectureDAO.setAddVideo(lectureVideoDTO);
 			}
+    		lectureVideoDTO.setL_num(lectureDTO.getL_num());
+    		lectureVideoDTO.setRowNum((long)url.length);
+    		List<LectureVideoDTO> video = lectureDAO.getVideoCount(lectureVideoDTO);
+    		StatusDTO statusDTO = new StatusDTO();
+    		List<LectureAddDTO> list =  lectureAddDAO.getLectureList(lectureDTO);
+    		System.out.println("list size "+list.size());
+    		for (int i=0;i<list.size();i++) {
+    		    for(int y=0;y<video.size();y++) {
+    		        System.out.println(video.get(y).getV_num());
+    		       statusDTO.setV_num(video.get(y).getV_num());
+    		       statusDTO.setS_num(list.get(i).getS_num());
+    		       statusDAO.setStatusAdd(statusDTO);
+    		    }
+    		}
+    		
 		}
 		return result;
 		

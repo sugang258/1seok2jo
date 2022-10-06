@@ -256,4 +256,17 @@ public class LectureTest extends MyAbstractTest {
 	    assertNotEquals(1, ar.size());
 
 	}
+	
+	//@Test
+	public void getVideoCount() throws Exception{
+	    LectureVideoDTO lectureVideoDTO = new LectureVideoDTO();
+	    
+	    lectureVideoDTO.setL_num(6L);
+	    lectureVideoDTO.setRowNum(2L);
+	    
+	    List<LectureVideoDTO> ar = lectureDAO.getVideoCount(lectureVideoDTO);
+	    
+	    assertNotEquals(1, ar.size());
+
+	}
 }

@@ -53,6 +53,10 @@
 		    		SELECT * FROM LECTURE_SIGN WHERE ID=#{id}
 		    	</select>
 		    	
+		    	<select id="getLectureList" parameterType="LectureDTO" resultType="LectureAddDTO">
+		    		SELECT * FROM LECTURE_SIGN WHERE L_NUM=#{l_num}
+		    	</select>
+		    	
 		    	
 		    
 		    </mapper>
