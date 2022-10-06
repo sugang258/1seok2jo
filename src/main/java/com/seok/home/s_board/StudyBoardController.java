@@ -39,12 +39,19 @@ public class StudyBoardController {
 	public ModelAndView getBoardDetail(StudyBoardDTO studyBoardDTO)throws Exception {
 		ModelAndView mv = new ModelAndView();
 		studyBoardDTO = studyBoardService.getBoardDetail(studyBoardDTO);
-		Long count = studyBoardService.getCount(studyBoardDTO);
-		mv.addObject("count", count);
 		mv.addObject("studyBoardDTO", studyBoardDTO);
 		mv.setViewName("board/sb_detail");
 		
 		return mv;
+	}
+	
+	//게시판 댓글 수 
+	@GetMapping("sb_count")
+	@ResponseBody
+	public Long getCount(StudyBoardDTO studyBoardDTO)throws Exception{
+		studyBoardDTO = studyBoardService.getBoardDetail(studyBoardDTO);
+		Long count = studyBoardService.getCount(studyBoardDTO);
+		return count;
 	}
 	
 	//게시판 작성

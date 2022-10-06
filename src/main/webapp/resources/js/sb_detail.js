@@ -15,6 +15,7 @@ function clip() {
   alert("URL이 복사되었습니다.");
 }
 
+//댓글보기 토글
 reply.addEventListener("click", function () {
   const reply_content = document.getElementById("reply_content");
   if (document.getElementById("reply_content").style.display == "none") {
@@ -69,7 +70,6 @@ update_btn.addEventListener("click", function () {
     if (this.readyState == 4 && this.status == 200) {
       if (this.responseText.trim() == "1") {
         alert("수정 성공");
-        document.querySelector("#close").click();
         window.location.reload();
       } else {
         alert("수정 실패");
@@ -111,7 +111,6 @@ answer_btn.addEventListener("click", function () {
 });
 
 /*작성 된 강사 답글 조회*/
-
 function getCommentDetail() {
   let num = update_btn.getAttribute("data-board-num");
   const xhttp = new XMLHttpRequest();
@@ -121,6 +120,7 @@ function getCommentDetail() {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       teacher.innerHTML = xhttp.responseText;
+      teacherReply(page);
     }
   };
 }
@@ -168,14 +168,15 @@ teacher.addEventListener("click", function (event) {
 /*게시판 댓글 가져오기*/
 const reply_content = document.getElementById("reply_content");
 
-function getReply() {
+function getReply(page) {
   let c_num = update_btn.getAttribute("data-board-num");
   const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "/comment/sb_comment?sb_num=" + c_num);
+  xhttp.open("GET", "/comment/sb_comment?sb_num=" + c_num + "&page=" + page);
   xhttp.send();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       reply_content.innerHTML = xhttp.responseText;
+      getReplyCount();
     }
   };
 }
@@ -199,7 +200,8 @@ reply_content.addEventListener("click", function (event) {
       if (this.readyState == 4 && this.status == 200) {
         let result = xhttp.responseText;
         if (result == 1) {
-          window.location.reload();
+          getReply(page);
+          getReplyCount();
         }
       }
     };
@@ -228,7 +230,8 @@ reply_content.addEventListener("keydown", function (event) {
         if (this.readyState == 4 && this.status == 200) {
           let result = xhttp.responseText;
           if (result == 1) {
-            window.location.reload();
+            getReply(page);
+            getReplyCount();
           }
         }
       };
@@ -249,22 +252,38 @@ reply_content.addEventListener("click", function (event) {
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         if (xhttp.responseText == 1) {
-          window.location.reload();
+          getReply(page);
+          getReplyCount();
         }
       }
     };
   }
 });
 
-/**강사답글 - 댓글가져오기 */
-function teacherReply() {
-  let num = update_btn.getAttribute("data-board-num");
+/*게시판 댓글 수*/
+function getReplyCount() {
+  const sb_count = document.getElementById("sb_count");
+  let sb_num = update_btn.getAttribute("data-board-num");
   const xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "../comment/t_comment");
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send("sb_num=" + num);
+  xhttp.open("GET", "sb_count?sb_num=" + sb_num);
+  xhttp.send();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
+      sb_count.innerHTML = xhttp.responseText;
+    }
+  };
+}
+
+/**강사답글 - 댓글가져오기 */
+function teacherReply(page) {
+  let num = update_btn.getAttribute("data-board-num");
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "/comment/t_comment");
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("sb_num=" + num + "&page=" + page);
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      xhttp.responseText;
     }
   };
 }
@@ -285,7 +304,7 @@ teacher.addEventListener("click", function (event) {
       if (this.readyState == 4 && this.status == 200) {
         let result = xhttp.responseText;
         if (result == 1) {
-          window.location.reload();
+          getCommentDetail();
         } else {
           alert("등록실패");
         }
@@ -316,7 +335,7 @@ teacher.addEventListener("keydown", function (event) {
         if (this.readyState == 4 && this.status == 200) {
           let result = xhttp.responseText;
           if (result == 1) {
-            window.location.reload();
+            getCommentDetail();
           } else {
             alert("등록실패");
           }
@@ -350,9 +369,7 @@ teacher.addEventListener("click", function (event) {
 teacher.addEventListener("click", function (event) {
   if (event.target.className == "delete_btn") {
     const delete_num = document.getElementById("delete_num");
-    console.log(event.target.getAttribute("data-comment-num"));
     let num = event.target.getAttribute("data-comment-num");
-    console.log(num);
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/comment/t_commentDelete");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -360,9 +377,26 @@ teacher.addEventListener("click", function (event) {
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         if (xhttp.responseText == 1) {
-          window.location.reload();
+          getCommentDetail();
         }
       }
     };
+  }
+});
+
+//게시판 댓글 더보기
+let page = 1;
+reply_content.addEventListener("click", function (event) {
+  if (event.target.className == "plus") {
+    page++;
+    getReply(page);
+  }
+});
+
+//강사답글 댓글 더보기
+teacher.addEventListener("click", function (event) {
+  if (event.target.className == "plus") {
+    page++;
+    teacherReply(page);
   }
 });

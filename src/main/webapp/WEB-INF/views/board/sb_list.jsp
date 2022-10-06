@@ -26,7 +26,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
   </head>
   <c:import url="../template/header.jsp"></c:import>
   <body>
-    <section class="container" style="width: 75%">
+    <section class="container" style="width: 70%">
       <!--Board-Main-Top-->
       <div style="height: 190px; margin-top: 125px">
         <div style="height: 70px">
@@ -88,16 +88,16 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               <div style="padding: 12px 0px">
                 <div class="d-flex">
                   <div class="p-1 flex-grow-1 mt-2" style="font-size: 13px">
-                    <div>${BoardDTO.category}</div>
+                    <div>🏅${BoardDTO.category}</div>
                   </div>
                   <div class="p-2">
                     <i class="fa-regular fa-user"></i> ${pageScope.BoardDTO.id}
                   </div>
                 </div>
-                <div style="margin-bottom: 8px;">
-                  <h5><b>${BoardDTO.title}</b></h5>
+                <div style="margin-top: 11px; margin-bottom: 33px;">
+                  <h5 style="padding-left:5px;"><b>${BoardDTO.title}</b></h5>
                 </div>
-                <div>
+                <div style="display: none">
                   <div class="list_contents mb-3"  style="word-break: break-all;">
                     <c:choose>
                       <c:when test="${fn:length(BoardDTO.contents) > 65}">
