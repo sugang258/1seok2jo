@@ -167,6 +167,7 @@ input:focus {
   border: none;
   background-color: transparent;
   color: rgba(255, 0, 0, 0.87);
+  font-size: 12px;
 }
 .text_delete_btn:active {
   transform: scale(1.03);

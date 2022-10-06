@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.seok.home.s_board.CommentPager;
 import com.seok.home.s_board.StudyBoardDAO;
 import com.seok.home.s_board.StudyBoardDTO;
 
@@ -43,8 +44,8 @@ public class CommentService {
 	}
 	
 	//게시판 댓글
-	public List<CommentDTO> getSB_CommentList(CommentDTO commentDTO)throws Exception{
-		return commentDAO.getSB_CommentList(commentDTO);
+	public List<CommentDTO> getSB_CommentList(CommentPager commentPager)throws Exception{
+		return commentDAO.getSB_CommentList(commentPager);
 	}
 	
 	public int setSB_CommentAdd(CommentDTO commentDTO)throws Exception{
@@ -56,8 +57,8 @@ public class CommentService {
 	}
 	
 	//강사답글 - 댓글
-	public List<CommentDTO> getT_CommentList(CommentDTO commentDTO)throws Exception{
-		return commentDAO.getT_CommentList(commentDTO);
+	public List<CommentDTO> getT_CommentList(CommentPager commentPager)throws Exception{
+		return commentDAO.getT_CommentList(commentPager);
 	}
 	
 	public int setT_CommentAdd(CommentDTO commentDTO)throws Exception{

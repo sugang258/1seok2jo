@@ -32,29 +32,86 @@ prefix="c" %>
   <body>
     <section class="container" style="width: 75%">
       <div class="board">
-
         <div class="board_contents">
-          <div style="padding: 12px 0px;">
+          <div style="padding: 12px 0px">
             <div class="d-flex">
-              <div class="pt-2 flex-grow-1" style="font-size:13.5px; line-height:26px;">
+              <div
+                class="pt-2 flex-grow-1"
+                style="font-size: 13.5px; line-height: 26px"
+              >
                 <div>🏷️${freeBoardDTO.category}</div>
               </div>
-              <div class="p-2"><i class="fa-regular fa-user" style="width: 20px; line-height:26px;"></i> ${freeBoardDTO.id}</div>
-              <div class="p-2 flex-shrink-1 pt-2" style="font-size:13px;line-height:26px;">🕔${freeBoardDTO.reg_date}</div>
+              <div class="p-2">
+                <i
+                  class="fa-regular fa-user"
+                  style="width: 20px; line-height: 26px"
+                ></i>
+                ${freeBoardDTO.id}
+              </div>
+              <div
+                class="p-2 flex-shrink-1 pt-2"
+                style="font-size: 13px; line-height: 26px"
+              >
+                🕔${freeBoardDTO.reg_date}
+              </div>
             </div>
-            <div style="margin-top: 7px; margin-left:2px;">
+            <div style="margin-top: 7px; margin-left: 2px">
               <h5><b>${freeBoardDTO.title}</b></h5>
             </div>
 
             <div class="d-flex mt-4">
               <div class="d-flex p-1 w-100 justify-content-between">
-                <div class="b1 d-flex" style="height: 32px; line-height: 28px;">
-                  <div class="me-2" style="font-size:14px; color:#6C6969;">0 조회</div>
-                  <div style="font-size:14px; color:#6C6969;">0 좋아요</div>
+                <div class="b1 d-flex" style="height: 32px; line-height: 28px">
+                  <div class="me-2" style="font-size: 14px; color: #6c6969">
+                    ${freeBoardDTO.hit} 조회
+                  </div>
+                  <div style="font-size: 14px; color: #6c6969">
+                    <span id="fb_heart_count"></span> 좋아요
+                  </div>
                 </div>
-                <div class="p-2" style="margin-bottom: 20px; position: absolute; right: 15px; bottom: -12px;">
-                  <div><i class="fa-solid fa-heart"></i></div>
-                  <div style="font-size:10px;"><b>좋아요</b></div>
+                <div
+                  class="p-2"
+                  style="
+                    margin-bottom: 20px;
+                    position: absolute;
+                    right: 15px;
+                    bottom: -12px;
+                  "
+                >
+                  <!-- 나중에 member.id값 받아와서 작성하기 -->
+                  <input
+                    type="text"
+                    name="id"
+                    value="USER2"
+                    id="session_id"
+                    style="display: none"
+                  />
+                  <input
+                    type="text"
+                    name="fb_num"
+                    value="${freeBoardDTO.fb_num}"
+                    id="free_board_num"
+                    style="display: none"
+                  />
+                  <div>
+                    <c:choose>
+                      <c:when test="${color eq null}">
+                        <i
+                          class="fa-solid fa-heart"
+                          id="fb_heart"
+                          style="color: rgb(189, 185, 185)"
+                        ></i>
+                      </c:when>
+                      <c:otherwise>
+                        <i
+                          class="fa-solid fa-heart"
+                          id="fb_heart"
+                          style="color: red"
+                        ></i>
+                      </c:otherwise>
+                    </c:choose>
+                  </div>
+                  <div style="font-size: 10px"><b>좋아요</b></div>
                 </div>
               </div>
             </div>
@@ -64,37 +121,70 @@ prefix="c" %>
         <!--Contents-->
         <div class="fb_contents">
           <div class="mb-3">
-            <h5 style="text-align:justify; text-justify:auto;">${freeBoardDTO.contents}</h5>
+            <h5 style="text-align: justify; text-justify: auto">
+              ${freeBoardDTO.contents}
+            </h5>
           </div>
-          <div style="width: 100%;">
-            <img style="width: 80%; object-fit: fill;" src="https://www.researchgate.net/profile/Md-Masudur-Rahman-2/publication/317401664/figure/fig2/AS:504826271408129@1497371370743/Source-Code-Example-Customerjava-Partial.png" alt="">
-          </div>
-          
+
           <div>
             <div class="d-flex mt-4">
-              <div class="p-2 flex-grow-1">🗨 댓글 0개</div>
-              <div class="p-2 share"><a href="#" onclick="clip(); return false;">
-                <i class="fa-solid fa-share-nodes" style="color: rgb(15, 156, 50);"></i> 공유하기</a></div>
-              <div class="p-2"><i style="color: rgb(15, 156, 50);"class="fa-solid fa-caret-down"></i><button id="reply"> 댓글</button></div>
+              <div class="p-2 flex-grow-1">
+                🗨 댓글 <span id="getReplyCount"></span> 개
+              </div>
+              <div class="p-2 share">
+                <a href="#" onclick="clip(); return false;">
+                  <i
+                    class="fa-solid fa-share-nodes"
+                    style="color: rgb(15, 156, 50)"
+                  ></i>
+                  공유하기</a
+                >
+              </div>
+              <div class="p-2">
+                <i
+                  style="color: rgb(15, 156, 50)"
+                  class="fa-solid fa-caret-down"
+                ></i
+                ><button id="reply">댓글</button>
+              </div>
             </div>
           </div>
-          
+
           <!--Reply-Content-->
           <div id="reply_content"></div>
-          </div>
         </div>
+      </div>
 
-        <!--board-Writer-Button-->
-        <div class="d-flex flex-row-reverse mb-5" style="width: 70%; margin: 0px auto;">
-          <div class="p-2"><button class="btn-st btn btn-outline-secondary">목록보기(작성자)</button></div>
-          <div class="p-2"><button class="btn-st btn btn-outline-secondary">삭제하기(작성자)</button></div>
-          <div class="p-2">
-            <button 
-              class="btn-st btn btn-outline-secondary" 
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal_update"
-              data-bs-whatever="@mdo">수정하기(작성자)</button></div>
+      <!--board-Writer-Button-->
+      <div
+        class="d-flex flex-row-reverse mb-5"
+        style="width: 70%; margin: 0px auto"
+      >
+        <div class="p-2">
+          <button
+            class="btn-st btn btn-outline-secondary"
+            onclick="location.href='/board/fb_list'"
+          >
+            목록보기(작성자)
+          </button>
         </div>
+        <div class="p-2">
+          <button class="btn-st btn btn-outline-secondary" id="fb_delete">
+            삭제하기(작성자)
+          </button>
+        </div>
+        <div class="p-2">
+          <button
+            class="btn-st btn btn-outline-secondary"
+            id="update_free_board"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal_update"
+            data-bs-whatever="@mdo"
+          >
+            수정하기(작성자)
+          </button>
+        </div>
+      </div>
 
       <!--modal-->
       <div
@@ -108,7 +198,7 @@ prefix="c" %>
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
-                <b style="color: gray">글 수정하기📚</b>
+                <b style="color: gray">글 수정하기😊</b>
               </h5>
               <button
                 type="button"
@@ -123,11 +213,8 @@ prefix="c" %>
                 method="post"
                 enctype="multipart/form-data"
               >
-                <input
-                  value="${freeBoardDTO.fb_num}"
-                  style="display: none"
-                />
-                <div class="mb-3">
+                <input value="${freeBoardDTO.fb_num}" style="display: none" />
+                <div class="mb-2">
                   <label
                     for="recipient-name"
                     class="col-form-label"
@@ -154,7 +241,8 @@ prefix="c" %>
                     class="form-control mt-1"
                     id="contents"
                     rows="3"
-                  >${freeBoardDTO.contents}</textarea
+                  >
+${freeBoardDTO.contents}</textarea
                   >
                 </div>
               </form>
@@ -169,7 +257,7 @@ prefix="c" %>
                 취소
               </button>
               <button
-                class="btn btn-warning"
+                class="update_btn btn btn-warning"
                 id="update_btn"
                 data-board-num="${freeBoardDTO.fb_num}"
               >
@@ -178,20 +266,30 @@ prefix="c" %>
             </div>
           </div>
         </div>
-      </div>          
+      </div>
 
       <!--Fixed-button:back-->
       <div class="d-flex flex-row-reverse fix_b">
         <div class="fix_box d-flex">
           <div class="d-grid gap-2 d-md-block">
-            <button class="fix_btn" type="button" onclick="location.href='/board/fb_list'"><i class="fa-solid fa-circle-chevron-left"></i></button>
+            <button
+              class="fix_btn"
+              type="button"
+              onclick="location.href='/board/fb_list'"
+            >
+              <i class="fa-solid fa-circle-chevron-left"></i>
+            </button>
           </div>
         </div>
       </div>
     </section>
 
     <c:import url="../template/footer.jsp"></c:import>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
     <script
       src="https://kit.fontawesome.com/6e23c67242.js"
       crossorigin="anonymous"
@@ -207,7 +305,9 @@ prefix="c" %>
     </script>
     <script src="/resources/js/fb_detail.js"></script>
     <script>
-
+      getFb_reply(1);
+      setFb_heart();
+      getFb_replyCount();
     </script>
   </body>
 </html>
