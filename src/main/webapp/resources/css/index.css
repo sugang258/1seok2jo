@@ -11,30 +11,42 @@ body {
 }
 #d1_1 {
   height: 300px;
-  width: 70%;
+  width: 74%;
   float: left;
 }
 #d1_2 {
   height: 300px;
-  width: 30%;
+  width: 26%;
   float: left;
 }
 
-#d3 {
-  height: 280px;
-}
 .lecture {
   height: 280px;
-  width: 25%;
-  float: left;
+  margin-right: 2em;
 }
 #d4 {
-  border: solid 1px blueviolet;
-  height: 280px;
+	padding-top: 10px;
+  height: 300px;
 }
 #d5 {
+	padding-top: 10px;
+  height: 300px;
+}
+
+#d6 {
+	padding-top: 10px;
+  height: 300px;
+}
+
+#d7 {
+	padding-top: 10px;
   border: solid 1px rgb(233, 23, 89);
-  height: 280px;
+  height: 300px;
+}
+
+#d8 {
+  height: 450px;
+  overflow:auto;
 }
 
 .nav-item {
@@ -163,9 +175,11 @@ li {
 
 /**강의 상단*/
 .hot {
+  margin-top:2.2em;
+  margin-bottom:10px;
   height: 40px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 23px;
 }
 .hot a {
   text-decoration: none;
@@ -182,12 +196,7 @@ li {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   border: none;
-  width: 90%;
-}
-@media (min-width: 1200px) {
-  .card {
-    width: 80%;
-  }
+  width: 200px;
 }
 .card img {
   height: 10em;
@@ -198,6 +207,9 @@ li {
 }
 .card:hover {
   transform: scale(1.03);
-  transition: 0.2s ease-in-out;
+  transition: 0.3s ease-in-out;
+  cursor:pointer;
+  z-index: 10;
   color: black;
 }
+.card:hover
