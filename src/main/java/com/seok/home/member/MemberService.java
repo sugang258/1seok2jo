@@ -54,20 +54,25 @@ public class MemberService {
 	}
 	
 	//강사신청
-	public int setTeacherAdd(TeacherDTO teacherDTO, ServletContext servletContext)throws Exception{
-		System.out.println("강사신청한거에 너의 강사신청번호가 있니? "+teacherDTO.getT_num());
-		teacherDTO = teacherDAO.getTeacherDetail(teacherDTO);
-		System.out.println("강사신청한거에 너의 강사신청번호가 있니? "+teacherDTO.getT_num());
+	public int setTeacherAdd(TeacherDTO teacherDTO, ServletContext servletContext, MemberDTO memberDTO)throws Exception{
+		
+		List<RoleDTO> roleDTOs = memberDTO.getRoleDTOs();
+		TeacherDTO teacherDTO2 = memberDTO.getTeacherDTO();
+		System.out.println("강사신청서비스의 티처디티오2 : "+teacherDTO2.getT_num());
+		//2
+		System.out.println("강사신청서비스 : "+roleDTOs.get(0).getRoleNum());
+		//강사
+		System.out.println("강사신청서비스 : "+roleDTOs.get(0).getRoleName());
+		
+		Long roleNum = roleDTOs.get(0).getRoleNum();
+		
 		int result = 0;
-		if(teacherDTO.getT_num() == null) {
+		if(roleNum != 2) {
 			//강사신청 성공하면 등급을 추가
 			int susess = teacherDAO.setTeacherAdd(teacherDTO);
 			if(susess == 1) {
 				result = teacherDAO.setTeacherRole(teacherDTO);
 			}
-		
-//		teacherDTO = teacherDAO.getTeacherDetail(teacherDTO);
-//		System.out.println("강사신청한거에 강사신청번호가있니? "+teacherDTO.getT_num());
 		
 		}
 		return result;

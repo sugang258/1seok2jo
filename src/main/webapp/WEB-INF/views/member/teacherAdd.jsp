@@ -26,14 +26,9 @@
 		<div class="row mt-5">
 			<%-- 강사 회원가입JSP --%>
 			<form action="./teacherAdd" method="post">
-			
-			<%-- 			  <div class="mb-3">
-			    <input type="hidden" name="t_num" class="form-control" id="ipId" value="${teacher.t_num}">
-			  </div>--%>
 
 			  <div class="mb-3">
-			    <label for="ipId" class="form-label">아이디</label>
-			    <input type="text" name="id" class="form-control" id="ipId" value="${member.id}">
+			    <input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}">
 			  </div>
 			  
 			  <div class="mb-3">

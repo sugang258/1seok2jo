@@ -134,8 +134,11 @@ public class MemberController {
 	public String setTeacherAdd(TeacherDTO teacherDTO, HttpSession session)throws Exception{
 		System.out.println("강사신청 접속(POST)");
 		
+		//세션에 있는 한 회원정보를 memberDTO에 담음
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		
 		//DB에 새로운 강사데이터추가
-		int result = memberService.setTeacherAdd(teacherDTO, session.getServletContext());
+		int result = memberService.setTeacherAdd(teacherDTO, session.getServletContext(), memberDTO);
 		
 		//새로운 강사데이터추가 성공 실패 확인
 		if(result>0) {
@@ -244,6 +247,10 @@ public class MemberController {
 		return mv;
 	}
 	
+	//강사프로필 정보조회 화면(GET)
+	
+	
+	//강사프로필 정보수정 로직(POST)
 	
 	
 	//장바구니 화면(GET)
