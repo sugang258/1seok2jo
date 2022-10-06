@@ -32,6 +32,11 @@ public class MemberController {
 	@Autowired
 	private CartService cartService;
 	
+	@GetMapping("test")
+	public String test()throws Exception{
+		return "member/test";
+	}
+	
 	//로그인 화면(GET)
 	@GetMapping("login")
 	public String getLogin()throws Exception{
