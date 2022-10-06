@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>매출 내역 목록</title>
+        <title>게시글 목록</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="/resources/temp/css/styles1.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -21,7 +21,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">매출 내역 목록</h1>
+                        <h1 class="mt-4">게시글 목록</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                             <li class="breadcrumb-item active">Tables</li>
@@ -42,10 +42,11 @@
                                     <div class="col-5">
                                         <div class="input-group">
                                         <select type="button" name="kind" id="kind" class="btn btn-outline-success dropdown-toggle" style="text-align: left;" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <option value="P_UID">게시판번호</option>
-                                            <option value="TEACHER">제목</option>
-                                            <option value="L_NAME">강의명</option>
-                                            <option value="ID">구매자아이디</option>
+                                            <option value="title">제목</option>
+                                            <option value="fb_num">게시글번호</option>
+                                            <option value="contents">내용</option>
+                                            <option value="category">카테고리</option>
+                                            <option value="ID">작성자</option>
                                         </select>
                                         <input type="text" name="search" id="search" class="form-control"></input>
                                         </div>
@@ -80,8 +81,7 @@
                                     <label id="oldlb" for="old">⌛ 오래된 순</label>
                                 </div>
                                 <div class="p-2 flex-fill text-end">
-                                    <input type="radio" id="old" name="orderby" value="old" style="display: none;" >
-                                    <label id="oldlb" for="old">⌛ 오래된 순</label>
+                                    <button type="button">게시글 삭제</button>
                                 </div>
                               </div>
                         </div>
@@ -109,7 +109,7 @@
         <script src="/resources/temp/js/scripts.js"></script>
         <script src="/resources/js/admin.js"></script>
         <script>
-
+            initboards()
         </script>
         
     </body>

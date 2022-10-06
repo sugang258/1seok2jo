@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.seok.home.cs_board.CsBoardDTO;
 import com.seok.home.cs_board.CsDAO;
+import com.seok.home.f_board.FreeBoardDTO;
 import com.seok.home.lecture.LectureDAO;
 import com.seok.home.lecture.LectureDTO;
 import com.seok.home.member.MemberDAO;
@@ -28,6 +29,12 @@ public class AdminService {
 	private CsDAO csDAO;
 	@Autowired
 	private PayDAO payDAO;
+	
+	public List<FreeBoardDTO> getBoardsList(AdminPager pager) throws Exception{
+		pager.calNum(adminDAO.getTotalBoardList(pager));
+		
+		return adminDAO.getBoardList(pager);
+	}
 	
 	public List<LectureDTO> getLectureList(AdminPager pager) throws Exception{
 		Long totalCount = lectureDAO.getCount(pager);

@@ -43,9 +43,9 @@ public class AdminController {
 	@PostMapping(value = "boardsList")
 	@ResponseBody
 	private ModelAndView getBoards(AdminPager pager, ModelAndView mv) throws Exception{
-		
-		mv.addObject("lectureList", service.getLectureList(pager));
-		mv.setViewName("admin/lectureListPost");
+
+		mv.addObject("boardsList", service.getBoardsList(pager));
+		mv.setViewName("admin/boardListPost");
 		
 		return mv;
 	}
