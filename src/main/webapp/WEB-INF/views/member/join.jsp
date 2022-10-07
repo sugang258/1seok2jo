@@ -59,18 +59,6 @@
 						<div id="ipNnameResult"></div>
 					</div>
 					
-					<!-- <div class="mb-3">
-						<label for="ipBdate" class="form-label">생년월일</label>
-						<input type="number" name="b_date" class="form-control" id="ipBdate" placeholder="생년월일을 입력해주세요">
-						<div id="ipBdateResult"></div>
-					</div>
-					
-					<div class="mb-3">
-						<label for="ipGender" class="form-label">성별</label>
-						<input type="text" name="gender" class="form-control" id="ipGender" placeholder="성별을 입력해주세요">
-						<div id="ipGenderResult"></div>
-					</div> -->
-					
 					<div class="row g-2">
 						<div>
 							<label for="ipBdate" class="form-label"><b>생년월일</b></label>
@@ -105,16 +93,13 @@
 					</div>
 					
 					<div class="mb-4">
-						<div class="form-group">
-							<label for="ipGender" class="form-label mt-4"><b>성별</b></label>
-							<select class="form-select" name="gender">
-								<option value="">성별</option>
-								<option value="남자">남자</option>
-								<option value="여자">여자</option>
-								<option value="선택안함">선택안함</option>
-							</select>
-						</div>
-						<!-- <input type="text" name="gender" class="form-control" id="ipGender" placeholder="성별을 입력해주세요"> -->
+						<label for="ipGender" class="form-label mt-4"><b>성별</b></label>
+						<select class="form-select" name="gender">
+							<option value="">성별</option>
+							<option value="남자">남자</option>
+							<option value="여자">여자</option>
+							<option value="선택안함">선택안함</option>
+						</select>
 						<div id="ipGenderResult"></div>
 					</div>
 					

@@ -22,34 +22,39 @@
 <body>
 <%-- 입력창 만들기 전 부트스트랩 쓸때 이걸 써야한다 --%>
 <%-- con-lg-7은 사이즈 조절하는것 --%>
-	<section class="container-fluid con-lg-7 ilseok">
-		<div class="row mt-5">
-			<%-- 강사 회원가입JSP --%>
-			<form action="./teacherAdd" method="post">
-
-			  <div class="mb-3">
-				<label for="ipId" class="form-label">${member.id}</label>
-			    <input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}">
-			  </div>
-			  
-			  <div class="mb-3">
-			    <label for="ipBank_num" class="form-label">계좌번호</label>
-			    <input type="text" name="bank_num" class="form-control" id="ipBank_num" placeholder="계좌번호를 입력해주세요">
-			  </div>
-			  
-			  <div class="mb-3">
-			    <label for="ipBank_name" class="form-label">은행이름</label>
-			    <input type="text" name="bank_name" class="form-control" id="ipBank_name" placeholder="은행명을 입력해주세요">
-			  </div>
-			  
-			  <div class="mb-3">
-			    <label for="ipIntroduce" class="form-label">소개글</label>
-			    <input type="text" name="introduce" class="form-control" id="ipIntroduce" placeholder="나를 간단히 소개하는 글을 입력해주세요">
-			  </div>
-			  
-			  <button type="submit" class="btn btn-outline-success">강사신청</button>
-			  
-			</form>
+	<section class="container ilseok">
+		<div class="row justify-content-md-center">
+			<div class="col-6 col-md-4 col-lg-5 mt-5">
+				<div class="mb-3 text-center">
+					<h1><b>강사신청✒</b></h1>
+				</div>
+				<%-- 강사 회원가입JSP --%>
+				<form action="./teacherAdd" method="post">
+					
+				  <div class="mb-4">
+					<label for="ipId" class="form-label">${member.id}</label>
+					<input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}">
+				  </div>
+				  
+				  <div class="mb-4">
+					<label for="ipBank_num" class="form-label">계좌번호</label>
+					<input type="text" name="bank_num" class="form-control" id="ipBank_num" placeholder="계좌번호를 입력해주세요">
+				  </div>
+				  
+				  <div class="mb-4">
+					<label for="ipBank_name" class="form-label">은행이름</label>
+					<input type="text" name="bank_name" class="form-control" id="ipBank_name" placeholder="은행명을 입력해주세요">
+				  </div>
+				  
+				  <div class="mb-4">
+					<label for="ipIntroduce" class="form-label">소개글</label>
+					<input type="text" name="introduce" class="form-control" id="ipIntroduce" placeholder="나를 간단히 소개하는 글을 입력해주세요">
+				  </div>
+				  
+				  <button type="submit" class="btn btn-outline-success">강사신청</button>
+				  
+				</form>
+			</div>
 		</div>
 	</section>
 <c:import url="../template/footer.jsp"></c:import>
