@@ -100,11 +100,14 @@ public class MemberController {
 	
 	//회원가입 로직 처리(POST)
 	@PostMapping
-	public String setJoin(MemberDTO memberDTO, HttpSession session)throws Exception{
+	public String setJoin(MemberDTO memberDTO, HttpSession session, String yy, String mm, String dd, String e, String mail)throws Exception{
 		System.out.println("회원가입 접속(POST)");
 		
+		System.out.println("e : "+e);
+		System.out.println("mail : "+mail);
+		
 		//DB에 새로운 회원데이터추가
-		int result = memberService.setJoin(memberDTO);
+		int result = memberService.setJoin(memberDTO, yy, mm, dd, e, mail);
 		
 		//새로운 회원데이터추가 성공 실패 확인
 		if(result>0) {
@@ -253,19 +256,23 @@ public class MemberController {
 	
 	//강사프로필 정보조회 화면(GET)
 	@GetMapping("tcherProfile")
-	public ModelAndView getTcherProfile(HttpSession session)throws Exception{
+	public ModelAndView getTcherProfile(HttpSession session, TeacherDTO teacherDTO)throws Exception{
 		System.out.println("강사프로필 정보(GET)");
 		ModelAndView mv = new ModelAndView();
-		TeacherDTO teacherDTO = new TeacherDTO();
-		MemberDTO memberDTO = new MemberDTO();
-		
+		//어드민 확인
+		if(teacherDTO.getId()!=null) {
+			if((Boolean)session.getAttribute("admin")) {
+				teacherDTO = memberService.getTcherProfile(teacherDTO);
+			}
+		}else {
 		//세션에서 아이디를 꺼냅니다
+		MemberDTO memberDTO = new MemberDTO();
 		memberDTO = (MemberDTO) session.getAttribute("member");
 		//꺼낸 아이디를 teacherDTO에 담습니다
 		teacherDTO.setId(memberDTO.getId());
 		//DB에 갔다온 teacherDTO에는 신청번호, 계좌번호, 은행이름, 소개글이 있습니다.
 		teacherDTO = memberService.getTcherProfile(teacherDTO);
-
+		}
 		mv.addObject("teacher", teacherDTO);
 		mv.setViewName("member/tcherProfile");
 		

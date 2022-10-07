@@ -246,17 +246,6 @@
               </div>
             </div>
             
-             <div class="lecture">
-              <div class="card" style="height:277px">
-                <img src="/resources/images/20.png" class="card-img-top img " alt="...">
-                <div class="card-text">
-                  <h5 style="margin-top: 10px;">자바스크립트 완전정복</h5>
-                  <h7>⭐⭐⭐⭐⭐</h7>
-                  <p>평점</p>
-                </div>
-              </div>
-            </div>
-            
             <div class="lecture">
               <div class="card" style="height:277px">
                 <img src="/resources/images/20.png" class="card-img-top img " alt="...">

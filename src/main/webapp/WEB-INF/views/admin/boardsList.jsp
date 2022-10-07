@@ -24,8 +24,8 @@
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">게시글 목록</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Tables</li>
+                            <li class="breadcrumb-item"><a href="/admin/main">Dashboard</a></li>
+                            <li class="breadcrumb-item active">게시글 목록</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">
@@ -56,11 +56,11 @@
                                 <div class="row mt-2">
                                     <div class="col-12">
                                         <span class="text-muted">게시판 구분</span>
-                                        <input type="checkbox" id="free" name="status" value="free" checked>
+                                        <input type="checkbox" id="free" name="status" value="free" class="form-check-input" checked>
                                         <label id="freelb" for="free" style="font-weight:bold; color:black">자유게시판</label>
-                                        <input type="checkbox" id="study" name="status" value="study" checked>
+                                        <input type="checkbox" id="study" name="status" value="study" class="form-check-input" checked>
                                         <label id="studylb" for="study" style="font-weight:bold; color:black">학습게시판</label>
-                                        <input type="checkbox" id="notice" name="status" value="notice" checked>
+                                        <input type="checkbox" id="notice" name="status" value="notice" class="form-check-input" checked>
                                         <label id="noticelb" for="notice" style="font-weight:bold; color:black">공지사항</label>
                                     </div>
                                 </div>
@@ -81,7 +81,8 @@
                                     <input type="radio" id="old" name="orderby" value="old" style="display: none;" >
                                     <label id="oldlb" for="old">⌛ 오래된 순</label>
                                 </div>
-                                <div class="p-2 flex-fill text-end">
+                                <div class="p-2 flex-fill text-end pe-5">
+                                    <button type="button" onclick="location.href='/board/nb_add'">공지사항 작성</button>
                                     <button type="button">게시글 삭제</button>
                                 </div>
                               </div>

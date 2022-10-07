@@ -108,8 +108,16 @@
 		/* 회원 데이터 추가 */
 		
 		INSERT INTO MEMBER(ID, PW, NAME, N_NAME, B_DATE, GENDER, EMAIL, PHONE, POINT)
-		VALUES (#{id}, #{pw}, #{name}, #{n_name}, #{b_date}, #{gender}, #{email}, #{phone}, 0)
+		VALUES (#{id}, #{pw}, #{name}, #{n_name}, #{b_date}, #{gender}, #{email}, #{phone}, 5000)
 	</insert>
+	
+	<select id="getPoint" parameterType="MemberDTO" resultType="Long">
+		select point from member where id=#{id}
+	</select>
+	
+	<update id="updatePoint" parameterType="MemberDTO">
+		UPDATE MEMBER SET POINT=#{point} WHERE ID=#{id}
+	</update>
 	
 	<select id="getProfile" parameterType="MemberDTO" resultMap="getProfileResult">
 		/* 프로필에 쓰일 정보 조회 화면 */
@@ -146,7 +154,7 @@
 			SELECT FILE_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO MEMBER_FILE (NUM, ID, F_NAME, F_ORINAME)
-		VALUES(#{num}, #{id},#{f_name}, #{f_oriname})
+		VALUES(#{num}, #{id}, #{f_name}, #{f_oriname})
 	</insert>
 	
 	<delete id="setDeleteFile" parameterType="MemberFileDTO">
@@ -157,6 +165,15 @@
 	<delete id="setDeleteMemberRole" parameterType="MemberDTO">
 		/* 회원등급 데이터 삭제 */
 		DELETE FROM MEMBER_ROLE WHERE ID=#{id}
+	</delete>
+	
+	<delete id="setDeleteTeacherRole" parameterType="MemberDTO">
+		/* 강사권한 삭제 */
+		DELETE FROM MEMBER_ROLE WHERE ID=#{id} AND ROLENUM=2
+	</delete>
+	<delete id="setDeleteTeacher" parameterType="MemberDTO">
+		/* 강사권한 삭제 */
+		DELETE FROM teacher WHERE ID=#{id}
 	</delete>
 	
 	<delete id="setDeleteJoin" parameterType="MemberDTO">

@@ -19,6 +19,35 @@ public class MemberDAOTest extends MyAbstractTest {
 	private MemberDAO memberDAO;
 	
 //	@Test
+	public void getPointTest() throws Exception{
+		MemberDTO dto = new MemberDTO();
+		dto.setId("yj");
+		
+		Long result = memberDAO.getPoint(dto);
+		System.out.println(result);
+	}
+	
+//	@Test
+	public void updatePointTest() throws Exception{
+		MemberDTO dto = new MemberDTO();
+		dto.setId("yj");
+		dto.setPoint(-2000L);
+		int result = memberDAO.updatePoint(dto);
+		
+		assertEquals(1, result);
+	}
+	
+//	@Test
+	public void setDeleteTeacherAllTest() throws Exception{
+		MemberDTO dto = new MemberDTO();
+		dto.setId("yj");
+		
+		int result = memberDAO.setDeleteTeacherAll(dto);
+		
+		assertEquals(1, result);
+	}
+	
+//	@Test
 	public void getAdminMemberListTest() throws Exception{
 		AdminPager pager = new AdminPager();
 		List<MemberDTO> memlist = memberDAO.getAdminMemberList(pager);
@@ -106,6 +135,15 @@ public class MemberDAOTest extends MyAbstractTest {
 		
 		int result = memberDAO.getIdCheck(memberDTO);
 		
+		assertEquals(1, result);
+	}
+	
+//	@Test
+	public void setAddFileTest()throws Exception{
+		MemberFileDTO memberFileDTO = new MemberFileDTO();
+		memberFileDTO.setF_name("haha");
+		memberFileDTO.setF_oriname("ha");
+		int result = memberDAO.setAddFile(memberFileDTO);
 		assertEquals(1, result);
 	}
 	
