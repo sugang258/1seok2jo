@@ -38,7 +38,15 @@ public class MemberService {
 	}
 	
 	//회원가입
-	public int setJoin(MemberDTO memberDTO)throws Exception{
+	public int setJoin(MemberDTO memberDTO, String yy, String mm, String dd)throws Exception{
+		
+		System.out.println("yy 서비스 : "+yy);
+		System.out.println("mm : "+mm);
+		System.out.println("dd : "+dd);
+		
+		memberDTO.setB_date(Long.parseLong(yy+mm+dd));
+		System.out.println("member : "+memberDTO.getB_date());
+		
 		//회원가입이 성공하면 등급을 추가
 		int susess = memberDAO.setJoin(memberDTO);
 		int result = 0;

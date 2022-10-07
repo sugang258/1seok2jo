@@ -19,6 +19,9 @@ public class MemberServiceTest extends MyAbstractTest {
 	//@Test
 	public void setJoinTest()throws Exception {
 		MemberDTO memberDTO = new MemberDTO();
+		String yy = "1998";
+		String mm = "9";
+		String dd = "8";
 		memberDTO.setId("hyo");
 		memberDTO.setPw("123");
 		memberDTO.setName("효경");
@@ -27,7 +30,7 @@ public class MemberServiceTest extends MyAbstractTest {
 		memberDTO.setGender("여자");
 		memberDTO.setEmail("hyo@naver.com");
 		memberDTO.setPhone("010-2222-2222");
-		int result = memberService.setJoin(memberDTO);
+		int result = memberService.setJoin(memberDTO, yy, mm, dd);
 		
 		assertEquals(1, result);
 	}

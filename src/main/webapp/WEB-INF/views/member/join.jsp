@@ -85,18 +85,18 @@
 						<div class="col-4">
 							<select class="form-select" name="mm">
 								<option value="">월</option>
-								<option value="">1</option>
-								<option value="">2</option>
-								<option value="">3</option>
-								<option value="">4</option>
-								<option value="">5</option>
-								<option value="">6</option>
-								<option value="">7</option>
-								<option value="">8</option>
-								<option value="">9</option>
-								<option value="">10</option>
-								<option value="">11</option>
-								<option value="">12</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
 							</select>
 						</div>
 	
@@ -112,11 +112,11 @@
 					<div class="mb-4">
 						<div class="form-group">
 							<label for="ipGender" class="form-label mt-4"><b>성별</b></label>
-							<select class="form-select" id="exampleSelect1">
+							<select class="form-select" name="gender">
 								<option value="">성별</option>
-								<option value="">남자</option>
-								<option value="">여자</option>
-								<option value="">선택안함</option>
+								<option value="남자">남자</option>
+								<option value="여자">여자</option>
+								<option value="선택안함">선택안함</option>
 							</select>
 						</div>
 						<!-- <input type="text" name="gender" class="form-control" id="ipGender" placeholder="성별을 입력해주세요"> -->

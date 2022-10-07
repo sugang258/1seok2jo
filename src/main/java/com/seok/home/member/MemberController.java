@@ -100,11 +100,11 @@ public class MemberController {
 	
 	//회원가입 로직 처리(POST)
 	@PostMapping
-	public String setJoin(MemberDTO memberDTO, HttpSession session)throws Exception{
+	public String setJoin(MemberDTO memberDTO, HttpSession session, String yy, String mm, String dd)throws Exception{
 		System.out.println("회원가입 접속(POST)");
 		
 		//DB에 새로운 회원데이터추가
-		int result = memberService.setJoin(memberDTO);
+		int result = memberService.setJoin(memberDTO, yy, mm, dd);
 		
 		//새로운 회원데이터추가 성공 실패 확인
 		if(result>0) {
