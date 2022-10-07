@@ -99,7 +99,7 @@ prefix="c" %>
               style="display: none"
               name="id"
               readonly
-              value="USER2"
+              value="${member.id}"
               class="form-control"
               id="exampleFormControlInput1"
             />

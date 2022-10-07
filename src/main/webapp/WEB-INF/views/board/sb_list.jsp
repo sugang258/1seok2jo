@@ -28,6 +28,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
   <body>
     <section class="container" style="width: 70%">
       <!--Board-Main-Top-->
+     <form action="./sb_list" method="get">
       <div style="height: 190px; margin-top: 125px">
         <div style="height: 70px">
           <h3 style="line-height: 80px"><strong>📗 학습게시판</strong></h3>
@@ -37,34 +38,33 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             <button id="seach_logo" class="seach-logo">
               <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
             </button>
-            <input type="search" placeholder="궁금한 내용을 찾아보세요." />
+            <input type="search" name="search" value="${param.search}" placeholder="궁금한 내용을 찾아보세요." />
           </div>
         </div>
         <!--Order-->
         <div class="order">
-          <form>
             <div class="d-flex mb-3">
               <div class="p-1">
-                <select class="select" name="kind">
-                  <option value="newest">최신순</option>
-                  <option value="hits">조회순</option>
+                <select class="select" name="order">
+                  <option class="orders" value="new">최신순</option>
+                  <option class="orders" value="hits">조회순</option>
                 </select>
               </div>
               <div class="p-1">
-                <select class="select" name="kind">
-                  <option value="all">답변전체</option>
-                  <option value="wait">답변대기</option>
-                  <option value="finish">답변완료</option>
+                <select class="select" name="answer">
+                  <option class="answers" value="all">답변전체</option>
+                  <option class="answers" value="wait">답변대기</option>
+                  <option class="answers" value="finish">답변완료</option>
                 </select>
               </div>
               <div class="p-1">
                 <select class="select" name="kind" style="width: 100px">
-                  <option value="category">카테고리</option>
-                  <option value="java">JAVA</option>
-                  <option value="spring">SPRING</option>
-                  <option value="javascript">JAVASCRIPT</option>
-                  <option value="html">HTML</option>
-                  <option value="css">CSS</option>
+                  <option class="kinds" value="category">전체보기</option>
+                  <option class="kinds" value="java">JAVA</option>
+                  <option class="kinds" value="spring">SPRING</option>
+                  <option class="kinds" value="javascript">JAVASCRIPT</option>
+                  <option class="kinds" value="html">HTML</option>
+                  <option class="kinds" value="css">CSS</option>
                 </select>
               </div>
               <div class="ms-auto p-2">
@@ -73,9 +73,9 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                 </button>
               </div>
             </div>
-          </form>
         </div>
       </div>
+ 	</form>
 
       <!--Board_Contents-->
       <div class="board">
@@ -147,7 +147,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               <li class="page-item">
                 <a
                   class="page-link text-success"
-                  href="./sb_list?page=${pager.startNum-1}"
+                  href="./sb_list?page=${pager.startNum-1}&order=${pager.order}&answer=${pager.answer}&kind=${pager.kind}"
                   aria-label="Previous"
                 >
                   <span aria-hidden="true">이전</span>
@@ -158,7 +158,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               <li class="page-item">
                 <a
                   class="page-link text-success"
-                  href="sb_list?page=${pageScope.i}"
+                  href="sb_list?page=${pageScope.i}&order=${pager.order}&answer=${pager.answer}&kind=${pager.kind}"
                   >${i}</a
                 >
               </li>
@@ -168,7 +168,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               <c:if test="${pager.next}">
                 <a
                   class="page-link text-success"
-                  href="./sb_list?page=${pager.lastNum+1}"
+                  href="./sb_list?page=${pager.lastNum+1}&order=${pager.order}&answer=${pager.answer}&kind=${pager.kind}"
                   aria-label="Next"
                 >
                   <span aria-hidden="true">다음</span>
@@ -203,6 +203,32 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
     <script src="/resources/js/sb_list.js"></script>
     <script>
       init();
+    </script>
+    <script>
+    const orders = document.getElementsByClassName('orders');
+    const answers = document.getElementsByClassName('answers');
+    const kinds = document.getElementsByClassName('kinds');
+    let k = '${param.kind}';
+    let a = '${param.answer}';
+    let o = '${param.order}';
+    for(let i =0;i < kinds.length;i++){
+        if(k == kinds[i].value){
+          kinds[i].selected = true;
+          break;
+        }
+      }
+    for(let i =0;i < answers.length;i++){
+        if(a == answers[i].value){
+        	answers[i].selected = true;
+          break;
+        }
+      }
+        for(let i =0;i < orders.length;i++){
+            if(o == orders[i].value){
+              orders[i].selected = true;
+              break;
+            }  
+      }
     </script>
   </body>
 </html>

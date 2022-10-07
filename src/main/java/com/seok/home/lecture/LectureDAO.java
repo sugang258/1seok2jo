@@ -1,5 +1,6 @@
 package com.seok.home.lecture;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.seok.home.cart.CartDTO;
 import com.seok.home.lecture.add.LectureAddDTO;
+import com.seok.home.member.MemberDTO;
 import com.seok.home.util.Pager;
 
 @Repository
@@ -139,6 +141,10 @@ public class LectureDAO {
 	
 	public List<LectureDTO> getLectureCate(Pager pager) throws Exception{
 	    return sqlSession.selectList(NAMESPACE+"getLectureCate", pager);
+	}
+	
+	public String getMemberName(MemberDTO memberDTO) throws Exception{
+	    return sqlSession.selectOne(NAMESPACE+"getMemberName", memberDTO);
 	}
 
 

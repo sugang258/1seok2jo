@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.seok.home.b_comment.NoticeReplyDTO;
+import com.seok.home.member.MemberDAO;
+import com.seok.home.member.MemberDTO;
 import com.seok.home.s_board.Pager;
 
 @Service

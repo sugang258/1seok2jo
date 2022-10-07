@@ -26,10 +26,10 @@
 				
 				<select name="kind" class="form-select input-group" id="kind" >
 					<option class="kinds" value="" style="display: none;">Category</option>
-					<option class="kinds" value="id">강사 ID</option>
+					<option class="kinds" value="id">강사</option>
 					<option class="kinds" value="l_name">강의 제목</option>
-					<option class="kinds" value="level_name">강의 난이도</option>
-					<option class="kinds" value="c_name">강의 카테고리</option>
+					<option class="kinds" value="level_name">난이도</option>
+					<option class="kinds" value="c_name">카테고리</option>
 				</select>
 
 				<input type="text" class="form-control" id="search" name="search" value="">

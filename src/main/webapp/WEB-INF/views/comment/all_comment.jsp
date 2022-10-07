@@ -34,7 +34,7 @@
             </c:choose>
             <div>
               <form action="sb_commentAdd" method="post">
-                 <input id="c_id" name="id" style="display:none;" type="text" value="유저"/>
+                 <input id="c_id" name="id" style="display:none;" type="text" value="${member.id}"/>
                 <input name="contents" type="text" class="reply_text" id="reply_text" placeholder="모두에게 도움이 되는 답변의 주인공이 되어주세요!">
                 
                 <button type="button"  class="reply_btn" id="reply_btn">댓글작성</button>

@@ -165,12 +165,13 @@ prefix="c" %>
             class="btn-st btn btn-outline-secondary"
             onclick="location.href='/board/fb_list'"
           >
-            목록보기(작성자)
+            목록보기
           </button>
         </div>
+      <c:if test="${member.id eq freeBoardDTO.id}">
         <div class="p-2">
           <button class="btn-st btn btn-outline-secondary" id="fb_delete">
-            삭제하기(작성자)
+            삭제하기
           </button>
         </div>
         <div class="p-2">
@@ -181,9 +182,10 @@ prefix="c" %>
             data-bs-target="#exampleModal_update"
             data-bs-whatever="@mdo"
           >
-            수정하기(작성자)
+            수정하기
           </button>
         </div>
+        </c:if>
       </div>
 
       <!--modal-->

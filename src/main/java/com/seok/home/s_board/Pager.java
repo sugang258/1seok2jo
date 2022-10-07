@@ -13,6 +13,46 @@ public class Pager {
 	private boolean pre;
 	private boolean next;
 	
+	private String search;
+	private String kind;
+	private String order;
+	private String answer;
+	
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
+	}
+
+	public String getSearch() {
+		if(search == null) {
+			this.search ="";
+		}
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
 	public Pager() {
 		this.perPage = 10L;
 		this.perBlock = 5L;
