@@ -1,0 +1,19 @@
+/* 사이즈를 조정하는 css */
+
+/* 섹션 크기 */
+.container-fluid{
+    height: 1053px;
+    padding-top: 55px;
+    padding-bottom: 75px;
+}
+
+/* 입력창 크기 */
+row.justify-content-center.mt-5{
+    margin: 0 auto;
+    width: 503px;
+}
+
+/* 회원가입 버튼 크기 */
+.d-grid.gap-2{
+    padding-top: 30px;
+}
