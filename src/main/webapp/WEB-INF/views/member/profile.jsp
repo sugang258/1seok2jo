@@ -39,10 +39,15 @@
 			  </div>					
 			  <!-- 파일 추가 input -->
 			  <input type="file" id="file" style="display: none;">
-			
-			  
+
+			  <div id="tcherProfile">
+				<!--하단 파일 추가 input과 연결된 라벨-->
+				<label for="tcherProfile" name class="mt-2 file_add"><b>프로필수정✏</b>
+					<button type="button" onclick="location.href='/member/tcherProfile';"><b>프로필수정✏</b></button>
+			  </div>
 
 			  <div class="mb-3">
+				<label for="ipName" class="form-label">${member.id}</label>
 			    <input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}">
 			  </div>
 			  
