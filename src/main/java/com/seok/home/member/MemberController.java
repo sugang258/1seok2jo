@@ -178,23 +178,30 @@ public class MemberController {
 	
 	//회원프로필정보조회 화면(GET)
 	@GetMapping("profile")
-	public ModelAndView getProfile(HttpSession session)throws Exception {
+	public ModelAndView getProfile(HttpSession session, MemberDTO memberDTO)throws Exception {
 		System.out.println("프로필 정보(GET)");
 		
 		ModelAndView mv = new ModelAndView();
-		MemberDTO memberDTO = new MemberDTO();
+		MemberDTO respMemberDTO = new MemberDTO();
+		
+		if(memberDTO.getId()!=null) {
+			if((Boolean)session.getAttribute("admin")) {
+				respMemberDTO = memberService.getProfile(memberDTO);
+			}
+		}else {
+		
 		//세션정보(아이디, 이름, 닉네임, 성별, 이메일, 전화번호, 마일리지, 등급번호, 등급이름 조회)를 꺼내서
 		//memberDTO에 담음
 		memberDTO = (MemberDTO) session.getAttribute("member");
 		
 		//프로필정보조회(아이디, 이름, 닉네임, *생년월일*, 성별, 이메일, 연락처 조회)
 		//getProfile을 갔다온 memberDTO를 respMemberDTO(responseMemberDTO)에 담음
-		MemberDTO respMemberDTO = memberService.getProfile(memberDTO);
+		respMemberDTO = memberService.getProfile(memberDTO);
+		}
 		
 		//그 데이터를 "member"로 JSP에 보내줌
 		mv.addObject("member", respMemberDTO);
 		mv.setViewName("member/profile");
-		
 		return mv;
 	}
 	
