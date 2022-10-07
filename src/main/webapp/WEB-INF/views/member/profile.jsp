@@ -7,7 +7,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Insert title here</title>
-		<link rel="stylesheet" href="/resources/css/index.css" />
+		
 		<%-- 보통 타이틀밑에 BootStrap 링크를 넣는다 --%>
     	<%-- Bootstrap CSS --%>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -87,7 +87,33 @@
 			  <div>
 				  <button type="submit" class="btn btn-outline-success"><b>프로필수정✏</b></button>
 			  </div>
-			  
+			  <!-- 프로필-이미지카드 -->
+			  <div class="card" style="width: 18rem;">
+				<img src="..." class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title">Card title</h5>
+				  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				</div>
+				<ul class="list-group list-group-flush">
+				  <li class="list-group-item">An item</li>
+				  <li class="list-group-item">A second item</li>
+				  <li class="list-group-item">A third item</li>
+				</ul>
+				<div class="card-body">
+				  <a href="#" class="card-link">Card link</a>
+				  <a href="#" class="card-link">Another link</a>
+				</div>
+			  </div>
+
+			  <!-- 초록색-카드 -->
+			  <div class="card border-success mb-3" style="max-width: 18rem;">
+				<div class="card-header">Header</div>
+				<div class="card-body text-success">
+				  <h5 class="card-title">Success card title</h5>
+				  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				</div>
+			  </div>
+
 			</form>
 		</div>
 	</section>
