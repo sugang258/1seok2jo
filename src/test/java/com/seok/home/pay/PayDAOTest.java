@@ -11,11 +11,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.seok.home.MyAbstractTest;
 import com.seok.home.lecture.LectureDTO;
 import com.seok.home.lecture.LectureFileDTO;
+import com.seok.home.lecture.teacher.TeacherPager;
 
 public class PayDAOTest extends MyAbstractTest{
 
 	@Autowired
 	PayDAO dao;
+	
+//	@Test
+	public void getteacherListTest() throws Exception{
+		TeacherPager pager = new TeacherPager();
+		pager.setTeacher("sg");
+		
+		List<OrderDTO> od = dao.getteacherList(pager);
+		
+		System.out.println(od.size());
+		
+		for(OrderDTO odr : od) {
+			System.out.println(odr.getP_uid());
+			System.out.println(odr.getLectureDTO().getL_name());
+			System.out.println(odr.getLectureDTO().getLectureAddDTO().getStatus());
+		}
+		
+		assertNotNull(od);
+	}
 	
 //	@Test
 	public void updatePaymentRemainsTest() throws Exception{

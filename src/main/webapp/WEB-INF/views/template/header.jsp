@@ -55,6 +55,7 @@
                 <li><a class="dropdown-item empty" href="/member/teacherAdd">강사 신청</a></li>
                 <li><a class="dropdown-item add"  href="/lecture/add">강의 추가</a></li>
                 <li><a class="dropdown-item service" href="/lecture/teacher">내 강의 관리</a></li>
+                <li><a class="dropdown-item service" href="/teacher/salesList">강의 매출 목록</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
@@ -97,7 +98,7 @@
             </button>
 
             <button type="button" class="top_button" style="margin-right: 10px;" onclick="location.href='/member/join';">👩‍💻회원가입</button>
-            <button type="button" class="top_button" id="cart" onclick="location.href='/member/cart'">🛒</button>
+            <button type="button" class="top_button" id="cartt" onclick="location.href='/member/cart'">🛒</button>
           </form>
         </div>
       </div>

@@ -111,5 +111,17 @@ public class LectureAddTest extends MyAbstractTest {
 
 	}
 	
+	//@Test
+	public void getLectureList() throws Exception{
+	    LectureDTO lectureDTO = new LectureDTO();
+	    
+	    lectureDTO.setL_num(6L);
+	    
+	    List<LectureAddDTO> ar = lectureAddDAO.getLectureList(lectureDTO);
+	    
+	    assertNotEquals(0, ar.size());
+
+	    
+	}
 
 }

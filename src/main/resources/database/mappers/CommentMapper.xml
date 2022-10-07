@@ -22,8 +22,13 @@
 		    	</delete>
 		    	
 		    	<!-- 게시판댓글 -->
-		    	<select id="getSB_CommentList" parameterType="CommentDTO" resultType="CommentDTO">
-		    		SELECT * FROM SB_COMMENT WHERE SB_NUM = #{sb_num} AND REF=1 ORDER BY NUM ASC 
+		    	<select id="getSB_CommentList" parameterType="CommentPager" resultType="CommentDTO">
+		    		SELECT * FROM (
+		    			SELECT ROWNUM R, N.* FROM (
+		    				SELECT * FROM SB_COMMENT WHERE SB_NUM=#{sb_num} AND REF=1 ORDER BY NUM DESC 
+		    				)N
+		    			)
+		    		WHERE R BETWEEN #{startRow} AND #{lastRow}
 		    	</select>
 		    	
 		    	<insert id="setSB_CommentAdd" parameterType="CommentDTO">
@@ -35,8 +40,13 @@
 		    	</delete>
 		    	
 		    	<!-- 강사 답글 : 댓글 -->
-		    	<select id="getT_CommentList" parameterType="CommentDTO" resultType="CommentDTO">
-		    		SELECT * FROM SB_COMMENT WHERE SB_NUM = #{sb_num} AND REF=0 ORDER BY NUM ASC 
+		    	<select id="getT_CommentList" parameterType="CommentPager" resultType="CommentDTO">
+		    		SELECT * FROM (
+		    			SELECT ROWNUM R, N.* FROM (
+		    				SELECT * FROM SB_COMMENT WHERE SB_NUM=#{sb_num} AND REF=0 ORDER BY NUM DESC 
+		    				)N
+		    			)
+		    		WHERE R BETWEEN #{startRow} AND #{lastRow}
 		    	</select>
 		    	
 		    	<insert id="setT_CommentAdd" parameterType="CommentDTO">

@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>1대1 문의</title>
+        <title>매출 내역 목록</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="/resources/temp/css/styles1.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -42,9 +42,10 @@
                                     <div class="col-5">
                                         <div class="input-group">
                                         <select type="button" name="kind" id="kind" class="btn btn-outline-success dropdown-toggle" style="text-align: left;" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <option value="CS_STATUS">강사명</option>
-                                            <option value="CS_TITLE">강의명</option>
-                                            <option value="CS_PHONE">구매자아이디</option>
+                                            <option value="P_UID">결제번호</option>
+                                            <option value="TEACHER">강사아이디</option>
+                                            <option value="L_NAME">강의명</option>
+                                            <option value="ID">구매자아이디</option>
                                         </select>
                                         <input type="text" name="search" id="search" class="form-control"></input>
                                         </div>

@@ -32,8 +32,12 @@
                    
                     <c:forEach items="${tCommentDTO}" var="tCommentDTO">
                     <div id="commentList">
-                    <div class="d-flex mb-2">
-                      <div><img src="https://img.danawa.com/prod_img/500000/017/350/img/13350017_1.jpg?shrink=330:330&_v=20210224095944" style="width: 50px;  border-radius: 24px;"/></div><div class="ms-2 mt-3" >${tCommentDTO.id}</div>
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex mb-1 ms-2">
+                        <div><img src="https://img.danawa.com/prod_img/500000/017/350/img/13350017_1.jpg?shrink=330:330&_v=20210224095944" style="width: 40px;  border-radius: 24px;"/></div><div class="ms-2 mt-2" >${tCommentDTO.id}</div>
+                      </div>
+                      
+                      <div><button type="button" style="height: 30px; margin-top: 5px; font-size: 12px;" id="delete_num" class="delete_btn" data-comment-num="${tCommentDTO.num}">❌</button></div>
                     </div>
                   
                     <div class="d-flex mb-2 justify-content-between">
@@ -41,15 +45,21 @@
                         <div class="ms-5"><i class="fa-regular fa-comment-dots"></i></div>
                         <div class="ms-2" >${tCommentDTO.contents}</div>
                       </div>
-                      <div><button type="button" style="height: 30px;" id="delete_num" class="delete_btn" data-comment-num="${tCommentDTO.num}">❌</button></div>
                       
                     </div>
                     <hr>
                     
                   </div>     
                   </c:forEach>
-        
-                    <div class="mb-3" style="text-align: center;"><button id="plus">더보기</button></div>
+
+        		<c:choose>
+        			<c:when test="${count le 5 || totalPage eq commentPager.page}">
+        			</c:when>
+        			<c:otherwise>
+                    	<div class="mb-3" style="text-align: center;"><button id="plus" class="plus">더보기</button></div>        			
+        			</c:otherwise>
+                </c:choose>    
+                 
                     <div>
                       <form action="t_commentAdd" method="post">
                          <input id="c_id2" name="id" style="display:none;" type="text" value="유저"/>

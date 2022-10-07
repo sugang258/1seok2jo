@@ -36,7 +36,7 @@ prefix="c" %>
   </head>
   <c:import url="../template/header.jsp"></c:import>
   <body>
-    <section class="container" style="width: 80%">
+    <section class="container" style="width: 75%">
       <div class="board">
         <div class="board_contents">
           <div style="padding: 12px 0px">
@@ -89,16 +89,14 @@ prefix="c" %>
             </h5>
           </div>
           <div style="width: 100%">
-            <img
-              style="width: 80%; object-fit: fill"
-              src="../../../../resources/upload/board/${studyBoardDTO.boardFileDTO.f_name}"
-              alt=""
-            />
+            <img style="width: 80%; object-fit: fill" src="" alt="" />
           </div>
 
           <div>
             <div class="d-flex mt-4">
-              <div class="p-2 flex-grow-1">🗨 댓글 ${count}개</div>
+              <div class="p-2 flex-grow-1">
+                🗨 댓글 <span id="sb_count"></span>개
+              </div>
               <div class="p-2 share">
                 <a href="#" onclick="clip(); return false;"
                   ><i
@@ -297,9 +295,6 @@ ${studyBoardDTO.contents}</textarea
                     style="height: 150px"
                   ></textarea>
                 </div>
-                <div id="addFiles">
-                  <button class="mt-2 file_add"><b>파일추가📂</b></button>
-                </div>
               </form>
             </div>
             <div class="modal-footer">
@@ -334,7 +329,11 @@ ${studyBoardDTO.contents}</textarea
       <div class="d-flex flex-row-reverse fix_b">
         <div class="fix_box d-flex">
           <div class="d-grid gap-2 d-md-block">
-            <button class="fix_btn" type="button">
+            <button
+              class="fix_btn"
+              type="button"
+              onclick="location.href='./sb_list';"
+            >
               <i class="fa-solid fa-circle-chevron-left"></i>
             </button>
           </div>
@@ -360,8 +359,8 @@ ${studyBoardDTO.contents}</textarea
     <script src="/resources/js/sb_detail.js"></script>
     <script>
       getCommentDetail();
-      getReply();
-      teacherReply();
+      getReply(1);
+      teacherReply(1);
     </script>
   </body>
 </html>

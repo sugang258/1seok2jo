@@ -8,26 +8,24 @@
             <th>결제번호</th>
             <th>강의명</th>
             <th>구매자아이디</th>
-            <th>강의금액</th>
-            <th>강사명</th>
+            <th>구매금액</th>
+            <th>결제일자</th>
+            <th>수강상태</th>
             <th>환불여부</th>
-            <th>실 결제금액</th>
         </tr>
     </thead>
     <tbody>
-        <c:forEach items="${payList}" var="pay">
-            <c:forEach items="${pay.orders}" var="order">
-            <tr data-csnum="${pay.p_uid}">
+        <c:forEach items="${orderList}" var="order">
+            <tr>
                 <td>${order.o_num}</td>
-                <td>${pay.p_uid}</td>
+                <td>${order.p_uid}</td>
                 <td>${order.lectureDTO.l_name}</td>
-                <td>${pay.id}</td>
+                <td>${order.lectureDTO.lectureAddDTO.id}</td>
                 <td>${order.o_amount}</td>
-                <td>${order.lectureDTO.id}</td>
+                <td>${order.p_regdate}</td>
+                <td>${order.lectureDTO.lectureAddDTO.status eq 1? '수강 중':'수강 종료'}</td>
                 <td>${null eq order.pr_num? '결제완료':'환불완료'}</td>
-                <td>${pay.p_realamount}</td>
             </tr>
-            </c:forEach>
         </c:forEach>
     </tbody>
 </table>

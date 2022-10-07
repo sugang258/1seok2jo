@@ -65,7 +65,7 @@ public class StatusController {
         			lectureAddDTO.setS_num(ar.get(i).getLectureAddDTO().getS_num());
         			count = statusService.getStatusCount(lectureAddDTO);
         			total = statusService.getStatusTotal(lectureAddDTO);
-        			percent =((double)count/(double)total)*100;
+        			percent =Math.round(((double)count/(double)total)*100);
         			
         			System.out.println("count"+count);
         			System.out.println("t"+total);

@@ -391,7 +391,6 @@ public class LectureController {
 	    return mv;
 	}
 	
-	@SuppressWarnings({ "null", "unused" })
     @PostMapping("setTeacherLecture")
 	@ResponseBody
 	public int getTeacherLecture(TeacherDTO teacherDTO,HttpServletRequest request) throws Exception{
@@ -429,6 +428,31 @@ public class LectureController {
 	    }
 
 	    return result;
+	}
+	
+	@PostMapping("list")
+	public ModelAndView getLectureCate(Pager pager) throws Exception{
+	    System.out.println("list post");
+	    ModelAndView mv = new ModelAndView();
+	    List<LectureDTO> ar = lectureService.getLectureCate(pager);
+	    System.out.println("sr"+pager.getStartRow());
+	    System.out.println("lr"+pager.getLastRow());
+	    System.out.println(ar.get(0).getC_name());
+	    int result = 0;
+	    if(ar.size() == 0) {
+	        result = 0;
+	    }else {
+	        result = 1;
+	    }
+	    mv.addObject("list", ar);
+	    mv.setViewName("lecture/category_list");
+	    //mv.addObject("Pager", pager);
+	    
+	    return mv;
+
+	    
+	    
+	    
 	}
 	
 }

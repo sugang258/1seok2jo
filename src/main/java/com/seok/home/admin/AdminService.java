@@ -25,7 +25,12 @@ public class AdminService {
 	@Autowired
 	private PayDAO payDAO;
 	
+	public List<MemberDTO> getMember(AdminPager adminPager) throws Exception{
+		return memberDAO.getAdminMemberList(adminPager);
+	}
+	
 	public List<PaymentDTO> getPaymentsList(AdminPager adminPager) throws Exception{
+		adminPager.calNum(payDAO.getPayAdminTotal(adminPager));
 		List<PaymentDTO> paylist = payDAO.getPayAdminList(adminPager);
 		return paylist;
 	}

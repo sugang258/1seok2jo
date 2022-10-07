@@ -21,12 +21,15 @@
 		<typeAlias type="com.seok.home.s_board.StudyBoardDTO" alias="StudyBoardDTO"/>
 		<typeAlias type="com.seok.home.s_board.BoardFileDTO" alias="BoardFileDTO"/>
 		<typeAlias type="com.seok.home.s_board.Pager" alias="Pager"/>
+		<typeAlias type="com.seok.home.s_board.CommentPager" alias="CommentPager"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>
 		<typeAlias type="com.seok.home.b_comment.CommentDTO" alias="CommentDTO"/>
 		<typeAlias type="com.seok.home.l_board.LectureBoardDTO" alias="LectureBoardDTO"/>
 		<typeAlias type="com.seok.home.l_board.L_heartDTO" alias="L_heartDTO"/>
 		<typeAlias type="com.seok.home.lecture.status.StatusDTO" alias="StatusDTO"/>
 		<typeAlias type="com.seok.home.f_board.FreeBoardDTO" alias="FreeBoardDTO"/>
+		<typeAlias type="com.seok.home.f_board.Fb_heartDTO" alias="Fb_heartDTO"/>
+		<typeAlias type="com.seok.home.b_comment.FreeBoardReplyDTO" alias="FreeBoardReplyDTO"/>
 		<typeAlias type="com.seok.home.n_board.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.seok.home.b_comment.NoticeReplyDTO" alias="NoticeReplyDTO"/>
 		<typeAlias type="com.seok.home.cs_board.CsBoardDTO" alias="CsBoardDTO"/>
@@ -34,6 +37,7 @@
 		<typeAlias type="com.seok.home.pay.PaymentDTO" alias="PaymentDTO"/>
 		<typeAlias type="com.seok.home.pay.RefundDTO" alias="RefundDTO"/>
 		<typeAlias type="com.seok.home.admin.AdminPager" alias="AdminPager"/>
+		<typeAlias type="com.seok.home.lecture.teacher.TeacherPager" alias="TeacherPager"/>		
 	</typeAliases>
 
 </configuration>
