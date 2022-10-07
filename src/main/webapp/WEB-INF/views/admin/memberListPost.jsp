@@ -41,7 +41,7 @@
                 <td><a href='/member/profile?id=${mem.id}' target="_blank">${mem.roleDTOs[0].roleName}</a></td>
                 <c:if test="${null eq mem.roleDTOs[1].roleName}"><td></td><td></td></c:if>
                 <c:if test="${mem.roleDTOs[1].roleName eq '관리자'}"><td></td><td>관리자</td></c:if>
-                <c:if test="${mem.roleDTOs[1].roleName eq '강사'}"><td>강사</td>
+                <c:if test="${mem.roleDTOs[1].roleName eq '강사'}"><td><a href='/member/tcherProfile?id=${mem.id}' target="_blank">강사</a></td>
                     <c:if test="${mem.roleDTOs[2].roleName eq '관리자'}"><td>관리자</td></c:if>
                     <c:if test="${mem.roleDTOs[2].roleName eq null}"><td></td></c:if>
                 </c:if>

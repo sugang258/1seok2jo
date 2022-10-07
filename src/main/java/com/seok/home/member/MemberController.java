@@ -253,19 +253,23 @@ public class MemberController {
 	
 	//강사프로필 정보조회 화면(GET)
 	@GetMapping("tcherProfile")
-	public ModelAndView getTcherProfile(HttpSession session)throws Exception{
+	public ModelAndView getTcherProfile(HttpSession session, TeacherDTO teacherDTO)throws Exception{
 		System.out.println("강사프로필 정보(GET)");
 		ModelAndView mv = new ModelAndView();
-		TeacherDTO teacherDTO = new TeacherDTO();
-		MemberDTO memberDTO = new MemberDTO();
-		
+		//어드민 확인
+		if(teacherDTO.getId()!=null) {
+			if((Boolean)session.getAttribute("admin")) {
+				teacherDTO = memberService.getTcherProfile(teacherDTO);
+			}
+		}else {
 		//세션에서 아이디를 꺼냅니다
+		MemberDTO memberDTO = new MemberDTO();
 		memberDTO = (MemberDTO) session.getAttribute("member");
 		//꺼낸 아이디를 teacherDTO에 담습니다
 		teacherDTO.setId(memberDTO.getId());
 		//DB에 갔다온 teacherDTO에는 신청번호, 계좌번호, 은행이름, 소개글이 있습니다.
 		teacherDTO = memberService.getTcherProfile(teacherDTO);
-
+		}
 		mv.addObject("teacher", teacherDTO);
 		mv.setViewName("member/tcherProfile");
 		
