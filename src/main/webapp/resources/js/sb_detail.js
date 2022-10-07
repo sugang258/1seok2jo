@@ -109,16 +109,15 @@ answer_btn.addEventListener("click", function () {
 });
 
 /*작성 된 강사 답글 조회*/
-function getCommentDetail() {
+function getCommentDetail(page) {
   let num = update_btn.getAttribute("data-board-num");
   const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "../comment/c_detail?sb_num=" + num);
+  xhttp.open("GET", "../comment/c_detail?sb_num=" + num + "&page=" + page);
   xhttp.send();
 
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       teacher.innerHTML = xhttp.responseText;
-      teacherReply(page);
     }
   };
 }
@@ -140,7 +139,7 @@ teacher.addEventListener("click", function (event) {
         if (this.readyState == 4 && this.status == 200) {
           let result = xhttp.responseText;
           if (result == 1) {
-            getCommentDetail();
+            getCommentDetail(page);
           }
         }
       };
@@ -313,7 +312,7 @@ teacher.addEventListener("click", function (event) {
       if (this.readyState == 4 && this.status == 200) {
         let result = xhttp.responseText;
         if (result == 1) {
-          getCommentDetail();
+          getCommentDetail(page);
         } else {
           alert("등록실패");
         }
@@ -344,7 +343,7 @@ teacher.addEventListener("keydown", function (event) {
         if (this.readyState == 4 && this.status == 200) {
           let result = xhttp.responseText;
           if (result == 1) {
-            getCommentDetail();
+            getCommentDetail(page);
           } else {
             alert("등록실패");
           }
@@ -391,7 +390,7 @@ teacher.addEventListener("click", function (event) {
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           if (xhttp.responseText == 1) {
-            getCommentDetail();
+            getCommentDetail(page);
           }
         }
       };
@@ -412,6 +411,6 @@ reply_content.addEventListener("click", function (event) {
 teacher.addEventListener("click", function (event) {
   if (event.target.className == "plus") {
     page++;
-    teacherReply(page);
+    getCommentDetail(page);
   }
 });

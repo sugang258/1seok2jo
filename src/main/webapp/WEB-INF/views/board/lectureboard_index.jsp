@@ -8,6 +8,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
     <meta charset="UTF-8" />
     <title>강의상세화면 대체</title>
     <link rel="stylesheet" href="/resources/css/board/l_board.css" />
+    <link rel="stylesheet" href="/resources/css/index.css" />
     <%-- Bootstrap CSS --%>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
@@ -18,12 +19,18 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
     <%-- favicon --%>
     <link rel="shortcut icon" href="/resources/images/favicon.ico" />
   </head>
-  <c:import url="../template/header.jsp"></c:import>
   <body>
-    <section class="container" style="width: 90%; margin-top: 150px">
+    <c:import url="../template/header.jsp"></c:import>
+    <section class="container" style="width: 90%; margin-top: 50px">
       <!-- 임시로 보내는값 -->
-      <input type="text" name="l_num" value="${param.l_num}" id="l_num"  style="display: none"/>
-      
+      <input
+        type="text"
+        name="l_num"
+        value="${param.l_num}"
+        id="l_num"
+        style="display: none"
+      />
+
       <input
         type="text"
         style="display: none"

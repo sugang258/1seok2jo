@@ -8,6 +8,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
     <meta charset="UTF-8" />
     <title>자주묻는질문</title>
     <link rel="stylesheet" href="/resources/css/board/faq.css" />
+    <link rel="stylesheet" href="/resources/css/index.css" />
     <%-- Bootstrap CSS --%>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"

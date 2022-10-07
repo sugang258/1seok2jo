@@ -12,7 +12,14 @@ public class FreeBoardDTO {
 	private String contents;
 	private String category;
 	private Long like_count;
+	private String f_name;
 	
+	public String getF_name() {
+		return f_name;
+	}
+	public void setF_name(String f_name) {
+		this.f_name = f_name;
+	}
 	public Long getFb_num() {
 		return fb_num;
 	}

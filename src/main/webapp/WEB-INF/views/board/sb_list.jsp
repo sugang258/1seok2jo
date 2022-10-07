@@ -28,21 +28,26 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
   <body>
     <section class="container" style="width: 70%">
       <!--Board-Main-Top-->
-     <form action="./sb_list" method="get">
-      <div style="height: 190px; margin-top: 125px">
-        <div style="height: 70px">
-          <h3 style="line-height: 80px"><strong>📗 학습게시판</strong></h3>
-        </div>
-        <div style="height: 55px">
-          <div class="search-bar">
-            <button id="seach_logo" class="seach-logo">
-              <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
-            </button>
-            <input type="search" name="search" value="${param.search}" placeholder="궁금한 내용을 찾아보세요." />
+      <form action="./sb_list" method="get">
+        <div style="height: 190px; margin-top: 125px">
+          <div style="height: 70px">
+            <h3 style="line-height: 80px"><strong>📗 학습게시판</strong></h3>
           </div>
-        </div>
-        <!--Order-->
-        <div class="order">
+          <div style="height: 55px">
+            <div class="search-bar">
+              <button id="seach_logo" class="seach-logo">
+                <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+              </button>
+              <input
+                type="search"
+                name="search"
+                value="${param.search}"
+                placeholder="궁금한 내용을 찾아보세요."
+              />
+            </div>
+          </div>
+          <!--Order-->
+          <div class="order">
             <div class="d-flex mb-3">
               <div class="p-1">
                 <select class="select" name="order">
@@ -73,9 +78,9 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                 </button>
               </div>
             </div>
+          </div>
         </div>
-      </div>
- 	</form>
+      </form>
 
       <!--Board_Contents-->
       <div class="board">
@@ -90,15 +95,16 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                   <div class="p-1 flex-grow-1 mt-2" style="font-size: 13px">
                     <div>🏅${BoardDTO.category}</div>
                   </div>
-                  <div class="p-2">
-                    <i class="fa-regular fa-user"></i> ${pageScope.BoardDTO.id}
+                  <div class="p-2 d-flex">
+                 	<div style="margin-top:-5px;" class="pe-1"><img src="http://20.249.88.100/resources/member/${BoardDTO.f_name}" style="width: 36px;  height:36px; border-radius: 24px;"/></div>
+                    <div> ${pageScope.BoardDTO.id}</div>
                   </div>
                 </div>
-                <div style="margin-top: 11px; margin-bottom: 33px;">
-                  <h5 style="padding-left:5px;"><b>${BoardDTO.title}</b></h5>
+                <div style="margin-top: 11px; margin-bottom: 33px">
+                  <h5 style="padding-left: 5px"><b>${BoardDTO.title}</b></h5>
                 </div>
                 <div style="display: none">
-                  <div class="list_contents mb-3"  style="word-break: break-all;">
+                  <div class="list_contents mb-3" style="word-break: break-all">
                     <c:choose>
                       <c:when test="${fn:length(BoardDTO.contents) > 65}">
                         <c:out
@@ -205,29 +211,29 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       init();
     </script>
     <script>
-    const orders = document.getElementsByClassName('orders');
-    const answers = document.getElementsByClassName('answers');
-    const kinds = document.getElementsByClassName('kinds');
-    let k = '${param.kind}';
-    let a = '${param.answer}';
-    let o = '${param.order}';
-    for(let i =0;i < kinds.length;i++){
-        if(k == kinds[i].value){
+      const orders = document.getElementsByClassName("orders");
+      const answers = document.getElementsByClassName("answers");
+      const kinds = document.getElementsByClassName("kinds");
+      let k = "${param.kind}";
+      let a = "${param.answer}";
+      let o = "${param.order}";
+      for (let i = 0; i < kinds.length; i++) {
+        if (k == kinds[i].value) {
           kinds[i].selected = true;
           break;
         }
       }
-    for(let i =0;i < answers.length;i++){
-        if(a == answers[i].value){
-        	answers[i].selected = true;
+      for (let i = 0; i < answers.length; i++) {
+        if (a == answers[i].value) {
+          answers[i].selected = true;
           break;
         }
       }
-        for(let i =0;i < orders.length;i++){
-            if(o == orders[i].value){
-              orders[i].selected = true;
-              break;
-            }  
+      for (let i = 0; i < orders.length; i++) {
+        if (o == orders[i].value) {
+          orders[i].selected = true;
+          break;
+        }
       }
     </script>
   </body>

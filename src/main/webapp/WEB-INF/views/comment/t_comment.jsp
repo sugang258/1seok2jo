@@ -56,7 +56,7 @@
         			<c:when test="${count le 5 || totalPage eq commentPager.page}">
         			</c:when>
         			<c:otherwise>
-                    	<div class="mb-3" style="text-align: center;"><button id="plus" class="plus">더보기</button></div>        			
+                    	<div class="mb-3" style="text-align: center;"><button type="button" id="plus" class="plus">더보기</button></div>        			
         			</c:otherwise>
                 </c:choose>    
                  

@@ -25,7 +25,10 @@
 		    	<select id="getSB_CommentList" parameterType="CommentPager" resultType="CommentDTO">
 		    		SELECT * FROM (
 		    			SELECT ROWNUM R, N.* FROM (
-		    				SELECT * FROM SB_COMMENT WHERE SB_NUM=#{sb_num} AND REF=1 ORDER BY NUM DESC 
+		    				SELECT * FROM (SELECT SC.*, MF.F_NAME FROM SB_COMMENT SC
+					    	LEFT JOIN
+					    	MEMBER_FILE MF
+					    	ON SC.ID = MF.ID) WHERE SB_NUM = #{sb_num} AND REF=1 ORDER BY NUM DESC
 		    				)N
 		    			)
 		    		WHERE R BETWEEN #{startRow} AND #{lastRow}

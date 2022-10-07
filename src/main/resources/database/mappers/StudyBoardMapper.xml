@@ -31,7 +31,11 @@
 		    	<select id="getBoardList" parameterType="Pager" resultType="StudyBoardDTO">
 		    		SELECT * FROM (
 		    			SELECT ROWNUM R, N.* FROM (
-		    				SELECT * FROM STUDY_BOARD 
+		    				SELECT * FROM 
+								(SELECT SB.*, MF.F_NAME FROM STUDY_BOARD SB
+							    LEFT JOIN
+							    MEMBER_FILE MF
+							    ON SB.ID = MF.ID)
 		    				WHERE TITLE LIKE '%'||#{search}||'%'
 		    				and <include refid="answer"></include>
 		    				and <include refid="kind"></include>
@@ -44,15 +48,15 @@
 		    		SELECT COUNT(sb_num) FROM STUDY_BOARD
 		    	</select>
 		    	
-		    	<select id="getBoardDetail" parameterType="StudyBoardDTO" resultMap="getBoardDetailResult">
-		    		SELECT SB.*, BF.num, BF.f_name  FROM STUDY_BOARD SB
+		    	<select id="getBoardDetail" parameterType="StudyBoardDTO" resultType="StudyBoardDTO">
+		    		SELECT * FROM(SELECT SB.*, MF.F_NAME  FROM STUDY_BOARD SB
 						    LEFT JOIN
-						    BOARDFILE BF
-						    ON (SB.SB_NUM = BF.SB_NUM) 
-					WHERE SB.SB_NUM=#{sb_num}
+						    MEMBER_FILE MF
+						    ON SB.ID = MF.ID) 
+					WHERE SB_NUM=#{sb_num}
 		    	</select>
 		    	
-		    	<resultMap type="StudyBoardDTO" id="getBoardDetailResult">
+<!-- 		    	<resultMap type="StudyBoardDTO" id="getBoardDetailResult">
 		    		<id column="SB_NUM" property="sb_num"/>
 		    		<result column="L_NUM" property="l_num"/>
 		    		<result column="ID" property="id"/>
@@ -67,7 +71,7 @@
 		    			<id column="NUM" property="num"/>
 		    			<result column="F_NAME" property="f_name"/>
 		    		</association>
-		    	</resultMap>
+		    	</resultMap> -->
 		    	
 		    	<insert id="setBoardAdd" parameterType="StudyBoardDTO">
 		    		<selectKey order="BEFORE" keyProperty="sb_num" resultType="Long">
