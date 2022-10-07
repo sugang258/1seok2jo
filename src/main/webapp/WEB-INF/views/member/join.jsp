@@ -24,7 +24,7 @@
 <%-- 입력창 만들기 전 부트스트랩 쓸때 이걸 써야한다 --%>
 <%-- con-lg-7은 사이즈 조절하는것 --%>
 <div class="container ilseok">
-		<div class="row g-3 justify-content-md-center ">
+		<div class="row justify-content-md-center ">
 			<div class="col-6 col-md-4 col-lg-5 mt-5">
 				<div class="mb-3 text-center">
 					<h1><b>회원가입✒</b></h1>
@@ -73,7 +73,7 @@
 						<div id="ipGenderResult"></div>
 					</div> -->
 					
-					<div class="row">
+					<div class="row g-2">
 						<div>
 							<label for="ipBdate" class="form-label"><b>생년월일</b></label>
 						</div>
@@ -106,9 +106,6 @@
 						<div id="ipBdateResult"></div>
 					</div>
 					
-					<div class="row">
-
-					</div>
 					<div class="mb-4">
 						<div class="form-group">
 							<label for="ipGender" class="form-label mt-4"><b>성별</b></label>
@@ -123,13 +120,28 @@
 						<div id="ipGenderResult"></div>
 					</div>
 					
-					<div class="mb-4">
-						<label for="ipEmail" class="form-label"><b>이메일</b></label>
-						<input type="text" name="email" class="form-control" id="ipEmail" placeholder="이메일을 입력해주세요">
+					<div class="row">
+						<div>
+							<label for="ipEmail" class="form-label"><b>이메일</b></label>
+						</div>
+						<div class="col-5">
+							<input type="text" name="e" class="form-control" id="ipEmail" placeholder="이메일">
+						</div>
+						<div class="col-1">
+							<label for="ipEmail" class="form-label"><b>@</b></label>
+						</div>
+						<div class="col-6">
+							<select class="form-select" name="mail">
+								<option value="">직접입력</option>
+								<option value="@naver.com">naver.com</option>
+								<option value="@daum.net">daum.net</option>
+								<option value="@google.com">google.com</option>
+							</select>
+						</div>
 						<div id="ipEmailResult"></div>
 					</div>
 					
-					<div class="mb-4">
+					<div class="my-4">
 						<label for="ipPhone" class="form-label"><b>연락처</b></label>
 						<input type="tel" name="phone" class="form-control" id="ipPhone" placeholder="연락처를 입력해주세요">
 						<div id="ipPhoneResult"></div>
