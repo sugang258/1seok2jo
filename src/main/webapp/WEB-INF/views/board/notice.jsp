@@ -147,17 +147,21 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               </div>
 
               <div class="" style="width: 30%;">
-                <button
-                  class="btn btn-light"
-                  id="writer"
-                  style="
-                    background-color: transparent;
-                    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-                    font-size: 14px;
-                  "
-                >
-                  <a href="/board/nb_add">✏글작성(관리자)</a>
-                </button>
+               <c:if test="${not empty member}">
+	               <c:forEach items="${sessionScope.member.roleDTOs}" var="r">
+	                  <c:if test="${r.getRoleName() eq '관리자'}">
+	                  	 <button
+			                  class="btn btn-light"
+			                  id="writer"
+			                  style="
+			                    background-color: transparent;
+			                    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+			                    font-size: 14px;">
+			                  <a href="/board/nb_add">✏글작성</a>
+			                </button>	
+	                  </c:if>
+	               </c:forEach>
+            	</c:if>
               </div>
             </div>
           </div>

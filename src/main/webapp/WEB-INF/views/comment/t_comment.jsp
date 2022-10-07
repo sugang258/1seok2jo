@@ -62,7 +62,7 @@
                  
                     <div>
                       <form action="t_commentAdd" method="post">
-                         <input id="c_id2" name="id" style="display:none;" type="text" value="유저"/>
+                         <input id="c_id2" name="id" style="display:none;" type="text" value="${member.id}"/>
                          <input name="contents" type="text" class="reply_text2" id="reply_text2" placeholder="모두에게 도움이 되는 답변의 주인공이 되어주세요!">
                         <button type="button" class="reply_btn2" id="reply_btn2" data-t_comment-num="${commentDTO.getSb_num()}">댓글작성</button>
                       </form>
@@ -118,9 +118,6 @@
                       style="height: 150px"
                     >${commentDTO.contents}</textarea>
                   </div>
-                  <div id="addFiles">
-                    <button class="mt-2 file_add"><b>파일추가📂</b></button>
-                  </div>
                 </form>
               </div>
               <div class="modal-footer">
@@ -146,9 +143,11 @@
         </div>
 
           <!--board-Writer-Button-->
-        <div class="d-flex flex-row-reverse mb-4 mt-4" style="width: 70%; margin: 0px auto;">
-            <div class="p-2"><button type="button" class="c_delete btn-st btn btn-outline-secondary">삭제하기(강사)</button></div>
-            <div class="p-2"><button type="button" class="c_update btn-st btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@mdo">수정하기(강사)</button></div>
+        <div class="d-flex flex-row-reverse mb-5 mt-4" style="width: 70%; margin: 0px auto;">
+          <c:if test="${member.id eq commentDTO.id}">
+            <div class="p-2"><button type="button" class="c_delete btn-st btn btn-outline-secondary">삭제하기</button></div>
+            <div class="p-2"><button type="button" class="c_update btn-st btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-whatever="@mdo">수정하기</button></div>
+        </c:if>
         </div>
     </div>
   </form>

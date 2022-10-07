@@ -4,13 +4,44 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 		    <mapper namespace="com.seok.home.f_board.FreeBoardDAO">
+		    	<sql id="kind">
+		    			<choose>
+		    				<when test="kind == 'study'">CATEGORY LIKE '%스터디모집%'</when>
+		    				<when test="kind == 'data'">CATEGORY LIKE '%자료실%'</when>
+		    				<when test="kind == 'confirm'">CATEGORY LIKE '%공부인증%'</when>
+		    				<when test="kind == 'talk'">CATEGORY LIKE '%수다%'</when>
+		    				<otherwise>'a'='a'</otherwise>
+		    			</choose>		
+		    	</sql>
+		    	<sql id="order">
+					<choose>
+						<when test="order == 'new'">ORDER BY FB_NUM DESC</when>
+						<when test="order == 'hit'">ORDER BY HIT DESC</when>
+						<when test="order == 'heart'">ORDER BY NVL(FC.C,0) DESC</when>
+						<otherwise>ORDER BY FB_NUM DESC</otherwise>
+					</choose> 		    		
+		    	</sql>
+		    	<sql id="list">
+					<choose>
+						<when test="order == 'heart'">
+							SELECT FB.FB_NUM,FB.ID,FB.TITLE,FB.REG_DATE,FB.HIT,FB.CONTENTS,FB.CATEGORY,NVL(FC.C,0) FROM FREE_BOARD FB
+						    LEFT JOIN
+						    (SELECT FB_NUM, COUNT(FB_NUM) AS C FROM FB_HEART GROUP BY FB_NUM)FC
+						    ON (FB.FB_NUM = FC.FB_NUM)
+					    </when>
+						<otherwise>SELECT * FROM FREE_BOARD</otherwise>
+					</choose> 		    		
+		    	</sql>
+		    	
 		    	<!-- 자유게시판 목록 -->
 		    	<select id="getF_boardList" parameterType="Pager" resultType="FreeBoardDTO">
 		    		SELECT * FROM (
 		    			SELECT ROWNUM R, N.* FROM (
-		    				SELECT * FROM FREE_BOARD ORDER BY FB_NUM DESC
-		    				)N
-		    			)
+		    				<include refid="list"></include>
+		    				WHERE TITLE LIKE '%'||#{search}||'%'
+		    				and <include refid="kind"></include> 
+		    				<include refid="order"></include>
+		    				)N)
 		    		WHERE R BETWEEN #{startRow} AND #{lastRow}
 		    	</select>
 		    	

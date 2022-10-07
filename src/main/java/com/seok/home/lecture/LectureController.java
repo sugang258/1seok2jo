@@ -28,6 +28,7 @@ import com.seok.home.lecture.status.StatusService;
 import com.seok.home.lecture.teacher.TeacherDTO;
 import com.seok.home.lecture.teacher.TeacherService;
 import com.seok.home.member.MemberDTO;
+import com.seok.home.member.RoleDTO;
 import com.seok.home.util.Pager;
 import com.seok.home.vm.TestFileDTO;
 
