@@ -94,34 +94,20 @@
               </button>
             </div>
           </div>
-          <div id="d1_2">
-            <div>
-              <div class="login">
-                  <h1 style="
-                  margin-bottom: 0px;
-                  margin-top: 8px;
-                  color: coral;
-              "><b>Log-in</b></h1>
-                  <div class="login_id">
-                      <h3 style="
-                      margin-bottom: 0px;
-                  ">E-mail</h3>
-                      <input type="email" name="" id="" placeholder="Email">
-                  </div>
-                  <div class="login_pw">
-                      <h3 style="
-                      margin-bottom: 0px;
-                  ">Password</h3>
-                      <input type="password" name="" id="" placeholder="Password">
-                  </div>
-                  <a href="#" style="color: rgb(57, 216, 244); text-decoration: none;">아이디 / 비번찾기 <span style="font-size: 16px;">🔍</span></a>
-                  <div class="submit">
-                    <input type="submit" value="Login">
-                  </div>
-              </div>
+          
+          <div class="d-flex flex-column" id="d1_2">
+          		<div class="mb-2" style="margin:0 auto; width:80%; color: gray; font-size: 13.5px;">페이지를 더 안전하고 편리하게 이용하세요😊</div>
+               <div class="submit">
+               	  <input type="submit" value="Login">
+               </div>
+               <div class="d-flex justify-content-between mt-2" style="width: 80%; margin: 0 auto; font-size: 13.5px;">
+	               	<div class="login><a href="#">🔒아이디/비밀번호 찾기</a></div>
+	               	<div class="login><a href="#">👩‍💻회원가입</a></div>
+               </div>
           </div>
-          </div>
+               
         </div>
+        
         <div class="container">
           <div id="d2">
             <h4 style="text-align: center" class="mt-5 mb-4">
@@ -140,18 +126,40 @@
   
           <div class="hot"><span style="color: red;">HOT</span>❗ <a href="#">너도 나도 듣는 인기 강의 👉</a></div>
            
-           <div class="d-flex justify-content-between" id="d4" style="white-space:nowrap; overflow-x: auto;">
+           <div class="d-flex justify-content-between" id="d4">
             <div class="lecture">
               <div class="card" style="height:277px">
                 <img src="/resources/images/21.png" class="card-img-top img " alt="...">
                 <div class="card-text">
-                  <h5 style="margin-top: 10px;">자바 완전정복</h5>
+                  <h5 style="margin-top: 10px;">자바 완전정복</h5>⭐
                   <h7>⭐⭐⭐⭐⭐</h7>
                   <p>평점</p>
                 </div>
               </div>
             </div>
   
+            <div class="lecture">
+              <div class="card" style="height:277px">
+                <img src="/resources/images/20.png" class="card-img-top img " alt="...">
+                <div class="card-text">
+                  <h5 style="margin-top: 10px;">자바스크립트 완전정복</h5>
+                  <h7>⭐⭐⭐⭐⭐</h7>
+                  <p>평점</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="lecture">
+              <div class="card" style="height:277px">
+                <img src="/resources/images/20.png" class="card-img-top img " alt="...">
+                <div class="card-text">
+                  <h5 style="margin-top: 10px;">자바스크립트 완전정복</h5>
+                  <h7>⭐⭐⭐⭐⭐</h7>
+                  <p>평점</p>
+                </div>
+              </div>
+            </div>
+            
             <div class="lecture">
               <div class="card" style="height:277px">
                 <img src="/resources/images/20.png" class="card-img-top img " alt="...">
@@ -300,6 +308,17 @@
             </div>
             
              <div class="lecture">
+              <div class="card" style="height:277px">
+                <img src="/resources/images/20.png" class="card-img-top img " alt="...">
+                <div class="card-text">
+                  <h5 style="margin-top: 10px;">자바스크립트 완전정복</h5>
+                  <h7>⭐⭐⭐⭐⭐</h7>
+                  <p>평점</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="lecture">
               <div class="card" style="height:277px">
                 <img src="/resources/images/20.png" class="card-img-top img " alt="...">
                 <div class="card-text">

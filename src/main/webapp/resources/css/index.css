@@ -2,8 +2,9 @@
   font-style: inherit;
   font-weight: inherit;
 }
+
 body {
-  padding-top: 75px;
+  padding-top: 80px;
 }
 
 #d1 {
@@ -18,24 +19,74 @@ body {
   height: 300px;
   width: 26%;
   float: left;
+  background-color: #fbfbfb;
+  padding-top:75px;
 }
 
 .lecture {
   height: 280px;
   margin-right: 2em;
 }
+
 #d4 {
 	padding-top: 10px;
-  height: 300px;
+  height: 310px;
+  white-space:nowrap; 
+  overflow-x: auto;
 }
+
+#d4::-webkit-scrollbar {
+    width: 10px; /*스크롤바의 너비*/
+}
+
+#d4::-webkit-scrollbar-thumb {
+    background-color: #bae456; /*스크롤바의 색상*/
+    background-clip: padding-box;
+    border: 2px solid transparent;
+}
+
+#d4::-webkit-scrollbar-track {
+    background-color: transparent; /*스크롤바 트랙 색상*/
+}
+
 #d5 {
 	padding-top: 10px;
-  height: 300px;
+  height: 310px;
+    white-space:nowrap; 
+  overflow-x: auto;
+}
+#d5::-webkit-scrollbar {
+    width: 10px; /*스크롤바의 너비*/
+}
+
+#d5::-webkit-scrollbar-thumb {
+    background-color: #bae456; /*스크롤바의 색상*/
+    background-clip: padding-box;
+    border: 2px solid transparent;
+}
+
+#d5::-webkit-scrollbar-track {
+    background-color: transparent; /*스크롤바 트랙 색상*/
 }
 
 #d6 {
 	padding-top: 10px;
-  height: 300px;
+	 height: 310px;
+	white-space:nowrap; 
+	 overflow-x: auto;
+}
+#d6::-webkit-scrollbar {
+    width: 10px; /*스크롤바의 너비*/
+}
+
+#d6::-webkit-scrollbar-thumb {
+    background-color: #bae456; /*스크롤바의 색상*/
+    background-clip: padding-box;
+    border: 2px solid transparent;
+}
+
+#d6::-webkit-scrollbar-track {
+    background-color: transparent; /*스크롤바 트랙 색상*/
 }
 
 #d7 {
@@ -106,71 +157,26 @@ body {
 }
 
 /**로그인폼*/
-
-li {
-  list-style: none;
-}
-
-.login {
-  font-size: 21px;
-  width: 100%;
-  height: 300px;
-  background: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-family: "Dongle", sans-serif;
-  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
-}
-
-.login_id {
-  margin-top: 0px;
-  width: 70%;
-}
-
-.login_id input {
-  width: 100%;
-  height: 40px;
-  border-radius: 20px;
-  margin-top: 0px;
-  padding: 0px 20px;
-  border: 1px solid lightgray;
-  outline: none;
-  padding-top: 5px;
-}
-
-.login_pw {
-  margin-top: 5px;
-  width: 70%;
-}
-
-.login_pw input {
-  width: 100%;
-  height: 40px;
-  border-radius: 20px;
-  margin-top: 0px;
-  margin-bottom: 5px;
-  padding: 0px 20px;
-  border: 1px solid lightgray;
-  outline: none;
-  padding-top: 5px;
-}
-
 .submit {
-  width: 70%;
+  width: 80%;
+    margin: 0 auto;
 }
 .submit input {
   width: 100%;
   line-height: 40px;
-  height: 40px;
+  height: 60px;
   border: 0;
   outline: none;
-  border-radius: 40px;
+  border-radius: 5px;
   background: linear-gradient(to left, rgb(32, 237, 39), rgb(198, 233, 55));
   color: white;
-  font-size: 1.2em;
+  font-size: 1.3em;
+  font-weight: bold;
   letter-spacing: 2px;
+}
+
+.login a {
+	border: none;
 }
 
 /**강의 상단*/
@@ -208,8 +214,8 @@ li {
 .card:hover {
   transform: scale(1.03);
   transition: 0.3s ease-in-out;
-  cursor:pointer;
+  cursor:grab;
   z-index: 10;
   color: black;
 }
-.card:hover
+
