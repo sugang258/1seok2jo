@@ -31,8 +31,8 @@
   }
 
  #board,#signs,#listen,#update,#de{
-    margin-left: 40px;
-    margin-bottom: 50px;
+    /*margin-left: 40px;*/
+    margin-bottom: 30px;
     font-weight: bold;
     font-size:x-large;
   }

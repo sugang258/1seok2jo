@@ -25,6 +25,16 @@
             <div class="row main-content">
                 <div class="col-lg-2 sidebar" id="leftside">
                     <!-- Categories widget-->
+
+                    <!--Teacher NAME-->
+                    <div class="card mb-4 sidebar__inner text-center left" style="display: block;" >
+                        <div class="card-header">강사</div>
+                        <div class="card-body">
+                            <div>${detail.memberDTO.n_name}</div>
+                        </div>
+                    </div>
+
+                    <!--Category-->
                     <div class="card mb-4 sidebar__inner text-center left" style="display: block;" >
                         <div class="card-header">Category</div>
                         <div class="card-body">
