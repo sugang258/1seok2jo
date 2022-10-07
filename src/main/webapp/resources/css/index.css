@@ -174,9 +174,10 @@ body {
   font-weight: bold;
   letter-spacing: 2px;
 }
-
 .login a {
-	border: none;
+	 font-size: 13.5px;
+	text-decoration: none;
+	color: black;
 }
 
 /**강의 상단*/

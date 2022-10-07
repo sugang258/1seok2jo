@@ -100,7 +100,7 @@
                <div class="submit">
                	  <input type="submit" value="Login">
                </div>
-               <div class="d-flex justify-content-between mt-2" style="width: 80%; margin: 0 auto; font-size: 13.5px;">
+               <div class="d-flex justify-content-between mt-2" style="width: 80%; margin: 0 auto;">
 	               	<div class="login"><a href="#">🔒아이디/비밀번호 찾기</a></div>
 	               	<div class="login"><a href="#">👩‍💻회원가입</a></div>
                </div>
