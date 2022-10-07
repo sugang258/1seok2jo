@@ -79,11 +79,11 @@
 						</div>
 
 						<div class="col-4">
-							<input type="text" class="form-control" id="yy" placeholder="년(4자)" maxlength="4">
+							<input type="number" class="form-control b_date" name="yy" placeholder="년(4자)" maxlength="4">
 						</div>
 	
 						<div class="col-4">
-							<select class="form-select" name="" id="mm">
+							<select class="form-select" name="mm">
 								<option value="">월</option>
 								<option value="">1</option>
 								<option value="">2</option>
@@ -101,7 +101,7 @@
 						</div>
 	
 						<div class="col-4">
-							<input type="text" class="form-control" id="dd" placeholder="일" maxlength="2">
+							<input type="number" class="form-control b_date" name="dd" placeholder="일" maxlength="2">
 						</div>
 						<div id="ipBdateResult"></div>
 					</div>
@@ -150,6 +150,13 @@
 			</div>
 		</div>
 	</div>
+<!-- 생년월일 input type number에 화살표 안나오게 하는 css-->
+<style>
+	.b_date::-webkit-outer-spin-button,
+	.b_date::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+	}
+	</style>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <!-- <script src="/resources/js/member.js"></script> -->
