@@ -2,6 +2,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <table class="table table-striped table-hover">
+    <colgroup>
+        <col width="3%"  />
+        <col width="12%"/>
+        <col width="8%" />
+        <col width="11%"/>
+        <col width="12%"/>
+        <col width="15%"  />
+        <col width="18%"/>
+        <col width="7%" />
+        <col width="7%"/>
+        <col width="7%"/>
+    </colgroup>
     <thead>
         <tr>
             <th><input type="checkbox" id="all"></th>

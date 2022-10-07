@@ -17,8 +17,9 @@
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
             <!-- jQuery -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+        <link href="/resources/css/admin/bscommon.css" rel="stylesheet" />
     </head>
-    <body class="sb-nav-fixed">
+    <body class="sb-nav-fixed ilseok">
     	<c:import url="./navbar.jsp"></c:import>
             <div id="layoutSidenav_content">
                 <main>
