@@ -12,6 +12,7 @@ public class FreeBoardDTO {
 	private String contents;
 	private String category;
 	private Long like_count;
+	private String bd_name; //admin에서 게시판 종류 구분하는 용도의 변수
 	
 	public Long getFb_num() {
 		return fb_num;
@@ -66,6 +67,12 @@ public class FreeBoardDTO {
 	}
 	public void setLike_count(Long like_count) {
 		this.like_count = like_count;
+	}
+	public String getBd_name() {
+		return bd_name;
+	}
+	public void setBd_name(String bd_name) {
+		this.bd_name = bd_name;
 	}
 
 }

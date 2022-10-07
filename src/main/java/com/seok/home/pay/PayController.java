@@ -38,6 +38,16 @@ public class PayController {
 
 	private IamportClient client = new IamportClient("6833265443546261", "SiEfYqnG3G0yBBQRFMvspUyp9l0UAJ0ytmsMxyHJBQftWtJHoRKQvJvB59QljGoZBNLS6wXZSGJ5p5Mg");
 	
+	@GetMapping(value="myList")
+	public Model getMyPayList (HttpSession session, Model model) throws Exception{
+		MemberDTO mem = (MemberDTO)session.getAttribute("member");
+		
+		HashMap<String, Object> payListMap = payService.getMyPayList(mem);
+		
+		model.addAttribute("payListMap",payListMap);
+		return model;
+	}
+	
 	@GetMapping(value="status")
 	public ModelAndView getPayDetail(PaymentDTO paymentDTO, ModelAndView mv) throws Exception{
 
@@ -164,16 +174,16 @@ public class PayController {
 	}
 	
 	//아임포트 관련/ 현재 필요없음
-	@PostMapping(value="getTk")
-	@ResponseBody
-	public ModelAndView getTk(ModelAndView mv) throws Exception{
-		IamportResponse<AccessToken> auth_response = client.getAuth();
-		String token = auth_response.getResponse().getToken();
-		
-		mv.addObject("result", token);
-		mv.setViewName("common/ajaxResult");
-		
-		return mv;
-	}
+//	@PostMapping(value="getTk")
+//	@ResponseBody
+//	public ModelAndView getTk(ModelAndView mv) throws Exception{
+//		IamportResponse<AccessToken> auth_response = client.getAuth();
+//		String token = auth_response.getResponse().getToken();
+//		
+//		mv.addObject("result", token);
+//		mv.setViewName("common/ajaxResult");
+//		
+//		return mv;
+//	}
 
 }
