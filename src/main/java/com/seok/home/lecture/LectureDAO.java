@@ -146,6 +146,14 @@ public class LectureDAO {
 	public String getMemberName(MemberDTO memberDTO) throws Exception{
 	    return sqlSession.selectOne(NAMESPACE+"getMemberName", memberDTO);
 	}
+	
+	public List<LectureDTO> getLectureC() throws Exception{
+	    return sqlSession.selectList(NAMESPACE+"getLectureC");
+	}
+	
+	public List<LectureDTO> getLectureLevel() throws Exception{
+	    return sqlSession.selectList(NAMESPACE+"getLectureLevel");
+	}
 
 
 

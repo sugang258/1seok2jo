@@ -28,3 +28,9 @@
     background-color: black !important
 
 }
+
+#div1,#div2{
+    color: red;
+    font-size: small;
+    font-weight: bold;
+}

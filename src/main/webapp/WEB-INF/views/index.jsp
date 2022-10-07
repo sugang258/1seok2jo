@@ -127,79 +127,40 @@
           <div class="hot"><span style="color: red;">HOT</span>❗ <a href="#">너도 나도 듣는 인기 강의 👉</a></div>
            
            <div class="d-flex justify-content-between" id="d4">
-            <div class="lecture">
-              <div class="card" style="height:277px">
-                <img src="/resources/images/21.png" class="card-img-top img " alt="...">
-                <div class="card-text">
-                  <h5 style="margin-top: 10px;">자바 완전정복</h5>⭐
-                  <h7>⭐⭐⭐⭐⭐</h7>
-                  <p>평점</p>
+            <c:forEach items="${list}" var="count">
+              <div class="lecture">
+                <div class="card" style="height:277px">
+                  <img src="http://20.249.88.100/resources/lecture/${count.lectureFileDTO[0].f_name}" class="card-img-top img " alt="...">
+                  <div class="card-text">
+                    <h5 style="margin-top: 10px;">${count.l_name}</h5>⭐
+                    <h7>⭐⭐⭐⭐⭐</h7>
+                    <p>평점</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </c:forEach>
+
             
-            <div class="lecture">
-              <div class="card" style="height:277px">
-                <img src="/resources/images/20.png" class="card-img-top img " alt="...">
-                <div class="card-text">
-                  <h5 style="margin-top: 10px;">자바스크립트 완전정복</h5>
-                  <h7>⭐⭐⭐⭐⭐</h7>
-                  <p>평점</p>
-                </div>
-              </div>
-            </div>
-  
-            <div class="lecture">
-              <div class="card" style="height:277px">
-                <img src="/resources/images/22.png" class="card-img-top img " alt="...">
-                <div class="card-text">
-                  <h5 style="margin-top: 10px;">HTML마스터하기</h5>
-                  <h7>⭐⭐⭐⭐⭐</h7>
-                  <p>평점</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="lecture">
-              <div class="card" style="height:277px">
-                <img src="/resources/images/22.png" class="card-img-top img " alt="...">
-                <div class="card-text">
-                  <h5 style="margin-top: 10px;">HTML마스터하기</h5>
-                  <h7>⭐⭐⭐⭐⭐</h7>
-                  <p>평점</p>
-                </div>
-              </div>
-            </div>
-  
-            <div class="lecture">
-              <div class="card" style="height:277px">
-                <img src="/resources/images/23.png" class="card-img-top img " alt="...">
-                <div class="card-text">
-                  <h5 style="margin-top: 10px;">스프링 특강</h5>
-                  <h7>⭐⭐⭐⭐⭐</h7>
-                  <p>평점</p>
-                </div>
-              </div>
-            </div>
             
 		</div>
 		
 		<div class="hot"><span style="color: red;"><a href="#">왕초보도 할 수 있어요! 💪</a></div>
   
           <div  class="d-flex justify-content-between" id="d5" style="white-space:nowrap; overflow-x: auto;">
-          
-          	<div class="lecture">
-              <div class="card" style="height:277px">
-                <img src="/resources/images/20.png" class="card-img-top img " alt="...">
-                <div class="card-text">
-                  <h5 style="margin-top: 10px;">자바스크립트 완전정복</h5>
-                  <h7>⭐⭐⭐⭐⭐</h7>
-                  <p>평점</p>
+            <c:forEach items="${level}" var="lv">
+              <div class="lecture">
+                <div class="card" style="height:277px">
+                  <img src="http://20.249.88.100/resources/lecture/${lv.lectureFileDTO[0].f_name}" class="card-img-top img " alt="...">
+                  <div class="card-text">
+                    <h5 style="margin-top: 10px;">${lv.l_name}</h5>
+                    <h7>⭐⭐⭐⭐⭐</h7>
+                    <p>평점</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </c:forEach>
             
-             <div class="lecture">
+             <!-- <div class="lecture">
               <div class="card" style="height:277px">
                 <img src="/resources/images/20.png" class="card-img-top img " alt="...">
                 <div class="card-text">
@@ -244,11 +205,11 @@
             </div>
             
             
-          </div>
+          </div> -->
           
           
           
-          <div class="hot"><span style="color: red;"><a href="#">기본부터 실무까지 제시해주는 로드맵 🏃🏻‍♀️<span style="color: #fa4c3d; font-size: 12px; font-weight: 700;">RoadMap!!</span></a></div>
+          <!-- <div class="hot"><span style="color: red;"><a href="#">기본부터 실무까지 제시해주는 로드맵 🏃🏻‍♀️<span style="color: #fa4c3d; font-size: 12px; font-weight: 700;">RoadMap!!</span></a></div>
   
           <div  class="d-flex justify-content-between" id="d6" style="white-space:nowrap; overflow-x: auto;">
           
@@ -306,7 +267,7 @@
                 </div>
               </div>
             </div>
-          
+          -->
         </div>
         
         <div class="hot"><span style="color: red;"><a href="#">읽어보기 📖</a></div>

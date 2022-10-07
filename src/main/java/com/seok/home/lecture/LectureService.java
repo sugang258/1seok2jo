@@ -245,4 +245,12 @@ public class LectureService {
         System.out.println(totalCount);
 	    return lectureDAO.getLectureCate(pager);
 	}
+	
+	public List<LectureDTO> getLectureC() throws Exception{
+	    return lectureDAO.getLectureC();
+	}
+	
+	public List<LectureDTO> getLectureLevel() throws Exception{
+	    return lectureDAO.getLectureLevel();
+	}
 }
