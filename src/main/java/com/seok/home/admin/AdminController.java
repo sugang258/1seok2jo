@@ -35,6 +35,38 @@ public class AdminController {
 	private void getLogin() {
 	}
 	
+	@GetMapping(value = "boardsList")
+	private String getBoards() {
+		return "admin/boardsList";
+	}
+	
+	@PostMapping(value = "boardsList")
+	@ResponseBody
+	private ModelAndView getBoards(AdminPager pager, ModelAndView mv) throws Exception{
+
+		mv.addObject("boardsList", service.getBoardsList(pager));
+		mv.addObject("pager", pager);
+		mv.setViewName("admin/boardListPost");
+		
+		return mv;
+	}
+	
+	@GetMapping(value = "lectureList")
+	private String getLecture() {
+		return "admin/lectureList";
+	}
+	
+	@PostMapping(value = "lectureList")
+	@ResponseBody
+	private ModelAndView getLecture(AdminPager pager, ModelAndView mv) throws Exception{
+		
+		mv.addObject("lectureList", service.getLectureList(pager));
+		mv.addObject("pager", pager);
+		mv.setViewName("admin/lectureListPost");
+		
+		return mv;
+	}
+	
 	@GetMapping(value = "memberList")
 	private String getMember() {
 		return "admin/memberList";
@@ -44,6 +76,7 @@ public class AdminController {
 	private ModelAndView getMember(AdminPager pager, ModelAndView mv) throws Exception{
 		
 		mv.addObject("memberList", service.getMember(pager));
+		mv.addObject("pager", pager);
 		mv.setViewName("admin/memberListPost");
 		
 		return mv;

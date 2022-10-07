@@ -16,14 +16,27 @@
 		</choose>
 	</sql>
 	<select id="getAdminMemberList" parameterType="AdminPager" resultMap="getAdminList">
-		select distinct rolenum, id, name, n_name, b_date, gender, email, phone, point, rolename 
+		select *           
+            from(select rownum as rown, MR.*            
+    	   	from(select rolenum, id, name, n_name, b_date, gender, email, phone, point, rolename 
             from member m
             left join member_role r
             using (id)
             left join role rr
             using (rolenum)
             where <include refid="search"></include>
-            order by id asc , rolenum desc
+            order by id asc , rolenum desc) MR)
+            where rown between #{startRow} and #{lastRow}
+	</select>
+	
+	<select id="getAdminMemberTotal" parameterType="AdminPager" resultType="Long">
+		select count(*) 
+            from member m
+            left join member_role r
+            using (id)
+            left join role rr
+            using (rolenum)
+            where <include refid="search"></include>
 	</select>
 	
 	<resultMap type="MemberDTO" id="getAdminList">
