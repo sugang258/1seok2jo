@@ -65,6 +65,7 @@
                 <li><a class="dropdown-item" href="/member/profile">프로필</a></li>
                 <li><a class="dropdown-item" href="/status/sign">내 학습</a></li>
                 <li><a class="dropdown-item" href="#">내 게시판</a></li>
+                <li><a class="dropdown-item" href="/pay/myList">내 결제내역</a></li>
               </ul>
             </li>
           <li class="nav-item dropdown">

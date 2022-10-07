@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>결제완료 페이지</title>
+    <title>내 결제내역</title>
         <!--파비콘-->
         <link rel="shortcut icon" href="/resources/images/favicon.ico">
         <!--bootstrap-->
@@ -20,12 +20,12 @@
 
     <div class="container">
         <div class="row justify-content-center pt-3 mt-3">
-            <div class="col-sm-8 text-center">
+            <div class="col-sm-8 text-center mt-3">
                 <h3>📜결제내역</h3>
                 
             </div>
 
-            <div class="col-sm-8 text-center">
+            <div class="col-sm-8 my-3 text-center">
                 <div class="card p-3 my-2">
                 	<div class="row align-items-center">
                 		<div class="col-3 text-center">
@@ -45,15 +45,14 @@
                 </div>
             </div>
             <c:forEach items="${payListMap.payList}" var="pay">
-                <div class="p_detail row">
-	            <div class="col-sm-8 text-center mt-5" style="background: url(/resources/images/bg_tit_month.gif); height: 39px;">
-		            <div class="py-2 mx-auto" style="background:url(/resources/images/bg_tit_month2.gif); width: 110px; height: 39px;">
+	            <div class="col-sm-8 text-center my-2" style="background: url(/resources/images/bg_tit_month.gif); height: 39px;">
+		            <div class="py-2 mx-auto linkStatus" data-puid = ${pay.p_uid} style="background:url(/resources/images/bg_tit_month2.gif); width: 110px; height: 39px;">
                         <b style="color: darkgreen;">${pay.p_regdate }</b>
                     </div>
 	            </div>
                 <div class="col-sm-8 text-center">
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-8 linkStatus" data-puid = ${pay.p_uid}>
                             <div>${pay.orders[0].lectureDTO.l_name}</div>
                             <div><spen class="text-muted">결제금액</spen> ${pay.p_realamount}</div>
                         </div>
@@ -63,7 +62,6 @@
                         </div>
                     </div>
                 </div>
-                </div>
             </c:forEach>
 
     <div class="container-fluid" style="height: 300px;">
@@ -72,6 +70,6 @@
     
 <!--부트스트랩-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-<script src="/resources/js/complete.js"></script>
+<script src="/resources/js/payMyList.js"></script>
 </body>
 </html>
