@@ -38,20 +38,26 @@ public class MemberService {
 	}
 	
 	//회원가입
-	public int setJoin(MemberDTO memberDTO, String yy, String mm, String dd)throws Exception{
-		
-		System.out.println("yy 서비스 : "+yy);
-		System.out.println("mm : "+mm);
-		System.out.println("dd : "+dd);
+	public int setJoin(MemberDTO memberDTO, String yy, String mm, String dd, String e, String mail)throws Exception{
+
+		MemberFileDTO memberFileDTO = new MemberFileDTO();
+		memberFileDTO.setId(memberDTO.getId());
+		memberFileDTO.setF_name("default.png");
+		memberFileDTO.setF_oriname("default.png");
 		
 		memberDTO.setB_date(Long.parseLong(yy+mm+dd));
-		System.out.println("member : "+memberDTO.getB_date());
+		memberDTO.setEmail(e+mail);
+		memberDTO.setMemberFileDTO(memberFileDTO);
+		System.out.println("memberfileDTO"+memberDTO.getMemberFileDTO().getF_name());
 		
 		//회원가입이 성공하면 등급을 추가
 		int susess = memberDAO.setJoin(memberDTO);
+		int file = 0;
 		int result = 0;
-		if(susess == 1 ) {
+		if(susess == 1) {
+			file = memberDAO.setAddFile(memberFileDTO);
 			result = memberDAO.setMemberRole(memberDTO);
+			result = file*result;
 		}
 		
 		return result;	
