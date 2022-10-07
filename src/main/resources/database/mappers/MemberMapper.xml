@@ -146,7 +146,7 @@
 			SELECT FILE_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO MEMBER_FILE (NUM, ID, F_NAME, F_ORINAME)
-		VALUES(#{num}, #{id},#{f_name}, #{f_oriname})
+		VALUES(#{num}, #{id}, #{f_name}, #{f_oriname})
 	</insert>
 	
 	<delete id="setDeleteFile" parameterType="MemberFileDTO">

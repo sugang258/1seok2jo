@@ -41,9 +41,8 @@
 			  <input type="file" id="file" style="display: none;">
 
 			  <div id="tcherProfile">
-				<!--하단 파일 추가 input과 연결된 라벨-->
-				<label for="tcherProfile" name class="mt-2 file_add"><b>프로필수정✏</b>
-					<button type="button" onclick="location.href='/member/tcherProfile';"><b>프로필수정✏</b></button>
+				<!-- 강사프로필로 가는 버튼 -->
+				<button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='/member/tcherProfile';"><b>프로필수정✏</b></button>
 			  </div>
 
 			  <div class="mb-3">
@@ -86,7 +85,7 @@
 			  </div>
 			  
 			  <div>
-				  <button type="submit" class="btn btn-outline-success">프로필수정</button>
+				  <button type="submit" class="btn btn-outline-success"><b>프로필수정✏</b></button>
 			  </div>
 			  
 			</form>

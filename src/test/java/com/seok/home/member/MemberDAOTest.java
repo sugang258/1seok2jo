@@ -109,4 +109,13 @@ public class MemberDAOTest extends MyAbstractTest {
 		assertEquals(1, result);
 	}
 	
+	@Test
+	public void setAddFileTest()throws Exception{
+		MemberFileDTO memberFileDTO = new MemberFileDTO();
+		memberFileDTO.setF_name("haha");
+		memberFileDTO.setF_oriname("ha");
+		int result = memberDAO.setAddFile(memberFileDTO);
+		assertEquals(1, result);
+	}
+	
 }
