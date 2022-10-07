@@ -215,7 +215,7 @@ body {
 .card:hover {
   transform: scale(1.03);
   transition: 0.3s ease-in-out;
-  cursor:grab;
+  cursor:pointer;
   z-index: 10;
   color: black;
 }
