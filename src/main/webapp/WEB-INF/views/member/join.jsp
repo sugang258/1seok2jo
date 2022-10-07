@@ -21,9 +21,7 @@
 </head>
 <c:import url="../template/header.jsp"></c:import>
 <body>
-<%-- 입력창 만들기 전 부트스트랩 쓸때 이걸 써야한다 --%>
-<%-- con-lg-7은 사이즈 조절하는것 --%>
-<div class="container ilseok">
+	<div class="container ilseok">
 		<div class="row justify-content-md-center ">
 			<div class="col-6 col-md-4 col-lg-5 mt-5">
 				<div class="mb-3 text-center">
