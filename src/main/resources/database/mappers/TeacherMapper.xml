@@ -10,7 +10,7 @@
 						SELECT TEACHER_SEQ.NEXTVAL FROM DUAL
 					</selectKey>
 		    		INSERT INTO TEACHER(T_NUM, ID, BANK_NUM, BANK_NAME, INTRODUCE)
-					VALUES(TEACHER_SEQ.NEXTVAL,#{id}, #{bank_num},#{bank_name},#{introduce})
+					VALUES(#{t_num},#{id}, #{bank_num},#{bank_name},#{introduce})
 		    	</insert>
 		    	
 		    	<insert id="setTeacherRole" parameterType="MemberDTO">
@@ -21,7 +21,7 @@
 		    	
 		    	<update id="setTeacherUpdate" parameterType="TeacherDTO">
 		    		UPDATE TEACHER SET BANK_NUM = #{bank_num}, BANK_NAME=#{bank_name}, INTRODUCE=#{introduce}
-		    		WHERE T_NUM = #{t_num}
+		    		WHERE ID = #{id}
 		    	</update>
 		    	
 		    	<select id="getTeacherDetail" parameterType="TeacherDTO" resultType="TeacherDTO">

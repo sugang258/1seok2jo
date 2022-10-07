@@ -18,7 +18,7 @@ public class TeacherTest extends MyAbstractTest {
 	public void setTeacherAdd() throws Exception {
 		TeacherDTO teacherDTO = new TeacherDTO();
 		
-		teacherDTO.setId("GANG");
+		teacherDTO.setId("hyo");
 		teacherDTO.setBank_num("43434-33433");
 		teacherDTO.setBank_name("농협");
 		teacherDTO.setIntroduce("안녕하세요오오오");
