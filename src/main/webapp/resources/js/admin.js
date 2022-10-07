@@ -23,10 +23,29 @@ function initboards(){
     //페이징 클릭하면
     let postResult = document.getElementById("postResult");
     postResult.addEventListener("click", function(event){
+        let chk = document.querySelectorAll(".chk");
         if(event.target.getAttribute("class")=="page-link"){
             page = event.target.getAttribute("data-page")
             boardsList(page)
         }else{
+            //all 체크박스 클릭하면 전체 체크, 해제
+            if(event.target.getAttribute("id")=='all'){
+                for(let i=0; i<chk.length; i++){
+                    chk[i].checked = event.target.checked;
+                }
+            }else if(event.target.getAttribute("class")=='chk'){
+                if(!event.target.checked){
+                    all.checked = false;
+                }else{
+                    let test = true;
+                    for(let i=0; i<chk.length; i++){
+                        test = test && chk[i].checked;
+                    }
+                    if(test){
+                        all.checked = test;
+                    }
+                }
+            }
         }
     })
 
@@ -81,10 +100,29 @@ function initlectures(){
     //페이징 클릭하면
     let postResult = document.getElementById("postResult");
     postResult.addEventListener("click", function(event){
+        let chk = document.querySelectorAll(".chk");
         if(event.target.getAttribute("class")=="page-link"){
             page = event.target.getAttribute("data-page")
-            lectureList(page)
+            boardsList(page)
         }else{
+            //all 체크박스 클릭하면 전체 체크, 해제
+            if(event.target.getAttribute("id")=='all'){
+                for(let i=0; i<chk.length; i++){
+                    chk[i].checked = event.target.checked;
+                }
+            }else if(event.target.getAttribute("class")=='chk'){
+                if(!event.target.checked){
+                    all.checked = false;
+                }else{
+                    let test = true;
+                    for(let i=0; i<chk.length; i++){
+                        test = test && chk[i].checked;
+                    }
+                    if(test){
+                        all.checked = test;
+                    }
+                }
+            }
         }
     })
 
@@ -110,6 +148,16 @@ function initmembers(){
     let page = 1;
     memberList(page)
 
+    //회원삭제 버튼 클릭
+    let memDelBtn = document.getElementById("memDelBtn");
+    memDelBtn.addEventListener("click", function(){
+        alert("!!경고!! 회원삭제 후 되돌릴 수 없습니다")
+        let chk = window.confirm("정말 회원 삭제를 하시겠습니까?")
+        if(chk){
+            console.log("yes")
+        }
+    })
+
     //search버튼 클릭하면 리스트 요청
     let btnSearch = document.getElementById("btnSearch");
     btnSearch.addEventListener("click", function(){
@@ -122,10 +170,29 @@ function initmembers(){
     let postResult = document.getElementById("postResult");
     postResult.addEventListener("click", function(event){
         let cs_num = event.target.parentNode.getAttribute("data-csnum");
+        let chk = document.querySelectorAll(".chk");
         if(event.target.getAttribute("class")=="page-link"){
             page = event.target.getAttribute("data-page")
             memberList(page)
         }else{
+            //all 체크박스 클릭하면 전체 체크, 해제
+            if(event.target.getAttribute("id")=='all'){
+                for(let i=0; i<chk.length; i++){
+                    chk[i].checked = event.target.checked;
+                }
+            }else if(event.target.getAttribute("class")=='chk'){
+                if(!event.target.checked){
+                    all.checked = false;
+                }else{
+                    let test = true;
+                    for(let i=0; i<chk.length; i++){
+                        test = test && chk[i].checked;
+                    }
+                    if(test){
+                        all.checked = test;
+                    }
+                }
+            }
         }
 
     })
@@ -382,3 +449,4 @@ function getCheckboxValue(chkboxname)  {
     // 출력
     return (result.substring(0,result.length-1));
 }
+
