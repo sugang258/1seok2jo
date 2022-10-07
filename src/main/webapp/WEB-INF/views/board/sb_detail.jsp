@@ -140,16 +140,23 @@ prefix="c" %>
         class="d-flex flex-row-reverse mb-5"
         style="width: 70%; margin: 0px auto"
       >
-        <div class="p-2">
-          <button
-            class="btn-st btn btn-outline-secondary"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal2"
-            data-bs-whatever="@mdo"
-          >
-            답변달기(강사)
-          </button>
-        </div>
+        <c:if test="${not empty member}">
+          <c:forEach items="${sessionScope.member.roleDTOs}" var="r">
+            <c:if test="${r.getRoleName() eq '강사'}">
+              <div class="p-2">
+                <button
+                  class="btn-st btn btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal2"
+                  data-bs-whatever="@mdo"
+                >
+                  답변달기
+                </button>
+              </div>
+            </c:if>
+          </c:forEach>
+        </c:if>
+
         <div class="p-2">
           <button
             class="btn-st btn btn-outline-secondary"

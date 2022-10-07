@@ -1,6 +1,7 @@
 const lecture_add_btn = document.getElementById("lecture_add_btn");
 const l_board_delete = document.getElementsByClassName("l_board_delete");
 
+// 수강평작성
 lecture_add.addEventListener("click", function (event) {
   if (event.target.classList[0] == "lecture_add") {
     const l_num = document.getElementById("l_num");
@@ -40,6 +41,7 @@ lecture_add.addEventListener("click", function (event) {
   }
 });
 
+//수강평 삭제
 for (let i = 0; i < l_board_delete.length; i++) {
   l_board_delete[i].addEventListener("click", function () {
     let num = document.querySelectorAll(".lecture_boardNum");
@@ -73,8 +75,8 @@ for (let i = 0; i < like_btn.length; i++) {
     let result;
     let num = document.querySelectorAll(".lecture_boardNum");
     num = num[i].value;
-    let id = document.querySelectorAll(".l_board_id");
-    id = id[i].innerHTML;
+    let id = document.getElementById("l_board_id");
+    id = id.value;
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/board/l_heart");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

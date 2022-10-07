@@ -84,6 +84,7 @@ const t_answer = document.getElementById("t_answer");
 answer_btn.addEventListener("click", function () {
   let t_num = update_btn.getAttribute("data-board-num");
   let t_cv = t_answer.value;
+  let id = document.getElementById("t_id").value;
 
   //1.XMLHTTPRequest생성
   const xhttp = new XMLHttpRequest();
@@ -95,7 +96,7 @@ answer_btn.addEventListener("click", function () {
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   //4. send (post일 경우 파라미터 추가),++++ id, ref추가하기
-  xhttp.send("sb_num=" + t_num + "&contents=" + t_cv);
+  xhttp.send("sb_num=" + t_num + "&contents=" + t_cv + "&id=" + id);
 
   //5. 응답처리
   xhttp.onreadystatechange = function () {

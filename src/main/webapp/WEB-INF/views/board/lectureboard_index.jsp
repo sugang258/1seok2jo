@@ -248,8 +248,8 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             <div class="d-flex mb-2 ms-2 mt-1">
               <div>
                 <img
-                  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                  style="width: 26px; border-radius: 24px"
+                  src="http://20.249.88.100/resources/member/${lectureBoardDTO.f_name}"
+                  style="width: 26px; height:26px; border-radius: 24px"
                 />
               </div>
               <div class="ms-2 mt-1" style="font-size: 13px">
