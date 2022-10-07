@@ -316,4 +316,30 @@
 		    	<select id="getMemberName" parameterType="MemberDTO" resultType="java.lang.String">
 					SELECT N_NAME=#{n_name} FROM MEMBER WHERE ID=#{id}
 				</select>
+				
+				<select id="getLectureC" resultMap="getDetailResult">
+					SELECT * FROM
+						(SELECT * FROM LECTURE L
+		    				JOIN L_FILE LF
+		    				ON L.L_NUM = LF.L_NUM
+							JOIN "LEVEL" LV
+							ON L.LEVEL_NUM = LV.LEVEL_NUM
+							JOIN CATEGORY C
+							ON L.C_NUM = C.C_NUM
+                            ORDER BY L.L_COUNT DESC)
+                            <![CDATA[WHERE ROWNUM <8]]>			
+				</select>
+				
+				<select id="getLectureLevel" resultMap="getDetailResult">
+					SELECT * FROM
+						(SELECT * FROM LECTURE L
+		    				JOIN L_FILE LF
+		    				ON L.L_NUM = LF.L_NUM
+							JOIN "LEVEL" LV
+							ON L.LEVEL_NUM = LV.LEVEL_NUM
+							JOIN CATEGORY C
+							ON L.C_NUM = C.C_NUM
+                            WHERE L.LEVEL_NUM =1)
+                            <![CDATA[WHERE ROWNUM <8]]>	
+				</select>
 		    </mapper>

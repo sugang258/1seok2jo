@@ -17,6 +17,10 @@ const level_num = document.querySelector("#level_num");
 const level=document.querySelectorAll(".level")
 const files = document.querySelector("#files");
 const file_sub = document.querySelector("#file_sub");
+const l_date = document.querySelector("#l_date");
+const l_price = document.querySelector("#l_price");
+const div1 = document.querySelector("#div1");
+const div2 = document.querySelector("#div2");
 
 let count = 0;
 let idx=0;
@@ -686,4 +690,40 @@ file_sub.addEventListener("click",function(){
     }
 })
 
+var pattern_num = /[1-9999999]/; //숫자
+var pattern_eng = /[a-zA-Z]/;	// 문자 
+var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
+var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
+
+l_date.addEventListener("blur",function(){
+    console.log("blur");
+    console.log(l_date.value);
+    if((pattern_num.test(l_date.value)) && !(pattern_eng.test(l_date.value)) && !(pattern_spc.test(l_date.value)) && !(pattern_kor.test(l_date.value))) {
+        console.log("true");
+        div1.innerHTML="";
+        return true;
+    } else{
+        console.log("false");
+        div1.innerHTML = "❗숫자만 작성해주세요";
+        l_date.value="";
+        return false;
+    }
+    
+});
+
+l_price.addEventListener("blur",function(){
+    console.log("blur");
+    console.log(l_price.value);
+    if((pattern_num.test(l_price.value)) && !(pattern_eng.test(l_price.value)) && !(pattern_spc.test(l_price.value)) && !(pattern_kor.test(l_price.value))) {
+        console.log("true");
+        div2.innerHTML="";
+        return true;
+    } else{
+        console.log("false");
+        div2.innerHTML = "❗숫자만 작성해주세요";
+        l_price.value="";
+        return false;
+    }
+    
+});
 

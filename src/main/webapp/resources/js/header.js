@@ -1,5 +1,5 @@
 const empty = document.querySelector(".empty");
-const add = document.querySelector(".add");
+const addd = document.querySelector(".add");
 const service = document.querySelector(".service");
 const cartt = document.querySelector("#cartt");
 
@@ -24,7 +24,7 @@ function setTeacherLecture() {
                     empty.setAttribute("style","display:none;");
                     
                 }else {
-                    add.setAttribute("style","display : none;");
+                    addd.setAttribute("style","display : none;");
                     service.setAttribute("style","display : none;");
                     console.log("강사 아님");
                 }

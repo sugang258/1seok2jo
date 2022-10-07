@@ -281,7 +281,22 @@ public class LectureTest extends MyAbstractTest {
 	    List<LectureDTO> ar = lectureDAO.getLectureCate(pager);
 	    
 	    assertNotEquals(1, ar.size());
-
+	}
+	
+	//@Test
+	public void getLectureC() throws Exception{
+	   
+	    List<LectureDTO> ar = lectureDAO.getLectureC();
 	    
+	    assertEquals(7, ar.size());
+
+	}
+	
+	//@Test
+	public void getLectureLevel() throws Exception{
+	    List<LectureDTO> ar = lectureDAO.getLectureLevel();
+	    
+	    assertEquals(7, ar.size());
+
 	}
 }

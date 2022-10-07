@@ -1,11 +1,14 @@
-const fileAdd = document.querySelector("#fileAdd");
-const addFiles = document.querySelector("#addFiles");
-const addVideos = document.querySelector("#addVideos");
+const addfiles = document.querySelector("#addFiles");
+const addvideos = document.querySelector("#addVideos");
 const videoAdd = document.querySelector("#videoAdd");
 const sub = document.querySelector("#sub");
 const l_contents = document.querySelector("#l_contents");
 const add = document.querySelector("#add");
 const files = document.querySelector("#files");
+const l_date = document.querySelector("#l_date");
+const div1 = document.querySelector("#div1");
+const l_price = document.querySelector("#l_price");
+const div2 = document.querySelector("#div2");
 
 
 let count = 0; //동영상 번호
@@ -47,7 +50,7 @@ files.addEventListener("change",function(){
                 inputf_name.setAttributeNode(typei4)
                 inputf_name.setAttributeNode(typei5)
                 
-                addFiles.append(inputf_name)
+                addfiles.append(inputf_name)
     
                 //fname input
                 inputf_name = document.createElement("input")
@@ -65,7 +68,7 @@ files.addEventListener("change",function(){
                 inputf_name.setAttributeNode(typei3)
                 inputf_name.setAttributeNode(typei4)
                 
-                addFiles.append(inputf_name);
+                addfiles.append(inputf_name);
 
 
         },
@@ -184,13 +187,13 @@ videoAdd.addEventListener("click",function() {
     d3.appendChild(b);
     d.appendChild(d3)
 
-      addVideos.appendChild(d);
+      addvideos.appendChild(d);
 
      count++;
 
  })
 
-addVideos.addEventListener("click",function(event){
+addvideos.addEventListener("click",function(event){
     let button = event.target;
 
     if(button.classList[0] == 'del') {
@@ -207,4 +210,42 @@ sub.addEventListener("click",function(){
 
     add.submit();
 })
+
+var pattern_num = /[1-9999999]/; //숫자
+var pattern_eng = /[a-zA-Z]/;	// 문자 
+var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
+var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
+
+l_date.addEventListener("blur",function(){
+    console.log("blur");
+    console.log(l_date.value);
+    if((pattern_num.test(l_date.value)) && !(pattern_eng.test(l_date.value)) && !(pattern_spc.test(l_date.value)) && !(pattern_kor.test(l_date.value))) {
+        console.log("true");
+        div1.innerHTML="";
+        return true;
+    } else{
+        console.log("false");
+        div1.innerHTML = "❗숫자만 작성해주세요";
+        l_date.value="";
+        return false;
+    }
+    
+});
+
+l_price.addEventListener("blur",function(){
+    console.log("blur");
+    console.log(l_price.value);
+    if((pattern_num.test(l_price.value)) && !(pattern_eng.test(l_price.value)) && !(pattern_spc.test(l_price.value)) && !(pattern_kor.test(l_price.value))) {
+        console.log("true");
+        div2.innerHTML="";
+        return true;
+    } else{
+        console.log("false");
+        div2.innerHTML = "❗숫자만 작성해주세요";
+        l_price.value="";
+        return false;
+    }
+    
+});
+
 

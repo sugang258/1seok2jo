@@ -99,13 +99,15 @@ rel="stylesheet"
                     </div>
     
                     <div class="col-md-3">
-                    <label for="l_date" class="form-label">수강 기간 (개월)</label>
-                    <input type="text" class="form-control" id="l_date" name="l_date" placeholder="" required="" value="${update.l_date}">
+                        <label for="l_date" class="form-label">수강 기간 (개월)</label>
+                        <input type="text" class="form-control" id="l_date" name="l_date" placeholder="" required="" value="${update.l_date}">
+                        <div id="div1"></div>
                     </div>
 
                     <div class="col-md-3">
                         <label for="l_price" class="form-label">강의 가격 (원)</label>
                         <input type="text" class="form-control" id="l_price" name="l_price" placeholder="" required="" value="${update.l_price}">
+                        <div id="div2"></div>
                     </div>
                     
 
