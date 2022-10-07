@@ -15,7 +15,7 @@
     <tbody>
         <c:forEach items="${boardsList}" var="board">
             <tr data-csnum="${board.fb_num}">
-                <td><input type="checkbox"></td>
+                <td><input type="checkbox" class="chk"></td>
                 <td>${board.bd_name}</td>
                 <td>${board.title}</td>
                 <td>${board.id}</td>
