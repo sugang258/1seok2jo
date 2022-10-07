@@ -42,13 +42,15 @@
 		    				(SELECT * FROM LECTURE L
 		    				JOIN L_FILE LF
 		    				ON L.L_NUM = LF.L_NUM
+		    				JOIN MEMBER M
+		    				ON L.ID=M.ID
 							JOIN "LEVEL" LV
 							ON L.LEVEL_NUM = LV.LEVEL_NUM
 							JOIN CATEGORY C
 							ON L.C_NUM = C.C_NUM
 							WHERE
 	                  		<choose>
-	                     		<when test="kind == 'id'">L.ID</when>
+	                     		<when test="kind == 'id'">M.N_NAME</when>
 	                     		<when test="kind == 'l_name'">L.L_NAME</when>
 	                     		<when test="kind == 'level_name'">LV.LEVEL_NAME</when>
 	                     		<otherwise>C.C_NAME</otherwise>
@@ -100,13 +102,18 @@
 		    			<result column="v_seq" property="v_seq"/>
 		    			<result column="v_status" property="v_status"/>
 		    		</collection>
+		    		<collection property="memberDTO" javaType="MemberDTO">
+		    			<result column="n_name" property="n_name"/>
+		    		</collection>
 		    	</resultMap>
 		    	
 		    	<select id="getDetail" parameterType="LectureDTO" resultMap="getDetailResult">
-		    		SELECT L.*, LF.* , LV.*, CA.C_NAME, VV.*
+		    		SELECT L.*, LF.* , LV.*, CA.C_NAME, VV.*,M.N_NAME
 					FROM LECTURE L
 					LEFT JOIN L_FILE LF
 					ON L.L_NUM = LF.L_NUM
+					JOIN MEMBER M
+					ON L.ID=M.ID
 					LEFT JOIN CART C
 					ON L.L_NUM = C.L_NUM
 					LEFT JOIN "LEVEL" LV
@@ -305,4 +312,8 @@
                  	 		ORDER BY L.L_NUM DESC) L)
                  	 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 		    	</select>
+		    	
+		    	<select id="getMemberName" parameterType="MemberDTO" resultType="java.lang.String">
+					SELECT N_NAME=#{n_name} FROM MEMBER WHERE ID=#{id}
+				</select>
 		    </mapper>

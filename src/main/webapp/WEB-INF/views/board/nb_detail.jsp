@@ -43,14 +43,14 @@ prefix="c" %>
           <div class="d-flex mb-4">
           	   <div>
                 <img
-                  src="/resources/images/ma.jpg"
+                  src="http://20.249.88.100/resources/member/${noticeDTO.f_name}"
                   style="width: 30px; border-radius: 24px; margin-top: -10px; margin-right:5px;"/>
               </div>
              <div class="me-2" style="font-size:14px; font-weight: bold">작성자: <span>${noticeDTO.id}</span>✅</div>
              <div style="font-size:12px;"><span>${noticeDTO.reg_date}</span></div>
           </div>
           <div>
-             <span>${noticeDTO.contents}</span>
+             <span class="n_text_content">${noticeDTO.contents}</span>
           </div>
           <div style="width: 100%">
             <img
@@ -68,7 +68,7 @@ prefix="c" %>
                   style="color: orange;"
                   class="fa-solid fa-caret-down"
                 ></i
-                ><button id="reply">댓글</button>
+                ><button id="reply">🔻댓글</button>
               </div>
             </div>
             
@@ -95,12 +95,13 @@ prefix="c" %>
             목록보기
           </button>
         </div>
+        <c:if test="${member.id eq noticeDTO.id}">
         <div class="p-2">
           <button
             class="btn-st btn btn-outline-secondary"
             onclick="location.href='nb_delete?n_num=${noticeDTO.n_num}';"
           >
-            삭제하기(작성자)
+            삭제하기
           </button>
         </div>
         <div class="p-2">
@@ -113,9 +114,10 @@ prefix="c" %>
             data-bs-whatever="@mdo"
              data-notice-num="${noticeDTO.n_num}"
           >
-            수정하기(작성자)
+            수정하기
           </button>
         </div>
+        </c:if>
       </div>
 
       <!--modal-->
@@ -197,7 +199,7 @@ ${noticeDTO.contents}</textarea
         <!--container-box-->
       </div>
 
-    <c:import url="../template/footer.jsp"></c:import>
+<%--     <c:import url="../template/footer.jsp"></c:import> --%>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"

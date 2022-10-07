@@ -17,8 +17,9 @@
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
             <!-- jQuery -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+        <link href="/resources/css/admin/bscommon.css" rel="stylesheet" />
     </head>
-    <body class="sb-nav-fixed">
+    <body class="sb-nav-fixed ilseok">
     	<c:import url="./navbar.jsp"></c:import>
             <div id="layoutSidenav_content">
                 <main>
@@ -56,7 +57,7 @@
                             <div class="d-flex ms-3 justify-content: flex-start;">
                                 <div class="p-2 flex-grow-3"><b>관리</b></div>
                                 <div class="p-2 flex-grow-3" style="color: gray">|</div>
-                                <div class="p-2 flex-grow-3">
+                                <div class="p-2 flex-fill text-end pe-5">
                                     <button type="button" style="font-weight:bold; color:black">강의 삭제</button>
                                 </div>
                               </div>

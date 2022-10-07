@@ -6,7 +6,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>학습게시판</title>
+    <title>자유게시판</title>
     <link rel="stylesheet" href="/resources/css/board/fb_list.css" />
     <%-- Bootstrap CSS --%>
     <link
@@ -32,31 +32,32 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
         <div style="height: 70px">
           <h3 style="line-height: 80px"><strong>🐸 자유게시판</strong></h3>
         </div>
+          <form action="./fb_list" method="get">
         <div style="height: 55px">
           <div class="search-bar">
             <button id="seach_logo" class="seach-logo">
               <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
             </button>
-            <input type="search" placeholder="궁금한 내용을 찾아보세요." />
+            <input type="search" name="search" value="${param.search}" placeholder="궁금한 내용을 찾아보세요." />
           </div>
         </div>
         <!--Order-->
         <div class="order">
-          <form>
             <div class="d-flex mb-3">
               <div class="p-1">
-                <select class="select" name="">
-                  <option value="">최신순</option>
-                  <option value="">조회순</option>
-                  <option value="">추천순</option>
+                <select class="select" name="order">
+                  <option class="orders" value="new">최신순</option>
+                  <option class="orders" value="hit">조회순</option>
+                  <option class="orders" value="heart">추천순</option>
                 </select>
               </div>
               <div class="p-1">
-                <select class="select" name="">
-                  <option value="">스터디모집</option>
-                  <option value="">자료실</option>
-                  <option value="">공부인증</option>
-                  <option value="">수다</option>
+                <select class="select" name="kind">
+                <option class="kinds" value="all">전체보기</option>
+                  <option class="kinds" value="study">스터디모집</option>
+                  <option class="kinds" value="data">자료실</option>
+                  <option class="kinds" value="confirm">공부인증</option>
+                  <option class="kinds" value="talk">수다</option>
                 </select>
               </div>
               <div class="ms-auto p-2">
@@ -65,8 +66,8 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                 </button>
               </div>
             </div>
-          </form>
         </div>
+        </form>
       </div>
 
       <!--Board_Contents-->
@@ -141,7 +142,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               <li class="page-item">
                 <a
                   class="page-link text-success"
-                  href="./fb_list?page=${pager.startNum-1}"
+                  href="./fb_list?page=${pager.startNum-1}&order=${pager.order}&kind=${pager.kind}&search=${pager.search}"
                   aria-label="Previous"
                 >
                   <span aria-hidden="true">&laquo;</span>
@@ -150,7 +151,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             </c:if>
             <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
               <li class="page-item">
-                <a class="page-link text-success" href="fb_list?page=${i}"
+                <a class="page-link text-success" href="fb_list?page=${i}&order=${pager.order}&kind=${pager.kind}&search=${pager.search}"
                   >${i}</a
                 >
               </li>
@@ -160,7 +161,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               <li class="page-item">
                 <a
                   class="page-link text-success"
-                  href="./fb_list?page=${pager.lastNum+1}"
+                  href="./fb_list?page=${pager.lastNum+1}&order=${pager.order}&kind=${pager.kind}&search=${pager.search}"
                   aria-label="Next"
                 >
                   <span aria-hidden="true">&raquo;</span>
@@ -196,6 +197,25 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       src="https://kit.fontawesome.com/6e23c67242.js"
       crossorigin="anonymous"
     ></script>
+    <script>
+  const kinds = document.getElementsByClassName('kinds');
+  const orders = document.getElementsByClassName('orders');
+  let k = '${param.kind}';
+  let o = '${param.order}';
+
+  for(let i =0;i < kinds.length;i++){
+    if(k == kinds[i].value){
+      kinds[i].selected = true;
+      break;
+    }
+  }
+    for(let i =0;i < orders.length;i++){
+        if(o == orders[i].value){
+          orders[i].selected = true;
+          break;
+        }  
+  }
+</script>
     <script src="/resources/js/fb_list.js"></script>
   </body>
 </html>

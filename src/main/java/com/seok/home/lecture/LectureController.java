@@ -1,7 +1,9 @@
 package com.seok.home.lecture;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.*;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +28,7 @@ import com.seok.home.lecture.status.StatusService;
 import com.seok.home.lecture.teacher.TeacherDTO;
 import com.seok.home.lecture.teacher.TeacherService;
 import com.seok.home.member.MemberDTO;
+import com.seok.home.member.RoleDTO;
 import com.seok.home.util.Pager;
 import com.seok.home.vm.TestFileDTO;
 
@@ -420,11 +423,32 @@ public class LectureController {
 	@ResponseBody
 	public int setLoginCheck(HttpServletRequest request) throws Exception{
 	    MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+	    LectureAddDTO lectureAddDTO = new LectureAddDTO();
+	    Date now = new Date();
+	    java.sql.Date date1 = new java.sql.Date(now.getTime());
 	    int result = 0;
 	    if(mem == null) {
 	        result = 0;
 	    }else {
 	        result = 1;
+	        lectureAddDTO.setId(mem.getId());
+	        List<LectureAddDTO> ar = lectureAddService.getLectureEnd(lectureAddDTO);
+	        if(ar.size() != 0) {
+	            for(int i=0;i<ar.size();i++) {
+	                if(date1.after(ar.get(i).getS_end())) {
+	                    System.out.println(ar.get(i).getS_num());
+	                    lectureAddDTO.setL_num(ar.get(i).getL_num());
+	                    lectureAddDTO.setS_num(ar.get(i).getS_num());
+	                    lectureAddService.setLectureUpdate(lectureAddDTO);
+	                    
+	                    lectureAddService.setLectureCountM(lectureAddDTO);
+	                    
+	                }
+	                
+	            }
+	            
+	        }
+	        
 	    }
 
 	    return result;

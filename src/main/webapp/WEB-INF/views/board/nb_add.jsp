@@ -74,7 +74,7 @@ prefix="c" %>
               style="display: none"
               name="id"
               readonly
-              value="관리자"
+              value="${member.id}"
               class="form-control"
               id="exampleFormControlInput1"
             />

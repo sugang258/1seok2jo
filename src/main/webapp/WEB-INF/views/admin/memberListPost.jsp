@@ -2,6 +2,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <table class="table table-striped table-hover">
+    <colgroup>
+        <col width="3%"  />
+        <col width="12%"/>
+        <col width="8%" />
+        <col width="11%"/>
+        <col width="12%"/>
+        <col width="15%"  />
+        <col width="18%"/>
+        <col width="7%" />
+        <col width="7%"/>
+        <col width="7%"/>
+    </colgroup>
     <thead>
         <tr>
             <th><input type="checkbox" id="all"></th>
@@ -29,7 +41,7 @@
                 <td><a href='/member/profile?id=${mem.id}' target="_blank">${mem.roleDTOs[0].roleName}</a></td>
                 <c:if test="${null eq mem.roleDTOs[1].roleName}"><td></td><td></td></c:if>
                 <c:if test="${mem.roleDTOs[1].roleName eq '관리자'}"><td></td><td>관리자</td></c:if>
-                <c:if test="${mem.roleDTOs[1].roleName eq '강사'}"><td>강사</td>
+                <c:if test="${mem.roleDTOs[1].roleName eq '강사'}"><td><a href='/member/tcherProfile?id=${mem.id}' target="_blank">강사</a></td>
                     <c:if test="${mem.roleDTOs[2].roleName eq '관리자'}"><td>관리자</td></c:if>
                     <c:if test="${mem.roleDTOs[2].roleName eq null}"><td></td></c:if>
                 </c:if>

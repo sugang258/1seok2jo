@@ -4,12 +4,39 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 		    <mapper namespace="com.seok.home.s_board.StudyBoardDAO">
+		    	<sql id="order">
+		    		<choose>
+		    			<when test="order == 'hits'">ORDER BY HIT DESC</when>
+		    			<otherwise>ORDER BY SB_NUM DESC</otherwise>
+		    		</choose>
+		    	</sql>
+		    	<sql id="answer">
+		    		<choose>
+		    			<when test="answer == 'wait'">ANSWER LIKE 0</when>
+		    			<when test="answer == 'finish'">ANSWER LIKE 1</when>
+		    			<otherwise>'a'='a'</otherwise>
+		    		</choose>
+		    	</sql>
+		    	<sql id="kind">
+		    		<choose>
+		    			<when test="kind == 'java'">CATEGORY LIKE '%JAVA%'</when>
+		    			<when test="kind == 'spring'">CATEGORY LIKE '%SPRING%'</when>
+		    			<when test="kind == 'javascript'">CATEGORY LIKE '%JAVASCRIPT%'</when>
+		    			<when test="kind == 'html'">CATEGORY LIKE '%HTML%'</when>
+		    			<when test="kind == 'css'">CATEGORY LIKE '%CSS%'</when>
+		    			<otherwise>'a'='a'</otherwise>
+		    		</choose>
+		    	</sql>
+		    
 		    	<select id="getBoardList" parameterType="Pager" resultType="StudyBoardDTO">
 		    		SELECT * FROM (
 		    			SELECT ROWNUM R, N.* FROM (
-		    				SELECT * FROM STUDY_BOARD ORDER BY SB_NUM DESC
-		    				)N
-		    			)
+		    				SELECT * FROM STUDY_BOARD 
+		    				WHERE TITLE LIKE '%'||#{search}||'%'
+		    				and <include refid="answer"></include>
+		    				and <include refid="kind"></include>
+		    				<include refid="order"></include>
+		    				)N)
 		    		WHERE R BETWEEN #{startRow} AND #{lastRow}
 		    	</select>
 		    	

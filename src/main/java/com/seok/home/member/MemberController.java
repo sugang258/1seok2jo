@@ -178,23 +178,30 @@ public class MemberController {
 	
 	//회원프로필정보조회 화면(GET)
 	@GetMapping("profile")
-	public ModelAndView getProfile(HttpSession session)throws Exception {
+	public ModelAndView getProfile(HttpSession session, MemberDTO memberDTO)throws Exception {
 		System.out.println("프로필 정보(GET)");
 		
 		ModelAndView mv = new ModelAndView();
-		MemberDTO memberDTO = new MemberDTO();
+		MemberDTO respMemberDTO = new MemberDTO();
+		
+		if(memberDTO.getId()!=null) {
+			if((Boolean)session.getAttribute("admin")) {
+				respMemberDTO = memberService.getProfile(memberDTO);
+			}
+		}else {
+		
 		//세션정보(아이디, 이름, 닉네임, 성별, 이메일, 전화번호, 마일리지, 등급번호, 등급이름 조회)를 꺼내서
 		//memberDTO에 담음
 		memberDTO = (MemberDTO) session.getAttribute("member");
 		
 		//프로필정보조회(아이디, 이름, 닉네임, *생년월일*, 성별, 이메일, 연락처 조회)
 		//getProfile을 갔다온 memberDTO를 respMemberDTO(responseMemberDTO)에 담음
-		MemberDTO respMemberDTO = memberService.getProfile(memberDTO);
+		respMemberDTO = memberService.getProfile(memberDTO);
+		}
 		
 		//그 데이터를 "member"로 JSP에 보내줌
 		mv.addObject("member", respMemberDTO);
 		mv.setViewName("member/profile");
-		
 		return mv;
 	}
 	
@@ -246,19 +253,23 @@ public class MemberController {
 	
 	//강사프로필 정보조회 화면(GET)
 	@GetMapping("tcherProfile")
-	public ModelAndView getTcherProfile(HttpSession session)throws Exception{
+	public ModelAndView getTcherProfile(HttpSession session, TeacherDTO teacherDTO)throws Exception{
 		System.out.println("강사프로필 정보(GET)");
 		ModelAndView mv = new ModelAndView();
-		TeacherDTO teacherDTO = new TeacherDTO();
-		MemberDTO memberDTO = new MemberDTO();
-		
+		//어드민 확인
+		if(teacherDTO.getId()!=null) {
+			if((Boolean)session.getAttribute("admin")) {
+				teacherDTO = memberService.getTcherProfile(teacherDTO);
+			}
+		}else {
 		//세션에서 아이디를 꺼냅니다
+		MemberDTO memberDTO = new MemberDTO();
 		memberDTO = (MemberDTO) session.getAttribute("member");
 		//꺼낸 아이디를 teacherDTO에 담습니다
 		teacherDTO.setId(memberDTO.getId());
 		//DB에 갔다온 teacherDTO에는 신청번호, 계좌번호, 은행이름, 소개글이 있습니다.
 		teacherDTO = memberService.getTcherProfile(teacherDTO);
-
+		}
 		mv.addObject("teacher", teacherDTO);
 		mv.setViewName("member/tcherProfile");
 		

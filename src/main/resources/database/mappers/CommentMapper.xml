@@ -10,7 +10,7 @@
 		    	</select>
 		    	
 		    	<insert id="setCommentAdd" parameterType="CommentDTO">
-		    		INSERT INTO SB_REPLY VALUES(BOARD_SEQ.NEXTVAL, #{sb_num}, 'teacher', #{contents}, sysdate, 0)
+		    		INSERT INTO SB_REPLY VALUES(BOARD_SEQ.NEXTVAL, #{sb_num}, #{id}, #{contents}, sysdate, 0)
 		    	</insert>
 		    	
 		    	<update id="setCommentUpdate" parameterType="CommentDTO">
