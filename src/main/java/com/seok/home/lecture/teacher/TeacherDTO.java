@@ -16,16 +16,8 @@ public class TeacherDTO {
 	private String bank_name;
 	//소개글
 	private String introduce;
-	//등급을 여러개
-	private List<RoleDTO> roleDTOs;
 	
 	/********************** getter setter ************************/
-	public List<RoleDTO> getRoleDTOs() {
-		return roleDTOs;
-	}
-	public void setRoleDTOs(List<RoleDTO> roleDTOs) {
-		this.roleDTOs = roleDTOs;
-	}
 	public Long getT_num() {
 		return t_num;
 	}

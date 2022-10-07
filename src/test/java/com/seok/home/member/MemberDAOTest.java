@@ -55,8 +55,8 @@ public class MemberDAOTest extends MyAbstractTest {
 	//@Test
 	public void getLoginTest()throws Exception {
 		MemberDTO memberDTO = new MemberDTO();
-		memberDTO.setId("yj");
-		memberDTO.setPw("yj");
+		memberDTO.setId("koo");
+		memberDTO.setPw("123");
 		memberDTO = memberDAO.getLogin(memberDTO);
 		
 		assertNotNull(memberDTO);

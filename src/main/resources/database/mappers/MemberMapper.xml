@@ -56,10 +56,13 @@
 
 	<select id="getLogin" parameterType="MemberDTO" resultMap="getLoginResult">
 		/* 로그인시(아이디와 비밀번호가 맞으면) */
-		/* 아이디, 이름, 닉네임, 성별, 이메일, 폰, 마일리지, 등급번호, 등급이름 조회 */
+		/* 강사신청번호, 아이디, 이름, 닉네임, 성별, 이메일, 폰, 마일리지, 등급번호, 등급이름 조회 */
 		
-		SELECT M.ID, M.NAME, M.N_NAME, M.GENDER, M.EMAIL, M.PHONE, M.POINT, MR.ROLENUM, R.ROLENAME
-		FROM MEMBER M
+		SELECT T.T_NUM, M.ID, M.NAME, M.N_NAME, M.B_DATE, M.GENDER, M.EMAIL, M.PHONE, M.POINT, MR.ROLENUM, R.ROLENAME
+		FROM TEACHER T
+		    RIGHT JOIN
+			MEMBER M
+			ON (T.ID=M.ID)
 			INNER JOIN
 			MEMBER_ROLE MR
 			ON (M.ID=MR.ID)
