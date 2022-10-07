@@ -87,6 +87,7 @@
 			  <div>
 				  <button type="submit" class="btn btn-outline-success"><b>프로필수정✏</b></button>
 			  </div>
+			  
 			  <!-- 프로필-이미지카드 -->
 			  <div class="card" style="width: 18rem;">
 				<img src="..." class="card-img-top" alt="...">

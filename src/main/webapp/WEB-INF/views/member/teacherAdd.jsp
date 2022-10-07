@@ -44,7 +44,7 @@
 							<input type="text" class="form-control bank_name" name="bank_name" placeholder="은행명" maxlength="4">
 						</div>
 						<div class="col-6">
-						<select class="form-select bank_name" name="">
+						<select class="form-select bank_name" disabled name="">
 							<option value="">직접입력</option>
 							<option value="신한은행">신한은행</option>
 							<option value="농협은행">농협은행</option>
@@ -59,11 +59,6 @@
 						<label for="ipBank_num" class="form-label"><b>계좌번호</b></label>
 						<input type="number" name="bank_num" class="form-control" id="ipBank_num" placeholder="계좌번호를 입력해주세요">
 					</div>
-					
-					<!-- <div class="mb-4">
-					<label for="ipBank_name" class="form-label">은행이름</label>
-					<input type="text" name="bank_name" class="form-control" id="ipBank_name" placeholder="은행명을 입력해주세요">
-					</div> -->
 					
 					<div class="mb-4">
 						<label for="ipIntroduce" class="form-label"><b>소개글</b></label>
