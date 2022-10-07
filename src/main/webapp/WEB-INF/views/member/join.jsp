@@ -69,7 +69,7 @@
 						</div>
 	
 						<div class="col-4">
-							<select class="form-select" name="mm">
+							<select class="form-select b_date" name="mm">
 								<option value="">월</option>
 								<option value="1">1</option>
 								<option value="2">2</option>

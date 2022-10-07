@@ -41,10 +41,10 @@
 					<div class="row g-2">
 						<label for="ipBank_name" class="form-label mt-4"><b>은행이름</b></label>
 						<div class="col-6">
-							<input type="text" class="form-control" name="" placeholder="은행명" maxlength="4">
+							<input type="text" class="form-control bank_name" name="bank_name" placeholder="은행명" maxlength="4">
 						</div>
 						<div class="col-6">
-						<select class="form-select" name="bank_name">
+						<select class="form-select bank_name" name="">
 							<option value="">직접입력</option>
 							<option value="신한은행">신한은행</option>
 							<option value="농협은행">농협은행</option>
