@@ -30,33 +30,64 @@
 				</div>
 				<%-- 강사 회원가입JSP --%>
 				<form action="./teacherAdd" method="post">
+					<div>
+						<div>
+							<label for="ipId" class="form-label mt-4"><b>아이디</b></label>
+						</div>
+						<h2><b>${member.id}</b></h2>
+						<input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}">
+					</div>
 					
-				  <div class="mb-4">
-					<label for="ipId" class="form-label">${member.id}</label>
-					<input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}">
-				  </div>
-				  
-				  <div class="mb-4">
-					<label for="ipBank_num" class="form-label">계좌번호</label>
-					<input type="text" name="bank_num" class="form-control" id="ipBank_num" placeholder="계좌번호를 입력해주세요">
-				  </div>
-				  
-				  <div class="mb-4">
+					<div class="row g-2">
+						<label for="ipBank_name" class="form-label mt-4"><b>은행이름</b></label>
+						<div class="col-6">
+							<input type="text" class="form-control" name="" placeholder="은행명" maxlength="4">
+						</div>
+						<div class="col-6">
+						<select class="form-select" name="bank_name">
+							<option value="">직접입력</option>
+							<option value="신한은행">신한은행</option>
+							<option value="농협은행">농협은행</option>
+							<option value="기업은행">기업은행</option>
+							<option value="하나은행">하나은행</option>
+							<option value="하나은행">카카오뱅크</option>
+						</select>
+						</div>
+					</div>
+
+					<div class="my-4">
+						<label for="ipBank_num" class="form-label"><b>계좌번호</b></label>
+						<input type="number" name="bank_num" class="form-control" id="ipBank_num" placeholder="계좌번호를 입력해주세요">
+					</div>
+					
+					<!-- <div class="mb-4">
 					<label for="ipBank_name" class="form-label">은행이름</label>
 					<input type="text" name="bank_name" class="form-control" id="ipBank_name" placeholder="은행명을 입력해주세요">
-				  </div>
-				  
-				  <div class="mb-4">
-					<label for="ipIntroduce" class="form-label">소개글</label>
-					<input type="text" name="introduce" class="form-control" id="ipIntroduce" placeholder="나를 간단히 소개하는 글을 입력해주세요">
-				  </div>
-				  
-				  <button type="submit" class="btn btn-outline-success">강사신청</button>
-				  
+					</div> -->
+					
+					<div class="mb-4">
+						<label for="ipIntroduce" class="form-label"><b>소개글</b></label>
+						<input type="text" name="introduce" class="form-control" id="ipIntroduce" placeholder="나를 간단히 소개하는 글을 입력해주세요">
+					</div>
+					
+					<!-- 구분선 -->
+					<hr class="my-5">
+
+					<!-- 회원가입 버튼 -->
+					<div class="d-grid gap-2 mt-3">
+						<button type="submit" class="btn btn-outline-success"><b>강사신청</b></button>
+					</div>
 				</form>
 			</div>
 		</div>
 	</section>
+<!-- 계좌번호 input type number에 화살표 안나오게 하는 css-->
+<style>
+	.bank_num::-webkit-outer-spin-button,
+	.bank_num::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+	}
+</style>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
