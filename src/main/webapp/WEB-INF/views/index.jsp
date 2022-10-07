@@ -132,7 +132,7 @@
                 <div class="card" style="height:277px">
                   <img src="http://20.249.88.100/resources/lecture/${count.lectureFileDTO[0].f_name}" class="card-img-top img " alt="...">
                   <div class="card-text">
-                    <h5 style="margin-top: 10px;">${count.l_name}</h5>⭐
+                    <h5 style="margin-top: 10px;">${count.l_name}</h5>
                     <h7>⭐⭐⭐⭐⭐</h7>
                     <p>평점</p>
                   </div>

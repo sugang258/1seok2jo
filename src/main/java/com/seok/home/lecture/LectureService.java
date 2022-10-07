@@ -253,4 +253,8 @@ public class LectureService {
 	public List<LectureDTO> getLectureLevel() throws Exception{
 	    return lectureDAO.getLectureLevel();
 	}
+	
+	public List<LectureDTO> getLectureRecommend() throws Exception{
+	    return lectureDAO.getLectureRecommend();
+	}
 }

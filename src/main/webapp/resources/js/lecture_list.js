@@ -3,6 +3,12 @@ const cart = document.querySelectorAll(".cart");
 const cartbtn = document.querySelectorAll("#cartbtn");
 const lecturebtn = document.querySelectorAll(".lec");
 const btn = document.querySelectorAll(".btn");
+const recommend = document.querySelector("#recommend");
+const popular = document.querySelector("#popular");
+const recent = document.querySelector("#recent");
+const price = document.querySelector("#price");
+const pager = document.querySelector("#pager");
+const filter = document.querySelector(".filter");
 
 
 lecture.forEach(function(lecturebtn){
@@ -91,10 +97,9 @@ btn.forEach(function(btn){
         xhttp.onreadystatechange = function() {
             if(this.readyState == 4 && this.status == 200) {
                 let result = xhttp.responseText.trim();
-                //console.log(result);
+                console.log(result);
                 const r=document.getElementById("result");
                 r.innerHTML = result;
-
                 
             }
         }
@@ -118,12 +123,114 @@ function handleClick(event) {
       event.target.classList.add("clicked");
 
     }
+    
   }
 
+ 
 function init() {
     for (var i = 0; i < btn.length; i++) {
       btn[i].addEventListener("click", handleClick);
     }
-  }
+}
+
 
   init();
+
+// recommend.addEventListener("click",function(event){
+//     console.log("추천");
+//     console.log(event.target);
+//     const xhttp = new XMLHttpRequest() ;
+
+//         xhttp.open("POST","../lecture/recommend");
+
+//         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+//         xhttp.send("recommend="+1);
+//         xhttp.onreadystatechange = function() {
+//             if(this.readyState == 4 && this.status == 200) {
+//                 let result = xhttp.responseText.trim();
+//                 //console.log(result);
+//                 const r=document.getElementById("result");
+//                 r.innerHTML = result;
+
+                
+//             }
+//         }
+
+//   })
+
+//   popular.addEventListener("click",function(){
+
+//     const xhttp = new XMLHttpRequest() ;
+
+//         xhttp.open("POST","../lecture/popular");
+
+//         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+//         xhttp.send("c_num="+c_num);
+
+//         xhttp.onreadystatechange = function() {
+//             if(this.readyState == 4 && this.status == 200) {
+//                 let result = xhttp.responseText.trim();
+//                 //console.log(result);
+//                 const r=document.getElementById("result");
+//                 r.innerHTML = result;
+
+                
+//             }
+//         }
+
+//   })
+//   recent.addEventListener("click",function(event){
+
+//     const xhttp = new XMLHttpRequest() ;
+
+//         xhttp.open("POST","../lecture/recent");
+
+//         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+//         xhttp.send("c_num="+c_num);
+
+//         xhttp.onreadystatechange = function() {
+//             if(this.readyState == 4 && this.status == 200) {
+//                 let result = xhttp.responseText.trim();
+//                 //console.log(result);
+//                 const r=document.getElementById("result");
+//                 r.innerHTML = result;
+
+                
+//             }
+//         }
+
+//   })
+//   price.addEventListener("click",function(){
+
+//     const xhttp = new XMLHttpRequest() ;
+
+//         xhttp.open("POST","../lecture/price");
+
+//         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+//         xhttp.send("c_num="+c_num);
+
+//         xhttp.onreadystatechange = function() {
+//             if(this.readyState == 4 && this.status == 200) {
+//                 let result = xhttp.responseText.trim();
+//                 //console.log(result);
+//                 const r=document.getElementById("result");
+//                 r.innerHTML = result;
+                
+                
+//             }
+//         }
+        
+//     })
+  
+
+// function init() {
+//     for (var i = 0; i < filter.length; i++) {
+//       filter[i].addEventListener("click", handleClick);
+//     }
+//   }
+
+//   init();

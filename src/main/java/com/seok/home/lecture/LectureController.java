@@ -469,14 +469,23 @@ public class LectureController {
 	        result = 1;
 	    }
 	    mv.addObject("list", ar);
+	    mv.addObject("pager", pager);
 	    mv.setViewName("lecture/category_list");
-	    //mv.addObject("Pager", pager);
 	    
 	    return mv;
 
-	    
-	    
-	    
 	}
+	
+	@PostMapping("recommend")
+	public ModelAndView getLectureRecommend() throws Exception{
+	    ModelAndView mv = new ModelAndView();
+	    List<LectureDTO> ar = lectureService.getLectureRecommend();
+	    
+	    mv.addObject("list", ar);
+	    mv.setViewName("lecture/category_list");
+
+	    return mv;	    
+	}
+
 	
 }

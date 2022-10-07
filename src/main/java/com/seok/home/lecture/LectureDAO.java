@@ -154,6 +154,9 @@ public class LectureDAO {
 	public List<LectureDTO> getLectureLevel() throws Exception{
 	    return sqlSession.selectList(NAMESPACE+"getLectureLevel");
 	}
+	public List<LectureDTO> getLectureRecommend() throws Exception{
+	    return sqlSession.selectList(NAMESPACE+"getLectureRecommend", NAMESPACE);
+	}
 
 
 

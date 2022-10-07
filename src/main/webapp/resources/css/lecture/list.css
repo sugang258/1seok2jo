@@ -1,5 +1,9 @@
 .input-group {
     width: 80%;
+    display: inline;
+}
+.courses_order_select{
+    display: inline;
 }
 
 .category {
@@ -34,3 +38,28 @@
     font-size: small;
     font-weight: bold;
 }
+
+.filter{
+    border: none;
+    font-weight: bold;
+    background-color: white;
+    color:darkgray;
+
+}
+#filter{
+    margin-left: 700px;
+    margin-top: 30px;
+
+}
+
+#result{
+    padding-top: 1rem !important;
+}
+
+.filter_clicked{
+    color: black !important;
+    border: none;
+    font-weight: bold;
+    background-color: white;
+}
+
