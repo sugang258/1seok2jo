@@ -2,9 +2,7 @@
     width: 80%;
     display: inline;
 }
-.courses_order_select{
-    display: inline;
-}
+
 
 .category {
     border-radius: 7px 0 0 7px;
@@ -46,12 +44,6 @@
     color:darkgray;
 
 }
-#filter{
-    margin-left: 700px;
-    margin-top: 30px;
-
-}
-
 #result{
     padding-top: 1rem !important;
 }
@@ -63,3 +55,14 @@
     background-color: white;
 }
 
+#filter{
+    margin-left: 20px;
+    height: 35px;
+    margin-top: 3px;
+    border-radius: 7px;
+}
+
+#button-addon2{
+    border: 1px solid #ced4da;
+    border-radius: 0px 7px 7px 0px;
+}

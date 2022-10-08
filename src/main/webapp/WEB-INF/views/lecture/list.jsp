@@ -22,7 +22,7 @@
 	
 		<!--Category Search-->
 		<form action="./list">
-			<div class="input-group mb-3 " style="width: 500px; margin: auto; height: 40px;">
+			<div class="input-group mb-3 " style="width: 700px; margin: auto; height: 40px;">
 				
 				<select name="kind" class="form-select input-group" id="kind" >
 					<option class="kinds" value="" style="display: none;">Category</option>
@@ -37,7 +37,7 @@
 				<button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
 				
 					
-				<select id="filter" name="filter">
+				<select id="filter" class="form-select" aria-label="Default select example" name="filter">
 					<option class="filters" value="" style="display: none;">
 					정렬
 					</option>
