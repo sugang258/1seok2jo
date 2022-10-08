@@ -64,14 +64,14 @@
 		</form>
 		<div class="buttons text-center">
   
-			<button class="btn btn-secondary" name="Python" id="python" data-c-num="2">Python</button>
-			<button class="btn btn-secondary" name="JavaScript" id="js" data-c-num="3">JavaScript</button>
-			<button class="btn btn-secondary" name="HTML/CSS" id="hc" data-c-num="4">HTML/CSS</button>
-			<button class="btn btn-secondary" name="Java" id="java" data-c-num="1">Java</button>
-			<button class="btn btn-secondary" name="React" id="react" data-c-num="5">React</button>
-			<button class="btn btn-secondary" name="Spring" id="spring" data-c-num="7">Spring</button>
-			<button class="btn btn-secondary" name="SQL" id="sql" data-c-num="8">SQL</button>
-			<button class="btn btn-secondary" name="Node.js" id="node" data-c-num="6">Node.js</button>
+			<button class="btn btn-secondary cate" name="Python" id="python" data-c-num="2">Python</button>
+			<button class="btn btn-secondary cate" name="JavaScript" id="js" data-c-num="3">JavaScript</button>
+			<button class="btn btn-secondary cate" name="HTML/CSS" id="hc" data-c-num="4">HTML/CSS</button>
+			<button class="btn btn-secondary cate" name="Java" id="java" data-c-num="1">Java</button>
+			<button class="btn btn-secondary cate" name="React" id="react" data-c-num="5">React</button>
+			<button class="btn btn-secondary cate" name="Spring" id="spring" data-c-num="7">Spring</button>
+			<button class="btn btn-secondary cate" name="SQL" id="sql" data-c-num="8">SQL</button>
+			<button class="btn btn-secondary cate" name="Node.js" id="node" data-c-num="6">Node.js</button>
 		</div>
 		<!--Lecture List-->
 		<section class="py-5" id="result">

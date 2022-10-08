@@ -112,7 +112,7 @@ public class LectureController {
 	
 	@GetMapping("detail")
 	@ResponseBody
-	public ModelAndView getDetail(LectureDTO lectureDTO,HttpServletRequest request, HttpSession session,LectureAddDTO lectureAddDTO) throws Exception {
+	public ModelAndView getDetail(LectureDTO lectureDTO,HttpServletRequest request, HttpSession session) throws Exception {
 		System.out.println("detail");
 		MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
 		System.out.println(lectureDTO.getL_num());
@@ -461,7 +461,7 @@ public class LectureController {
 	    List<LectureDTO> ar = lectureService.getLectureCate(pager);
 	    System.out.println("sr"+pager.getStartRow());
 	    System.out.println("lr"+pager.getLastRow());
-	    System.out.println(ar.get(0).getC_name());
+	    //System.out.println(ar.get(0).getC_name());
 	    int result = 0;
 	    if(ar.size() == 0) {
 	        result = 0;

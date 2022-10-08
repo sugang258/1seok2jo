@@ -40,7 +40,7 @@
                                 ${lecturedto.id} / ${lecturedto.c_name} / ${lecturedto.l_price}원
                             </td>
                             <td>
-                                <input type="button" class="btn btn-primary mt-4 del" id="del" value="삭제하기" style="border :none; color: #66ba39; background-color: white;">
+                                <input type="button" class="btn btn-primary mt-4 del" id="del" data-c-num="${lecturedto.cartDTO.cart_num}" value="삭제하기" style="border :none; color: #66ba39; background-color: white;">
                             </td>
                             <td>
                                 <input type="button" class="btn btn-primary mt-4 sign" id="sign" value="수강신청 하기" style="border :none; color: #66ba39; background-color: white;">
