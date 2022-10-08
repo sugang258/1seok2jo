@@ -142,7 +142,9 @@ public class LectureDAO {
 	public List<LectureDTO> getLectureCate(Pager pager) throws Exception{
 	    return sqlSession.selectList(NAMESPACE+"getLectureCate", pager);
 	}
-	
+	public Long getLectureCateCount(Pager pager) throws Exception{
+	    return sqlSession.selectOne(NAMESPACE+"getLectureCateCount", pager);
+	}
 	public String getMemberName(MemberDTO memberDTO) throws Exception{
 	    return sqlSession.selectOne(NAMESPACE+"getMemberName", memberDTO);
 	}

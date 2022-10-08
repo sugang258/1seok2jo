@@ -17,6 +17,7 @@
     href="https://fonts.googleapis.com/css2?family=Arvo&family=Dongle&family=Montserrat:wght@200&family=PT+Serif&family=Playfair+Display:wght@600&family=Prompt&family=Vollkorn:wght@500&display=swap"
     rel="stylesheet"
     />
+    <link rel="shortcut icon" href="/resources/images/favicon.ico">
 </head>
 <c:import url="../template/header.jsp"></c:import>
 <body>

@@ -21,6 +21,7 @@
  <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <link rel="shortcut icon" href="/resources/images/favicon.ico">
 </head>
 <c:import url="../template/header.jsp"></c:import>
 <body>
