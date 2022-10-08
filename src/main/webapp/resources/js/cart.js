@@ -57,7 +57,7 @@ del.forEach(function(del1){
 cart.forEach(function(cartbtn){
     cartbtn.addEventListener("click",function(){
         let l_num = cartbtn.getAttributeNode("data-l-num").value;
-        console.log(l_num);
+        console.log("엘넘"+l_num);
 
         const xhttp = new XMLHttpRequest();
 
@@ -66,7 +66,7 @@ cart.forEach(function(cartbtn){
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
         
-        xhttp.send("l_num=" + l_num);
+        xhttp.send("l_num="+l_num);
 
         xhttp.onreadystatechange = function() {
             if(this.readyState == 4 && this.status == 200) {
@@ -93,8 +93,9 @@ cart.forEach(function(cartbtn){
 sign.forEach(function(sign1){
     sign1.addEventListener("click",function(event){
         event.stopPropagation();
-        let l_num = event.target.parentNode.parentNode.getAttributeNode("data-l-num").value;
+        let l_num = event.target.parentNode.parentNode.parentNode.childNodes[3].getAttributeNode("data-l-num").value;
         
+        console.log(l_num);
         let check = window.confirm("수강신청 하시겠습니까?");
         
 

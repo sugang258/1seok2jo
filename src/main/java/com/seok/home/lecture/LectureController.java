@@ -115,7 +115,7 @@ public class LectureController {
 	public ModelAndView getDetail(LectureDTO lectureDTO,HttpServletRequest request, HttpSession session,LectureAddDTO lectureAddDTO) throws Exception {
 		System.out.println("detail");
 		MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
-		
+		System.out.println(lectureDTO.getL_num());
 		lectureDTO = lectureService.getDetail(lectureDTO);
 		long count = lectureService.getListCount(lectureDTO);
 		System.out.println(lectureDTO);

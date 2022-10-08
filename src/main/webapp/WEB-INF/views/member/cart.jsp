@@ -25,7 +25,36 @@
             <!--<img class="ml-1 mb-2 " src="/resources/images/15.png" alt="" width="100" height="70" style="display: inline;">-->
             <h2 style="display: inline;">🛒장바구니</h2>
         </div>
-        <div class="row gx-2 gx-lg-2 align-items-center mb-1" id="title">
+        <table class="table">
+            <tbody class="table-group-divider">
+                <c:forEach items="${lectureDTO}" var="lecturedto">
+                    <!--<div class="row gx-2 gx-lg-2 align-items-center my-3 cart" id="cart" data-l-num ="${lecturedto.l_num}">-->
+                    <tr class ="cart"id="cart" data-l-num ="${lecturedto.l_num}">
+                        <td style="width: 250px;">
+                                <img class="img-fluid rounded mb-4 mb-lg-0" src="http://20.249.88.100/resources/lecture/${lecturedto.lectureFileDTO[0].f_name}" alt="..." style="height: 150px;">
+                            </td>
+                            <td>
+                                <div style="margin-top: 30px; font-weight: bold;">
+                                ${lecturedto.l_name}
+                                </div>
+                                ${lecturedto.id} / ${lecturedto.c_name} / ${lecturedto.l_price}원
+                            </td>
+                            <td>
+                                <input type="button" class="btn btn-primary mt-4 del" id="del" value="삭제하기" style="border :none; color: #66ba39; background-color: white;">
+                            </td>
+                            <td>
+                                <input type="button" class="btn btn-primary mt-4 sign" id="sign" value="수강신청 하기" style="border :none; color: #66ba39; background-color: white;">
+                                <input type="label" value="${lecturedto.cartDTO.cart_num}" style="display: none;">
+                                </div>
+                            </td>
+
+                        </tr>
+                    </div>
+                    
+                    </c:forEach>
+            </tbody>
+          </table>
+        <!-- <div class="row gx-2 gx-lg-2 align-items-center mb-1" id="title">
             <div class="col-lg-2">
                 <h3>강의 제목</h3>
             </div>
@@ -70,7 +99,7 @@
             </div>
         </div>
     
-        </c:forEach>
+        </c:forEach> -->
         <input type="button" class="btn btn-primary mt-3 sign" id="all" value="🖱모두 수강신청 하기" style="border :none; color: #66ba39; background-color: white;">
 
     </main>
