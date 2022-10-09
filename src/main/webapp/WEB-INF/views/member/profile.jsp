@@ -31,20 +31,24 @@
 				<div class="mb-3 text-center">
 					<h1><b>프로필✒</b></h1>
 				</div>
+
 				<%-- 프로필 수정 form --%>
 				<form action="./profile" method="post" enctype="multipart/form-data">
 					
 					<!-- 프로필사진 카드 -->
 					<div class="card border-success mb-3">
-						<img src="http://20.249.88.100/resources/member/${member.memberFileDTO.f_name}" style=" max-width: 300px;  height: 300px;">
+						<div class="row my-3">
+							<img src="http://20.249.88.100/resources/member/${member.memberFileDTO.f_name}" style=" max-width: 300px;  height: 300px;">
+						</div>
 						<div class="row">
-							<div class="col-6 text-center" id="addFile">
+							<div class="col-6 text-end" id="addFile">
 								<!--하단 파일 추가 input과 연결된 라벨-->
-								<label for="file" class="mt-2 file_add"><b>파일추가📂</b>
+								<label for="file" class="file_add btn btn-outline-success btn-sm"><b>파일추가📂</b>
 							</div>
-							<div class="col-6" id="tcherProfile">
+							<div class="col-6 text-start" id="tcherProfile">
 								<!-- 강사프로필로 가는 버튼 -->
-								<button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='/member/tcherProfile';"><b>프로필수정✏</b></button>
+								<!-- <button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='/member/tcherProfile';"><b>프로필수정✏</b></button> -->
+								<a href="/member/tcherProfile" class="btn btn-outline-success btn-sm"><b>프로필수정✏</b></a>
 							</div>
 						</div>
 						<div class="row">
@@ -94,6 +98,8 @@
 								<li class="list-group-item border-success text-center">
 									<label for="ipId" class="form-label card-title"><h5><b>${member.id}</b></h5></label>
 									<p class="card-text"><input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}"></p>
+									<label for="ipGender" class="form-label">성별</label>
+									<input type="text" name="gender" class="form-control" id="ipGender" value="${member.gender}">
 								</li>
 								<li class="list-group-item border-success">
 									<label for="ipNname" class="form-label card-title"><h6><b>닉네임</b></h6></label>
