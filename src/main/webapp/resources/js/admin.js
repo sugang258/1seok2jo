@@ -23,6 +23,7 @@ function initboards(){
     //페이징 클릭하면
     let postResult = document.getElementById("postResult");
     postResult.addEventListener("click", function(event){
+        let num = event.target.parentNode.getAttribute("data-num");
         let chk = document.querySelectorAll(".chk");
         if(event.target.getAttribute("class")=="page-link"){
             page = event.target.getAttribute("data-page")
@@ -44,6 +45,17 @@ function initboards(){
                     if(test){
                         all.checked = test;
                     }
+                }
+            }else{
+                //게시판 상세로 페이지 이동
+                let num = event.target.parentNode.getAttribute("data-num")
+                let bd = event.target.parentNode.childNodes[3].innerText
+                if(bd=='공지사항'){
+                    location.href="/board/nb_detail?n_num="+num;
+                }else if(bd=='학습게시판'){
+                    location.href="/board/sb_detail?sb_num="+num;
+                }else if(bd=='자유게시판'){
+                    location.href="/board/fb_detail?fb_num="+num;
                 }
             }
         }
@@ -121,6 +133,11 @@ function initlectures(){
                     if(test){
                         all.checked = test;
                     }
+                }
+            }
+            else{
+                if(event.target.getAttribute("class")=="l_link"){
+                    location.href="/lecture/detail?l_num="+event.target.getAttribute("data-num");
                 }
             }
         }
@@ -259,6 +276,21 @@ function initpay(){
             payList(page)
         })
     }
+
+    //list및 페이징 클릭하면
+    let postResult = document.getElementById("postResult");
+    postResult.addEventListener("click", function(event){
+        let num = event.target.parentNode.getAttribute("data-num");
+        if(num==null){
+            if(event.target.getAttribute("class")=="page-link"){
+                page = event.target.getAttribute("data-page")
+                csList(page)
+            }else{
+            }
+        }else{
+            location.href="pay/status?p_uid="+num;
+        }
+    })
 }
 
 //payList요청하기

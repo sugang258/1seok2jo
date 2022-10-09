@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="p-2 flex-fill text-end pe-5">
                                     <button type="button" onclick="location.href='/board/nb_add'">공지사항 작성</button>
-                                    <button type="button">게시글 삭제</button>
+                                    <button type="button" id="deleteboard">게시글 삭제</button>
                                 </div>
                               </div>
                         </div>
