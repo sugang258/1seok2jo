@@ -59,6 +59,7 @@
                 <li><a class="dropdown-item service" href="/teacher/salesList">강의 매출 목록</a></li>
                 </ul>
             </li>
+            <c:if test="${empty member}">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
               <ul class="dropdown-menu">
@@ -68,6 +69,7 @@
                 <li><a class="dropdown-item" href="/pay/myList">내 결제내역</a></li>
               </ul>
             </li>
+            </c:if>
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             커뮤니티
