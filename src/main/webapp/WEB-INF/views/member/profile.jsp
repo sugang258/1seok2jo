@@ -28,47 +28,52 @@
 		<div class="row justify-content-md-center">
 			<div class="col-md-8 col-lg-7 mt-5">
 
-				<div class="mb-3 text-center ">
+				<div class="mb-3 text-center">
 					<h1><b>프로필✒</b></h1>
 				</div>
 				<%-- 프로필 수정 form --%>
 				<form action="./profile" method="post" enctype="multipart/form-data">
 					
-					<!-- 프로필-이미지카드 -->
+					<!-- 프로필사진 카드 -->
 					<div class="card border-success mb-3">
 						<img src="http://20.249.88.100/resources/member/${member.memberFileDTO.f_name}" style=" max-width: 300px;  height: 300px;">
-						<div id="addFile">
-							<!--하단 파일 추가 input과 연결된 라벨-->
-							<label for="file" name class="mt-2 file_add"><b>파일추가📂</b>
+						<div class="row">
+							<div class="col-6 text-center" id="addFile">
+								<!--하단 파일 추가 input과 연결된 라벨-->
+								<label for="file" class="mt-2 file_add"><b>파일추가📂</b>
+							</div>
+							<div class="col-6" id="tcherProfile">
+								<!-- 강사프로필로 가는 버튼 -->
+								<button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='/member/tcherProfile';"><b>프로필수정✏</b></button>
+							</div>
 						</div>
-						<!-- 파일 추가 input -->
-						<input type="file" id="file" style="display: none;">
+						<div class="row">
+							<!-- 파일 추가 input -->
+							<input type="file" id="file" style="display: none;">
+						</div>
 						<div class="card-body">
-							<label for="ipNname" class="form-label card-title"><h6><b>닉네임</b></h6></label>
-							<p class="card-text"><input type="text" name="n_name" class="form-control" id="ipNname" value="${member.n_name}"></p>
 							<!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item border-success text-center">
+									<label for="ipId" class="form-label card-title"><h5><b>${member.id}</b></h5></label>
+									<p class="card-text"><input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}"></p>
+								</li>
+								<li class="list-group-item border-success">
+									<label for="ipNname" class="form-label card-title"><h6><b>닉네임</b></h6></label>
+									<p class="card-text"><input type="text" name="n_name" class="form-control" id="ipNname" value="${member.n_name}"></p>
+								</li>
+							</ul>
 						</div>
-					</div>
-					
-					<div class="mb-3">
-						<img src="http://20.249.88.100/resources/member/${member.memberFileDTO.f_name}" style=" max-width: 300px;  height: 300px;">
-					</div>
-					
-					<!-- <div id="addFile"> -->
-						<!--하단 파일 추가 input과 연결된 라벨-->
-						<!-- <label for="file" name class="mt-2 file_add"><b>파일추가📂</b>
-					</div>					 -->
-					<!-- 파일 추가 input -->
-					<!-- <input type="file" id="file" style="display: none;"> -->
-						
-					<div id="tcherProfile">
-						<!-- 강사프로필로 가는 버튼 -->
-						<button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='/member/tcherProfile';"><b>프로필수정✏</b></button>
-					</div>
-					
-					<div class="mb-3">
-						<label for="ipName" class="form-label">${member.id}</label>
-						<input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}">
+						<!-- <div class="card-footer bg-transparent border-success">
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item border-success">
+									<label for="ipNname" class="form-label card-title"><h6><b>닉네임</b></h6></label>
+									<p class="card-text"><input type="text" name="n_name" class="form-control" id="ipNname" value="${member.n_name}"></p>
+								</li>
+								<li class="list-group-item border-success">A second item</li>
+								<li class="list-group-item border-success">A third item</li>
+							</ul>
+						</div> -->
 					</div>
 					
 					<!-- <div class="mb-3">
@@ -76,16 +81,38 @@
 						<input type="text" name="name" class="form-control" id="ipName" value="${member.name}">
 					</div> -->
 					
-					<div class="mb-3">
-						<label for="ipNname" class="form-label">닉네임</label>
-						<input type="text" name="n_name" class="form-control" id="ipNname" value="${member.n_name}">
-					</div>
-					
 					<!-- <div class="mb-3">
 						<label for="ipBdate" class="form-label">생년월일</label>
 						<input type="number" name="b_date" class="form-control" id="ipBdate" value="${member.b_date}">
 					</div> -->
 					
+					<!-- 프로필정보 카드 -->
+					<div class="card border-success mb-3">
+						<div class="card-body">
+							<!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item border-success text-center">
+									<label for="ipId" class="form-label card-title"><h5><b>${member.id}</b></h5></label>
+									<p class="card-text"><input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}"></p>
+								</li>
+								<li class="list-group-item border-success">
+									<label for="ipNname" class="form-label card-title"><h6><b>닉네임</b></h6></label>
+									<p class="card-text"><input type="text" name="n_name" class="form-control" id="ipNname" value="${member.n_name}"></p>
+								</li>
+							</ul>
+						</div>
+						<!-- <div class="card-footer bg-transparent border-success">
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item border-success">
+									<label for="ipNname" class="form-label card-title"><h6><b>닉네임</b></h6></label>
+									<p class="card-text"><input type="text" name="n_name" class="form-control" id="ipNname" value="${member.n_name}"></p>
+								</li>
+								<li class="list-group-item border-success">A second item</li>
+								<li class="list-group-item border-success">A third item</li>
+							</ul>
+						</div> -->
+					</div>
+
 					<div class="mb-3">
 						<label for="ipGender" class="form-label">성별</label>
 						<input type="text" name="gender" class="form-control" id="ipGender" value="${member.gender}">
@@ -107,33 +134,6 @@
 					
 					<div>
 						<button type="submit" class="btn btn-outline-success"><b>프로필수정✏</b></button>
-					</div>
-					
-					<!-- 프로필-이미지카드 -->
-					<div class="card" style="width: 18rem;">
-						<img src="..." class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						</div>
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">An item</li>
-							<li class="list-group-item">A second item</li>
-							<li class="list-group-item">A third item</li>
-						</ul>
-						<div class="card-body">
-							<a href="#" class="card-link">Card link</a>
-							<a href="#" class="card-link">Another link</a>
-						</div>
-					</div>
-					
-					<!-- 초록색-카드 -->
-					<div class="card border-success mb-3" style="max-width: 18rem;">
-						<div class="card-header">Header</div>
-						<div class="card-body text-success">
-							<h5 class="card-title">Success card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						</div>
 					</div>
 				</form>
 			</div>
