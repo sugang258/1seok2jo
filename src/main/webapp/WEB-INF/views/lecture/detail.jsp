@@ -102,7 +102,7 @@
                         </div>
                             <div class="card-body">-->
                                 <div class="input-group"> 
-                                    <button class="btn btn-primary" id="board" type="button" data-lnum-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">📝수강평 보러가기</button>
+                                    <button class="btn btn-primary" id="board" type="button" data-lnum-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">📝수강평<br> 보러가기</button>
                                  </div>
                            <!-- </div>
                     </div> -->
@@ -113,7 +113,7 @@
                         </div>
                             <div class="card-body"> -->
                                 <div class="input-group">
-                                    <button class="btn btn-primary" id="signs" type="button" data-lnum-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">✏수강신청 하기</button>
+                                    <button class="btn btn-primary" id="signs" type="button" data-lnum-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">✏수강신청<br> 하기</button>
                                 </div>
                             <!-- </div>
                     </div> -->
@@ -124,7 +124,7 @@
                         </div>
                             <div class="card-body"> -->
                                 <div class="input-group">
-                                    <button class="btn btn-primary" id="listen" type="button" data-listen-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">🎧강의 들으러 가기</button>
+                                    <button class="btn btn-primary" id="listen" type="button" data-listen-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">🎧강의 <br>들으러 가기</button>
                                 </div>
                             <!-- </div>
                     </div> -->
