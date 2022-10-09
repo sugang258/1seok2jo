@@ -135,7 +135,9 @@
 					</div>
 
 					<!-- 구분선 -->
-					<hr class="my-5">
+					<div class="text-success">
+						<hr class="my-5">
+					</div>
 
 					<!-- 회원가입 버튼 -->
 					<div class="d-grid gap-2 mt-3">

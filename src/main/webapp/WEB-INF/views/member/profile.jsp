@@ -38,7 +38,7 @@
 					<!-- 프로필사진 카드 -->
 					<div class="card border-success mb-3">
 						<div class="row my-4">
-							<img src="http://20.249.88.100/resources/member/${member.memberFileDTO.f_name}" style=" max-width: 300px;  height: 300px; border-radius: 75px;">
+							<img src="http://20.249.88.100/resources/member/${member.memberFileDTO.f_name}" class="border border-success p-2 mb-2 border-opacity-50 mx-auto d-block" style=" max-width: 300px;  height: 300px;  border-radius: 75px;">
 						</div>
 						<div class="row">
 							<div class="col-6 text-end" id="addFile">
@@ -59,7 +59,7 @@
 							<!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
 							<ul class="list-group list-group-flush">
 								<li class="list-group-item border-success text-center mb-1">
-									<label for="ipId" class="form-label card-title"><h5><b>${member.id}</b></h5></label>
+									<label for="ipId" class="form-label card-title"><h4><b>${member.id}</b></h4></label>
 									<p class="card-text"><input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}"></p>
 								</li>
 								<li class="list-group-item border-success my-2 mt-3">
