@@ -229,7 +229,7 @@ function addCheck() {
     let levelCheck = false;
     let dateCheck = false;
     let priceCheck = false;
-    let fileCheck = false;
+    //let fileCheck = false;
     let oturlCheck = false;
     let ottitleCheck = false;
 
@@ -242,6 +242,7 @@ function addCheck() {
     l_name.addEventListener("blur",function(){
         if(l_name.value.length < 1) {
             div3.innerHTML="강의 제목을 작성해주세요";
+            titleCheck = false;
         }else{
             div3.innerHTML="";
             titleCheck = true;
@@ -251,6 +252,7 @@ function addCheck() {
     l_contents.addEventListener("blur",function(){
         if(l_contents.value.length<1){
             div4.innerHTML="강의 내용을 작성해주세요";
+            contentCheck = false;
         }else{
             div4.innerHTML="";
             contentCheck = true;
@@ -263,6 +265,7 @@ function addCheck() {
             categoryCheck = true;
         }else{
             div5.innerHTML="카테고리를 선택해주세요";
+            categoryCheck = false;
         }
     })
 
@@ -272,6 +275,7 @@ function addCheck() {
             levelCheck = true;
         }else{
             div6.innerHTML="난이도를 선택해주세요";
+            levelCheck = false;
         }
     })
 
@@ -286,6 +290,7 @@ function addCheck() {
             console.log("false");
             div1.innerHTML = "❗숫자만 작성해주세요";
             l_date.value="";
+            dateCheck = false;
         } 
     });
 
@@ -300,22 +305,23 @@ function addCheck() {
             console.log("false");
             div2.innerHTML = "❗숫자만 작성해주세요";
             l_price.value="";
+            priceCheck = false;
         }
     });
-
-    files.addEventListener("change",function(){
-
-        if(files.value.length < 1) {
-            div7.innerHTML="썸네일 이미지는 필수입니다"
-        }else{
-            div7.innerHTML="";
-            fileCheck = true;
-        }
-    })
+       
+    if(files.value) {
+        div7.innerHTML="";
+        fileCheck = true;
+    }else{
+        div7.innerHTML="썸네일 이미지는 필수입니다"
+        
+    }
+   
 
     v_url.addEventListener("blur",function(){
         if(v_url.value.length <1){
             div8.innerHTML="OT url은 필수입니다"
+            oturlCheck = false;
         }else{
             div8.innerHTML="";
             oturlCheck = true;
@@ -325,6 +331,7 @@ function addCheck() {
     v_context.addEventListener("blur",function(){
         if(v_context.value.length < 1){
             div9.innerHTML="OT 제목은 필수입니다"
+            ottitleCheck = false;
         }else{
             div9.innerHTML="";
             ottitleCheck = true;
@@ -332,29 +339,17 @@ function addCheck() {
     })
 
     sub.addEventListener("click",function(){
-        for(let i=0;i<add_ele.length;i++) {
-            if(add_ele[i].value == "") {
+        
+            if(!(titleCheck && contentCheck && categoryCheck && levelCheck && dateCheck && priceCheck && oturlCheck && ottitleCheck)) {
                 alert("모든 칸을 작성해주세요");
-                add_ele[i].focus();
-                break;
             }else{
                 var str = document.getElementById("l_contents").value;
                 str = str.replace(/(?:\r\n|\r\n)/g,'<br />');
                 document.getElementById("l_contents").innerHTML = str;
                 add.submit();
             }
-        }
+        
     })
-
-
-
-
-    
-
-
-
-
-
 
 }
 

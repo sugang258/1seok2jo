@@ -51,7 +51,7 @@
     
                 <div class="col-md-3">
                   <label for="c_num" class="form-label">Category</label>
-                  <select class="form-select add_ele" id="c_num" name="c_num" required="" >
+                  <select class="form-select" id="c_num" name="c_num" required="" >
                     <option value="">Choose...</option>
                     <option value="1">Java</option>
                     <option value="2">Python</option>
@@ -67,7 +67,7 @@
     
                 <div class="col-md-3">
                   <label for="level_num" class="form-label">Level</label>
-                  <select class="form-select add_ele" id="level_num" name="level_num" required="">
+                  <select class="form-select" id="level_num" name="level_num" required="">
                     <option value="">Choose...</option>
                     <option value="3">상</option>
                     <option value="2">중</option>

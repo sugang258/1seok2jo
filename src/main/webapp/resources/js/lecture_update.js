@@ -17,10 +17,6 @@ const level_num = document.querySelector("#level_num");
 const level=document.querySelectorAll(".level")
 const files = document.querySelector("#files");
 const file_sub = document.querySelector("#file_sub");
-const l_date = document.querySelector("#l_date");
-const l_price = document.querySelector("#l_price");
-const div1 = document.querySelector("#div1");
-const div2 = document.querySelector("#div2");
 
 let count = 0;
 let idx=0;
@@ -602,19 +598,6 @@ video_change.addEventListener("click",function(event){
 
 // });
 
-update_sub.addEventListener("click",function(){
-    let check = window.confirm("수정하시겠습니까?") 
-    let l_num = update_sub.getAttributeNode("data-l-num").value;
-
-    if(check) {
-        update.submit();
-        alert("수정 완료되었습니다");
-        //window.location.href="../lecture/detail?l_num="+l_num;
-    }else{
-        alert("수정 취소");
-    }
-})
-
 const setAddVideo = document.querySelector("#setAddVideo");
 
 
@@ -690,40 +673,127 @@ file_sub.addEventListener("click",function(){
     }
 })
 
-var pattern_num = /[1-9999999]/; //숫자
-var pattern_eng = /[a-zA-Z]/;	// 문자 
-var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
-var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
+function updateCheck() {
 
-l_date.addEventListener("blur",function(){
-    console.log("blur");
-    console.log(l_date.value);
-    if((pattern_num.test(l_date.value)) && !(pattern_eng.test(l_date.value)) && !(pattern_spc.test(l_date.value)) && !(pattern_kor.test(l_date.value))) {
-        console.log("true");
-        div1.innerHTML="";
-        return true;
-    } else{
-        console.log("false");
-        div1.innerHTML = "❗숫자만 작성해주세요";
-        l_date.value="";
-        return false;
-    }
-    
-});
+    const l_date = document.querySelector("#l_date");
+    const l_price = document.querySelector("#l_price");
+    const div1 = document.querySelector("#div1");
+    const div2 = document.querySelector("#div2");
+    const l_name = document.querySelector("#l_name");
+    const div3 = document.querySelector("#div3");
+    const l_contents = document.querySelector("#l_contents");
+    const div4 = document.querySelector("#div4");
+    const c_num = document.querySelector("#c_num");
+    const div5 = document.querySelector("#div5");
+    const level_num = document.querySelector("#level_num");
+    const div6 = document.querySelector("#div6");
+    const update_sub = document.querySelector("#update_sub");
+    const update_ele = document.getElementsByClassName("update_ele");
+    const update = document.querySelector("#update");
 
-l_price.addEventListener("blur",function(){
-    console.log("blur");
-    console.log(l_price.value);
-    if((pattern_num.test(l_price.value)) && !(pattern_eng.test(l_price.value)) && !(pattern_spc.test(l_price.value)) && !(pattern_kor.test(l_price.value))) {
-        console.log("true");
-        div2.innerHTML="";
-        return true;
-    } else{
-        console.log("false");
-        div2.innerHTML = "❗숫자만 작성해주세요";
-        l_price.value="";
-        return false;
-    }
+    let titleCheck = true;
+    let contentCheck = true;
+    let categoryCheck = true;
+    let levelCheck = true;
+    let dateCheck = true;
+    let priceCheck = true;
     
-});
+    var pattern_num = /[1-9999999]/; //숫자
+    var pattern_eng = /[a-zA-Z]/;	// 문자 
+    var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
+    var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
+
+    l_name.addEventListener("blur",function(){
+        if(l_name.value.length < 1) {
+            div3.innerHTML="강의 제목을 작성해주세요";
+            titleCheck = false;
+        }else{
+            div3.innerHTML="";
+            titleCheck = true;
+        }
+    })
+
+    l_contents.addEventListener("blur",function(){
+        if(l_contents.value.length<1){
+            div4.innerHTML="강의 내용을 작성해주세요";
+            contentCheck = false;
+        }else{
+            div4.innerHTML="";
+            contentCheck = true;
+        }
+    })
+
+    c_num.addEventListener("blur",function(){
+        if(c_num.value){
+            div5.innerHTML="";
+            categoryCheck = true;
+        }else{
+            div5.innerHTML="카테고리를 선택해주세요";
+            categoryCheck = false;
+        }
+    })
+
+    level_num.addEventListener("blur",function(){
+        if(level_num.value){
+            div6.innerHTML="";
+            levelCheck = true;
+        }else{
+            div6.innerHTML="난이도를 선택해주세요";
+            levelCheck = false;
+        }
+    })
+    
+    l_date.addEventListener("blur",function(){
+        console.log("blur");
+        console.log(l_date.value);
+        if((pattern_num.test(l_date.value)) && !(pattern_eng.test(l_date.value)) && !(pattern_spc.test(l_date.value)) && !(pattern_kor.test(l_date.value))) {
+            console.log("true");
+            div1.innerHTML="";
+            dateCheck = true;
+        } else{
+            console.log("false");
+            div1.innerHTML = "❗숫자만 작성해주세요";
+            l_date.value="";
+            dateCheck = false;
+        }
+        
+    });
+    
+    l_price.addEventListener("blur",function(){
+        console.log("blur");
+        console.log(l_price.value);
+        if((pattern_num.test(l_price.value)) && !(pattern_eng.test(l_price.value)) && !(pattern_spc.test(l_price.value)) && !(pattern_kor.test(l_price.value))) {
+            console.log("true");
+            div2.innerHTML="";
+            priceCheck = true;
+        } else{
+            console.log("false");
+            div2.innerHTML = "❗숫자만 작성해주세요";
+            l_price.value="";
+            priceCheck = false;
+        }
+        
+    });
+
+    update_sub.addEventListener("click",function(){
+        
+        console.log(update_ele.length);
+        console.log(titleCheck);
+        console.log(contentCheck);
+        console.log(categoryCheck);
+        console.log(levelCheck);
+        console.log(dateCheck);
+        console.log(priceCheck);
+                if((titleCheck && contentCheck && categoryCheck && levelCheck && dateCheck && priceCheck) == false) {
+                    alert("모든 칸을 작성해주세요");
+                }else{
+                    var str = document.getElementById("l_contents").value;
+                    str = str.replace(/(?:\r\n|\r\n)/g,'<br />');
+                    document.getElementById("l_contents").innerHTML = str;
+                    update.submit();
+                }
+            
+    })
+}
+
 

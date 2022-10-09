@@ -53,19 +53,15 @@ rel="stylesheet"
                     <div class="col-12">
                     <label for="l_name" class="form-label" id="name">강의 제목</label>
                         <div class="input-group has-validation">
-                            <input type="text" class="form-control" id="l_name" name="l_name" placeholder="강의 제목" value="${update.l_name}">
-                            <div class="invalid-feedback">
-                            Your lecture title is required.
-                            </div>
+                            <input type="text" class="form-control update_ele" id="l_name" name="l_name" placeholder="강의 제목" value="${update.l_name}">
+                            <div id="div3"></div>
                         </div>
                     </div>
     
                     <div class="col-12">
                         <label for="l_contents" class="form-label" id="contents">강의 설명</label>
-                        <textarea  class="form-control" id="l_contents" name="l_contents" placeholder="강의 설명">${update.l_contents}</textarea>
-                        <div class="invalid-feedback">
-                            Your lecture content is required.
-                        </div>
+                        <textarea  class="form-control update_ele" id="l_contents" name="l_contents" placeholder="강의 설명">${update.l_contents}</textarea>
+                        <div id="div4"></div>
                     </div>
     
                     <div class="col-md-3">
@@ -81,9 +77,7 @@ rel="stylesheet"
                             <option class="category" value="7">Spring</option>
                             <option class="category" value="8">SQL</option>
                         </select>
-                        <div class="invalid-feedback">
-                            Please select a valid category.
-                        </div>
+                        <div id="div5"></div>
                     </div>
     
                     <div class="col-md-3">
@@ -94,20 +88,18 @@ rel="stylesheet"
                             <option class="level" value="2">중</option>
                             <option class="level" value="1">하</option>
                         </select>
-                        <div class="invalid-feedback">
-                            Please provide a valid level.
-                        </div>
+                        <div id="div6"></div>>
                     </div>
     
                     <div class="col-md-3">
                         <label for="l_date" class="form-label">수강 기간 (개월)</label>
-                        <input type="text" class="form-control" id="l_date" name="l_date" placeholder="" required="" value="${update.l_date}">
+                        <input type="text" class="form-control update_ele" id="l_date" name="l_date" placeholder="" required="" value="${update.l_date}">
                         <div id="div1"></div>
                     </div>
 
                     <div class="col-md-3">
                         <label for="l_price" class="form-label">강의 가격 (원)</label>
-                        <input type="text" class="form-control" id="l_price" name="l_price" placeholder="" required="" value="${update.l_price}">
+                        <input type="text" class="form-control update_ele" id="l_price" name="l_price" placeholder="" required="" value="${update.l_price}">
                         <div id="div2"></div>
                     </div>
                     
@@ -160,5 +152,6 @@ rel="stylesheet"
     });
 </script>
 <script src="/resources/js/lecture_update.js"></script>
+<script>updateCheck()</script>
 </body>
 </html>
