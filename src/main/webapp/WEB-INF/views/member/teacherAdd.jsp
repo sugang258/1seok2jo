@@ -23,7 +23,7 @@
 	<section class="container ilseok">
 		<div class="row justify-content-md-center">
 			<div class="col-6 col-md-4 col-lg-5 mt-5">
-				<div class="mb-3 text-center">
+				<div class="mb-4 text-center">
 					<h1><b>강사신청✒</b></h1>
 				</div>
 				<%-- 강사 신청 form --%>

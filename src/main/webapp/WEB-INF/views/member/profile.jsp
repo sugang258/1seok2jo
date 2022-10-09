@@ -28,7 +28,7 @@
 		<div class="row justify-content-md-center">
 			<div class="col-md-8 col-lg-7 mt-5">
 
-				<div class="mb-3 text-center">
+				<div class="mb-4 text-center">
 					<h1><b>프로필✒</b></h1>
 				</div>
 
@@ -64,7 +64,7 @@
 								</li>
 								<li class="list-group-item border-success">
 									<label for="ipNname" class="form-label card-title"><h6><b>닉네임</b></h6></label>
-									<p class="card-text"><input type="text" name="n_name" class="form-control" id="ipNname" value="${member.n_name}"></p>
+									<p class="card-text"><input type="text" name="n_name" class="form-control input-border-success" id="ipNname" value="${member.n_name}"></p>
 								</li>
 							</ul>
 						</div>
@@ -93,17 +93,18 @@
 					<!-- 프로필정보 카드 -->
 					<div class="card border-success mb-3">
 						<div class="card-body">
-							<!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
 							<ul class="list-group list-group-flush">
-								<li class="list-group-item border-success text-center">
-									<label for="ipId" class="form-label card-title"><h5><b>${member.id}</b></h5></label>
-									<p class="card-text"><input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}"></p>
-									<label for="ipGender" class="form-label">성별</label>
-									<input type="text" name="gender" class="form-control" id="ipGender" value="${member.gender}">
+								<li class="list-group-item border-success">
+									<label for="ipGender" class="form-label card-title"><h6><b>성별</b></h6></label>
+									<p class="card-text"><input type="text" name="gender" class="form-control" id="ipGender" value="${member.gender}"></p>
 								</li>
 								<li class="list-group-item border-success">
-									<label for="ipNname" class="form-label card-title"><h6><b>닉네임</b></h6></label>
-									<p class="card-text"><input type="text" name="n_name" class="form-control" id="ipNname" value="${member.n_name}"></p>
+									<label for="ipEmail" class="form-label card-title"><h6><b>이메일</b></h6></label>
+									<p class="card-text"><input type="text" name="email" class="form-control" id="ipEmail" value="${member.email}"></p>
+								</li>
+								<li class="list-group-item border-success">
+									<label for="ipPhone" class="form-label card-title"><h6><b>전화번호</b></h6></label>
+									<p class="card-text"><input type="tel" name="phone" class="form-control" id="ipPhone" value="${member.phone}"></p>
 								</li>
 							</ul>
 						</div>
@@ -119,26 +120,11 @@
 						</div> -->
 					</div>
 
-					<div class="mb-3">
-						<label for="ipGender" class="form-label">성별</label>
-						<input type="text" name="gender" class="form-control" id="ipGender" value="${member.gender}">
-					</div>
-					
-					<div class="mb-3">
-						<label for="ipEmail" class="form-label">이메일</label>
-						<input type="text" name="email" class="form-control" id="ipEmail" value="${member.email}">
-					</div>
-					
-					<div class="mb-3">
-						<label for="ipPhone" class="form-label">연락처</label>
-						<input type="tel" name="phone" class="form-control" id="ipPhone" value="${member.phone}">
-					</div>
-					
-					<div class="mb-3">
-						<input type="hidden" name="point" class="form-control" id="ipPoint">
-					</div>
-					
-					<div>
+					<!-- 구분선 -->
+					<hr class="my-5 border-success">
+
+					<!-- 회원가입 버튼 -->
+					<div class="d-grid gap-2 mt-3">
 						<button type="submit" class="btn btn-outline-success"><b>프로필수정✏</b></button>
 					</div>
 				</form>
