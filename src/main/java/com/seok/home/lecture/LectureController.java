@@ -149,6 +149,8 @@ public class LectureController {
 		ModelAndView mv = new ModelAndView();
 		
 		lectureDTO = (LectureDTO) session.getAttribute("detail");
+	    //lectureDTO = lectureService.getDetail(lectureDTO);
+
 		List<LectureVideoDTO> ar = lectureDTO.getLectureVideoDTO();
 		System.out.println("video ar: "+ar.size());
 		System.out.println("l_num : "+lectureDTO.getL_num());
