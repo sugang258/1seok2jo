@@ -40,12 +40,12 @@
 
 						<div class="col-sm-10 mb-3">
 							<label class="mb-2 text-muted" for="id">ID</label>
-							<input type="text" class="form-control" name = "id" id= "id" placeholder="아이디">
+							<input type="text" class="form-control border-success border-opacity-25" name = "id" id= "id" placeholder="아이디">
 						</div>
 
 						<div class="col-sm-10 mb-3">
-							<label class="mb-2 text-muted" for="password">Password</label>
-							<input type="password" class="form-control"  id= "pw" name = "pw" placeholder="비밀번호">
+							<label class="mb-2 text-muted" for="pw">Password</label>
+							<input type="password" class="form-control border-success border-opacity-25"  id= "pw" name = "pw" placeholder="비밀번호">
 						</div>
 						
 					</div>

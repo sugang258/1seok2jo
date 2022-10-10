@@ -49,7 +49,7 @@
 								</li>
 								<li class="list-group-item border-success my-2 mt-3">
 									<label for="ipIntroduce" class="form-label card-title"><h6><b>소개글</b></h6></label>
-									<p class="card-text"><input type="text" name="introduce" class="form-control" id="ipIntroduce" value="${teacher.introduce}"></p>
+									<p class="card-text"><input type="text" name="introduce" class="form-control border-opacity-25" id="ipIntroduce" value="${teacher.introduce}"></p>
 								</li>
 							</ul>
 						</div>
@@ -62,12 +62,12 @@
 								<li class="list-group-item border-success">
 									<div class="mb-3">
 										<label for="ipBank_num" class="form-label card-title"><h6><b>계좌번호</b></h6></label>
-										<p class="card-text"><input type="text" name="bank_num" class="form-control" id="ipBank_num" value="${teacher.bank_num}"></p>
+										<p class="card-text"><input type="text" name="bank_num" class="form-control border-opacity-25" id="ipBank_num" value="${teacher.bank_num}"></p>
 									</div>
 								</li>
 								<li class="list-group-item border-success my-2 mt-3">
 									<label for="ipBank_name" class="form-label card-title"><h6><b>은행이름</b></h6></label>
-									<p class="card-text"><input type="text" name="bank_name" class="form-control" id="ipBank_name" value="${teacher.bank_name}"></p>
+									<p class="card-text"><input type="text" name="bank_name" class="form-control border-opacity-25" id="ipBank_name" value="${teacher.bank_name}"></p>
 								</li>
 							</ul>
 						</div>

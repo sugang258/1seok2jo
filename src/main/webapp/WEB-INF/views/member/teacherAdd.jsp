@@ -33,16 +33,16 @@
 							<label for="ipId" class="form-label mt-4"><b>아이디</b></label>
 						</div>
 						<h3><b>${member.id}</b></h3>
-						<input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}">
+						<input type="hidden" name="id" class="form-control border-success border-opacity-25" id="ipId" value="${member.id}">
 					</div>
 					
 					<div class="row g-2">
 						<label for="ipBank_name" class="form-label mt-4"><b>은행이름</b></label>
 						<div class="col-6">
-							<input type="text" class="form-control bank_name" name="bank_name" placeholder="은행명" maxlength="4">
+							<input type="text" class="form-control border-success border-opacity-25 ipBank_name" name="bank_name" placeholder="은행명" maxlength="4">
 						</div>
 						<div class="col-6">
-						<select class="form-select bank_name" disabled name="">
+						<select class="form-select border-success border-opacity-25 ipBank_name" disabled name="">
 							<option value="">직접입력</option>
 							<option value="신한은행">신한은행</option>
 							<option value="농협은행">농협은행</option>
@@ -55,12 +55,12 @@
 
 					<div class="my-4">
 						<label for="ipBank_num" class="form-label"><b>계좌번호</b></label>
-						<input type="number" name="bank_num" class="form-control" id="ipBank_num" placeholder="계좌번호를 입력해주세요">
+						<input type="number" name="bank_num" class="form-control border-success border-opacity-25" id="ipBank_num" placeholder="계좌번호를 입력해주세요">
 					</div>
 					
 					<div class="mb-4">
 						<label for="ipIntroduce" class="form-label"><b>소개글</b></label>
-						<input type="text" name="introduce" class="form-control" id="ipIntroduce" placeholder="나를 간단히 소개하는 글을 입력해주세요">
+						<input type="text" name="introduce" class="form-control border-success border-opacity-25" id="ipIntroduce" placeholder="나를 간단히 소개하는 글을 입력해주세요">
 					</div>
 					
 					<!-- 구분선 -->

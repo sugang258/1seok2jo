@@ -70,7 +70,7 @@
 								</li>
 								<li class="list-group-item border-success my-2 mt-3">
 									<label for="ipNname" class="form-label card-title"><h6><b>닉네임</b></h6></label>
-									<p class="card-text"><input type="text" name="n_name" class="form-control" id="ipNname" value="${member.n_name}"></p>
+									<p class="card-text"><input type="text" name="n_name" class="form-control border-success border-opacity-25" id="ipNname" value="${member.n_name}"></p>
 								</li>
 							</ul>
 						</div>
@@ -93,18 +93,18 @@
 								<li class="list-group-item border-success">
 									<div class="mb-3">
 										<label for="ipGender" class="form-label card-title"><h6><b>성별</b></h6></label>
-										<p class="card-text"><input type="text" name="gender" class="form-control" id="ipGender" value="${member.gender}"></p>
+										<p class="card-text"><input type="text" name="gender" class="form-control border-success border-opacity-25" id="ipGender" value="${member.gender}"></p>
 									</div>
 								</li>
 								<li class="list-group-item border-success">
 									<div class="my-3">
 										<label for="ipEmail" class="form-label card-title"><h6><b>이메일</b></h6></label>
-										<p class="card-text"><input type="text" name="email" class="form-control" id="ipEmail" value="${member.email}"></p>
+										<p class="card-text"><input type="text" name="email" class="form-control border-success border-opacity-25" id="ipEmail" value="${member.email}"></p>
 									</div>
 								</li>
 								<li class="list-group-item border-success my-2 mt-3">
 									<label for="ipPhone" class="form-label card-title"><h6><b>전화번호</b></h6></label>
-									<p class="card-text"><input type="tel" name="phone" class="form-control" id="ipPhone" value="${member.phone}"></p>
+									<p class="card-text"><input type="tel" name="phone" class="form-control border-success border-opacity-25" id="ipPhone" value="${member.phone}"></p>
 								</li>
 							</ul>
 						</div>

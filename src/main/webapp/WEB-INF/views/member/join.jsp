@@ -31,45 +31,45 @@
 				<form action="./join" method="post">
 					<div class="mb-4">
 						<label for="ipId" class="form-label"><b>아이디</b></label>
-						<input type="text" name="id" class="form-control" id="ipId" placeholder="아이디를 입력해주세요">
+						<input type="text" name="id" class="form-control border-success border-opacity-25" id="ipId" placeholder="아이디를 입력해주세요">
 						<div id="ipIdResult"></div>
 					</div>
 					
 					<div class="mb-4">
 						<label for="ipPw" class="form-label"><b>비밀번호</b></label>
-						<input type="password" name="pw" class="form-control" id="ipPw" placeholder="비밀번호를 입력해주세요">
+						<input type="password" name="pw" class="form-control border-success border-opacity-25" id="ipPw" placeholder="비밀번호를 입력해주세요">
 						<div id="ipPwResult"></div>
 					</div>
 					
 					<div class="mb-4">
 						<label for="ipPwCheck" class="form-label"><b>비밀번호 재확인</b></label>
-						<input type="password" class="form-control" id="ipPwCheck" placeholder="비밀번호를 다시 입력해주세요">
+						<input type="password" class="form-control border-success border-opacity-25" id="ipPwCheck" placeholder="비밀번호를 다시 입력해주세요">
 						<div id="ipPwCheckResult"></div>
 					</div>
 					
 					<div class="mb-4">
 						<label for="ipName" class="form-label"><b>이름</b></label>
-						<input type="text" name="name" class="form-control" id="ipName" placeholder="이름을 입력해주세요">
+						<input type="text" name="name" class="form-control border-success border-opacity-25" id="ipName" placeholder="이름을 입력해주세요">
 						<div id="ipNameResult"></div>
 					</div>
 					
 					<div class="mb-4">
 						<label for="ipNname" class="form-label"><b>닉네임</b></label>
-						<input type="text" name="n_name" class="form-control" id="ipNname" placeholder="닉네임을 입력해주세요">
+						<input type="text" name="n_name" class="form-control border-success border-opacity-25" id="ipNname" placeholder="닉네임을 입력해주세요">
 						<div id="ipNnameResult"></div>
 					</div>
 					
 					<div class="row g-2">
 						<div>
-							<label for="ipBdate" class="form-label"><b>생년월일</b></label>
+							<label for="ipB_date" class="form-label"><b>생년월일</b></label>
 						</div>
 
 						<div class="col-4">
-							<input type="number" class="form-control b_date" name="yy" placeholder="년(4자)" maxlength="4">
+							<input type="number" class="form-control border-success border-opacity-25 ipY_date" name="yy" placeholder="년(4자)" maxlength="4">
 						</div>
 	
 						<div class="col-4">
-							<select class="form-select b_date" name="mm">
+							<select class="form-select border-success border-opacity-25 ipM_date" name="mm">
 								<option value="">월</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
@@ -87,14 +87,14 @@
 						</div>
 	
 						<div class="col-4">
-							<input type="number" class="form-control b_date" name="dd" placeholder="일" maxlength="2">
+							<input type="number" class="form-control border-success border-opacity-25 ipD_date" name="dd" placeholder="일" maxlength="2">
 						</div>
 						<div id="ipBdateResult"></div>
 					</div>
 					
 					<div class="mb-4">
 						<label for="ipGender" class="form-label mt-4"><b>성별</b></label>
-						<select class="form-select" name="gender">
+						<select class="form-select border-success border-opacity-25 ipGender" name="gender">
 							<option value="">성별</option>
 							<option value="남자">남자</option>
 							<option value="여자">여자</option>
@@ -108,13 +108,13 @@
 							<label for="ipEmail" class="form-label"><b>이메일</b></label>
 						</div>
 						<div class="col-5">
-							<input type="text" name="e" class="form-control" id="ipEmail" placeholder="이메일">
+							<input type="text" name="e" class="form-control border-success border-opacity-25" id="ipEmail" placeholder="이메일">
 						</div>
 						<div class="col-1">
 							<label for="ipEmail" class="form-label"><b>@</b></label>
 						</div>
 						<div class="col-6">
-							<select class="form-select" name="mail">
+							<select class="form-select border-success border-opacity-25 ipEmail" name="mail">
 								<option value="">직접입력</option>
 								<option value="@naver.com">naver.com</option>
 								<option value="@daum.net">daum.net</option>
@@ -126,7 +126,7 @@
 					
 					<div class="my-4">
 						<label for="ipPhone" class="form-label"><b>연락처</b></label>
-						<input type="tel" name="phone" class="form-control" id="ipPhone" placeholder="연락처를 입력해주세요">
+						<input type="tel" name="phone" class="form-control border-success border-opacity-25" id="ipPhone" placeholder="연락처를 입력해주세요">
 						<div id="ipPhoneResult"></div>
 					</div>
 					
