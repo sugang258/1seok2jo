@@ -51,11 +51,11 @@ function initboards(){
                 let num = event.target.parentNode.getAttribute("data-num")
                 let bd = event.target.parentNode.childNodes[3].innerText
                 if(bd=='공지사항'){
-                    location.href="/board/nb_detail?n_num="+num;
+                    window.open("/board/nb_detail?n_num="+num);
                 }else if(bd=='학습게시판'){
-                    location.href="/board/sb_detail?sb_num="+num;
+                    window.open("/board/sb_detail?sb_num="+num);
                 }else if(bd=='자유게시판'){
-                    location.href="/board/fb_detail?fb_num="+num;
+                    window.open("/board/fb_detail?fb_num="+num);
                 }
             }
         }
@@ -168,12 +168,24 @@ function initmembers(){
     //회원삭제 버튼 클릭
     let memDelBtn = document.getElementById("memDelBtn");
     memDelBtn.addEventListener("click", function(){
+        let member_id = getCheckboxValue("member_id")
         alert("!!경고!! 회원삭제 후 되돌릴 수 없습니다")
-        let chk = window.confirm("정말 회원 삭제를 하시겠습니까?")
+        let chk = window.confirm(member_id+" 회원 삭제를 하시겠습니까?")
         if(chk){
-            console.log("yes")
+            let id_list = member_id.split(",");
+            for(let i=0;i<id_list.length;i++){
+                const xhttp = new XMLHttpRequest();
+                xhttp.open("POST","member/deleteMember");
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+                xhttp.send("id="+id_list[i])
+                xhttp.addEventListener("readystatechange", function(){
+                    if(this.readyState==4 && this.status==200){
+                        console.log(xhttp.responseText);
+                    }
+                })
+            }
         }
-    })
+    });
 
     //search버튼 클릭하면 리스트 요청
     let btnSearch = document.getElementById("btnSearch");
@@ -288,7 +300,7 @@ function initpay(){
             }else{
             }
         }else{
-            location.href="pay/status?p_uid="+num;
+            window.open("/pay/status?p_uid="+num);
         }
     })
 }
