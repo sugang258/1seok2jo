@@ -103,8 +103,7 @@ public class MemberController {
 	public String setJoin(MemberDTO memberDTO, HttpSession session, String yy, String mm, String dd, String e, String mail)throws Exception{
 		System.out.println("회원가입 접속(POST)");
 		
-		System.out.println("e : "+e);
-		System.out.println("mail : "+mail);
+		//int result = memberService.getIdCheck(memberDTO);
 		
 		//DB에 새로운 회원데이터추가
 		int result = memberService.setJoin(memberDTO, yy, mm, dd, e, mail);

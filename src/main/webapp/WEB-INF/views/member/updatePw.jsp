@@ -29,20 +29,24 @@
                 </div>
                 <form action="./deleteMember" method="post">
                     <div class="mb-3">
-                        <label for="ipId" class="form-label">아이디</label>
-                        <input type="text" name="id" class="form-control border-success border-opacity-25" id="ipId" value="${member.id}">
-                        <div id="ipIdResult"></div>
+                        <input type="hidden" name="id" class="form-control border-success border-opacity-25" id="ipId" value="${member.id}">
                     </div>
                     
                     <div class="mb-3">
-                        <label for="ipPw" class="form-label">비밀번호</label>
-                        <input type="password" name="pw" class="form-control border-success border-opacity-25" id="ipPw" placeholder="비밀번호를 입력해주세요">
+                        <label for="ipPw" class="form-label">현재 비밀번호</label>
+                        <input type="password" name="pw" class="form-control border-success border-opacity-25" id="ipPw" placeholder="현재 비밀번호를 입력해주세요">
+                        <div id="ipPwResult"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ipPw" class="form-label">새 비밀번호</label>
+                        <input type="password" name="pw" class="form-control border-success border-opacity-25" id="ipPw" placeholder="새 비밀번호를 입력해주세요">
                         <div id="ipPwResult"></div>
                     </div>
                     
                     <div class="mb-3">
-                        <label for="ipPwCheck" class="form-label">비밀번호 재확인</label>
-                        <input type="password" class="form-control border-success border-opacity-25" id="ipPwCheck" placeholder="비밀번호를 다시 입력해주세요">
+                        <label for="ipPwCheck" class="form-label">새 비밀번호 확인</label>
+                        <input type="password" class="form-control border-success border-opacity-25" id="ipPwCheck" placeholder="새 비밀번호를 다시 입력해주세요">
                         <div id="ipPwCheckResult"></div>
                     </div>
 

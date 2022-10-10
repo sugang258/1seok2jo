@@ -48,7 +48,7 @@
 								<label for="file" class="file_add btn btn-outline-success btn-sm"><b>사진추가📷</b>
 							</div>
 							<div class="col-6 text-start">
-								<a href="./deleteFile" class="file_add btn btn-outline-success btn-sm"><b>사진삭제❌</b></a>
+								<a href="./deleteFile" class="btn btn-outline-success btn-sm"><b>사진삭제❌</b></a>
 							</div>
 						</div>
 						<div class="row">

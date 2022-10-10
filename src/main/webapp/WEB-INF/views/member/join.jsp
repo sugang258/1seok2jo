@@ -25,17 +25,25 @@
 		<div class="row justify-content-md-center">
 			<div class="col-6 col-md-4 col-lg-5 mt-5">
 				<div class="mb-4 text-center">
-					<h1><b>회원가입✒</b></h1>
+					<h1><b>✒회원가입</b></h1>
 				</div>
 				<%-- 회원 회원가입 form --%>
 				<form action="./join" method="post">
-					<div class="mb-4">
+					<div class="row">
 						<label for="ipId" class="form-label"><b>아이디</b></label>
-						<input type="text" name="id" class="form-control border-success border-opacity-25" id="ipId" placeholder="아이디를 입력해주세요">
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<input type="text" name="id" class="form-control border-success border-opacity-25" id="ipId" placeholder="아이디를 입력해주세요">
+						</div>
+						<div class="col-6 text-start mt-1">
+							<a href="./idCheck" class="btn btn-outline-success btn-sm"><b>✅아이디중복 확인</b></a>
+						</div>
+						<span class="spIdCheck"></span>
 						<div id="ipIdResult"></div>
 					</div>
 					
-					<div class="mb-4">
+					<div class="my-4">
 						<label for="ipPw" class="form-label"><b>비밀번호</b></label>
 						<input type="password" name="pw" class="form-control border-success border-opacity-25" id="ipPw" placeholder="비밀번호를 입력해주세요">
 						<div id="ipPwResult"></div>
@@ -141,7 +149,7 @@
 
 					<!-- 회원가입 버튼 -->
 					<div class="d-grid gap-2 mt-3">
-						<button type="submit" class="btn btn-outline-success" id="btn"><b>회원가입</b></button>
+						<button type="submit" class="btn btn-outline-success" id="btn"><b>✅회원가입</b></button>
 					</div>
 				</form>
 			</div>
