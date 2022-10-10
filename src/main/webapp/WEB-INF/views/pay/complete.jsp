@@ -47,7 +47,7 @@
                         <c:forEach items="${result.lectures}" var="lecture">
                         <div class="row g-1 p-3 align-items-center">
                             <div class="col-3">
-                              <img src="../../../resources/images/22.png" class="img-fluid rounded-start" style="object-fit: contain">
+                              <img src="http://20.249.88.100/resources/lecture/${lecture.lectureFileDTO[0].f_name}" class="img-fluid rounded" style="object-fit: contain">
                             </div>
                             <div class="col-9">
                               <small class="d-inline-flex px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${lecture.l_date} 개월 수강</small>

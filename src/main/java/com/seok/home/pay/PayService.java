@@ -35,6 +35,8 @@ public class PayService {
 	@Autowired
 	MemberDAO memberDAO;
 	
+
+	
 	public HashMap<String, Object> getMyPayList(MemberDTO member)throws Exception{
 		member = memberDAO.getProfile(member);
 		PaymentDTO paymentDTO = new PaymentDTO();

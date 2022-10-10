@@ -65,16 +65,9 @@
                                 <b>${order.o_num}</b>
                             </td>
                             <td>
-                                <div class="row g-1 p-3 align-items-center">
-                                    <div class="col-3">
-                                      <img src="../../../resources/images/22.png" class="img-fluid rounded-start" style="object-fit: contain">
-                                    </div>
-                                    <div class="col-9">
-                                      <small class="d-inline-flex px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${order.lectureDTO.l_date} 개월 수강</small>
-                                      <label for="name" class="text-muted">${order.lectureDTO.id}</label>
-                                      <p>${order.lectureDTO.l_name}</p>
-                                    </div>
-                                  </div>
+                                <small class="d-inline-flex px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${order.lectureDTO.l_date} 개월 수강</small>
+                                <label for="name" class="text-muted">${order.lectureDTO.id}</label>
+                                <p>${order.lectureDTO.l_name}</p>
                             </td>
                             <td>
                                 ${order.o_amount}
