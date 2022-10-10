@@ -29,7 +29,7 @@
 			<div class="col-md-8 col-lg-7 mt-5">
 
 				<div class="mb-5 text-center">
-					<h1><b>프로필✒</b></h1>
+					<h1><b>프로필📝</b></h1>
 				</div>
 
 				<%-- 프로필 수정 form --%>
@@ -43,23 +43,23 @@
 							<input type="hidden" name="f_oriname" value="${member.memberFileDTO.f_oriname}">
 						</div>
 						<div class="row">
-							<div class="col-5 text-end" id="addFile">
+							<div class="col-6 text-end" id="addFile">
 								<!--하단 파일 추가 input과 연결된 라벨-->
 								<label for="file" class="file_add btn btn-outline-success btn-sm"><b>사진추가📷</b>
 							</div>
-							<div class="col-2 text-end">
-								<!--하단 파일 추가 input과 연결된 라벨-->
-								<a href="./fileDelete" class="file_add btn btn-outline-success btn-sm"><b>사진삭제❌</b></a>
-							</div>
-							<div class="col-5 text-start" id="tcherProfile">
-								<!-- 강사프로필로 가는 버튼 -->
-								<!-- <button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='/member/tcherProfile';"><b>프로필수정✏</b></button> -->
-								<a href="./tcherProfile" class="btn btn-outline-success btn-sm"><b>프로필수정✏</b></a>
+							<div class="col-6 text-start">
+								<a href="./deleteFile" class="file_add btn btn-outline-success btn-sm"><b>사진삭제❌</b></a>
 							</div>
 						</div>
 						<div class="row">
 							<!-- 파일 추가 input -->
 							<input type="file" id="file" style="display: none;">
+						</div>
+						<div class="row mt-2">
+							<div class="text-center" id="tcherProfile">
+								<!-- 강사프로필로 가는 버튼 -->
+								<a href="./tcherProfile" class="btn btn-outline-success btn-sm"><b>프로필수정✏</b></a>
+							</div>
 						</div>
 						<div class="card-body">
 							<!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
@@ -75,16 +75,12 @@
 							</ul>
 						</div>
 					</div>
+
 					
-					<!-- <div class="mb-3">
-						<label for="ipName" class="form-label">이름</label>
-						<input type="text" name="name" class="form-control" id="ipName" value="${member.name}">
-					</div> -->
-					
-					<!-- <div class="mb-3">
-						<label for="ipBdate" class="form-label">생년월일</label>
-						<input type="number" name="b_date" class="form-control" id="ipBdate" value="${member.b_date}">
-					</div> -->
+					<!-- 회원가입 버튼 -->
+					<div class="d-grid gap-2 col-6 mx-auto my-3">
+						<a href="./updatePw" class="file_add btn btn-outline-success btn-sm"><b>비밀번호 변경</b></a>
+					</div>
 					
 					<!-- 프로필정보 카드 -->
 					<div class="card border-success mb-3">

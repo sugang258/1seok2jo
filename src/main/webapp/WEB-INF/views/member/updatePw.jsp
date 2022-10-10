@@ -25,7 +25,7 @@
             <div class="col-6 col-md-4 col-lg-5 mt-5">
                 <div class="mb-4 text-center">
                     <!-- 제목부분 -->
-                    <h1><b>회원탈퇴❌</b></h1>
+                    <h1><b>비밀번호 변경✒</b></h1>
                 </div>
                 <form action="./deleteMember" method="post">
                     <div class="mb-3">
@@ -51,9 +51,9 @@
 						<hr class="my-5">
 					</div>
 
-                    <!-- 회원탈퇴 버튼 -->
+                    <!-- 비밀번호변경 버튼 -->
                     <div class="d-grid gap-2 mt-3">
-                        <button type="submit" class="btn btn-outline-success" id="btn">회원탈퇴</button>
+                        <button type="submit" class="btn btn-outline-success" id="btn">비밀번호변경</button>
                     </div>
                 </form>
             </div>

@@ -169,6 +169,16 @@ public class MemberService {
 		return memberDAO.setDeleteFile(memberFileDTO);
 	}
 	
+	//프로필 회원비밀번호 확인
+	public MemberDTO getPwCheck(MemberDTO memberDTO)throws Exception{
+		return memberDAO.getPwCheck(memberDTO);
+	}
+	
+	//프로필 회원비밀번호 수정
+	public int setUpdatePw(MemberDTO memberDTO)throws Exception{
+		return memberDAO.setUpdatePw(memberDTO);
+	}
+	
 	//강사프로필정보조회
 	public TeacherDTO getTcherProfile(TeacherDTO teacherDTO)throws Exception{
 		return teacherDAO.getTeacherDetail(teacherDTO);

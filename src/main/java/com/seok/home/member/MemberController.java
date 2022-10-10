@@ -84,7 +84,7 @@ public class MemberController {
 	
 	//아이디중복 확인 로직 처리 (POST)
 	@ResponseBody
-	@PostMapping("/idcheck")
+	@PostMapping("idCheck")
 	public int getIdCheck(MemberDTO memberDTO)throws Exception{
 		int result = memberService.getIdCheck(memberDTO);
 		return result;
@@ -177,6 +177,14 @@ public class MemberController {
 		return "member/deleteMember";
 	}
 	
+	//비밀번호 확인 로직 처리 (POST)
+//	@ResponseBody
+//	@PostMapping("pwCheck")
+//	public int getPwCheck(MemberDTO memberDTO)throws Exception{
+//		int result = memberService.getIdCheck(memberDTO);
+//		return result;
+//	}
+	
 	/************************ 마이페이지 **************************/
 	
 	//회원프로필정보조회 화면(GET)
@@ -264,10 +272,35 @@ public class MemberController {
 		return mv;
 	}
 	
-	//프로필사진 삭제
-	@GetMapping("fileDelete")
+	//프로필사진 삭제(GET)
+	@GetMapping("deleteFile")
 	public void setDeleteFile()throws Exception{
+		System.out.println("프로필사진 삭제 접속(GET)");
 		memberService.setDeleteFile(null);
+		
+	}
+	
+	//프로필 회원비밀번호 수정 화면(GET)
+	@GetMapping("updatePw")
+	public String setUpdatePw()throws Exception{
+		System.out.println("프로필 회원비밀번호 수정(GET)");
+		
+		return "member/updatePw";
+	}
+	
+	//프로필 회원비밀번호 확인 로직(POST)
+	@ResponseBody
+	@PostMapping("pwCheck")
+	public void getPwCheck(MemberDTO memberDTO)throws Exception{
+		System.out.println("프로필 회원비밀번호 확인(POST)");
+		
+		MemberDTO respMemberDTO = memberService.getPwCheck(memberDTO);
+		
+	}
+	
+	//프로필 회원비밀번호 수정 로직(POST)
+	@PostMapping("updatePw")
+	public void setUpdatePw(MemberDTO memberDTO, HttpSession session)throws Exception{
 		
 	}
 	
