@@ -23,7 +23,7 @@ function save(){
                 console.log("f_oriname : "+file.files[0].name) //f_oriname
                 // 라벨 하단에 file 값을 담은 text input을 만들어준다.
 
-                //oriname input
+                //f_oriname input
                 let inputf_name = document.createElement("input")
                 let typei = document.createAttribute("type")
                 typei.value="text"
@@ -43,7 +43,7 @@ function save(){
                 
                 addFile.append(inputf_name)
     
-                //fname input
+                //f_name input
                 inputf_name = document.createElement("input")
                 typei = document.createAttribute("type")
                 typei.value="text"

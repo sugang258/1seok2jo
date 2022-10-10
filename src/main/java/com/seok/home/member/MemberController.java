@@ -201,7 +201,9 @@ public class MemberController {
 		//프로필정보조회(아이디, 이름, 닉네임, *생년월일*, 성별, 이메일, 연락처 조회)
 		//getProfile을 갔다온 memberDTO를 respMemberDTO(responseMemberDTO)에 담음
 		respMemberDTO = memberService.getProfile(memberDTO);
-		System.out.println("file : "+respMemberDTO.getMemberFileDTO());
+//		System.out.println("file : "+respMemberDTO.getMemberFileDTO().getNum());
+//		System.out.println("file : "+respMemberDTO.getMemberFileDTO().getF_name());
+//		System.out.println("file : "+respMemberDTO.getMemberFileDTO().getF_oriname());
 		}
 		
 		//그 데이터를 "member"로 JSP에 보내줌

@@ -67,7 +67,6 @@ public class MemberService {
 	public int setTeacherAdd(TeacherDTO teacherDTO, ServletContext servletContext, MemberDTO memberDTO)throws Exception{
 		
 		List<RoleDTO> roleDTOs = memberDTO.getRoleDTOs();
-		TeacherDTO teacherDTO2 = memberDTO.getTeacherDTO();
 		//2
 		System.out.println("강사신청서비스 : "+roleDTOs.get(0).getRoleNum());
 		//강사
@@ -107,6 +106,12 @@ public class MemberService {
 	
 	//프로필수정
 	public int setEditProfile(MemberDTO memberDTO, MemberFileDTO file, ServletContext servletContext)throws Exception{
+		
+		if(file==null) {
+			file.setId(memberDTO.getId());
+			file.setF_name("default.png");
+			file.setF_oriname("default.png");
+		}
 		
 		//정보수정 먼저
 		int result = memberDAO.setEditProfile(memberDTO);
