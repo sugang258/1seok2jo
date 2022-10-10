@@ -32,7 +32,7 @@
 						<div>
 							<label for="ipId" class="form-label mt-4"><b>아이디</b></label>
 						</div>
-						<h2><b>${member.id}</b></h2>
+						<h3><b>${member.id}</b></h3>
 						<input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}">
 					</div>
 					

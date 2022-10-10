@@ -197,9 +197,11 @@ public class MemberController {
 		//memberDTO에 담음
 		memberDTO = (MemberDTO) session.getAttribute("member");
 		
+		
 		//프로필정보조회(아이디, 이름, 닉네임, *생년월일*, 성별, 이메일, 연락처 조회)
 		//getProfile을 갔다온 memberDTO를 respMemberDTO(responseMemberDTO)에 담음
 		respMemberDTO = memberService.getProfile(memberDTO);
+		System.out.println("file : "+respMemberDTO.getMemberFileDTO());
 		}
 		
 		//그 데이터를 "member"로 JSP에 보내줌
@@ -211,16 +213,22 @@ public class MemberController {
 	//회원프로필 내 정보 수정 로직 처리(POST)
 	@PostMapping("profile")
 	@ResponseBody
-	public ModelAndView setProfile(MemberDTO memberDTO, HttpSession session, String f_name, String oriname)throws Exception {
+	public ModelAndView setProfile(MemberDTO memberDTO, HttpSession session, String f_name, String f_oriname)throws Exception {
 		System.out.println("프로필 정보(POST)");
 		ModelAndView mv = new ModelAndView();
 		
-		System.out.println("fileDTO_FNAME : "+f_name);
-		System.out.println("fileDTO_ORINAME : "+oriname);		
+		System.out.println("fileDTO F_NAME : "+f_name);
+		System.out.println("fileDTO F_ORINAME : "+f_oriname);		
+		
+		MemberDTO memberDTO2 = new MemberDTO();
+		
+		memberDTO2 = (MemberDTO) session.getAttribute("member");
+		System.out.println("memberDTO2 : "+memberDTO2.getMemberFileDTO());
+		
 		
 		MemberFileDTO file = new MemberFileDTO();
 		file.setF_name(f_name);
-		file.setF_oriname(oriname);
+		file.setF_oriname(f_oriname);
 		
 		int result = memberService.setEditProfile(memberDTO, file, session.getServletContext());
 		

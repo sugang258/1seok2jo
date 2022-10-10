@@ -39,13 +39,19 @@
 					<div class="card border-success mb-3">
 						<div class="row my-4">
 							<img src="http://20.249.88.100/resources/member/${member.memberFileDTO.f_name}" class="border border-success p-2 mb-2 border-opacity-50 mx-auto d-block" style=" max-width: 300px;  height: 300px;  border-radius: 75px;">
+							<input type="hidden" name="f_name" value="${member.memberFileDTO.f_name}">
+							<input type="hidden" name="f_oriname" value="${member.memberFileDTO.f_oriname}">
 						</div>
 						<div class="row">
-							<div class="col-6 text-end" id="addFile">
+							<div class="col-5 text-end" id="addFile">
 								<!--하단 파일 추가 input과 연결된 라벨-->
-								<label for="file" class="file_add btn btn-outline-success btn-sm"><b>파일추가📂</b>
+								<label for="file" class="file_add btn btn-outline-success btn-sm"><b>사진추가📷</b>
 							</div>
-							<div class="col-6 text-start" id="tcherProfile">
+							<div class="col-2 text-end">
+								<!--하단 파일 추가 input과 연결된 라벨-->
+								<a href="/member/fileDelete" class="file_add btn btn-outline-success btn-sm"><b>사진삭제❌</b></a>
+							</div>
+							<div class="col-5 text-start" id="tcherProfile">
 								<!-- 강사프로필로 가는 버튼 -->
 								<!-- <button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='/member/tcherProfile';"><b>프로필수정✏</b></button> -->
 								<a href="/member/tcherProfile" class="btn btn-outline-success btn-sm"><b>프로필수정✏</b></a>
@@ -68,16 +74,6 @@
 								</li>
 							</ul>
 						</div>
-						<!-- <div class="card-footer bg-transparent border-success">
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item border-success">
-									<label for="ipNname" class="form-label card-title"><h6><b>닉네임</b></h6></label>
-									<p class="card-text"><input type="text" name="n_name" class="form-control" id="ipNname" value="${member.n_name}"></p>
-								</li>
-								<li class="list-group-item border-success">A second item</li>
-								<li class="list-group-item border-success">A third item</li>
-							</ul>
-						</div> -->
 					</div>
 					
 					<!-- <div class="mb-3">
@@ -112,16 +108,6 @@
 								</li>
 							</ul>
 						</div>
-						<!-- <div class="card-footer bg-transparent border-success">
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item border-success">
-									<label for="ipNname" class="form-label card-title"><h6><b>닉네임</b></h6></label>
-									<p class="card-text"><input type="text" name="n_name" class="form-control" id="ipNname" value="${member.n_name}"></p>
-								</li>
-								<li class="list-group-item border-success">A second item</li>
-								<li class="list-group-item border-success">A third item</li>
-							</ul>
-						</div> -->
 					</div>
 
 					<!-- 구분선 -->

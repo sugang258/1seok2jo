@@ -122,7 +122,7 @@
 	<select id="getProfile" parameterType="MemberDTO" resultMap="getProfileResult">
 		/* 프로필에 쓰일 정보 조회 화면 */
 	
-		SELECT M.ID, M.NAME, M.N_NAME, M.B_DATE, M.GENDER, M.EMAIL, M.PHONE, MF.NUM, MF.F_NAME
+		SELECT M.ID, M.NAME, M.N_NAME, M.B_DATE, M.GENDER, M.EMAIL, M.PHONE, MF.NUM, MF.F_NAME, MF.F_ORINAME
 		FROM MEMBER M
 		    LEFT JOIN
 		    MEMBER_FILE MF
