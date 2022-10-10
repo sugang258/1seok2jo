@@ -39,10 +39,11 @@ public class CartController {
 		lectureAddDTO.setId(mem.getId());
 		lectureAddDTO.setL_num(cartDTO.getL_num());
 		lectureAddDTO = lectureAddService.getLectureCancel(lectureAddDTO);
+		System.out.println("CART"+cartDTO.getL_num());
 		//System.out.println(lectureAddDTO);
 		//lectureAddDTO == null => 수강 신청 전
 		for(int i=0;i<ar.size();i++) {
-			if(ar.get(i).getL_num().equals(cartDTO.getL_num()) || lectureAddDTO.getS_num() != null) {
+			if(ar.get(i).getL_num().equals(cartDTO.getL_num()) || lectureAddDTO != null) {
 				result = 0;// 이미 장바구니에 있거나 수강 신청이 되어있는 것
 				break;
 			}else {

@@ -17,6 +17,7 @@
     href="https://fonts.googleapis.com/css2?family=Arvo&family=Dongle&family=Montserrat:wght@200&family=PT+Serif&family=Playfair+Display:wght@600&family=Prompt&family=Vollkorn:wght@500&display=swap"
     rel="stylesheet"
     />
+    <link rel="shortcut icon" href="/resources/images/favicon.ico">
 </head>
 <c:import url="../template/header.jsp"></c:import>
 <body>
@@ -101,7 +102,7 @@
                         </div>
                             <div class="card-body">-->
                                 <div class="input-group"> 
-                                    <button class="btn btn-primary" id="board" type="button" data-lnum-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">📝수강평 보러가기</button>
+                                    <button class="btn btn-primary" id="board" type="button" data-lnum-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">📝수강평<br> 보러가기</button>
                                  </div>
                            <!-- </div>
                     </div> -->
@@ -112,7 +113,7 @@
                         </div>
                             <div class="card-body"> -->
                                 <div class="input-group">
-                                    <button class="btn btn-primary" id="signs" type="button" data-lnum-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">✏수강신청 하기</button>
+                                    <button class="btn btn-primary" id="signs" type="button" data-lnum-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">✏수강신청<br> 하기</button>
                                 </div>
                             <!-- </div>
                     </div> -->
@@ -123,7 +124,7 @@
                         </div>
                             <div class="card-body"> -->
                                 <div class="input-group">
-                                    <button class="btn btn-primary" id="listen" type="button" data-listen-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">🎧강의 들으러 가기</button>
+                                    <button class="btn btn-primary" id="listen" type="button" data-listen-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">🎧강의 <br>들으러 가기</button>
                                 </div>
                             <!-- </div>
                     </div> -->

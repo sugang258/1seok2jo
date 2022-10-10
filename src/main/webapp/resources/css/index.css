@@ -24,13 +24,13 @@ body {
 }
 
 .lecture {
-  height: 280px;
+  height: 350px;
   margin-right: 2em;
 }
 
 #d4 {
 	padding-top: 10px;
-  height: 310px;
+  height: 400px;
   white-space:nowrap; 
   overflow-x: auto;
 }
@@ -51,7 +51,7 @@ body {
 
 #d5 {
 	padding-top: 10px;
-  height: 310px;
+  height: 400px;
     white-space:nowrap; 
   overflow-x: auto;
 }

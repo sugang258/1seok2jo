@@ -109,6 +109,7 @@
           </div>
                
         </div>
+       
         
         <div class="container">
           <div id="d2">
@@ -131,12 +132,14 @@
            <div class="d-flex justify-content-between" id="d4">
             <c:forEach items="${list}" var="count">
               <div class="lecture">
-                <div class="card" style="height:277px">
+                <div class="card" style="height:350px">
                   <img src="http://20.249.88.100/resources/lecture/${count.lectureFileDTO[0].f_name}" class="card-img-top img " alt="...">
-                  <div class="card-text">
-                    <h5 style="margin-top: 10px;">${count.l_name}</h5>⭐
-                    <h7>⭐⭐⭐⭐⭐</h7>
-                    <p>평점</p>
+                  <div class="card-body">
+                    <div class="card-text">
+                      <h5 class="fw-bolder" style="margin-top: 10px;">${count.l_name}</h5>
+                      <h7>⭐⭐⭐⭐⭐</h7>
+                      <p>평점</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -151,7 +154,7 @@
           <div  class="d-flex justify-content-between" id="d5" style="white-space:nowrap; overflow-x: auto;">
             <c:forEach items="${level}" var="lv">
               <div class="lecture">
-                <div class="card" style="height:277px">
+                <div class="card" style="height:350px">
                   <img src="http://20.249.88.100/resources/lecture/${lv.lectureFileDTO[0].f_name}" class="card-img-top img " alt="...">
                   <div class="card-text">
                     <h5 style="margin-top: 10px;">${lv.l_name}</h5>

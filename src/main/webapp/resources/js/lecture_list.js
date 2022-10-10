@@ -2,8 +2,13 @@ const lecture = document.querySelectorAll("#lec");
 const cart = document.querySelectorAll(".cart");
 const cartbtn = document.querySelectorAll("#cartbtn");
 const lecturebtn = document.querySelectorAll(".lec");
-const btn = document.querySelectorAll(".btn");
-
+const recommend = document.querySelector("#recommend");
+const popular = document.querySelector("#popular");
+const recent = document.querySelector("#recent");
+const price = document.querySelector("#price");
+const pager = document.querySelector("#pager");
+const filter = document.querySelector(".filter");
+const cate = document.querySelectorAll(".cate");
 
 lecture.forEach(function(lecturebtn){
     lecturebtn.addEventListener("click",function(){
@@ -42,7 +47,7 @@ cart.forEach(function(cartbtn) {
 
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-        xhttp.send("id=" + id + "&l_num=" + l_num);
+        xhttp.send("l_num=" + l_num);
 
         xhttp.onreadystatechange = function() {
             if(this.readyState == 4 && this.status == 200) {
@@ -72,9 +77,9 @@ cart.forEach(function(cartbtn) {
 
      })
 });
-btn.forEach(function(btn){
+cate.forEach(function(cate){
 
-    btn.addEventListener("click",function(event){
+    cate.addEventListener("click",function(event){
         let e = event.target;
 
         let c_num = e.getAttributeNode("data-c-num").value;
@@ -91,10 +96,9 @@ btn.forEach(function(btn){
         xhttp.onreadystatechange = function() {
             if(this.readyState == 4 && this.status == 200) {
                 let result = xhttp.responseText.trim();
-                //console.log(result);
+                console.log(result);
                 const r=document.getElementById("result");
                 r.innerHTML = result;
-
                 
             }
         }
@@ -110,20 +114,23 @@ function handleClick(event) {
       event.target.classList.remove("clicked");
 
     } else {
-      for (var i = 0; i < btn.length; i++) {
-        btn[i].classList.remove("clicked");
+      for (var i = 0; i < cate.length; i++) {
+        cate[i].classList.remove("clicked");
 
       }
 
       event.target.classList.add("clicked");
 
     }
+    
   }
 
+ 
 function init() {
-    for (var i = 0; i < btn.length; i++) {
-      btn[i].addEventListener("click", handleClick);
+    for (var i = 0; i < cate.length; i++) {
+      cate[i].addEventListener("click", handleClick);
     }
-  }
+}
 
   init();
+

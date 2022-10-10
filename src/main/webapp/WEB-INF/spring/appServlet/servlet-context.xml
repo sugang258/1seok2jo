@@ -21,6 +21,22 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<beans:bean class="com.seok.home.interceptor.TeacherCheckInterceptor" id="teacherCheckInterceptor"></beans:bean>
+	<beans:bean class="com.seok.home.interceptor.TeacherWriterCheckInterceptor" id="teacherWriterCheckInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/lecture/update"/>
+			<beans:ref bean="teacherWriterCheckInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/lecture/add"/>
+			<mapping path="/lecture/teacher"/>
+			<beans:ref bean="teacherCheckInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 	
 	<context:component-scan base-package="com.seok.home" />
 	
