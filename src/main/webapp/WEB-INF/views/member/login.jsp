@@ -21,12 +21,12 @@
 		<link rel="shortcut icon" href="/resources/images/favicon.ico">
 		<link rel="stylesheet" href="/resources/css/admin/bscommon.css">
 </head>
-<c:import url="../template/header.jsp"></c:import>
+<!-- <c:import url="../template/header.jsp"></c:import> -->
 <body>
 	<%-- 회원 로그인JSP --%>
 	<main class="container ilseok">
 		<!-- 1석2조마크 -->
-		<div class="text-center my-5">
+		<div class="text-center my-3">
 			<img src="/resources/images/15.png" alt="logo" width="200">
 		</div>
 		<div class="login_main" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px; width: 460px; height: 330px; margin: 2em auto 5em auto;">
@@ -34,7 +34,7 @@
 			<!-- 로그인 form -->
 			<form action="./login" method="post" id="">
 				<div class="row">
-					
+
 					<div><h5 style="height: 70px;line-height: 80px; padding-left: 38px;"><i class="fa-solid fa-right-to-bracket" style="color: rgb(56, 221, 56);"></i><b> ID 로그인🔐</b></h5></div>
 					<div class="row" style="justify-content: center;">
 
@@ -44,7 +44,7 @@
 						</div>
 
 						<div class="col-sm-10 mb-3">
-							<label class="text-muted" for="password">Password</label>
+							<label class="mb-2 text-muted" for="password">Password</label>
 							<input type="password" class="form-control"  id= "pw" name = "pw" placeholder="비밀번호">
 						</div>
 						
