@@ -145,17 +145,19 @@ public class AdminController {
 	@PostMapping
 	private String getLogin(MemberDTO member, HttpServletRequest request) throws Exception {
 		//아이디와 비밀번호를 체크한 뒤 admin 자격이 있으면 세션의 admin값에 true로 돌려준다.
-		boolean chk = service.getLogin(member);
+		member = service.getLogin(member);
 		
 		HttpSession session = request.getSession();
 		
 		String url = "";
-		
-		if(chk==true) {
+		boolean chk = false;
+		if(member!=null) {
 			url = "redirect: /admin/main";
+			chk = true;
 		}else {
 			url = "admin/login";
 		}
+		session.setAttribute("member", member);
 		session.setAttribute("admin", chk);
 		return url;
 	}
