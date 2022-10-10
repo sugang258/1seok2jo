@@ -4,6 +4,8 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 <mapper namespace="com.seok.home.member.MemberDAO">
+
+	<!--                         관리자 : 데이터 조회                           -->
  	<sql id="search">
 		<choose>
 			<when test="kind == 'ID'">ID LIKE '%'||#{search}||'%'</when>
@@ -54,6 +56,7 @@
 		</collection>
 	</resultMap>
 
+	<!--                               회원                                 -->
 	<select id="getLogin" parameterType="MemberDTO" resultMap="getLoginResult">
 		/* 로그인시(아이디와 비밀번호가 맞으면) */
 		/* 강사신청번호, 아이디, 이름, 닉네임, 성별, 이메일, 폰, 마일리지, 등급번호, 등급이름 조회 */
@@ -97,6 +100,7 @@
 		VALUES(MEMBER_ROLE_SEQ.NEXTVAL, 3, #{id})
 	</insert>
 	
+	<!--                            관리자 : 등급 추가                              -->
 	<insert id="setAdminRole" parameterType="MemberDTO">
 		/* 관리자 등급 데이터 추가 */
 		
@@ -111,6 +115,7 @@
 		VALUES (#{id}, #{pw}, #{name}, #{n_name}, #{b_date}, #{gender}, #{email}, #{phone}, 5000)
 	</insert>
 	
+	<!--                            마일리지                              -->
 	<select id="getPoint" parameterType="MemberDTO" resultType="Long">
 		select point from member where id=#{id}
 	</select>
@@ -119,6 +124,7 @@
 		UPDATE MEMBER SET POINT=#{point} WHERE ID=#{id}
 	</update>
 	
+	<!--                                프로필                                  -->
 	<select id="getProfile" parameterType="MemberDTO" resultMap="getProfileResult">
 		/* 프로필에 쓰일 정보 조회 화면 */
 	
@@ -148,6 +154,7 @@
 		UPDATE MEMBER SET N_NAME=#{n_name}, GENDER=#{gender}, EMAIL=#{email}, PHONE=#{phone} WHERE ID=#{id}
 	</update>
 	
+	<!--                            프로필사진                              -->
 	<insert id="setAddFile" parameterType="MemberFileDTO">
 		/* 프로필사진 데이터 추가 */
 		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
@@ -162,6 +169,7 @@
 		DELETE FROM MEMBER_FILE WHERE NUM=#{num}
 	</delete>
 	
+	<!--                     관리자 : 등급 데이터 삭제                       -->
 	<delete id="setDeleteMemberRole" parameterType="MemberDTO">
 		/* 회원등급 데이터 삭제 */
 		DELETE FROM MEMBER_ROLE WHERE ID=#{id}
@@ -171,6 +179,7 @@
 		/* 강사권한 삭제 */
 		DELETE FROM MEMBER_ROLE WHERE ID=#{id} AND ROLENUM=2
 	</delete>
+	
 	<delete id="setDeleteTeacher" parameterType="MemberDTO">
 		/* 강사권한 삭제 */
 		DELETE FROM teacher WHERE ID=#{id}

@@ -93,6 +93,7 @@ public class MemberDAO {
 	private int setDeleteTeacher(MemberDTO dto) throws Exception{
 		return sqlSession.delete(NAMESPACE+"setDeleteTeacher", dto);
 	}
+	
 	private int setDeleteTeacherRole(MemberDTO dto) throws Exception{
 		return sqlSession.delete(NAMESPACE+"setDeleteTeacherRole", dto);
 	}

@@ -49,12 +49,12 @@
 							</div>
 							<div class="col-2 text-end">
 								<!--하단 파일 추가 input과 연결된 라벨-->
-								<a href="/member/fileDelete" class="file_add btn btn-outline-success btn-sm"><b>사진삭제❌</b></a>
+								<a href="./fileDelete" class="file_add btn btn-outline-success btn-sm"><b>사진삭제❌</b></a>
 							</div>
 							<div class="col-5 text-start" id="tcherProfile">
 								<!-- 강사프로필로 가는 버튼 -->
 								<!-- <button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='/member/tcherProfile';"><b>프로필수정✏</b></button> -->
-								<a href="/member/tcherProfile" class="btn btn-outline-success btn-sm"><b>프로필수정✏</b></a>
+								<a href="./tcherProfile" class="btn btn-outline-success btn-sm"><b>프로필수정✏</b></a>
 							</div>
 						</div>
 						<div class="row">

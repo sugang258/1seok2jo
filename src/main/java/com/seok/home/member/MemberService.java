@@ -159,6 +159,11 @@ public class MemberService {
 		return result;
 	}
 	
+	//프로필사진 삭제
+	public int setDeleteFile(MemberFileDTO memberFileDTO)throws Exception{
+		return memberDAO.setDeleteFile(memberFileDTO);
+	}
+	
 	//강사프로필정보조회
 	public TeacherDTO getTcherProfile(TeacherDTO teacherDTO)throws Exception{
 		return teacherDAO.getTeacherDetail(teacherDTO);

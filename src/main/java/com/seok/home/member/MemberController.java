@@ -262,6 +262,13 @@ public class MemberController {
 		return mv;
 	}
 	
+	//프로필사진 삭제
+	@GetMapping("fileDelete")
+	public void setDeleteFile()throws Exception{
+		memberService.setDeleteFile(null);
+		
+	}
+	
 	//강사프로필 정보조회 화면(GET)
 	@GetMapping("tcherProfile")
 	public ModelAndView getTcherProfile(HttpSession session, TeacherDTO teacherDTO)throws Exception{
