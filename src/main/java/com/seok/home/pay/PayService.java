@@ -19,6 +19,7 @@ import com.seok.home.lecture.status.StatusDAO;
 import com.seok.home.lecture.status.StatusDTO;
 import com.seok.home.member.MemberDAO;
 import com.seok.home.member.MemberDTO;
+import com.seok.home.util.ChartDTO;
 
 @Service
 public class PayService {
@@ -35,7 +36,18 @@ public class PayService {
 	@Autowired
 	MemberDAO memberDAO;
 	
-
+	public HashMap<String, Object> getChartAdminDashBoard () throws Exception{
+		
+		List<ChartDTO> charts = payDAO.getChartAdminDashBoard();
+		
+		String[] labels = new String[5];
+		
+		for(ChartDTO chart: charts) {
+			
+		}
+		
+		return null;
+	}
 	
 	public HashMap<String, Object> getMyPayList(MemberDTO member)throws Exception{
 		member = memberDAO.getProfile(member);

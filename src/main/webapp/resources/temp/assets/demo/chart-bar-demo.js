@@ -36,7 +36,7 @@ var myLineChart = new Chart(ctx, {
       label: "Revenue",
       backgroundColor: "rgba(53, 133, 74, 1)",
       borderColor: "rgba(53, 133, 74, 1)",
-      data: ["4215", 5312, 6251, 7841, 14984],
+      data: [4215, 5312, 6251, 7841, 14984],
     }],
   },
   options: {

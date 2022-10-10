@@ -5,8 +5,11 @@
     
     <mapper namespace="com.seok.home.pay.PayDAO">
     	<select id="getChartAdminDashBoard" resultType="com.seok.home.util.ChartDTO">
-    		select labels, sum(p_realamount) as data from(select TO_CHAR(p_regdate, 'YYYY.MM.DD') as labels, p_realamount from payments)
-			group by labels;
+    		select *
+            from(select labels, sum(p_realamount) as data from(select TO_CHAR(p_regdate, 'YYYY.MM.DD') as labels, p_realamount from payments)
+			group by labels
+            order by labels desc)
+            where rownum between 1 and 5
     	</select>
     
     	<select id="getOamountTotal" parameterType="TeacherPager" resultType="Long">
@@ -268,7 +271,7 @@
     	</resultMap>
 
     	<select id="getPayDetail" parameterType="PaymentDTO" resultMap="allPaymentsResult">
-    		select P.*, O.O_NUM, O.L_NUM, O.O_AMOUNT, L.ID TEACHER, L.LEVEL_NUM, L.L_NAME, L.L_PRICE, R.PR_NUM, R.PR_REASON, R.PR_AMOUNT, R.PR_POINT, R.PR_REGDATE
+    		select P.*, O.O_NUM, O.L_NUM, O.O_AMOUNT, L.ID TEACHER, L.LEVEL_NUM, L.L_NAME, L.L_DATE , L.L_PRICE, R.PR_NUM, R.PR_REASON, R.PR_AMOUNT, R.PR_POINT, R.PR_REGDATE
 			FROM payments P
 			left join ORDERS O
 			on P.p_uid = O.P_UID

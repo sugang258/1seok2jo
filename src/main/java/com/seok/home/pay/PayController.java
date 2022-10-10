@@ -38,6 +38,12 @@ public class PayController {
 
 	private IamportClient client = new IamportClient("6833265443546261", "SiEfYqnG3G0yBBQRFMvspUyp9l0UAJ0ytmsMxyHJBQftWtJHoRKQvJvB59QljGoZBNLS6wXZSGJ5p5Mg");
 	
+	@GetMapping(value="dashBoard")
+	public HashMap<String, Object> getChartAdminDashBoard () throws Exception{
+		
+		return null;
+	}
+	
 	@GetMapping(value="myList")
 	public Model getMyPayList (HttpSession session, Model model) throws Exception{
 		MemberDTO mem = (MemberDTO)session.getAttribute("member");

@@ -1,7 +1,7 @@
 function cancelPay() {
   let cancleBtn = document.querySelectorAll("#cancleBtn");
   let pr_amount = document.getElementById("pr_amount")
-  let p_point;
+
   let o_num;
   let o_amount;
   let l_name;
@@ -13,7 +13,6 @@ function cancelPay() {
   /* 환불 버튼 클릭*/
   for(let i =0; i<cancleBtn.length; i++){
     cancleBtn[i].addEventListener("click", function(){
-      p_point = document.getElementById("p_point")
       //넘겨줄 파라미터 값
       o_num = cancleBtn[i].getAttribute("data-onum")
       o_amount = cancleBtn[i].getAttribute("data-amount")

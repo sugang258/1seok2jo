@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,11 +20,11 @@
         <c:import url="../template/header.jsp"></c:import>
     </div>
     <div class="container" style="min-width: 1150px;">
-    <div class="row justify-content-center pt-3 mt-3">
+    <div class="row justify-content-center pt-3 mt-5">
         <div class="mx-5">
-            <h4 class="mx-5"><b>결제 상세 정보</b></h3>    
+            <h4 class="mx-5"><b>🧾 결제 상세 정보</b></h3>    
         </div>
-        <div class="col mx-5" style="border: 2px solid #aed581;">      
+        <div class="col mx-5 my-3" style="border: 2px solid #aed581;">      
             <div class="row my-2">
                 <div class="col">
                     결제번호<span>${paymentDTO.p_uid}</span>  
@@ -37,7 +38,7 @@
             </div>
         </div>
     </div>
-    <div class="row mt-3">
+    <div class="row my-3">
         <div class="col mx-5">
             <div class="row">
                 <table border="1" cellspacing="0" style="border:none; border-top:1px solid #4b830d; border-bottom:1px solid #dddde1">
@@ -49,25 +50,25 @@
                         <col width="10%"/>
                     </colgroup>
                     <thead style="background-color: #e8f5e9;">
-                        <tr>
-                            <th>강의주문번호</th>
-                            <th>강의정보</th>
-                            <th>금액</th>
-                            <th>상태</th>
-                            <th>환불요청</th>
+                        <tr >
+                            <th class="p-1 text-center">주문번호</th>
+                            <th class="p-1">강의정보</th>
+                            <th class="p-1">금액</th>
+                            <th class="p-1">상태</th>
+                            <th class="p-1">환불요청</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!--강의주문 상세-->
                         <c:forEach items="${paymentDTO.orders}" var="order">
                         <tr>
-                            <td>
+                            <td class="text-center">
                                 <b>${order.o_num}</b>
                             </td>
-                            <td>
-                                <small class="d-inline-flex px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${order.lectureDTO.l_date} 개월 수강</small>
+                            <td class="p-3">
+                                <span>${order.lectureDTO.l_name}</span>
                                 <label for="name" class="text-muted">${order.lectureDTO.id}</label>
-                                <p>${order.lectureDTO.l_name}</p>
+                                <small class="d-inline-flex px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${order.lectureDTO.l_date} 개월 수강</small>
                             </td>
                             <td>
                                 ${order.o_amount}
@@ -96,7 +97,7 @@
             </div>
         </div>
     </div>
-    <div class="row mt-3">
+    <div class="row my-3">
         <div class="mx-5">
             <h5><b>주문/결제 금액 정보</b></h5>    
         </div>
@@ -104,35 +105,41 @@
             <div class="row">
                 <table border="1" cellspacing="0" style="border:none; border-top:1px solid #383d4a; border-bottom:1px solid #dddde1">
                     <colgroup>
-                        <col width="60%" style="background:#aed581"/>
+                        <col width="60%" style="background:#bad798"/>
                         <col width="40%"/>
                     </colgroup>
                     <tbody>
                         <tr>
-                            <td>
-                                <strong>총 주문 금액</strong>${paymentDTO.p_amount}원<br>
-                                <span class="text-muted">사용 마일리지</span> <span id="p_point">${paymentDTO.p_point}</span>마일리지<BR>
+                            <td class="p-3">
+                                <div class="d-flex justify-content-between">
+                                    <span><strong>총 주문 금액</strong></span><span>${paymentDTO.p_amount} 원&nbsp&nbsp </span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted">사용 마일리지</span> <span id="p_point" class="text-muted">(-) ${paymentDTO.p_point} 마일</span>
+                                </div>
                                 <span>총 결제 금액</span> ${paymentDTO.p_realamount}원<br>
                             </td>
-                            <td>
+                            <td class="p-3">
                                 <strong>포인트 혜택</strong><BR>
+                                <div class="d-flex justify-content-between">
                                 <span> 포인트 적립</span>
-                                <span>${paymentDTO.p_realamount*0.05}원</span>
+                                <fmt:parseNumber var="prpoint" value="${paymentDTO.p_realamount*0.05}" integerOnly="true"/>
+                                <span>${prpoint}원</span>
+                                </div>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <strong>결제금액</strong><BR>
-                                <span>${paymentDTO.p_realamount}</span>
-                            </td>
-                            <td>
-                                <strong>결제 상세</strong>
-                                <span>카드결제</span>
-                                <span>-
+                            <td class="p-3">
+                                <strong>카드 결제</strong><BR>
 	                                <c:choose>
 	                                	<c:when test="${paymentDTO.p_c_quota eq '0'}">일시불</c:when>
 	                                	<c:otherwise>${paymentDTO.p_c_quota}개월</c:otherwise>
 	                                </c:choose>
+                                <span>${paymentDTO.p_realamount}</span>
+                            </td>
+                            <td class="p-3">
+                                <strong>결제 상세</strong>
+                                <span>
                                 </span><BR>
                                 <span>${paymentDTO.p_c_name}</span><span>${paymentDTO.p_c_num}</span><!--카드번호 문자열 처리 필요-->
                             </td>
@@ -159,6 +166,10 @@
                             <tr>
                                 <td>
                                     <strong>최종 환불 금액</strong>pr_amount 합계<br>
+                                    <c:forEach items="${paymentDTO.refunds}" var="refund">
+
+                                        <span>${refund.pr_amount}</span>
+                                    </c:forEach>
                                     <span>환불 상품 주문 금액</span> o_amount 합계 원<br>
                                     <span>환불 마일리지</span> pr_point 합계 마일리지
                                 </td>
@@ -252,8 +263,8 @@
         opacity:0.1;
     }
 
-    #point::-webkit-outer-spin-button,
-    #point::-webkit-inner-spin-button {
+    #pr_point::-webkit-outer-spin-button,
+    #pr_point::-webkit-inner-spin-button {
       -webkit-appearance: none;
     }
     
