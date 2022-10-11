@@ -33,7 +33,7 @@
                     <b>주문일자  <span>${paymentDTO.p_regdate}</b>
                 </div>
                 <div class="col text-end">
-                    <button type="button" class="btn btn-outline-success" onclick=doPopupopen()>매출전표보기</button>
+                    <button type="button" class="btn btn-outline-success" onclick=doPopupopen()><b>매출전표보기</b></button>
                 </div>
             </div>
         </div>
@@ -81,11 +81,11 @@
                                 	환불완료
                                 </c:if>
                             </td>
-                            <td>
+                            <td >
                                 <c:if test="${order.pr_num eq null}">
                                     <!-- Button trigger modal -->
-                                    <button type="button" id="cancleBtn" data-bs-toggle="modal" data-bs-target="#modalCancel" data-onum="${order.o_num}" data-amount="${order.o_amount}" data-lnum="${order.lectureDTO.l_num}" data-lname="${order.lectureDTO.l_name}">
-                                        환불
+                                    <button type="button" class="btn btn-secondary" id="cancleBtn" data-bs-toggle="modal" data-bs-target="#modalCancel" data-onum="${order.o_num}" data-amount="${order.o_amount}" data-lnum="${order.lectureDTO.l_num}" data-lname="${order.lectureDTO.l_name}">
+                                        <b>환불</b>
                                     </button>                         	
                             	</c:if>
                             </td>
@@ -105,7 +105,7 @@
             <div class="row">
                 <table border="1" cellspacing="0" style="border:none; border-top:1px solid #383d4a; border-bottom:1px solid #dddde1">
                     <colgroup>
-                        <col width="60%" style="background:#bad798"/>
+                        <col width="60%" style="background:#e8f5e9"/>
                         <col width="40%"/>
                     </colgroup>
                     <tbody>
@@ -117,31 +117,37 @@
                                 <div class="d-flex justify-content-between">
                                     <span class="text-muted">사용 마일리지</span> <span id="p_point" class="text-muted">(-) ${paymentDTO.p_point} 마일</span>
                                 </div>
-                                <span>총 결제 금액</span> ${paymentDTO.p_realamount}원<br>
+                                <div class="d-flex justify-content-between" style="color:darkred">
+                                    <span><strong>총 결제 금액</strong></span> 
+                                    <span><b>${paymentDTO.p_realamount} 원&nbsp&nbsp</b></span>
+                                </div>
                             </td>
                             <td class="p-3">
                                 <strong>포인트 혜택</strong><BR>
                                 <div class="d-flex justify-content-between">
                                 <span> 포인트 적립</span>
                                 <fmt:parseNumber var="prpoint" value="${paymentDTO.p_realamount*0.05}" integerOnly="true"/>
-                                <span>${prpoint}원</span>
+                                <span>${prpoint}마일리지</span>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td class="p-3">
-                                <strong>카드 결제</strong><BR>
-	                                <c:choose>
-	                                	<c:when test="${paymentDTO.p_c_quota eq '0'}">일시불</c:when>
-	                                	<c:otherwise>${paymentDTO.p_c_quota}개월</c:otherwise>
-	                                </c:choose>
-                                <span>${paymentDTO.p_realamount}</span>
-                            </td>
-                            <td class="p-3">
-                                <strong>결제 상세</strong>
-                                <span>
+                                <div class="d-flex justify-content-between">
+                                    <span><strong>카드 결제</strong></span>
+                                    <span><strong>${paymentDTO.p_realamount} 원&nbsp&nbsp</strong></span>
+                                </td>
+                                <td class="p-3">
+                                    <strong>결제 상세</strong>
+                                    <span>
+                                    <c:choose>
+                                        <c:when test="${paymentDTO.p_c_quota eq '0'}">일시불</c:when>
+                                        <c:otherwise>${paymentDTO.p_c_quota}개월</c:otherwise>
+                                    </c:choose>
                                 </span><BR>
-                                <span>${paymentDTO.p_c_name}</span><span>${paymentDTO.p_c_num}</span><!--카드번호 문자열 처리 필요-->
+                                <div class="d-flex justify-content-between">
+                                <span>${paymentDTO.p_c_name} </span><span id="pcnumView" data-pcnum="${paymentDTO.p_c_num}"></span><!--카드번호 문자열 처리 필요-->
+                                </div>
                             </td>
                         </tr>
                     </tbody>
@@ -150,7 +156,7 @@
         </div>
     </div>
     <c:if test="${not empty paymentDTO.refunds}">
-        <!--환불은 환불내역 있어야 보이도록.. 환불 갯수를 리턴 받고 0이면 프린트하지 않음-->
+        <!--환불은 환불내역 있어야 보이도록.. 환불 갯수를 리턴 받고 0이면 보이지 않음-->
         <div class="row mt-3">
             <div class="mx-5">
                 <h5><b>환불금액 상세정보</b></h5>    
@@ -159,7 +165,7 @@
                 <div class="row">
                     <table border="1" cellspacing="0" style="border:none; border-top:1px solid #383d4a; border-bottom:1px solid #dddde1">
                         <colgroup>
-                            <col width="60%" style="background:#dddde1"/>
+                            <col width="60%" style="background:#f0f0f3"/>
                             <col width="40%"/>
                         </colgroup>
                         <tbody>
@@ -167,8 +173,7 @@
                                 <td>
                                     <strong>최종 환불 금액</strong>pr_amount 합계<br>
                                     <c:forEach items="${paymentDTO.refunds}" var="refund">
-
-                                        <span>${refund.pr_amount}</span>
+                                        <input type="number" class="cal_pramount" value="${refund.pr_amount}"></input>
                                     </c:forEach>
                                     <span>환불 상품 주문 금액</span> o_amount 합계 원<br>
                                     <span>환불 마일리지</span> pr_point 합계 마일리지
@@ -219,7 +224,7 @@
                           <label>마일리지로 환불 요청</label>
                         </div>
                         <div class="col-6 text-end">
-                          <span id="cancelPoint">0 마일</span>  
+                          <span id="cancelPoint">0 </span>  마일
                         </div>
                     </div>
                     <input type="number" id="pr_point" name="pr_point" class="form-control text-end" value="0">
@@ -229,15 +234,16 @@
                     </div>
                     <div class="mt-2" style="display: flex; justify-content:space-between">
                         <span class="fw-bold">포인트 제외 환불 금액</span>
-                        <input type="number" class="fw-bold" name="pr_amount" id="pr_amount" value="0"></input>원
+                        <input type="number" class="fw-bold" name="pr_amount" id="pr_amount" value="0" data-premains="${paymentDTO.p_remains}" readonly></input>원
                     </div>
+                    <div id="cancelMessage" class="text-danger text-center"></div>
                 </form>
                 <!--인증요청 응답텍스트 표시-->
                 <div id="authMessage"></div>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">요청 취소</button>
-            <button type="button" class="btn btn-outline-success" id="reqCancel">환불 요청</button>
+            <button type="button" class="btn btn-outline-danger" id="reqCancel">환불 요청</button>
             </div>
         </div>
         </div>
@@ -247,6 +253,8 @@
     <div class="container-fluid mt-5" style="height: 300px;">
         <c:import url="../template/footer.jsp"></c:import>
     </div>
+
+    <script src="/resources/js/payStatus.js"></script>
     <!--매출전표 띄우기-->
     <script type="text/javascript">
         function doPopupopen() {
@@ -263,9 +271,9 @@
         opacity:0.1;
     }
 
-    #pr_point::-webkit-outer-spin-button,
+    #pr_point::-webkit-outer-spin-button,#pr_amount::-webkit-outer-spin-button,#pr_amount::-webkit-inner-spin-button,
     #pr_point::-webkit-inner-spin-button {
-      -webkit-appearance: none;
+      appearance: none;
     }
     
 </style>
