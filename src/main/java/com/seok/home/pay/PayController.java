@@ -113,19 +113,21 @@ public class PayController {
 	@GetMapping(value="order")
 	public ModelAndView showOrder(String l_num, HttpServletRequest request) throws Exception{
 		//구매하려는 강의정보를 받아와 (강의상세에서 바로 넘어오는 경우 강의번호로, 장바구니에서 넘어오는 경우 아이디로 장바구니를 가져와 넘겨준다.)
-		
 		ModelAndView mv = new ModelAndView();
 		
 		ArrayList<LectureDTO> lectureDTOs = new ArrayList<LectureDTO>();
+		MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
 		
 		if(l_num!=null) {
 			lectureDTOs = payService.getCartLectures(l_num);			
 		}else {
-			MemberDTO member = (MemberDTO)request.getSession().getAttribute("member");
 			lectureDTOs = payService.getCartLectures(member);
 		}
 		
+		//멤버가 가진 포인트를 가져온다
+		Long point = payService.getPoint(member);
 		
+		mv.addObject("point", point);
 		mv.addObject("lectures", lectureDTOs);
 		mv.setViewName("pay/order");
 		
@@ -159,8 +161,19 @@ public class PayController {
 		
 		int result = payService.paySuccess(paymentDTO, l_num);
 		
-		//포인트 계산
 		
+		//포인트 사용
+		mem.setPoint(Long.parseLong(res.get("point"))*(-1L));
+		if(result==1) {
+			result = payService.updatePoint(mem);
+		}
+		//결제금액의 5% 포인트 적립
+		double epoint = Long.parseLong(res.get("paid_amount"))*(0.05);
+		System.out.println(epoint +"||"+(long)epoint);
+		mem.setPoint((long)epoint);
+		if(result==1) {
+			result = payService.updatePoint(mem);
+		}
 
 		return result;
 	}

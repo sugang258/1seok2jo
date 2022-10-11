@@ -26,14 +26,14 @@
         </div>
         <div class="col mx-5 my-3" style="border: 2px solid #aed581;">      
             <div class="row my-2">
-                <div class="col">
-                    결제번호<span>${paymentDTO.p_uid}</span>  
+                <div class="col p-2">
+                    <b>결제번호 <span> ${paymentDTO.p_uid}</span>  </b>
                 </div>
-                <div class="col">
-                    주문일자  <span>${paymentDTO.p_regdate}
+                <div class="col p-2">
+                    <b>주문일자  <span>${paymentDTO.p_regdate}</b>
                 </div>
                 <div class="col text-end">
-                    <button type="button" onclick=doPopupopen()>매출전표보기</button>
+                    <button type="button" class="btn btn-outline-success" onclick=doPopupopen()>매출전표보기</button>
                 </div>
             </div>
         </div>

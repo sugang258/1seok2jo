@@ -36,6 +36,16 @@ public class PayService {
 	@Autowired
 	MemberDAO memberDAO;
 	
+	//마일리지 가져오기
+	public Long getPoint(MemberDTO dto) throws Exception{
+		return memberDAO.getPoint(dto);
+	}
+	
+	//마일리지 업데이트
+	public int updatePoint(MemberDTO dto) throws Exception{
+		return memberDAO.updatePoint(dto);
+	}
+	
 	public HashMap<String, Object> getChartAdminDashBoard () throws Exception{
 		
 		List<ChartDTO> charts = payDAO.getChartAdminDashBoard();

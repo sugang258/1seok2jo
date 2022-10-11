@@ -17,7 +17,7 @@ let num = document.querySelectorAll("#l_num");
 let usePoint = document.getElementById("usePoint");
 let point = document.getElementById("point");
 let pointVal = "0";
-usePoint.innerText = pointVal;
+
 
 //총 상품 금액 계산
 let tt = 0;
@@ -55,7 +55,7 @@ function requestPay() {
         //파라미터값 상세
         //https://docs.iamport.kr/sdk/javascript-sdk#request_pay
         {
-        pg : 'kcp',
+        pg : 'uplus', //kcp
         pay_method : 'card',//필수, 결제수단
         merchant_uid: uid, //필수, 주문번호 내가 생성함. 중복불가!!!
         name : l_name[0].innerHTML+" 등",
@@ -66,6 +66,7 @@ function requestPay() {
     }, function (rsp) { // callback
         if (rsp.success) {
             //ajax로 결제성공 페이지 요청
+            console.log(rsp)
             const xhttp = new XMLHttpRequest();
             //rsp에 금액, 포인트 추가
             rsp.point=pointVal
@@ -94,7 +95,6 @@ function requestPay() {
                         xhttp.open("POST","../lectureAdd/setLectureAdd");
                    
                         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                   
                         
                         xhttp.send("l_num="+l_num+"&id="+name.value);
                    
