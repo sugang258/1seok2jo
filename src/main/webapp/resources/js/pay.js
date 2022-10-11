@@ -30,10 +30,22 @@ rtt=tt;
 total.innerText=tt+"원";
 realtotal.innerText=rtt+"원";
 
-//포인트 금액 입력하고 블러하면 위에 뜨게 그리고 총액 계산
+//포인트 금액 입력하고 블러하면 현재 포인트와 검증해 문제 없으면 위에 뜨게 그리고 총액 계산
 point.addEventListener("blur", function(){
     pointVal = point.value;
-    usePoint.innerText = pointVal;
+    let rspoint = point.getAttribute('data-point');
+    if(pointVal>Number.parseInt(rspoint)){
+        usePoint.innerText = rspoint+"까지 사용가능 합니다"
+        pointVal=Number.parseInt(rspoint);
+    }else if(pointVal<0){
+        pointVal = 0;
+        usePoint.innerText = '0보다 작은 수는 입력할 수 없습니다';
+    }else{
+        
+        usePoint.innerText = pointVal;
+    }
+    point.value=pointVal;
+
     rtt=(tt-pointVal)
     realtotal.innerText=rtt+"원";
 })

@@ -100,7 +100,7 @@
                 <span id="usePoint" class="text-muted">사용가능 ${requestScope.point}마일리지</span>  
               </div>
             </div>
-            <input type="number" class="form-control text-end" id="point" name="point" value="0">
+            <input type="number" class="form-control text-end" id="point" name="point" value="0" data-point="${requestScope.point}">
             <div class="mt-2" style="display: flex; justify-content:space-between">
               <span class="fw-bold">총 결제 금액</span>
               <span class="fw-bold" id="realtotal"></span>
