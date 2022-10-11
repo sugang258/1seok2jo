@@ -38,6 +38,8 @@ function cancelPay() {
         pr_amount.value=Number.parseInt(o_amount)-pr_point.value
         //메세지 보여주기
         cancelMessage.innerText = "카드 환불은 "+premains+"원 까지 가능합니다"
+      }else{
+        pr_amount.value=o_amount;
       }
       
      

@@ -92,9 +92,7 @@ public class PayController {
 			if(payment_response.getResponse()==null) {
 				message = "요청금액이 환불가능 금액보다 많습니다.";
 
-			}else {//취소 성공하면
-				refundDTO.setPr_num(Long.parseLong(payment_response.getResponse().getApplyNum()));
-				
+			}else {//취소 성공하면				
 				result = payService.cancelSuccess(refundDTO, l_num, request);
 			}
 		}
