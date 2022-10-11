@@ -4,6 +4,12 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 		    <mapper namespace="com.seok.home.lecture.add.LectureAddDAO">
+		    	<select id="getLectureIngCnt" resultType="Long">
+			    	SELECT COUNT(*)
+			        FROM STATUS
+			        WHERE V_STATUS=1
+		    	</select>
+		    
 		    	<insert id="setLectureAdd" parameterType="LectureAddDTO">
 		    		INSERT INTO "LECTURE_SIGN"(S_NUM, L_NUM, ID, S_START, S_END, STATUS)
 					VALUES (SIGN_SEQ.NEXTVAL, #{l_num}, #{id}, SYSDATE, #{s_end}, 1)

@@ -23,4 +23,8 @@ public class AdminDAO {
 	public List<FreeBoardDTO> getBoardList(AdminPager pager) throws Exception{
 		return session.selectList(NAMESPACE+"getBoardList", pager);
 	}
+	
+	public Long getBoardCnt() throws Exception{
+		return session.selectOne(NAMESPACE+"getBoardCnt");
+	}
 }
