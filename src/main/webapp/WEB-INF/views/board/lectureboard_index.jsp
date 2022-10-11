@@ -249,7 +249,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               <div>
                 <img
                   src="http://20.249.88.100/resources/member/${lectureBoardDTO.f_name}"
-                  style="width: 26px; height:26px; border-radius: 24px"
+                  style="width: 26px; height: 26px; border-radius: 24px"
                 />
               </div>
               <div class="ms-2 mt-1" style="font-size: 13px">
@@ -310,7 +310,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           </c:forEach>
         </div>
 
-        <div class="mb-3" style="text-align: center">
+        <div class="mb-3" style="text-align: center; display: none">
           <button id="plus">더보기</button>
         </div>
       </div>
@@ -323,9 +323,9 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           data-bs-whatever="@mdo"
           type="button"
           id="lecture_add_btn"
-          style="width: 69%; margin: 0 auto"
+          style="width: 69%; margin: 0 auto; display: none"
         >
-          수강평 작성(수강생)
+          수강평 작성
         </button>
       </div>
 
@@ -446,6 +446,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
     <script>
       move();
       weight();
+      setLectureStudent();
     </script>
   </body>
 </html>

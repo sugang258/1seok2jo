@@ -96,8 +96,13 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                     <div>🏅${BoardDTO.category}</div>
                   </div>
                   <div class="p-2 d-flex">
-                 	<div style="margin-top:-5px;" class="pe-1"><img src="http://20.249.88.100/resources/member/${BoardDTO.f_name}" style="width: 36px;  height:36px; border-radius: 24px;"/></div>
-                    <div> ${pageScope.BoardDTO.id}</div>
+                    <div style="margin-top: -5px" class="pe-1">
+                      <img
+                        src="http://20.249.88.100/resources/member/${BoardDTO.f_name}"
+                        style="width: 36px; height: 36px; border-radius: 24px"
+                      />
+                    </div>
+                    <div>${pageScope.BoardDTO.id}</div>
                   </div>
                 </div>
                 <div style="margin-top: 11px; margin-bottom: 33px">

@@ -43,14 +43,19 @@ prefix="c" %>
                 <div>🏷️${freeBoardDTO.category}</div>
               </div>
               <div class="p-2 d-flex">
-	          	   <div>
-	                <img
-	                  src="http://20.249.88.100/resources/member/${freeBoardDTO.f_name}"
-	                  style="width: 34px; height:34px; border-radius: 24px; margin-top: -5px; margin-right:5px;"/>
-	              </div>
-	              <div>
-	                ${freeBoardDTO.id}
-	              </div>
+                <div>
+                  <img
+                    src="http://20.249.88.100/resources/member/${freeBoardDTO.f_name}"
+                    style="
+                      width: 34px;
+                      height: 34px;
+                      border-radius: 24px;
+                      margin-top: -5px;
+                      margin-right: 5px;
+                    "
+                  />
+                </div>
+                <div>${freeBoardDTO.id}</div>
               </div>
               <div
                 class="p-2 flex-shrink-1 pt-2"

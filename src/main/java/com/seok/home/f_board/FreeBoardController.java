@@ -67,14 +67,15 @@ public class FreeBoardController {
 		
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO = (MemberDTO) session.getAttribute("member");
-
-		/* 추천 컬러변경 */
-		Fb_heartDTO heartColor;
-		Fb_heartDTO fb_heartDTO = new Fb_heartDTO();
-		fb_heartDTO.setFb_num(freeBoardDTO.getFb_num());
-		fb_heartDTO.setId(memberDTO.getId());
-		heartColor = freeBoardService.getFb_heart(fb_heartDTO);
-		mv.addObject("color", heartColor);
+		if(memberDTO != null) {
+			/* 추천 컬러변경 */
+			Fb_heartDTO heartColor;
+			Fb_heartDTO fb_heartDTO = new Fb_heartDTO();
+			fb_heartDTO.setFb_num(freeBoardDTO.getFb_num());
+			fb_heartDTO.setId(memberDTO.getId());
+			heartColor = freeBoardService.getFb_heart(fb_heartDTO);
+			mv.addObject("color", heartColor);
+		}
 		mv.addObject("freeBoardDTO", freeBoardDTO);
 		mv.setViewName("/board/fb_detail");
 		
