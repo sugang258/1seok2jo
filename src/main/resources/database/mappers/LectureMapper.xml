@@ -4,6 +4,24 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 		    <mapper namespace="com.seok.home.lecture.LectureDAO">
+		    	<sql id="kind">
+		    		<choose>
+	                     <when test="kind == 'id'">M.N_NAME</when>
+	                     <when test="kind == 'l_name'">L.L_NAME</when>
+	                     <when test="kind == 'level_name'">LV.LEVEL_NAME</when>
+	                     <otherwise>C.C_NAME</otherwise>
+	                 </choose>
+		    	</sql>
+		    	<sql id="filter">
+		    		<choose>
+		    			<when test="filter == 'seq'">L.L_DATE ASC</when>
+		    			<when test="filter == 'popular'">L.L_COUNT DESC</when>
+		    			<when test="filter == 'recent'">L.L_NUM ASC</when>
+		    			<when test="filter == 'price'">L.L_PRICE DESC</when>
+		    			<when test="filter == 'level'">L.LEVEL_NUM DESC</when>
+		    			<otherwise>L.L_DATE ASC</otherwise>
+		    		</choose>
+		    	</sql>
 		    
 		    	<select id="getSimpleLecture" parameterType="LectureDTO" resultMap="simpleLectureResult">
 		    		select *
@@ -42,19 +60,18 @@
 		    				(SELECT * FROM LECTURE L
 		    				JOIN L_FILE LF
 		    				ON L.L_NUM = LF.L_NUM
+		    				JOIN MEMBER M
+		    				ON L.ID=M.ID
 							JOIN "LEVEL" LV
 							ON L.LEVEL_NUM = LV.LEVEL_NUM
 							JOIN CATEGORY C
 							ON L.C_NUM = C.C_NUM
 							WHERE
-	                  		<choose>
-	                     		<when test="kind == 'id'">L.ID</when>
-	                     		<when test="kind == 'l_name'">L.L_NAME</when>
-	                     		<when test="kind == 'level_name'">LV.LEVEL_NAME</when>
-	                     		<otherwise>C.C_NAME</otherwise>
-	                 		 </choose>
+	                  		<include refid="kind"></include>
                   			LIKE '%'||#{search}||'%'
-                 	 		ORDER BY L.L_NUM DESC) L)
+                 	 		ORDER BY
+                 	 		<include refid="filter"></include> 
+                 	 		,L.L_NUM DESC) L)
                  	 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 					
 		    	</select>
@@ -100,13 +117,18 @@
 		    			<result column="v_seq" property="v_seq"/>
 		    			<result column="v_status" property="v_status"/>
 		    		</collection>
+		    		<collection property="memberDTO" javaType="MemberDTO">
+		    			<result column="n_name" property="n_name"/>
+		    		</collection>
 		    	</resultMap>
 		    	
 		    	<select id="getDetail" parameterType="LectureDTO" resultMap="getDetailResult">
-		    		SELECT L.*, LF.* , LV.*, CA.C_NAME, VV.*
+		    		SELECT L.*, LF.* , LV.*, CA.C_NAME, VV.*,M.N_NAME
 					FROM LECTURE L
 					LEFT JOIN L_FILE LF
 					ON L.L_NUM = LF.L_NUM
+					JOIN MEMBER M
+					ON L.ID=M.ID
 					LEFT JOIN CART C
 					ON L.L_NUM = C.L_NUM
 					LEFT JOIN "LEVEL" LV
@@ -228,7 +250,7 @@
                     LEFT JOIN STATUS S
                     ON V.V_NUM = S.V_NUM
 					WHERE V.L_NUM = #{l_num} AND 
-					V.V_SEQ =(SELECT MIN(V_SEQ) FROM VIDEO WHERE V_SEQ>#{v_seq}) 
+					V.V_SEQ =(SELECT MIN(V_SEQ) FROM VIDEO WHERE L_NUM = #{l_num} AND V_SEQ>#{v_seq}) 
 				</select>
 				
 				<select id="getLecturePre" parameterType="LectureVideoDTO" resultMap="getVideoList">
@@ -237,7 +259,7 @@
                     LEFT JOIN STATUS S
                     ON V.V_NUM = S.V_NUM
 					WHERE V.L_NUM = #{l_num} AND 
-					V.V_SEQ =(SELECT MAX(V_SEQ) FROM VIDEO <![CDATA[WHERE V_SEQ < #{v_seq})]]>
+					V.V_SEQ =(SELECT MAX(V_SEQ) FROM VIDEO WHERE L_NUM = #{l_num} AND <![CDATA[V_SEQ < #{v_seq})]]>
 				</select>
 				
 				<select id="getVideoList" parameterType="LectureVideoDTO" resultMap="getVideoList">
@@ -279,4 +301,82 @@
 					ON L.L_NUM = F.L_NUM
 					WHERE L.ID=#{id}
 		    	</select>
+		    	
+		    	<select id="getVideoCount" parameterType="LectureVideoDTO" resultType="LectureVideoDTO">
+		    		SELECT * 
+				    FROM 
+				    (SELECT  * 
+				    FROM VIDEO
+				    WHERE L_NUM = #{l_num}
+				    ORDER BY V_SEQ DESC)
+				    <![CDATA[WHERE ROWNUM <= #{rowNum}]]>
+		    	</select>
+		    	
+		    	<select id="getLectureCate" parameterType="com.seok.home.util.Pager" resultMap="getDetailResult">
+		    		SELECT * FROM
+		    			(SELECT ROWNUM R, L.* FROM
+		    				(SELECT * FROM LECTURE L
+		    				JOIN L_FILE LF
+		    				ON L.L_NUM = LF.L_NUM
+							JOIN "LEVEL" LV
+							ON L.LEVEL_NUM = LV.LEVEL_NUM
+							JOIN CATEGORY C
+							ON L.C_NUM = C.C_NUM
+							WHERE
+	                  		L.C_NUM=#{c_num}
+                 	 		ORDER BY L.L_NUM DESC) L)
+                 	 		WHERE R BETWEEN #{startRow} AND #{lastRow}
+		    	</select>
+		    	<select id="getLectureCateCount" parameterType="com.seok.home.util.Pager" resultType="java.lang.Long">
+		    		SELECT COUNT(*) FROM LECTURE L
+		    				JOIN L_FILE LF
+		    				ON L.L_NUM = LF.L_NUM
+							JOIN "LEVEL" LV
+							ON L.LEVEL_NUM = LV.LEVEL_NUM
+							JOIN CATEGORY C
+							ON L.C_NUM = C.C_NUM
+							WHERE
+	                  		L.C_NUM=#{c_num}
+		    	</select>
+		    	
+		    	<select id="getMemberName" parameterType="MemberDTO" resultType="java.lang.String">
+					SELECT N_NAME=#{n_name} FROM MEMBER WHERE ID=#{id}
+				</select>
+				
+				<select id="getLectureC" resultMap="getDetailResult">
+					SELECT * FROM
+						(SELECT * FROM LECTURE L
+		    				JOIN L_FILE LF
+		    				ON L.L_NUM = LF.L_NUM
+							JOIN "LEVEL" LV
+							ON L.LEVEL_NUM = LV.LEVEL_NUM
+							JOIN CATEGORY C
+							ON L.C_NUM = C.C_NUM
+                            ORDER BY L.L_COUNT DESC)
+                            <![CDATA[WHERE ROWNUM <8]]>			
+				</select>
+				
+				<select id="getLectureLevel" resultMap="getDetailResult">
+					SELECT * FROM
+						(SELECT * FROM LECTURE L
+		    				JOIN L_FILE LF
+		    				ON L.L_NUM = LF.L_NUM
+							JOIN "LEVEL" LV
+							ON L.LEVEL_NUM = LV.LEVEL_NUM
+							JOIN CATEGORY C
+							ON L.C_NUM = C.C_NUM
+                            WHERE L.LEVEL_NUM =1)
+                            <![CDATA[WHERE ROWNUM <8]]>	
+				</select>
+				
+				<select id="getLectureRecommend" resultMap="getDetailResult">
+					SELECT * FROM LECTURE L
+		    				JOIN L_FILE LF
+		    				ON L.L_NUM = LF.L_NUM
+							JOIN "LEVEL" LV
+							ON L.LEVEL_NUM = LV.LEVEL_NUM
+							JOIN CATEGORY C
+							ON L.C_NUM = C.C_NUM
+                            ORDER BY L.L_DATE ASC 
+				</select>
 		    </mapper>

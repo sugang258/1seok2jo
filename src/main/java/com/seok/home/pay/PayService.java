@@ -17,6 +17,7 @@ import com.seok.home.lecture.add.LectureAddDAO;
 import com.seok.home.lecture.add.LectureAddDTO;
 import com.seok.home.lecture.status.StatusDAO;
 import com.seok.home.lecture.status.StatusDTO;
+import com.seok.home.member.MemberDAO;
 import com.seok.home.member.MemberDTO;
 
 @Service
@@ -31,6 +32,26 @@ public class PayService {
 	StatusDAO statusDAO;
 	@Autowired
 	LectureDAO lectureDAO;
+	@Autowired
+	MemberDAO memberDAO;
+	
+	public HashMap<String, Object> getMyPayList(MemberDTO member)throws Exception{
+		member = memberDAO.getProfile(member);
+		PaymentDTO paymentDTO = new PaymentDTO();
+		paymentDTO.setId(member.getId());
+		List<PaymentDTO> payList = payDAO.getPaymentList(paymentDTO);
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		result.put("payList", payList);
+		result.put("member", member);
+		Integer Lcnt = 0;
+		for(PaymentDTO pay:payList) {
+			Lcnt += pay.getOrders().size();
+		}
+		result.put("Lcnt", Lcnt);
+		return result;
+	}
+	
+	
 	public int cancelSuccess(RefundDTO refundDTO, Long l_num,HttpServletRequest request) throws Exception{
 		
 		//결제 취소에 성공하면 refundDTO DB에 저장

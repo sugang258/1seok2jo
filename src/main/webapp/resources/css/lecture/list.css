@@ -1,6 +1,8 @@
 .input-group {
     width: 80%;
+    display: inline;
 }
+
 
 .category {
     border-radius: 7px 0 0 7px;
@@ -22,4 +24,45 @@
 #kind,#button-addon2{
     font-weight: bold;
     color: black;
+}
+
+.clicked{
+    background-color: black !important
+
+}
+
+#div1,#div2,#div3,#div4,#div5,#div6,#div7,#div8,#div9{
+    color: red;
+    font-size: small;
+    font-weight: bold;
+}
+
+.filter{
+    border: none;
+    font-weight: bold;
+    background-color: white;
+    color:darkgray;
+
+}
+#result{
+    padding-top: 1rem !important;
+}
+
+.filter_clicked{
+    color: black !important;
+    border: none;
+    font-weight: bold;
+    background-color: white;
+}
+
+#filter{
+    margin-left: 20px;
+    height: 35px;
+    margin-top: 3px;
+    border-radius: 7px;
+}
+
+#button-addon2{
+    border: 1px solid #ced4da;
+    border-radius: 0px 7px 7px 0px;
 }

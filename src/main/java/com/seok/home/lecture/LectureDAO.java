@@ -1,5 +1,6 @@
 package com.seok.home.lecture;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.seok.home.cart.CartDTO;
 import com.seok.home.lecture.add.LectureAddDTO;
+import com.seok.home.member.MemberDTO;
 import com.seok.home.util.Pager;
 
 @Repository
@@ -131,6 +133,31 @@ public class LectureDAO {
 	
 	public List<LectureDTO> getTeacherLecture(LectureDTO lectureDTO) throws Exception {
 	    return sqlSession.selectList(NAMESPACE+"getTeacherLecture", lectureDTO);
+	}
+	
+	public List<LectureVideoDTO> getVideoCount(LectureVideoDTO lectureVideoDTO) throws Exception{
+	    return sqlSession.selectList(NAMESPACE+"getVideoCount", lectureVideoDTO);
+	}
+	
+	public List<LectureDTO> getLectureCate(Pager pager) throws Exception{
+	    return sqlSession.selectList(NAMESPACE+"getLectureCate", pager);
+	}
+	public Long getLectureCateCount(Pager pager) throws Exception{
+	    return sqlSession.selectOne(NAMESPACE+"getLectureCateCount", pager);
+	}
+	public String getMemberName(MemberDTO memberDTO) throws Exception{
+	    return sqlSession.selectOne(NAMESPACE+"getMemberName", memberDTO);
+	}
+	
+	public List<LectureDTO> getLectureC() throws Exception{
+	    return sqlSession.selectList(NAMESPACE+"getLectureC");
+	}
+	
+	public List<LectureDTO> getLectureLevel() throws Exception{
+	    return sqlSession.selectList(NAMESPACE+"getLectureLevel");
+	}
+	public List<LectureDTO> getLectureRecommend() throws Exception{
+	    return sqlSession.selectList(NAMESPACE+"getLectureRecommend", NAMESPACE);
 	}
 
 

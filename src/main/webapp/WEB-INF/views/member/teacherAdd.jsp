@@ -9,7 +9,7 @@
 		<title>Insert title here</title>
 		<link rel="stylesheet" href="/resources/css/index.css" />
 		<%-- 보통 타이틀밑에 BootStrap 링크를 넣는다 --%>
-    <%-- Bootstrap CSS --%>
+    	<%-- Bootstrap CSS --%>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,14 +26,10 @@
 		<div class="row mt-5">
 			<%-- 강사 회원가입JSP --%>
 			<form action="./teacherAdd" method="post">
-			
-			<%-- 			  <div class="mb-3">
-			    <input type="hidden" name="t_num" class="form-control" id="ipId" value="${teacher.t_num}">
-			  </div>--%>
-			  
+
 			  <div class="mb-3">
-			    <label for="ipId" class="form-label">아이디</label>
-			    <input type="text" name="id" class="form-control" id="ipId" value="${member.id}">
+				<label for="ipId" class="form-label">${member.id}</label>
+			    <input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}">
 			  </div>
 			  
 			  <div class="mb-3">

@@ -4,7 +4,96 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <mapper namespace="com.seok.home.pay.PayDAO">
+    	<select id="getOamountTotal" parameterType="TeacherPager" resultType="Long">
+    	   	select sum(o.o_amount) from Orders O
+            left join refund R
+			on O.O_num = R.O_num 
+            left join Payments p
+            on P.p_uid = O.p_uid
+            left join Lecture L
+            on O.L_NUM = L.L_NUM
+            INNER join Lecture_sign LS
+            on L.L_NUM = LS.L_NUM and P.ID = LS.ID
+            where L.ID = #{teacher}
+            and P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+			and <include refid="tchrsearch"></include>
+			and <include refid="tchrchkstatus"></include>
+			and R.pr_num is null
+    	</select>
     
+      	<sql id="tchrsearch">
+			<choose>
+				<when test="kind == 'L_NAME'">L.L_NAME LIKE '%'||#{search}||'%'</when>
+				<when test="kind == 'ID'">P.ID = #{search}</when>
+				<otherwise>'a' = 'a'</otherwise>
+			</choose>
+		</sql>
+    	<sql id="tchrchkstatus">
+			<choose>
+				<when test="chkstatus == 'ing,end'">'a' = 'a'</when>
+				<when test="chkstatus == 'ing'">status = 1</when>
+				<when test="chkstatus == 'end'">status = 0</when>
+				<otherwise>'a' = 'a'</otherwise>
+			</choose> 
+		</sql>
+		
+		<select id="getteacherListTotal" parameterType="TeacherPager" resultType="Long">
+   	        select count(*) from Orders O
+            left join refund R
+			on O.O_num = R.O_num 
+            left join Payments p
+            on P.p_uid = O.p_uid
+            left join Lecture L
+            on O.L_NUM = L.L_NUM
+            INNER join Lecture_sign LS
+            on L.L_NUM = LS.L_NUM and P.ID = LS.ID
+            where L.ID = #{teacher}
+            and P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+			and <include refid="tchrsearch"></include>
+			and <include refid="tchrchkstatus"></include>
+		</select>
+    
+    	<select id="getteacherList" parameterType="TeacherPager" resultMap="teacherListResult">
+			select *
+    		from (select rownum as rown, TCHR.*
+    	    	from(select O.P_UID,P.P_REGDATE, O.O_NUM, O.O_AMOUNT, P.ID as CUS, LS.ID, L.L_NUM,L.L_NAME, L.ID AS TEACHER, LS.S_START, LS.S_END, LS.STATUS, PR_NUM 
+    	    		from Orders O
+                    left join refund R
+					on O.O_num = R.O_num 
+                    left join Payments p
+                    on P.p_uid = O.p_uid
+                    left join Lecture L
+                    on O.L_NUM = L.L_NUM
+                    INNER join Lecture_sign LS
+                    on L.L_NUM = LS.L_NUM and P.ID = LS.ID
+                    where L.ID = #{teacher}
+                    and P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+					and <include refid="tchrsearch"></include>
+					and <include refid="tchrchkstatus"></include>
+					<include refid="orderby"></include>)TCHR)
+			where rown between #{startRow} and #{lastRow}
+    	</select>
+    	<resultMap type="OrderDTO" id="teacherListResult">
+    		<id column="O_NUM" property="o_num"/>
+    		<result column="P_UID" property="p_uid"/>
+   			<result column="L_NUM" property="l_num"/>
+   			<result column="O_AMOUNT" property="o_amount"/>
+   			<result column="PR_NUM" property = "pr_num"/>
+   			<result column="P_REGDATE" property = "p_regdate"/>
+   			<association property="lectureDTO" javaType="LectureDTO">
+   				<id column="l_num" property="l_num"/>
+   				<result column="TEACHER" property="id"/>
+   				<result column="l_name" property="l_name"/>
+   				<association property="lectureAddDTO" javaType="LectureAddDTO">
+	   				<id column="s_num" property="s_num"/>
+	   				<result column="CUS" property="id"/>
+	   				<result column="S_START" property="s_start"/>
+	   				<result column="S_END" property="s_end"/>
+	   				<result column="STATUS" property="status"/>
+   				</association>
+   			</association>
+    	</resultMap>
+    	
     	<select id="getPaymentRemains" parameterType="PaymentDTO" resultType="Long">
     		select p_remains from payments where p_uid=#{p_uid}
     	</select>
@@ -40,15 +129,59 @@
    			</association>
     	</resultMap>
     	
-    	<select id="getPayAdminList" parameterType="AdminPager" resultMap="adminListResult">
-    		select P.*, O.O_NUM, O.L_NUM, O.O_AMOUNT, L.ID TEACHER, L.LEVEL_NUM, L.L_NAME, L.L_PRICE, R.PR_NUM
+  		<sql id="search">
+			<choose>
+				<when test="kind == 'P_UID'">P.P_UID LIKE '%'||#{search}||'%'</when>
+				<when test="kind == 'TEACHER'">L.ID = #{search}</when>
+				<when test="kind == 'L_NAME'">L.L_NAME LIKE '%'||#{search}||'%'</when>
+				<when test="kind == 'ID'">P.ID = #{search}</when>
+				<otherwise>'a' = 'a'</otherwise>
+			</choose>
+		</sql>
+		<sql id="orderby">
+			<choose>
+				<when test="orderby == 'old'">ORDER BY  P.P_REGDATE ASC</when>
+				<when test="orderby == 'new'">ORDER BY  P.P_REGDATE DESC</when>
+				<otherwise>ORDER BY P.P_REGDATE DESC</otherwise>
+			</choose> 
+		</sql>
+    	<sql id="chkstatus">
+			<choose>
+				<when test="chkstatus == 'paid,canceled'">'a' = 'a'</when>
+				<when test="chkstatus == 'canceled'">R.pr_num is not null</when>
+				<when test="chkstatus == 'paid'">R.pr_num is null</when>
+				<otherwise>'a' = 'a'</otherwise>
+			</choose> 
+		</sql>
+		<select id="getPayAdminTotal" parameterType="AdminPager" resultType="Long">
+    		select count(*)
 			FROM payments P
 			left join ORDERS O
 			on P.p_uid = O.P_UID
 			left join Lecture L
 			on O.l_num = L.l_num
 			left join refund R
-			on O.O_num = R.O_num    	
+			on O.O_num = R.O_num   
+			where P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+			and <include refid="search"></include>
+			and <include refid="chkstatus"></include>
+    	</select>
+    	<select id="getPayAdminList" parameterType="AdminPager" resultMap="adminListResult">
+    		select *
+    		from (select rownum as rown, ADMINP.*
+    			from(select P.*, O.O_NUM, O.L_NUM, O.O_AMOUNT, L.ID TEACHER, L.LEVEL_NUM, L.L_NAME, L.L_PRICE, R.PR_NUM
+					FROM payments P
+					left join ORDERS O
+					on P.p_uid = O.P_UID
+					left join Lecture L
+					on O.l_num = L.l_num
+					left join refund R
+					on O.O_num = R.O_num   
+					where P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+					and <include refid="search"></include>
+					and <include refid="chkstatus"></include>
+					<include refid="orderby"></include>) ADMINP)
+			where rown between #{startRow} and #{lastRow}
     	</select>
     	<resultMap type="PaymentDTO" id="adminListResult">
     		<id column="p_uid" property="p_uid"/>
@@ -91,7 +224,7 @@
 			on O.l_num = L.l_num
 			left join refund R
 			on O.O_num = R.O_num
-			where P.p_uid=#{p_uid}
+			where P.id=#{id}
     	</select>
     	<resultMap type="PaymentDTO" id="allPaymentsResult">
     		<id column="p_uid" property="p_uid"/>

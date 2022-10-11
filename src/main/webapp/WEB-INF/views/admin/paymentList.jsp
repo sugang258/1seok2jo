@@ -9,14 +9,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>1대1 문의</title>
+        <title>매출 내역 목록</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="/resources/temp/css/styles1.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
             <!-- jQuery -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+        <link href="/resources/css/admin/bscommon.css" rel="stylesheet" />
     </head>
-    <body class="sb-nav-fixed">
+    <body class="sb-nav-fixed ilseok">
     	<c:import url="./navbar.jsp"></c:import>
             <div id="layoutSidenav_content">
                 <main>
@@ -42,9 +43,10 @@
                                     <div class="col-5">
                                         <div class="input-group">
                                         <select type="button" name="kind" id="kind" class="btn btn-outline-success dropdown-toggle" style="text-align: left;" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <option value="CS_STATUS">강사명</option>
-                                            <option value="CS_TITLE">강의명</option>
-                                            <option value="CS_PHONE">구매자아이디</option>
+                                            <option value="P_UID">결제번호</option>
+                                            <option value="TEACHER">강사아이디</option>
+                                            <option value="L_NAME">강의명</option>
+                                            <option value="ID">구매자아이디</option>
                                         </select>
                                         <input type="text" name="search" id="search" class="form-control"></input>
                                         </div>
@@ -53,9 +55,9 @@
                                 <div class="row mt-2">
                                     <div class="col-12">
                                         <span class="text-muted">상태</span>
-                                        <input type="checkbox" id="paid" name="status" value="paid" checked>
+                                        <input type="checkbox" id="paid" name="status" value="paid " class="form-check-input" checked>
                                         <label id="plb" for="paid" style="font-weight:bold; color:black">결제</label>
-                                        <input type="checkbox" id="canceled" name="status" value="canceled" checked>
+                                        <input type="checkbox" id="canceled" name="status" value="canceled" class="form-check-input" checked>
                                         <label id="clb" for="canceled" style="font-weight:bold; color:black">환불</label>
                                     </div>
                                 </div>

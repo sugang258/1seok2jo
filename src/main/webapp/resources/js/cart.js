@@ -18,7 +18,7 @@ del.forEach(function(del1){
 
         if(check) {
         let d = event.target;
-        let cart_num = d.parentNode.parentNode.childNodes[9].childNodes[3].value;
+        let cart_num = del1.getAttributeNode("data-c-num").value;
 
         console.log(cart_num);
 
@@ -57,33 +57,35 @@ del.forEach(function(del1){
 cart.forEach(function(cartbtn){
     cartbtn.addEventListener("click",function(){
         let l_num = cartbtn.getAttributeNode("data-l-num").value;
-        console.log(l_num);
+        console.log("엘넘"+l_num);
 
-        const xhttp = new XMLHttpRequest();
+        window.location.href="/lecture/detail?l_num="+l_num;
 
-        xhttp.open("GET","../lecture/detail");
+        // const xhttp = new XMLHttpRequest();
 
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        // xhttp.open("GET","../lecture/detail");
+
+        // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
         
-        xhttp.send("l_num=" + l_num);
+        // xhttp.send("l_num="+l_num);
 
-        xhttp.onreadystatechange = function() {
-            if(this.readyState == 4 && this.status == 200) {
-                let result = xhttp.responseText.trim();
-                console.log(result);
+        // xhttp.onreadystatechange = function() {
+        //     if(this.readyState == 4 && this.status == 200) {
+        //         let result = xhttp.responseText.trim();
+        //         console.log(result);
                 
-                result = JSON.parse(result);
-                if(result == 1) {
-                    alert("강의 페이지로 이동합니다.");
+        //         result = JSON.parse(result);
+        //         if(result == 1) {
+        //             alert("강의 페이지로 이동합니다.");
                     
-                    window.location.href="../lecture/detail?l_num="+l_num;
+        //             window.location.href="../lecture/detail?l_num="+l_num;
                     
-                }else {
-                    alert("강의 페이지로 이동 실패");
-                }
-            }
-        }
+        //         }else {
+        //             alert("강의 페이지로 이동 실패");
+        //         }
+        //     }
+        // }
         
 
     })
@@ -93,8 +95,9 @@ cart.forEach(function(cartbtn){
 sign.forEach(function(sign1){
     sign1.addEventListener("click",function(event){
         event.stopPropagation();
-        let l_num = event.target.parentNode.parentNode.getAttributeNode("data-l-num").value;
+        let l_num = event.target.parentNode.parentNode.parentNode.childNodes[3].getAttributeNode("data-l-num").value;
         
+        console.log(l_num);
         let check = window.confirm("수강신청 하시겠습니까?");
         
 

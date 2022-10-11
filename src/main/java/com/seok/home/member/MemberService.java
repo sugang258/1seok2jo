@@ -38,34 +38,50 @@ public class MemberService {
 	}
 	
 	//회원가입
-	public int setJoin(MemberDTO memberDTO)throws Exception{
+	public int setJoin(MemberDTO memberDTO, String yy, String mm, String dd, String e, String mail)throws Exception{
+
+		MemberFileDTO memberFileDTO = new MemberFileDTO();
+		memberFileDTO.setId(memberDTO.getId());
+		memberFileDTO.setF_name("default.png");
+		memberFileDTO.setF_oriname("default.png");
+		
+		memberDTO.setB_date(Long.parseLong(yy+mm+dd));
+		memberDTO.setEmail(e+mail);
+		memberDTO.setMemberFileDTO(memberFileDTO);
+		System.out.println("memberfileDTO"+memberDTO.getMemberFileDTO().getF_name());
+		
 		//회원가입이 성공하면 등급을 추가
 		int susess = memberDAO.setJoin(memberDTO);
+		int file = 0;
 		int result = 0;
-		if(susess == 1 ) {
+		if(susess == 1) {
+			file = memberDAO.setAddFile(memberFileDTO);
 			result = memberDAO.setMemberRole(memberDTO);
+			result = file*result;
 		}
 		
 		return result;	
 	}
-	//강사정보 조회
-	public TeacherDTO getTeacherDetail(TeacherDTO teacherDTO)throws Exception{
-		return teacherDAO.getTeacherDetail(teacherDTO);
-	}
 	
 	//강사신청
-	public int setTeacherAdd(TeacherDTO teacherDTO, ServletContext servletContext)throws Exception{
-		System.out.println("강사신청한거에 너의 강사신청번호가 있니? "+teacherDTO.getT_num());
+	public int setTeacherAdd(TeacherDTO teacherDTO, ServletContext servletContext, MemberDTO memberDTO)throws Exception{
+		
+		List<RoleDTO> roleDTOs = memberDTO.getRoleDTOs();
+		TeacherDTO teacherDTO2 = memberDTO.getTeacherDTO();
+		//2
+		System.out.println("강사신청서비스 : "+roleDTOs.get(0).getRoleNum());
+		//강사
+		System.out.println("강사신청서비스 : "+roleDTOs.get(0).getRoleName());
+		
+		Long roleNum = roleDTOs.get(0).getRoleNum();
+		
 		int result = 0;
-		if(teacherDTO.getT_num() == null) {
+		if(roleNum != 2) {
 			//강사신청 성공하면 등급을 추가
 			int susess = teacherDAO.setTeacherAdd(teacherDTO);
 			if(susess == 1) {
 				result = teacherDAO.setTeacherRole(teacherDTO);
 			}
-		
-//		teacherDTO = teacherDAO.getTeacherDetail(teacherDTO);
-//		System.out.println("강사신청한거에 강사신청번호가있니? "+teacherDTO.getT_num());
 		
 		}
 		return result;
@@ -105,6 +121,7 @@ public class MemberService {
 		
 		//memberFileDTO가 있으면
 		if(memberFileDTO != null) {
+			
 			//memberFileDTO을 삭제
 			result = memberDAO.setDeleteFile(memberFileDTO);
 		}
@@ -140,6 +157,16 @@ public class MemberService {
 //		}
 		
 		return result;
+	}
+	
+	//강사프로필정보조회
+	public TeacherDTO getTcherProfile(TeacherDTO teacherDTO)throws Exception{
+		return teacherDAO.getTeacherDetail(teacherDTO);
+	}
+	
+	//강사프로필수정
+	public int setEditTcherProfile(TeacherDTO teacherDTO)throws Exception{
+		return teacherDAO.setTeacherUpdate(teacherDTO);
 	}
 	
 	//장바구니

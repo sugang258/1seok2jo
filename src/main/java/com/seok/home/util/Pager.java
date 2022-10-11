@@ -30,6 +30,10 @@ public class Pager {
 		//검색어
 		private String search;
 		
+		private Long c_num;
+		
+		private String filter;
+		
 		
 		public Pager() {
 			this.perPage=9L;
@@ -182,6 +186,28 @@ public class Pager {
 		public void setSearch(String search) {
 			this.search = search;
 		}
+
+
+        public Long getC_num() {
+            return c_num;
+        }
+
+
+        public void setC_num(Long c_num) {
+            this.c_num = c_num;
+        }
+
+
+        public String getFilter() {
+            return filter;
+        }
+
+
+        public void setFilter(String filter) {
+            this.filter = filter;
+        }
+        
+		
 		
 	}
 

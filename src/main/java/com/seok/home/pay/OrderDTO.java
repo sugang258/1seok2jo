@@ -1,5 +1,7 @@
 package com.seok.home.pay;
 
+import java.sql.Date;
+
 import com.seok.home.lecture.LectureDTO;
 
 public class OrderDTO {
@@ -9,6 +11,7 @@ public class OrderDTO {
 	private Long l_num;
 	private Long pr_num; //환불번호
 	private LectureDTO lectureDTO;
+	private Date p_regdate;
 	
 	public Long getO_num() {
 		return o_num;
@@ -45,6 +48,12 @@ public class OrderDTO {
 	}
 	public void setLectureDTO(LectureDTO lectureDTO) {
 		this.lectureDTO = lectureDTO;
+	}
+	public Date getP_regdate() {
+		return p_regdate;
+	}
+	public void setP_regdate(Date p_regdate) {
+		this.p_regdate = p_regdate;
 	}
 	
 

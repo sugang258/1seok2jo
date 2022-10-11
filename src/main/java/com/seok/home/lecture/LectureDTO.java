@@ -5,6 +5,7 @@ import java.util.List;
 import com.seok.home.cart.CartDTO;
 import com.seok.home.lecture.add.LectureAddDTO;
 import com.seok.home.lecture.status.StatusDTO;
+import com.seok.home.member.MemberDTO;
 
 public class LectureDTO {
 	
@@ -23,6 +24,7 @@ public class LectureDTO {
 	private List<LectureVideoDTO> lectureVideoDTO;
 	private CartDTO cartDTO;
 	private LectureAddDTO lectureAddDTO;
+	private MemberDTO memberDTO;
 	
 	public Long getL_num() {
 		return l_num;
@@ -114,6 +116,14 @@ public class LectureDTO {
 	public void setLectureAddDTO(LectureAddDTO lectureAddDTO) {
 		this.lectureAddDTO = lectureAddDTO;
 	}
+    public MemberDTO getMemberDTO() {
+        return memberDTO;
+    }
+    public void setMemberDTO(MemberDTO memberDTO) {
+        this.memberDTO = memberDTO;
+    }
+	
+	
 	
 	
 

@@ -17,12 +17,47 @@
     href="https://fonts.googleapis.com/css2?family=Arvo&family=Dongle&family=Montserrat:wght@200&family=PT+Serif&family=Playfair+Display:wght@600&family=Prompt&family=Vollkorn:wght@500&display=swap"
     rel="stylesheet"
     />
+    <link rel="shortcut icon" href="/resources/images/favicon.ico">
 </head>
 <c:import url="../template/header.jsp"></c:import>
 <body>
     <main class="container mt-5">
         
             <div class="row main-content">
+                <div class="col-lg-2 sidebar" id="leftside">
+                    <!-- Categories widget-->
+
+                    <!--Teacher NAME-->
+                    <div class="card mb-4 sidebar__inner text-center left" style="display: block;" >
+                        <div class="card-header">강사</div>
+                        <div class="card-body">
+                            <div>${detail.memberDTO.n_name}</div>
+                        </div>
+                    </div>
+
+                    <!--Category-->
+                    <div class="card mb-4 sidebar__inner text-center left" style="display: block;" >
+                        <div class="card-header">Category</div>
+                        <div class="card-body">
+                            <div>${detail.c_name}</div>
+                        </div>
+                    </div>
+
+                        <!--Level-->
+                    <div class="card mb-4 sidebar__inner text-center left" style="display: block;">
+                        <div class="card-header">Level</div>
+                        <div class="card-body">
+                            <div>${detail.level_name}</div>
+                        </div>
+                    </div>
+                        <!--Student Count-->
+                    <div class="card mb-4 sidebar__inner text-center left" style="display: block;">
+                        <div class="card-header">수강중인 학생 수</div>
+                        <div class="card-body">
+                            <div>${detail.l_count}명</div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-8 content" id="content">
                     <!-- Post content-->
                     <article>
@@ -48,30 +83,8 @@
                     </article>
                 </div>
                 <!-- Side widgets-->
-                <div class="col-lg-4 sidebar" id="aside">
-                    <!-- Categories widget-->
-                    <div class="card mb-4 sidebar__inner text-center" style="display: block;" >
-                        <div class="card-header">Category</div>
-                        <div class="card-body">
-                            <div>${detail.c_name}</div>
-                        </div>
-                    </div>
-
-                        <!--Level-->
-                    <div class="card mb-4 sidebar__inner text-center" style="display: block;">
-                        <div class="card-header">Level</div>
-                        <div class="card-body">
-                            <div>${detail.level_name}</div>
-                        </div>
-                    </div>
-                        <!--Student Count-->
-                    <div class="card mb-4 sidebar__inner text-center" style="display: block;">
-                        <div class="card-header">수강중인 학생 수</div>
-                        <div class="card-body">
-                            <div>${detail.l_count}명</div>
-                        </div>
-                    </div>
-               
+                <div class="col-lg-2 sidebar" id="aside">
+                    
                     <!-- Side widget-->
                     <div class="card mb-4 sidebar__inner" style="display: block;">
                         <div class="card-header text-center">목 차 (총 ${count} 강의)</div>
@@ -89,7 +102,7 @@
                         </div>
                             <div class="card-body">-->
                                 <div class="input-group"> 
-                                    <button class="btn btn-primary" id="board" type="button" data-lnum-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">📝수강평 보러가기</button>
+                                    <button class="btn btn-primary" id="board" type="button" data-lnum-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">📝수강평<br> 보러가기</button>
                                  </div>
                            <!-- </div>
                     </div> -->
@@ -100,7 +113,7 @@
                         </div>
                             <div class="card-body"> -->
                                 <div class="input-group">
-                                    <button class="btn btn-primary" id="signs" type="button" data-lnum-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">✏수강신청 하기</button>
+                                    <button class="btn btn-primary" id="signs" type="button" data-lnum-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">✏수강신청<br> 하기</button>
                                 </div>
                             <!-- </div>
                     </div> -->
@@ -111,7 +124,7 @@
                         </div>
                             <div class="card-body"> -->
                                 <div class="input-group">
-                                    <button class="btn btn-primary" id="listen" type="button" data-listen-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">🎧강의 들으러 가기</button>
+                                    <button class="btn btn-primary" id="listen" type="button" data-listen-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">🎧강의 <br>들으러 가기</button>
                                 </div>
                             <!-- </div>
                     </div> -->

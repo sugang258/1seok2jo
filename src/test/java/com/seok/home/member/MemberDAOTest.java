@@ -1,6 +1,9 @@
 package com.seok.home.member;
 
 import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
+import java.util.List;
 
 import javax.swing.plaf.metal.MetalMenuBarUI;
 
@@ -8,11 +11,55 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.seok.home.MyAbstractTest;
+import com.seok.home.admin.AdminPager;
 
 public class MemberDAOTest extends MyAbstractTest {
 
 	@Autowired
 	private MemberDAO memberDAO;
+	
+//	@Test
+	public void getPointTest() throws Exception{
+		MemberDTO dto = new MemberDTO();
+		dto.setId("yj");
+		
+		Long result = memberDAO.getPoint(dto);
+		System.out.println(result);
+	}
+	
+//	@Test
+	public void updatePointTest() throws Exception{
+		MemberDTO dto = new MemberDTO();
+		dto.setId("yj");
+		dto.setPoint(-2000L);
+		int result = memberDAO.updatePoint(dto);
+		
+		assertEquals(1, result);
+	}
+	
+//	@Test
+	public void setDeleteTeacherAllTest() throws Exception{
+		MemberDTO dto = new MemberDTO();
+		dto.setId("yj");
+		
+		int result = memberDAO.setDeleteTeacherAll(dto);
+		
+		assertEquals(1, result);
+	}
+	
+//	@Test
+	public void getAdminMemberListTest() throws Exception{
+		AdminPager pager = new AdminPager();
+		List<MemberDTO> memlist = memberDAO.getAdminMemberList(pager);
+		
+		for(MemberDTO mem:memlist) {
+			System.out.println(mem.getId());
+			for(RoleDTO r:mem.getRoleDTOs()) {
+				System.out.println(r.getRoleName());
+			}
+		}
+		assertNotNull(memlist);
+	}
 	
 	//@Test
 	public void setJoinTest()throws Exception{
@@ -37,8 +84,8 @@ public class MemberDAOTest extends MyAbstractTest {
 	//@Test
 	public void getLoginTest()throws Exception {
 		MemberDTO memberDTO = new MemberDTO();
-		memberDTO.setId("yj");
-		memberDTO.setPw("yj");
+		memberDTO.setId("koo");
+		memberDTO.setPw("123");
 		memberDTO = memberDAO.getLogin(memberDTO);
 		
 		assertNotNull(memberDTO);
@@ -88,6 +135,15 @@ public class MemberDAOTest extends MyAbstractTest {
 		
 		int result = memberDAO.getIdCheck(memberDTO);
 		
+		assertEquals(1, result);
+	}
+	
+//	@Test
+	public void setAddFileTest()throws Exception{
+		MemberFileDTO memberFileDTO = new MemberFileDTO();
+		memberFileDTO.setF_name("haha");
+		memberFileDTO.setF_oriname("ha");
+		int result = memberDAO.setAddFile(memberFileDTO);
 		assertEquals(1, result);
 	}
 	

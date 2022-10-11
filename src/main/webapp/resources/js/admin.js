@@ -1,3 +1,223 @@
+//게시글관리 페이지
+function initboards(){
+    let startDate = document.getElementById("startDate");
+    let endDate = document.getElementById("endDate");
+    let offset = new Date().getTimezoneOffset() * 60000;
+    let today = new Date(Date.now() - offset).toISOString().substring(0,10);
+    let orderby = document.querySelectorAll('input[name="orderby"]')
+    let orderbyVal = document.querySelector('input[name="orderby"]:checked').value;
+    let page = 1;
+
+    startDate.value = today
+    endDate.value= today
+
+    boardsList(page)
+
+    //search버튼 클릭하면 리스트 요청
+    let btnSearch = document.getElementById("btnSearch");
+    btnSearch.addEventListener("click", function(){
+        page = 1;
+        boardsList(page)    
+    })
+
+    //페이징 클릭하면
+    let postResult = document.getElementById("postResult");
+    postResult.addEventListener("click", function(event){
+        let chk = document.querySelectorAll(".chk");
+        if(event.target.getAttribute("class")=="page-link"){
+            page = event.target.getAttribute("data-page")
+            boardsList(page)
+        }else{
+            //all 체크박스 클릭하면 전체 체크, 해제
+            if(event.target.getAttribute("id")=='all'){
+                for(let i=0; i<chk.length; i++){
+                    chk[i].checked = event.target.checked;
+                }
+            }else if(event.target.getAttribute("class")=='chk'){
+                if(!event.target.checked){
+                    all.checked = false;
+                }else{
+                    let test = true;
+                    for(let i=0; i<chk.length; i++){
+                        test = test && chk[i].checked;
+                    }
+                    if(test){
+                        all.checked = test;
+                    }
+                }
+            }
+        }
+    })
+
+    //order 값 바뀌면 변경하고 리스트 요청
+    let newlb = document.getElementById("newlb")
+    let oldlb = document.getElementById("oldlb")
+    for(let i = 0 ; i<orderby.length; i++){
+        orderby[i].addEventListener("change", function(){
+            orderbyVal = document.querySelector('input[name="orderby"]:checked').value;
+            if(orderbyVal=='old'){
+                newlb.setAttribute("style", "");
+                oldlb.setAttribute("style", "font-weight:bold; color:black");
+            }else if(orderbyVal=='new'){
+                oldlb.setAttribute("style", "");
+                newlb.setAttribute("style", "font-weight:bold; color:black");
+            }
+            page = 1
+            payList(page)
+        })
+    }
+    //게시글 삭제 버튼 누르면
+}
+//게시글리스트 요청하기
+function boardsList(page){
+    let postResult = document.getElementById("postResult");
+    let chkstatus = getCheckboxValue("status")
+    orderbyVal = document.querySelector('input[name="orderby"]:checked').value
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST","./boardsList");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    xhttp.send("page="+page+"&chkstatus="+chkstatus+"&startDate="+startDate.value+"&endDate="+endDate.value+"&kind="+kind.value+"&search="+search.value+"&orderby="+orderbyVal)
+    xhttp.addEventListener("readystatechange", function(){
+        if(this.readyState==4 && this.status==200){
+            postResult.innerHTML = xhttp.responseText;
+        }
+    })
+
+}
+
+//강의관리 페이지
+function initlectures(){
+    let page = 1;
+    lectureList(page)
+
+    //search버튼 클릭하면 리스트 요청
+    let btnSearch = document.getElementById("btnSearch");
+    btnSearch.addEventListener("click", function(){
+        page = 1;
+        lectureList(page)    
+    })
+
+    //페이징 클릭하면
+    let postResult = document.getElementById("postResult");
+    postResult.addEventListener("click", function(event){
+        let chk = document.querySelectorAll(".chk");
+        if(event.target.getAttribute("class")=="page-link"){
+            page = event.target.getAttribute("data-page")
+            boardsList(page)
+        }else{
+            //all 체크박스 클릭하면 전체 체크, 해제
+            if(event.target.getAttribute("id")=='all'){
+                for(let i=0; i<chk.length; i++){
+                    chk[i].checked = event.target.checked;
+                }
+            }else if(event.target.getAttribute("class")=='chk'){
+                if(!event.target.checked){
+                    all.checked = false;
+                }else{
+                    let test = true;
+                    for(let i=0; i<chk.length; i++){
+                        test = test && chk[i].checked;
+                    }
+                    if(test){
+                        all.checked = test;
+                    }
+                }
+            }
+        }
+    })
+
+    //강의 삭제 버튼 누르면
+}
+//강의리스트 요청하기
+function lectureList(page){
+    let postResult = document.getElementById("postResult");
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST","./lectureList");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    xhttp.send("page="+page+"&kind="+kind.value+"&search="+search.value)
+    xhttp.addEventListener("readystatechange", function(){
+        if(this.readyState==4 && this.status==200){
+            postResult.innerHTML = xhttp.responseText;
+        }
+    })
+
+}
+
+//회원관리 페이지
+function initmembers(){
+    let page = 1;
+    memberList(page)
+
+    //회원삭제 버튼 클릭
+    let memDelBtn = document.getElementById("memDelBtn");
+    memDelBtn.addEventListener("click", function(){
+        alert("!!경고!! 회원삭제 후 되돌릴 수 없습니다")
+        let chk = window.confirm("정말 회원 삭제를 하시겠습니까?")
+        if(chk){
+            console.log("yes")
+        }
+    })
+
+    //search버튼 클릭하면 리스트 요청
+    let btnSearch = document.getElementById("btnSearch");
+    btnSearch.addEventListener("click", function(){
+        page = 1;
+        memberList(page)
+        
+    })
+
+    //페이징 클릭하면
+    let postResult = document.getElementById("postResult");
+    postResult.addEventListener("click", function(event){
+        let cs_num = event.target.parentNode.getAttribute("data-csnum");
+        let chk = document.querySelectorAll(".chk");
+        if(event.target.getAttribute("class")=="page-link"){
+            page = event.target.getAttribute("data-page")
+            memberList(page)
+        }else{
+            //all 체크박스 클릭하면 전체 체크, 해제
+            if(event.target.getAttribute("id")=='all'){
+                for(let i=0; i<chk.length; i++){
+                    chk[i].checked = event.target.checked;
+                }
+            }else if(event.target.getAttribute("class")=='chk'){
+                if(!event.target.checked){
+                    all.checked = false;
+                }else{
+                    let test = true;
+                    for(let i=0; i<chk.length; i++){
+                        test = test && chk[i].checked;
+                    }
+                    if(test){
+                        all.checked = test;
+                    }
+                }
+            }
+        }
+
+    })
+
+    //회원삭제버튼 클릭하면
+
+    //강사권한삭제버튼 클릭하면
+
+}
+//memberList요청하기
+function memberList(page){
+    let postResult = document.getElementById("postResult");
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST","./memberList");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    xhttp.send("page="+page+"&kind="+kind.value+"&search="+search.value)
+    xhttp.addEventListener("readystatechange", function(){
+        if(this.readyState==4 && this.status==200){
+            postResult.innerHTML = xhttp.responseText;
+        }
+    })
+
+}
+
+//매출관리 페이지
 function initpay(){
     let startDate = document.getElementById("startDate");
     let endDate = document.getElementById("endDate");
@@ -63,7 +283,8 @@ function initcs(){
     //오늘날짜로 초기화
     let startDate = document.getElementById("startDate");
     let endDate = document.getElementById("endDate");
-    let today = new Date().toISOString().substring(0,10);
+    let offset = new Date().getTimezoneOffset() * 60000;
+    let today = new Date(Date.now() - offset).toISOString().substring(0,10);
     let orderby = document.querySelectorAll('input[name="orderby"]')
     let orderbyVal = document.querySelector('input[name="orderby"]:checked').value;
     let page = 1;
@@ -228,3 +449,4 @@ function getCheckboxValue(chkboxname)  {
     // 출력
     return (result.substring(0,result.length-1));
 }
+

@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.seok.home.cs_board.CsBoardDTO;
 import com.seok.home.member.MemberDTO;
 import com.seok.home.pay.PaymentDTO;
-import com.seok.home.util.paymentSeacher;
 
 @Controller
 @RequestMapping(value = "/admin/*")
@@ -36,9 +35,51 @@ public class AdminController {
 	private void getLogin() {
 	}
 	
+	@GetMapping(value = "boardsList")
+	private String getBoards() {
+		return "admin/boardsList";
+	}
+	
+	@PostMapping(value = "boardsList")
+	@ResponseBody
+	private ModelAndView getBoards(AdminPager pager, ModelAndView mv) throws Exception{
+
+		mv.addObject("boardsList", service.getBoardsList(pager));
+		mv.addObject("pager", pager);
+		mv.setViewName("admin/boardListPost");
+		
+		return mv;
+	}
+	
+	@GetMapping(value = "lectureList")
+	private String getLecture() {
+		return "admin/lectureList";
+	}
+	
+	@PostMapping(value = "lectureList")
+	@ResponseBody
+	private ModelAndView getLecture(AdminPager pager, ModelAndView mv) throws Exception{
+		
+		mv.addObject("lectureList", service.getLectureList(pager));
+		mv.addObject("pager", pager);
+		mv.setViewName("admin/lectureListPost");
+		
+		return mv;
+	}
+	
 	@GetMapping(value = "memberList")
 	private String getMember() {
 		return "admin/memberList";
+	}
+	@PostMapping(value = "memberList")
+	@ResponseBody
+	private ModelAndView getMember(AdminPager pager, ModelAndView mv) throws Exception{
+		
+		mv.addObject("memberList", service.getMember(pager));
+		mv.addObject("pager", pager);
+		mv.setViewName("admin/memberListPost");
+		
+		return mv;
 	}
 	
 	@GetMapping(value = "paymentList")
@@ -49,8 +90,6 @@ public class AdminController {
 	@PostMapping(value = "paymentList")
 	@ResponseBody
 	private ModelAndView getPayments(AdminPager pager, ModelAndView mv) throws Exception{
-		
-		System.out.println(pager.getChkstatus());
 		
 		List<PaymentDTO> payList = service.getPaymentsList(pager);
 		
@@ -104,19 +143,21 @@ public class AdminController {
 	}
 	
 	@PostMapping
-	private void getLogin(MemberDTO member, HttpServletRequest request) throws Exception {
+	private String getLogin(MemberDTO member, HttpServletRequest request) throws Exception {
 		//아이디와 비밀번호를 체크한 뒤 admin 자격이 있으면 세션의 admin값에 true로 돌려준다.
 		boolean chk = service.getLogin(member);
 		
 		HttpSession session = request.getSession();
 		
+		String url = "";
+		
 		if(chk==true) {
-			System.out.println("true");
+			url = "redirect: /admin/main";
 		}else {
-			System.out.println("false");
+			url = "admin/login";
 		}
 		session.setAttribute("admin", chk);
-		
+		return url;
 	}
 	
 	
@@ -141,11 +182,6 @@ public class AdminController {
 		return mv;
 	}
 	
-	@PostMapping(value = "memberList")
-	private String getMember(AdminPager pager) {
-		
-		
-		return "admin/memberList";
-	}
+
 
 }

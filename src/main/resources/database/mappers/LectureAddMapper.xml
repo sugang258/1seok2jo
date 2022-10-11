@@ -18,7 +18,7 @@
 		    	</update>
 		    	
 		    	<select id="getLectureAdd" parameterType="LectureAddDTO" resultType="LectureAddDTO"> 
-		    		SELECT * FROM LECTURE_SIGN WHERE L_NUM=#{l_num} AND ID=#{id}
+		    		SELECT * FROM LECTURE_SIGN WHERE L_NUM=#{l_num} AND ID=#{id} AND STATUS=1
 		    	</select>
 		    	
 		    	<delete id="setLectureAddDelete" parameterType="LectureAddDTO">
@@ -34,11 +34,11 @@
 		    	</update>
 		    	
 		    	<select id="getLectureAddAll" resultType="LectureAddDTO">
-		    		SELECT * FROM LECTURE_SIGN
+		    		SELECT * FROM LECTURE_SIGN WHERE STATUS=1
 		    	</select>
 		    	
 		    	<select id="getLectureSearch" parameterType="LectureAddDTO" resultType="LectureAddDTO">
-		    		SELECT S_NUM FROM LECTURE_SIGN WHERE L_NUM = #{l_num}
+		    		SELECT S_NUM FROM LECTURE_SIGN WHERE L_NUM = #{l_num} AND STATUS=1
 		    	</select>
 		    	
 		    	<delete id="setLectureDeleteAll" parameterType="LectureDTO">
@@ -46,11 +46,15 @@
 		    	</delete>
 		    	
 		    	<select id="getLectureCancel" parameterType="LectureAddDTO" resultType="LectureAddDTO">
-		    		SELECT * FROM LECTURE_SIGN WHERE L_NUM=#{l_num} AND ID=#{id}
+		    		SELECT * FROM LECTURE_SIGN WHERE L_NUM=#{l_num} AND ID=#{id} AND STATUS=1
 		    	</select>
 		    	
 		    	<select id="getLectureEnd" parameterType="LectureAddDTO" resultType="LectureAddDTO">
-		    		SELECT * FROM LECTURE_SIGN WHERE ID=#{id}
+		    		SELECT * FROM LECTURE_SIGN WHERE ID=#{id} AND STATUS = 1
+		    	</select>
+		    	
+		    	<select id="getLectureList" parameterType="LectureDTO" resultType="LectureAddDTO">
+		    		SELECT * FROM LECTURE_SIGN WHERE L_NUM=#{l_num} AND STATUS=1
 		    	</select>
 		    	
 		    	

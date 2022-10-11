@@ -1,8 +1,12 @@
 package com.seok.home.member;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.seok.home.admin.AdminPager;
 
 @Repository
 public class MemberDAO {
@@ -11,7 +15,35 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.seok.home.member.MemberDAO.";
 	
+	/************************ 마일리지 **************************/
+	
+	//마일리지 가져오기
+	public Long getPoint(MemberDTO dto) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getPoint", dto);
+	}
+	
+	//전달받은 포인트를 계산해서 업데이트 하기
+	public int updatePoint(MemberDTO dto) throws Exception{
+		Long point = this.getPoint(dto) + dto.getPoint();
+		if(point<0) {
+			return 0;
+		}else {
+			dto.setPoint(point);
+			return sqlSession.update(NAMESPACE+"updatePoint", dto);
+		}
+		
+	}
+	
 	/************************ 회원 **************************/
+	
+	//관리자 페이지 회원목록 출력
+	public List<MemberDTO> getAdminMemberList(AdminPager adminPager) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getAdminMemberList", adminPager);
+	}
+	
+	public Long getAdminMemberTotal(AdminPager adminPager) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getAdminMemberTotal", adminPager);
+	}
 	
 	//회원로그인
 	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
@@ -47,6 +79,22 @@ public class MemberDAO {
 	//회원탈퇴
 	public int setDeleteJoin(MemberDTO memberDTO)throws Exception{
 		return sqlSession.delete(NAMESPACE+"setDeleteJoin", memberDTO);
+	}
+	
+	//강사권한삭제
+	public int setDeleteTeacherAll(MemberDTO dto) throws Exception{
+		int result = 1;
+		result = result * this.setDeleteTeacher(dto);
+		result = result *this.setDeleteTeacherRole(dto);
+		
+		return result;
+	}
+	
+	private int setDeleteTeacher(MemberDTO dto) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setDeleteTeacher", dto);
+	}
+	private int setDeleteTeacherRole(MemberDTO dto) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setDeleteTeacherRole", dto);
 	}
 	
 	/************************ 마이페이지 **************************/

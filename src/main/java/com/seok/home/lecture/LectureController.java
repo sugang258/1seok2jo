@@ -1,7 +1,9 @@
 package com.seok.home.lecture;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.*;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -110,10 +112,10 @@ public class LectureController {
 	
 	@GetMapping("detail")
 	@ResponseBody
-	public ModelAndView getDetail(LectureDTO lectureDTO,HttpServletRequest request, HttpSession session,LectureAddDTO lectureAddDTO) throws Exception {
+	public ModelAndView getDetail(LectureDTO lectureDTO,HttpServletRequest request, HttpSession session) throws Exception {
 		System.out.println("detail");
 		MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
-		
+		System.out.println(lectureDTO.getL_num());
 		lectureDTO = lectureService.getDetail(lectureDTO);
 		long count = lectureService.getListCount(lectureDTO);
 		System.out.println(lectureDTO);
@@ -147,6 +149,8 @@ public class LectureController {
 		ModelAndView mv = new ModelAndView();
 		
 		lectureDTO = (LectureDTO) session.getAttribute("detail");
+	    //lectureDTO = lectureService.getDetail(lectureDTO);
+
 		List<LectureVideoDTO> ar = lectureDTO.getLectureVideoDTO();
 		System.out.println("video ar: "+ar.size());
 		System.out.println("l_num : "+lectureDTO.getL_num());
@@ -392,7 +396,6 @@ public class LectureController {
 	    return mv;
 	}
 	
-	@SuppressWarnings({ "null", "unused" })
     @PostMapping("setTeacherLecture")
 	@ResponseBody
 	public int getTeacherLecture(TeacherDTO teacherDTO,HttpServletRequest request) throws Exception{
@@ -422,14 +425,69 @@ public class LectureController {
 	@ResponseBody
 	public int setLoginCheck(HttpServletRequest request) throws Exception{
 	    MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+	    LectureAddDTO lectureAddDTO = new LectureAddDTO();
+	    Date now = new Date();
+	    java.sql.Date date1 = new java.sql.Date(now.getTime());
 	    int result = 0;
 	    if(mem == null) {
 	        result = 0;
 	    }else {
 	        result = 1;
+	        lectureAddDTO.setId(mem.getId());
+	        List<LectureAddDTO> ar = lectureAddService.getLectureEnd(lectureAddDTO);
+	        if(ar.size() != 0) {
+	            for(int i=0;i<ar.size();i++) {
+	                if(date1.after(ar.get(i).getS_end())) {
+	                    System.out.println(ar.get(i).getS_num());
+	                    lectureAddDTO.setL_num(ar.get(i).getL_num());
+	                    lectureAddDTO.setS_num(ar.get(i).getS_num());
+	                    lectureAddService.setLectureUpdate(lectureAddDTO);
+	                    
+	                    lectureAddService.setLectureCountM(lectureAddDTO);
+	                    
+	                }
+	                
+	            }
+	            
+	        }
+	        
 	    }
 
 	    return result;
 	}
+	
+	@PostMapping("list")
+	public ModelAndView getLectureCate(Pager pager) throws Exception{
+	    System.out.println("list post");
+	    ModelAndView mv = new ModelAndView();
+	    List<LectureDTO> ar = lectureService.getLectureCate(pager);
+	    System.out.println("sr"+pager.getStartRow());
+	    System.out.println("lr"+pager.getLastRow());
+	    //System.out.println(ar.get(0).getC_name());
+	    int result = 0;
+	    if(ar.size() == 0) {
+	        result = 0;
+	    }else {
+	        result = 1;
+	    }
+	    mv.addObject("list", ar);
+	    mv.addObject("pager", pager);
+	    mv.setViewName("lecture/category_list");
+	    
+	    return mv;
+
+	}
+	
+	@PostMapping("recommend")
+	public ModelAndView getLectureRecommend() throws Exception{
+	    ModelAndView mv = new ModelAndView();
+	    List<LectureDTO> ar = lectureService.getLectureRecommend();
+	    
+	    mv.addObject("list", ar);
+	    mv.setViewName("lecture/category_list");
+
+	    return mv;	    
+	}
+
 	
 }
