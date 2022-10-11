@@ -2,7 +2,36 @@ const free = document.querySelector("#free");
 const study = document.querySelector("#study");
 const lecture = document.querySelector("#lecture");
 const list = document.querySelectorAll(".list");
+const board = document.querySelectorAll("#board");
+const sb_board = document.querySelectorAll("#sb_board");
+const result = document.querySelector("#result");
 
+
+    result.addEventListener("click",function(event){
+        let target = event.target.parentNode.getAttributeNode("data-fb-num").value;
+        console.log(target);
+        console.log("sb");
+        if(event.target.parentNode.className == 'sb_board') {
+            location.href="/board/sb_detail?sb_num="+target;
+
+        }else if(event.target.parentNode.className == 'lec'){
+            location.href="/board/list?l_num="+target;
+            
+        }
+
+    })
+
+
+board.forEach(function(board){
+    board.addEventListener("click",function(){
+        console.log("free");
+
+        let fb_num = board.getAttributeNode("data-fb-num").value;
+        console.log(fb_num);
+
+        window.location.href="/board/fb_detail?fb_num="+fb_num;
+    })
+})
 
 free.addEventListener("click",function(){
     window.location.href="/member/board";

@@ -4,7 +4,7 @@
 <table class="table">
     <tbody class="table-group-divider">
         <c:forEach items="${lecture}" var="lecture" varStatus="lecNm">
-            <tr class="lec" id="lec">
+            <tr class="lec" id="lec" data-fb-num="${lecture.l_num}">
                <td style="width: 250px;">
                     <img class="img-fluid rounded mb-4 mb-lg-0" src="http://20.249.88.100/resources/lecture/${lecture.lectureFileDTO[0].f_name}" alt="..." style="height: 150px;">
                 </td>

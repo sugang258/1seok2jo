@@ -36,8 +36,7 @@
                 <tbody class="table-group-divider">
                     <c:forEach items="${f_board}" var="fb">
                         <!--<div class="row gx-2 gx-lg-2 align-items-center my-3 cart" id="cart" data-l-num ="${lecturedto.l_num}">-->
-                            <tr class ="board"id="board" data-l-num ="${fb.fb_num}">
-                                
+                            <tr class="board" id="board" data-fb-num ="${fb.fb_num}">
                                 <td>
                                     <div style="margin-top: 30px; font-weight: bold;">
                                         ${fb.title}
@@ -46,7 +45,6 @@
                                 </td>
                                 
                             </tr>
-                        </div>
                         
                     </c:forEach>
                 </tbody>
