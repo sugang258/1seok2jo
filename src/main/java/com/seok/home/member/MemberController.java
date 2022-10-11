@@ -290,15 +290,12 @@ public class MemberController {
 	//프로필 회원비밀번호 확인 로직(POST)
 	@ResponseBody
 	@PostMapping("pwCheck")
-	public String getPwCheck(MemberDTO memberDTO, HttpSession session, String new_pw)throws Exception{
+	public String getPwCheck(MemberDTO memberDTO, HttpSession session)throws Exception{
 		System.out.println("프로필 회원비밀번호 확인(POST)");
 		
 		MemberDTO sesMemberDTO = new MemberDTO();
 		sesMemberDTO = (MemberDTO) session.getAttribute("member");
 		memberDTO.setId(sesMemberDTO.getId());
-		System.out.println("회원의 아이디 : "+memberDTO.getId());
-		System.out.println("현재 비밀번호 : "+memberDTO.getPw());
-		System.out.println("새 비밀번호 : "+new_pw);
 		
 		String respPw = memberService.getPwCheck(memberDTO);
 		
@@ -313,10 +310,7 @@ public class MemberController {
 		MemberDTO sesMemberDTO = new MemberDTO();
 		sesMemberDTO = (MemberDTO) session.getAttribute("member");
 		memberDTO.setId(sesMemberDTO.getId());
-		System.out.println("회원의 아이디 : "+memberDTO.getId());
-		System.out.println("새 비밀번호 : "+new_pw);
 		memberDTO.setPw(new_pw);
-		System.out.println("새 비밀번호 멤버디티오 : "+memberDTO.getPw());
 		
 		
 		int result = memberService.setUpdatePw(memberDTO);
