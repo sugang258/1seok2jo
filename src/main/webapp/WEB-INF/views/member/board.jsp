@@ -23,7 +23,6 @@
 <body>
     <main class="container mt-2">
         <div class="py-3 text-center">
-            <!--<img class="ml-1 mb-2 " src="/resources/images/15.png" alt="" width="100" height="70" style="display: inline;">-->
             <h2 style="display: inline;">📋내 게시판</h2>
         </div>
         <div>
@@ -31,25 +30,52 @@
             <button class="list" id="study">학습게시판</button>
             <button class="list" id="lecture">내가 작성한 수강평</button>
         </div>
+
+        <section class="container" style="width: 750px;">
         <div id="result">
-            <table class="table">
-                <tbody class="table-group-divider">
-                    <c:forEach items="${f_board}" var="fb">
-                        <!--<div class="row gx-2 gx-lg-2 align-items-center my-3 cart" id="cart" data-l-num ="${lecturedto.l_num}">-->
-                            <tr class="board" id="board" data-fb-num ="${fb.fb_num}">
-                                <td>
-                                    <div style="margin-top: 30px; font-weight: bold;">
-                                        ${fb.title}
-                                    </div>
-                                    ${fb.reg_date} / ${fb.hit} / ${fb.category}/${fb.like_count}
-                                </td>
-                                
-                            </tr>
-                        
-                    </c:forEach>
-                </tbody>
-            </table>
-        </div>
+            <c:forEach items="${f_board}" var="fb">
+              <div class="contents_box">
+                <div
+                  class="board" id="board" data-fb-num="${fb.fb_num}">
+                  <div style="padding: 12px 0px">
+                    <div class="d-flex">
+                      <div
+                        class="p-2 flex-grow-1"
+                        style="font-size: 13.5px; margin-left: -6.5px"
+                      >
+                        <div>🏷️${fb.category}</div>
+                      </div>
+                      <div class="p-2">
+                        <i class="fa-regular fa-user"></i> ${fb.id}
+                      </div>
+                    </div>
+                    <div
+                      style="margin-bottom: 33px; margin-top: 5px; margin-left: 2px"
+                    >
+                      <h5 style="padding-left: 4px">
+                        <b>${fb.title}</b>
+                      </h5>
+                    </div>
+    
+                    <div class="d-flex">
+                      <div class="d-flex p-1 w-100">
+                        <div class="b1 p-1 d-flex sort" style="font-size: 14.5px">
+                          <div>${fb.hit} 조회</div>
+                        </div>
+                      </div>
+                      <div
+                        class="p-2 flex-shrink-1"
+                        style="width: 116px; font-size: 14px; text-align: right"
+                      >
+                        ${fb.reg_date}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </c:forEach>
+          </div>
+        </section>
     </main>
     
 <c:import url="../template/footer.jsp"></c:import>
