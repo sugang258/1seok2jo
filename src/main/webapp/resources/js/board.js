@@ -31,7 +31,6 @@ study.addEventListener("click",function(){
 })
 
 lecture.addEventListener("click",function(){
-    alert("수강평");
 
     let ll = "ll";
     const xhttp = new XMLHttpRequest() ;
