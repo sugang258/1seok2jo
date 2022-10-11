@@ -5,12 +5,13 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
 const cnt = document.getElementById("cnt");
 cnt.onclick=function(){
   const xhttp = new XMLHttpRequest();
-  xhttp.open("POST","member/deleteMember");
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-  xhttp.send("id="+id_list[i])
+  xhttp.open("GET","./getDashBoard");
+  xhttp.send();
   xhttp.addEventListener("readystatechange", function(){
       if(this.readyState==4 && this.status==200){
           console.log(xhttp.responseText);
+          const res = JSON.parse(xhttp.responseText);
+          console.log(res.memberCnt)
       }
   })
 }

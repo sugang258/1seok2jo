@@ -1,5 +1,6 @@
 package com.seok.home.admin;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import com.seok.home.member.MemberDTO;
 import com.seok.home.member.RoleDTO;
 import com.seok.home.pay.PayDAO;
 import com.seok.home.pay.PaymentDTO;
+import com.seok.home.util.ChartDTO;
 
 @Service
 public class AdminService {
@@ -29,6 +31,25 @@ public class AdminService {
 	private CsDAO csDAO;
 	@Autowired
 	private PayDAO payDAO;
+	
+	public HashMap<String, Object> getAdminDashBoard () throws Exception{
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		
+		//하루 매출액 그래프
+		List<ChartDTO> charts = payDAO.getChartAdminDashBoard();
+		
+		//전체 회원수 
+		Long memberCnt = memberDAO.getMemberCnt();
+		//전체 강의수
+		Long lectureCnt = lectureDAO.getLectureCnt();
+		//전체 게시글 수
+		
+		result.put("charts", charts);
+		result.put("memberCnt", memberCnt);
+		
+		return result;
+	}
+	
 	
 	public List<FreeBoardDTO> getBoardsList(AdminPager pager) throws Exception{
 		pager.calNum(adminDAO.getTotalBoardList(pager));
