@@ -11,6 +11,7 @@ import com.seok.home.cs_board.CsDAO;
 import com.seok.home.f_board.FreeBoardDTO;
 import com.seok.home.lecture.LectureDAO;
 import com.seok.home.lecture.LectureDTO;
+import com.seok.home.lecture.add.LectureAddDAO;
 import com.seok.home.member.MemberDAO;
 import com.seok.home.member.MemberDTO;
 import com.seok.home.member.RoleDTO;
@@ -28,6 +29,8 @@ public class AdminService {
 	@Autowired
 	private LectureDAO lectureDAO;
 	@Autowired
+	private LectureAddDAO lectureAddDAO;
+	@Autowired
 	private CsDAO csDAO;
 	@Autowired
 	private PayDAO payDAO;
@@ -44,11 +47,18 @@ public class AdminService {
 		Long lectureCnt = lectureDAO.getLectureCnt();
 		//전체 게시글 수
 		Long boardCnt = adminDAO.getBoardCnt();
+		//현재 수강중인 강의 수
+		Long lectureIng = lectureAddDAO.getLectureIngCnt();
+		
+		//미답변 문의수 
+		Long notAnswerCnt = csDAO.getNotAnswerCnt();
 		
 		result.put("charts", charts);
 		result.put("memberCnt", memberCnt);
 		result.put("lectureCnt", lectureCnt);
 		result.put("boardCnt", boardCnt);
+		result.put("lectureIng", lectureIng);
+		result.put("notAnswerCnt", notAnswerCnt);
 		
 		return result;
 	}

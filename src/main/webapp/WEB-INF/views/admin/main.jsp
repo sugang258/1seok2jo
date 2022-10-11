@@ -32,7 +32,7 @@
                                 <div class="card card-outline-success mb-4">
                                     <div class="card-body d-flex align-items-center justify-content-between">
                                         <div class="mx-auto fs-1">고객 문의</div>
-                                        <div class="mx-auto fs-2">미답변 n건</div>
+                                        <div class="mx-auto fs-2">미답변 <span id="notAnswer">0</span>건</div>
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small stretched-link" href="#">View Details</a>
@@ -54,12 +54,12 @@
                             <div class="col-xl-6 p-2">
                                 <div class="row g-4">
                                     <div class="col-6" style="height: 45%">
-                                        <div class="card bg-primary text-white text-center">
+                                        <div class="card bg-success text-white text-center">
                                             <div class="card-header">
                                                 가입 회원수
                                             </div>
                                             <div class="card-body" >
-                                                <h1>50</h1>
+                                                <h1><span id="cntMember">0</span></h1>
                                             </div>
                                         </div>
                                     </div>
@@ -69,7 +69,7 @@
                                                 강의 등록수
                                             </div>
                                             <div class="card-body">
-                                                <h1>50</h1>
+                                                <h1><span id="cntLecture">0</span></h1>
                                             </div>
                                         </div>
                                     </div>
@@ -79,17 +79,17 @@
                                                 게시판 글 수
                                             </div>
                                             <div class="card-body" >
-                                                <h1>50</h1>
+                                                <h1><span id="cntBoard">0</span></h1>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-6">
-                                        <div class="card bg-primary text-white text-center">
+                                        <div class="card bg-danger text-white text-center">
                                             <div class="card-header">
-                                                가입회원수
+                                                수강중인 강의 수
                                             </div>
                                             <div class="card-body">
-                                                <h1>50</h1>
+                                                <h1><span id="cntLectureIng">0</span></h1>
                                             </div>
                                         </div>
                                     </div>

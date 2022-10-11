@@ -11,7 +11,23 @@ xhttp.addEventListener("readystatechange", function(){
     if(this.readyState==4 && this.status==200){
       console.log(xhttp.responseText);
       var res = JSON.parse(xhttp.responseText);
-      console.log(JSON.stringify(res.charts[0].labels))
+      console.log(res.boardCnt)
+
+      let notAnswer = document.getElementById("notAnswer");
+      counterFn(res.notAnswerCnt ,notAnswer, 50);
+
+      //cnt 올리기
+      let cntBoard = document.getElementById("cntBoard");
+      counterFn(res.boardCnt ,cntBoard, 100);
+
+      let cntMember = document.getElementById("cntMember");
+      counterFn(res.memberCnt,cntMember, 100);
+
+      let cntLecture = document.getElementById("cntLecture");
+      counterFn(res.lectureCnt,cntLecture, 100);
+
+      let cntLectureIng = document.getElementById("cntLectureIng");
+      counterFn(res.lectureIng ,cntLectureIng, 100);
 
       // Bar Chart
       var ctx = document.getElementById("myBarChart");
@@ -54,13 +70,24 @@ xhttp.addEventListener("readystatechange", function(){
             display: false
           }
         }
-      });
+      });//barChart끝
 
-    }
+
+    }//응답이 잘오면 실행할 문장 끝
 })
 
+function counterFn(maxCnt, elementID, speed) {
+  let cnt0 = 0;
 
-let d = new Date();
-const year = d.getFullYear(); 
-const month = d.getMonth();   
-const day = d.getDate();   
+  id0 = setInterval(count0Fn, speed);
+
+  function count0Fn() {
+    cnt0++;
+    if (cnt0 > maxCnt) {
+      clearInterval(id0);
+    } else {
+      elementID.innerText=cnt0;
+    }
+  }
+}
+
