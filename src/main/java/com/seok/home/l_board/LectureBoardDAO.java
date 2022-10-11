@@ -74,6 +74,10 @@ public class LectureBoardDAO {
 	public Long getHeartCount(L_heartDTO l_heartDTO)throws Exception{
 		return session.selectOne(NAMESPACE+"getHeartCount", l_heartDTO);
 	}
+	
+	public List<LectureBoardDTO> getMyBoardList(LectureBoardDTO lectureBoardDTO) throws Exception{
+	    return session.selectList(NAMESPACE+"getMyBoardList", lectureBoardDTO);
+	}
 
 	
 }

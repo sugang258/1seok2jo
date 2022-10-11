@@ -3,6 +3,8 @@ package com.seok.home.f_board;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.seok.home.b_comment.FreeBoardReplyDTO;
 import com.seok.home.l_board.L_heartDTO;
+import com.seok.home.member.MemberDTO;
 import com.seok.home.s_board.CommentPager;
 import com.seok.home.s_board.Pager;
 
@@ -161,5 +164,6 @@ public class FreeBoardController {
 		Long count = freeBoardService.getReplyCount(freeBoardReplyDTO);
 		return count;
 	}
+	
 
 }

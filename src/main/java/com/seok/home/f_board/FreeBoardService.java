@@ -77,5 +77,9 @@ public class FreeBoardService {
 	public Long getReplyCount(FreeBoardReplyDTO freeBoardReplyDTO)throws Exception{
 		return freeBoardDAO.getReplyCount(freeBoardReplyDTO);
 	}
+	
+	public List<FreeBoardDTO> getMyBoardList(FreeBoardDTO freeBoardDTO) throws Exception{
+	    return freeBoardDAO.getMyBoardList(freeBoardDTO);
+	}
 
 }

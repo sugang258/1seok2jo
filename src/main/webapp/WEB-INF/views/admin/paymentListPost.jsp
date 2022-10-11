@@ -17,7 +17,7 @@
     <tbody>
         <c:forEach items="${payList}" var="pay">
             <c:forEach items="${pay.orders}" var="order">
-            <tr data-csnum="${pay.p_uid}">
+            <tr data-num="${pay.p_uid}">
                 <td>${order.o_num}</td>
                 <td>${pay.p_uid}</td>
                 <td>${order.lectureDTO.l_name}</td>

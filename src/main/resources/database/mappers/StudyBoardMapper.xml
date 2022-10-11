@@ -107,5 +107,9 @@
 		    	<update id="setAnsewerDefault" parameterType="StudyBoardDTO">
 		    		UPDATE STUDY_BOARD SET answer=0 WHERE SB_NUM=#{sb_num}
 		    	</update>
+		    	
+		    	<select id="getMyBoardList" parameterType="StudyBoardDTO" resultType="StudyBoardDTO">
+		    		SELECT * FROM STUDY_BOARD WHERE ID = #{id}
+		    	</select>
 
 		    </mapper>

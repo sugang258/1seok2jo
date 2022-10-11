@@ -30,8 +30,8 @@
     </thead>
     <tbody>
         <c:forEach items="${memberList}" var="mem">
-            <tr data-id="${mem.id}">
-                <td><input type="checkbox" class="chk"></td>
+            <tr>
+                <td><input type="checkbox" class="chk" name="member_id" value="${mem.id}"></td>
                 <td>${mem.id}</td>
                 <td>${mem.name}</td>
                 <td>${mem.n_name}</td>

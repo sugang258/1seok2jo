@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,26 +20,24 @@
     </div>
 
     <div class="container">
-        <div class="row justify-content-center pt-3 mt-3">
+        <div class="row justify-content-center pt-3 mt-5">
             <div class="col-sm-8 text-center">
-                <h1>결제완료</h1>
-                <hr>
+                <h3><b>결제완료</b></h3>
+                
             </div>
 
-            <div class="col-sm-8">
+            <div class="col-sm-8 my-4 py-3" style="border: 2px solid lightgrey;">
                 <div class="row d-flex">
                                         
-                    <div class="col-sm-5 order-sm-2">
+                    <div class="col-sm-5 order-sm-2" >
                         <div class="row align-items-center" style="height: 100%">
-                        	<div class="text-center">
-                        		주문번호 : ${requestScope.result.paymentDTO.p_uid}
-                        	</div>
-                            <div class="text-center">
-                                결제가 완료되었습니다.
-                            </div>
-                            <div class="text-center">
-                                총 결제금액 : ${result.paymentDTO.p_realamount}원
-                            </div>
+                            <table class="text-center">
+                                <tr><th>결제번호</th><td> ${requestScope.result.paymentDTO.p_uid}</td></tr>
+                                <fmt:parseNumber var="prpoint" value="${result.paymentDTO.p_realamount*0.05}" integerOnly="true"/>
+                                <tr><th>적립 마일리지</th><td> ${prpoint} 마일리지</td></tr>
+                                <tr><th>총 결제금액</th><td> ${result.paymentDTO.p_realamount}원</td></tr>
+                            </table>
+
                         </div>
                     </div>
 
@@ -47,7 +46,7 @@
                         <c:forEach items="${result.lectures}" var="lecture">
                         <div class="row g-1 p-3 align-items-center">
                             <div class="col-3">
-                              <img src="../../../resources/images/22.png" class="img-fluid rounded-start" style="object-fit: contain">
+                              <img src="http://20.249.88.100/resources/lecture/${lecture.lectureFileDTO[0].f_name}" class="img-fluid rounded" style="object-fit: contain">
                             </div>
                             <div class="col-9">
                               <small class="d-inline-flex px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${lecture.l_date} 개월 수강</small>
@@ -63,8 +62,8 @@
                 </div>
             </div>
 
-            <div class="col-sm-8 text-center">
-                <button type="button" id="list">내 강의목록으로 이동하기</button>
+            <div class="col-sm-8 text-center mt-2">
+                <button type="button" class="btn btn-outline-success" id="list">내 강의목록으로 이동하기</button>
             </div>
         </div>
     </div>

@@ -117,4 +117,8 @@
 		    	<select id="getReplyCount" parameterType="FreeBoardReplyDTO" resultType="Long">
 		    		SELECT COUNT(NUM) FROM FB_REPLY WHERE FB_NUM = #{fb_num}
 		    	</select>
+		    	
+		    	<select id="getMyBoardList" parameterType="FreeBoardDTO" resultType="FreeBoardDTO">
+		    		SELECT * FROM FREE_BOARD WHERE ID = #{id}
+		    	</select>
 		    </mapper>
