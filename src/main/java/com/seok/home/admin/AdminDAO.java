@@ -16,6 +16,16 @@ public class AdminDAO {
 	@Autowired
 	private SqlSession session;
 	
+	//게시글 삭제를 위해 게시판을 찾는다.
+	public FreeBoardDTO findBoard(FreeBoardDTO dto) throws Exception{
+		return session.selectOne(NAMESPACE+"findBoard", dto);
+	}
+	//게시글을 삭제한다.
+	public int setBoardDelete(FreeBoardDTO dto) throws Exception{
+		return session.delete(NAMESPACE+"setBoardDelete", dto);
+	}
+
+	
 	public Long getTotalBoardList(AdminPager pager) throws Exception{
 		return session.selectOne(NAMESPACE+"getTotalBoardList", pager);
 	}
