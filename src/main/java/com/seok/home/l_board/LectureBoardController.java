@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.seok.home.lecture.LectureDTO;
+import com.seok.home.lecture.LectureService;
 import com.seok.home.member.MemberDTO;
 import com.seok.home.s_board.StudyBoardDTO;
 
@@ -22,6 +24,8 @@ public class LectureBoardController {
 
 	@Autowired
 	private LectureBoardService lectureBoardService;
+	@Autowired
+	private LectureService lectureService;
 
 	/* 정렬  : type을 파라미터로 받음*/
 	@GetMapping("list")
@@ -131,17 +135,27 @@ public class LectureBoardController {
 	public ModelAndView getMyBoardList(LectureBoardDTO lectureBoardDTO,HttpServletRequest request) throws Exception{
 	    MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
         ModelAndView mv = new ModelAndView();
+        LectureDTO lectureDTO = new LectureDTO();
         lectureBoardDTO.setId(mem.getId());
         
         List<LectureBoardDTO> ar = lectureBoardService.getMyBoardList(lectureBoardDTO);
-        
+        List<LectureDTO> lec = new ArrayList<LectureDTO>();
         int result = 0;
         if(ar.size() == 0) {
             result = 0;
         }else {
             result = 1;
         }
-        mv.addObject("lecture", ar);
+        if(result == 1) {
+            for(int i=0;i<ar.size();i++) {
+                lectureDTO.setL_num(ar.get(i).getL_num());
+                lectureDTO = lectureService.getDetail(lectureDTO);
+                lec.add(lectureDTO);
+            }
+        }
+        System.out.println(lec.size());
+        mv.addObject("list", ar);
+        mv.addObject("lecture", lec);
         mv.setViewName("member/lecture_board");
         
         return mv;

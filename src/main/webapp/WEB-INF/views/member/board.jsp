@@ -27,9 +27,9 @@
             <h2 style="display: inline;">📋내 게시판</h2>
         </div>
         <div>
-            <button class="bold" id="free">자유게시판</button>
-            <button id="study">학습게시판</button>
-            <button id="lecture">내가 작성한 수강평</button>
+            <button class="list bold" id="free">자유게시판</button>
+            <button class="list" id="study">학습게시판</button>
+            <button class="list" id="lecture">내가 작성한 수강평</button>
         </div>
         <div id="result">
             <table class="table">

@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <table class="table">
     <tbody class="table-group-divider">
-        <c:forEach items="${lecture}" var="fb">
+        <c:forEach items="${list}" var="fb">
             <!--<div class="row gx-2 gx-lg-2 align-items-center my-3 cart" id="cart" data-l-num ="${lecturedto.l_num}">-->
                 <tr class ="board"id="board">
                     

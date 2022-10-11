@@ -1,6 +1,7 @@
 const free = document.querySelector("#free");
 const study = document.querySelector("#study");
 const lecture = document.querySelector("#lecture");
+const list = document.querySelectorAll(".list");
 
 
 free.addEventListener("click",function(){
@@ -51,3 +52,32 @@ lecture.addEventListener("click",function(){
         }
     }
 })
+
+function handleClick(event) {
+    console.log(event.target);
+
+    console.log(event.target.classList);
+
+    if (event.target.classList[1] === "bold") {
+      event.target.classList.remove("bold");
+
+    } else {
+      for (var i = 0; i < list.length; i++) {
+        list[i].classList.remove("bold");
+
+      }
+
+      event.target.classList.add("bold");
+
+    }
+    
+  }
+
+ 
+function init() {
+    for (var i = 0; i < list.length; i++) {
+      list[i].addEventListener("click", handleClick);
+    }
+}
+
+  init();
