@@ -27,10 +27,7 @@
                     <!-- 제목부분 -->
                     <h1><b>비밀번호 변경✒</b></h1>
                 </div>
-                <form action="./deleteMember" method="post">
-                    <div class="mb-3">
-                        <input type="hidden" name="id" class="form-control border-success border-opacity-25" id="ipId" value="${member.id}">
-                    </div>
+                <form action="./updatePw" method="post" id="updatePwForm">
                     
                     <div class="mb-3">
                         <label for="now_pw" class="form-label">현재 비밀번호</label>
@@ -54,7 +51,7 @@
 
                     <!-- 비밀번호변경 버튼 -->
                     <div class="d-grid gap-2 mt-3">
-                        <button type="button" class="btn btn-outline-success" id="btn">확인</button>
+                        <button type="submit" class="btn btn-outline-success" id="btn">확인</button>
                     </div>
                 </form>
             </div>
