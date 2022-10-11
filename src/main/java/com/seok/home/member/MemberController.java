@@ -290,9 +290,11 @@ public class MemberController {
 	//프로필 회원비밀번호 확인 로직(POST)
 	@ResponseBody
 	@PostMapping("pwCheck")
-	public String getPwCheck(MemberDTO memberDTO)throws Exception{
+	public String getPwCheck(MemberDTO memberDTO, String now_pw, String new_pw)throws Exception{
 		System.out.println("프로필 회원비밀번호 확인(POST)");
 		ModelAndView mv = new ModelAndView();
+		System.out.println("현재 비밀번호 : "+now_pw);
+		System.out.println("새 비밀번호 : "+new_pw);
 		
 		String respPw = memberService.getPwCheck(memberDTO);
 		
