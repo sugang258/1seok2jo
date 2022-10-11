@@ -43,9 +43,12 @@ public class AdminService {
 		//전체 강의수
 		Long lectureCnt = lectureDAO.getLectureCnt();
 		//전체 게시글 수
+		Long boardCnt = adminDAO.getBoardCnt();
 		
 		result.put("charts", charts);
 		result.put("memberCnt", memberCnt);
+		result.put("lectureCnt", lectureCnt);
+		result.put("boardCnt", boardCnt);
 		
 		return result;
 	}
