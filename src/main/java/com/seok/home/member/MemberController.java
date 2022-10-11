@@ -312,7 +312,6 @@ public class MemberController {
 		memberDTO.setId(sesMemberDTO.getId());
 		memberDTO.setPw(new_pw);
 		
-		
 		int result = memberService.setUpdatePw(memberDTO);
 		
 		if(result != 0){

@@ -31,17 +31,17 @@
                     
                     <div class="mb-3">
                         <label for="now_pw" class="form-label">현재 비밀번호</label>
-                        <input type="password" name="now_pw" class="form-control border-success border-opacity-25" id="now_pw" placeholder="현재 비밀번호를 입력해주세요">
+                        <input type="password" name="now_pw" class="form-control border-success border-opacity-25" id="now_pw" placeholder="현재 비밀번호를 입력하세요">
                     </div>
 
                     <div class="mb-3">
                         <label for="new_pw" class="form-label">새 비밀번호</label>
-                        <input type="password" name="new_pw" class="form-control border-success border-opacity-25" id="new_pw" placeholder="새 비밀번호를 입력해주세요">
+                        <input type="password" name="new_pw" class="form-control border-success border-opacity-25" id="ipnew_pw" placeholder="새 비밀번호를 입력하세요">
                     </div>
                     
                     <div class="mb-3">
                         <label for="pw_check" class="form-label">새 비밀번호 확인</label>
-                        <input type="password" class="form-control border-success border-opacity-25" id="pw_check" placeholder="새 비밀번호를 다시 입력해주세요">
+                        <input type="password" class="form-control border-success border-opacity-25" id="pw_check" placeholder="새 비밀번호를 다시 입력하세요">
                     </div>
 
                     <!-- 구분선 -->
@@ -51,7 +51,7 @@
 
                     <!-- 비밀번호변경 버튼 -->
                     <div class="d-grid gap-2 mt-3">
-                        <button type="submit" class="btn btn-outline-success" id="btn">확인</button>
+                        <button type="button" class="btn btn-outline-success" id="btn">확인</button>
                     </div>
                 </form>
             </div>

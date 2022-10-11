@@ -180,7 +180,15 @@ public class MemberService {
 	
 	//프로필 회원비밀번호 수정
 	public int setUpdatePw(MemberDTO memberDTO)throws Exception{
-		return memberDAO.setUpdatePw(memberDTO);
+		
+		int result=0;
+		if(memberDTO.getPw()==null) {
+			return result;
+		}
+		
+		result = memberDAO.setUpdatePw(memberDTO);
+		
+		return result;
 	}
 	
 	//강사프로필정보조회
