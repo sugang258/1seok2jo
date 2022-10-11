@@ -79,6 +79,34 @@ function initboards(){
         })
     }
     //게시글 삭제 버튼 누르면
+    let deleteboard = document.getElementById("deleteboard");
+    let msg = "";
+    deleteboard.addEventListener("click", function(){
+
+        let board_num = getCheckboxValue("board_num")
+        let chk = window.confirm("선택한 게시글을 삭제 하시겠습니까?")
+        
+        if(chk){
+            let bnum_list = board_num.split(",");
+            for(let i=0;i<bnum_list.length;i++){
+                let b_num = bnum_list[i];
+                const xhttp = new XMLHttpRequest();
+                xhttp.open("POST","/admin/delBoardAdmin");
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+                xhttp.send("fb_num="+b_num);
+                xhttp.addEventListener("readystatechange", function(){
+                    if(this.readyState==4 && this.status==200){
+                        msg = msg + b_num + " ";
+                        console.log("for"+msg)
+                    }
+                })
+
+            }
+            console.log("alert"+msg)
+            alert(msg+"게시글이 삭제되었습니다");
+        }
+
+    })
 }
 //게시글리스트 요청하기
 function boardsList(page){
@@ -145,6 +173,28 @@ function initlectures(){
     })
 
     //강의 삭제 버튼 누르면
+    let delLecBtn = document.getElementById("delLecBtn");
+    delLecBtn.addEventListener("click", function(){
+
+        let l_num = getCheckboxValue("l_num")
+        let chk = window.confirm("강의를 삭제 하시겠습니까?")
+        if(chk){
+            let lnum_list = l_num.split(",");
+            for(let i=0;i<lnum_list.length;i++){
+                console.log(lnum_list[i])
+                // const xhttp = new XMLHttpRequest();
+                // xhttp.open("POST","/lecture/setDelete");
+                // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+                // xhttp.send("l_num="+lnum_list[i])
+                // xhttp.addEventListener("readystatechange", function(){
+                //     if(this.readyState==4 && this.status==200){
+                //         console.log(xhttp.responseText);
+                //     }
+                // })
+            }
+        }
+
+    })
 }
 //강의리스트 요청하기
 function lectureList(page){

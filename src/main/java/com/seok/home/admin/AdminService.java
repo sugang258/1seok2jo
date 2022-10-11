@@ -159,5 +159,12 @@ public class AdminService {
 		}
 		
 	}
+	
+	//board삭제
+	public int delBoardAdmin(FreeBoardDTO dto) throws Exception{
+		dto = adminDAO.findBoard(dto);
+		int result = adminDAO.setBoardDelete(dto);
+		return result;
+	}
 
 }
