@@ -8,6 +8,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
     <meta charset="UTF-8" />
     <title>강의상세화면 대체</title>
     <link rel="stylesheet" href="/resources/css/board/l_board.css" />
+    <link rel="stylesheet" href="/resources/css/index.css" />
     <%-- Bootstrap CSS --%>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
@@ -18,12 +19,18 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
     <%-- favicon --%>
     <link rel="shortcut icon" href="/resources/images/favicon.ico" />
   </head>
-  <c:import url="../template/header.jsp"></c:import>
   <body>
-    <section class="container" style="width: 90%; margin-top: 150px">
+    <c:import url="../template/header.jsp"></c:import>
+    <section class="container" style="width: 90%; margin-top: 50px">
       <!-- 임시로 보내는값 -->
-      <input type="text" name="l_num" value="${param.l_num}" id="l_num"  style="display: none"/>
-      
+      <input
+        type="text"
+        name="l_num"
+        value="${param.l_num}"
+        id="l_num"
+        style="display: none"
+      />
+
       <input
         type="text"
         style="display: none"
@@ -241,8 +248,8 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             <div class="d-flex mb-2 ms-2 mt-1">
               <div>
                 <img
-                  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                  style="width: 26px; border-radius: 24px"
+                  src="http://20.249.88.100/resources/member/${lectureBoardDTO.f_name}"
+                  style="width: 26px; height: 26px; border-radius: 24px"
                 />
               </div>
               <div class="ms-2 mt-1" style="font-size: 13px">
@@ -303,7 +310,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           </c:forEach>
         </div>
 
-        <div class="mb-3" style="text-align: center">
+        <div class="mb-3" style="text-align: center; display: none">
           <button id="plus">더보기</button>
         </div>
       </div>
@@ -316,9 +323,9 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           data-bs-whatever="@mdo"
           type="button"
           id="lecture_add_btn"
-          style="width: 69%; margin: 0 auto"
+          style="width: 69%; margin: 0 auto; display: none"
         >
-          수강평 작성(수강생)
+          수강평 작성
         </button>
       </div>
 
@@ -439,6 +446,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
     <script>
       move();
       weight();
+      setLectureStudent();
     </script>
   </body>
 </html>

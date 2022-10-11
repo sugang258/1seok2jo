@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.seok.home.l_board.LectureBoardDTO;
+import com.seok.home.l_board.LectureBoardService;
 import com.seok.home.lecture.LectureDTO;
 import com.seok.home.lecture.LectureService;
 
@@ -27,6 +30,9 @@ public class HomeController {
 	
 	@Autowired
 	private LectureService lectureService;
+	
+	@Autowired
+	private LectureBoardService lectureBoardService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.

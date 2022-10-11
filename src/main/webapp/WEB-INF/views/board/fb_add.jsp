@@ -7,6 +7,7 @@ prefix="c" %>
     <meta charset="UTF-8" />
     <title>글 작성</title>
     <link rel="stylesheet" href="/resources/css/board/fb_list.css" />
+    <link rel="stylesheet" href="/resources/css/index.css" />
     <%-- Bootstrap CSS --%>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
@@ -36,12 +37,12 @@ prefix="c" %>
   </head>
   <c:import url="../template/header.jsp"></c:import>
   <body>
-    <section class="container" style="width: 50em">
+    <section class="container" style="width: 50em; margin-top:0px;">
       <div
         class="add_box"
         style="
           width: 80%;
-          margin: 150px auto 50px auto;
+          margin: 50px auto 50px auto;
           padding: 1.7em;
           box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
             rgba(17, 17, 26, 0.1) 0px 8px 24px,
@@ -90,7 +91,7 @@ prefix="c" %>
 
           <!--                     임시로 보내는 값 -->
           <input type="text" style="display: none" name="hit" value="0" />
-          
+
           <div class="form-group pt-3">
             <input
               type="text"
@@ -113,7 +114,9 @@ prefix="c" %>
           </div>
           <div class="d-flex justify-content-between">
             <div class="file_box mt-4">
-              <label for="file" class="file" style="display: none;"><b>파일추가📂</b></label>
+              <label for="file" class="file" style="display: none"
+                ><b>파일추가📂</b></label
+              >
               <input type="file" name="file" id="file" style="display: none" />
             </div>
 

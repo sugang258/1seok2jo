@@ -9,7 +9,15 @@ public class Pager {
 	private Long perBlock;
 	private Long startNum;
 	private Long lastNum;
+	private String f_name;
 	
+	public String getF_name() {
+		return f_name;
+	}
+
+	public void setF_name(String f_name) {
+		this.f_name = f_name;
+	}
 	private boolean pre;
 	private boolean next;
 	

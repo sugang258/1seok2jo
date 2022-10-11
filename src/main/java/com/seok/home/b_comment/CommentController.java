@@ -29,11 +29,11 @@ public class CommentController {
 	//강사 답글을 가져올때 댓글DTO의 값을 리스트에 담아서 해당 리스트를 Model로 보내준다.
 	@GetMapping("c_detail")
 	@ResponseBody
-	public ModelAndView getCommentDetail(CommentDTO commentDTO)throws Exception {
+	public ModelAndView getCommentDetail(CommentPager commentPager)throws Exception {
 		ModelAndView mv = new ModelAndView();
+		CommentDTO commentDTO = new CommentDTO();
+		commentDTO.setSb_num(commentPager.getSb_num());
 		CommentDTO t_comment = commentService.getCommentDetail(commentDTO);
-		CommentPager commentPager = new CommentPager();
-		commentPager.setSb_num(commentDTO.getSb_num());
 		
 		//댓글 더보기(댓글 수, 총페이지 수 보내기)
 		commentPager.getRowNum();
@@ -50,7 +50,6 @@ public class CommentController {
 		if(tCommentDTOs.size() != 0) {
 		mv.addObject("tCommentDTO", tCommentDTOs);
 		}
-		
 		if(t_comment==null) {
 			mv.setViewName("comment/blank");
 		}else {

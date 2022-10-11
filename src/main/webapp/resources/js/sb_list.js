@@ -5,7 +5,6 @@ let str = list_contents[0].innerHTML;
 function init() {
   for (c of list_contents) {
     str = removeHTML(c.innerHTML);
-    console.log(str);
     c.innerHTML = str;
   }
 }
