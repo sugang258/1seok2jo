@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,18 +62,22 @@ public class FreeBoardController {
 	
 	/* 자유게시판 글 상세보기 */
 	@GetMapping("fb_detail")
-	public ModelAndView getF_boardDetail(FreeBoardDTO freeBoardDTO)throws Exception{
+	public ModelAndView getF_boardDetail(FreeBoardDTO freeBoardDTO, HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		freeBoardDTO = freeBoardService.getF_boardDetail(freeBoardDTO);
 		
-		/* 추천 컬러변경 */
-		Fb_heartDTO heartColor;
-		Fb_heartDTO fb_heartDTO = new Fb_heartDTO();
-		fb_heartDTO.setFb_num(freeBoardDTO.getFb_num());
-		fb_heartDTO.setId(freeBoardDTO.getId());
-		heartColor = freeBoardService.getFb_heart(fb_heartDTO);
-		
-		mv.addObject("color", heartColor);
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO = (MemberDTO) session.getAttribute("member");
+		if(memberDTO != null) {
+			/* 추천 컬러변경 */
+			Fb_heartDTO heartColor;
+			Fb_heartDTO fb_heartDTO = new Fb_heartDTO();
+			fb_heartDTO.setFb_num(freeBoardDTO.getFb_num());
+			fb_heartDTO.setId(freeBoardDTO.getId());
+			heartColor = freeBoardService.getFb_heart(fb_heartDTO);
+			
+			mv.addObject("color", heartColor);
+		}
 		mv.addObject("freeBoardDTO", freeBoardDTO);
 		mv.setViewName("/board/fb_detail");
 		
