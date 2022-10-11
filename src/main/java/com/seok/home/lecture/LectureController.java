@@ -287,7 +287,12 @@ public class LectureController {
 		lectureAddDTO.setL_num(lectureDTO.getL_num());
 		lectureAddDTO = lectureAddService.getLectureCancel(lectureAddDTO);
 		long count = lectureService.getListCount(lectureDTO);
-	
+		System.out.println(lectureAddDTO);
+		if(lectureAddDTO == null) {
+		    mv.addObject("dto", lectureDTO);
+		    mv.addObject("sign", lectureAddDTO);
+		    mv.setViewName("/lecture/detail");
+		}else {
 		//System.out.println(lectureVideoDTO.getV_seq());
 		List<LectureVideoDTO> video = lectureDTO.getLectureVideoDTO();
 		List<LectureFileDTO> file = lectureDTO.getLectureFileDTO();
@@ -314,6 +319,9 @@ public class LectureController {
 		//mv.addObject("list", list);
 		mv.setViewName("/lecture/listen");
 		
+		}
+		
+		
 		return mv;
 	}
 	
@@ -322,14 +330,10 @@ public class LectureController {
 	@ResponseBody
 	public LectureVideoDTO getLectureNext(LectureVideoDTO lectureVideoDTO,HttpSession session,StatusDTO statusDTO) throws Exception{
 		System.out.println("next");
-		//statusDTO = (StatusDTO)session.getAttribute("status");
 		ModelAndView mv = new ModelAndView();
-		//LectureDTO lectureDTO = new LectureDTO();
 		lectureVideoDTO = lectureService.getLectureNext(lectureVideoDTO);
 		System.out.println(lectureVideoDTO);
-		//mv.addObject("status", statusDTO);
-		//mv.addObject("dto", lectureVideoDTO);
-		//mv.setViewName("/lecture/listen");
+
 		return lectureVideoDTO;
 	}
 	
@@ -339,10 +343,7 @@ public class LectureController {
 		System.out.println("pre");
 		ModelAndView mv = new ModelAndView();
 
-		//statusDTO = (StatusDTO)session.getAttribute("status");
-		//LectureDTO lectureDTO = new LectureDTO();
 		lectureVideoDTO = lectureService.getLecturePre(lectureVideoDTO);
-		//mv.addObject("status", statusDTO);
 
 		return lectureVideoDTO;
 	}
@@ -351,12 +352,8 @@ public class LectureController {
 	@ResponseBody
 	public LectureVideoDTO getVideoList(LectureVideoDTO lectureVideoDTO,HttpSession session,StatusDTO statusDTO) throws Exception{
 		System.out.println("list");
-		//statusDTO = (StatusDTO)session.getAttribute("status");
-
-		//ModelAndView mv = new ModelAndView();
 
 		lectureVideoDTO = lectureService.getVideoList(lectureVideoDTO);
-		//mv.addObject("status", statusDTO);
 		
 		return lectureVideoDTO;
 	}

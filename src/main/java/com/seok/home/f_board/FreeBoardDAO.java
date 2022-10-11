@@ -82,5 +82,9 @@ public class FreeBoardDAO {
 	public Long getReplyCount(FreeBoardReplyDTO freeBoardReplyDTO)throws Exception{
 		return session.selectOne(NAMESPCE+"getReplyCount", freeBoardReplyDTO);
 	}
+	
+	public List<FreeBoardDTO> getMyBoardList(FreeBoardDTO freeBoardDTO)throws Exception{
+	    return session.selectList(NAMESPCE+"getMyBoardList", freeBoardDTO);
+	}
 
 }

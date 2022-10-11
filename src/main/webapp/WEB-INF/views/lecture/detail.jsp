@@ -132,18 +132,20 @@
                     <!-- <div class="card mb-4 sidebar__inner text-center" style="display: block;">
                         <div class="card-header">Update</div>
                             <div class="card-body"> -->
+                                <c:if test="${not empty sessionScope.member}">
                                 <div class="input-group">
                                     <button class="btn btn-primary" id="update" type="button" data-update-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">💡수정하기</button>
                                 </div>
-                            <!-- </div>
-                    </div> -->
-                    <!--Delete-->
-                    <!-- <div class="card mb-4 sidebar__inner text-center" style="display: block;">
-                        <div class="card-header">Delete</div>
-                            <div class="card-body"> -->
-                                <div class="input-group">
-                                    <button class="btn btn-primary" id="de" type="button" data-delete-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">❌삭제하기</button>
-                                </div>
+                                <!-- </div>
+                                </div> -->
+                                <!--Delete-->
+                                <!-- <div class="card mb-4 sidebar__inner text-center" style="display: block;">
+                                    <div class="card-header">Delete</div>
+                                    <div class="card-body"> -->
+                                        <div class="input-group">
+                                            <button class="btn btn-primary" id="de" type="button" data-delete-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">❌삭제하기</button>
+                                        </div>
+                                        </c:if>
                             <!-- </div>
                     </div> -->
                 </div>

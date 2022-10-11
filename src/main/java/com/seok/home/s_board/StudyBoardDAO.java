@@ -62,4 +62,8 @@ public class StudyBoardDAO {
 		return session.update(NAMESPACE+"setAnsewerDefault", studyBoardDTO);
 	}
 	
+	public List<StudyBoardDTO> getMyBoardList(StudyBoardDTO studyBoardDTO) throws Exception{
+	    return session.selectList(NAMESPACE+"getMyBoardList", studyBoardDTO);
+	}
+	
 }
