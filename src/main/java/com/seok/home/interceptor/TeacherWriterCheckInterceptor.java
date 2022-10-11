@@ -30,14 +30,14 @@ public class TeacherWriterCheckInterceptor extends HandlerInterceptorAdapter{
         MemberDTO mem = (MemberDTO) session.getAttribute("member");
         Map<String, Object> map = modelAndView.getModel();
         
-        LectureDTO lectureDTO = (LectureDTO) map.get("detail");
+        LectureDTO lectureDTO = (LectureDTO) map.get("update");
         System.out.println(mem.getId());
         System.out.println(lectureDTO.getId());
         
         if(!mem.getId().equals(lectureDTO.getId())) {
             modelAndView.setViewName("common/result");
             modelAndView.addObject("message", "작성자만 수정이 가능");
-            modelAndView.addObject("url", "/lecture/list");
+            modelAndView.addObject("url", "/lecture/detail?l_num="+lectureDTO.getL_num());
             modelAndView.addObject("result", 1);
         }
         
