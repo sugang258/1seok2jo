@@ -82,24 +82,23 @@ public class AdminService {
 		return csList;
 	}
 	
-	public boolean getLogin(MemberDTO memberDTO) throws Exception {
+	public MemberDTO getLogin(MemberDTO memberDTO) throws Exception {
 		
 		memberDTO = memberDAO.getLogin(memberDTO);
-		
-		boolean chk = false;
 		
 		if(memberDTO!=null) {			
 			List<RoleDTO> roles = memberDTO.getRoleDTOs();
 			
 			for(RoleDTO role : roles) {
+				//로그인 후 관리자인걸 확인하면 memberDTO를 되돌려줌
 				if(role.getRoleName().equals("관리자")) {
-					chk = true;
+					return memberDTO;
 				}
 			}
 		}
 		
-		
-		return chk;
+		//관리자 확인이 되지 않거나 로그인이 되지 않으면 null을 되돌려줌
+		return null;
 	}
 	
 	public String getAuth(MemberDTO member) throws Exception{

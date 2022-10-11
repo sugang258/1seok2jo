@@ -61,25 +61,10 @@
           </div>
           <div class="card-body">
             <!--강의정보내용-->
-            <!--테스트 강의정보-->
-            <div class="row g-1 p-3 align-items-center">
-              <div class="col-3">
-                <img src="../../../resources/images/22.png" class="img-fluid rounded-start" style="object-fit: contain">
-              </div>
-              <div class="col-md-6">
-                <small class="d-inline-flex px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">6개월 수강</small>
-                <label for="name" class="text-muted">테스트 강사명</label>
-                <p>테스트 강의명</p>
-              </div>
-              <div class="col-md-3 text-end">
-                5000원
-              </div>
-            </div>
-            <!--테스트 끝-->
             <c:forEach items="${lectures}" var="lecture">
               <div class="row g-1 p-3 align-items-center"  id="l_num" data-l-num="${lecture.l_num}">
                 <div class="col-3">
-                  <img src="../../../resources/images/22.png" class="img-fluid rounded-start" style="object-fit: contain">
+                  <img src="http://20.249.88.100/resources/lecture/${lecture.lectureFileDTO[0].f_name}" class="img-fluid rounded" style="object-fit: cover">
                 </div>
                 <div class="col-md-6">
                   <small class="d-inline-flex px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${lecture.l_date}개월 수강</small>
@@ -112,10 +97,10 @@
                 <label for="point">사용 마일리지</label>
               </div>
               <div class="col-6 text-end">
-                <span id="usePoint"></span>  
+                <span id="usePoint" class="text-muted">사용가능 ${requestScope.point}마일리지</span>  
               </div>
             </div>
-            <input type="number" class="form-control text-end" id="point" name="point" placeholder="사용가능 ${member.point}마일리지" value="0">
+            <input type="number" class="form-control text-end" id="point" name="point" value="0" data-point="${requestScope.point}">
             <div class="mt-2" style="display: flex; justify-content:space-between">
               <span class="fw-bold">총 결제 금액</span>
               <span class="fw-bold" id="realtotal"></span>

@@ -20,7 +20,7 @@
             <tr>
                 <td><input type="checkbox" class="chk" name="l_num" value="${lecture.l_num}"/></td>
                 <td>${lecture.l_num}</td>
-                <td>${lecture.l_name}</td>
+                <td class="l_link" data-num="${lecture.l_num}">${lecture.l_name}</td>
                 <td>${lecture.id}</td>
                 <td>${lecture.l_price}</td>
                 <td>${lecture.l_date}</td>
