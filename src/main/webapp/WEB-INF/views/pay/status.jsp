@@ -123,9 +123,9 @@
                                 </div>
                             </td>
                             <td class="p-3">
-                                <strong>포인트 혜택</strong><BR>
+                                <strong>마일리지 혜택</strong><BR>
                                 <div class="d-flex justify-content-between">
-                                <span> 포인트 적립</span>
+                                <span> 마일리지 적립</span>
                                 <fmt:parseNumber var="prpoint" value="${paymentDTO.p_realamount*0.05}" integerOnly="true"/>
                                 <span>${prpoint}마일리지</span>
                                 </div>
@@ -191,7 +191,7 @@
                                     <strong>취소 상품 상세</strong><br>
                                     <!--refund 갯수에 따라 반복-->
                                     <c:forEach items="${paymentDTO.refunds}" var="refund">
-                                        <input type="number" class="chk_prnum" value="${refund.pr_num}" data-regdate="${refund.pr_regdate}" data-pramount="${refund.pr_amount}" data-prpoint="${refund.pr_point}"></input>
+                                        <input type="number" class="chk_prnum d-none" value="${refund.pr_num}" data-regdate="${refund.pr_regdate}" data-pramount="${refund.pr_amount} 원" data-prpoint="${refund.pr_point}"></input>
                                     </c:forEach>
                                     <c:forEach items="${paymentDTO.orders}" var="order">
                                         <div class="chk_orderprnum mt-2"  data-chk="${order.pr_num}" style="display: none;">

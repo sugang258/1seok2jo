@@ -40,10 +40,16 @@ for(let i=0; i<chk_orderprnum.length ; i++){
     let chkNum = chk_orderprnum[i].getAttribute("data-chk");
     for(let j=0; j<chk_prnum.length; j++){
         if(chkNum==chk_prnum[j].value){
-            console.log("hello")
+            //pr_num이 동일하면 display:none해제하고 내용을 보여줌
             let st = document.createAttribute("style")
-            chk_orderprnum.setAttributeNode(st)
-        }
+            chk_orderprnum[i].setAttributeNode(st)
+            //환불일자 세팅
+            chk_orderprnum[i].children[0].children[1].children[0].innerText = chk_prnum[j].getAttribute("data-regdate")+"일 환불"
+            //환불금액 세팅
+            chk_orderprnum[i].children[1].children[1].innerText = chk_prnum[j].getAttribute("data-pramount")
+            //환불마일리지 세팅
+            chk_orderprnum[i].children[2].children[1].innerText = chk_prnum[j].getAttribute("data-prpoint")+"마일"
+        }   
         
     }
 }
