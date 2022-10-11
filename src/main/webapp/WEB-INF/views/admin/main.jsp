@@ -51,8 +51,49 @@
                                     <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
-                            <div class="col-xl-6">
-                                
+                            <div class="col-xl-6 p-2">
+                                <div class="row g-4">
+                                    <div class="col-6" style="height: 45%">
+                                        <div class="card bg-primary text-white text-center">
+                                            <div class="card-header">
+                                                가입 회원수
+                                            </div>
+                                            <div class="card-body" >
+                                                <h1>50</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="card bg-warning text-white text-center">
+                                            <div class="card-header">
+                                                강의 등록수
+                                            </div>
+                                            <div class="card-body">
+                                                <h1>50</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="card bg-primary text-white text-center">
+                                            <div class="card-header">
+                                                게시판 글 수
+                                            </div>
+                                            <div class="card-body" >
+                                                <h1>50</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="card bg-primary text-white text-center">
+                                            <div class="card-header">
+                                                가입회원수
+                                            </div>
+                                            <div class="card-body">
+                                                <h1>50</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
