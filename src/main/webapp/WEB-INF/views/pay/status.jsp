@@ -170,31 +170,43 @@
                         </colgroup>
                         <tbody>
                             <tr>
-                                <td>
-                                    <strong>최종 환불 금액</strong>pr_amount 합계<br>
+                                <td class="p-3">
                                     <c:forEach items="${paymentDTO.refunds}" var="refund">
-                                        <input type="number" class="cal_pramount" value="${refund.pr_amount}"></input>
+                                        <input type="number" class="cal_pramount d-none" value="${refund.pr_amount}"></input>
                                     </c:forEach>
-                                    <span>환불 상품 주문 금액</span> o_amount 합계 원<br>
-                                    <span>환불 마일리지</span> pr_point 합계 마일리지
+                                    <div class="d-flex justify-content-between">
+                                        <span><strong>카드 환불 금액</strong></span><b><span id="total_pramount">  </span></b>
+                                    </div>
+                                    <c:forEach items="${paymentDTO.refunds}" var="refund">
+                                        <input type="number" class="cal_prpoint d-none" value="${refund.pr_point}"></input>
+                                    </c:forEach>
+                                    <div class="d-flex justify-content-between">
+                                        <span>환불 마일리지</span><span id="total_prpoint">  </span>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <span>환불 상품 금액</span><span id="sum_pointamount">  </span>
+                                    </div>
                                 </td>
-                                <td>
+                                <td class="p-3">
                                     <strong>취소 상품 상세</strong><br>
                                     <!--refund 갯수에 따라 반복-->
-                                    <span>상품명</span><small>(pr_regdate)</small> <span>pr_amount</span><br>
-                                    <span>마일리지 환불</span> <span>pr_point</span>
+                                    <c:forEach items="${paymentDTO.refunds}" var="refund">
+                                        <input type="number" class="chk_prnum" value="${refund.pr_num}" data-regdate="${refund.pr_regdate}" data-pramount="${refund.pr_amount}" data-prpoint="${refund.pr_point}"></input>
+                                    </c:forEach>
+                                    <c:forEach items="${paymentDTO.orders}" var="order">
+                                        <div class="chk_orderprnum mt-2"  data-chk="${order.pr_num}" style="display: none;">
+                                        <div class="d-flex justify-content-between">
+                                            <span class="text-danger"><b>${order.lectureDTO.l_name}</b></span><small><span id="pr-regdate">(2022.10.09) </span></small>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span>환불 금액</span><span id="pr-amount">50000 원 </span>
+                                        </div>
+                                        <div class="d-flex justify-content-between text-muted">
+                                            <span>환불 마일리지</span><span id="pr-point">50000 마일 </span>
+                                        </div>
+                                        </div>
+                                    </c:forEach>
                                     <!--반복 끝-->
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>결제금액</strong>
-                                    <span>${paymentDOT.p_realamount}</span>
-                                </td>
-                                <td>
-                                    <strong>결제 상세</strong>
-                                    <span>카드결제</span><span>-${paymentDTO.p_c_quota}</span>
-                                    <span>${paymentdto.p_c_name}</span><span>${paymendot.p_c_num}</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -253,7 +265,7 @@
     <div class="container-fluid mt-5" style="height: 300px;">
         <c:import url="../template/footer.jsp"></c:import>
     </div>
-
+    <!--페이지 계산-->
     <script src="/resources/js/payStatus.js"></script>
     <!--매출전표 띄우기-->
     <script type="text/javascript">
@@ -261,7 +273,7 @@
             window. open("${paymentDTO.p_receipt}", "_blank", "width=300, height=360");
         }
     </script>
-    <!--환불 요청하기-->
+    <!--환불 모달 및 요청-->
     <script src="/resources/js/cancel.js"></script>
     <script>cancelPay()</script>
 <!--부트스트랩-->
@@ -271,7 +283,8 @@
         opacity:0.1;
     }
 
-    #pr_point::-webkit-outer-spin-button,#pr_amount::-webkit-outer-spin-button,#pr_amount::-webkit-inner-spin-button,
+    #pr_amount::-webkit-outer-spin-button,#pr_amount::-webkit-inner-spin-button,
+    #pr_point::-webkit-outer-spin-button,
     #pr_point::-webkit-inner-spin-button {
       appearance: none;
     }
