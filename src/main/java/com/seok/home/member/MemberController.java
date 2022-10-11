@@ -179,9 +179,9 @@ public class MemberController {
 	//비밀번호 확인 로직 처리 (POST)
 //	@ResponseBody
 //	@PostMapping("pwCheck")
-//	public int getPwCheck(MemberDTO memberDTO)throws Exception{
-//		int result = memberService.getIdCheck(memberDTO);
-//		return result;
+//	public MemberDTO getPwCheck(MemberDTO memberDTO)throws Exception{
+//		memberDTO = memberService.getIdCheck(memberDTO);
+//		return memberDTO;
 //	}
 	
 	/************************ 마이페이지 **************************/
@@ -290,11 +290,13 @@ public class MemberController {
 	//프로필 회원비밀번호 확인 로직(POST)
 	@ResponseBody
 	@PostMapping("pwCheck")
-	public void getPwCheck(MemberDTO memberDTO)throws Exception{
+	public String getPwCheck(MemberDTO memberDTO)throws Exception{
 		System.out.println("프로필 회원비밀번호 확인(POST)");
+		ModelAndView mv = new ModelAndView();
 		
-		MemberDTO respMemberDTO = memberService.getPwCheck(memberDTO);
+		String respPw = memberService.getPwCheck(memberDTO);
 		
+		return respPw;
 	}
 	
 	//프로필 회원비밀번호 수정 로직(POST)

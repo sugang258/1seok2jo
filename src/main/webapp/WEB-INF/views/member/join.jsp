@@ -37,7 +37,7 @@
 							<input type="text" name="id" class="form-control border-success border-opacity-25" id="ipId" placeholder="아이디를 입력해주세요">
 						</div>
 						<div class="col-6 text-start mt-1">
-							<a href="./idCheck" class="btn btn-outline-success btn-sm"><b>✅아이디중복 확인</b></a>
+							<button type="button" class="btn btn-outline-success btn-sm" id="aIdCheck"><b>✅아이디중복 확인</b></button>
 						</div>
 						<span class="spIdCheck"></span>
 						<div id="ipIdResult"></div>
@@ -164,6 +164,9 @@
 </style>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-<!-- <script src="/resources/js/member.js"></script> -->
+<script src="/resources/js/member.js"></script>
+<script>
+	idCheck();
+</script>
 </body>
 </html>

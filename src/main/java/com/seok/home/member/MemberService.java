@@ -170,8 +170,12 @@ public class MemberService {
 	}
 	
 	//프로필 회원비밀번호 확인
-	public MemberDTO getPwCheck(MemberDTO memberDTO)throws Exception{
-		return memberDAO.getPwCheck(memberDTO);
+	public String getPwCheck(MemberDTO memberDTO)throws Exception{
+		MemberDTO respMemberDTO = new MemberDTO();
+		respMemberDTO = memberDAO.getPwCheck(memberDTO);
+		String pw = respMemberDTO.getPw();
+		
+		return pw;
 	}
 	
 	//프로필 회원비밀번호 수정
