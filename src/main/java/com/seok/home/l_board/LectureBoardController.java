@@ -3,6 +3,8 @@ package com.seok.home.l_board;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.seok.home.member.MemberDTO;
+import com.seok.home.s_board.StudyBoardDTO;
 
 @Controller
 @RequestMapping("/board/*")
@@ -120,5 +125,28 @@ public class LectureBoardController {
 		}
 		return result;
 	}
+	
+	@PostMapping("lecture_list")
+	@ResponseBody
+	public ModelAndView getMyBoardList(LectureBoardDTO lectureBoardDTO,HttpServletRequest request) throws Exception{
+	    MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+        ModelAndView mv = new ModelAndView();
+        lectureBoardDTO.setId(mem.getId());
+        
+        List<LectureBoardDTO> ar = lectureBoardService.getMyBoardList(lectureBoardDTO);
+        
+        int result = 0;
+        if(ar.size() == 0) {
+            result = 0;
+        }else {
+            result = 1;
+        }
+        mv.addObject("lecture", ar);
+        mv.setViewName("member/lecture_board");
+        
+        return mv;
+
+    }
+	
 
 }

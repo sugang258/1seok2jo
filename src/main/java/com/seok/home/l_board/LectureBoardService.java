@@ -72,6 +72,10 @@ public class LectureBoardService {
 	public Long getHeartCount(L_heartDTO l_heartDTO)throws Exception{
 		return lectureBoardDAO.getHeartCount(l_heartDTO);
 	}
+	
+	public List<LectureBoardDTO> getMyBoardList(LectureBoardDTO lectureBoardDTO) throws Exception{
+	    return lectureBoardDAO.getMyBoardList(lectureBoardDTO);
+	}
 
 	
 

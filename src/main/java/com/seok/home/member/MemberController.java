@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.seok.home.cart.CartDTO;
 import com.seok.home.cart.CartService;
+import com.seok.home.f_board.FreeBoardDTO;
+import com.seok.home.f_board.FreeBoardService;
 import com.seok.home.lecture.LectureDTO;
 import com.seok.home.lecture.teacher.TeacherDTO;
 
@@ -31,6 +33,9 @@ public class MemberController {
 
 	@Autowired
 	private CartService cartService;
+	
+	@Autowired
+	private FreeBoardService freeBoardService;
 	
 	@GetMapping("test")
 	public String test()throws Exception{
@@ -320,5 +325,17 @@ public class MemberController {
 		return mv;
 	
 	}
+	
+	@GetMapping("board")
+    @ResponseBody
+    public ModelAndView getMyBoardList(FreeBoardDTO freeBoardDTO,ModelAndView mv, HttpServletRequest request) throws Exception{
+        MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+        freeBoardDTO.setId(mem.getId());
+        List<FreeBoardDTO> ar = freeBoardService.getMyBoardList(freeBoardDTO);
+        
+        mv.addObject("f_board", ar);
+        mv.setViewName("/member/board");
+        return mv;
+    }
 	
 }

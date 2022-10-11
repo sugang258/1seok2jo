@@ -86,5 +86,9 @@ public class StudyBoardService {
 		return studyBoardDAO.getCount(studyBoardDTO);
 	}
 	
+	public List<StudyBoardDTO> getMyBoardList(StudyBoardDTO studyBoardDTO) throws Exception{
+	    return studyBoardDAO.getMyBoardList(studyBoardDTO);
+	}
+	
 
 }

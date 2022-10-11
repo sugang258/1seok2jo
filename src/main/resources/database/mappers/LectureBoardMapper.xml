@@ -73,5 +73,9 @@
 		    	<select id="getHeartCount" parameterType="L_heartDTO" resultType="Long">
 		    		SELECT COUNT(LIKE_NUM) FROM L_HEART WHERE NUM=#{num}
 		    	</select>
+		    	
+		    	<select id="getMyBoardList" parameterType="LectureBoardDTO" resultType="LectureBoardDTO">
+		    		SELECT * FROM LECTURE_BOARD WHERE ID = #{id}
+		    	</select>
 
 		    </mapper>

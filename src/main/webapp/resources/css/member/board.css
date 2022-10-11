@@ -1,0 +1,22 @@
+.bold{
+    font-weight: bold;
+
+}
+#study,#lecture{
+    background-color: white;
+    color: #66ba39;
+    border: none;
+    font-size: large;
+    margin-bottom:10px;
+}
+
+#free{
+    margin-left: 700px;
+    background-color: white;
+    color: #66ba39;
+    border: none;
+    font-size: large;
+    margin-bottom:10px;
+
+
+}
