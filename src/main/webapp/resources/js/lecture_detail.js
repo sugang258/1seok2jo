@@ -2,10 +2,11 @@ const signs = document.querySelector("#signs");
 const update = document.querySelector("#update");
 const de = document.querySelector("#de");
 const board = document.querySelector("#board");
+const content = document.querySelector("#content");
 
 signs.addEventListener("click",function(){
     let check = window.confirm("수강신청 하시겠습니까?");
-    let l_num =  signs.getAttributeNode("data-lnum-num").value;
+    let l_num =  content.getAttributeNode("data-ll-num").value;
     if(check) {
         window.location.href="../pay/order?l_num="+l_num;
     }else{
@@ -19,7 +20,7 @@ signs.addEventListener("click",function(){
 //1이면 display:보이게
 
 function setTeacherCheck(){
-    let l_num = update.getAttributeNode("data-update-num").value;
+    let l_num = content.getAttributeNode("data-ll-num").value;
     
     const xhttp = new XMLHttpRequest();
 
@@ -48,11 +49,24 @@ function setTeacherCheck(){
                 }
             }
         }
-}
+    }
+    const listen = document.querySelector("#listen");
+    
+    listen.addEventListener("click",function(){
+        let l_num = content.getAttributeNode("data-ll-num").value;
+        window.location.href="../lecture/listen?l_num="+l_num;
+        
+    })
+    
+    board.addEventListener("click",function(){
+        let l_num = board.getAttributeNode("data-lnum-num").value;
+    
+        window.location.href="../board/list?l_num="+l_num;
+    })
 
 update.addEventListener("click",function(){
     let check = window.confirm("수정하시겠습니까?");
-    let l_num = update.getAttributeNode("data-update-num").value;
+    let l_num = content.getAttributeNode("data-ll-num").value;
 
     if(check){
         window.location.href="../lecture/update?l_num="+l_num;
@@ -63,7 +77,7 @@ update.addEventListener("click",function(){
 
 de.addEventListener("click",function(){
     let check = window.confirm("삭제하시겠습니까?");
-    let l_num = de.getAttributeNode("data-delete-num").value;
+    let l_num = content.getAttributeNode("data-ll-num").value;
 
     if(check) {
         const xhttp = new XMLHttpRequest();
@@ -102,7 +116,7 @@ de.addEventListener("click",function(){
 
 function setLectureSign(){
 
-    let l_num = update.getAttributeNode("data-update-num").value;
+    let l_num = content.getAttributeNode("data-ll-num").value;
     console.log(l_num);
     const xhttp = new XMLHttpRequest();
 
@@ -134,18 +148,5 @@ function setLectureSign(){
     }
 
 
-const listen = document.querySelector("#listen");
-
-listen.addEventListener("click",function(){
-    let l_num = listen.getAttributeNode("data-listen-num").value;
-    window.location.href="../lecture/listen?l_num="+l_num;
-    
-})
-
-board.addEventListener("click",function(){
-    let l_num = board.getAttributeNode("data-lnum-num").value;
-
-    window.location.href="../board/list?l_num="+l_num;
-})
 
 

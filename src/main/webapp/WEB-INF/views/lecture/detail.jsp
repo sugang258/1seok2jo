@@ -58,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8 content" id="content">
+                <div class="col-lg-8 content" id="content" data-ll-num="${param.l_num}">
                     <!-- Post content-->
                     <article>
                         <!-- Post header-->
