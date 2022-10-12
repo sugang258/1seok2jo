@@ -458,9 +458,6 @@ public class LectureController {
 	    System.out.println("list post");
 	    ModelAndView mv = new ModelAndView();
 	    List<LectureDTO> ar = lectureService.getLectureCate(pager);
-	    System.out.println("sr"+pager.getStartRow());
-	    System.out.println("lr"+pager.getLastRow());
-	    //System.out.println(ar.get(0).getC_name());
 	    int result = 0;
 	    if(ar.size() == 0) {
 	        result = 0;

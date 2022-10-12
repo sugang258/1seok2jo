@@ -237,12 +237,9 @@ public class LectureService {
 	}
 	// pager 설정 
 	public List<LectureDTO> getLectureCate(Pager pager) throws Exception{
-	    System.out.println("getpage"+pager.getPage());
-        System.out.println("seaaaa :"+pager.getSearch());
         Long totalCount = lectureDAO.getLectureCateCount(pager);
         pager.getNum(totalCount);
         pager.getRowNum();
-        System.out.println(totalCount);
 	    return lectureDAO.getLectureCate(pager);
 	}
 	
