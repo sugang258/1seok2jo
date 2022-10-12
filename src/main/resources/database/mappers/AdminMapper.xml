@@ -4,6 +4,31 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 	<mapper namespace="com.seok.home.admin.AdminDAO">
+	
+		<select id="findBoard" parameterType="FreeBoardDTO" resultType="FreeBoardDTO">
+			select *
+	        from(select fb_num, 'FREE_BOARD' as bd_name from free_board
+				union all
+				select sb_num,'STUDY_BOARD' as bd_name from study_board
+				union all
+				select n_num, 'NOTICE' as bd_name from notice) board
+	        where fb_num = #{fb_num}
+		</select>
+		
+		<delete id="setBoardDelete" parameterType="StudyBoardDTO">
+		   DELETE FROM <choose>
+		    			<when test="bd_name == 'STUDY_BOARD'">STUDY_BOARD WHERE SB_NUM</when>
+		    			<when test="bd_name == 'FREE_BOARD'">FREE_BOARD WHERE FB_NUM</when>
+		    			<otherwise>NOTICE WHERE N_NUM</otherwise>
+		    			</choose> = #{fb_num}
+		</delete>
+	
+		<select id="getBoardCnt" resultType="Long">
+			select count(*)
+	        from(select sb_num from study_board union all
+				select fb_num from free_board)
+		</select>
+	
 		<select id="getTotalBoardList" parameterType="AdminPager" resultType="Long">
 			select count(*) from (select fb_num , title, contents,category, id, reg_date, '자유게시판' as bd_name from free_board
 			union all

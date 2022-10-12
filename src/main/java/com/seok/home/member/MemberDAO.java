@@ -36,6 +36,11 @@ public class MemberDAO {
 	
 	/************************ 회원 **************************/
 	
+	//전체 회원 수 가져오기
+	public Long getMemberCnt() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getMemberCnt");
+	}
+	
 	//관리자 페이지 회원목록 출력
 	public List<MemberDTO> getAdminMemberList(AdminPager adminPager) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getAdminMemberList", adminPager);
@@ -93,6 +98,7 @@ public class MemberDAO {
 	private int setDeleteTeacher(MemberDTO dto) throws Exception{
 		return sqlSession.delete(NAMESPACE+"setDeleteTeacher", dto);
 	}
+	
 	private int setDeleteTeacherRole(MemberDTO dto) throws Exception{
 		return sqlSession.delete(NAMESPACE+"setDeleteTeacherRole", dto);
 	}
@@ -109,13 +115,23 @@ public class MemberDAO {
 		return sqlSession.update(NAMESPACE+"setEditProfile", memberDTO);
 	}
 	
-	//프로필사진 추가
-	public int setAddFile(MemberFileDTO memberFileDTO)throws Exception{
-		return sqlSession.insert(NAMESPACE+"setAddFile", memberFileDTO);
-	}
-	
 	//프로필사진 삭제
 	public int setDeleteFile(MemberFileDTO memberFileDTO)throws Exception{
 		return sqlSession.delete(NAMESPACE+"setDeleteFile", memberFileDTO);
+	}
+	
+	//프로필 회원비밀번호 확인
+	public MemberDTO getPwCheck(MemberDTO memberDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getPwCheck", memberDTO);
+	}
+	
+	//프로필 회원비밀번호 수정
+	public int setUpdatePw(MemberDTO memberDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"setUpdatePw", memberDTO);
+	}
+	
+	//프로필사진 추가
+	public int setAddFile(MemberFileDTO memberFileDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setAddFile", memberFileDTO);
 	}
 }

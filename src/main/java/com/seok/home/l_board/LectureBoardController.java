@@ -180,6 +180,8 @@ public class LectureBoardController {
             }
         }
         System.out.println(lec.size());
+        int size = lec.size();
+        mv.addObject("size2", size);
         mv.addObject("list", ar);
         mv.addObject("lecture", lec);
         mv.setViewName("member/lecture_board");

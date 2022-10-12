@@ -14,6 +14,8 @@
   href="https://fonts.googleapis.com/css2?family=Arvo&family=Dongle&family=Montserrat:wght@200&family=PT+Serif&family=Playfair+Display:wght@600&family=Prompt&family=Vollkorn:wght@500&display=swap"
   rel="stylesheet"
 />
+		<%-- favicon --%>
+		<link rel="shortcut icon" href="/resources/images/favicon.ico">
 </head>
 <c:import url="./template/header.jsp"></c:import>
 <body>
@@ -128,8 +130,8 @@
           <div class="hot"><span style="color: red;">HOT</span>❗ <a href="#">너도 나도 듣는 인기 강의 👉</a></div>
            
            <div class="d-flex justify-content-between" id="d4">
-            <c:forEach items="${list}" var="count" varStatus="countNm">
-              <div class="lecture">
+            <c:forEach items="${list}" var="count">
+              <div class="lecture" data-l-num="${count.l_num}">
                 <div class="card" style="height:350px">
                   <img src="http://20.249.88.100/resources/lecture/${count.lectureFileDTO[0].f_name}" class="card-img-top img " alt="...">
                   <div class="card-body">
@@ -157,7 +159,7 @@
   
           <div  class="d-flex justify-content-between" id="d5" style="white-space:nowrap; overflow-x: auto;">
             <c:forEach items="${level}" var="lv"  varStatus="lvNm">
-              <div class="lecture">
+              <div class="lecture" data-l-num="${lv.l_num}">
                 <div class="card" style="height:350px">
                   <img src="http://20.249.88.100/resources/lecture/${lv.lectureFileDTO[0].f_name}" class="card-img-top img " alt="...">
                   <div class="card-text">
@@ -219,5 +221,6 @@
       </main>
 <c:import url="./template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="/resources/js/index.js"></script>
 </body>
 </html>

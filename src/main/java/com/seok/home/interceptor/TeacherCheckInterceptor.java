@@ -25,7 +25,7 @@ public class TeacherCheckInterceptor extends HandlerInterceptorAdapter{
             System.out.println(roleDTO.getRoleNum());
             System.out.println(roleDTO.getRoleName());
             
-            if(roleDTO.getRoleName().equals("teacher")) {
+            if(roleDTO.getRoleName().equals("강사")) {
                 check = true;
                 break;
             }
@@ -33,8 +33,8 @@ public class TeacherCheckInterceptor extends HandlerInterceptorAdapter{
         
         //강사가 아닐때
         if(!check) {
-            request.setAttribute("messeage", "강사가 아닙니다");
-            request.setAttribute("url", "../../../../../../");
+            request.setAttribute("message", "강사가 아닙니다");
+            request.setAttribute("url", "../../../");
             RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/result.jsp"); //jsp의 경로
             view.forward(request, response);
         }

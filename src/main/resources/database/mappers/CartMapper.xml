@@ -20,4 +20,8 @@
 		    		SELECT * FROM CART WHERE L_NUM=#{l_num} AND ID=#{id}
 		    	</select>
 		    	
+		    	<delete id="setCartLM" parameterType="CartDTO">
+		    		DELETE FROM CART WHERE L_NUM=#{l_num}
+		    	</delete>
+		    	
 		    </mapper>

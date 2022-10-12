@@ -40,7 +40,7 @@ rel="stylesheet"
             <div class="img_change">
                 <h4 id="sum">썸네일 변경하기</h4>
                 <input type="file" class="btn btn-primary text-center" id="files" value="썸네일 변경하기" data-f-num="${update.lectureFileDTO[0].num}" style="margin-left: 450px; border: none; background-color: white; color: black; display: block;">
-                <input type="button" id="file_sub" value="썸네일 변경확정" style="border :none; background-color: white; color: #66ba39;">
+                <input type="button" id="file_sub" value="썸네일 변경확정" style="border :none; color: white; background-color: #66ba39;">
             </div>
             </form>
         </div>

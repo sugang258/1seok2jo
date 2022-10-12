@@ -21,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 
+import com.seok.home.cart.CartDTO;
+import com.seok.home.cart.CartService;
 import com.seok.home.lecture.add.LectureAddDTO;
 import com.seok.home.lecture.add.LectureAddService;
 import com.seok.home.lecture.status.StatusDTO;
@@ -48,6 +50,8 @@ public class LectureController {
 	private StatusService statusService;
 	@Autowired
 	private TeacherService teacherService;
+	@Autowired
+	private CartService cartService;
 	
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
@@ -199,6 +203,8 @@ public class LectureController {
 		StatusDTO statusDTO = new StatusDTO();
 		lectureAddDTO.setL_num(lectureDTO.getL_num());
 		System.out.println(lectureAddDTO.getL_num());
+		CartDTO cartDTO = new CartDTO();
+		cartDTO.setL_num(lectureDTO.getL_num());
 		lectureDTO = lectureService.getDetail(lectureDTO);
 		long s_count = lectureDTO.getL_count();
 		System.out.println(s_count);
@@ -218,13 +224,31 @@ public class LectureController {
 					statusService.setStatusDelete(statusDTO);
 				}
 			}
+			
+			cartService.setCartLM(cartDTO);
 			lectureAddService.setLectureDeleteAll(lectureDTO);
 			lectureService.setFileDelete(lectureDTO);
 			lectureService.setVideoDele(lectureDTO);
 			result = lectureService.setDelete(lectureDTO);
 			
 		}else {
+			//어드민 권한이면 삭제하도록 한다.
+			Boolean chk = (Boolean)request.getSession().getAttribute("admin");
+			if(chk) {
+				for(int x=0;x<ar.size();x++) {
+					statusDTO.setS_num(ar.get(x).getS_num());
+					for(int i=0;i<s_count*v_count;i++) {
+						//statusDTO S_NUM으로 다 삭제시키기
+						statusService.setStatusDelete(statusDTO);
+					}
+				}
+				lectureAddService.setLectureDeleteAll(lectureDTO);
+				lectureService.setFileDelete(lectureDTO);
+				lectureService.setVideoDele(lectureDTO);
+				result = lectureService.setDelete(lectureDTO);
+			}else {
 			result =0;
+			}
 		}
 		System.out.println(result);
 		return result;
@@ -458,9 +482,6 @@ public class LectureController {
 	    System.out.println("list post");
 	    ModelAndView mv = new ModelAndView();
 	    List<LectureDTO> ar = lectureService.getLectureCate(pager);
-	    System.out.println("sr"+pager.getStartRow());
-	    System.out.println("lr"+pager.getLastRow());
-	    //System.out.println(ar.get(0).getC_name());
 	    int result = 0;
 	    if(ar.size() == 0) {
 	        result = 0;

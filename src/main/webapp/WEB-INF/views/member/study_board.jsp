@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-        <div id="result">
+          <c:if test="${size1 == 0}">
+            <div class="text-center">
+              <div id="null">아직 작성한 게시글이 없습니다!</div>
+              <div id="null2">게시글을 작성해 보세요!</div>
+              <input type="button" class="study_list" id="study_list" value="학습 게시판 가기" style="background-color: #66ba39; color: white; border:none;">
+            </div>
+          </c:if>
             <c:forEach items="${study}" var="BoardDTO">
               <div class="contents_box">
                 <div
@@ -46,5 +52,5 @@
                 </div>
               </div>
             </c:forEach>
-          </div>
+
 

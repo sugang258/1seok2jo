@@ -20,15 +20,19 @@ function save(){
             timeout: 600000,
             success: function (dt) {
                 console.log("f_name : "+dt) //f_name
-                console.log("oriname : "+file.files[0].name) //oriname
+                console.log("f_oriname : "+file.files[0].name) //f_oriname
                 // 라벨 하단에 file 값을 담은 text input을 만들어준다.
 
-                //oriname input
+                //기존 파일을 한번 추가하면 인풋에 disabled값을 준다.
+                let att = document.createAttribute("disabled")
+                file.setAttributeNode(att)
+
+                //f_oriname input
                 let inputf_name = document.createElement("input")
                 let typei = document.createAttribute("type")
                 typei.value="text"
                 let typei2 = document.createAttribute("name")
-                typei2.value="oriname"
+                typei2.value="f_oriname"
                 let typei3 = document.createAttribute("class")
                 typei3.value = "form-control"
                 let typei4 = document.createAttribute("value")
@@ -43,7 +47,7 @@ function save(){
                 
                 addFile.append(inputf_name)
     
-                //fname input
+                //f_name input
                 inputf_name = document.createElement("input")
                 typei = document.createAttribute("type")
                 typei.value="text"

@@ -34,6 +34,9 @@
 			<mapping path="/board/fb_delete"/>
 			<mapping path="/board/sb_add"/>
 			<mapping path="/board/sb_delete"/>
+			<mapping path="/member/board"/>
+			<mapping path="/member/cart"/>
+			<mapping path="/status/sign"/>
 			<mapping path="/lecture/*"/>
 			<exclude-mapping path="/lecture/list"/>
 			<exclude-mapping path="/lecture/detail"/>
