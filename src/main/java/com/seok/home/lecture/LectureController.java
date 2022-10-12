@@ -21,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 
+import com.seok.home.cart.CartDTO;
+import com.seok.home.cart.CartService;
 import com.seok.home.lecture.add.LectureAddDTO;
 import com.seok.home.lecture.add.LectureAddService;
 import com.seok.home.lecture.status.StatusDTO;
@@ -48,6 +50,8 @@ public class LectureController {
 	private StatusService statusService;
 	@Autowired
 	private TeacherService teacherService;
+	@Autowired
+	private CartService cartService;
 	
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
@@ -199,6 +203,8 @@ public class LectureController {
 		StatusDTO statusDTO = new StatusDTO();
 		lectureAddDTO.setL_num(lectureDTO.getL_num());
 		System.out.println(lectureAddDTO.getL_num());
+		CartDTO cartDTO = new CartDTO();
+		cartDTO.setL_num(lectureDTO.getL_num());
 		lectureDTO = lectureService.getDetail(lectureDTO);
 		long s_count = lectureDTO.getL_count();
 		System.out.println(s_count);
@@ -218,6 +224,8 @@ public class LectureController {
 					statusService.setStatusDelete(statusDTO);
 				}
 			}
+			
+			cartService.setCartLM(cartDTO);
 			lectureAddService.setLectureDeleteAll(lectureDTO);
 			lectureService.setFileDelete(lectureDTO);
 			lectureService.setVideoDele(lectureDTO);
