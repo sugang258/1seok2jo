@@ -21,29 +21,39 @@
 		<link rel="shortcut icon" href="/resources/images/favicon.ico">
 		<link rel="stylesheet" href="/resources/css/admin/bscommon.css">
 </head>
-<c:import url="../template/header.jsp"></c:import>
+<!-- <c:import url="../template/header.jsp"></c:import> -->
 <body>
 	<%-- 회원 로그인JSP --%>
 	<main class="container ilseok">
-		<div style="margin-top: 10em; text-align: center; color: rgb(11, 138, 11);"><h2>🔐<b>LOGIN PAGE</b></h2></div>
+		<!-- 1석2조마크 -->
+		<div class="text-center my-3">
+			<img src="/resources/images/15.png" alt="logo" width="200">
+		</div>
 		<div class="login_main" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px; width: 460px; height: 330px; margin: 2em auto 5em auto;">
-			<form action="" method="post" id="">
+
+			<!-- 로그인 form -->
+			<form action="./login" method="post" id="">
 				<div class="row">
-					<div><h5 style="height: 70px;line-height: 80px; padding-left: 38px;"><i class="fa-solid fa-right-to-bracket" style="color: rgb(56, 221, 56);"></i><b> ID 로그인</b></h5></div>
+
+					<div><h5 style="height: 70px;line-height: 80px; padding-left: 38px;"><i class="fa-solid fa-right-to-bracket" style="color: rgb(56, 221, 56);"></i><b> 회원 로그인🔐</b></h5></div>
 					<div class="row" style="justify-content: center;">
 
 						<div class="col-sm-10 mb-3">
 							<label class="mb-2 text-muted" for="id">ID</label>
-							<input type="text" class="form-control" name = "id" id= "id" placeholder="아이디">
+							<input type="text" class="form-control border-success border-opacity-25" name = "id" id= "id" placeholder="아이디">
 						</div>
 
 						<div class="col-sm-10 mb-3">
-							<label class="text-muted" for="password">Password</label>
-							<input type="password" class="form-control"  id= "pw" name = "pw" placeholder="비밀번호">
+							<label class="mb-2 text-muted" for="pw">Password</label>
+							<input type="password" class="form-control border-success border-opacity-25"  id= "pw" name = "pw" placeholder="비밀번호">
 						</div>
+						
+					</div>
 
-						<div class="col-sm-10 mb-3">
-							<button type="submit" class="btn ms-auto btn-outline-success">로그인</button>
+					<!-- 로그인 버튼 -->
+					<div class="row justify-content-md-center">
+						<div class="d-grid gap-2 col-6 mx-auto mt-2">
+							<button type="submit" class="btn btn-outline-success">로그인</button>
 						</div>
 					</div>
 				</div>
