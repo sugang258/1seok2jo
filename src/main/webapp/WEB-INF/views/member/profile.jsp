@@ -55,7 +55,7 @@
 						</div>
 						<div class="row mt-2">
 							<div class="text-center" id="tcherProfile">
-								<!-- 강사프로필로 가는 버튼 -->
+								<!-- 강사프로필 페이지로 가는 a태그 -->
 								<a href="./tcherProfile" class="btn btn-outline-success btn-sm"><b>프로필수정✏</b></a>
 							</div>
 						</div>
@@ -75,7 +75,7 @@
 					</div>
 
 					
-					<!-- 회원가입 버튼 -->
+					<!-- 비밀번호변경 페이지로 가는 a태그 -->
 					<div class="d-grid gap-2 col-6 mx-auto my-3">
 						<a href="./updatePw" class="file_add btn btn-outline-success btn-sm"><b>비밀번호 변경</b></a>
 					</div>
@@ -113,6 +113,14 @@
 					<div class="d-grid gap-2 mt-3">
 						<button type="submit" class="btn btn-outline-success"><b>프로필수정✏</b></button>
 					</div>
+
+					<div class="row mt-4 text-muted">
+						<div class="text-start" id="tcherProfile">
+							<!-- 회원탈퇴페이지로 가는 a태그 -->
+							<a href="./deleteMember" class="text-decoration-none text-reset"><b>회원탈퇴</b> ></a>
+						</div>
+					</div>
+
 				</form>
 			</div>
 		</div>
