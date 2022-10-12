@@ -131,7 +131,7 @@
            
            <div class="d-flex justify-content-between" id="d4">
             <c:forEach items="${list}" var="count">
-              <div class="lecture">
+              <div class="lecture" data-l-num="${count.l_num}">
                 <div class="card" style="height:350px">
                   <img src="http://20.249.88.100/resources/lecture/${count.lectureFileDTO[0].f_name}" class="card-img-top img " alt="...">
                   <div class="card-body">

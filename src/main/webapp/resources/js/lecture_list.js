@@ -9,6 +9,64 @@ const price = document.querySelector("#price");
 const pager = document.querySelector("#pager");
 const filter = document.querySelector(".filter");
 const cate = document.querySelectorAll(".cate");
+const result = document.querySelector("#result");
+
+
+result.addEventListener("click",function(event){
+    alert("클릭")
+   let even = event.target;
+    let target = event.target.parentNode.parentNode.parentNode.parentNode.getAttributeNode("data-ln-num").value;
+    console.log(event.target.parentNode.parentNode.parentNode.parentNode);
+    console.log(even);
+    console.log(target);
+    console.log("sb");
+   
+    if(event.target.classList[3] == 'cc'){
+        let check = window.confirm("장바구니에 담으시겠습니까?")
+
+        if(check) {
+            const xhttp = new XMLHttpRequest() ;
+
+        xhttp.open("POST","../cart/setCartAdd");
+
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        xhttp.send("l_num=" + target);
+
+        xhttp.onreadystatechange = function() {
+            if(this.readyState == 4 && this.status == 200) {
+                let result = xhttp.responseText.trim();
+                console.log(result);
+                result = JSON.parse(result);
+                if (result == 1) {
+                    alert("장바구니 담기 성공");
+                    let check1 = window.confirm("장바구니로 이동하시겠습니까?");
+                    if(check1) {
+                        window.location.href="../member/cart";
+                    }else{
+
+                        window.location.href = "./list";
+                    }
+                   
+
+                }else {
+                    alert("장바구니 담기 실패");
+                    
+                }
+            }
+        }
+    }else{
+        alert("장바구니 담기 취소");
+    }
+}else if(event.target.parentNode.parentNode.parentNode.parentNode.classList[2] == 'lec') {
+    location.href="/lecture/detail?l_num="+target;
+    
+} 
+
+     })
+
+
+
 
 lecture.forEach(function(lecturebtn){
     lecturebtn.addEventListener("click",function(){
