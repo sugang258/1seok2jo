@@ -12,15 +12,14 @@ body {
 }
 #d1_1 {
   height: 300px;
-  width: 74%;
-  float: left;
+
 }
 #d1_2 {
   height: 300px;
-  width: 26%;
-  float: left;
   background-color: #fbfbfb;
   padding-top:75px;
+  min-width: 320px;
+  z-index: 1;
 }
 
 .lecture {
