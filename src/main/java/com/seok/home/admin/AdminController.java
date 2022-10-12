@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.JsonArray;
 import com.seok.home.cs_board.CsBoardDTO;
+import com.seok.home.f_board.FreeBoardDTO;
 import com.seok.home.member.MemberDTO;
 import com.seok.home.pay.PaymentDTO;
 
@@ -85,8 +86,9 @@ public class AdminController {
 	@PostMapping(value = "memberList")
 	@ResponseBody
 	private ModelAndView getMember(AdminPager pager, ModelAndView mv) throws Exception{
+		List<MemberDTO> members = service.getMember(pager);
 		
-		mv.addObject("memberList", service.getMember(pager));
+		mv.addObject("memberList", members);
 		mv.addObject("pager", pager);
 		mv.setViewName("admin/memberListPost");
 		
@@ -193,6 +195,14 @@ public class AdminController {
 		mv.setViewName("common/ajaxResult");
 		
 		return mv;
+	}
+	
+	@PostMapping(value="delBoardAdmin")
+	@ResponseBody
+	private int delBoardAdmin(FreeBoardDTO dto)throws Exception{
+		
+		int result = service.delBoardAdmin(dto);
+		return 0;
 	}
 	
 
