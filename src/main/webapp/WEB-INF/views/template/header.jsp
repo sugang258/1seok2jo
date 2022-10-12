@@ -89,19 +89,23 @@
           </li>
         </ul>
 
-          <form style="width: 230px">
+          <div style="width: 230px">
+            <c:if test="${empty member}">
             <button
               type="button"
               class="top_button"
-              style="margin-right: 10px"
+              style="margin-right: 10px; float: right;"
               onclick="location.href='/member/login';"
             >
             🔐로그인
             </button>
 
             <button type="button" class="top_button" style="margin-right: 10px;" onclick="location.href='/member/join';">👩‍💻회원가입</button>
+            </c:if>
+            <c:if test="${not empty member}">
             <button type="button" class="top_button" id="cartt" onclick="location.href='/member/cart'">🛒</button>
-          </form>
+            </c:if>
+          </div>
         </div>
       </div>
     </nav>

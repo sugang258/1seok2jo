@@ -21,6 +21,14 @@ body {
   z-index: 1;
   
 }
+#d1_3 {
+  height: 300px;
+  background-color: #fbfbfb;
+  padding-top:35px;
+  width: 320px;
+  z-index: 1;
+  
+}
 
 .lecture {
   height: 350px;
