@@ -1,6 +1,7 @@
 package com.seok.home.admin;
 
 import java.lang.reflect.Member;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.JsonArray;
 import com.seok.home.cs_board.CsBoardDTO;
 import com.seok.home.member.MemberDTO;
 import com.seok.home.pay.PaymentDTO;
@@ -28,6 +30,15 @@ public class AdminController {
 	@GetMapping(value="main")
 	private String getMain() {
 		return "admin/main";
+	}
+	
+	//대시보드
+	@GetMapping("getDashBoard")
+	@ResponseBody
+	private HashMap<String, Object> getDashBoard() throws Exception{
+		HashMap<String, Object> result = service.getAdminDashBoard();
+		
+		return result;
 	}
 	
 	//로그인 페이지 이동 컨트롤러

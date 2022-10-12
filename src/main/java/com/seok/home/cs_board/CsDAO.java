@@ -15,6 +15,10 @@ public class CsDAO {
 	private SqlSession session;
 	private String NAMESPACE="com.seok.home.cs_board.CsDAO.";
 	
+	public Long getNotAnswerCnt() throws Exception{
+		return session.selectOne(NAMESPACE+"getNotAnswerCnt");
+	}
+	
 	public int setBoardDelete(CsBoardDTO boardDTO) throws Exception{
 		return session.delete(NAMESPACE+"setBoardDelete", boardDTO);
 	}

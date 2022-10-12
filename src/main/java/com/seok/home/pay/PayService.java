@@ -46,18 +46,7 @@ public class PayService {
 		return memberDAO.updatePoint(dto);
 	}
 	
-	public HashMap<String, Object> getChartAdminDashBoard () throws Exception{
-		
-		List<ChartDTO> charts = payDAO.getChartAdminDashBoard();
-		
-		String[] labels = new String[5];
-		
-		for(ChartDTO chart: charts) {
-			
-		}
-		
-		return null;
-	}
+
 	
 	public HashMap<String, Object> getMyPayList(MemberDTO member)throws Exception{
 		member = memberDAO.getProfile(member);

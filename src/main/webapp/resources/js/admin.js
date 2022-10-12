@@ -114,8 +114,9 @@ function initlectures(){
     postResult.addEventListener("click", function(event){
         let chk = document.querySelectorAll(".chk");
         if(event.target.getAttribute("class")=="page-link"){
+            console.log(event.target)
             page = event.target.getAttribute("data-page")
-            boardsList(page)
+            lectureList(page)
         }else{
             //all 체크박스 클릭하면 전체 체크, 해제
             if(event.target.getAttribute("id")=='all'){

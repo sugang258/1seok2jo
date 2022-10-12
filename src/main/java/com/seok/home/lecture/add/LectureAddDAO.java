@@ -15,6 +15,11 @@ public class LectureAddDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.seok.home.lecture.add.LectureAddDAO.";
 	
+	//수강 중인 강의 개수 가져오기
+	public Long getLectureIngCnt() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getLectureIngCnt");
+	}
+	
 	//강의 수강 신청
 	public int setLectureAdd(LectureAddDTO lectureAddDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setLectureAdd", lectureAddDTO);

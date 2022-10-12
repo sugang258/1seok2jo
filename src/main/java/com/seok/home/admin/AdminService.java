@@ -1,5 +1,6 @@
 package com.seok.home.admin;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,13 @@ import com.seok.home.cs_board.CsDAO;
 import com.seok.home.f_board.FreeBoardDTO;
 import com.seok.home.lecture.LectureDAO;
 import com.seok.home.lecture.LectureDTO;
+import com.seok.home.lecture.add.LectureAddDAO;
 import com.seok.home.member.MemberDAO;
 import com.seok.home.member.MemberDTO;
 import com.seok.home.member.RoleDTO;
 import com.seok.home.pay.PayDAO;
 import com.seok.home.pay.PaymentDTO;
+import com.seok.home.util.ChartDTO;
 
 @Service
 public class AdminService {
@@ -26,9 +29,40 @@ public class AdminService {
 	@Autowired
 	private LectureDAO lectureDAO;
 	@Autowired
+	private LectureAddDAO lectureAddDAO;
+	@Autowired
 	private CsDAO csDAO;
 	@Autowired
 	private PayDAO payDAO;
+	
+	public HashMap<String, Object> getAdminDashBoard () throws Exception{
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		
+		//하루 매출액 그래프
+		List<ChartDTO> charts = payDAO.getChartAdminDashBoard();
+		
+		//전체 회원수 
+		Long memberCnt = memberDAO.getMemberCnt();
+		//전체 강의수
+		Long lectureCnt = lectureDAO.getLectureCnt();
+		//전체 게시글 수
+		Long boardCnt = adminDAO.getBoardCnt();
+		//현재 수강중인 강의 수
+		Long lectureIng = lectureAddDAO.getLectureIngCnt();
+		
+		//미답변 문의수 
+		Long notAnswerCnt = csDAO.getNotAnswerCnt();
+		
+		result.put("charts", charts);
+		result.put("memberCnt", memberCnt);
+		result.put("lectureCnt", lectureCnt);
+		result.put("boardCnt", boardCnt);
+		result.put("lectureIng", lectureIng);
+		result.put("notAnswerCnt", notAnswerCnt);
+		
+		return result;
+	}
+	
 	
 	public List<FreeBoardDTO> getBoardsList(AdminPager pager) throws Exception{
 		pager.calNum(adminDAO.getTotalBoardList(pager));

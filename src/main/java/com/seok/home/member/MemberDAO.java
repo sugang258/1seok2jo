@@ -36,6 +36,11 @@ public class MemberDAO {
 	
 	/************************ 회원 **************************/
 	
+	//전체 회원 수 가져오기
+	public Long getMemberCnt() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getMemberCnt");
+	}
+	
 	//관리자 페이지 회원목록 출력
 	public List<MemberDTO> getAdminMemberList(AdminPager adminPager) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getAdminMemberList", adminPager);
