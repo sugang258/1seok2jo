@@ -51,10 +51,10 @@ public class Pager {
 		public void getNum(Long totalCount) throws Exception {
 			//2.totalCount로 totalPage구하기
 			Long totalPage = totalCount/this.getPerPage();
-			if(totalPage % this.getPerPage() != 0) {
+			if(totalCount % this.getPerPage() != 0) {
 				totalPage++;
 			}
-			
+
 			if(this.getPage()>totalPage) {
 				this.setPage(totalPage);
 			}
@@ -79,7 +79,7 @@ public class Pager {
 			if(curBlock == totalBlock) {
 				this.lastNum = totalPage;
 			}
-			
+
 			//7. 이전, 다음 블럭의 유무
 			if(curBlock>1) {
 				pre = true;

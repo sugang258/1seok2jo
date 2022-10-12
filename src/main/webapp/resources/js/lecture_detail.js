@@ -68,7 +68,7 @@ de.addEventListener("click",function(){
     if(check) {
         const xhttp = new XMLHttpRequest();
 
-        xhttp.open("POST","../lectureAdd/setDelete");
+        xhttp.open("POST","../lecture/setDelete");
 
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
