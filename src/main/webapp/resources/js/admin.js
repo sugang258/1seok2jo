@@ -114,7 +114,6 @@ function initlectures(){
     postResult.addEventListener("click", function(event){
         let chk = document.querySelectorAll(".chk");
         if(event.target.getAttribute("class")=="page-link"){
-            console.log(event.target)
             page = event.target.getAttribute("data-page")
             lectureList(page)
         }else{
@@ -145,6 +144,25 @@ function initlectures(){
     })
 
     //강의 삭제 버튼 누르면
+    let lecDelBtn = document.getElementById("lecDelBtn");
+    lecDelBtn.addEventListener("click", function(){
+        let l_num = getCheckboxValue("l_num")
+        let chk = window.confirm("강의를 삭제 하시겠습니까?")
+        if(chk){
+            let lnum_list = l_num.split(",");
+            for(let i=0;i<lnum_list.length;i++){
+                const xhttp = new XMLHttpRequest();
+                xhttp.open("POST","/lecture/setDelete");
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+                xhttp.send("l_num="+lnum_list[i])
+                xhttp.addEventListener("readystatechange", function(){
+                    if(this.readyState==4 && this.status==200){
+                        console.log(xhttp.responseText);
+                    }
+                })
+            }
+        }
+    });
 }
 //강의리스트 요청하기
 function lectureList(page){
