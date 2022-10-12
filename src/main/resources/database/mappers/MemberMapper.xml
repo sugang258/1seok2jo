@@ -6,7 +6,6 @@
 <mapper namespace="com.seok.home.member.MemberDAO">
 
 	<!--                         관리자 : 데이터 조회                           -->
-	
 	<select id="getMemberCnt" resultType="Long">
 		SELECT COUNT(*) FROM MEMBER
 	</select>
