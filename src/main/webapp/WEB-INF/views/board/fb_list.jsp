@@ -32,17 +32,22 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
         <div style="height: 70px">
           <h3 style="line-height: 80px"><strong>🐸 자유게시판</strong></h3>
         </div>
-          <form action="./fb_list" method="get">
-        <div style="height: 55px">
-          <div class="search-bar">
-            <button id="seach_logo" class="seach-logo">
-              <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
-            </button>
-            <input type="search" name="search" value="${param.search}" placeholder="궁금한 내용을 찾아보세요." />
+        <form action="./fb_list" method="get">
+          <div style="height: 55px">
+            <div class="search-bar">
+              <button id="seach_logo" class="seach-logo">
+                <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+              </button>
+              <input
+                type="search"
+                name="search"
+                value="${param.search}"
+                placeholder="궁금한 내용을 찾아보세요."
+              />
+            </div>
           </div>
-        </div>
-        <!--Order-->
-        <div class="order">
+          <!--Order-->
+          <div class="order">
             <div class="d-flex mb-3">
               <div class="p-1">
                 <select class="select" name="order">
@@ -53,7 +58,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
               </div>
               <div class="p-1">
                 <select class="select" name="kind">
-                <option class="kinds" value="all">전체보기</option>
+                  <option class="kinds" value="all">전체보기</option>
                   <option class="kinds" value="study">스터디모집</option>
                   <option class="kinds" value="data">자료실</option>
                   <option class="kinds" value="confirm">공부인증</option>
@@ -66,7 +71,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                 </button>
               </div>
             </div>
-        </div>
+          </div>
         </form>
       </div>
 
@@ -86,8 +91,9 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                   >
                     <div>🏷️${freeBoardDTO.category}</div>
                   </div>
-                  <div class="p-2">
-                    <i class="fa-regular fa-user"></i> ${freeBoardDTO.id}
+                  <div class="p-2 d-flex">
+                  <div style="margin-top:-5px;"><img src="http://20.249.88.100/resources/member/${freeBoardDTO.f_name}" style="width: 36px;  height:36px; border-radius: 24px;"/></div>
+                    <div class="ps-1">${freeBoardDTO.id}</div>
                   </div>
                 </div>
                 <div
@@ -151,7 +157,9 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
             </c:if>
             <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
               <li class="page-item">
-                <a class="page-link text-success" href="fb_list?page=${i}&order=${pager.order}&kind=${pager.kind}&search=${pager.search}"
+                <a
+                  class="page-link text-success"
+                  href="fb_list?page=${i}&order=${pager.order}&kind=${pager.kind}&search=${pager.search}"
                   >${i}</a
                 >
               </li>
@@ -176,8 +184,8 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       <div class="d-flex flex-row-reverse">
         <div class="fix_box d-flex flex-row-reverse">
           <div class="d-grid gap-2 d-md-block">
-            <button class="fix_btn" type="button" onclick="location.href='#'">
-              <h1 style="color: green">
+            <button class="fix_btn" type="button" onclick="location.href='#'" style="z-index:10">
+              <h1 style="color: green; z-index:10">
                 ▲
                 <h6 style="color: green">맨 위로</h6>
               </h1>
@@ -198,24 +206,24 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       crossorigin="anonymous"
     ></script>
     <script>
-  const kinds = document.getElementsByClassName('kinds');
-  const orders = document.getElementsByClassName('orders');
-  let k = '${param.kind}';
-  let o = '${param.order}';
+      const kinds = document.getElementsByClassName("kinds");
+      const orders = document.getElementsByClassName("orders");
+      let k = "${param.kind}";
+      let o = "${param.order}";
 
-  for(let i =0;i < kinds.length;i++){
-    if(k == kinds[i].value){
-      kinds[i].selected = true;
-      break;
-    }
-  }
-    for(let i =0;i < orders.length;i++){
-        if(o == orders[i].value){
+      for (let i = 0; i < kinds.length; i++) {
+        if (k == kinds[i].value) {
+          kinds[i].selected = true;
+          break;
+        }
+      }
+      for (let i = 0; i < orders.length; i++) {
+        if (o == orders[i].value) {
           orders[i].selected = true;
           break;
-        }  
-  }
-</script>
+        }
+      }
+    </script>
     <script src="/resources/js/fb_list.js"></script>
   </body>
 </html>

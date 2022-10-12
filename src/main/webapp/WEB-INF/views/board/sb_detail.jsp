@@ -7,6 +7,7 @@ prefix="c" %>
     <meta charset="UTF-8" />
     <title>게시판 상세보기</title>
     <link rel="stylesheet" href="/resources/css/board/sb_detail.css" />
+    <link rel="stylesheet" href="/resources/css/index.css" />
     <!-- jquery -->
     <script
       type="text/javascript"
@@ -47,10 +48,24 @@ prefix="c" %>
               >
                 <div>${requestScope.studyBoardDTO.category}</div>
               </div>
-              <div class="p-2">
-                <i class="fa-regular fa-user"></i> ${studyBoardDTO.id}
+
+              <div class="p-2 d-flex">
+                <div>
+                  <img
+                    src="http://20.249.88.100/resources/member/${studyBoardDTO.f_name}"
+                    style="
+                      width: 34px;
+                      height: 34px;
+                      border-radius: 24px;
+                      margin-top: -5px;
+                      margin-right: 5px;
+                    "
+                  />
+                </div>
+                <div>${studyBoardDTO.id}</div>
               </div>
             </div>
+
             <div>
               <h5><b>${studyBoardDTO.title}</b></h5>
             </div>
@@ -125,16 +140,23 @@ prefix="c" %>
         class="d-flex flex-row-reverse mb-5"
         style="width: 70%; margin: 0px auto"
       >
-        <div class="p-2">
-          <button
-            class="btn-st btn btn-outline-secondary"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal2"
-            data-bs-whatever="@mdo"
-          >
-            답변달기(강사)
-          </button>
-        </div>
+        <c:if test="${not empty member}">
+          <c:forEach items="${sessionScope.member.roleDTOs}" var="r">
+            <c:if test="${r.getRoleName() eq '강사'}">
+              <div class="p-2">
+                <button
+                  class="btn-st btn btn-outline-secondary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal2"
+                  data-bs-whatever="@mdo"
+                >
+                  답변달기
+                </button>
+              </div>
+            </c:if>
+          </c:forEach>
+        </c:if>
+
         <div class="p-2">
           <button
             class="btn-st btn btn-outline-secondary"
@@ -144,25 +166,25 @@ prefix="c" %>
           </button>
         </div>
         <c:if test="${member.id eq studyBoardDTO.id}">
-        <div class="p-2">
-          <button
-            class="btn-st btn btn-outline-secondary"
-            onclick="location.href='sb_delete?sb_num=${studyBoardDTO.getSb_num()}';"
-          >
-            삭제하기
-          </button>
-        </div>
-        <div class="p-2">
-          <button
-            type="button"
-            class="btn-st btn btn-outline-secondary"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-            data-bs-whatever="@mdo"
-          >
-            수정하기
-          </button>
-        </div>
+          <div class="p-2">
+            <button
+              class="btn-st btn btn-outline-secondary"
+              onclick="location.href='sb_delete?sb_num=${studyBoardDTO.getSb_num()}';"
+            >
+              삭제하기
+            </button>
+          </div>
+          <div class="p-2">
+            <button
+              type="button"
+              class="btn-st btn btn-outline-secondary"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              data-bs-whatever="@mdo"
+            >
+              수정하기
+            </button>
+          </div>
         </c:if>
       </div>
 
@@ -262,6 +284,12 @@ ${studyBoardDTO.contents}</textarea
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
+              <input
+                type="text"
+                value="${member.id}"
+                id="t_id"
+                style="display: none"
+              />
               <h5 class="modal-title" id="exampleModalLabel">
                 <b style="color: gray">답글작성 😺</b>
               </h5>
@@ -360,9 +388,8 @@ ${studyBoardDTO.contents}</textarea
     </script>
     <script src="/resources/js/sb_detail.js"></script>
     <script>
-      getCommentDetail();
+      getCommentDetail(1);
       getReply(1);
-      teacherReply(1);
     </script>
   </body>
 </html>

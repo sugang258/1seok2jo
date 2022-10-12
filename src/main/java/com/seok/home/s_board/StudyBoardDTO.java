@@ -14,7 +14,14 @@ public class StudyBoardDTO {
 	private String contents;
 	private String category;
 	private BoardFileDTO boardFileDTO;
+	private String f_name;
 
+	public String getF_name() {
+		return f_name;
+	}
+	public void setF_name(String f_name) {
+		this.f_name = f_name;
+	}
 	public BoardFileDTO getBoardFileDTO() {
 		return boardFileDTO;
 	}

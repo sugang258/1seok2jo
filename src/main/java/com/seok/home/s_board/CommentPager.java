@@ -8,7 +8,16 @@ public class CommentPager {
 	private Long perPage;
 	private Long fb_num;
 	private Long sb_num;
+	private String f_name;
 	
+	public String getF_name() {
+		return f_name;
+	}
+
+	public void setF_name(String f_name) {
+		this.f_name = f_name;
+	}
+
 	public Long getSb_num() {
 		return sb_num;
 	}

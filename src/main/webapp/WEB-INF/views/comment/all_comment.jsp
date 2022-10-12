@@ -8,7 +8,7 @@
             <div id="commentList">
               <div class="d-flex justify-content-between">
                 <div class="d-flex mb-1 ms-2">
-                  <div><img src="https://img.danawa.com/prod_img/500000/017/350/img/13350017_1.jpg?shrink=330:330&_v=20210224095944" style="width: 40px;  border-radius: 24px;"/></div><div class="ms-2 mt-2" >${DTO.id}</div>
+                  <div><img src="http://20.249.88.100/resources/member/${DTO.f_name}" style="width: 36px;  height:36px; border-radius: 24px;"/></div><div class="ms-2 mt-2" >${DTO.id}</div>
                 </div>
 
                 <div><button type="button" style="height: 30px; margin-top: 5px; margin-right: 7px;" class="text_delete_btn" data-comment-num="${DTO.num}">❌</button></div>

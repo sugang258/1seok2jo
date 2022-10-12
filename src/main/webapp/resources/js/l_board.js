@@ -1,6 +1,7 @@
 const lecture_add_btn = document.getElementById("lecture_add_btn");
 const l_board_delete = document.getElementsByClassName("l_board_delete");
 
+// 수강평작성
 lecture_add.addEventListener("click", function (event) {
   if (event.target.classList[0] == "lecture_add") {
     const l_num = document.getElementById("l_num");
@@ -40,25 +41,32 @@ lecture_add.addEventListener("click", function (event) {
   }
 });
 
+//수강평 삭제
 for (let i = 0; i < l_board_delete.length; i++) {
   l_board_delete[i].addEventListener("click", function () {
-    let num = document.querySelectorAll(".lecture_boardNum");
-    num = num[i].value;
-    const xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/board/l_boardDelete");
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("num=" + num);
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        let result = xhttp.responseText.trim();
-        console.log(result);
-        if (result == 1) {
-          window.location.reload();
-        } else {
-          alert("삭제실패");
+    let check = window.confirm("삭제하시겠습니까?😮");
+    if (check) {
+      let num = document.querySelectorAll(".lecture_boardNum");
+      num = num[i].value;
+      const xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "/board/l_boardDelete");
+      xhttp.setRequestHeader(
+        "Content-type",
+        "application/x-www-form-urlencoded"
+      );
+      xhttp.send("num=" + num);
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          let result = xhttp.responseText.trim();
+          console.log(result);
+          if (result == 1) {
+            window.location.reload();
+          } else {
+            alert("삭제실패");
+          }
         }
-      }
-    };
+      };
+    }
   });
 }
 
@@ -73,8 +81,8 @@ for (let i = 0; i < like_btn.length; i++) {
     let result;
     let num = document.querySelectorAll(".lecture_boardNum");
     num = num[i].value;
-    let id = document.querySelectorAll(".l_board_id");
-    id = id[i].innerHTML;
+    let id = document.getElementById("l_board_id");
+    id = id.value;
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/board/l_heart");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -151,4 +159,34 @@ function weight() {
   } else {
     l_low.setAttribute("style", "font-weight:bold; color:black");
   }
+}
+
+//강의 수강한 학생만 수강평 작성하기
+function setLectureStudent() {
+  const l_board_id = document.getElementById("l_board_id");
+  const l_num = document.getElementById("l_num");
+  const lecture_add_btn = document.getElementById("lecture_add_btn");
+  let id = l_board_id.value;
+  let num = l_num.value;
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "l_student");
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("id=" + id + "&l_num=" + num);
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      let result = xhttp.responseText.trim();
+      console.log(result);
+      if (result == 0) {
+        lecture_add_btn.setAttribute(
+          "style",
+          "width: 69%; margin: 0 auto; display: none;"
+        );
+      } else {
+        lecture_add_btn.setAttribute(
+          "style",
+          "width: 69%; margin: 0 auto; display: block"
+        );
+      }
+    }
+  };
 }

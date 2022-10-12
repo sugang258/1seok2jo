@@ -134,17 +134,22 @@
                   <img src="http://20.249.88.100/resources/lecture/${count.lectureFileDTO[0].f_name}" class="card-img-top img " alt="...">
                   <div class="card-body">
                     <div class="card-text">
-                      <h5 class="fw-bolder" style="margin-top: 10px;">${count.l_name}</h5>
-                      <h7>⭐⭐⭐⭐⭐</h7>
-                      <p>평점</p>
+                      <div class="fw-bolder mb-2" style="margin-top: 10px; font-size: 16px; white-space:normal;">${count.l_name}</div>
+                      <p style="font-size: 14px; margin-bottom: 0px;">👩‍💻평점</p>
+                      <h7>
+		                  <c:choose>
+			                  <c:when test="${lectureBoardDTO.score eq 1}">⭐</c:when>
+			                  <c:when test="${lectureBoardDTO.score eq 2}">⭐⭐</c:when>
+			                  <c:when test="${lectureBoardDTO.score eq 3}">⭐⭐⭐</c:when>
+			                  <c:when test="${lectureBoardDTO.score eq 4}">⭐⭐⭐⭐</c:when>
+		                  <c:otherwise>⭐⭐⭐⭐⭐</c:otherwise>
+		                </c:choose>
+                      </h7>
                     </div>
                   </div>
                 </div>
               </div>
             </c:forEach>
-
-            
-            
 		</div>
 		
 		<div class="hot"><span style="color: red;"><a href="#">왕초보도 할 수 있어요! 💪</a></div>
@@ -155,144 +160,52 @@
                 <div class="card" style="height:350px">
                   <img src="http://20.249.88.100/resources/lecture/${lv.lectureFileDTO[0].f_name}" class="card-img-top img " alt="...">
                   <div class="card-text">
-                    <h5 style="margin-top: 10px;">${lv.l_name}</h5>
+                    <div class="fw-bolder mb-2" style="margin-top: 10px; font-size: 16px; white-space:normal;">${lv.l_name}</div>
+                    <p style="font-size: 14px; margin-bottom: 0px;">🧑‍💻평점</p>
                     <h7>⭐⭐⭐⭐⭐</h7>
-                    <p>평점</p>
                   </div>
                 </div>
               </div>
             </c:forEach>
-            
-             <!-- <div class="lecture">
-              <div class="card" style="height:277px">
-                <img src="/resources/images/20.png" class="card-img-top img " alt="...">
-                <div class="card-text">
-                  <h5 style="margin-top: 10px;">자바스크립트 완전정복</h5>
-                  <h7>⭐⭐⭐⭐⭐</h7>
-                  <p>평점</p>
-                </div>
-              </div>
-            </div>
-            
-             <div class="lecture">
-              <div class="card" style="height:277px">
-                <img src="/resources/images/20.png" class="card-img-top img " alt="...">
-                <div class="card-text">
-                  <h5 style="margin-top: 10px;">자바스크립트 완전정복</h5>
-                  <h7>⭐⭐⭐⭐⭐</h7>
-                  <p>평점</p>
-                </div>
-              </div>
-            </div>
-            
-             <div class="lecture">
-              <div class="card" style="height:277px">
-                <img src="/resources/images/20.png" class="card-img-top img " alt="...">
-                <div class="card-text">
-                  <h5 style="margin-top: 10px;">자바스크립트 완전정복</h5>
-                  <h7>⭐⭐⭐⭐⭐</h7>
-                  <p>평점</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="lecture">
-              <div class="card" style="height:277px">
-                <img src="/resources/images/20.png" class="card-img-top img " alt="...">
-                <div class="card-text">
-                  <h5 style="margin-top: 10px;">자바스크립트 완전정복</h5>
-                  <h7>⭐⭐⭐⭐⭐</h7>
-                  <p>평점</p>
-                </div>
-              </div>
-            </div>
-            
-            
-          </div> -->
-          
-          
-          
-          <!-- <div class="hot"><span style="color: red;"><a href="#">기본부터 실무까지 제시해주는 로드맵 🏃🏻‍♀️<span style="color: #fa4c3d; font-size: 12px; font-weight: 700;">RoadMap!!</span></a></div>
-  
-          <div  class="d-flex justify-content-between" id="d6" style="white-space:nowrap; overflow-x: auto;">
-          
-          	<div class="lecture">
-              <div class="card" style="height:277px">
-                <img src="/resources/images/20.png" class="card-img-top img " alt="...">
-                <div class="card-text">
-                  <h5 style="margin-top: 10px;">자바스크립트 완전정복</h5>
-                  <h7>⭐⭐⭐⭐⭐</h7>
-                  <p>평점</p>
-                </div>
-              </div>
-            </div>
-            
-             <div class="lecture">
-              <div class="card" style="height:277px">
-                <img src="/resources/images/20.png" class="card-img-top img " alt="...">
-                <div class="card-text">
-                  <h5 style="margin-top: 10px;">자바스크립트 완전정복</h5>
-                  <h7>⭐⭐⭐⭐⭐</h7>
-                  <p>평점</p>
-                </div>
-              </div>
-            </div>
-            
-             <div class="lecture">
-              <div class="card" style="height:277px">
-                <img src="/resources/images/20.png" class="card-img-top img " alt="...">
-                <div class="card-text">
-                  <h5 style="margin-top: 10px;">자바스크립트 완전정복</h5>
-                  <h7>⭐⭐⭐⭐⭐</h7>
-                  <p>평점</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="lecture">
-              <div class="card" style="height:277px">
-                <img src="/resources/images/20.png" class="card-img-top img " alt="...">
-                <div class="card-text">
-                  <h5 style="margin-top: 10px;">자바스크립트 완전정복</h5>
-                  <h7>⭐⭐⭐⭐⭐</h7>
-                  <p>평점</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="lecture">
-              <div class="card" style="height:277px">
-                <img src="/resources/images/20.png" class="card-img-top img " alt="...">
-                <div class="card-text">
-                  <h5 style="margin-top: 10px;">자바스크립트 완전정복</h5>
-                  <h7>⭐⭐⭐⭐⭐</h7>
-                  <p>평점</p>
-                </div>
-              </div>
-            </div>
-          -->
+
         </div>
         
         <div class="hot"><span style="color: red;"><a href="#">읽어보기 📖</a></div>
         
-        <div id="d7"></div>
+        <div class="d-flex" id="d7">
+        	<div class="d-flex flex-column" style="width: 33.3%; height:300px; padding-right: 2em;">
+        		<div style="width: 100%; height:200px; margin: 0 auto;"><img alt="" src="/resources/images/54.png" style="width: 100%; height: 100%;"></div>
+        		<div class="pt-3 pb-3" style="width: 100%; height:110px; margin: 0 auto; font-size: 20px;"><b>R 대 파이썬, 데이터 시각화 비교해봄!</b></div>
+        	</div>
+        	<div class="d-flex flex-column" style="width: 33.3%; height:300px;  padding-right: 1em;">
+        		<div style="width: 100%; height:200px; margin: 0 auto;"><img alt="" src="/resources/images/50.png" style="width: 100%; height: 100%;"></div>
+        		<div class="pt-3 pb-3" style="width: 100%; height:110px; margin: 0 auto; font-size: 20px;"><b>요즘 주니어 개발자의 고민은 뭘까?</b></div>
+        	</div>
+        	<div class="d-flex flex-column" style="width: 33.3%; height:300px; padding-left: 1em;">
+        		<div style="width: 100%; height:200px; margin: 0 auto;"><img alt="" src="/resources/images/51.png" style="width: 100%; height: 100%;"></div>
+        		<div class="pt-3 pb-3" style="width: 100%; height:110px; margin: 0 auto; font-size: 20px;"><b>[일석이조 스낵 #9] 직장인 모여라! 2022 급여체 사전</b></div>
+        	</div>
+        </div>
         
         <div class="d-flex mt-4 mb-5" id="d8">
-        	<div class="pt-2 pe-5 d-flex flex-column" style="width: 50%; border: solid 2px;">
+        	<div class="pt-2 pe-5 d-flex flex-column" style="width: 50%;">
         		<div class="mt-5" style="font-size: 35px; font-weight: bold;"><span style="color:#47c880;">10</span> 명이</div>
         		<div class="mb-4" style="font-size: 35px; font-weight: bold;">일석이조와 함께합니다.</div>
         		<div class="" style="font-size: 16px; color:gray">일석이조는 강의의 수강생수, 평점을 투명하게 공개합니다. 실제로 많은 온오프라인 학원들은 단기적 성과를 높이기 위해 잘나온 특정 후기만 노출 하거나, 아예 숨겨버리는 경우가 많습니다.
 반면 일석이조는 강의에 대한 후기, 학생수 등 정보를 투명하게 공개합니다. 신뢰성을 바탕으로 학습자들이 더 좋은 컨텐츠를 선택하고 교육의 질을 높입니다.</div>
 				<div class="mt-4">
-						<button type="button" class="btn btn-outline-success">수강평 더보기</button>
+						<button type="button" class="btn btn-outline-success">강의 더보기</button>
 						<button type="button" class="btn btn-outline-success">기능/강좌 요청하기</button>
 				</div>
         	</div>
-        	<div class="p-4 d-flex flex-column" style="width: 50%; border: solid 2px;">수강평 몇개 가져오기</div>
+        	<div class="p-5 d-flex flex-column" style="width: 50%;">
+        		<div><img alt="" src="/resources/images/521.gif" style="width: 100%; height: 100%;"></div>
+        		<div class="mt-3 mb-3" style="font-size: 32px;"><b>나누는 지식만큼 커지는 보람과 보상</b></div>
+        		<div class="mb-3" style="font-size: 18px; color: gray;">인프런 지식공유자로 높은 수익과 가치를 만들어보세요.</div>
+        	</div>
         </div>
         
-        
-        
+       
       </main>
 <c:import url="./template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
