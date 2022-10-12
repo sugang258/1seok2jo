@@ -20,6 +20,7 @@ import com.seok.home.l_board.LectureBoardDTO;
 import com.seok.home.l_board.LectureBoardService;
 import com.seok.home.lecture.LectureDTO;
 import com.seok.home.lecture.LectureService;
+import com.seok.home.member.MemberService;
 
 /**
  * Handles requests for the application home page.
@@ -34,6 +35,9 @@ public class HomeController {
 	
 	@Autowired
 	private LectureBoardService lectureBoardService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -65,6 +69,9 @@ public class HomeController {
 	    mv.addObject("avg", a);
 	    mv.addObject("list", list);
 	    mv.addObject("level", level);
+	    
+	    Long cntMember = memberService.getMemberCnt();
+	    mv.addObject("cntMember",cntMember);
 	    mv.setViewName("index");
 		
 		return mv;
