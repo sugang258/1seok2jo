@@ -25,25 +25,23 @@
             <div class="col-6 col-md-4 col-lg-5 mt-5">
                 <div class="mb-4 text-center">
                     <!-- 제목부분 -->
-                    <h1><b>회원탈퇴❌</b></h1>
+                    <h1><b>비밀번호 변경✒</b></h1>
                 </div>
-                <form action="./deleteMember" method="post">
+                <form action="./updatePw" method="post" id="updatePwForm">
+                    
                     <div class="mb-3">
-                        <label for="ipId" class="form-label">아이디</label>
-                        <input type="text" name="id" class="form-control border-success border-opacity-25" id="ipId" value="${member.id}">
-                        <div id="ipIdResult"></div>
+                        <label for="now_pw" class="form-label">현재 비밀번호</label>
+                        <input type="password" name="now_pw" class="form-control border-success border-opacity-25" id="now_pw" placeholder="현재 비밀번호를 입력하세요">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="new_pw" class="form-label">새 비밀번호</label>
+                        <input type="password" name="new_pw" class="form-control border-success border-opacity-25" id="ipnew_pw" placeholder="새 비밀번호를 입력하세요">
                     </div>
                     
                     <div class="mb-3">
-                        <label for="ipPw" class="form-label">비밀번호</label>
-                        <input type="password" name="pw" class="form-control border-success border-opacity-25" id="ipPw" placeholder="비밀번호를 입력해주세요">
-                        <div id="ipPwResult"></div>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="ipPwCheck" class="form-label">비밀번호 확인</label>
-                        <input type="password" class="form-control border-success border-opacity-25" id="ipPwCheck" placeholder="비밀번호를 다시 입력해주세요">
-                        <div id="ipPwCheckResult"></div>
+                        <label for="pw_check" class="form-label">새 비밀번호 확인</label>
+                        <input type="password" class="form-control border-success border-opacity-25" id="pw_check" placeholder="새 비밀번호를 다시 입력하세요">
                     </div>
 
                     <!-- 구분선 -->
@@ -51,9 +49,9 @@
 						<hr class="my-5">
 					</div>
 
-                    <!-- 회원탈퇴 버튼 -->
+                    <!-- 비밀번호변경 버튼 -->
                     <div class="d-grid gap-2 mt-3">
-                        <button type="submit" class="btn btn-outline-success" id="btn">회원탈퇴</button>
+                        <button type="button" class="btn btn-outline-success" id="btn">확인</button>
                     </div>
                 </form>
             </div>
@@ -61,5 +59,9 @@
 	</section>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="/resources/js/member_update.js"></script>
+<script>
+    updatePwCheck();
+</script>
 </body>
 </html>

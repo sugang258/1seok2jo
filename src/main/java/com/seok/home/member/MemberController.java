@@ -89,7 +89,7 @@ public class MemberController {
 	
 	//아이디중복 확인 로직 처리 (POST)
 	@ResponseBody
-	@PostMapping("/idcheck")
+	@PostMapping("idCheck")
 	public int getIdCheck(MemberDTO memberDTO)throws Exception{
 		int result = memberService.getIdCheck(memberDTO);
 		return result;
@@ -108,8 +108,7 @@ public class MemberController {
 	public String setJoin(MemberDTO memberDTO, HttpSession session, String yy, String mm, String dd, String e, String mail)throws Exception{
 		System.out.println("회원가입 접속(POST)");
 		
-		System.out.println("e : "+e);
-		System.out.println("mail : "+mail);
+		//int result = memberService.getIdCheck(memberDTO);
 		
 		//DB에 새로운 회원데이터추가
 		int result = memberService.setJoin(memberDTO, yy, mm, dd, e, mail);
@@ -182,6 +181,14 @@ public class MemberController {
 		return "member/deleteMember";
 	}
 	
+	//비밀번호 확인 로직 처리 (POST)
+//	@ResponseBody
+//	@PostMapping("pwCheck")
+//	public MemberDTO getPwCheck(MemberDTO memberDTO)throws Exception{
+//		memberDTO = memberService.getIdCheck(memberDTO);
+//		return memberDTO;
+//	}
+	
 	/************************ 마이페이지 **************************/
 	
 	//회원프로필정보조회 화면(GET)
@@ -202,9 +209,13 @@ public class MemberController {
 		//memberDTO에 담음
 		memberDTO = (MemberDTO) session.getAttribute("member");
 		
+		
 		//프로필정보조회(아이디, 이름, 닉네임, *생년월일*, 성별, 이메일, 연락처 조회)
 		//getProfile을 갔다온 memberDTO를 respMemberDTO(responseMemberDTO)에 담음
 		respMemberDTO = memberService.getProfile(memberDTO);
+//		System.out.println("file : "+respMemberDTO.getMemberFileDTO().getNum());
+//		System.out.println("file : "+respMemberDTO.getMemberFileDTO().getF_name());
+//		System.out.println("file : "+respMemberDTO.getMemberFileDTO().getF_oriname());
 		}
 		
 		//그 데이터를 "member"로 JSP에 보내줌
@@ -216,16 +227,22 @@ public class MemberController {
 	//회원프로필 내 정보 수정 로직 처리(POST)
 	@PostMapping("profile")
 	@ResponseBody
-	public ModelAndView setProfile(MemberDTO memberDTO, HttpSession session, String f_name, String oriname)throws Exception {
-		System.out.println("프로필 정보(POST)");
+	public ModelAndView setProfile(MemberDTO memberDTO, HttpSession session, String f_name, String f_oriname)throws Exception {
+		System.out.println("프로필 내 정보 수정(POST)");
 		ModelAndView mv = new ModelAndView();
 		
-		System.out.println("fileDTO_FNAME : "+f_name);
-		System.out.println("fileDTO_ORINAME : "+oriname);		
+		System.out.println("fileDTO F_NAME : "+f_name);
+		System.out.println("fileDTO F_ORINAME : "+f_oriname);		
 		
+//		//스트링을 구분자로 나눠준뒤
+//		String [] f_names = f_name.split(",");
+//		System.out.println("마지막 인덱스 파일네임 : "+f_names[le]);
+//		String [] f_orinames = f_oriname.split(",");
+
 		MemberFileDTO file = new MemberFileDTO();
 		file.setF_name(f_name);
-		file.setF_oriname(oriname);
+		file.setF_oriname(f_oriname);
+		
 		
 		int result = memberService.setEditProfile(memberDTO, file, session.getServletContext());
 		
@@ -257,6 +274,59 @@ public class MemberController {
 //		mv.setViewName("common/result");
 		
 		return mv;
+	}
+	
+	//프로필사진 삭제(GET)
+	@GetMapping("deleteFile")
+	public void setDeleteFile()throws Exception{
+		System.out.println("프로필사진 삭제 접속(GET)");
+		memberService.setDeleteFile(null);
+		
+	}
+	
+	//프로필 회원비밀번호 수정 화면(GET)
+	@GetMapping("updatePw")
+	public String setUpdatePw()throws Exception{
+		System.out.println("프로필 회원비밀번호 수정(GET)");
+		
+		return "member/updatePw";
+	}
+	
+	//프로필 회원비밀번호 확인 로직(POST)
+	@ResponseBody
+	@PostMapping("pwCheck")
+	public String getPwCheck(MemberDTO memberDTO, HttpSession session)throws Exception{
+		System.out.println("프로필 회원비밀번호 확인(POST)");
+		
+		MemberDTO sesMemberDTO = new MemberDTO();
+		sesMemberDTO = (MemberDTO) session.getAttribute("member");
+		memberDTO.setId(sesMemberDTO.getId());
+		
+		String respPw = memberService.getPwCheck(memberDTO);
+		
+		return respPw;
+	}
+	
+	//프로필 회원비밀번호 수정 로직(POST)
+	@PostMapping("updatePw")
+	public String setUpdatePw(MemberDTO memberDTO, HttpSession session, String new_pw)throws Exception{
+		System.out.println("프로필 회원비밀번호 수정(POST)");
+		
+		MemberDTO sesMemberDTO = new MemberDTO();
+		sesMemberDTO = (MemberDTO) session.getAttribute("member");
+		memberDTO.setId(sesMemberDTO.getId());
+		memberDTO.setPw(new_pw);
+		
+		int result = memberService.setUpdatePw(memberDTO);
+		
+		if(result != 0){
+			System.out.println("비밀번호 변경 성공!!");
+			return "redirect:../member/login";
+		}else {
+			System.out.println("비밀번호 변경 실패..");
+			return "redirect:../member/updatePw";
+		}
+		
 	}
 	
 	//강사프로필 정보조회 화면(GET)

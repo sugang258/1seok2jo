@@ -106,6 +106,28 @@ public class MemberDAOTest extends MyAbstractTest {
 	}
 	
 	//@Test
+	public void getPwCheckTest()throws Exception {
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setId("koo");
+		
+		memberDTO = memberDAO.getPwCheck(memberDTO);
+		
+		assertNotNull(memberDTO);
+	}
+	
+	//@Test
+	public void setUpdatePwTest()throws Exception{
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setId("koo");
+		memberDTO.setPw("koo");
+		
+		int result = memberDAO.setUpdatePw(memberDTO);
+		
+		assertEquals(1, result);
+		
+	}
+	
+	//@Test
 	public void getProfileTest()throws Exception{
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setId("koo");
