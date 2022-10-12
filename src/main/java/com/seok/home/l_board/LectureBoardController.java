@@ -58,7 +58,7 @@ public class LectureBoardController {
 		Long count = lectureBoardService.getTotalCount(lectureBoardDTO);
 		//별점 평균
 		double avg = lectureBoardService.getAvgScore(lectureBoardDTO);
-		avg = Math.round(avg);
+		avg = Math.round(avg*100)/100.0;
 		
 		/* 추천수 조회 및 컬러변경 */
 		List<Long> heartCount = new ArrayList<Long>();
