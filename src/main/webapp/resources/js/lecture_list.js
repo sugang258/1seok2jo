@@ -14,15 +14,12 @@ const result = document.querySelector("#result");
 
 result.addEventListener("click",function(event){
    let even = event.target;
-    //let target = event.target.parentNode.parentNode.parentNode.parentNode.getAttributeNode("data-ln-num").value;
-    let imgget = event.target.parentNode.parentNode.getAttributeNode("data-ln-num").value;
-    console.log(event.target.parentNode.parentNode.parentNode.parentNode);
     console.log(even);
-    //console.log(target);
     console.log("sb");
-    console.log(imgget);
    
     if(event.target.classList[3] == 'cc'){
+        let target = event.target.parentNode.parentNode.parentNode.parentNode.getAttributeNode("data-ln-num").value;
+
         let check = window.confirm("장바구니에 담으시겠습니까?")
 
         if(check) {
@@ -58,8 +55,11 @@ result.addEventListener("click",function(event){
             alert("장바구니 담기 취소");
         }
     }else if(event.target.parentNode.parentNode.parentNode.parentNode.classList[2] == 'lec') {
+        let target = event.target.parentNode.parentNode.parentNode.parentNode.getAttributeNode("data-ln-num").value;
         location.href="/lecture/detail?l_num="+target;           
     }else if(event.target.className == 'card-img-top') {
+        let imgget = event.target.parentNode.parentNode.getAttributeNode("data-ln-num").value;
+
         location.href="/lecture/detail?l_num="+imgget;    
     }
 
