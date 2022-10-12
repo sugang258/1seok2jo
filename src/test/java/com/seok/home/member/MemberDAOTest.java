@@ -1,11 +1,8 @@
 package com.seok.home.member;
 
 import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 
 import java.util.List;
-
-import javax.swing.plaf.metal.MetalMenuBarUI;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +56,24 @@ public class MemberDAOTest extends MyAbstractTest {
 			}
 		}
 		assertNotNull(memlist);
+	}
+	
+	//@Test
+	public void getIdCheckTest()throws Exception{
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setId("hyo");
+		int result = memberDAO.getIdCheck(memberDTO);
+		
+		assertEquals(1, result);
+	}
+	
+	//@Test
+	public void getNnameCheckTest()throws Exception{
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setN_name("효효");
+		int result = memberDAO.getNnameCheck(memberDTO);
+		
+		assertEquals(1, result);
 	}
 	
 	//@Test
@@ -148,16 +163,6 @@ public class MemberDAOTest extends MyAbstractTest {
 		int result = memberDAO.setDeleteMemberRole(memberDTO);
 		
 		assertNotEquals(0, result);
-	}
-	
-	//@Test
-	public void getIdCheckTest()throws Exception{
-		MemberDTO memberDTO = new MemberDTO();
-		memberDTO.setId("koo");
-		
-		int result = memberDAO.getIdCheck(memberDTO);
-		
-		assertEquals(1, result);
 	}
 	
 //	@Test

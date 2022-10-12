@@ -73,7 +73,7 @@
 						</div>
 
 						<div class="col-4">
-							<input type="number" class="form-control border-success border-opacity-25 ipY_date" name="yy" placeholder="년(4자)" maxlength="4">
+							<input type="number" class="form-control border-success border-opacity-25 b_date" id="" name="yy" placeholder="년(4자)" maxlength="4">
 						</div>
 	
 						<div class="col-4">
@@ -95,7 +95,7 @@
 						</div>
 	
 						<div class="col-4">
-							<input type="number" class="form-control border-success border-opacity-25 ipD_date" name="dd" placeholder="일" maxlength="2">
+							<input type="number" class="form-control border-success border-opacity-25 b_date" id="" name="dd" placeholder="일" maxlength="2">
 						</div>
 						<div id="ipBdateResult"></div>
 					</div>
@@ -166,7 +166,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <script src="/resources/js/member.js"></script>
 <script>
-	idCheck();
+	joinCheck();
 </script>
 </body>
 </html>

@@ -98,6 +98,12 @@
 		
 		SELECT COUNT(*) FROM MEMBER WHERE ID=#{id}
 	</select>
+	
+	<select id="getNnameCheck" parameterType="MemberDTO" resultType="Integer">
+		/* 회원 닉네임중복 확인 */
+		
+		SELECT COUNT(*) FROM MEMBER WHERE N_NAME=#{n_name}
+	</select>
 		
 	<insert id="setJoin" parameterType="MemberDTO">
 		/* 회원 데이터 추가 */

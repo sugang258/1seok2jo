@@ -92,7 +92,7 @@ function joinCheck(){
         if(idCheck && pwCheck && pwEqualCheck){
 
         }else {
-            alert("필수 정보입니다");
+            alert("필수 정보를 입력하세요");
         }
     });
 
@@ -144,6 +144,10 @@ function idCheck(){
         }
 
     });
+}
+
+function nNameCheck(){
+
 }
 
 function loginCheck(){
