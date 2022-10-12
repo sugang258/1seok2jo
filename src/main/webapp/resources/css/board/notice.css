@@ -68,10 +68,8 @@ main {
   position: relative;
 }
 .sidebar {
-  width: fit-content;
+  width:150px;
   font-size: 13px;
-  position: absolute;
-  position: fixed;
   top: 160px;
   bottom: 0;
   margin: 0 auto;
@@ -81,7 +79,7 @@ main {
   overflow-x: hidden;
   overflow-y: auto;
   text-align: center;
-  left: 10em;
+  position: fixed;
 }
 
 #writer a {
