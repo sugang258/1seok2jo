@@ -71,17 +71,17 @@ prefix="c" %>
             <div class="d-flex mt-4">
               <div class="d-flex p-1 w-100 justify-content-between">
                 <div class="b1 d-flex" style="height: 32px; line-height: 28px">
-                  <div class="me-2" style="font-size: 14px; color: #6c6969">
+                  <div class="me-2 mt-1" style="font-size: 14px; color: #6c6969">
                     ${freeBoardDTO.hit} 조회
                   </div>
-                  <div style="font-size: 14px; color: #6c6969">
+                  <div class="mt-1" style="font-size: 14px; color: #6c6969">
                     <span id="fb_heart_count"></span> 좋아요
                   </div>
                 </div>
                 <div
                   class="p-2"
                   style="
-                    margin-bottom: 20px;
+                    margin-bottom: 12px;
                     position: absolute;
                     right: 15px;
                     bottom: -12px;

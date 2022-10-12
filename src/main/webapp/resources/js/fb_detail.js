@@ -177,24 +177,32 @@ function setFb_heart() {
     id = id.value;
     let fb_num = document.getElementById("free_board_num");
     fb_num = fb_num.value;
-    const xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "fb_heart");
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("id=" + id + "&fb_num=" + fb_num);
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        let result = xhttp.responseText.trim();
-        if (result == 1) {
-          //카운트가 1씩 증가 ++count
-          fb_heart.setAttribute("style", "color:red");
-          fb_heart_count.innerHTML = ++heart_count_value;
-        } else {
-          //카운트가 1씩 감소 --count
-          fb_heart.setAttribute("style", "color: rgb(189, 185, 185)");
-          fb_heart_count.innerHTML = --heart_count_value;
+    if (id == "") {
+      alert("로그인이 필요합니다.🤗");
+      window.location.href = "/member/login";
+    } else {
+      const xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "fb_heart");
+      xhttp.setRequestHeader(
+        "Content-type",
+        "application/x-www-form-urlencoded"
+      );
+      xhttp.send("id=" + id + "&fb_num=" + fb_num);
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          let result = xhttp.responseText.trim();
+          if (result == 1) {
+            //카운트가 1씩 증가 ++count
+            fb_heart.setAttribute("style", "color:red");
+            fb_heart_count.innerHTML = ++heart_count_value;
+          } else {
+            //카운트가 1씩 감소 --count
+            fb_heart.setAttribute("style", "color: rgb(189, 185, 185)");
+            fb_heart_count.innerHTML = --heart_count_value;
+          }
         }
-      }
-    };
+      };
+    }
   });
 }
 

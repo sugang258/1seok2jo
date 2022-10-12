@@ -73,7 +73,7 @@ public class FreeBoardController {
 			Fb_heartDTO heartColor;
 			Fb_heartDTO fb_heartDTO = new Fb_heartDTO();
 			fb_heartDTO.setFb_num(freeBoardDTO.getFb_num());
-			fb_heartDTO.setId(freeBoardDTO.getId());
+			fb_heartDTO.setId(memberDTO.getId());
 			heartColor = freeBoardService.getFb_heart(fb_heartDTO);
 			
 			mv.addObject("color", heartColor);
