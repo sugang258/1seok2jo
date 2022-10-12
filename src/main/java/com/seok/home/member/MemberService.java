@@ -96,6 +96,11 @@ public class MemberService {
 		return memberDAO.setDeleteJoin(memberDTO);
 	}
 	
+	//메인페이지 멤버카운트
+	public Long getMemberCnt() throws Exception{
+		return memberDAO.getMemberCnt();
+	}
+	
 	
 	/************************ 마이페이지 **************************/
 	

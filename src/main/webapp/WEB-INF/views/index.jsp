@@ -203,7 +203,7 @@
         
         <div class="d-flex mt-4 mb-5" id="d8">
         	<div class="pt-2 pe-5 d-flex flex-column" style="width: 50%;">
-        		<div class="mt-5" style="font-size: 35px; font-weight: bold;"><span id="cntMember" style="color:#47c880;">0</span> 명이</div>
+        		<div class="mt-5" style="font-size: 35px; font-weight: bold;"><span id="cntMember" style="color:#47c880;">${cntMember}</span> 명이</div>
         		<div class="mb-4" style="font-size: 35px; font-weight: bold;">일석이조와 함께합니다.</div>
         		<div class="" style="font-size: 16px; color:gray">일석이조는 강의의 수강생수, 평점을 투명하게 공개합니다. 실제로 많은 온오프라인 학원들은 단기적 성과를 높이기 위해 잘나온 특정 후기만 노출 하거나, 아예 숨겨버리는 경우가 많습니다.
 반면 일석이조는 강의에 대한 후기, 학생수 등 정보를 투명하게 공개합니다. 신뢰성을 바탕으로 학습자들이 더 좋은 컨텐츠를 선택하고 교육의 질을 높입니다.</div>
