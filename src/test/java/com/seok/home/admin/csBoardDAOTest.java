@@ -8,11 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.seok.home.MyAbstractTest;
 import com.seok.home.cs_board.CsBoardDTO;
 import com.seok.home.cs_board.CsDAO;
+import com.seok.home.f_board.FreeBoardDTO;
 
 public class csBoardDAOTest extends MyAbstractTest{
 
 	@Autowired
 	private CsDAO dao;
+	@Autowired
+	private AdminDAO adminDAO;
 	
 //	@Test
 	public void setBoardAddtest() throws Exception {
@@ -28,6 +31,16 @@ public class csBoardDAOTest extends MyAbstractTest{
 			int result = dao.setBoardAdd(boardDTO);
 			assertEquals(1,result);
 		}
+	}
+	
+	//@Test
+	public void setBoardDelete() throws Exception{
+		FreeBoardDTO dto = new FreeBoardDTO();
+		dto.setBd_name("STUDY_BOARD");
+		dto.setFb_num(678L);
+		
+		int result = adminDAO.setBoardDelete(dto);
+		assertEquals(1, result);
 	}
 
 }

@@ -60,7 +60,6 @@
                                 <div class="p-2 flex-fill text-end pe-5">
                                     <button type="button" id="lecDelBtn" >강의 삭제</button>
                                 </div>
-                              </div>
                         </div>
                         <div class="card mb-4 mt-2">
                             <div class="card-header" id="postResult">
