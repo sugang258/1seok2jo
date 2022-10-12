@@ -95,6 +95,13 @@
 		
 		SELECT COUNT(*) FROM MEMBER WHERE ID=#{id}
 	</select>
+		
+	<insert id="setJoin" parameterType="MemberDTO">
+		/* 회원 데이터 추가 */
+		
+		INSERT INTO MEMBER(ID, PW, NAME, N_NAME, B_DATE, GENDER, EMAIL, PHONE, POINT)
+		VALUES (#{id}, #{pw}, #{name}, #{n_name}, #{b_date}, #{gender}, #{email}, #{phone}, 5000)
+	</insert>
 	
 	<insert id="setMemberRole" parameterType="MemberDTO">
 		/* 회원 등급 데이터 추가 */
@@ -103,19 +110,17 @@
 		VALUES(MEMBER_ROLE_SEQ.NEXTVAL, 3, #{id})
 	</insert>
 	
+	<delete id="setDeleteJoin" parameterType="MemberDTO">
+		/* 회원 데이터 삭제 */
+		DELETE FROM MEMBER WHERE ID=#{id}
+	</delete>
+	
 	<!--                            관리자 : 등급 추가                              -->
 	<insert id="setAdminRole" parameterType="MemberDTO">
 		/* 관리자 등급 데이터 추가 */
 		
 		INSERT INTO MEMBER_ROLE(R_NUM, ROLENUM, ID)
 		VALUES(MEMBER_ROLE_SEQ.NEXTVAL, 1, #{id})
-	</insert>
-	
-	<insert id="setJoin" parameterType="MemberDTO">
-		/* 회원 데이터 추가 */
-		
-		INSERT INTO MEMBER(ID, PW, NAME, N_NAME, B_DATE, GENDER, EMAIL, PHONE, POINT)
-		VALUES (#{id}, #{pw}, #{name}, #{n_name}, #{b_date}, #{gender}, #{email}, #{phone}, 5000)
 	</insert>
 	
 	<!--                            마일리지                              -->
@@ -186,7 +191,7 @@
 		DELETE FROM MEMBER_FILE WHERE NUM=#{num}
 	</delete>
 	
-	<!--                     관리자 : 등급 데이터 삭제                       -->
+	<!--                     등급 데이터 삭제                       -->
 	<delete id="setDeleteMemberRole" parameterType="MemberDTO">
 		/* 회원등급 데이터 삭제 */
 		DELETE FROM MEMBER_ROLE WHERE ID=#{id}
@@ -200,11 +205,6 @@
 	<delete id="setDeleteTeacher" parameterType="MemberDTO">
 		/* 강사권한 삭제 */
 		DELETE FROM teacher WHERE ID=#{id}
-	</delete>
-	
-	<delete id="setDeleteJoin" parameterType="MemberDTO">
-		/* 회원 데이터 삭제 */
-		DELETE FROM MEMBER WHERE ID=#{id}
 	</delete>
 	
 </mapper> 

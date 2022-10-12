@@ -3,9 +3,9 @@
 
 // input 선택
 
-// ---------------- 회원가입-아이디 중복 확인 -------------------
+// ---------------- 회원가입-아이디 중복 확인 ----------------
 const aIdCheck = document.querySelector("#aIdCheck");
-// ---------------- 회원가입-유효성 검사 -------------------
+// ------------------- 회원가입-유효성 검사 -------------------
 const ipId = document.getElementById("ipId");
 const ipPw = document.getElementById("ipPw");
 const ipPwCheck = document.getElementById("ipPwCheck");
@@ -15,10 +15,13 @@ const ipBdate = document.getElementById("ipBdate");
 const ipGender = document.getElementById("ipGender");
 const ipEmail = document.getElementById("ipEmail");
 const ipPhone = document.getElementById("ipPhone");
-// button 선택-회원가입버튼
+// button 선택
+// 회원-회원가입버튼
 const btn = document.getElementById("btn");
 
 //div 선택
+
+// ------------------- 회원가입-유효성 검사 -------------------
 const ipIdResult = document.getElementById("ipIdResult");
 const ipPwResult = document.getElementById("ipPwResult");
 const ipPwCheckResult = document.getElementById("ipPwCheckResult");
@@ -29,10 +32,10 @@ const ipGenderResult = document.getElementById("ipGenderResult");
 const ipEmailResult = document.getElementById("ipEmailResult");
 const ipPhoneResult = document.getElementById("ipPhoneResult");
 
-// 회원가입-유효성 검사
+// ------------------- 회원가입-유효성 검사 -------------------
 function joinCheck(){
 
-    //확인 결과
+    // 확인 결과
     let idCheck=false;
     let pwCheck=false;
     let pwEqualCheck=false;
@@ -43,9 +46,9 @@ function joinCheck(){
     let emailCheck=false;
     let phoneCheck=false;
 
-    //아이디길이 확인
+    // 아이디길이 확인
     ipId.addEventListener("blur", function(){
-        //console.log("블러 이벤트 실행");
+        // console.log("블러 이벤트 실행");
         idCheck=false;
         if(ipId.value.length>5 && ipId.value.length<20){
             ipIdResult.innerHTML="";
@@ -58,7 +61,7 @@ function joinCheck(){
 
     });
 
-    //패스워드길이 확인
+    // 패스워드길이 확인
     ipPw.addEventListener("blur", function(){
         if(ipPw.value.length>8 && ipPw.value.length<16){
             ipPwResult.innerHTML="";
@@ -70,7 +73,7 @@ function joinCheck(){
         }
     });
 
-    //패스워드가 일치하는지 확인
+    // 패스워드가 일치하는지 확인
     ipPwCheck.addEventListener("blur", function(){
         if(ipPw.value == ipPwCheck.value){
             ipPwCheckResult.innerHTML="";
@@ -84,7 +87,7 @@ function joinCheck(){
         }
     });
 
-    //회원가입 버튼 클릭
+    // 회원가입 버튼 클릭
     btn.addEventListener("click", function(){
         if(idCheck && pwCheck && pwEqualCheck){
 
@@ -95,7 +98,7 @@ function joinCheck(){
 
 }
 
-// 회원가입-아이디중복 확인
+// -------------------------- 회원가입-아이디중복 확인 --------------------------
 // const ipId = document.getElementById("ipId"); 회원가입-아이디입력 input태그
 // const aIdCheck = document.querySelector("#aIdCheck"); 회원가입-중복확인 a태그
 function idCheck(){
