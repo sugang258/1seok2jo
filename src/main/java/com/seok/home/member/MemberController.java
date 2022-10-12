@@ -234,15 +234,15 @@ public class MemberController {
 		System.out.println("fileDTO F_NAME : "+f_name);
 		System.out.println("fileDTO F_ORINAME : "+f_oriname);		
 		
-		MemberDTO memberDTO2 = new MemberDTO();
-		
-		memberDTO2 = (MemberDTO) session.getAttribute("member");
-		System.out.println("memberDTO2 : "+memberDTO2.getMemberFileDTO());
-		
-		
+//		//스트링을 구분자로 나눠준뒤
+//		String [] f_names = f_name.split(",");
+//		System.out.println("마지막 인덱스 파일네임 : "+f_names[le]);
+//		String [] f_orinames = f_oriname.split(",");
+
 		MemberFileDTO file = new MemberFileDTO();
 		file.setF_name(f_name);
 		file.setF_oriname(f_oriname);
+		
 		
 		int result = memberService.setEditProfile(memberDTO, file, session.getServletContext());
 		

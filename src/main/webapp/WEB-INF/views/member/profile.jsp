@@ -39,8 +39,6 @@
 					<div class="card border-success mb-3">
 						<div class="row my-4">
 							<img src="http://20.249.88.100/resources/member/${member.memberFileDTO.f_name}" class="border border-success p-2 mb-2 border-opacity-50 mx-auto d-block" style=" max-width: 300px;  height: 300px;  border-radius: 75px;">
-							<input type="hidden" name="f_name" value="${member.memberFileDTO.f_name}">
-							<input type="hidden" name="f_oriname" value="${member.memberFileDTO.f_oriname}">
 						</div>
 						<div class="row">
 							<div class="col-6 text-end" id="addFile">

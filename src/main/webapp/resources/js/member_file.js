@@ -23,6 +23,10 @@ function save(){
                 console.log("f_oriname : "+file.files[0].name) //f_oriname
                 // 라벨 하단에 file 값을 담은 text input을 만들어준다.
 
+                //기존 파일을 한번 추가하면 인풋에 disabled값을 준다.
+                let att = document.createAttribute("disabled")
+                file.setAttributeNode(att)
+
                 //f_oriname input
                 let inputf_name = document.createElement("input")
                 let typei = document.createAttribute("type")

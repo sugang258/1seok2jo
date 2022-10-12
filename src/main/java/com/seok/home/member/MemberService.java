@@ -107,12 +107,6 @@ public class MemberService {
 	//프로필수정
 	public int setEditProfile(MemberDTO memberDTO, MemberFileDTO file, ServletContext servletContext)throws Exception{
 		
-		if(file==null) {
-			file.setId(memberDTO.getId());
-			file.setF_name("default.png");
-			file.setF_oriname("default.png");
-		}
-		
 		//정보수정 먼저
 		int result = memberDAO.setEditProfile(memberDTO);
 		
@@ -123,30 +117,36 @@ public class MemberService {
 		//memberDTO안에 있는 한개의 memberFileDTO을 
 		//memberFileDTO변수에 대입
 		MemberFileDTO memberFileDTO = memberDTO.getMemberFileDTO();
+		System.out.println("멤버 파일디티오 안에 f_name : "+memberFileDTO.getF_name());
 		
-		//memberFileDTO가 있으면
-		if(memberFileDTO != null) {
+		/*************** file이 X ***************/		
+		if(file.getF_name() == null && file.getF_oriname() == null) {
+			
+			return result;
+		}else {
+			
+			/*************** file이 O ***************/	
 			
 			//memberFileDTO을 삭제
 			result = memberDAO.setDeleteFile(memberFileDTO);
-		}
-		
-		//insert 가 되면
-		if(result == 1) {
-			System.out.println("파일이왔니? "+file.getF_name());
 			
-			//파일 리스트를 파일 DB에 저장
-			file.setId(memberDTO.getId());
-			result = memberDAO.setAddFile(file);
-			
-			if(result!=1) {
-				System.out.println("파일 추가 오류");
+			//insert 가 되면
+			if(result == 1) {
+				System.out.println("파일이왔니? "+file.getF_name());
+				
+				//파일 리스트를 파일 DB에 저장
+				file.setId(memberDTO.getId());
+				result = memberDAO.setAddFile(file);
+				
+				if(result!=1) {
+					System.out.println("파일 추가 오류");
+				}
+				
+			}else {
+				System.out.println("EditProfile에러");
 			}
-			
-		}else {
-			System.out.println("EditProfile에러");
+				
 		}
-		
 		//(삭제후) memberFileDTO없으면(없으니) 폴더에 추가
 //		String path = "resources/upload/member";
 //		
