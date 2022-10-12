@@ -128,20 +128,21 @@
           <div class="hot"><span style="color: red;">HOT</span>❗ <a href="#">너도 나도 듣는 인기 강의 👉</a></div>
            
            <div class="d-flex justify-content-between" id="d4">
-            <c:forEach items="${list}" var="count">
+            <c:forEach items="${list}" var="count" varStatus="countNm">
               <div class="lecture">
                 <div class="card" style="height:350px">
                   <img src="http://20.249.88.100/resources/lecture/${count.lectureFileDTO[0].f_name}" class="card-img-top img " alt="...">
                   <div class="card-body">
                     <div class="card-text">
                       <div class="fw-bolder mb-2" style="margin-top: 10px; font-size: 16px; white-space:normal;">${count.l_name}</div>
-                      <p style="font-size: 14px; margin-bottom: 0px;">👩‍💻평점</p>
+                      <p style="font-size: 14px; margin-bottom: 0px;">👩‍💻평점 <span style="font-size: 12px;">${avg[countNm.index]} </span></p>
                       <h7>
 		                  <c:choose>
-			                  <c:when test="${lectureBoardDTO.score eq 1}">⭐</c:when>
-			                  <c:when test="${lectureBoardDTO.score eq 2}">⭐⭐</c:when>
-			                  <c:when test="${lectureBoardDTO.score eq 3}">⭐⭐⭐</c:when>
-			                  <c:when test="${lectureBoardDTO.score eq 4}">⭐⭐⭐⭐</c:when>
+		                  	  <c:when test="${avg[countNm.index] < 1}"></c:when>
+			                  <c:when test="${avg[countNm.index] >=1 && avg[countNm.index] < 2}">⭐</c:when>
+			                  <c:when test="${avg[countNm.index] >=2 && avg[countNm.index] < 3}">⭐⭐</c:when>
+			                  <c:when test="${avg[countNm.index] >=3 && avg[countNm.index] < 4}">⭐⭐⭐</c:when>
+			                  <c:when test="${avg[countNm.index] >=4 && avg[countNm.index] < 5}">⭐⭐⭐⭐</c:when>
 		                  <c:otherwise>⭐⭐⭐⭐⭐</c:otherwise>
 		                </c:choose>
                       </h7>
@@ -155,14 +156,23 @@
 		<div class="hot"><span style="color: red;"><a href="#">왕초보도 할 수 있어요! 💪</a></div>
   
           <div  class="d-flex justify-content-between" id="d5" style="white-space:nowrap; overflow-x: auto;">
-            <c:forEach items="${level}" var="lv">
+            <c:forEach items="${level}" var="lv"  varStatus="lvNm">
               <div class="lecture">
                 <div class="card" style="height:350px">
                   <img src="http://20.249.88.100/resources/lecture/${lv.lectureFileDTO[0].f_name}" class="card-img-top img " alt="...">
                   <div class="card-text">
                     <div class="fw-bolder mb-2" style="margin-top: 10px; font-size: 16px; white-space:normal;">${lv.l_name}</div>
-                    <p style="font-size: 14px; margin-bottom: 0px;">🧑‍💻평점</p>
-                    <h7>⭐⭐⭐⭐⭐</h7>
+                    <p style="font-size: 14px; margin-bottom: 0px;">🧑‍💻평점 <span style="font-size: 12px;">${avgg[lvNm.index]} </span></p>
+                    <h7>
+                    	<c:choose>
+		                  	  <c:when test="${avgg[lvNm.index] < 1}"></c:when>
+			                  <c:when test="${avgg[lvNm.index] >=1 && avgg[lvNm.index] < 2}">⭐</c:when>
+			                  <c:when test="${avgg[lvNm.index] >=2 && avgg[lvNm.index] < 3}">⭐⭐</c:when>
+			                  <c:when test="${avgg[lvNm.index] >=3 && avgg[lvNm.index] < 4}">⭐⭐⭐</c:when>
+			                  <c:when test="${avgg[lvNm.index] >=4 && avgg[lvNm.index] < 5}">⭐⭐⭐⭐</c:when>
+		                  <c:otherwise>⭐⭐⭐⭐⭐</c:otherwise>
+		                </c:choose>
+                    </h7>
                   </div>
                 </div>
               </div>
@@ -194,14 +204,14 @@
         		<div class="" style="font-size: 16px; color:gray">일석이조는 강의의 수강생수, 평점을 투명하게 공개합니다. 실제로 많은 온오프라인 학원들은 단기적 성과를 높이기 위해 잘나온 특정 후기만 노출 하거나, 아예 숨겨버리는 경우가 많습니다.
 반면 일석이조는 강의에 대한 후기, 학생수 등 정보를 투명하게 공개합니다. 신뢰성을 바탕으로 학습자들이 더 좋은 컨텐츠를 선택하고 교육의 질을 높입니다.</div>
 				<div class="mt-4">
-						<button type="button" class="btn btn-outline-success">강의 더보기</button>
-						<button type="button" class="btn btn-outline-success">기능/강좌 요청하기</button>
+						<button type="button" class="btn btn-outline-success" onclick="location.href='/lecture/list';">강의 더보기</button>
+						<button type="button" class="btn btn-outline-success" onclick="location.href='/csBoard/mylist';">1대 1 문의</button>
 				</div>
         	</div>
         	<div class="p-5 d-flex flex-column" style="width: 50%;">
         		<div><img alt="" src="/resources/images/521.gif" style="width: 100%; height: 100%;"></div>
         		<div class="mt-3 mb-3" style="font-size: 32px;"><b>나누는 지식만큼 커지는 보람과 보상</b></div>
-        		<div class="mb-3" style="font-size: 18px; color: gray;">인프런 지식공유자로 높은 수익과 가치를 만들어보세요.</div>
+        		<div class="mb-3" style="font-size: 18px; color: gray;">일석이조 지식공유자로 높은 수익과 가치를 만들어보세요.</div>
         	</div>
         </div>
         

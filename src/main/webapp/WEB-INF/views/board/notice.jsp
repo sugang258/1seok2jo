@@ -76,7 +76,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
 
         <div style="width: 92%">
           <div class="board">
-            <div style="width: 85%; margin: 0px auto">
+            <div style="width: 87%; margin: 0px auto">
               <div class="ps-3 mb-4 pt-2"><h1>📢 공지사항</h1></div>
 
               <c:forEach items="${list}" var="noticeDTO">
