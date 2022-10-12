@@ -13,10 +13,7 @@
                     ${lecture.l_name}
                     </div>
                     ${lecture.id} / ${lecture.c_name} / ${lecture.l_price}원
-                </td>
-            
-            <!--<div class="row gx-2 gx-lg-2 align-items-center my-3 cart" id="cart" data-l-num ="${lecturedto.l_num}">-->
-                
+                </td>                
                     
                     <td>
                         <div style="margin-top: 50px; font-weight: bold;">
