@@ -49,38 +49,38 @@ const ipPhoneResult = document.getElementById("ipPhoneResult");
     let genderCheck=false;
     let emailCheck=false;
     let phoneCheck=false;
-
+// 휴대폰 정규 표현식 /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+// 이메일 체크 정규식 /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 // ------------------- 회원가입-유효성 검사 -------------------
 function joinCheck(){
 
     // 아이디길이 확인
     ipId.addEventListener("blur", function(){
-        // console.log("블러 이벤트 실행");
-        idCheck=false;
-        if(ipId.value.length>5 && ipId.value.length<20){
+        // 아이디 정규식
+        const idText = /^[a-z]+[a-z0-9]{5,19}$/g;
+        const id = ipId.value;
+        // 일치하면 true 리턴
+        if(!idText.test(id)){
+            idCheck=false;
+            ipIdResult.innerHTML="6~20자의 영문 소문자, 숫자만 사용 가능합니다.";
+        }else {
             ipIdResult.innerHTML="";
             idCheck=true;
-        }else if(ipId.value.length == 0){
-            idCheck=false;
-            ipIdResult.innerHTML="필수 정보입니다.";
-        }else {
-            idCheck=false;
-            ipIdResult.innerHTML="5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.";
         }
-
     });
 
     // 패스워드길이 확인
     ipPw.addEventListener("blur", function(){
-        if(ipPw.value.length>8 && ipPw.value.length<16){
+        // 비밀번호 정규식
+        const pwText = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/;
+        const pw = ipPw.value;
+        // 일치하면 true 리턴
+        if(!pwText.test(pw)){
+            pwCheck=false;
+            ipPwResult.innerHTML="8~16자 영문 대 소문자, 숫자를 사용하세요.";
+        }else {
             ipPwResult.innerHTML="";
             pwCheck=true;
-        }else if(ipPw.value.length == 0){
-            pwCheck=false;
-            ipPwResult.innerHTML="필수 정보입니다.";
-        }else {
-            pwCheck=false;
-            ipPwResult.innerHTML="8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
         }
     });
 
@@ -101,12 +101,14 @@ function joinCheck(){
 
     // 이름길이 확인
     ipName.addEventListener("blur", function(){
-        if(ipName.value.length > 0){
+        const nameText = /^[a-zA-Zㄱ-힣][a-zA-Zㄱ-힣 ]*$/;
+        const name = ipName.value;
+        if(!nameText.test(name)){
+            nameCheck=false;
+            ipNameResult.innerHTML="한글, 영문만 사용 가능합니다.";
+        }else {
             ipNameResult.innerHTML="";
             nameCheck=true;
-        }else {
-            nameCheck=false;
-            ipNameResult.innerHTML="필수 정보입니다.";
         }
     });
 
@@ -146,22 +148,44 @@ function joinCheck(){
     });
 
     ipdd.addEventListener("blur", function(){
+        let idd = ipdd.value;
+        console.log("ipdd : "+idd);
+        console.log(typeof idd);
+        const dd = parseInt(ipdd.value);
+        console.log("dd : "+dd);
+        console.log(typeof dd);
         if(ipdd.value.length == 2){
             ipBdateResult.innerHTML="";
             ddCheck=true;
-        }else if(ipdd.value > '31'){
+        }else if(dd > 31){
             ddCheck=false;
-            ipBdateResult.innerHTML="태어난 일(날짜) 2자리를 정확하게 입력하세요.";
+            ipBdateResult.innerHTML="생년월일을 다시 확인해 주세요.";
         }else if(ipdd.value=="e"){
             ddCheck=false;
-            ipBdateResult.innerHTML="태어난 일(날짜) 2자리를 정확하게 입력하세요.";
+            ipBdateResult.innerHTML="숫자를 입력하세요.";
         }else if(ipdd.value.length < 2){
             ddCheck=false;
             ipBdateResult.innerHTML="태어난 일(날짜) 2자리를 정확하게 입력하세요.";
         }
     });
 
+    // 이메일 정규식 /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    ipEmail.addEventListener("blur", function(){
 
+    });
+
+    // 핸드폰번호 정규식
+    ipPhone.addEventListener("blur", function(){
+        const phoneText = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+        const phone = ipPhone.value;
+        if(!phoneText.test(phone)){
+            ipPhoneResult.innerHTML="010(011)-1234-5678 형식에 맞게 입력해 주세요.";
+            phoneCheck=false;
+        }else {
+            ipPhoneResult.innerHTML="";
+            phoneCheck=true;
+        }
+    });
 
     // 회원가입 버튼 클릭
     btn.addEventListener("click", function(){
@@ -222,8 +246,50 @@ function idCheckCheck(){
     });
 }
 
+// -------------------------- 회원가입-닉네임중복 확인 --------------------------
 function nNameCheck(){
+    aIdCheck.addEventListener("click", function(){
 
+        // 아이디 input안에 입력한 값을 id 변수에 넣음
+        let id = ipId.value; 
+
+        //---------------- Ajax --------------------
+        // 1. XMLHTTPRequest 생성
+        let xhttp = new XMLHttpRequest();
+
+        // 2. Method, URL 준비 
+        xhttp.open("POST", "../member/idCheck");
+        
+        // 3. Enctype
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        // 4. 요청 발생 (POST일 경우prammeter 추가)
+        xhttp.send("id="+id);
+
+        // 5. 응답 처리
+        xhttp.onreadystatechange=function(){
+            if(this.readyState==4 && this.status==200){
+
+                // 응답결과 문자를 공백없이 result에 담음
+                let result = xhttp.responseText.trim();
+                
+                if(result=='1'){
+
+                    // 응답결과가 성공하면(중복이 있으면) 결과가 1
+                    alert("❌아이디가 있습니다. 다시 입력해 주세요.");
+                }else if(id.length===0) {
+
+                    // 아이디 input안에 입력한 값이 없으면
+                    alert("❗아이디를 입력해 주세요.");
+                }else{
+
+                    // 응답결과가 실패하면(중복이 없으면) 결과가 0
+                    alert("✔사용 가능한 아이디입니다.");
+                }
+            }
+        }
+
+    });
 }
 
 function loginCheck(){

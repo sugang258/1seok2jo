@@ -61,9 +61,31 @@
 						<div id="ipNameResult"></div>
 					</div>
 					
-					<div class="mb-4">
+					<div class="row">
+						<label for="ipId" class="form-label"><b>아이디</b></label>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<input type="text" name="id" class="form-control border-success border-opacity-25" id="ipId" placeholder="아이디를 입력해주세요">
+						</div>
+						<div class="col-6 text-start mt-1">
+							<button type="button" class="btn btn-outline-success btn-sm" id="aIdCheck"><b>✅아이디중복 확인</b></button>
+						</div>
+						<span class="spIdCheck"></span>
+						<div id="ipIdResult"></div>
+					</div>
+
+					<div class="row">
 						<label for="ipNname" class="form-label"><b>닉네임</b></label>
-						<input type="text" name="n_name" class="form-control border-success border-opacity-25" id="ipNname" placeholder="닉네임을 입력해주세요">
+					</div>
+
+					<div class="row">
+						<div class="col-6">
+							<input type="text" name="n_name" class="form-control border-success border-opacity-25" id="ipNname" placeholder="닉네임을 입력해주세요">
+						</div>
+						<div class="col-6 text-start mt-1">
+							<button type="button" class="btn btn-outline-success btn-sm" id="bnNameCheck"><b>✅닉네임중복 확인</b></button>
+						</div>
 						<div id="ipNnameResult"></div>
 					</div>
 					
