@@ -315,7 +315,7 @@ function initpay(){
         if(num==null){
             if(event.target.getAttribute("class")=="page-link"){
                 page = event.target.getAttribute("data-page")
-                csList(page)
+                payList(page)
             }else{
             }
         }else{

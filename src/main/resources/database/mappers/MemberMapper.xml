@@ -22,26 +22,23 @@
 		</choose>
 	</sql>
 	<select id="getAdminMemberList" parameterType="AdminPager" resultMap="getAdminList">
-		select *           
-            from(select rownum as rown, MR.*            
-    	   	from(select rolenum, id, name, n_name, b_date, gender, email, phone, point, rolename 
-            from member m
-            left join member_role r
-            using (id)
-            left join role rr
-            using (rolenum)
-            where <include refid="search"></include>
-            order by id asc , rolenum desc) MR)
-            where rown between #{startRow} and #{lastRow}
+		select rown, rolenum, id, name, n_name, b_date, gender, email, phone, point, rolename           
+		from(select *            
+		    from(select rownum as rown, id, name, n_name, b_date, gender, email, phone, point
+		        from member m
+		        where <include refid="search"></include>
+		        order by id asc)
+		        where rown between #{startRow} and #{lastRow}) MR
+		left join member_role R
+		using (id)
+		left join role RR
+		using (rolenum)
+		order by id asc, rolenum desc
 	</select>
 	
 	<select id="getAdminMemberTotal" parameterType="AdminPager" resultType="Long">
 		select count(*) 
             from member m
-            left join member_role r
-            using (id)
-            left join role rr
-            using (rolenum)
             where <include refid="search"></include>
 	</select>
 	
