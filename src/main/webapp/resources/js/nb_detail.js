@@ -38,10 +38,10 @@ const reply_content = document.getElementById("reply_content");
 reply.addEventListener("click", function () {
   if (reply_content.style.display != "none") {
     reply_content.style.display = "none";
-    reply.innerHTML = "➖접기";
+    reply.innerHTML = "✖️더보기";
   } else {
     reply_content.style.display = "block";
-    reply.innerHTML = "✖️더보기";
+    reply.innerHTML = "➖접기";
   }
 });
 
