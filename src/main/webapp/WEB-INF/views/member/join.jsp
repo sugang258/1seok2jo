@@ -73,21 +73,21 @@
 						</div>
 
 						<div class="col-4">
-							<input type="number" class="form-control border-success border-opacity-25 b_date" id="" name="yy" placeholder="년(4자)" maxlength="4">
+							<input type="number" class="form-control border-success border-opacity-25 b_date" id="ipyy" name="yy" placeholder="년(4자)" maxlength="4">
 						</div>
 	
 						<div class="col-4">
-							<select class="form-select border-success border-opacity-25 ipM_date" name="mm">
+							<select class="form-select border-success border-opacity-25" id="semm" name="mm">
 								<option value="">월</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
+								<option value="01">1</option>
+								<option value="02">2</option>
+								<option value="03">3</option>
+								<option value="04">4</option>
+								<option value="05">5</option>
+								<option value="06">6</option>
+								<option value="07">7</option>
+								<option value="08">8</option>
+								<option value="09">9</option>
 								<option value="10">10</option>
 								<option value="11">11</option>
 								<option value="12">12</option>
@@ -95,14 +95,14 @@
 						</div>
 	
 						<div class="col-4">
-							<input type="number" class="form-control border-success border-opacity-25 b_date" id="" name="dd" placeholder="일" maxlength="2">
+							<input type="number" class="form-control border-success border-opacity-25 b_date" id="ipdd" name="dd" placeholder="일" maxlength="2">
 						</div>
 						<div id="ipBdateResult"></div>
 					</div>
 					
 					<div class="mb-4">
 						<label for="ipGender" class="form-label mt-4"><b>성별</b></label>
-						<select class="form-select border-success border-opacity-25 ipGender" name="gender">
+						<select class="form-select border-success border-opacity-25 ipGender" id="segender" name="gender">
 							<option value="">성별</option>
 							<option value="남자">남자</option>
 							<option value="여자">여자</option>
