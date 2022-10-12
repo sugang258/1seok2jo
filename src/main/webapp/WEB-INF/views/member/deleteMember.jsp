@@ -27,7 +27,7 @@
                     <!-- 제목부분 -->
                     <h1><b>회원탈퇴❌</b></h1>
                 </div>
-                <form action="./deleteMember" method="post">
+                <form action="./deleteMember" method="post" id="deleteMemberForm">
                     <div class="mb-3">
                         <label for="ipId" class="form-label">아이디</label>
                         <input type="text" name="id" class="form-control border-success border-opacity-25" id="ipId" value="${member.id}">
@@ -53,7 +53,7 @@
 
                     <!-- 회원탈퇴 버튼 -->
                     <div class="d-grid gap-2 mt-3">
-                        <button type="submit" class="btn btn-outline-success" id="btn">회원탈퇴</button>
+                        <button type="button" class="btn btn-outline-success" id="deBtn">회원탈퇴</button>
                     </div>
                 </form>
             </div>
@@ -61,5 +61,9 @@
 	</section>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="/resources/js/member_update.js"></script>
+<script>
+    deleteMember();
+</script>
 </body>
 </html>

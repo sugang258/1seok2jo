@@ -88,12 +88,12 @@ public class MemberService {
 	
 	//회원탈퇴
 	public int setDeleteMember(MemberDTO memberDTO)throws Exception{
-		int susess = memberDAO.setDeleteMemberRole(memberDTO);
-		int result = 0;
-		if(susess != 0) {
-			result = memberDAO.setDeleteJoin(memberDTO);
-		}
-		return result;
+//		int susess = memberDAO.setDeleteMemberRole(memberDTO);
+//		int result = 0;
+//		if(susess != 0) {
+//			result = memberDAO.setDeleteJoin(memberDTO);
+//		}
+		return memberDAO.setDeleteJoin(memberDTO);
 	}
 	
 	
