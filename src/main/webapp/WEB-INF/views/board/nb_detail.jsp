@@ -7,6 +7,7 @@ prefix="c" %>
     <meta charset="UTF-8" />
     <title>게시판 상세보기</title>
     <link rel="stylesheet" href="/resources/css/board/nb_detail.css" />
+    <link rel="stylesheet" href="/resources/css/index.css" />
     <!-- jquery -->
     <script
       type="text/javascript"
@@ -44,7 +45,7 @@ prefix="c" %>
           	   <div>
                 <img
                   src="http://20.249.88.100/resources/member/${noticeDTO.f_name}"
-                  style="width: 30px; border-radius: 24px; margin-top: -10px; margin-right:5px;"/>
+                  style="width: 30px; height:30px; border-radius: 24px; margin-top: -10px; margin-right:5px;"/>
               </div>
              <div class="me-2" style="font-size:14px; font-weight: bold">작성자: <span>${noticeDTO.id}</span>✅</div>
              <div style="font-size:12px;"><span>${noticeDTO.reg_date}</span></div>

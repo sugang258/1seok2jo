@@ -10,6 +10,8 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>게시글 목록</title>
+        <!--파비콘-->
+        <link rel="shortcut icon" href="/resources/images/favicon.ico">
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="/resources/temp/css/styles1.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -83,7 +85,7 @@
                                 </div>
                                 <div class="p-2 flex-fill text-end pe-5">
                                     <button type="button" onclick="location.href='/board/nb_add'">공지사항 작성</button>
-                                    <button type="button">게시글 삭제</button>
+                                    <button type="button" id="deleteboard">게시글 삭제</button>
                                 </div>
                               </div>
                         </div>

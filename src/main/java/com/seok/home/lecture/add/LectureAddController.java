@@ -61,19 +61,25 @@ public class LectureAddController {
 			cal.add(Calendar.MONTH,lectureDTO.getL_date().intValue());
 			System.out.println(cal.MONTH);
 			java.sql.Date date1 = new java.sql.Date(cal.getTimeInMillis());
-			
+			System.out.println(date1);
 			lectureAddDTO.setS_end(date1);
+			lectureAddDTO.setId(mem.getId());
 			
 			
-			lectureAddService.setLectureAdd(lectureAddDTO);
+			int reulst =lectureAddService.setLectureAdd(lectureAddDTO);
+			System.out.println(reulst);
 			lectureAddService.setLectureCount(lectureAddDTO);
 			
 			StatusDTO statusDTO = new StatusDTO();
 			List<LectureVideoDTO> ar = statusService.getVideoList(lectureDTO);
 			lectureAddDTO.setL_num(lectureDTO.getL_num());
+			System.out.println("LECTUREEERERE"+lectureAddDTO.getL_num());;
 			//로그인 정보 가져오기
 			lectureAddDTO.setId(mem.getId());
+			System.out.println(lectureAddDTO.getId());
 			lectureAddDTO = lectureAddService.getLectureAdd(lectureAddDTO);
+			System.out.println("LLLLLLL"+lectureAddDTO.getL_num());
+			System.out.println("SSSSSS"+lectureAddDTO.getS_num());
 			
 			for(int i=0; i<ar.size();i++) {
 				statusDTO.setS_num(lectureAddDTO.getS_num());

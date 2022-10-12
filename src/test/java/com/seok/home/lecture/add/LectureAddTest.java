@@ -14,6 +14,18 @@ public class LectureAddTest extends MyAbstractTest {
 	
 	@Autowired
 	private LectureAddDAO lectureAddDAO;
+	
+	@Test
+	public void getLectureAdd() throws Exception{
+	    LectureAddDTO lectureAddDTO = new LectureAddDTO();
+	    lectureAddDTO.setId("효경");
+	    lectureAddDTO.setL_num(14L);
+	    
+	    lectureAddDTO = lectureAddDAO.getLectureAdd(lectureAddDTO);
+	    assertNotNull(lectureAddDTO);
+
+	    
+	}
 
 	//@Test
 	public void setLectureAdd() throws Exception {

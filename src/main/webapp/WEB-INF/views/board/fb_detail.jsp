@@ -7,6 +7,7 @@ prefix="c" %>
     <meta charset="UTF-8" />
     <title>게시판 상세보기</title>
     <link rel="stylesheet" href="/resources/css/board/fb_detail.css" />
+    <link rel="stylesheet" href="/resources/css/index.css" />
     <!-- jquery -->
     <script
       type="text/javascript"
@@ -41,12 +42,20 @@ prefix="c" %>
               >
                 <div>🏷️${freeBoardDTO.category}</div>
               </div>
-              <div class="p-2">
-                <i
-                  class="fa-regular fa-user"
-                  style="width: 20px; line-height: 26px"
-                ></i>
-                ${freeBoardDTO.id}
+              <div class="p-2 d-flex">
+                <div>
+                  <img
+                    src="http://20.249.88.100/resources/member/${freeBoardDTO.f_name}"
+                    style="
+                      width: 34px;
+                      height: 34px;
+                      border-radius: 24px;
+                      margin-top: -5px;
+                      margin-right: 5px;
+                    "
+                  />
+                </div>
+                <div>${freeBoardDTO.id}</div>
               </div>
               <div
                 class="p-2 flex-shrink-1 pt-2"
@@ -78,11 +87,10 @@ prefix="c" %>
                     bottom: -12px;
                   "
                 >
-                  <!-- 나중에 member.id값 받아와서 작성하기 -->
                   <input
                     type="text"
                     name="id"
-                    value="USER2"
+                    value="${member.id}"
                     id="session_id"
                     style="display: none"
                   />
@@ -168,23 +176,23 @@ prefix="c" %>
             목록보기
           </button>
         </div>
-      <c:if test="${member.id eq freeBoardDTO.id}">
-        <div class="p-2">
-          <button class="btn-st btn btn-outline-secondary" id="fb_delete">
-            삭제하기
-          </button>
-        </div>
-        <div class="p-2">
-          <button
-            class="btn-st btn btn-outline-secondary"
-            id="update_free_board"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal_update"
-            data-bs-whatever="@mdo"
-          >
-            수정하기
-          </button>
-        </div>
+        <c:if test="${member.id eq freeBoardDTO.id}">
+          <div class="p-2">
+            <button class="btn-st btn btn-outline-secondary" id="fb_delete">
+              삭제하기
+            </button>
+          </div>
+          <div class="p-2">
+            <button
+              class="btn-st btn btn-outline-secondary"
+              id="update_free_board"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal_update"
+              data-bs-whatever="@mdo"
+            >
+              수정하기
+            </button>
+          </div>
         </c:if>
       </div>
 

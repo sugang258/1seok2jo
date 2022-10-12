@@ -19,6 +19,7 @@ import com.seok.home.lecture.status.StatusDAO;
 import com.seok.home.lecture.status.StatusDTO;
 import com.seok.home.member.MemberDAO;
 import com.seok.home.member.MemberDTO;
+import com.seok.home.util.ChartDTO;
 
 @Service
 public class PayService {
@@ -34,6 +35,18 @@ public class PayService {
 	LectureDAO lectureDAO;
 	@Autowired
 	MemberDAO memberDAO;
+	
+	//마일리지 가져오기
+	public Long getPoint(MemberDTO dto) throws Exception{
+		return memberDAO.getPoint(dto);
+	}
+	
+	//마일리지 업데이트
+	public int updatePoint(MemberDTO dto) throws Exception{
+		return memberDAO.updatePoint(dto);
+	}
+	
+
 	
 	public HashMap<String, Object> getMyPayList(MemberDTO member)throws Exception{
 		member = memberDAO.getProfile(member);

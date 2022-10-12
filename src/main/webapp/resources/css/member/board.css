@@ -1,0 +1,48 @@
+.bold{
+    font-weight: bold;
+
+}
+#study,#lecture{
+    background-color: white;
+    color: #66ba39;
+    border: none;
+    font-size: large;
+    margin-bottom:10px;
+}
+
+#free{
+    margin-left: 700px;
+    background-color: white;
+    color: #66ba39;
+    border: none;
+    font-size: large;
+    margin-bottom:10px;
+
+
+}
+
+.board {
+    margin-top: 2px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+      rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  }
+  .board_contents {
+    border-bottom: solid 1px rgba(156, 152, 152, 0.664);
+    height: 170px;
+    width: 97%;
+    margin: 0px auto;
+    padding: 0px 20px;
+  }
+  .contents_box:hover {
+    background-color: rgba(204, 200, 200, 0.452);
+    cursor: pointer;
+  }
+  .sb_board{
+    margin-top: 2px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+      rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  }
+  .lec:hover{
+    background-color: rgba(204, 200, 200, 0.452);
+    cursor: pointer;
+  }

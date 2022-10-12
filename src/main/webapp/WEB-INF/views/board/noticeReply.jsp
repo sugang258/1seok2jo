@@ -9,7 +9,7 @@ prefix="c" %>
    <div class="d-flex">
     <input type="text" value="${noticeReplyDTO.f_name}" id="f_name" style="display: none;">
      <div style="width: 40px;; text-align: center;">
-       <img src="http://20.249.88.100/resources/member/${noticeReplyDTO.f_name}" alt="" style="width: 30px; border-radius: 24px;">
+       <img src="http://20.249.88.100/resources/member/${noticeReplyDTO.f_name}" alt="" style="width: 30px; height:30px; border-radius: 24px;">
      </div>
      <div class="d-flex flex-column" style="width: 92%;">
       <div class="d-flex justify-content-between" style="height: 50px;">

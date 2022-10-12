@@ -10,6 +10,7 @@ import com.seok.home.admin.AdminPager;
 import com.seok.home.lecture.LectureDTO;
 import com.seok.home.lecture.teacher.TeacherPager;
 import com.seok.home.member.MemberDTO;
+import com.seok.home.util.ChartDTO;
 
 @Repository
 public class PayDAO {
@@ -17,6 +18,10 @@ public class PayDAO {
 	@Autowired
 	private SqlSession session;
 	private final String NAMESPACE = "com.seok.home.pay.PayDAO.";
+	
+	public List<ChartDTO> getChartAdminDashBoard() throws Exception{
+		return session.selectList(NAMESPACE+"getChartAdminDashBoard");
+	}
 	
 	public Long getOamountTotal(TeacherPager pager) throws Exception{
 		return session.selectOne(NAMESPACE+"getOamountTotal", pager);

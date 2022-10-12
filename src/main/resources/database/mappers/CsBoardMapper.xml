@@ -5,6 +5,10 @@
 		    
 		    <mapper namespace="com.seok.home.cs_board.CsDAO">
 		    
+		    	<select id="getNotAnswerCnt" resultType="Long">
+		    		select COUNT(*) from CS_BOARD WHERE CS_STATUS='미답변'
+		    	</select>
+		    
 		    	<insert id="setBoardAdd" parameterType="CsBoardDTO">
 		    		<selectKey order="BEFORE" keyProperty="cs_num" resultType="Long">
 		    			SELECT CSBOARD_SEQ.NEXTVAL FROM DUAL

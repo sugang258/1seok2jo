@@ -24,12 +24,20 @@
 		    	<sql id="list">
 					<choose>
 						<when test="order == 'heart'">
-							SELECT FB.FB_NUM,FB.ID,FB.TITLE,FB.REG_DATE,FB.HIT,FB.CONTENTS,FB.CATEGORY,NVL(FC.C,0) FROM FREE_BOARD FB
-						    LEFT JOIN
-						    (SELECT FB_NUM, COUNT(FB_NUM) AS C FROM FB_HEART GROUP BY FB_NUM)FC
-						    ON (FB.FB_NUM = FC.FB_NUM)
+							SELECT FB.FB_NUM,FB.ID,FB.TITLE,FB.REG_DATE,FB.HIT,FB.CONTENTS,FB.CATEGORY,NVL(FC.C,0), MF.F_NAME FROM FREE_BOARD FB,
+							    LEFT JOIN
+							    (SELECT FB_NUM, COUNT(FB_NUM) AS C FROM FB_HEART GROUP BY FB_NUM)FC
+							    ON (FB.FB_NUM = FC.FB_NUM)
+							    LEFT JOIN
+							    MEMBER_FILE MF
+						    	ON FB.ID = MF.ID)
 					    </when>
-						<otherwise>SELECT * FROM FREE_BOARD</otherwise>
+						<otherwise>SELECT * FROM 
+						(SELECT FB.*, MF.F_NAME FROM FREE_BOARD FB
+						    LEFT JOIN
+						    MEMBER_FILE MF
+						    ON FB.ID = MF.ID)
+						</otherwise>
 					</choose> 		    		
 		    	</sql>
 		    	
@@ -57,7 +65,11 @@
 		    	
 		    	<!-- 자유게시판 상세보기 -->
 		    	<select id="getF_boardDetail" parameterType="FreeBoardDTO" resultType="FreeBoardDTO">
-		    		SELECT * FROM FREE_BOARD WHERE FB_NUM= #{fb_num}
+		    		SELECT * FROM (SELECT FB.*, MF.F_NAME FROM FREE_BOARD FB
+					    LEFT JOIN
+					    MEMBER_FILE MF
+					    ON FB.ID = MF.ID)
+					WHERE FB_NUM = #{fb_num}
 		    	</select>
 		    	
 		    	<!-- 자유게시판 글수정 -->
@@ -96,11 +108,14 @@
 		    	<!-- 자유게시판 댓글 목록 -->
 		    	<select id="getFb_replyList" parameterType="CommentPager" resultType="FreeBoardReplyDTO">
 		    		SELECT * FROM (
-		    			SELECT ROWNUM R, N.* FROM (
-		    				SELECT * FROM FB_REPLY WHERE FB_NUM=#{fb_num} ORDER BY NUM DESC
-		    				)N
-		    			)
-		    		WHERE R BETWEEN #{startRow} AND #{lastRow}
+					    SELECT ROWNUM R, N.* FROM (
+					        SELECT * FROM (SELECT FR.*, MF.F_NAME FROM FB_REPLY FR
+					    	LEFT JOIN
+					    	MEMBER_FILE MF
+					    	ON FR.ID = MF.ID) WHERE FB_NUM = #{fb_num} ORDER BY NUM DESC
+					        )N
+					    )
+					WHERE R BETWEEN #{startRow} AND #{lastRow}
 		    	</select>
 		    	
 		    	<!-- 자유게시판 댓글 작성 -->
@@ -116,5 +131,9 @@
 		    	<!-- 자유게시판 댓글 수 -->
 		    	<select id="getReplyCount" parameterType="FreeBoardReplyDTO" resultType="Long">
 		    		SELECT COUNT(NUM) FROM FB_REPLY WHERE FB_NUM = #{fb_num}
+		    	</select>
+		    	
+		    	<select id="getMyBoardList" parameterType="FreeBoardDTO" resultType="FreeBoardDTO">
+		    		SELECT * FROM FREE_BOARD WHERE ID = #{id}
 		    	</select>
 		    </mapper>

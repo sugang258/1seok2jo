@@ -23,10 +23,12 @@
 	
 	<beans:bean class="com.seok.home.interceptor.TeacherCheckInterceptor" id="teacherCheckInterceptor"></beans:bean>
 	<beans:bean class="com.seok.home.interceptor.TeacherWriterCheckInterceptor" id="teacherWriterCheckInterceptor"></beans:bean>
+	<beans:bean class="com.seok.home.interceptor.ListenCheckInterceptor" id="listenCheckInterceptor"></beans:bean>
 	
 	<interceptors>
 		<interceptor>
 			<mapping path="/lecture/update"/>
+			<mapping path="/lecture/delete"/>
 			<beans:ref bean="teacherWriterCheckInterceptor"/>
 		</interceptor>
 		
@@ -35,6 +37,12 @@
 			<mapping path="/lecture/teacher"/>
 			<beans:ref bean="teacherCheckInterceptor"/>
 		</interceptor>
+		
+		<interceptor>
+			<mapping path="/lecture/listen"/>
+			<beans:ref bean="listenCheckInterceptor"/>
+		</interceptor>
+
 	</interceptors>
 	
 	

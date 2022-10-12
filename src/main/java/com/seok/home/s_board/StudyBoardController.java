@@ -2,6 +2,7 @@ package com.seok.home.s_board;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.seok.home.b_comment.CommentService;
+import com.seok.home.member.MemberDTO;
 
 @Controller
 @RequestMapping("/board/*")
@@ -87,6 +89,28 @@ public class StudyBoardController {
 	public int setBoardUpdate(StudyBoardDTO studyBoardDTO)throws Exception {
 		int result = studyBoardService.setBoardUpdate(studyBoardDTO);
 		return result;
+	}
+	
+	@PostMapping("sb_list")
+	@ResponseBody
+	public ModelAndView getMyBoardList(StudyBoardDTO studyBoardDTO,HttpServletRequest request) throws Exception{
+        MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
+        ModelAndView mv = new ModelAndView();
+        studyBoardDTO.setId(mem.getId());
+        
+        List<StudyBoardDTO> ar = studyBoardService.getMyBoardList(studyBoardDTO);
+        
+        int result = 0;
+        if(ar.size() == 0) {
+            result = 0;
+        }else {
+            result = 1;
+        }
+        mv.addObject("study", ar);
+        mv.setViewName("member/study_board");
+        
+        return mv;
+
 	}
 	
 }

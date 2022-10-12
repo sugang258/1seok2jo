@@ -5,9 +5,10 @@
 }
 
 .banner {
-  margin: 8em auto 28px auto;
+  margin: 3em auto 28px auto;
   width: 85%;
   padding: 10px 10px;
+  height: 280px;
   align-items: center;
   align-content: center;
   justify-content: center;
@@ -15,7 +16,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   vertical-align: middle;
-  height: 45vh;
   border-radius: 13px;
 }
 
@@ -130,4 +130,8 @@
   overflow-x: hidden;
   overflow-y: auto;
   text-align: center;
+}
+
+.cate:hover {
+  cursor: pointer;
 }

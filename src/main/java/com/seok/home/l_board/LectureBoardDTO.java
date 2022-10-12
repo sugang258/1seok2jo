@@ -15,7 +15,14 @@ public class LectureBoardDTO {
 	@JsonFormat(pattern = "MM/DD/YY HH:MM:SS")
 	private Date reg_date;
 	private String array;
+	private String f_name;
 	
+	public String getF_name() {
+		return f_name;
+	}
+	public void setF_name(String f_name) {
+		this.f_name = f_name;
+	}
 	public String getArray() {
 		return array;
 	}

@@ -1,6 +1,7 @@
 package com.seok.home.admin;
 
 import java.lang.reflect.Member;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.JsonArray;
 import com.seok.home.cs_board.CsBoardDTO;
 import com.seok.home.member.MemberDTO;
 import com.seok.home.pay.PaymentDTO;
@@ -28,6 +30,15 @@ public class AdminController {
 	@GetMapping(value="main")
 	private String getMain() {
 		return "admin/main";
+	}
+	
+	//대시보드
+	@GetMapping("getDashBoard")
+	@ResponseBody
+	private HashMap<String, Object> getDashBoard() throws Exception{
+		HashMap<String, Object> result = service.getAdminDashBoard();
+		
+		return result;
 	}
 	
 	//로그인 페이지 이동 컨트롤러
@@ -145,17 +156,19 @@ public class AdminController {
 	@PostMapping
 	private String getLogin(MemberDTO member, HttpServletRequest request) throws Exception {
 		//아이디와 비밀번호를 체크한 뒤 admin 자격이 있으면 세션의 admin값에 true로 돌려준다.
-		boolean chk = service.getLogin(member);
+		member = service.getLogin(member);
 		
 		HttpSession session = request.getSession();
 		
 		String url = "";
-		
-		if(chk==true) {
+		boolean chk = false;
+		if(member!=null) {
 			url = "redirect: /admin/main";
+			chk = true;
 		}else {
 			url = "admin/login";
 		}
+		session.setAttribute("member", member);
 		session.setAttribute("admin", chk);
 		return url;
 	}

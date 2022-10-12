@@ -8,6 +8,7 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
     <meta charset="UTF-8" />
     <title>공지사항</title>
     <link rel="stylesheet" href="/resources/css/board/notice.css" />
+    <link rel="stylesheet" href="/resources/css/index.css" />
     <%-- Bootstrap CSS --%>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
@@ -115,53 +116,63 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                   style="justify-content: end"
                 >
                   <ul class="pagination justify-content-center">
-                  <c:if test="${pager.pre}">
-                    <li class="page-item">
-                      <a
-                        class="page-link text-success"
-                        href="./notice?page=${pager.startNum-1}"
-                        aria-label="Previous"
-                      >
-                        <span aria-hidden="true">&laquo;</span>
-                      </a>
-                    </li>
+                    <c:if test="${pager.pre}">
+                      <li class="page-item">
+                        <a
+                          class="page-link text-success"
+                          href="./notice?page=${pager.startNum-1}"
+                          aria-label="Previous"
+                        >
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
                     </c:if>
-                    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-                    <li class="page-item">
-                      <a class="page-link text-success" href="./notice?page=${i}">${i}</a>
-                    </li>
+                    <c:forEach
+                      begin="${pager.startNum}"
+                      end="${pager.lastNum}"
+                      var="i"
+                    >
+                      <li class="page-item">
+                        <a
+                          class="page-link text-success"
+                          href="./notice?page=${i}"
+                          >${i}</a
+                        >
+                      </li>
                     </c:forEach>
                     <li class="page-item">
-                    <c:if test="${pager.next}">
-                      <a
-                        class="page-link text-success"
-                        href="./notice?page=${pager.lastNum+1}"
-                        aria-label="Next"
-                      >
-                        <span aria-hidden="true">&raquo;</span>
-                      </a>
+                      <c:if test="${pager.next}">
+                        <a
+                          class="page-link text-success"
+                          href="./notice?page=${pager.lastNum+1}"
+                          aria-label="Next"
+                        >
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
                       </c:if>
                     </li>
                   </ul>
                 </nav>
               </div>
 
-              <div class="" style="width: 30%;">
-               <c:if test="${not empty member}">
-	               <c:forEach items="${sessionScope.member.roleDTOs}" var="r">
-	                  <c:if test="${r.getRoleName() eq '관리자'}">
-	                  	 <button
-			                  class="btn btn-light"
-			                  id="writer"
-			                  style="
-			                    background-color: transparent;
-			                    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-			                    font-size: 14px;">
-			                  <a href="/board/nb_add">✏글작성</a>
-			                </button>	
-	                  </c:if>
-	               </c:forEach>
-            	</c:if>
+              <div class="" style="width: 30%">
+                <c:if test="${not empty member}">
+                  <c:forEach items="${sessionScope.member.roleDTOs}" var="r">
+                    <c:if test="${r.getRoleName() eq '관리자'}">
+                      <button
+                        class="btn btn-light"
+                        id="writer"
+                        style="
+                          background-color: transparent;
+                          box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+                          font-size: 14px;
+                        "
+                      >
+                        <a href="/board/nb_add">✏글작성</a>
+                      </button>
+                    </c:if>
+                  </c:forEach>
+                </c:if>
               </div>
             </div>
           </div>

@@ -4,6 +4,10 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 		    <mapper namespace="com.seok.home.lecture.LectureDAO">
+		    	<select id="getLectureCnt" resultType="Long">
+		    		SELECT COUNT(*) FROM LECTURE
+		    	</select>
+		    
 		    	<sql id="kind">
 		    		<choose>
 	                     <when test="kind == 'id'">M.N_NAME</when>
@@ -353,7 +357,7 @@
 							JOIN CATEGORY C
 							ON L.C_NUM = C.C_NUM
                             ORDER BY L.L_COUNT DESC)
-                            <![CDATA[WHERE ROWNUM <8]]>			
+                            <![CDATA[WHERE ROWNUM <6]]>			
 				</select>
 				
 				<select id="getLectureLevel" resultMap="getDetailResult">
@@ -366,7 +370,7 @@
 							JOIN CATEGORY C
 							ON L.C_NUM = C.C_NUM
                             WHERE L.LEVEL_NUM =1)
-                            <![CDATA[WHERE ROWNUM <8]]>	
+                            <![CDATA[WHERE ROWNUM <6]]>	
 				</select>
 				
 				<select id="getLectureRecommend" resultMap="getDetailResult">
