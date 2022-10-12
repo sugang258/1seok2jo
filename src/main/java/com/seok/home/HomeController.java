@@ -1,6 +1,7 @@
 package com.seok.home;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -40,10 +41,28 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(Locale locale, Model model) throws Exception {
 
+		LectureBoardDTO lectureBoardDTO = new LectureBoardDTO();
 	    ModelAndView mv = new ModelAndView();
 	    List<LectureDTO> list = lectureService.getLectureC();
 	    List<LectureDTO> level = lectureService.getLectureLevel();
+	    List a = new ArrayList<Double>();
+	    List aa = new ArrayList<Double>();
+
 	    
+	    for(int i=0;i<list.size();i++) {
+	    	lectureBoardDTO.setL_num(list.get(i).getL_num());
+	    	double avg = lectureBoardService.getAvgScore(lectureBoardDTO);
+	    	avg = Math.round(avg*100)/100.0;
+	    	a.add(avg);
+	    }
+	    for(int i=0;i<level.size();i++) {
+	    	lectureBoardDTO.setL_num(level.get(i).getL_num());
+	    	double avg = lectureBoardService.getAvgScore(lectureBoardDTO);
+	    	avg = Math.round(avg*100)/100.0;
+	    	aa.add(avg);
+	    }
+	    mv.addObject("avgg", aa);
+	    mv.addObject("avg", a);
 	    mv.addObject("list", list);
 	    mv.addObject("level", level);
 	    mv.setViewName("index");
