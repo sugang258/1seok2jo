@@ -96,8 +96,7 @@ function initboards(){
                 xhttp.send("fb_num="+b_num);
                 xhttp.addEventListener("readystatechange", function(){
                     if(this.readyState==4 && this.status==200){
-                        msg = msg + b_num + " ";
-                        console.log("for"+msg)
+                        console.log(xhttp.responseText)
                     }
                 })
 

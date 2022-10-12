@@ -11,12 +11,15 @@ xhttp.addEventListener("readystatechange", function(){
     if(this.readyState==4 && this.status==200){
       console.log(xhttp.responseText);
       var res = JSON.parse(xhttp.responseText);
-      console.log(res.boardCnt)
+      console.log(res.lectureIng)
 
       let notAnswer = document.getElementById("notAnswer");
       counterFn(res.notAnswerCnt ,notAnswer, 50);
-
+      
       //cnt 올리기
+      let cntLectureIng = document.getElementById("cntLectureIng");
+      counterFn(res.lectureIng ,cntLectureIng, 100);
+      
       let cntBoard = document.getElementById("cntBoard");
       counterFn(res.boardCnt ,cntBoard, 5);
 
@@ -26,8 +29,6 @@ xhttp.addEventListener("readystatechange", function(){
       let cntLecture = document.getElementById("cntLecture");
       counterFn(res.lectureCnt,cntLecture, 100);
 
-      let cntLectureIng = document.getElementById("cntLectureIng");
-      counterFn(res.lectureIng ,cntLectureIng, 100);
 
       // Bar Chart
       var ctx = document.getElementById("myBarChart");
@@ -79,12 +80,12 @@ xhttp.addEventListener("readystatechange", function(){
 function counterFn(maxCnt, elementID, speed) {
   let cnt0 = 0;
 
-  id0 = setInterval(count0Fn, speed);
+  let id0 = setInterval(count0Fn, speed); //count0Fn을 반복한다
 
   function count0Fn() {
     cnt0++;
     if (cnt0 > maxCnt) {
-      clearInterval(id0);
+      clearInterval(id0); //반복중단
     } else {
       elementID.innerText=cnt0;
     }

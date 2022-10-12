@@ -24,4 +24,11 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     }
 
+    const logout = document.body.querySelector('#logout');
+    if(logout){
+        logout.addEventListener('click', event => {
+            location.href="/member/logout";
+        })
+    }
+
 });

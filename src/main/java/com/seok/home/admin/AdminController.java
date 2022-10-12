@@ -103,7 +103,6 @@ public class AdminController {
 	@PostMapping(value = "paymentList")
 	@ResponseBody
 	private ModelAndView getPayments(AdminPager pager, ModelAndView mv) throws Exception{
-		
 		List<PaymentDTO> payList = service.getPaymentsList(pager);
 		
 		mv.addObject("payList", payList);
