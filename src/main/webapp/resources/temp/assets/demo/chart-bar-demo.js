@@ -18,7 +18,7 @@ xhttp.addEventListener("readystatechange", function(){
 
       //cnt 올리기
       let cntBoard = document.getElementById("cntBoard");
-      counterFn(res.boardCnt ,cntBoard, 100);
+      counterFn(res.boardCnt ,cntBoard, 5);
 
       let cntMember = document.getElementById("cntMember");
       counterFn(res.memberCnt,cntMember, 100);

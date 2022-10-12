@@ -232,7 +232,23 @@ public class LectureController {
 			result = lectureService.setDelete(lectureDTO);
 			
 		}else {
+			//어드민 권한이면 삭제하도록 한다.
+			Boolean chk = (Boolean)request.getSession().getAttribute("admin");
+			if(chk) {
+				for(int x=0;x<ar.size();x++) {
+					statusDTO.setS_num(ar.get(x).getS_num());
+					for(int i=0;i<s_count*v_count;i++) {
+						//statusDTO S_NUM으로 다 삭제시키기
+						statusService.setStatusDelete(statusDTO);
+					}
+				}
+				lectureAddService.setLectureDeleteAll(lectureDTO);
+				lectureService.setFileDelete(lectureDTO);
+				lectureService.setVideoDele(lectureDTO);
+				result = lectureService.setDelete(lectureDTO);
+			}else {
 			result =0;
+			}
 		}
 		System.out.println(result);
 		return result;

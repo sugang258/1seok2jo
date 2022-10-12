@@ -58,7 +58,7 @@
                                 <div class="p-2 flex-grow-3"><b>관리</b></div>
                                 <div class="p-2 flex-grow-3" style="color: gray">|</div>
                                 <div class="p-2 flex-fill text-end pe-5">
-                                    <button type="button" >강의 삭제</button>
+                                    <button type="button" id="lecDelBtn" >강의 삭제</button>
                                 </div>
                               </div>
                         </div>
