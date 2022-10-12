@@ -402,7 +402,9 @@ public class MemberController {
         MemberDTO mem = (MemberDTO)request.getSession().getAttribute("member");
         freeBoardDTO.setId(mem.getId());
         List<FreeBoardDTO> ar = freeBoardService.getMyBoardList(freeBoardDTO);
+        int size = ar.size();
         
+        mv.addObject("size", size);
         mv.addObject("f_board", ar);
         mv.setViewName("/member/board");
         return mv;

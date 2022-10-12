@@ -106,6 +106,9 @@ public class StudyBoardController {
         }else {
             result = 1;
         }
+        System.out.println(ar.size());
+       int size = ar.size();
+       mv.addObject("size1", size);
         mv.addObject("study", ar);
         mv.setViewName("member/study_board");
         

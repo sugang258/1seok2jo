@@ -8,15 +8,23 @@ const result = document.querySelector("#result");
 
 
     result.addEventListener("click",function(event){
-        let target = event.target.parentNode.getAttributeNode("data-fb-num").value;
+        let target = event.target;
         console.log(target);
         console.log("sb");
         if(event.target.parentNode.className == 'sb_board') {
+            let target = event.target.parentNode.getAttributeNode("data-fb-num").value;
             location.href="/board/sb_detail?sb_num="+target;
 
         }else if(event.target.parentNode.className == 'lec'){
+            let target = event.target.parentNode.getAttributeNode("data-fb-num").value;
             location.href="/board/list?l_num="+target;
             
+        }else if(event.target.className == 'board_list') {
+            window.location.href="/board/fb_list";
+        }else if(event.target.className == 'study_list') {
+            window.location.href="/board/sb_list"
+        }else if(event.target.className == 'lecture_list') {
+            window.location.href="/status/sign"
         }
 
     })
