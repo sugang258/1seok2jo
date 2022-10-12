@@ -20,94 +20,96 @@
 <c:import url="./template/header.jsp"></c:import>
 <body>
     <main>
-        <div id="d1">
-          <div id="d1_1">
-            <div
-              id="carouselExampleInterval"
-              class="carousel slide"
-              data-bs-ride="carousel"
-              style="height: 300px"
-            >
-              <div class="carousel-inner" style="height: 350px">
-                <div class="carousel-item active" data-bs-interval="3000">
-                  <img
-                    src="/resources/images/b5.png"
-                    class="d-block w-60"
-                    alt="..."
-                    style="height: 300px"
-                  />
+        <div id="d1" class="container-fluid">
+          <div class="row g-0 justify-content-center">
+            <div id="d1_1" class="col-lg-8 d-none d-lg-block">
+              <div
+                id="carouselExampleInterval"
+                class="carousel slide"
+                data-bs-ride="carousel"
+                style="height: 300px; width: 850px; float: right;"
+              >
+                <div class="carousel-inner" style="height: 350px">
+                  <div class="carousel-item active" data-bs-interval="3000">
+                    <img
+                      src="/resources/images/b5.png"
+                      class="d-block w-60"
+                      alt="..."
+                      style="height: 300px"
+                    />
+                  </div>
+                  <div class="carousel-item" data-bs-interval="3000">
+                    <img
+                      src="/resources/images/b4.png"
+                      class="d-block w-60"
+                      alt="..."
+                      style="height: 300px"
+                    />
+                  </div>
+                  <div class="carousel-item" data-bs-interval="3000">
+                    <img
+                      src="/resources/images/b3.png"
+                      class="d-block w-60"
+                      alt="..."
+                      style="height: 300px"
+                    />
+                  </div>
+                  <div class="carousel-item" data-bs-interval="3000">
+                    <img
+                      src="/resources/images/b1.png"
+                      class="d-block w-60"
+                      alt="..."
+                      style="height: 300px"
+                    />
+                  </div>
+                  <div class="carousel-item" data-bs-interval="3000">
+                    <img
+                      src="/resources/images/b2.png"
+                      class="d-block w-60"
+                      alt="..."
+                      style="height: 300px"
+                    />
+                  </div>
                 </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <img
-                    src="/resources/images/b4.png"
-                    class="d-block w-60"
-                    alt="..."
-                    style="height: 300px"
-                  />
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <img
-                    src="/resources/images/b3.png"
-                    class="d-block w-60"
-                    alt="..."
-                    style="height: 300px"
-                  />
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <img
-                    src="/resources/images/b1.png"
-                    class="d-block w-60"
-                    alt="..."
-                    style="height: 300px"
-                  />
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <img
-                    src="/resources/images/b2.png"
-                    class="d-block w-60"
-                    alt="..."
-                    style="height: 300px"
-                  />
-                </div>
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselExampleInterval"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselExampleInterval"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
               </div>
-              <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#carouselExampleInterval"
-                data-bs-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#carouselExampleInterval"
-                data-bs-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Next</span>
-              </button>
             </div>
-          </div>
-          
-          <div class="d-flex flex-column" id="d1_2">
-          		<div class="mb-2" style="margin:0 auto; width:80%; color: gray; font-size: 13.5px;">페이지를 더 안전하고 편리하게 이용하세요😊</div>
-               <div class="submit">
-               	  <input type="submit" value="Login">
-               </div>
-               <div class="d-flex justify-content-between mt-2" style="width: 80%; margin: 0 auto;">
-	               	<div class="login"><a href="#">🔒아이디/비밀번호 찾기</a></div>
-	               	<div class="login"><a href="#">👩‍💻회원가입</a></div>
-               </div>
-          </div>
-               
+            <div class="col-lg-3 col-6">
+            <div class="d-flex flex-column mx-auto mx-lg-none" id="d1_2">
+                <div class="mb-2" style="margin:0 auto; color: gray; font-size: 13.5px;">페이지를 더 안전하고 편리하게 이용하세요😊</div>
+                <div class="submit">
+                    <input type="submit" value="Login">
+                </div>
+                <div class="d-flex justify-content-between mt-2" style="width: 80%; margin: 0 auto;">
+                    <div class="login"><a href="#">🔒아이디/비밀번호 찾기</a></div>
+                    <div class="login"><a href="#">👩‍💻회원가입</a></div>
+                </div>
+            </div>
+            </div>
+          </div>     
         </div>
        
         
@@ -201,7 +203,7 @@
         
         <div class="d-flex mt-4 mb-5" id="d8">
         	<div class="pt-2 pe-5 d-flex flex-column" style="width: 50%;">
-        		<div class="mt-5" style="font-size: 35px; font-weight: bold;"><span style="color:#47c880;">10</span> 명이</div>
+        		<div class="mt-5" style="font-size: 35px; font-weight: bold;"><span id="cntMember" style="color:#47c880;">0</span> 명이</div>
         		<div class="mb-4" style="font-size: 35px; font-weight: bold;">일석이조와 함께합니다.</div>
         		<div class="" style="font-size: 16px; color:gray">일석이조는 강의의 수강생수, 평점을 투명하게 공개합니다. 실제로 많은 온오프라인 학원들은 단기적 성과를 높이기 위해 잘나온 특정 후기만 노출 하거나, 아예 숨겨버리는 경우가 많습니다.
 반면 일석이조는 강의에 대한 후기, 학생수 등 정보를 투명하게 공개합니다. 신뢰성을 바탕으로 학습자들이 더 좋은 컨텐츠를 선택하고 교육의 질을 높입니다.</div>
