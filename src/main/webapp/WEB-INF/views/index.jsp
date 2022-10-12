@@ -130,8 +130,8 @@
           <div class="hot"><span style="color: red;">HOT</span>❗ <a href="#">너도 나도 듣는 인기 강의 👉</a></div>
            
            <div class="d-flex justify-content-between" id="d4">
-            <c:forEach items="${list}" var="count" varStatus="countNm">
-              <div class="lecture">
+            <c:forEach items="${list}" var="count">
+              <div class="lecture" data-l-num="${count.l_num}">
                 <div class="card" style="height:350px">
                   <img src="http://20.249.88.100/resources/lecture/${count.lectureFileDTO[0].f_name}" class="card-img-top img " alt="...">
                   <div class="card-body">

@@ -38,5 +38,9 @@ public class CartService {
 	public CartDTO getCartOne(CartDTO cartDTO) throws Exception{
 	    return cartDAO.getCartOne(cartDTO);
 	}
+	
+	public int setCartLM(CartDTO cartDTO) throws Exception{
+	    return cartDAO.setCartLM(cartDTO);
+	}
 
 }

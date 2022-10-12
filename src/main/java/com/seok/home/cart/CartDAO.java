@@ -29,5 +29,9 @@ public class CartDAO {
 	    return sqlSession.selectOne(NAMESPACE+"getCartOne", cartDTO);
 	}
 	
+	public int setCartLM(CartDTO cartDTO) throws Exception{
+	    return sqlSession.delete(NAMESPACE+"setCartLM", cartDTO);
+	}
+	
 	
 }
