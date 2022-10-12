@@ -181,6 +181,17 @@ public class MemberController {
 		return "member/deleteMember";
 	}
 	
+	//어드민 회원탈퇴
+	@PostMapping("deleteMemberAdmin")
+	@ResponseBody
+	public int setDeleteMemberAdmin(MemberDTO memberDTO)throws Exception{
+		
+		//DB에 있는 회원정보(등급까지)를 삭제
+		int result = memberService.setDeleteMember(memberDTO);
+		
+		return result;
+	}
+	
 	//비밀번호 확인 로직 처리 (POST)
 //	@ResponseBody
 //	@PostMapping("pwCheck")
@@ -409,5 +420,12 @@ public class MemberController {
         mv.setViewName("/member/board");
         return mv;
     }
+	
+	//강사권한 삭제
+	@PostMapping("delTeacherAdmin")
+	@ResponseBody
+	public int setDeleteTeacherAll(MemberDTO dto) throws Exception{
+		return memberService.setDeleteTeacherAll(dto);
+	}
 	
 }
