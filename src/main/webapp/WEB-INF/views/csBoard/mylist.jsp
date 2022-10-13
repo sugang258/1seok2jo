@@ -33,7 +33,73 @@ prefix="c" %>
       <c:import url="../template/header.jsp"></c:import>
     </div>
     <section class="container" >
-      <div class="row mt-5  text-center">
+      <div class="d-flex mt-5">
+      <!--Sidebar-->
+      <div class="row" style="width: 8%">
+        <div class="col-4 d-lg-block d-none">
+          <div class="list-group sidebar" style=" width:150px;
+            font-size: 13px;
+            top: 160px;
+            bottom: 0;
+            margin: 0 auto;
+            z-index: 10;
+            display: block;
+            padding: 20px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            text-align: center;
+            position: fixed;
+            left: auto;
+          ">
+            <div class="list-group" id="list-tab" role="tablist">
+              <a
+                class="list-group-item list-group-item-action"
+                id="list-home-list"
+                data-bs-toggle="list"
+                href="#list-home"
+                role="tab"
+                aria-controls="list-home"
+                style="font-size: 18px; color: pink"
+                onclick="location.href='/'"
+                ><i class="fa-solid fa-house"></i
+              ></a>
+              <a
+                class="list-group-item list-group-item-action"
+                id="list-profile-list"
+                data-bs-toggle="list"
+                href="#list-profile"
+                role="tab"
+                aria-controls="list-profile"
+                onclick="location.href='/board/notice'"
+                >공지사항</a
+              >
+              <a
+                class="list-group-item list-group-item-action active"
+                id="list-messages-list"
+                data-bs-toggle="list"
+                href="#list-messages"
+                role="tab"
+                aria-controls="list-messages"
+                onclick="location.href='/csBoard/mylist'"
+                >1대 1문의</a
+              >
+              <a
+                class="list-group-item list-group-item-action"
+                id="list-settings-list"
+                data-bs-toggle="list"
+                href="#list-settings"
+                role="tab"
+                aria-controls="list-settings"
+                onclick="location.href='/board/faq'"
+                >자주묻는 질문</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    <div class="container"  style="width: 92%">
+      <div class="row mt-5  text-center" >
         <h3>내 문의</h3>
       </div>
       <div class="row text-end mx-auto mt-1" style="width: 70%;">
@@ -200,6 +266,7 @@ prefix="c" %>
         </div>
       </div>
       </c:forEach>
+    </div>
     </section>
 
     <c:import url="../template/footer.jsp"></c:import>
@@ -217,5 +284,6 @@ prefix="c" %>
         focus: true,
       });
     </script>
+
   </body>
 </html>
