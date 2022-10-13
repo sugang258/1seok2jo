@@ -34,7 +34,7 @@ public class LectureBoardController {
 
 	/* 정렬  : type을 파라미터로 받음*/
 	@GetMapping("list")
-	public ModelAndView getL_boardNewList(LectureBoardDTO lectureBoardDTO, Integer type) throws Exception {
+	public ModelAndView getL_boardNewList(LectureBoardDTO lectureBoardDTO, Integer type,  HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<LectureBoardDTO> ar = new ArrayList<LectureBoardDTO>();
 		Long l_check = 1L;
@@ -60,20 +60,24 @@ public class LectureBoardController {
 		double avg = lectureBoardService.getAvgScore(lectureBoardDTO);
 		avg = Math.round(avg*100)/100.0;
 		
-		/* 추천수 조회 및 컬러변경 */
-		List<Long> heartCount = new ArrayList<Long>();
-		List<L_heartDTO> heartColor = new ArrayList<L_heartDTO>();
-		for(LectureBoardDTO a : ar) {
-			L_heartDTO l_heartDTO = new L_heartDTO();
-			l_heartDTO.setNum(a.getNum());
-			l_heartDTO.setId(a.getId());
-			//수강평 추천수(jsp적용) 
-			heartCount.add(lectureBoardService.getHeartCount(l_heartDTO));
-			//수강평 color변경(jsp적용)
-			heartColor.add(lectureBoardService.getL_heart(l_heartDTO));
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO = (MemberDTO) session.getAttribute("member");
+		if(memberDTO != null) {
+			/* 추천수 조회 및 컬러변경 */
+			List<Long> heartCount = new ArrayList<Long>();
+			List<L_heartDTO> heartColor = new ArrayList<L_heartDTO>();
+			for(LectureBoardDTO a : ar) {
+				L_heartDTO l_heartDTO = new L_heartDTO();
+				l_heartDTO.setNum(a.getNum());
+				l_heartDTO.setId(memberDTO.getId());
+				//수강평 추천수(jsp적용) 
+				heartCount.add(lectureBoardService.getHeartCount(l_heartDTO));
+				//수강평 color변경(jsp적용)
+				heartColor.add(lectureBoardService.getL_heart(l_heartDTO));
+			}			
+			mv.addObject("count_list", heartCount);
+			mv.addObject("color_list", heartColor);
 		}
-		mv.addObject("count_list", heartCount);
-		mv.addObject("color_list", heartColor);
 
 		//수강평 프로그래스바 width값
 		Long firstScore = lectureBoardService.getFirstScore(lectureBoardDTO);
