@@ -95,6 +95,14 @@ public class MemberController {
 		return result;
 	}
 	
+	//닉네임중복 확인 로직 처리 (POST)
+	@ResponseBody
+	@PostMapping("nNameCheck")
+	public int getNnameCheck(MemberDTO memberDTO)throws Exception{
+		int result = memberService.getNnameCheck(memberDTO);
+		return result;
+	}
+	
 	//회원가입 화면(GET)
 	@GetMapping("join")
 	public String setJoin()throws Exception{

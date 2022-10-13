@@ -37,6 +37,11 @@ public class MemberService {
 		return memberDAO.getIdCheck(memberDTO);
 	}
 	
+	//닉네임중복 확인
+	public int getNnameCheck(MemberDTO memberDTO)throws Exception{
+		return memberDAO.getNnameCheck(memberDTO);
+	}
+	
 	//회원가입
 	public int setJoin(MemberDTO memberDTO, String yy, String mm, String dd, String e, String mail)throws Exception{
 
