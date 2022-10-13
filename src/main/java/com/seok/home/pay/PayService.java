@@ -47,15 +47,18 @@ public class PayService {
 	}
 	
 
-	
+	// 내 결제내역
 	public HashMap<String, Object> getMyPayList(MemberDTO member)throws Exception{
+		// 프로필사진, 내 결제내역, 마일리지를 가지고 온다.
 		member = memberDAO.getProfile(member);
 		PaymentDTO paymentDTO = new PaymentDTO();
 		paymentDTO.setId(member.getId());
 		List<PaymentDTO> payList = payDAO.getPaymentList(paymentDTO);
 		HashMap<String, Object> result = new HashMap<String, Object>();
+		
 		result.put("payList", payList);
 		result.put("member", member);
+		result.put("point", memberDAO.getPoint(member));
 		Integer Lcnt = 0;
 		for(PaymentDTO pay:payList) {
 			Lcnt += pay.getOrders().size();

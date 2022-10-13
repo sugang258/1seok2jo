@@ -100,8 +100,8 @@ prefix="c" %>
         </div>
       </div>
       </div>
-    <div class="container"  style="width: 92%">
-      <div class="row mt-5  text-center" >
+    <div class="container my-5"  style="width: 92%">
+      <div class="row text-center" >
         <h3>내 문의</h3>
       </div>
       <div class="row text-end mx-auto mt-1" style="width: 70%;">
@@ -177,7 +177,7 @@ prefix="c" %>
             class="btn-st btn btn-outline-secondary"
             onclick="location.href='delete?cs_num=${csboard.cs_num}';"
           >
-            삭제하기(작성자)
+            삭제하기
           </button>
         </div>
         <div class="p-2">
@@ -188,7 +188,7 @@ prefix="c" %>
             data-bs-target="#updateModal${csboard.getCs_num()}"
             data-bs-whatever="@mdo"
           >
-            수정하기(작성자)
+            수정하기
           </button>
         </div>
       </div>

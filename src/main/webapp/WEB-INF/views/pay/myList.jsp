@@ -34,11 +34,16 @@
                 			</div>
                 		</div>
                 		<div class="col text-center ">
-                            <div class="row align-items-center"></div>
-                            <div>${sessionScope.member.n_name}님</div>
-                			<div>현재 마일리지</div>
-                			
-                			<div>구매한 강의 수</div><div>${payListMap.Lcnt} 개</div>
+                            <div class="row align-items-center">
+                            <div><b>${sessionScope.member.n_name}</b>님</div>
+                             </div>
+                            <div class="row align-items-between mt-2">
+                                <div>현재 마일리지</div>
+                                <div style="color: darkgreen;"><b>${payListMap.point} 마일</b></div>
+                            </div>
+                			<div class="row align-items-between mt-2">
+                			<div>구매한 강의 수</div><div style="color: darkgreen;">${payListMap.Lcnt} 개</div>
+                            </div>
                 		</div>
                         <div></div>
                 	</div>
@@ -46,13 +51,13 @@
             </div>
             <c:forEach items="${payListMap.payList}" var="pay">
 	            <div class="col-sm-8 text-center my-2" style="background: url(/resources/images/bg_tit_month.gif); height: 39px;">
-		            <div class="py-2 mx-auto linkStatus" data-puid = ${pay.p_uid} style="background:url(/resources/images/bg_tit_month2.gif); width: 110px; height: 39px;">
+		            <div class="py-2 mx-auto linkStatus" data-puid = ${pay.p_uid} style="cursor:pointer; background:url(/resources/images/bg_tit_month2.gif); width: 110px; height: 39px;">
                         <b style="color: darkgreen;">${pay.p_regdate }</b>
                     </div>
 	            </div>
                 <div class="col-sm-8 text-center">
                     <div class="row">
-                        <div class="col-8 linkStatus" data-puid = ${pay.p_uid}>
+                        <div class="col-8 linkStatus" style="cursor:pointer;" data-puid = ${pay.p_uid}>
                             <div>${pay.orders[0].lectureDTO.l_name}</div>
                             <div><spen class="text-muted">결제금액</spen> ${pay.p_realamount}</div>
                         </div>
