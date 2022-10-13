@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.seok.home.MyAbstractTest;
 import com.seok.home.lecture.teacher.TeacherDTO;
@@ -61,7 +60,7 @@ public class MemberServiceTest extends MyAbstractTest {
 		assertNotEquals(0, result);
 	}
 	
-	@Test
+	//@Test
 	public void setDeleteFileTest()throws Exception{
 		MemberFileDTO memberFileDTO = new MemberFileDTO();
 		memberFileDTO.setId("koo12345");
