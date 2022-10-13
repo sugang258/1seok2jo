@@ -83,23 +83,31 @@ for (let i = 0; i < like_btn.length; i++) {
     num = num[i].value;
     let id = document.getElementById("l_board_id");
     id = id.value;
-    const xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/board/l_heart");
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("num=" + num + "&id=" + id);
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        result = xhttp.responseText.trim();
+    if (id == "") {
+      alert("로그인이 필요합니다.😘");
+      window.location.href = "/member/login";
+    } else {
+      const xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "/board/l_heart");
+      xhttp.setRequestHeader(
+        "Content-type",
+        "application/x-www-form-urlencoded"
+      );
+      xhttp.send("num=" + num + "&id=" + id);
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          result = xhttp.responseText.trim();
 
-        if (result == 1) {
-          like_btn[i].setAttribute("style", "color:#FFCD28");
-          count_text[i].innerHTML = ++count_text_value;
-        } else {
-          like_btn[i].setAttribute("style", "color: rgb(73, 71, 71)");
-          count_text[i].innerHTML = --count_text_value;
+          if (result == 1) {
+            like_btn[i].setAttribute("style", "color:#FFCD28");
+            count_text[i].innerHTML = ++count_text_value;
+          } else {
+            like_btn[i].setAttribute("style", "color: rgb(73, 71, 71)");
+            count_text[i].innerHTML = --count_text_value;
+          }
         }
-      }
-    };
+      };
+    }
   });
 }
 
@@ -168,25 +176,32 @@ function setLectureStudent() {
   const lecture_add_btn = document.getElementById("lecture_add_btn");
   let id = l_board_id.value;
   let num = l_num.value;
-  const xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "l_student");
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send("id=" + id + "&l_num=" + num);
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      let result = xhttp.responseText.trim();
-      console.log(result);
-      if (result == 0) {
-        lecture_add_btn.setAttribute(
-          "style",
-          "width: 69%; margin: 0 auto; display: none;"
-        );
-      } else {
-        lecture_add_btn.setAttribute(
-          "style",
-          "width: 69%; margin: 0 auto; display: block"
-        );
+  if (id == "") {
+    lecture_add_btn.setAttribute(
+      "style",
+      "width: 69%; margin: 0 auto; display: none;"
+    );
+  } else {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "l_student");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("id=" + id + "&l_num=" + num);
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        let result = xhttp.responseText.trim();
+        console.log(result);
+        if (result == 0) {
+          lecture_add_btn.setAttribute(
+            "style",
+            "width: 69%; margin: 0 auto; display: none;"
+          );
+        } else {
+          lecture_add_btn.setAttribute(
+            "style",
+            "width: 69%; margin: 0 auto; display: block"
+          );
+        }
       }
-    }
-  };
+    };
+  }
 }
