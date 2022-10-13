@@ -135,5 +135,4 @@
 </body>
 <script src="/resources/js/header.js"></script>
 <script>setLoginCheck()</script>
-
 </html>

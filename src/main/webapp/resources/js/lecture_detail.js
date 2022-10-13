@@ -14,16 +14,7 @@ signs.addEventListener("click",function(){
     }
 })
 
-update.addEventListener("click",function(){
-        let check = window.confirm("수정하시겠습니까?");
-        let l_num = content.getAttributeNode("data-ll-num").value;
-    
-        if(check){
-            window.location.href="../lecture/update?l_num="+l_num;
-        }else{
-            alert("수정하기 취소");
-        }
-    })
+
 
     de.addEventListener("click",function(){
         let check = window.confirm("삭제하시겠습니까?");
