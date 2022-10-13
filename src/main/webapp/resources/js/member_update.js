@@ -29,7 +29,7 @@ const btn = document.querySelector("#btn");
 // ------------------- 프로필-사진삭제 -------------------
 function deleteFile(){
     defile.addEventListener("click", function(){
-        console.log("클릭 이벤트 작동");
+
         let id = ipId.value;
         //---------------- Ajax --------------------
 
@@ -53,13 +53,15 @@ function deleteFile(){
 
                 if(result=='1'){
 
-                    alert("❗사진을 삭제했습니다.");
+                    alert("✔사진을 삭제했습니다.");
                     location.href="/member/profile";
-                    //return true;
+                    return true;
+                }else {
+                    alert("❗❗사진 삭제를 실패했습니다.❗❗");
                 }
             }
         }
-
+        return false;
     });
 }
 
@@ -74,22 +76,22 @@ function updatePwCheck(){
         
         if(pw==""){
 
-            alert("❗현재 비밀번호를 입력하세요.");
+            alert("❗❗현재 비밀번호를 입력하세요.❗❗");
             now_pw.focus();
 
         }else if(new_pw==""){
 
-            alert("❗새 비밀번호를 입력하세요.");
+            alert("❗❗새 비밀번호를 입력하세요.❗❗");
             ipnew_pw.focus();
 
         }else if(pw_check==""){
 
-            alert("❗새 비밀번호 확인을 입력하세요.");
+            alert("❗❗새 비밀번호 확인을 입력하세요.❗❗");
             pw_check.focus();
 
         }else if(pwCheck!==new_pw){
 
-            alert("❗새 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+            alert("❌새 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
             pw_check.value="";
             pw_check.focus();
 
@@ -146,17 +148,17 @@ function deleteMember(){
 
         if(pw==""){
 
-            alert("❗비밀번호를 입력하세요.");
+            alert("❗❗비밀번호를 입력하세요.❗❗");
             ipPw.focus();
 
         }else if (pwCheck==""){
 
-            alert("❗비밀번호 확인을 입력하세요.");
+            alert("❗❗비밀번호 확인을 입력하세요.❗❗");
             ipPwCheck.focus();
 
         }else if (pw!==pwCheck){
 
-            alert("❗비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+            alert("❌비밀번호와 비밀번호 확인이 일치하지 않습니다.");
             ipPwCheck.value="";
             ipPwCheck.focus();
 

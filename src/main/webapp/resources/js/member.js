@@ -336,15 +336,15 @@ function joinCheck(){
 
         }else if(!idCheckCh){
 
-            alert("아이디 중복 버튼을 클릭 하세요");
+            alert("❗❗아이디 중복 버튼을 클릭 하세요.❗❗");
 
         }else if(!nnameCheckCh){
 
-            alert("닉네임 중복 버튼을 클릭 하세요");
+            alert("❗❗닉네임 중복 버튼을 클릭 하세요.❗❗");
 
         }else {
 
-            alert("필수 정보를 확인하세요.");
+            alert("❗❗필수 정보를 확인하세요.❗❗");
 
         }
     });
