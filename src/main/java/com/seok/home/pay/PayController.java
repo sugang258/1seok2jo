@@ -44,6 +44,7 @@ public class PayController {
 		return null;
 	}
 	
+	//내 결제내역
 	@GetMapping(value="myList")
 	public Model getMyPayList (HttpSession session, Model model) throws Exception{
 		MemberDTO mem = (MemberDTO)session.getAttribute("member");
