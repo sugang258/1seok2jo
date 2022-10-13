@@ -164,13 +164,14 @@ public class AdminController {
 		String url = "";
 		boolean chk = false;
 		if(member!=null) {
-			url = "redirect: /admin/main";
 			chk = true;
+			session.setAttribute("member", member);
+			session.setAttribute("admin", chk);
+			url = "redirect: /admin/main";
 		}else {
 			url = "admin/login";
 		}
-		session.setAttribute("member", member);
-		session.setAttribute("admin", chk);
+
 		return url;
 	}
 	

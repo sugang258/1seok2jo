@@ -9,7 +9,7 @@
 		<param-value>/WEB-INF/spring/*-context.xml</param-value>
 	</context-param>
 	
-	<error-page>
+ 	<error-page>
       <error-code>404</error-code>
       <error-code>405</error-code>
       <location>/WEB-INF/views/errors/error_404.jsp</location>
@@ -22,7 +22,7 @@
    <error-page>
       <error-code>500</error-code>
       <location>/error/error500</location>
-   </error-page>
+   </error-page> 
    
 	<filter>
 		<filter-name>encode</filter-name>

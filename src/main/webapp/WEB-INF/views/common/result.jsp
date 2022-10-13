@@ -13,7 +13,7 @@
 
 	let message = '${message}';
 	alert(message);
-	location.href="${url}";
+	location.href='${url}';
 </script>
 
 </body>
