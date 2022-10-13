@@ -49,7 +49,7 @@ function deleteFile(){
         xhttp.onreadystatechange=function(){
             if(this.readyState==4 && this.status==200){
 
-                let respFile = xhttp.responseText.trim();
+                let result = xhttp.responseText.trim();
 
                 if(result=='1'){
 
