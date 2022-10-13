@@ -206,7 +206,7 @@ function joinCheck(){
                     // 응답결과가 성공하면(중복이 있으면) 결과가 1
                     alert("❌닉네임이 있습니다. 다시 입력해 주세요.");
                     ipNname.focus();
-                }else if(id.length===0) {
+                }else if(n_name.length===0) {
                     nnameCheckCh=false;
                     // 아이디 input안에 입력한 값이 없으면
                     alert("❗닉네임을 입력해 주세요.");
@@ -329,16 +329,79 @@ function joinCheck(){
     // 회원가입 버튼 클릭
     btn.addEventListener("click", function(){
         if(idCheck && idCheckCh && pwCheck && pwEqualCheck && nameCheck && nnameCheck && nnameCheckCh && yyCheck && mmCheck && ddCheck && genderCheck && emailCheck && phoneCheck){
-            alert("🎉회원가입 축하합니다🎉 마일리지 5000포인트 지급❗❗ ");
+           
+            alert("🎉🎉회원가입을 축하합니다🎉🎉 마일리지 5000포인트 지급❗❗ ");
             // 서버에 저장
             joinForm.submit();
+
+        }else if(!idCheckCh){
+
+            alert("아이디 중복 버튼을 클릭 하세요");
+
+        }else if(!nnameCheckCh){
+
+            alert("닉네임 중복 버튼을 클릭 하세요");
+
         }else {
+
             alert("필수 정보를 확인하세요.");
+
         }
     });
 
 }
 
+// ---------------------- 로그인 ----------------------
 function loginCheck(){
+    console.log("로그인 함수 실행");
+    //form 선택
+    const loginForm = document.querySelector("#loginForm");
+
+    //input 선택
+    const logId = document.querySelector("#logId");
+    const logPw = document.querySelector("#logPw");
+
+    //button 선택
+    const login = document.querySelector("#login");
+
+    login.addEventListener("click", function(){
+        console.log("버튼 클릭이벤트 실행");
+        let id = logId.value;
+        let pw = logPw.value;
+        //---------------- Ajax --------------------
+    
+        // 1. XMLHTTPRequest 생성
+        let xhttp = new XMLHttpRequest();
+    
+        // 2. Method, URL 준비 
+        xhttp.open("POST", "../member/login");
+        
+        // 3. Enctype
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    
+        // 4. 요청 발생 (POST일 경우prammeter 추가)
+        xhttp.send("id="+id+"&pw="+pw);
+    
+        // 5. 응답 처리
+        xhttp.onreadystatechange=function(){
+    
+            if(this.readyState==4 && this.status==200){
+    
+                let respMemberDTO = xhttp.responseText.trim();
+    
+                if(!respMemberDTO){
+    
+                    alert("❗비밀번호가 틀렸습니다. 다시 확인 해주세요.");
+                    return false;
+    
+                }else{
+
+                    //저장
+                    loginForm.submit();
+                    
+                }
+            }
+        }
+    });
 
 }

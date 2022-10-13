@@ -6,10 +6,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/error/*")
 public class FrontErrorController {
+	
+	@GetMapping("/*")
+	public ModelAndView error404() throws Exception{
+		ModelAndView mv = new ModelAndView();
+        
+        System.out.println("파일 경로 없음");
+        mv.setViewName("errors/error_404");
+        return mv;
+	}
     
-    @GetMapping("error400")
+    @GetMapping("/error/error400")
     public ModelAndView error400() throws Exception {
         ModelAndView mv = new ModelAndView();
         
@@ -17,7 +25,7 @@ public class FrontErrorController {
         mv.setViewName("errors/error_404");
         return mv;
     }
-    @GetMapping("error500")
+    @GetMapping("/error/error500")
     public ModelAndView error500() throws Exception {
         ModelAndView mv = new ModelAndView();
         
