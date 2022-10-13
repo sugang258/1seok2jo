@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import com.seok.home.l_board.LectureBoardDTO;
 import com.seok.home.l_board.LectureBoardService;
 import com.seok.home.lecture.LectureDTO;
 import com.seok.home.lecture.LectureService;
+import com.seok.home.member.MemberDTO;
 import com.seok.home.member.MemberService;
 
 /**
@@ -43,7 +46,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView home(Locale locale, Model model) throws Exception {
+	public ModelAndView home(Locale locale, Model model, HttpSession session) throws Exception {
 
 		LectureBoardDTO lectureBoardDTO = new LectureBoardDTO();
 	    ModelAndView mv = new ModelAndView();
@@ -65,6 +68,14 @@ public class HomeController {
 	    	avg = Math.round(avg*100)/100.0;
 	    	aa.add(avg);
 	    }
+	    
+	    MemberDTO member = (MemberDTO)session.getAttribute("member");
+	    if(member!=null) {
+	    	 member = memberService.getProfile(member);
+	    	 mv.addObject("f_name", member.getMemberFileDTO().getF_name());
+	    	 System.out.println(member.getMemberFileDTO().getF_name());
+	    }
+	    
 	    mv.addObject("avgg", aa);
 	    mv.addObject("avg", a);
 	    mv.addObject("list", list);

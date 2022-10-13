@@ -114,7 +114,7 @@
               <div class="d-flex flex-column mx-auto mx-lg-none" id="d1_3">
                 <div class="mb-2" style="margin:0 auto; color: gray; font-size: 13.5px;">${member.n_name}님 환영합니다😊</div>
                 <div class="row my-1">
-                  <img src="http://20.249.88.100/resources/member/e299070d-fe6f-4f1d-b8e9-0fd5236d125c-cuteYuri.png" class="borders boarder-dark p-2 mb-2 border-opacity-50 mx-auto d-block" style=" max-width: 150px;  height: 150px;  border-radius: 25px;">
+                  <a href="/member/profile"><img src="http://20.249.88.100/resources/member/${f_name}"  class="borders boarder-dark p-2 mb-2 border-opacity-50 mx-auto d-block" style=" max-width: 150px;  height: 150px;  border-radius: 25px;"></a>
                 </div>
                 <div class="d-flex justify-content-center mt-2" style="width: 80%; margin: 0 auto;">
                     <div class="login"><a href="/member/logout">🔒Logout</a></div>
