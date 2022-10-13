@@ -103,7 +103,7 @@
             <button type="button" class="top_button" style="margin-right: 10px;" onclick="location.href='/member/join';">👩‍💻회원가입</button>
             </c:if>
             <c:if test="${not empty member}">
-            <button type="button" class="top_button" id="cartt" onclick="location.href='/member/cart'">🛒</button>
+            <input type="button" class="btn" id="cartt" onclick="location.href='/member/cart'" value="🛒" style="font-size:x-large"/>
             </c:if>
           </div>
         </div>

@@ -400,6 +400,7 @@ public class MemberController {
 		
 		System.out.println("ararararar:"+ar.size());
 		
+		mv.addObject("c_size", ar.size());
 		mv.addObject("lectureDTO", ar);
 		mv.setViewName("/member/cart");
 		
