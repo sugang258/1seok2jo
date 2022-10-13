@@ -62,13 +62,11 @@ public class MemberController {
 		
 		//로그인 성공 실패 확인
 		if(memberDTO!=null) {
-			System.out.println("로그인 성공!!");
 			//세션에 memberDTO 담기(아이디, 이름, 닉네임, 성별, 이메일, 전화번호, 마일리지, 등급번호, 등급이름 조회)
 			session.setAttribute("member", memberDTO);
-			System.out.println("Role : "+memberDTO.getRoleDTOs().get(0).getRoleName());
+
 			mv.setViewName("redirect:../");
 		}else {
-			System.out.println("로그인 실패..");
 			mv.setViewName("member/login");		
 		}
 		
@@ -92,6 +90,14 @@ public class MemberController {
 	@PostMapping("idCheck")
 	public int getIdCheck(MemberDTO memberDTO)throws Exception{
 		int result = memberService.getIdCheck(memberDTO);
+		return result;
+	}
+	
+	//닉네임중복 확인 로직 처리 (POST)
+	@ResponseBody
+	@PostMapping("nNameCheck")
+	public int getNnameCheck(MemberDTO memberDTO)throws Exception{
+		int result = memberService.getNnameCheck(memberDTO);
 		return result;
 	}
 	
@@ -260,13 +266,12 @@ public class MemberController {
 		if(result != 0) {
 			System.out.println("프로필 수정 성공!!");
 
-			//프로필정보조회(아이디, 이름, 닉네임, *생년월일,* 성별, 이메일, 연락처 조회)
-			//getProfile을 갔다온 memberDTO를 respMemberDTO(responseMemberDTO)에 담음
-			MemberDTO respMemberDTO = memberService.getProfile(memberDTO);
-			
-			//그 데이터를 "member"로 JSP에 보내줌
-			mv.addObject("member", respMemberDTO);
-			mv.setViewName("redirect:../member/profile");
+			if(session.getAttribute("admin")==null) {
+				//그 데이터를 "member"로 JSP에 보내줌
+				mv.setViewName("redirect:../member/profile");
+			}else {
+				mv.setViewName("redirect:../member/profile?id="+memberDTO.getId());
+			}
 		}else {
 			System.out.println("프로필 수정 실패..");
 			mv.setViewName("member/profile");

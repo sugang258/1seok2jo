@@ -123,9 +123,11 @@
                             Listen
                         </div>
                             <div class="card-body"> -->
+                                <c:if test="${not empty member}">
                                 <div class="input-group">
                                     <button class="btn btn-primary" id="listen" type="button" data-listen-num="${param.l_num}" style="border :none; background-color: white; color: #66ba39;">🎧강의 <br>들으러 가기</button>
                                 </div>
+                                </c:if>
                             <!-- </div>
                     </div> -->
                     <!--Update-->

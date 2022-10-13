@@ -60,6 +60,11 @@ public class MemberDAO {
 		return sqlSession.selectOne(NAMESPACE+"getIdCheck", memberDTO);
 	}
 	
+	//닉네임중복 확인
+	public int getNnameCheck(MemberDTO memberDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getNnameCheck", memberDTO);
+	}
+	
 	//회원가입
 	public int setJoin(MemberDTO memberDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"setJoin", memberDTO);

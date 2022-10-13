@@ -101,7 +101,9 @@
 	         </a>
 	         <ul class="dropdown-menu">
 	           <li><a class="dropdown-item" href="/board/notice">공지사항</a></li>
-	           <li><a class="dropdown-item" href="${empty member? '/csBoard/add':'/csBoard/mylist'}">1대1문의</a></li>
+             <c:if test="${not empty member}">
+               <li><a class="dropdown-item" href="/csBoard/mylist">1대1문의</a></li>
+             </c:if>
 	           <li><a class="dropdown-item" href="/board/faq">자주묻는질문</a></li>
 	         </ul>
           </li>
@@ -131,5 +133,7 @@
   </header>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
+<script src="/resources/js/header.js"></script>
+<script>setLoginCheck()</script>
 
 </html>

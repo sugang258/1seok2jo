@@ -10,36 +10,30 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.seok.home.member.MemberDTO;
 import com.seok.home.member.RoleDTO;
 
-public class AdminCheckInterceptor extends HandlerInterceptorAdapter{
+public class AdminLoginCheckInterceptor extends HandlerInterceptorAdapter{
     
     //관리자인지 아닌지 체크
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
         
         HttpSession session = request.getSession();
-        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        Boolean admin = (Boolean) session.getAttribute("admin");
         
         boolean check = false;
         
-        //세션의 멤버 가 널이면
-        if(session.getAttribute("member") == null) {            
+        //세션의 어드민이 널이면
+        if(admin == null) {            
             check = false;
         }else {
-        	for(RoleDTO roleDTO : memberDTO.getRoleDTOs()) {
-                
-                if(roleDTO.getRoleName().equals("관리자")) {
-                    check = true;
-                    break;
-                }
-            }
+        	if(admin) {
+        		check = true;
+        	}
         }
-        
-        
         
         //관리자가 아닐때
         if(!check) {
-            request.setAttribute("message", "관리자가 아닙니다");
-            request.setAttribute("url", "../../../../../../");
+            request.setAttribute("message", "관리자 로그인이 필요합니다");
+            request.setAttribute("url", "../../../../../../admin/login");
             RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/result.jsp"); //jsp의 경로
             view.forward(request, response);
         }

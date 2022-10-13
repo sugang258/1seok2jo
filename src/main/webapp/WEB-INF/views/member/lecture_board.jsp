@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:if test="${size2 == 0}">
-            <div class="text-center">
+            <div class="text-center mt-5" style="font-weight: bold;">
               <div id="null">아직 작성한 수강평이 없습니다.</div>
               <div id="null2">수강평을 작성해 보세요!</div>
               <input type="button" class="lecture_list" id="lecture_list" value="내 학습 가기"  style="background-color: #66ba39; color: white; border:none;">

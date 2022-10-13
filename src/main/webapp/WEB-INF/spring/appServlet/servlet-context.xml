@@ -26,6 +26,7 @@
 	<beans:bean class="com.seok.home.interceptor.ListenCheckInterceptor" id="listenCheckInterceptor"></beans:bean>
 	<beans:bean class="com.seok.home.interceptor.AdminCheckInterceptor" id="adminCheckInterceptor"></beans:bean>
 	<beans:bean class="com.seok.home.interceptor.MemberCheckInterceptor" id="memberCheckInterceptor"></beans:bean>
+	<beans:bean class="com.seok.home.interceptor.AdminLoginCheckInterceptor" id="adminLoginCheckInterceptor"></beans:bean>
 	
 	
 	<interceptors>
@@ -34,10 +35,16 @@
 			<mapping path="/board/fb_delete"/>
 			<mapping path="/board/sb_add"/>
 			<mapping path="/board/sb_delete"/>
-			<mapping path="/member/board"/>
-			<mapping path="/member/cart"/>
+			<mapping path="/member/*"/>
 			<mapping path="/status/sign"/>
 			<mapping path="/lecture/*"/>
+			<mapping path="/csBoard/mylist"/>
+			<mapping path="/csBoard/add"/>
+			<exclude-mapping path="/member/login"/>
+			<exclude-mapping path="/member/nNameCheck"/>
+			<exclude-mapping path="/member/idCheck"/>
+			<exclude-mapping path="/member/join"/>
+			<exclude-mapping path="/admin/login"/>
 			<exclude-mapping path="/lecture/list"/>
 			<exclude-mapping path="/lecture/detail"/>
 			<beans:ref bean="memberCheckInterceptor"/>
@@ -51,6 +58,7 @@
 		<interceptor>
 			<mapping path="/lecture/add"/>
 			<mapping path="/lecture/teacher"/>
+			<mapping path="/member/tcherProfile"/>
 			<beans:ref bean="teacherCheckInterceptor"/>
 		</interceptor>
 		
@@ -64,6 +72,13 @@
 			<mapping path="/board/nb_add"/>
 			<mapping path="/board/nb_delete"/>
 			<beans:ref bean="adminCheckInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/admin/*"/>
+			<exclude-mapping path="/admin/login"/>
+			<exclude-mapping path="/admin/auth"/>
+			<beans:ref bean="adminLoginCheckInterceptor"/>
 		</interceptor>
 
 	</interceptors>
