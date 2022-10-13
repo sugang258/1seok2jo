@@ -57,7 +57,7 @@
                                 <div class="row mt-2">
                                     <div class="col-12">
                                         <span class="text-muted">상태</span>
-                                        <input type="checkbox" id="paid" name="status" value="paid " class="form-check-input" checked>
+                                        <input type="checkbox" id="paid" name="status" value="paid" class="form-check-input" checked>
                                         <label id="plb" for="paid" style="font-weight:bold; color:black">결제</label>
                                         <input type="checkbox" id="canceled" name="status" value="canceled" class="form-check-input" checked>
                                         <label id="clb" for="canceled" style="font-weight:bold; color:black">환불</label>

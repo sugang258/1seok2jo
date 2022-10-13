@@ -98,16 +98,29 @@
               </div>
             </div>
             <div class="col-lg-3 col-6">
-            <div class="d-flex flex-column mx-auto mx-lg-none" id="d1_2">
-                <div class="mb-2" style="margin:0 auto; color: gray; font-size: 13.5px;">페이지를 더 안전하고 편리하게 이용하세요😊</div>
-                <div class="submit">
-                    <input type="submit" value="Login">
+            <c:if test="${empty member}">
+              <div class="d-flex flex-column mx-auto mx-lg-none" id="d1_2">
+                  <div class="mb-2" style="margin:0 auto; color: gray; font-size: 13.5px;">페이지를 더 안전하고 편리하게 이용하세요😊</div>
+                  <div class="submit">
+                      <input type="button" value="Login" onclick="location.href='/member/login'">
+                  </div>
+                  <div class="d-flex justify-content-between mt-2" style="width: 80%; margin: 0 auto;">
+                      <div class="login"><a href="#">🔒아이디/비밀번호 찾기</a></div>
+                      <div class="login"><a href="#">👩‍💻회원가입</a></div>
+                  </div>
+              </div>
+            </c:if>
+            <c:if test="${not empty member}">
+              <div class="d-flex flex-column mx-auto mx-lg-none" id="d1_3">
+                <div class="mb-2" style="margin:0 auto; color: gray; font-size: 13.5px;">${member.n_name}님 환영합니다😊</div>
+                <div class="row my-1">
+                  <img src="http://20.249.88.100/resources/member/e299070d-fe6f-4f1d-b8e9-0fd5236d125c-cuteYuri.png" class="borders boarder-dark p-2 mb-2 border-opacity-50 mx-auto d-block" style=" max-width: 150px;  height: 150px;  border-radius: 25px;">
                 </div>
-                <div class="d-flex justify-content-between mt-2" style="width: 80%; margin: 0 auto;">
-                    <div class="login"><a href="#">🔒아이디/비밀번호 찾기</a></div>
-                    <div class="login"><a href="#">👩‍💻회원가입</a></div>
+                <div class="d-flex justify-content-center mt-2" style="width: 80%; margin: 0 auto;">
+                    <div class="login"><a href="/member/logout">🔒Logout</a></div>
                 </div>
             </div>
+            </c:if>
             </div>
           </div>     
         </div>

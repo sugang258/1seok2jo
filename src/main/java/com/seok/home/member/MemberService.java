@@ -86,6 +86,11 @@ public class MemberService {
 		return result;
 	}
 	
+	//강사삭제
+	public int setDeleteTeacherAll(MemberDTO dto)throws Exception{
+		return memberDAO.setDeleteTeacherAll(dto);
+	}
+	
 	//회원탈퇴
 	public int setDeleteMember(MemberDTO memberDTO)throws Exception{
 //		int susess = memberDAO.setDeleteMemberRole(memberDTO);

@@ -60,7 +60,7 @@
                                 <div class="p-2 flex-grow-3" style="color: gray">|</div>
                                 <div class="p-2 flex-fill text-end pe-5">
                                     <button type="button" id="memDelBtn" >회원 삭제</button>
-                                    <button type="button" >강사 권한 삭제</button>
+                                    <button type="button" id="tchrDelBtn">강사 권한 삭제</button>
                                 </div>
                               </div>
                         </div>
