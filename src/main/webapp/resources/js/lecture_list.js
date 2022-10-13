@@ -20,6 +20,7 @@ result.addEventListener("click",function(event){
     if(event.target.classList[3] == 'cc'){
         let target = event.target.parentNode.parentNode.parentNode.parentNode.getAttributeNode("data-ln-num").value;
 
+        console.log(event.target);
         let check = window.confirm("장바구니에 담으시겠습니까?")
 
         if(check) {
@@ -85,7 +86,7 @@ cart.forEach(function(cartbtn) {
        
         if(check){
        let target =  event.target;
-       let l_num =  target.parentNode.parentNode.parentNode.childNodes[7].childNodes[1].childNodes[19].value;
+       let l_num =  target.parentNode.parentNode.parentNode.parentNode.getAttributeNode("data-ln-num").value;
       // let c_num = target.parentNode.parentNode.parentNode.childNodes[7].childNodes[1].childNodes[21].value;
        
         console.log(l_num);

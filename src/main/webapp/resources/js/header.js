@@ -26,6 +26,7 @@ function setTeacherLecture() {
                 }else {
                     addd.setAttribute("style","display : none;");
                     service.setAttribute("style","display : none;");
+
                     console.log("강사 아님");
                 }
             }

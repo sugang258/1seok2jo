@@ -50,6 +50,10 @@ public class MemberDAO {
 		return sqlSession.selectOne(NAMESPACE+"getAdminMemberTotal", adminPager);
 	}
 	
+	public MemberDTO getSessionRole(MemberDTO memberDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getSessionRole", memberDTO);
+	}
+	
 	//회원로그인
 	public MemberDTO getLogin(MemberDTO memberDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getLogin", memberDTO);

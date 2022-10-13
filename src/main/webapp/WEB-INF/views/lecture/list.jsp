@@ -111,7 +111,7 @@
 									<!-- Product actions-->
 									<div class="card_footer p-4 pt-0 border-top-0 bg-transparent cart">
 										<div class="text-center">
-											<input type="button" class="btn btn-outline-dark mt-auto cc" id="cartbtn" value="Add to cart">
+											<input type="button" class="btn btn-outline-dark mt-auto cc" id="cartbtn" data-lnum-num="${list.l_num}" value="Add to cart">
 										</div>
 									</div>
 								</div>
