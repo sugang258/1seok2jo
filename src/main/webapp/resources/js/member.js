@@ -206,7 +206,7 @@ function joinCheck(){
                     // 응답결과가 성공하면(중복이 있으면) 결과가 1
                     alert("❌닉네임이 있습니다. 다시 입력해 주세요.");
                     ipNname.focus();
-                }else if(id.length===0) {
+                }else if(n_name.length===0) {
                     nnameCheckCh=false;
                     // 아이디 input안에 입력한 값이 없으면
                     alert("❗닉네임을 입력해 주세요.");
@@ -332,6 +332,10 @@ function joinCheck(){
             alert("🎉회원가입 축하합니다🎉 마일리지 5000포인트 지급❗❗ ");
             // 서버에 저장
             joinForm.submit();
+        }else if(!idCheckCh){
+            alert("아이디 중복 버튼을 클릭 하세요");
+        }else if(!nnameCheckCh){
+            alert("닉네임 중복 버튼을 클릭 하세요");
         }else {
             alert("필수 정보를 확인하세요.");
         }
