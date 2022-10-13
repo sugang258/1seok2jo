@@ -36,26 +36,23 @@
 						<input type="hidden" name="id" class="form-control border-success border-opacity-25" id="ipId" value="${member.id}">
 					</div>
 					
-					<div class="row g-2">
+					<div class="row">
 						<label for="ipBank_name" class="form-label mt-4"><b>은행이름</b></label>
 						<div class="col-6">
-							<input type="text" class="form-control border-success border-opacity-25 ipBank_name" name="bank_name" placeholder="은행명" maxlength="4">
-						</div>
-						<div class="col-6">
-						<select class="form-select border-success border-opacity-25 ipBank_name" disabled name="">
-							<option value="">직접입력</option>
+						<select class="form-select border-success border-opacity-25 ipBank_name" name="">
 							<option value="신한은행">신한은행</option>
+							<option value="국민은행">국민은행</option>
 							<option value="농협은행">농협은행</option>
 							<option value="기업은행">기업은행</option>
 							<option value="하나은행">하나은행</option>
-							<option value="하나은행">카카오뱅크</option>
+							<option value="카카오뱅크">카카오뱅크</option>
 						</select>
 						</div>
 					</div>
 
 					<div class="my-4">
 						<label for="ipBank_num" class="form-label"><b>계좌번호</b></label>
-						<input type="number" name="bank_num" class="form-control border-success border-opacity-25" id="ipBank_num" placeholder="계좌번호를 입력해주세요">
+						<input type="text" name="bank_num" class="form-control border-success border-opacity-25" id="ipBank_num" placeholder="계좌번호를 입력해주세요">
 					</div>
 					
 					<div class="mb-4">
@@ -76,13 +73,6 @@
 			</div>
 		</div>
 	</section>
-<!-- 계좌번호 input type number에 화살표 안나오게 하는 css-->
-<style>
-	.bank_num::-webkit-outer-spin-button,
-	.bank_num::-webkit-inner-spin-button {
-		-webkit-appearance: none;
-	}
-</style>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>

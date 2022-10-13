@@ -56,8 +56,12 @@
 						</div>
 						<div class="row mt-2">
 							<div class="text-center" id="tcherProfile">
-								<!-- 강사프로필 페이지로 가는 a태그 -->
-								<a href="./tcherProfile" class="btn btn-outline-success btn-sm"><b>프로필수정✏</b></a>
+								<c:forEach items="${sessionScope.member.roleDTOs}" var="r">
+									<c:if test="${r.getRoleName() eq '강사'}">
+										<!-- 강사프로필 페이지로 가는 a태그 -->
+										<a href="./tcherProfile" class="btn btn-outline-success btn-sm"><b>강사프로필수정✏</b></a>
+									</c:if>
+								</c:forEach>
 							</div>
 						</div>
 						<div class="card-body">
