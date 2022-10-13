@@ -55,7 +55,10 @@
 					난이도순
 					</option>
 					<option class="filters" value="price">
-					가격순
+					가격 높은순
+					</option>
+					<option class="filters" value="low_price">
+					가격 낮은순
 					</option>
 				</select>
 				
