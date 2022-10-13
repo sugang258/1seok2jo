@@ -104,9 +104,10 @@
                   <div class="submit">
                       <input type="button" value="Login" onclick="location.href='/member/login'">
                   </div>
-                  <div class="d-flex justify-content-between mt-2" style="width: 80%; margin: 0 auto;">
-                      <div class="login"><a href="#">🔒아이디/비밀번호 찾기</a></div>
-                      <div class="login"><a href="#">👩‍💻회원가입</a></div>
+                  <div class="login"style="margin:0 auto; color: gray; font-size: 13.5px;"><a href="/member/join">👩‍💻지금 바로 일석이조의 회원이 되세요</a></div>
+                  <div class="d-flex justify-content-center mt-2" style="width: 80%; margin: 0 auto;">
+                      
+                      <div class="login row"><a href="/member/join">🔒회원가입</a></div>
                   </div>
               </div>
             </c:if>
@@ -230,7 +231,9 @@
 반면 일석이조는 강의에 대한 후기, 학생수 등 정보를 투명하게 공개합니다. 신뢰성을 바탕으로 학습자들이 더 좋은 컨텐츠를 선택하고 교육의 질을 높입니다.</div>
 				<div class="mt-4">
 						<button type="button" class="btn btn-outline-success" onclick="location.href='/lecture/list';">강의 더보기</button>
-						<button type="button" class="btn btn-outline-success" onclick="location.href='/csBoard/mylist';">1대 1 문의</button>
+            <c:if test="${not empty member}">
+              <button type="button" class="btn btn-outline-success" onclick="location.href='/csBoard/mylist';">1대 1 문의</button>
+            </c:if>
 				</div>
         	</div>
         	<div class="p-5 d-flex flex-column" style="width: 50%;">
