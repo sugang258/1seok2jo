@@ -45,7 +45,6 @@ public class MemberController {
 	//로그인 화면(GET)
 	@GetMapping("login")
 	public String getLogin()throws Exception{
-		System.out.println("로그인 접속(GET)");
 		
 		return "member/login";
 	}
@@ -53,7 +52,6 @@ public class MemberController {
 	//로그인 로직 처리(POST)
 	@PostMapping("login")
 	public ModelAndView getLogin(MemberDTO memberDTO, HttpSession session)throws Exception{
-		System.out.println("로그인 접속(POST)");
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -77,7 +75,6 @@ public class MemberController {
 	//로그아웃(GET)
 	@GetMapping("logout")
 	public String setLogout(HttpSession session)throws Exception{
-		System.out.println("로그아웃 접속(GET)");
 		
 		//세션 삭제
 		session.invalidate();
@@ -104,7 +101,6 @@ public class MemberController {
 	//회원가입 화면(GET)
 	@GetMapping("join")
 	public String setJoin()throws Exception{
-		System.out.println("회원가입 접속(GET)");
 		
 		return "member/join";
 	}
@@ -112,7 +108,6 @@ public class MemberController {
 	//회원가입 로직 처리(POST)
 	@PostMapping
 	public String setJoin(MemberDTO memberDTO, HttpSession session, String yy, String mm, String dd, String e, String mail)throws Exception{
-		System.out.println("회원가입 접속(POST)");
 		
 		//int result = memberService.getIdCheck(memberDTO);
 		
@@ -133,7 +128,6 @@ public class MemberController {
 	//강사신청 화면(GET)
 	@GetMapping("teacherAdd")
 	public String setTeacherAdd()throws Exception{
-		System.out.println("강사신청 접속(GET)");
 		
 		return "member/teacherAdd";
 	}
@@ -145,7 +139,6 @@ public class MemberController {
 		
 		//세션에 있는 한 회원정보를 memberDTO에 담음
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-		System.out.println("강사신청POST : "+memberDTO);
 		
 		//DB에 새로운 강사데이터추가
 		int result = memberService.setTeacherAdd(teacherDTO, session.getServletContext(), memberDTO);
@@ -175,7 +168,6 @@ public class MemberController {
 	//회원탈퇴 로직 처리(POST)
 	@PostMapping("deleteMember")
 	public String setDeleteMember(MemberDTO memberDTO, HttpSession session)throws Exception{
-		System.out.println("회원탈퇴 접속(POST)");
 		
 		//DB에 있는 회원정보(등급까지)를 삭제
 		int result = memberService.setDeleteMember(memberDTO);
@@ -203,20 +195,11 @@ public class MemberController {
 		return result;
 	}
 	
-	//비밀번호 확인 로직 처리 (POST)
-//	@ResponseBody
-//	@PostMapping("pwCheck")
-//	public MemberDTO getPwCheck(MemberDTO memberDTO)throws Exception{
-//		memberDTO = memberService.getIdCheck(memberDTO);
-//		return memberDTO;
-//	}
-	
 	/************************ 마이페이지 **************************/
 	
 	//회원프로필정보조회 화면(GET)
 	@GetMapping("profile")
 	public ModelAndView getProfile(HttpSession session, MemberDTO memberDTO)throws Exception {
-		System.out.println("프로필 정보(GET)");
 		
 		ModelAndView mv = new ModelAndView();
 		MemberDTO respMemberDTO = new MemberDTO();
@@ -235,9 +218,7 @@ public class MemberController {
 		//프로필정보조회(아이디, 이름, 닉네임, *생년월일*, 성별, 이메일, 연락처 조회)
 		//getProfile을 갔다온 memberDTO를 respMemberDTO(responseMemberDTO)에 담음
 		respMemberDTO = memberService.getProfile(memberDTO);
-//		System.out.println("file : "+respMemberDTO.getMemberFileDTO().getNum());
-//		System.out.println("file : "+respMemberDTO.getMemberFileDTO().getF_name());
-//		System.out.println("file : "+respMemberDTO.getMemberFileDTO().getF_oriname());
+
 		}
 		
 		//그 데이터를 "member"로 JSP에 보내줌
@@ -250,16 +231,8 @@ public class MemberController {
 	@PostMapping("profile")
 	@ResponseBody
 	public ModelAndView setProfile(MemberDTO memberDTO, HttpSession session, String f_name, String f_oriname)throws Exception {
-		System.out.println("프로필 내 정보 수정(POST)");
+		
 		ModelAndView mv = new ModelAndView();
-		
-		System.out.println("fileDTO F_NAME : "+f_name);
-		System.out.println("fileDTO F_ORINAME : "+f_oriname);		
-		
-//		//스트링을 구분자로 나눠준뒤
-//		String [] f_names = f_name.split(",");
-//		System.out.println("마지막 인덱스 파일네임 : "+f_names[le]);
-//		String [] f_orinames = f_oriname.split(",");
 
 		MemberFileDTO file = new MemberFileDTO();
 		file.setF_name(f_name);
@@ -297,12 +270,13 @@ public class MemberController {
 		return mv;
 	}
 	
-	//프로필사진 삭제(GET)
-	@GetMapping("deleteFile")
-	public void setDeleteFile(MemberDTO memberDTO)throws Exception{
-		System.out.println("프로필사진 삭제 접속(GET)");
-		memberService.setDeleteFile(memberDTO);
+	//프로필사진 삭제(POST)
+	@ResponseBody
+	@PostMapping("deleteFile")
+	public int setDeleteFile(MemberFileDTO memberFileDTO)throws Exception{
 		
+		int result = memberService.setDeleteFile(memberFileDTO);
+		return result;
 	}
 	
 	//프로필 회원비밀번호 수정 화면(GET)
@@ -317,7 +291,6 @@ public class MemberController {
 	@ResponseBody
 	@PostMapping("pwCheck")
 	public String getPwCheck(MemberDTO memberDTO, HttpSession session)throws Exception{
-		System.out.println("프로필 회원비밀번호 확인(POST)");
 		
 		MemberDTO sesMemberDTO = new MemberDTO();
 		sesMemberDTO = (MemberDTO) session.getAttribute("member");
@@ -331,7 +304,6 @@ public class MemberController {
 	//프로필 회원비밀번호 수정 로직(POST)
 	@PostMapping("updatePw")
 	public String setUpdatePw(MemberDTO memberDTO, HttpSession session, String new_pw)throws Exception{
-		System.out.println("프로필 회원비밀번호 수정(POST)");
 		
 		MemberDTO sesMemberDTO = new MemberDTO();
 		sesMemberDTO = (MemberDTO) session.getAttribute("member");
@@ -378,7 +350,6 @@ public class MemberController {
 	//강사프로필 정보수정 로직(POST)
 	@PostMapping("tcherProfile")
 	public ModelAndView setTcherProfile(TeacherDTO teacherDTO, HttpSession session)throws Exception{
-		System.out.println("강사프로필 정보(POST)");
 		ModelAndView mv = new ModelAndView();
 		
 		int result = memberService.setEditTcherProfile(teacherDTO);
