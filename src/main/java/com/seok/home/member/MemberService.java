@@ -117,7 +117,9 @@ public class MemberService {
 	
 	//프로필수정
 	public int setEditProfile(MemberDTO memberDTO, MemberFileDTO file, ServletContext servletContext)throws Exception{
-		
+
+		String [] member = memberDTO.getId().split(",");
+		memberDTO.setId(member[1]);
 		//정보수정 먼저
 		int result = memberDAO.setEditProfile(memberDTO);
 		
@@ -128,6 +130,7 @@ public class MemberService {
 		//memberDTO안에 있는 한개의 memberFileDTO을 
 		//memberFileDTO변수에 대입
 		MemberFileDTO memberFileDTO = memberDTO.getMemberFileDTO();
+		memberFileDTO.setId(memberDTO.getId());
 		
 		/*************** file이 X ***************/		
 		if(file.getF_name() == null && file.getF_oriname() == null) {
