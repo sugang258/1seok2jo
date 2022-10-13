@@ -96,11 +96,11 @@
 										<!--Category-->
 										<div style="margin-top: 2px;">Category : <span style="font-weight: bold;"> ${list.c_name}</span></div>
 										<!-- Lecture price-->
-										<div class="tags">
+										<div class="tags" style="margin-top: 2px;">
 											<span class="tag " style="font-size: 17px; color: #175cbe; border-radius: 7px; font-weight: bold;">￦${list.l_price}</span>
 										</div>
 										<!--Lecture Student-->
-										<div class="tags">
+										<div class="tags" style="margin-top: 2px;">
 											<span class="tag " style="font-size: 15px; background-color: hsl(321,63%,90%); border-radius: 7px;">+${list.l_count}명</span>
 										</div>
 										<input type="label" value="${list.l_num}" style="display: none;">
