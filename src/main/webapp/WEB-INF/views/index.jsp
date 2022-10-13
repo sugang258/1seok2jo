@@ -114,7 +114,7 @@
               <div class="d-flex flex-column mx-auto mx-lg-none" id="d1_3">
                 <div class="mb-2" style="margin:0 auto; color: gray; font-size: 13.5px;">${member.n_name}님 환영합니다😊</div>
                 <div class="row my-1">
-                  <img src="http://20.249.88.100/resources/member/e299070d-fe6f-4f1d-b8e9-0fd5236d125c-cuteYuri.png" class="borders boarder-dark p-2 mb-2 border-opacity-50 mx-auto d-block" style=" max-width: 150px;  height: 150px;  border-radius: 25px;">
+                  <a href="/member/profile"><img src="http://20.249.88.100/resources/member/${f_name}"  class="borders boarder-dark p-2 mb-2 border-opacity-50 mx-auto d-block" style=" max-width: 150px;  height: 150px;  border-radius: 25px;"></a>
                 </div>
                 <div class="d-flex justify-content-center mt-2" style="width: 80%; margin: 0 auto;">
                     <div class="login"><a href="/member/logout">🔒Logout</a></div>
@@ -161,8 +161,11 @@
 			                  <c:when test="${avg[countNm.index] >=3 && avg[countNm.index] < 4}">⭐⭐⭐</c:when>
 			                  <c:when test="${avg[countNm.index] >=4 && avg[countNm.index] < 5}">⭐⭐⭐⭐</c:when>
 		                  <c:otherwise>⭐⭐⭐⭐⭐</c:otherwise>
-		                </c:choose>
+		                  </c:choose>
                       </h7>
+                      <div class="tags">
+                        <span class="tag " style="font-size: 15px; background-color: hsl(321,63%,90%); border-radius: 7px;">+${count.l_count}명</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -177,6 +180,7 @@
               <div class="lecture" data-l-num="${lv.l_num}">
                 <div class="card" style="height:350px">
                   <img src="http://20.249.88.100/resources/lecture/${lv.lectureFileDTO[0].f_name}" class="card-img-top img " alt="...">
+                  <div class="card-body">
                   <div class="card-text">
                     <div class="fw-bolder mb-2" style="margin-top: 10px; font-size: 16px; white-space:normal;">${lv.l_name}</div>
                     <p style="font-size: 14px; margin-bottom: 0px;">🧑‍💻평점 <span style="font-size: 12px;">${avgg[lvNm.index]} </span></p>
@@ -190,7 +194,11 @@
 		                  <c:otherwise>⭐⭐⭐⭐⭐</c:otherwise>
 		                </c:choose>
                     </h7>
+                    <div class="tags">
+                      <span class="tag " style="font-size: 15px; background-color: hsl(321,63%,90%); border-radius: 7px;">+${lv.l_count}명</span>
+                    </div>
                   </div>
+                </div>
                 </div>
               </div>
             </c:forEach>
