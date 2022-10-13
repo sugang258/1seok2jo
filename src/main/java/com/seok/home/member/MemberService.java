@@ -32,6 +32,10 @@ public class MemberService {
 		return memberDAO.getLogin(memberDTO);
 	}
 	
+	public MemberDTO getSessionRole(MemberDTO memberDTO) throws Exception{
+		return memberDAO.getSessionRole(memberDTO);
+	}
+	
 	//아이디중복 확인
 	public int getIdCheck(MemberDTO memberDTO)throws Exception{
 		return memberDAO.getIdCheck(memberDTO);
