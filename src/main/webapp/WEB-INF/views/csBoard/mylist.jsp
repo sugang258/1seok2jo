@@ -73,6 +73,7 @@ prefix="c" %>
                 onclick="location.href='/board/notice'"
                 >공지사항</a
               >
+              <c:if test="${not empty member}">
               <a
                 class="list-group-item list-group-item-action active"
                 id="list-messages-list"
@@ -83,6 +84,7 @@ prefix="c" %>
                 onclick="location.href='/csBoard/mylist'"
                 >1대 1문의</a
               >
+            </c:if>
               <a
                 class="list-group-item list-group-item-action"
                 id="list-settings-list"
