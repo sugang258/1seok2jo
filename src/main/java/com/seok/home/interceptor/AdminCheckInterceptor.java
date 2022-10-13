@@ -31,7 +31,7 @@ public class AdminCheckInterceptor extends HandlerInterceptorAdapter{
             }
         }
         
-        //강사가 아닐때
+        //관리자가 아닐때
         if(!check) {
             request.setAttribute("message", "관리자가 아닙니다");
             request.setAttribute("url", "../../../../../../");

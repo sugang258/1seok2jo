@@ -44,21 +44,38 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="background-color: white;">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="../../../../../">일석이조</a>
-            </li>
+            <c:if test="${not empty member}">
+              <c:forEach items="${sessionScope.member.roleDTOs}" var="r">
+                <c:if test="${r.getRoleName() eq '관리자'}">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/admin/login">관리HOME</a>
+                  </li>
+                </c:if>
+              </c:forEach>
+            </c:if>
             <li class="nav-item">
               <a class="nav-link" href="/lecture/list">강의</a>
             </li>
+            <c:set var="teacher" value="false" />
+            <c:if test="${not empty member}">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">강사</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item empty" href="/member/teacherAdd">강사 신청</a></li>
-                <li><a class="dropdown-item add"  href="/lecture/add">강의 추가</a></li>
-                <li><a class="dropdown-item service" href="/lecture/teacher">내 강의 관리</a></li>
-                <li><a class="dropdown-item service" href="/teacher/salesList">강의 매출 목록</a></li>
-                </ul>
+                  <c:forEach items="${sessionScope.member.roleDTOs}" var="r">
+                     <c:if test="${r.getRoleName() eq '강사'}">
+                      <c:set var="teacher" value="true"></c:set>
+                      <li><a class="dropdown-item add"  href="/lecture/add">강의 추가</a></li>
+                      <li><a class="dropdown-item service" href="/lecture/teacher">내 강의 관리</a></li>
+                      <li><a class="dropdown-item service" href="/teacher/salesList">강의 매출 목록</a></li>
+                      </c:if>
+                  </c:forEach>
+                  <c:if test="${teacher eq 'false'}">
+                    <li><a class="dropdown-item empty" href="/member/teacherAdd">강사 신청</a></li>
+                  </c:if>
+              </ul>
             </li>
+            </c:if>
+            <c:if test="${not empty member}">
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">마이페이지</a>
               <ul class="dropdown-menu">
@@ -68,6 +85,7 @@
                 <li><a class="dropdown-item" href="/pay/myList">내 결제내역</a></li>
               </ul>
             </li>
+          </c:if>
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             커뮤니티
@@ -83,7 +101,7 @@
 	         </a>
 	         <ul class="dropdown-menu">
 	           <li><a class="dropdown-item" href="/board/notice">공지사항</a></li>
-	           <li><a class="dropdown-item" href="/csBoard/mylist">1대1문의</a></li>
+	           <li><a class="dropdown-item" href="${empty member? '/csBoard/add':'/csBoard/mylist'}">1대1문의</a></li>
 	           <li><a class="dropdown-item" href="/board/faq">자주묻는질문</a></li>
 	         </ul>
           </li>
@@ -100,10 +118,10 @@
             🔐로그인
             </button>
 
-            <button type="button" class="top_button" style="margin-right: 10px;" onclick="location.href='/member/join';">👩‍💻회원가입</button>
+            <button type="button" class="top_button" style="margin-right: 10px; float: right;" onclick="location.href='/member/join';">👩‍💻회원가입</button>
             </c:if>
             <c:if test="${not empty member}">
-            <button type="button" class="top_button" id="cartt" onclick="location.href='/member/cart'">🛒</button>
+            <button type="button" class="top_button" id="cartt" onclick="location.href='/member/cart'" style="margin-right: 10px; float: right;">🛒</button>
             </c:if>
           </div>
         </div>
