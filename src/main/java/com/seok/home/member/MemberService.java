@@ -54,6 +54,7 @@ public class MemberService {
 		memberFileDTO.setF_name("default.png");
 		memberFileDTO.setF_oriname("default.png");
 		
+		//이메일 생년월일 합쳐서 넣기
 		memberDTO.setB_date(Long.parseLong(yy+mm+dd));
 		memberDTO.setEmail(e+mail);
 		memberDTO.setMemberFileDTO(memberFileDTO);
@@ -76,10 +77,6 @@ public class MemberService {
 	public int setTeacherAdd(TeacherDTO teacherDTO, ServletContext servletContext, MemberDTO memberDTO)throws Exception{
 		
 		List<RoleDTO> roleDTOs = memberDTO.getRoleDTOs();
-		//2
-		System.out.println("강사신청서비스 : "+roleDTOs.get(0).getRoleNum());
-		//강사
-		System.out.println("강사신청서비스 : "+roleDTOs.get(0).getRoleName());
 		
 		Long roleNum = roleDTOs.get(0).getRoleNum();
 		
@@ -102,11 +99,6 @@ public class MemberService {
 	
 	//회원탈퇴
 	public int setDeleteMember(MemberDTO memberDTO)throws Exception{
-//		int susess = memberDAO.setDeleteMemberRole(memberDTO);
-//		int result = 0;
-//		if(susess != 0) {
-//			result = memberDAO.setDeleteJoin(memberDTO);
-//		}
 		return memberDAO.setDeleteJoin(memberDTO);
 	}
 	
@@ -136,7 +128,6 @@ public class MemberService {
 		//memberDTO안에 있는 한개의 memberFileDTO을 
 		//memberFileDTO변수에 대입
 		MemberFileDTO memberFileDTO = memberDTO.getMemberFileDTO();
-		System.out.println("멤버 파일디티오 안에 f_name : "+memberFileDTO.getF_name());
 		
 		/*************** file이 X ***************/		
 		if(file.getF_name() == null && file.getF_oriname() == null) {
@@ -151,7 +142,6 @@ public class MemberService {
 			
 			//insert 가 되면
 			if(result == 1) {
-				System.out.println("파일이왔니? "+file.getF_name());
 				
 				//파일 리스트를 파일 DB에 저장
 				file.setId(memberDTO.getId());
@@ -166,29 +156,21 @@ public class MemberService {
 			}
 				
 		}
-		//(삭제후) memberFileDTO없으면(없으니) 폴더에 추가
-//		String path = "resources/upload/member";
-//		
-//		String fileName = fileManager.saveFile(path, servletContext, profile);
-//		
-//		if(!profile.isEmpty()) {
-//			MemberFileDTO memberFileDTO2 = new MemberFileDTO();
-//			memberFileDTO2.setF_name(fileName);
-//			memberFileDTO2.setF_oriname(profile.getOriginalFilename());
-//			memberFileDTO2.setId(memberDTO.getId());
-//			result = memberDAO.setAddFile(memberFileDTO2);
-//			memberDTO.setMemberFileDTO(memberFileDTO2);
-//		}
 		
 		return result;
 	}
 	
 	//프로필사진 삭제
-	public int setDeleteFile(MemberDTO memberDTO)throws Exception{
-		MemberFileDTO memberFileDTO = new MemberFileDTO();
-		memberFileDTO = memberDTO.getMemberFileDTO();
-		System.out.println("memberFileDTO : "+memberFileDTO.getId());
-		return memberDAO.setDeleteFile(memberFileDTO);
+	public int setDeleteFile(MemberFileDTO memberFileDTO)throws Exception{
+		
+		int result = memberDAO.setDeleteFile(memberFileDTO);
+		if(result != 0) {
+			memberFileDTO.setF_name("default.png");
+			memberFileDTO.setF_oriname("default.png");
+			result = memberDAO.setAddFile(memberFileDTO);
+		}
+		
+		return result;
 	}
 	
 	//프로필 회원비밀번호 확인

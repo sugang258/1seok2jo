@@ -35,11 +35,13 @@
 					<div class="row">
 						<div class="col-6">
 							<input type="text" name="id" class="form-control border-success border-opacity-25" id="ipId" placeholder="아이디를 입력해주세요">
-							<div class="text-danger" id="ipIdResult"></div>
 						</div>
 						<div class="col-6 text-start mt-1">
 							<button type="button" class="btn btn-outline-success btn-sm" id="aIdCheck"><b>✅아이디중복 확인</b></button>
 						</div>
+					</div>
+					<div class="row">
+						<div class="text-danger" id="ipIdResult"></div>
 					</div>
 					
 					<div class="my-4">
@@ -81,11 +83,13 @@
 					<div class="row">
 						<div class="col-6">
 							<input type="text" name="n_name" class="form-control border-success border-opacity-25" id="ipNname" placeholder="닉네임을 입력해주세요">
-							<div class="text-danger" id="ipNnameResult"></div>
 						</div>
 						<div class="col-6 text-start mt-1">
 							<button type="button" class="btn btn-outline-success btn-sm" id="bnNameCheck"><b>✅닉네임중복 확인</b></button>
 						</div>
+					</div>
+					<div class="row">
+						<div class="text-danger" id="ipNnameResult"></div>
 					</div>
 					
 					<div class="row g-2 mt-3">

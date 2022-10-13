@@ -59,7 +59,7 @@ xhttp.addEventListener("readystatechange", function(){
             yAxes: [{
               ticks: {
                 min: 0,
-                max: 1000000,
+                max: 3000000,
                 maxTicksLimit: 5
               },
               gridLines: {

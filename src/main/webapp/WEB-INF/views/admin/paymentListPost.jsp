@@ -3,6 +3,16 @@
     pageEncoding="UTF-8"%>
 <table class="table table-striped table-hover">
     <thead>
+        <colgroup>
+            <col width="8%"  />
+            <col width="12%"/>
+            <col width="41%" />
+            <col width="9%"/>
+            <col width="6%"/>
+            <col width="8%"/>
+            <col width="8%"/>
+            <col width="10%"/>
+        </colgroup>
         <tr>
             <th>주문번호</th>
             <th>결제번호</th>
