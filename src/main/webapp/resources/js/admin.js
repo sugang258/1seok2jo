@@ -304,10 +304,6 @@ function initmembers(){
 
     })
 
-    //회원삭제버튼 클릭하면
-
-    //강사권한삭제버튼 클릭하면
-
 }
 //memberList요청하기
 function memberList(page){
@@ -460,11 +456,12 @@ function initcs(){
 //csboardList요청하기
 function csList(page){
     let postResult = document.getElementById("postResult");
+    let chkstatus = getCheckboxValue("status")
     orderbyVal = document.querySelector('input[name="orderby"]:checked').value
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST","./csboardList");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-    xhttp.send("page="+page+"&startDate="+startDate.value+"&endDate="+endDate.value+"&kind="+kind.value+"&search="+search.value+"&orderby="+orderbyVal)
+    xhttp.send("page="+page+"&chkstatus="+chkstatus+"&startDate="+startDate.value+"&endDate="+endDate.value+"&kind="+kind.value+"&search="+search.value+"&orderby="+orderbyVal)
     xhttp.addEventListener("readystatechange", function(){
         if(this.readyState==4 && this.status==200){
             postResult.innerHTML = xhttp.responseText;
