@@ -2,6 +2,16 @@ function save(){
 
     let file = document.getElementById("file");
     let addFile = document.getElementById("addFile")
+    let lfile = document.getElementById("lfile");
+    let changechk = false;
+    let picture = document.getElementById("picture");
+
+    //사진 한번 추가하면 다시 안되게
+    lfile.addEventListener("click", function(){
+        if(changechk){
+            alert("사진수정은 한번만 가능합니다.")
+        }
+    })
     
     file.addEventListener("change", function(){
         let filedata = new FormData();
@@ -19,6 +29,7 @@ function save(){
             cache: false,
             timeout: 600000,
             success: function (dt) {
+                changechk = true;
                 console.log("f_name : "+dt) //f_name
                 console.log("f_oriname : "+file.files[0].name) //f_oriname
                 // 라벨 하단에 file 값을 담은 text input을 만들어준다.
@@ -34,16 +45,14 @@ function save(){
                 let typei2 = document.createAttribute("name")
                 typei2.value="f_oriname"
                 let typei3 = document.createAttribute("class")
-                typei3.value = "form-control"
+                typei3.value = "form-control d-none"
                 let typei4 = document.createAttribute("value")
                 typei4.value= file.files[0].name
-                let typei5 = document.createAttribute("readonly")
     
                 inputf_name.setAttributeNode(typei)
                 inputf_name.setAttributeNode(typei2)
                 inputf_name.setAttributeNode(typei3)
                 inputf_name.setAttributeNode(typei4)
-                inputf_name.setAttributeNode(typei5)
                 
                 addFile.append(inputf_name)
     
@@ -64,6 +73,7 @@ function save(){
                 inputf_name.setAttributeNode(typei4)
                 
                 addFile.append(inputf_name)
+                picture.src = "http://20.249.88.100/resources/member/"+dt;
             },
             error: function (e) {
                 alert('파일 업로드 실패');
