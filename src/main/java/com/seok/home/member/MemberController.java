@@ -294,9 +294,9 @@ public class MemberController {
 	
 	//프로필사진 삭제(GET)
 	@GetMapping("deleteFile")
-	public void setDeleteFile()throws Exception{
+	public void setDeleteFile(MemberDTO memberDTO)throws Exception{
 		System.out.println("프로필사진 삭제 접속(GET)");
-		memberService.setDeleteFile(null);
+		memberService.setDeleteFile(memberDTO);
 		
 	}
 	

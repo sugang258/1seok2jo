@@ -180,7 +180,10 @@ public class MemberService {
 	}
 	
 	//프로필사진 삭제
-	public int setDeleteFile(MemberFileDTO memberFileDTO)throws Exception{
+	public int setDeleteFile(MemberDTO memberDTO)throws Exception{
+		MemberFileDTO memberFileDTO = new MemberFileDTO();
+		memberFileDTO = memberDTO.getMemberFileDTO();
+		System.out.println("memberFileDTO : "+memberFileDTO.getId());
 		return memberDAO.setDeleteFile(memberFileDTO);
 	}
 	
