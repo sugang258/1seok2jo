@@ -206,7 +206,7 @@ function joinCheck(){
                     // 응답결과가 성공하면(중복이 있으면) 결과가 1
                     alert("❌닉네임이 있습니다. 다시 입력해 주세요.");
                     ipNname.focus();
-                }else if(id.length===0) {
+                }else if(n_name.length===0) {
                     nnameCheckCh=false;
                     // 아이디 input안에 입력한 값이 없으면
                     alert("❗닉네임을 입력해 주세요.");
