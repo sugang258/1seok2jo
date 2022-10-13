@@ -65,7 +65,7 @@ function updatePwCheck(){
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
             // 4. 요청 발생 (POST일 경우prammeter 추가)
-            xhttp.send("pw="+pw+"&new_pw"+new_pw);
+            xhttp.send("pw="+pw+"&new_pw="+new_pw);
 
             // 5. 응답 처리
             xhttp.onreadystatechange=function(){
