@@ -353,7 +353,6 @@ function joinCheck(){
 
 // ---------------------- 로그인 ----------------------
 function loginCheck(){
-    console.log("로그인 함수 실행");
     //form 선택
     const loginForm = document.querySelector("#loginForm");
 
@@ -365,7 +364,6 @@ function loginCheck(){
     const login = document.querySelector("#login");
 
     login.addEventListener("click", function(){
-        console.log("버튼 클릭이벤트 실행");
         let id = logId.value;
         let pw = logPw.value;
         //---------------- Ajax --------------------

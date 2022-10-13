@@ -38,12 +38,12 @@
 					<!-- 프로필사진 카드 -->
 					<div class="card border-success mb-3">
 						<div class="row my-4">
-							<img src="http://20.249.88.100/resources/member/${member.memberFileDTO.f_name}" class="border border-success p-2 mb-2 border-opacity-50 mx-auto d-block" style=" max-width: 300px;  height: 300px;  border-radius: 75px;">
+							<img id="picture" src="http://20.249.88.100/resources/member/${member.memberFileDTO.f_name}" class="border border-success p-2 mb-2 border-opacity-50 mx-auto d-block" style=" max-width: 300px;  height: 300px;  border-radius: 75px;">
 						</div>
 						<div class="row">
 							<div class="col-6 text-end" id="addFile">
 								<!--하단 파일 추가 input과 연결된 라벨-->
-								<label for="file" class="file_add btn btn-outline-success btn-sm"><b>사진추가📷</b>
+								<label for="file" class="file_add btn btn-outline-success btn-sm" id="lfile"><b>사진추가📷</b>
 							</div>
 							<div class="col-6 text-start">
 								<a href="./deleteFile" class="btn btn-outline-success btn-sm"><b>사진삭제❌</b></a>
