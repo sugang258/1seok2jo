@@ -27,7 +27,7 @@
                         <h1 class="mt-4">문의 내역 목록</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Tables</li>
+                            <li class="breadcrumb-item active">문의 내역 목록</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-body">

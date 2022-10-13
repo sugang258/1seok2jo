@@ -75,7 +75,7 @@ function initboards(){
                 newlb.setAttribute("style", "font-weight:bold; color:black");
             }
             page = 1
-            payList(page)
+            boardsList(page)
         })
     }
     //게시글 삭제 버튼 누르면
