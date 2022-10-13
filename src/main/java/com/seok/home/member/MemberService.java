@@ -118,8 +118,6 @@ public class MemberService {
 	//프로필수정
 	public int setEditProfile(MemberDTO memberDTO, MemberFileDTO file, ServletContext servletContext)throws Exception{
 
-		String [] member = memberDTO.getId().split(",");
-		memberDTO.setId(member[1]);
 		//정보수정 먼저
 		int result = memberDAO.setEditProfile(memberDTO);
 		

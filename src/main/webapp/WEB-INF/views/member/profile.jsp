@@ -69,7 +69,7 @@
 							<ul class="list-group list-group-flush">
 								<li class="list-group-item border-success text-center mb-1">
 									<label for="ipId" class="form-label card-title"><h4><b>${member.id}</b></h4></label>
-									<p class="card-text"><input type="hidden" name="id" class="form-control" id="ipId" value="${member.id}"></p>
+									<p class="card-text"><input type="hidden" class="form-control" id="ipId" value="${member.id}"></p>
 								</li>
 								<li class="list-group-item border-success my-2 mt-3">
 									<label for="ipNname" class="form-label card-title"><h6><b>닉네임</b></h6></label>
@@ -125,7 +125,6 @@
 							<a href="./deleteMember" class="text-decoration-none text-reset"><b>회원탈퇴</b> ></a>
 						</div>
 					</div>
-
 				</form>
 			</div>
 		</div>
