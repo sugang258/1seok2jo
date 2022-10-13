@@ -32,7 +32,7 @@
 		<div class="login_main" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px; width: 460px; height: 330px; margin: 2em auto 5em auto;">
 
 			<!-- 로그인 form -->
-			<form action="./login" method="post" id="">
+			<form action="./login" method="post" id="loginForm">
 				<div class="row">
 
 					<div><h5 style="height: 70px;line-height: 80px; padding-left: 38px;"><i class="fa-solid fa-right-to-bracket" style="color: rgb(56, 221, 56);"></i><b> 회원 로그인🔐</b></h5></div>
@@ -40,12 +40,12 @@
 
 						<div class="col-sm-10 mb-3">
 							<label class="mb-2 text-muted" for="id">ID</label>
-							<input type="text" class="form-control border-success border-opacity-25" name = "id" id= "id" placeholder="아이디">
+							<input type="text" class="form-control border-success border-opacity-25" name = "id" id= "logId" placeholder="아이디">
 						</div>
 
 						<div class="col-sm-10 mb-3">
 							<label class="mb-2 text-muted" for="pw">Password</label>
-							<input type="password" class="form-control border-success border-opacity-25"  id= "pw" name = "pw" placeholder="비밀번호">
+							<input type="password" class="form-control border-success border-opacity-25"  id= "logPw" name = "pw" placeholder="비밀번호">
 						</div>
 						
 					</div>
@@ -53,7 +53,7 @@
 					<!-- 로그인 버튼 -->
 					<div class="row justify-content-md-center">
 						<div class="d-grid gap-2 col-6 mx-auto mt-2">
-							<button type="submit" class="btn btn-outline-success">로그인</button>
+							<button type="button" class="btn btn-outline-success" id="login">로그인</button>
 						</div>
 					</div>
 				</div>
@@ -62,5 +62,9 @@
 	</main>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="/resources/js/member.js"></script>
+<script>
+	loginCheck()
+</script>
 </body>
 </html>

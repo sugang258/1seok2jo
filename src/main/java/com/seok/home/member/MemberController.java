@@ -62,13 +62,11 @@ public class MemberController {
 		
 		//로그인 성공 실패 확인
 		if(memberDTO!=null) {
-			System.out.println("로그인 성공!!");
 			//세션에 memberDTO 담기(아이디, 이름, 닉네임, 성별, 이메일, 전화번호, 마일리지, 등급번호, 등급이름 조회)
 			session.setAttribute("member", memberDTO);
-			System.out.println("Role : "+memberDTO.getRoleDTOs().get(0).getRoleName());
+
 			mv.setViewName("redirect:../");
 		}else {
-			System.out.println("로그인 실패..");
 			mv.setViewName("member/login");		
 		}
 		
