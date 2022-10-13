@@ -80,43 +80,43 @@
 				<div class="container px-4 px-lg-5 mt-5">
 					<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
 						<c:forEach items="${list}" var="list">
-						<div class="col mb-5 lec" id="lec" data-ln-num ="${list.l_num}">
-							<div class="card h-100" style="width: 220px;" >
-								<!-- Lecture image-->
-								<img class="card-img-top" src="http://20.249.88.100/resources/lecture/${list.lectureFileDTO[0].f_name}" alt="...">
-								<!-- Lecture details-->
-								<div class="card-body p-4">
-									<div class="text-center">
-										<!-- Lecture name-->
-										<h5 class="fw-bolder">${list.l_name}</h5>
-										<!--Level-->
-									</div>
-									<div>
-										<div style="margin-top: 2px;">Level : <span style="font-weight: bold;">${list.level_name}</span></div>
-										<!--Category-->
-										<div style="margin-top: 2px;">Category : <span style="font-weight: bold;"> ${list.c_name}</span></div>
-										<!-- Lecture price-->
-										<div class="tags" style="margin-top: 2px;">
-											<span class="tag " style="font-size: 17px; color: #175cbe; border-radius: 7px; font-weight: bold;">￦${list.l_price}</span>
+							<div class="col mb-5 lec" id="lec" data-ln-num ="${list.l_num}">
+								<div class="card h-100" style="width: 220px;" >
+									<!-- Lecture image-->
+									<img class="card-img-top" src="http://20.249.88.100/resources/lecture/${list.lectureFileDTO[0].f_name}" alt="...">
+									<!-- Lecture details-->
+									<div class="card-body p-4">
+										<div class="text-center">
+											<!-- Lecture name-->
+											<h5 class="fw-bolder">${list.l_name}</h5>
+											<!--Level-->
 										</div>
-										<!--Lecture Student-->
-										<div class="tags" style="margin-top: 2px;">
-											<span class="tag " style="font-size: 15px; background-color: hsl(321,63%,90%); border-radius: 7px;">+${list.l_count}명</span>
+										<div>
+											<div style="margin-top: 2px;">Level : <span style="font-weight: bold;">${list.level_name}</span></div>
+											<!--Category-->
+											<div style="margin-top: 2px;">Category : <span style="font-weight: bold;"> ${list.c_name}</span></div>
+											<!-- Lecture price-->
+											<div class="tags" style="margin-top: 2px;">
+												<span class="tag " style="font-size: 17px; color: #175cbe; border-radius: 7px; font-weight: bold;">￦${list.l_price}</span>
+											</div>
+											<!--Lecture Student-->
+											<div class="tags" style="margin-top: 2px;">
+												<span class="tag " style="font-size: 15px; background-color: hsl(321,63%,90%); border-radius: 7px;">+${list.l_count}명</span>
+											</div>
+											<input type="label" value="${list.l_num}" style="display: none;">
+											<!--<input type="label" value="${list.c_num}" style="display: none;">-->
 										</div>
-										<input type="label" value="${list.l_num}" style="display: none;">
-										<!--<input type="label" value="${list.c_num}" style="display: none;">-->
+										
 									</div>
-									
-								</div>
-								<!-- Product actions-->
-								<div class="card_footer p-4 pt-0 border-top-0 bg-transparent cart">
-									<div class="text-center">
-										<input type="button" class="btn btn-outline-dark mt-auto cc" id="cartbtn" value="Add to cart">
+									<!-- Product actions-->
+									<div class="card_footer p-4 pt-0 border-top-0 bg-transparent cart">
+										<div class="text-center">
+											<input type="button" class="btn btn-outline-dark mt-auto cc" id="cartbtn" value="Add to cart">
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</c:forEach>
+						</c:forEach>
 					</div>
 				</div>
 				
