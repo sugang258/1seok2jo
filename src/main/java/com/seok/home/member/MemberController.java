@@ -116,10 +116,8 @@ public class MemberController {
 		
 		//새로운 회원데이터추가 성공 실패 확인
 		if(result>0) {
-			System.out.println("회원가입 성공!!");
 			return "redirect:../member/login";
 		}else {
-			System.out.println("회원가입 실패..");
 			return "member/join";
 		}
 	
@@ -336,6 +334,7 @@ public class MemberController {
 		//세션에서 아이디를 꺼냅니다
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO = (MemberDTO) session.getAttribute("member");
+
 		//꺼낸 아이디를 teacherDTO에 담습니다
 		teacherDTO.setId(memberDTO.getId());
 		//DB에 갔다온 teacherDTO에는 신청번호, 계좌번호, 은행이름, 소개글이 있습니다.

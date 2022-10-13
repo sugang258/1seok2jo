@@ -38,8 +38,8 @@
           
 					<div class="mt-4">
 						<label for="ipBank_name" class="form-label mt-4"><b>은행이름</b></label>
+						<div class="col-6">
 						<select class="form-select border-success border-opacity-25 ipBank_name" name="bank_name">
-
 							<option value="신한은행">신한은행</option>
 							<option value="국민은행">국민은행</option>
 							<option value="농협은행">농협은행</option>
