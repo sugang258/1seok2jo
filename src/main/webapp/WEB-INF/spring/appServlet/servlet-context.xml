@@ -26,6 +26,7 @@
 	<beans:bean class="com.seok.home.interceptor.ListenCheckInterceptor" id="listenCheckInterceptor"></beans:bean>
 	<beans:bean class="com.seok.home.interceptor.AdminCheckInterceptor" id="adminCheckInterceptor"></beans:bean>
 	<beans:bean class="com.seok.home.interceptor.MemberCheckInterceptor" id="memberCheckInterceptor"></beans:bean>
+	<beans:bean class="com.seok.home.interceptor.AdminLoginCheckInterceptor" id="adminLoginCheckInterceptor"></beans:bean>
 	
 	
 	<interceptors>
@@ -38,6 +39,7 @@
 			<mapping path="/member/cart"/>
 			<mapping path="/status/sign"/>
 			<mapping path="/lecture/*"/>
+			<exclude-mapping path="/admin/login"/>
 			<exclude-mapping path="/lecture/list"/>
 			<exclude-mapping path="/lecture/detail"/>
 			<beans:ref bean="memberCheckInterceptor"/>
@@ -64,6 +66,13 @@
 			<mapping path="/board/nb_add"/>
 			<mapping path="/board/nb_delete"/>
 			<beans:ref bean="adminCheckInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/admin/*"/>
+			<exclude-mapping path="/admin/login"/>
+			<exclude-mapping path="/admin/auth"/>
+			<beans:ref bean="adminLoginCheckInterceptor"/>
 		</interceptor>
 
 	</interceptors>
