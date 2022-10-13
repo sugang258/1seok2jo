@@ -54,6 +54,7 @@ function deleteFile(){
                 if(result=='1'){
 
                     alert("❗사진을 삭제했습니다.");
+                    location.href="/member/profile";
                     //return true;
                 }
             }
