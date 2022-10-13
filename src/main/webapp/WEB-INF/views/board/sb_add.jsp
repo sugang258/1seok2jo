@@ -89,7 +89,7 @@ prefix="c" %>
           </div>
 
           <!--                     임시로 보내는 값 -->
-          <input type="text" style="display: none" name="l_num" value="1" />
+          <input type="text" style="display: none" name="l_num" value="12" />
           <input type="text" style="display: none" name="answer" value="0" />
           <input type="text" style="display: none" name="hit" value="0" />
           <!--                     임시로 보내는 값 -->
