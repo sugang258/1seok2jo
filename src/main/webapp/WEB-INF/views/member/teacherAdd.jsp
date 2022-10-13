@@ -35,22 +35,16 @@
 						<h3><b>${member.id}</b></h3>
 						<input type="hidden" name="id" class="form-control border-success border-opacity-25" id="ipId" value="${member.id}">
 					</div>
-					
-					<div class="row g-2">
+
+					<div class="mt-4">
 						<label for="ipBank_name" class="form-label mt-4"><b>은행이름</b></label>
-						<div class="col-6">
-							<input type="text" class="form-control border-success border-opacity-25 ipBank_name" name="bank_name" placeholder="은행명" maxlength="4">
-						</div>
-						<div class="col-6">
-						<select class="form-select border-success border-opacity-25 ipBank_name" disabled name="">
-							<option value="">직접입력</option>
+						<select class="form-select border-success border-opacity-25 ipBank_name" name="bank_name">
 							<option value="신한은행">신한은행</option>
 							<option value="농협은행">농협은행</option>
 							<option value="기업은행">기업은행</option>
 							<option value="하나은행">하나은행</option>
 							<option value="하나은행">카카오뱅크</option>
 						</select>
-						</div>
 					</div>
 
 					<div class="my-4">
