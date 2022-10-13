@@ -194,7 +194,7 @@
 	<delete id="setDeleteFile" parameterType="MemberFileDTO">
 		/* 프로필사진 데이터 삭제 */
 		
-		DELETE FROM MEMBER_FILE WHERE NUM=#{num}
+		DELETE FROM MEMBER_FILE WHERE ID=#{id}
 	</delete>
 	
 	<!--                     등급 데이터 삭제                       -->

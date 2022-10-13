@@ -61,4 +61,14 @@ public class MemberServiceTest extends MyAbstractTest {
 		assertNotEquals(0, result);
 	}
 	
+	@Test
+	public void setDeleteFileTest()throws Exception{
+		MemberFileDTO memberFileDTO = new MemberFileDTO();
+		memberFileDTO.setId("koo12345");
+		
+		int result = memberService.setDeleteFile(memberFileDTO);
+		
+		assertEquals(1, result);
+	}
+	
 }

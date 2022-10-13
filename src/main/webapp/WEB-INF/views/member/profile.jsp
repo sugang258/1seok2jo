@@ -46,7 +46,8 @@
 								<label for="file" class="file_add btn btn-outline-success btn-sm" id="lfile"><b>사진추가📷</b>
 							</div>
 							<div class="col-6 text-start">
-								<a href="./deleteFile" class="btn btn-outline-success btn-sm"><b>사진삭제❌</b></a>
+								<input type="hidden" name="id" id="ipId" value="${member.id}">
+								<button type="button" class="btn btn-outline-success btn-sm" id="defile"><b>사진삭제❌</b></button>
 							</div>
 						</div>
 						<div class="row">
@@ -128,6 +129,10 @@
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <script src="/resources/js/member_file.js"></script>
-<script>save()</script>
+<script src="/resources/js/member_update.js"></script>
+<script>
+	deleteFile();
+	save()
+</script>
 </body>
 </html>

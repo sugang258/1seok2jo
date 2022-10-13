@@ -292,12 +292,13 @@ public class MemberController {
 		return mv;
 	}
 	
-	//프로필사진 삭제(GET)
-	@GetMapping("deleteFile")
-	public void setDeleteFile(MemberDTO memberDTO)throws Exception{
+	//프로필사진 삭제(POST)
+	@ResponseBody
+	@PostMapping("deleteFile")
+	public int setDeleteFile(MemberFileDTO memberFileDTO)throws Exception{
 		System.out.println("프로필사진 삭제 접속(GET)");
-		memberService.setDeleteFile(memberDTO);
-		
+		int result = memberService.setDeleteFile(memberFileDTO);
+		return result;
 	}
 	
 	//프로필 회원비밀번호 수정 화면(GET)

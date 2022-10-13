@@ -180,11 +180,16 @@ public class MemberService {
 	}
 	
 	//프로필사진 삭제
-	public int setDeleteFile(MemberDTO memberDTO)throws Exception{
-		MemberFileDTO memberFileDTO = new MemberFileDTO();
-		memberFileDTO = memberDTO.getMemberFileDTO();
+	public int setDeleteFile(MemberFileDTO memberFileDTO)throws Exception{
 		System.out.println("memberFileDTO : "+memberFileDTO.getId());
-		return memberDAO.setDeleteFile(memberFileDTO);
+		int result = memberDAO.setDeleteFile(memberFileDTO);
+		if(result != 0) {
+			memberFileDTO.setF_name("default.png");
+			memberFileDTO.setF_oriname("default.png");
+			result = memberDAO.setAddFile(memberFileDTO);
+		}
+		
+		return result;
 	}
 	
 	//프로필 회원비밀번호 확인
