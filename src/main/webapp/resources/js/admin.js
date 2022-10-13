@@ -96,14 +96,13 @@ function initboards(){
                 xhttp.send("fb_num="+b_num);
                 xhttp.addEventListener("readystatechange", function(){
                     if(this.readyState==4 && this.status==200){
-                        msg = msg + b_num + " ";
-                        console.log("for"+msg)
+                        console.log(xhttp.responseText)
                     }
                 })
 
             }
-            console.log("alert"+msg)
             alert(msg+"게시글이 삭제되었습니다");
+            location.href="./boardsList";
         }
 
     })
@@ -192,6 +191,8 @@ function initlectures(){
                     }
                 })
             }
+            alert("강의삭제가 완료되었습니다.")
+            location.href="./lectureList";
         }
     });
 
@@ -220,13 +221,13 @@ function initmembers(){
     let memDelBtn = document.getElementById("memDelBtn");
     memDelBtn.addEventListener("click", function(){
         let member_id = getCheckboxValue("member_id")
-        alert("!!경고!! 회원삭제 후 되돌릴 수 없습니다")
+        alert("❗❗경고❗❗ 회원삭제 후 되돌릴 수 없습니다")
         let chk = window.confirm(member_id+" 회원 삭제를 하시겠습니까?")
         if(chk){
             let id_list = member_id.split(",");
             for(let i=0;i<id_list.length;i++){
                 const xhttp = new XMLHttpRequest();
-                xhttp.open("POST","member/deleteMember");
+                xhttp.open("POST","/member/deleteMemberAdmin");
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
                 xhttp.send("id="+id_list[i])
                 xhttp.addEventListener("readystatechange", function(){
@@ -235,6 +236,32 @@ function initmembers(){
                     }
                 })
             }
+            alert("회원삭제가 완료되었습니다.")
+            location.href="./memberList";
+            
+        }
+    });
+    //강사권한삭제 버튼 클릭
+    let tchrDelBtn = document.getElementById("tchrDelBtn");
+    tchrDelBtn.addEventListener("click", function(){
+        let member_id = getCheckboxValue("member_id")
+        let chk = window.confirm(member_id+" 강사의 권한을 삭제 하시겠습니까?")
+        if(chk){
+            let id_list = member_id.split(",");
+            for(let i=0;i<id_list.length;i++){
+                const xhttp = new XMLHttpRequest();
+                xhttp.open("POST","/member/delTeacherAdmin");
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+                xhttp.send("id="+id_list[i])
+                xhttp.addEventListener("readystatechange", function(){
+                    if(this.readyState==4 && this.status==200){
+                        console.log(xhttp.responseText);
+                    }
+                })
+            }
+            alert("강사권한삭제가 완료되었습니다.")
+            location.href="./memberList";
+            
         }
     });
 

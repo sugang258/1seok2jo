@@ -6,8 +6,8 @@
 		    <mapper namespace="com.seok.home.lecture.add.LectureAddDAO">
 		    	<select id="getLectureIngCnt" resultType="Long">
 			    	SELECT COUNT(*)
-			        FROM STATUS
-			        WHERE V_STATUS=1
+			        FROM lecture_sign
+			        WHERE STATUS=1
 		    	</select>
 		    
 		    	<insert id="setLectureAdd" parameterType="LectureAddDTO">
