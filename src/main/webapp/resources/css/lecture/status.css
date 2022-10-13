@@ -14,8 +14,8 @@
     display: inline-block;
 }
 #lecture_list{
-    background-color: white;
-    color: #66ba39;
+    color: white;
+    background-color: #66ba39;
     border: none;
     font-weight: bold;
 }

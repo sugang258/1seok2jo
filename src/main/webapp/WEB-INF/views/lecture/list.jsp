@@ -64,7 +64,7 @@
 		
 		</form>
 		<div class="buttons text-center">
-  
+			<button class="btn btn-secondary cate" name="All" id="All" onclick="location.href='/lecture/list'">All</button>
 			<button class="btn btn-secondary cate" name="Python" id="python" data-c-num="2">Python</button>
 			<button class="btn btn-secondary cate" name="JavaScript" id="js" data-c-num="3">JavaScript</button>
 			<button class="btn btn-secondary cate" name="HTML/CSS" id="hc" data-c-num="4">HTML/CSS</button>

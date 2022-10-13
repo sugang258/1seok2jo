@@ -5,11 +5,8 @@ const cartbtn = document.querySelectorAll(".cart");
 const sign = document.querySelectorAll(".sign");
 const sign1 = document.querySelectorAll("#sign");
 const all = document.querySelector("#all");
-const lecture_list = document.querySelector("#lecture_list");
 
-lecture_list.addEventListener("click",function(){
-    window.location.href="/lecture/list";
-})
+
 
 all.addEventListener("click",function(){
     window.location.href="../pay/order";

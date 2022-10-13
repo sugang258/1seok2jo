@@ -24,13 +24,13 @@
     <main class="container mt-2">
         <div class="py-3 text-center">
             <!--<img class="ml-1 mb-2 " src="/resources/images/15.png" alt="" width="100" height="70" style="display: inline;">-->
-            <h2 style="display: inline;">🛒장바구니</h2>
+            <h1 style="display: inline;">🛒장바구니</h1>
         </div>
         <c:if test="${c_size == 0}">
-            <div class="text-center">
+            <div class="text-center mt-5">
               <div id="null">장바구니가 비었습니다.</div>
               <div id="null2">장바구니를 채워보세요!</div>
-              <input type="button" class="lecture_list" id="lecture_list" value="강의 보러 가기"  style="background-color: #66ba39; color: white; border:none;">
+              <input type="button" class="lecture_list" id="lecture_list" value="강의 보러 가기"  style="background-color: #66ba39; color: white; border:none;" onclick="location.href ='/lecture/list'">
             </div>
           </c:if>
         <table class="table">
