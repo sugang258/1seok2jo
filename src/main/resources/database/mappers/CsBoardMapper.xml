@@ -30,9 +30,16 @@
 					WHERE cs_num = #{cs_num}
 		    	</select>
 		    			
-	    		<sql id="search">
+	    		<sql id="chkstatus">
 					<choose>
-						<when test="kind == 'CS_STATUS'">CS_STATUS</when>
+						<when test="chkstatus == 'done,yet'">'a'='a'</when>
+						<when test="chkstatus == 'done'">CS_STATUS = '답변완료'</when>
+						<when test="chkstatus == 'yet'">CS_STATUS = '미답변'</when>
+						<otherwise>'a'='a'</otherwise>
+					</choose>
+				</sql>
+				<sql id="search">
+					<choose>
 						<when test="kind == 'CS_TITLE'">CS_TITLE</when>
 						<when test="kind == 'ID'">ID</when>
 						<when test="kind == 'CS_PHONE'">CS_PHONE</when>
@@ -58,6 +65,7 @@
 			    	select count(*) from cs_board
 					where regdate between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
 		    		and <include refid="search"></include>
+		    		and <include refid="chkstatus"></include> 
 		    	</select>
 		    	
 		    	<select id="getBoardList" parameterType="AdminPager" resultType="CsBoardDTO">
@@ -66,6 +74,7 @@
 		    			from (select * from cs_board
 							where regdate between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
 							and <include refid="search"></include> 
+							and <include refid="chkstatus"></include> 
 							<include refid="orderby"></include>) cs)
 					where rown between #{startRow} and #{lastRow}
 		    	</select>

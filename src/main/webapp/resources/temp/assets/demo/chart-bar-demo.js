@@ -18,16 +18,16 @@ xhttp.addEventListener("readystatechange", function(){
       
       //cnt 올리기
       let cntLectureIng = document.getElementById("cntLectureIng");
-      counterFn(res.lectureIng ,cntLectureIng, 100);
+      counterFn(res.lectureIng ,cntLectureIng, 50);
       
       let cntBoard = document.getElementById("cntBoard");
-      counterFn(res.boardCnt ,cntBoard, 5);
+      counterFn(res.boardCnt ,cntBoard, 50);
 
       let cntMember = document.getElementById("cntMember");
-      counterFn(res.memberCnt,cntMember, 100);
+      counterFn(res.memberCnt,cntMember, 50);
 
       let cntLecture = document.getElementById("cntLecture");
-      counterFn(res.lectureCnt,cntLecture, 100);
+      counterFn(res.lectureCnt,cntLecture, 50);
 
 
       // Bar Chart

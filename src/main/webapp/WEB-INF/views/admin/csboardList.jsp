@@ -45,14 +45,22 @@
                                     <div class="col-5">
                                         <div class="input-group">
                                         <select type="button" name="kind" id="kind" class="btn btn-outline-success dropdown-toggle" style="text-align: left;" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <option value="CS_STATUS">답변여부</option>
                                             <option value="CS_TITLE">제목</option>
                                             <option value="ID">아이디</option>
                                             <option value="CS_PHONE">연락처</option>
                                             <option value="CS_EMAIL">이메일</option>
                                         </select>
-                                        <input type="text" name="search" id="search" class="form-control" value="미답변"></input>
+                                        <input type="text" name="search" id="search" class="form-control" ></input>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-12">
+                                        <span class="text-muted">답변여부</span>
+                                        <input type="checkbox" id="done" name="status" value="done" class="form-check-input">
+                                        <label id="plb" for="paid" style="font-weight:bold; color:black">답변완료</label>
+                                        <input type="checkbox" id="yet" name="status" value="yet" class="form-check-input" checked>
+                                        <label id="clb" for="canceled" style="font-weight:bold; color:black">미답변</label>
                                     </div>
                                 </div>
                                 <div class="row mt-2">
