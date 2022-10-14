@@ -24,7 +24,7 @@
 		    			<when test="filter == 'price'">L.L_PRICE DESC</when>
 		    			<when test="filter == 'low_price'">L.L_PRICE ASC</when>
 		    			<when test="filter == 'level'">L.LEVEL_NUM DESC</when>
-		    			<otherwise>L.L_DATE ASC</otherwise>
+		    			<otherwise>L.L_NUM DESC</otherwise>
 		    		</choose>
 		    	</sql>
 		    
