@@ -130,9 +130,7 @@ public class MemberController {
 	
 	//강사신청 로직 처리(POST)
 	@PostMapping("teacherAdd")
-	public ModelAndView setTeacherAdd(TeacherDTO teacherDTO, HttpSession session)throws Exception{
-		
-		ModelAndView mv = new ModelAndView();
+	public ModelAndView setTeacherAdd(TeacherDTO teacherDTO, HttpSession session, ModelAndView mv)throws Exception{
 		
 		//세션에 있는 한 회원정보를 memberDTO에 담음
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
@@ -140,19 +138,18 @@ public class MemberController {
 		//DB에 새로운 강사데이터추가
 		int result = memberService.setTeacherAdd(teacherDTO, session.getServletContext(), memberDTO);
 		
-		String message = "강사신청을 실패하였습니다..";
-		String url = "./teacherAdd";
 		//새로운 강사데이터추가 성공 실패 확인
 		if(result>0) {
+			mv.addObject("message", "강사신청 성공!");
+			memberDTO = memberService.getSessionRole(memberDTO);
+			session.setAttribute("member", memberDTO);
 			
-			message = "강사신청을 축하합니다";
-			url = "../";
-			
-		}	
+		}else {
+			mv.addObject("message", "강사신청 실패..");
+		}
 		
 		mv.addObject("result", result);
-		mv.addObject("message", message);
-		mv.addObject("url", url);
+		mv.addObject("url","/");
 		mv.setViewName("common/result");
 		
 		return mv;
