@@ -233,6 +233,7 @@
 			left join refund R
 			on O.O_num = R.O_num
 			where P.id=#{id}
+			Order by P.p_regdate desc
     	</select>
     	<resultMap type="PaymentDTO" id="allPaymentsResult">
     		<id column="p_uid" property="p_uid"/>
