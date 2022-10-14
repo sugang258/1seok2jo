@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.seok.home.member.MemberDTO;
-import com.seok.home.member.RoleDTO;
 
 public class MemberCheckInterceptor extends HandlerInterceptorAdapter{
     

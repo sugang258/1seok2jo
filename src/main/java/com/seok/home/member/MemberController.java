@@ -65,7 +65,7 @@ public class MemberController {
 
 			mv.setViewName("redirect:../");
 		}else {
-			mv.setViewName("member/login");		
+			mv.setViewName("redirect:../member/login");		
 		}
 		
 		
@@ -109,20 +109,16 @@ public class MemberController {
 	@PostMapping
 	public String setJoin(MemberDTO memberDTO, HttpSession session, String yy, String mm, String dd, String e, String mail)throws Exception{
 		
-		//int result = memberService.getIdCheck(memberDTO);
-		
 		//DB에 새로운 회원데이터추가
 		int result = memberService.setJoin(memberDTO, yy, mm, dd, e, mail);
 		
 		//새로운 회원데이터추가 성공 실패 확인
 		if(result>0) {
-			System.out.println("회원가입 성공!!");
+			
 			return "redirect:../member/login";
-		}else {
-			System.out.println("회원가입 실패..");
-			return "member/join";
 		}
-	
+		
+		return "redirect:../member/join";
 	}
 	
 	//강사신청 화면(GET)
@@ -134,8 +130,9 @@ public class MemberController {
 	
 	//강사신청 로직 처리(POST)
 	@PostMapping("teacherAdd")
-	public ModelAndView setTeacherAdd(TeacherDTO teacherDTO, HttpSession session, ModelAndView mv)throws Exception{
-		System.out.println("강사신청 접속(POST)");
+	public ModelAndView setTeacherAdd(TeacherDTO teacherDTO, HttpSession session)throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
 		
 		//세션에 있는 한 회원정보를 memberDTO에 담음
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
@@ -143,25 +140,28 @@ public class MemberController {
 		//DB에 새로운 강사데이터추가
 		int result = memberService.setTeacherAdd(teacherDTO, session.getServletContext(), memberDTO);
 		
+		String message = "강사신청을 실패하였습니다..";
+		String url = "./teacherAdd";
 		//새로운 강사데이터추가 성공 실패 확인
 		if(result>0) {
-			mv.addObject("message", "강사신청 성공!");
-			memberDTO = memberService.getSessionRole(memberDTO);
-			session.setAttribute("member", memberDTO);
-		}else {
-			mv.addObject("message", "강사신청 실패..");
-		}
-		mv.addObject("url","/");
-
+			
+			message = "강사신청을 축하합니다";
+			url = "../";
+			
+		}	
+		
+		mv.addObject("result", result);
+		mv.addObject("message", message);
+		mv.addObject("url", url);
 		mv.setViewName("common/result");
-
+		
 		return mv;
 	}
 	
 	//회원탈퇴 화면(GET)
 	@GetMapping("deleteMember")
 	public String setDeleteMember()throws Exception{
-		System.out.println("회원탈퇴 접속(GET)");
+
 		return "member/deleteMember";
 	}
 	
@@ -174,14 +174,12 @@ public class MemberController {
 		
 		//회원탈퇴 성공 실패 확인
 		if(result!=0) {
-			System.out.println("회원탈퇴 성공!!");
 			//세션삭제
 			session.invalidate();
-		}else {
-			System.out.println("회원탈퇴 실패..");
+			return "redirect:../";
 		}
 		
-		return "member/deleteMember";
+		return "redirect:../member/deleteMember";
 	}
 	
 	//어드민 회원탈퇴
@@ -215,7 +213,7 @@ public class MemberController {
 		memberDTO = (MemberDTO) session.getAttribute("member");
 		
 		
-		//프로필정보조회(아이디, 이름, 닉네임, *생년월일*, 성별, 이메일, 연락처 조회)
+		//프로필정보조회(아이디, 이름, 닉네임, 성별, 이메일, 연락처 조회)
 		//getProfile을 갔다온 memberDTO를 respMemberDTO(responseMemberDTO)에 담음
 		respMemberDTO = memberService.getProfile(memberDTO);
 
@@ -241,31 +239,24 @@ public class MemberController {
 		
 		int result = memberService.setEditProfile(memberDTO, file, session.getServletContext());
 		
+		String message = "❗프로필을 수정하지 못했습니다..❗";
+		String url = "./profile";
 		if(result != 0) {
-			System.out.println("프로필 수정 성공!!");
-
+			
+			message = "🎉프로필을 수정했습니다🎉";
+			url = "./profile";
+			
 			if(session.getAttribute("admin")==null) {
 				//그 데이터를 "member"로 JSP에 보내줌
 				mv.setViewName("redirect:../member/profile");
 			}else {
 				mv.setViewName("redirect:../member/profile?id="+memberDTO.getId());
 			}
-		}else {
-			System.out.println("프로필 수정 실패..");
-			mv.setViewName("member/profile");
 		}
-		
-//		String message = "프로필수정 실패";
-//		String url = "./profile";
-//		if(result>0) {
-//			message = "프로필수정 성공";
-//			url = "./profile";
-//		}
-//		
-//		mv.addObject("result", result);
-//		mv.addObject("message", message);
-//		mv.addObject("url", url);
-//		mv.setViewName("common/result");
+		mv.addObject("result", result);
+		mv.addObject("message", message);
+		mv.addObject("url", url);
+		mv.setViewName("common/result");
 		
 		return mv;
 	}
@@ -282,7 +273,6 @@ public class MemberController {
 	//프로필 회원비밀번호 수정 화면(GET)
 	@GetMapping("updatePw")
 	public String setUpdatePw()throws Exception{
-		System.out.println("프로필 회원비밀번호 수정(GET)");
 		
 		return "member/updatePw";
 	}
@@ -313,13 +303,11 @@ public class MemberController {
 		int result = memberService.setUpdatePw(memberDTO);
 		
 		if(result != 0){
-			System.out.println("비밀번호 변경 성공!!");
+			
 			return "redirect:../member/login";
-		}else {
-			System.out.println("비밀번호 변경 실패..");
-			return "redirect:../member/updatePw";
 		}
 		
+		return "redirect:../member/updatePw";
 	}
 	
 	//강사프로필 정보조회 화면(GET)
@@ -336,6 +324,7 @@ public class MemberController {
 		//세션에서 아이디를 꺼냅니다
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO = (MemberDTO) session.getAttribute("member");
+
 		//꺼낸 아이디를 teacherDTO에 담습니다
 		teacherDTO.setId(memberDTO.getId());
 		//DB에 갔다온 teacherDTO에는 신청번호, 계좌번호, 은행이름, 소개글이 있습니다.
@@ -353,19 +342,24 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		
 		int result = memberService.setEditTcherProfile(teacherDTO);
-
+		
+		String message = "❗강사프로필을 수정하지 못했습니다..❗";
+		String url = "./tcherProfile";
 		if(result!=0) {
-			System.out.println("강사프로필 수정 성공!!");
+
+			message = "🎉강사프로필을 수정했습니다🎉";
+			url = "./tcherProfile";
+			
 			//바뀐 강사정보를 조회(계좌번호, 은행이름, 소개글)
 			teacherDTO = memberService.getTcherProfile(teacherDTO);
 			//teacher로 JSP에 보내줌
 			mv.addObject("teacher", teacherDTO);
-			mv.setViewName("redirect:../member/tcherProfile");
-		}else {
-			System.out.println("강사프로필 수정 실패..");
-			mv.setViewName("member/tcherProfile");
+			
 		}
-		
+		mv.addObject("result", result);
+		mv.addObject("message", message);
+		mv.addObject("url", url);
+		mv.setViewName("common/result");
 		
 		return mv;
 	}
@@ -378,8 +372,6 @@ public class MemberController {
 
 		cartDTO.setId(mem.getId());
 		List<LectureDTO> ar = cartService.getCartDetail(cartDTO);
-		
-		System.out.println("ararararar:"+ar.size());
 		
 		mv.addObject("c_size", ar.size());
 		mv.addObject("lectureDTO", ar);
