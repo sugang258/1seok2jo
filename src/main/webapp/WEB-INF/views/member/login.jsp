@@ -27,7 +27,7 @@
 	<main class="container ilseok">
 		<!-- 1석2조마크 -->
 		<div class="text-center my-3">
-			<img src="/resources/images/15.png" alt="logo" width="200">
+			<img src="/resources/images/15.png" onclick="location.href='/';" alt="logo" width="200">
 		</div>
 		<div class="login_main" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px; width: 460px; height: 330px; margin: 2em auto 5em auto;">
 
