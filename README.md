@@ -27,7 +27,7 @@
 ![Work Flow](https://github.com/sugang258/1seok2jo/blob/main/FLOW.png)
 
 ## ERD
-![ERD](https://github.com/sugang258/1seok2jo/blob/main/erd.png)
+![ERD](https://github.com/sugang258/1seok2jo/blob/84733952ae4c2a4ac062fcfabc8c802a974b6492/ERD.jpg)
 
 ## Notion
 📕[Notion](https://www.notion.so/6ec687ba4b9e449d8720a940a654bc2e)
