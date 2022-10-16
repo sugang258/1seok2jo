@@ -356,3 +356,37 @@ ALTER TABLE "STATUS" ADD CONSTRAINT "PK_STATUS" PRIMARY KEY (
 ALTER TABLE "L_HEART" ADD CONSTRAINT "PK_L_HEART" PRIMARY KEY (
 	"LIKE_NUM"
 );
+
+--LECTURE
+Insert into C##1S2J.LECTURE (L_NUM,ID,C_NUM,LEVEL_NUM,L_NAME,L_PRICE,L_COUNT,L_DATE) values (11,'sg',4,1,'제대로 파는 HTML & CSS - by 얄코',33000,6,3);
+Insert into C##1S2J.LECTURE (L_NUM,ID,C_NUM,LEVEL_NUM,L_NAME,L_PRICE,L_COUNT,L_DATE) values (15,'sg',8,2,'데이터 분석 SQL Fundamentals',55000,5,4);
+Insert into C##1S2J.LECTURE (L_NUM,ID,C_NUM,LEVEL_NUM,L_NAME,L_PRICE,L_COUNT,L_DATE) values (16,'sg',2,1,'남박사의 파이썬 기초부터 실전 100% 활용',66000,6,5);
+
+--L_FILE
+Insert into C##1S2J.L_FILE (NUM,L_NUM,F_NAME,F_ORINAME) values (265,11,'04bbb2c5-8cc4-4790-b5c4-fd1928e60171-test5.png','test5.png');
+Insert into C##1S2J.L_FILE (NUM,L_NUM,F_NAME,F_ORINAME) values (269,15,'d2c589e8-7456-4fbc-8102-697b5f875d18-test9.png','test9.png');
+Insert into C##1S2J.L_FILE (NUM,L_NUM,F_NAME,F_ORINAME) values (270,16,'dd5191f7-b8a5-4cc3-b798-b04839582c8c-test10.png','test10.png');
+
+
+--CATEGORY
+Insert into C##1S2J.CATEGORY (C_NUM,C_NAME) values (1,'Java');
+Insert into C##1S2J.CATEGORY (C_NUM,C_NAME) values (2,'Python');
+Insert into C##1S2J.CATEGORY (C_NUM,C_NAME) values (3,'JavaScript');
+Insert into C##1S2J.CATEGORY (C_NUM,C_NAME) values (4,'HTML/CSS');
+Insert into C##1S2J.CATEGORY (C_NUM,C_NAME) values (5,'React');
+Insert into C##1S2J.CATEGORY (C_NUM,C_NAME) values (6,'Node.js');
+Insert into C##1S2J.CATEGORY (C_NUM,C_NAME) values (7,'Spring');
+Insert into C##1S2J.CATEGORY (C_NUM,C_NAME) values (8,'SQL');
+
+--LEVEL
+Insert into C##GANG."LEVEL" (LEVEL_NUM,LEVEL_NAME) values (1,'하');
+Insert into C##GANG."LEVEL" (LEVEL_NUM,LEVEL_NAME) values (2,'중');
+Insert into C##GANG."LEVEL" (LEVEL_NUM,LEVEL_NAME) values (3,'상');
+
+--VIDEO
+
+--CART
+
+--LECTURE_SIGN
+
+--STATUS
