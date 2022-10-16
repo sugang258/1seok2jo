@@ -28,3 +28,6 @@
 
 ## ERD
 ![ERD](https://github.com/sugang258/1seok2jo/blob/main/erd.png)
+
+## Notion
+📕[Notion](https://www.notion.so/6ec687ba4b9e449d8720a940a654bc2e)
