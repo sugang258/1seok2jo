@@ -357,6 +357,45 @@ ALTER TABLE "L_HEART" ADD CONSTRAINT "PK_L_HEART" PRIMARY KEY (
 	"LIKE_NUM"
 );
 
+--게시판 시퀀스
+CREATE SEQUENCE BOARD_SEQ;
+
+--답글 시퀀스
+CREATE SEQUENCE BOARD_SEQ;
+
+--댓글 시퀀스
+CREATE SEQUENCE BOARD_SEQ;
+
+--파일 시퀀스
+CREATE SEQUENCE FILE_SEQ;
+
+--수강평 시퀀스
+CREATE SEQUENCE BOARD_SEQ;
+
+--수강평추천 시퀀스
+CREATE SEQUENCE LIKE_SEQ;
+
+--자유게시판 추천 시퀀스
+CREATE SEQUENCE LIKE_SEQ;
+
+--L_NUM
+CREATE SEQUENCE LECTURE_SEQ;
+
+--L_FILE
+CREATE SEQUENCE FILE_SEQ;
+
+--VIDEO
+CREATE SEQUENCE VIDEO_SEQ;
+
+--CART
+CREATE SEQUENCE CART_SEQ;
+
+--LECTURE_SIGN
+CREATE SEQUENCE SIGN_SEQ;
+
+--STATUS
+CREATE SEQUENCE STATUS_SEQ;
+
 --LECTURE
 Insert into C##1S2J.LECTURE (L_NUM,ID,C_NUM,LEVEL_NUM,L_NAME,L_PRICE,L_COUNT,L_DATE) values (11,'sg',4,1,'제대로 파는 HTML & CSS - by 얄코',33000,6,3);
 Insert into C##1S2J.LECTURE (L_NUM,ID,C_NUM,LEVEL_NUM,L_NAME,L_PRICE,L_COUNT,L_DATE) values (15,'sg',8,2,'데이터 분석 SQL Fundamentals',55000,5,4);
@@ -366,7 +405,6 @@ Insert into C##1S2J.LECTURE (L_NUM,ID,C_NUM,LEVEL_NUM,L_NAME,L_PRICE,L_COUNT,L_D
 Insert into C##1S2J.L_FILE (NUM,L_NUM,F_NAME,F_ORINAME) values (265,11,'04bbb2c5-8cc4-4790-b5c4-fd1928e60171-test5.png','test5.png');
 Insert into C##1S2J.L_FILE (NUM,L_NUM,F_NAME,F_ORINAME) values (269,15,'d2c589e8-7456-4fbc-8102-697b5f875d18-test9.png','test9.png');
 Insert into C##1S2J.L_FILE (NUM,L_NUM,F_NAME,F_ORINAME) values (270,16,'dd5191f7-b8a5-4cc3-b798-b04839582c8c-test10.png','test10.png');
-
 
 --CATEGORY
 Insert into C##1S2J.CATEGORY (C_NUM,C_NAME) values (1,'Java');
@@ -429,5 +467,45 @@ Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (160,58,49,0);
 Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (164,59,49,0);
 Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (168,60,49,0);
 Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (170,61,49,0);
+
+--게시판테이블
+Insert into STUDY_BOARD (SB_NUM,L_NUM,ID,TITLE,REG_DATE,ANSWER,HIT,CATEGORY) values (873,12,'개발조아','빌드시 경로가 재대로 인식이 안되는거 같습니다.',to_date('22/10/13','RR/MM/DD'),0,8,'SPRING');
+Insert into STUDY_BOARD (SB_NUM,L_NUM,ID,TITLE,REG_DATE,ANSWER,HIT,CATEGORY) values (877,12,'졸라맨','강의 별개의 질문이 있습니다.',to_date('22/10/13','RR/MM/DD'),0,8,'SPRING');
+
+--답글 테이블 만들기--
+Insert into SB_REPLY (NUM,SB_NUM,ID,REG_DATE,REF) values (861,857,'sg',to_date('22/10/13','RR/MM/DD'),0);
+Insert into SB_REPLY (NUM,SB_NUM,ID,REG_DATE,REF) values (866,864,'sg',to_date('22/10/13','RR/MM/DD'),0);
+
+--댓글 테이블
+Insert into SB_COMMENT (NUM,SB_NUM,ID, CONTENTS,REG_DATE,REF) values (1001,982,'tjfl','ㅎㅎ',to_date('22/10/17','RR/MM/DD'),1);
+Insert into SB_COMMENT (NUM,SB_NUM,ID, CONTENTS,REG_DATE,REF) values (1001,982,'tjfl','ㅜㅜ',to_date('22/10/17','RR/MM/DD'),1);
+
+--수강평 테이블
+Insert into LECTURE_BOARD (NUM,L_NUM,ID,SCORE,CONTENTS,REG_DATE) values (902,11,'송내역',5,'핵심개념들을 정말 와닿게 잘 설명해주십니다. 정말 훌륭한 강의 입니다',to_date('22/10/13','RR/MM/DD'));
+Insert into LECTURE_BOARD (NUM,L_NUM,ID,SCORE,CONTENTS,REG_DATE) values (905,15,'김용용',5,'객체지향에 대한 개념부터 설명해주셔서 초보자인 저에게 매우 유익했던거 같습니다. 좋은 강의 만들어주셔서 감사하고 앞으로 있을 강의도 기대하겠습니다.',to_date('22/10/13','RR/MM/DD'));
+
+--수강평 추천 테이블
+Insert into L_HEART (LIKE_NUM,ID,NUM) values (465,'김용용',905);
+Insert into L_HEART (LIKE_NUM,ID,NUM) values (402,'코딩왕',902);
+
+--자유게시판
+Insert into FREE_BOARD (FB_NUM,ID,TITLE,REG_DATE,HIT,CATEGORY,LIKE_COUNT) values (943,'agggro','이 사이트 결제하면',to_date('22/10/13','RR/MM/DD'),1,'자료실',0);
+Insert into FREE_BOARD (FB_NUM,ID,TITLE,REG_DATE,HIT,CATEGORY,LIKE_COUNT) values (752,'david','IT 직군 포트폴리오와 블로그 플랫폼 개발 및 배포, 운영까지 현업과 비슷한 환경을 같이 경험하실 분을 찾습니다!',to_date('22/10/12','RR/MM/DD'),11,'스터디모집',0);
+
+--자유게시판 댓글 테이블
+Insert into FB_REPLY (NUM,FB_NUM,ID,CONTENTS,REG_DATE) values (761,753,'치킨먹자','하 저도 낄수있나요?',to_date('22/10/12','RR/MM/DD'));
+Insert into FB_REPLY (NUM,FB_NUM,ID,CONTENTS,REG_DATE) values (783,769,'david','스터디 내용이 좋네요 ㅎㅎ',to_date('22/10/12','RR/MM/DD'));
+
+--자유게시판 추천 테이블
+Insert into FB_HEART (LIKE_NUM,ID,FB_NUM) values (379,'tjfl',753);
+Insert into FB_HEART (LIKE_NUM,ID,FB_NUM) values (399,'json',769);
+
+--공지사항
+Insert into NOTICE (N_NUM,ID,TITLE,REG_DATE) values (715,'tjfl','6월 1주차 - 인프런 앱 출시 ?',to_date('22/10/12','RR/MM/DD'));
+Insert into NOTICE (N_NUM,ID,TITLE,REG_DATE) values (716,'tjfl','6월 3주차 - 스터디 ??',to_date('22/10/12','RR/MM/DD'));
+
+--공지사항 댓글 테이블
+Insert into NOTICE_REPLY (NUM,N_NUM,ID,REG_DATE) values (725,716,'코딩왕',to_date('22/10/12','RR/MM/DD'));
+Insert into NOTICE_REPLY (NUM,N_NUM,ID,REG_DATE) values (726,715,'코딩왕',to_date('22/10/12','RR/MM/DD'));
 
 
