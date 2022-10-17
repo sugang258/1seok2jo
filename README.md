@@ -31,3 +31,5 @@
 
 ## Notion
 📕[Notion](https://www.notion.so/6ec687ba4b9e449d8720a940a654bc2e)
+
+## 실행화면
