@@ -384,9 +384,50 @@ Insert into C##GANG."LEVEL" (LEVEL_NUM,LEVEL_NAME) values (2,'중');
 Insert into C##GANG."LEVEL" (LEVEL_NUM,LEVEL_NAME) values (3,'상');
 
 --VIDEO
+Insert into C##1S2J.VIDEO (V_NUM,L_NUM,V_URL,V_CONTEXT,V_SEQ) values (75,11,'<iframe width="560" height="315" src="https://www.youtube.com/embed/jdTsJzXmgU0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>','test1',6);
+Insert into C##1S2J.VIDEO (V_NUM,L_NUM,V_URL,V_CONTEXT,V_SEQ) values (38,11,'<iframe width="560" height="315" src="https://www.youtube.com/embed/S_tOP4W0u1Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>','HTML 강의 Ep02 - HTML이란 무엇인가?',2);
+Insert into C##1S2J.VIDEO (V_NUM,L_NUM,V_URL,V_CONTEXT,V_SEQ) values (36,11,'<iframe width="560" height="315" src="https://www.youtube.com/embed/N_nVDZSAjq4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>','HTML&CSS 강의 Ep00 - 강의소개',0);
+Insert into C##1S2J.VIDEO (V_NUM,L_NUM,V_URL,V_CONTEXT,V_SEQ) values (37,11,'<iframe width="560" height="315" src="https://www.youtube.com/embed/9o5VuZB5OKw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>','HTML&CSS 강의 Ep01 - 개발환경 구성',1);
+Insert into C##1S2J.VIDEO (V_NUM,L_NUM,V_URL,V_CONTEXT,V_SEQ) values (39,11,'<iframe width="560" height="315" src="https://www.youtube.com/embed/44pQ6p5pHX8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>','HTML 강의 Ep03 - Emmet',3);
+Insert into C##1S2J.VIDEO (V_NUM,L_NUM,V_URL,V_CONTEXT,V_SEQ) values (40,11,'<iframe width="560" height="315" src="https://www.youtube.com/embed/unKwt4lwwxQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>','HTML 강의 Ep04_1 - HTML 폰트(Font) 태그',4);
+Insert into C##1S2J.VIDEO (V_NUM,L_NUM,V_URL,V_CONTEXT,V_SEQ) values (52,15,'<iframe width="560" height="315" src="https://www.youtube.com/embed/pGlkIFrY9QY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>','오라클 데이터베이스 SQL 강의 1강 - 학습안내(SQL',0);
+Insert into C##1S2J.VIDEO (V_NUM,L_NUM,V_URL,V_CONTEXT,V_SEQ) values (53,15,'<iframe width="560" height="315" src="https://www.youtube.com/embed/pGlkIFrY9QY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',' DB',1);
+Insert into C##1S2J.VIDEO (V_NUM,L_NUM,V_URL,V_CONTEXT,V_SEQ) values (54,15,'<iframe width="560" height="315" src="https://www.youtube.com/embed/pGlkIFrY9QY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',' DBMS의 의미와 필요성)',2);
+Insert into C##1S2J.VIDEO (V_NUM,L_NUM,V_URL,V_CONTEXT,V_SEQ) values (55,15,'<iframe width="560" height="315" src="https://www.youtube.com/embed/pGlkIFrY9QY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>','오라클 데이터베이스 SQL 강의 2강 - 오라클 DBMS 18c XE 설치하기',3);
+Insert into C##1S2J.VIDEO (V_NUM,L_NUM,V_URL,V_CONTEXT,V_SEQ) values (56,16,'<iframe width="560" height="315" src="https://www.youtube.com/embed/IUXMgyiFBIU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>','혼자 공부하는 파이썬 0강 - 소개와 시작하기 전에',0);
+Insert into C##1S2J.VIDEO (V_NUM,L_NUM,V_URL,V_CONTEXT,V_SEQ) values (57,16,'<iframe width="560" height="315" src="https://www.youtube.com/embed/IUXMgyiFBIU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>','혼자 공부하는 파이썬 1강 - 개발 환경 설치',1);
+Insert into C##1S2J.VIDEO (V_NUM,L_NUM,V_URL,V_CONTEXT,V_SEQ) values (58,16,'<iframe width="560" height="315" src="https://www.youtube.com/embed/IUXMgyiFBIU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>','혼자 공부하는 파이썬 2강 - 코드 작성하고 실행하는 방법',2);
+Insert into C##1S2J.VIDEO (V_NUM,L_NUM,V_URL,V_CONTEXT,V_SEQ) values (59,16,'<iframe width="560" height="315" src="https://www.youtube.com/embed/IUXMgyiFBIU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>','혼자 공부하는 파이썬 3강 - 코딩 전용 폰트',3);
+Insert into C##1S2J.VIDEO (V_NUM,L_NUM,V_URL,V_CONTEXT,V_SEQ) values (60,16,'<iframe width="560" height="315" src="https://www.youtube.com/embed/IUXMgyiFBIU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>','혼자 공부하는 파이썬 4강 - 기본 용어 정리',4);
+Insert into C##1S2J.VIDEO (V_NUM,L_NUM,V_URL,V_CONTEXT,V_SEQ) values (61,16,'<iframe width="560" height="315" src="https://www.youtube.com/embed/IUXMgyiFBIU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>','혼자 공부하는 파이썬 5강 - print() 함수',5);
 
 --CART
+Insert into C##1S2J.CART (CART_NUM,ID,L_NUM) values (84,'david',11);
+Insert into C##1S2J.CART (CART_NUM,ID,L_NUM) values (10,'sg',11);
+Insert into C##1S2J.CART (CART_NUM,ID,L_NUM) values (96,'student1',11);
+Insert into C##1S2J.CART (CART_NUM,ID,L_NUM) values (9,'tjfl',16);
 
 --LECTURE_SIGN
+Insert into C##1S2J.LECTURE_SIGN (S_NUM,L_NUM,ID,S_START,S_END,STATUS) values (37,11,'코딩왕',to_date('22/10/12','RR/MM/DD'),to_date('23/01/12','RR/MM/DD'),1);
+Insert into C##1S2J.LECTURE_SIGN (S_NUM,L_NUM,ID,S_START,S_END,STATUS) values (51,15,'코딩왕',to_date('22/10/13','RR/MM/DD'),to_date('23/02/13','RR/MM/DD'),1);
+Insert into C##1S2J.LECTURE_SIGN (S_NUM,L_NUM,ID,S_START,S_END,STATUS) values (49,16,'코딩왕',to_date('22/10/13','RR/MM/DD'),to_date('23/03/13','RR/MM/DD'),1);
 
 --STATUS
+Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (92,75,37,0);
+Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (93,38,37,0);
+Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (94,36,37,0);
+Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (95,37,37,0);
+Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (96,39,37,0);
+Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (97,40,37,0);
+Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (151,52,51,0);
+Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (155,53,51,1);
+Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (159,54,51,1);
+Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (165,55,51,0);
+Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (152,56,49,0);
+Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (156,57,49,0);
+Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (160,58,49,0);
+Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (164,59,49,0);
+Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (168,60,49,0);
+Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (170,61,49,0);
+
+
