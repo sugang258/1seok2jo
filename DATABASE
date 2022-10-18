@@ -1,4 +1,5 @@
 -- 1. 테이블 
+
 CREATE TABLE "LECTURE" (
 	"L_NUM"	NUMBER		NOT NULL,
 	"ID"	VARCHAR2(200)		NOT NULL,
@@ -242,6 +243,7 @@ CREATE TABLE "L_HEART" (
 	"NUM"	NUMBER		NOT NULL
 );
 
+-- 2. PK
 ALTER TABLE "LECTURE" ADD CONSTRAINT "PK_LECTURE" PRIMARY KEY (
 	"L_NUM"
 );
@@ -358,6 +360,7 @@ ALTER TABLE "L_HEART" ADD CONSTRAINT "PK_L_HEART" PRIMARY KEY (
 	"LIKE_NUM"
 );
 
+-- 3. SEQUENCE 
 --게시판 시퀀스
 CREATE SEQUENCE BOARD_SEQ;
 
@@ -396,6 +399,8 @@ CREATE SEQUENCE SIGN_SEQ;
 
 --STATUS
 CREATE SEQUENCE STATUS_SEQ;
+
+-- 4. Sample Data
 
 --LECTURE
 Insert into C##1S2J.LECTURE (L_NUM,ID,C_NUM,LEVEL_NUM,L_NAME,L_PRICE,L_COUNT,L_DATE) values (11,'sg',4,1,'제대로 파는 HTML & CSS - by 얄코',33000,6,3);
@@ -469,6 +474,7 @@ Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (164,59,49,0);
 Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (168,60,49,0);
 Insert into C##1S2J.STATUS (NUM,V_NUM,S_NUM,V_STATUS) values (170,61,49,0);
 
+-- 
 --게시판테이블
 Insert into STUDY_BOARD (SB_NUM,L_NUM,ID,TITLE,REG_DATE,ANSWER,HIT,CATEGORY) values (873,12,'개발조아','빌드시 경로가 재대로 인식이 안되는거 같습니다.',to_date('22/10/13','RR/MM/DD'),0,8,'SPRING');
 Insert into STUDY_BOARD (SB_NUM,L_NUM,ID,TITLE,REG_DATE,ANSWER,HIT,CATEGORY) values (877,12,'졸라맨','강의 별개의 질문이 있습니다.',to_date('22/10/13','RR/MM/DD'),0,8,'SPRING');
@@ -510,3 +516,4 @@ Insert into NOTICE_REPLY (NUM,N_NUM,ID,REG_DATE) values (725,716,'코딩왕',to_
 Insert into NOTICE_REPLY (NUM,N_NUM,ID,REG_DATE) values (726,715,'코딩왕',to_date('22/10/12','RR/MM/DD'));
 
 
+-- 5. FK
