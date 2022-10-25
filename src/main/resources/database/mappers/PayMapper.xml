@@ -272,15 +272,17 @@
     	</resultMap>
 
     	<select id="getPayDetail" parameterType="PaymentDTO" resultMap="allPaymentsResult">
-    		select P.*, O.O_NUM, O.L_NUM, O.O_AMOUNT, L.ID TEACHER, L.LEVEL_NUM, L.L_NAME, L.L_DATE , L.L_PRICE, R.PR_NUM, R.PR_REASON, R.PR_AMOUNT, R.PR_POINT, R.PR_REGDATE
+    		SELECT P.*, O.O_NUM, O.L_NUM, O.O_AMOUNT, 
+    			L.ID TEACHER, L.LEVEL_NUM, L.L_NAME, L.L_DATE , L.L_PRICE, 
+    			R.PR_NUM, R.PR_REASON, R.PR_AMOUNT, R.PR_POINT, R.PR_REGDATE
 			FROM payments P
-			left join ORDERS O
-			on P.p_uid = O.P_UID
-			left join Lecture L
-			on O.l_num = L.l_num
-			left join refund R
-			on O.O_num = R.O_num
-			where P.p_uid=#{p_uid}
+				left join ORDERS O
+				on P.p_uid = O.P_UID
+				left join Lecture L
+				on O.l_num = L.l_num
+				left join refund R
+				on O.O_num = R.O_num
+			WHERE P.p_uid=#{p_uid}
     	</select>
     
     	<insert id="savePayment" parameterType="PaymentDTO">

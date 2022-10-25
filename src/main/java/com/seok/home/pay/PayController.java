@@ -84,14 +84,12 @@ public class PayController {
 			//아임페이로 환불 요청
 			String cancelled_merchant_uid = cancelPuid;
 			BigDecimal cancelAmount = BigDecimal.valueOf(refundDTO.getPr_amount());
-			
 			CancelData cancel_data = new CancelData(cancelled_merchant_uid, false, cancelAmount);
-			
 			IamportResponse<Payment> payment_response = client.cancelPaymentByImpUid(cancel_data);
 
 			//환불요청 실패한 경우 null값이 돌아옴
 			if(payment_response.getResponse()==null) {
-				message = "요청금액이 환불가능 금액보다 많습니다.";
+				message = "환불 요청에 실패하였습니다.";
 
 			}else {//취소 성공하면				
 				result = payService.cancelSuccess(refundDTO, l_num, request);

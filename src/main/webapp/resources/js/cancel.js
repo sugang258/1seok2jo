@@ -41,8 +41,6 @@ function cancelPay() {
       }else{
         pr_amount.value=o_amount;
       }
-      
-     
     })
   }
 
