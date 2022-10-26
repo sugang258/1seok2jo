@@ -23,7 +23,8 @@
             INNER join Lecture_sign LS
             on L.L_NUM = LS.L_NUM and P.ID = LS.ID
             where L.ID = #{teacher}
-            and P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+            and P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')
+            				and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
 			and <include refid="tchrsearch"></include>
 			and <include refid="tchrchkstatus"></include>
 			and R.pr_num is null
@@ -56,7 +57,8 @@
             INNER join Lecture_sign LS
             on L.L_NUM = LS.L_NUM and P.ID = LS.ID
             where L.ID = #{teacher}
-            and P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+            and P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')
+            					and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
 			and <include refid="tchrsearch"></include>
 			and <include refid="tchrchkstatus"></include>
 		</select>
@@ -75,7 +77,8 @@
                     INNER join Lecture_sign LS
                     on L.L_NUM = LS.L_NUM and P.ID = LS.ID
                     where L.ID = #{teacher}
-                    and P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+                    and P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')
+                    					and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
 					and <include refid="tchrsearch"></include>
 					and <include refid="tchrchkstatus"></include>
 					<include refid="orderby"></include>)TCHR)

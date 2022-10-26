@@ -3,14 +3,15 @@ function init(){
     let endDate = document.getElementById("endDate");
     
     let page = 1;
+    
     let offset = new Date().getTimezoneOffset() * 60000;
     let today = new Date(Date.now() - offset).toISOString().substring(0,10);
+    endDate.value = today
+    startDate.value= today.substring(0,8)+"01";
 
     let orderby = document.querySelectorAll('input[name="orderby"]')
     let orderbyVal = document.querySelector('input[name="orderby"]:checked').value;
 
-    endDate.value = today
-    startDate.value= today.substring(0,8)+"01";
 
     payList(page)
     totalpay()
@@ -59,6 +60,7 @@ function payList(page){
     //list 요청
     let postResult = document.getElementById("postResult");
     let chkstatus = getCheckboxValue("status")
+    let totalAmount = document.getElementById("totalAmount");
     orderbyVal = document.querySelector('input[name="orderby"]:checked').value
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST","/teacher/salesList");
@@ -66,27 +68,15 @@ function payList(page){
     xhttp.send("page="+page+"&chkstatus="+chkstatus+"&startDate="+startDate.value+"&endDate="+endDate.value+"&kind="+kind.value+"&search="+search.value+"&orderby="+orderbyVal)
     xhttp.addEventListener("readystatechange", function(){
         if(this.readyState==4 && this.status==200){
+            //jsp로 전달
             postResult.innerHTML = xhttp.responseText;
+            //환불된 강의 제외하고 매출액 계산된 값 가져와 보여주기
+            let ttAmount = postResult.children[0].getAttribute("data-ttAmount")
+            totalAmount.innerHTML = ttAmount;
         }
     })
 }
 
-//매출액 계산해 가져오기
-function totalpay(){
-    // and pr_num is null
-    let totalAmount = document.getElementById("totalAmount");
-    let chkstatus = getCheckboxValue("status")
-    orderbyVal = document.querySelector('input[name="orderby"]:checked').value
-    const xhttp = new XMLHttpRequest();
-    xhttp.open("POST","./oamountTotal");
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-    xhttp.send("chkstatus="+chkstatus+"&startDate="+startDate.value+"&endDate="+endDate.value+"&kind="+kind.value+"&search="+search.value+"&orderby="+orderbyVal)
-    xhttp.addEventListener("readystatechange", function(){
-        if(this.readyState==4 && this.status==200){
-            totalAmount.innerHTML = xhttp.responseText;
-        }
-    })
-}
 
 function getCheckboxValue(chkboxname)  {
     // 선택된 목록 가져오기
