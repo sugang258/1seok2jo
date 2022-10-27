@@ -24,6 +24,17 @@
 	</repositories>
 	
 	<dependencies>
+	<!-- 메일전송 -->
+	<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
+	<dependency>
+	    <groupId>javax.mail</groupId>
+	    <artifactId>javax.mail-api</artifactId>
+	    <version>1.6.2</version>
+	</dependency>
+	
+	
+
+	
 	<!-- 아임포트 -->
 	<dependency>
 	    <groupId>com.github.iamport</groupId>
