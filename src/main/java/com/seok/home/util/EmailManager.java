@@ -13,20 +13,25 @@ import javax.mail.internet.MimeMessage;
 public class EmailManager {
 
     public static void main(String[] args) {
-        String recipient = "받는사람이메일@co.kr";
+        String recipient = "skeosk424@gmail.com";
         String code = "abc";
 
         // 1. 발신자의 메일 계정과 비밀번호 설정
-        final String user = "전송자이메일@co.kr";
-        final String password = "********";
+        final String user = "simyj12@naver.com";
+        final String password = "password";
 
         // 2. Property에 SMTP 서버 정보 설정
         Properties prop = new Properties();
-        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.host", "smtp.naver.com");
         prop.put("mail.smtp.port", 465);
         prop.put("mail.smtp.auth", "true");
+//        prop.put("defaultEncoding","utf-8");
         prop.put("mail.smtp.ssl.enable", "true");
-        prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        prop.put("mail.smtp.ssl.trust", "smtp.naver.com");
+        prop.put("mail.smtp.ssl.protocols", "TLSv1.2");
+//        prop.put("mail.smtp.starttls.required", "true");
+
+
 
         // 3. SMTP 서버정보와 사용자 정보를 기반으로 Session 클래스의 인스턴스 생성
         Session session = Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
