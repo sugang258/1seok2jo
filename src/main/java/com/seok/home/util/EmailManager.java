@@ -22,6 +22,7 @@ public class EmailManager {
 	private Session session;
 	
     public EmailManager() {
+    	System.out.println("이메일 매니저 초기화");
 
         // 2. Property에 SMTP 서버 정보 설정
         Properties prop = new Properties();
@@ -48,6 +49,9 @@ public class EmailManager {
     public void sendHTML(String recipient, String subject, String contents) {
         // 4. Message 클래스의 객체를 사용하여 수신자와 내용, 제목의 메시지를 작성한다.
         // 5. Transport 클래스를 사용하여 작성한 메세지를 전달한다.
+    	System.out.println(recipient);
+    	System.out.println(subject);
+    	System.out.println(contents);
 
         MimeMessage message = new MimeMessage(session);
         try {
@@ -60,7 +64,7 @@ public class EmailManager {
             message.setSubject(subject);
 
             // Text
-            message.setContent(contents ,"text/html");
+            message.setContent(contents ,"text/html;charset=utf-8");
 
             Transport.send(message);    // send message
 

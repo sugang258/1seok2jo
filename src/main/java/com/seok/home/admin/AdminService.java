@@ -18,6 +18,7 @@ import com.seok.home.member.RoleDTO;
 import com.seok.home.pay.PayDAO;
 import com.seok.home.pay.PaymentDTO;
 import com.seok.home.util.ChartDTO;
+import com.seok.home.util.EmailManager;
 
 @Service
 public class AdminService {
@@ -34,6 +35,8 @@ public class AdminService {
 	private CsDAO csDAO;
 	@Autowired
 	private PayDAO payDAO;
+	@Autowired
+	private EmailManager emailManager;
 	
 	public HashMap<String, Object> getAdminDashBoard () throws Exception{
 		HashMap<String, Object> result = new HashMap<String, Object>();
@@ -96,10 +99,65 @@ public class AdminService {
 		
 		String message = "";
 		if(result==1) {
-			message = "답변이 완료되었습니다";
+			message = "답변 등록에 성공하였습니다.";
+			StringBuffer mailMsg = new StringBuffer();
+			
+			//https://unlayer.com/download-template?url=https://assets.unlayer.com/projects/6070/_generated/zip/1667390037363-gTLhhTwSpiKb9v93.zip&utm_source=automation&utm_medium=email&utm_campaign=lead-d0
+			
+			mailMsg.append("<html><body>");
+			mailMsg.append("<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT\" crossorigin=\"anonymous\">");
+			
+			mailMsg.append("<div class=\"board\">\r\n"
+					+ "                  <!--내가 문의한 부분-->\r\n"
+					+ "                  <div class=\"board_contents\">\r\n"
+					+ "                    <div class=\"row py-2\">\r\n"
+					+ "                      <div class=\"col-10 align-content-center\" style=\"padding: 8px 8px 8px 0px; font-size: 14px; margin-top: 0.5rem\">\r\n"
+					+ "                        <h5 class=\"px-2\"><b>eee</b></h5>\r\n"
+					+ "                      </div>\r\n"
+					+ "                      <div class=\"col-2 align-content-center my-auto\">\r\n"
+					+ "                        \r\n"
+					+ "                          \r\n"
+					+ "                        <div class=\"b1 d-flex\">\r\n"
+					+ "                          <div class=\"mx-auto\">\r\n"
+					+ "                            <b>\r\n"
+					+ "                              답변완료\r\n"
+					+ "                            </b>\r\n"
+					+ "                          </div>\r\n"
+					+ "                        </div>\r\n"
+					+ "                        \r\n"
+					+ "          \r\n"
+					+ "                      </div>\r\n"
+					+ "                    </div>\r\n"
+					+ "                    <hr style=\"margin: 0;\">\r\n"
+					+ "                    <div class=\"row p-3 text-muted flex-row-reverse\">\r\n"
+					+ "                      2022-11-02\r\n"
+					+ "                    </div>\r\n"
+					+ "                    <div class=\"row\">\r\n"
+					+ "                      <p>eeee</p>\r\n"
+					+ "                    </div>\r\n"
+					+ "                  </div>\r\n"
+					+ "          \r\n"
+					+ "                  <!--답변부분-->\r\n"
+					+ "                  <div class=\"cs_answers\">\r\n"
+					+ "                    <div class=\"mb-3\">\r\n"
+					+ "                      <h5><b>답변</b></h5>\r\n"
+					+ "                      \r\n"
+					+ "                        eeee\r\n"
+					+ "                      \r\n"
+					+ "                        \r\n"
+					+ "                    </div>\r\n"
+					+ "                  </div>\r\n"
+					+ "                </div>");
+			
+			mailMsg.append("<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8\" crossorigin=\"anonymous\"></script>");
+			mailMsg.append("</html></body>");
+			csBoardDTO = csDAO.getBoardDetail(csBoardDTO);
+			emailManager.sendHTML(csBoardDTO.getCs_email(), "[일석이조]문의에 답변이 완료되었습니다", mailMsg.toString());
 		}else {
 			message = "답변 등록에 실패하였습니다";
 		}
+		System.out.println(message);
+		
 		return message;
 	}
 	
