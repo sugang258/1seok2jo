@@ -29,6 +29,9 @@
 ## ERD
 ![ERD](https://github.com/sugang258/1seok2jo/blob/84733952ae4c2a4ac062fcfabc8c802a974b6492/ERD.jpg)
 
+## System Architecture
+![System Architecture](https://github.com/sugang258/1seok2jo/blob/1912d2f043aa1a582c16525ef0413330c6a6790a/SystemArchitecture.png)
+
 ## Notion
 📕[Notion](https://sugary-sidewalk-812.notion.site/6ec687ba4b9e449d8720a940a654bc2e)
 
