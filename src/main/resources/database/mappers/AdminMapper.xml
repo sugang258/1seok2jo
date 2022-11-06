@@ -44,15 +44,16 @@
 		<select id="getBoardList" parameterType="AdminPager" resultType="FreeBoardDTO">
 			select *                
 			from(select rownum as rown, board.* 
-	        from(select * from (select fb_num , title, contents,category, id, reg_date, '자유게시판' as bd_name from free_board
-			union all
-			select sb_num, title, contents, category, id, reg_date, '학습게시판' as bd_name from study_board
-			union all
-			select n_num, title, contents,'공지사항' as category, id, reg_date, '공지사항' as bd_name from notice) 
-			where <include refid="search"></include>
-			and <include refid="chkstatus"></include>
-			and REG_DATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
-			<include refid="orderby"></include>)board)
+	        	from(select * 
+	        		from (select fb_num , title, contents,category, id, reg_date, '자유게시판' as bd_name from free_board
+						union all
+						select sb_num, title, contents, category, id, reg_date, '학습게시판' as bd_name from study_board
+						union all
+						select n_num, title, contents,'공지사항' as category, id, reg_date, '공지사항' as bd_name from notice) 
+					where <include refid="search"></include>
+					and <include refid="chkstatus"></include>
+					and REG_DATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+					<include refid="orderby"></include>)board)
 			where rown between #{startRow} and #{lastRow}
 		</select>
 		

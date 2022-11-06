@@ -28,7 +28,7 @@
 		        from member m
 		        where <include refid="search"></include>
 		        order by id asc)
-		        where rown between #{startRow} and #{lastRow}) MR
+		    where rown between #{startRow} and #{lastRow}) MR
 		left join member_role R
 		using (id)
 		left join role RR
