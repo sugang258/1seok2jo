@@ -1,10 +1,10 @@
 let btnimport = document.getElementById("btnimport");
 
-//결제창이 열리면 주문번호를 생성한다.
 const url = new URL(window.location.href)
 const urlparam = url.searchParams;
 let l_num = urlparam.get("l_num")
 
+//결제창이 열리면 주문번호를 생성한다.
 let now = new Date();
 let uid = "1seok2jo-"+now.getTime();
 
@@ -30,23 +30,27 @@ rtt=tt;
 total.innerText=tt+"원";
 realtotal.innerText=rtt+"원";
 
-//포인트 금액 입력하고 블러하면 현재 포인트와 검증해 문제 없으면 위에 뜨게 그리고 총액 계산
+//마일리지 금액 입력하고 블러하면 가진 마일리지와 검증해 상단에 문구 보여주고 총액 계산
 point.addEventListener("blur", function(){
-    pointVal = point.value;
-    let rspoint = point.getAttribute('data-point');
-    if(pointVal>Number.parseInt(rspoint)){
+    pointVal = point.value; //입력한 포인트를 저장
+    let rspoint = point.getAttribute('data-point'); //주문한 멤버가 가지고 있는 포인트
+    //입력한 포인트가 가진 포인트보다 크면 사용포인트를 가진포인트로 변경하고 알림문구 보여줌
+    if(pointVal>Number.parseInt(rspoint)){ 
         usePoint.innerText = rspoint+"까지 사용가능 합니다"
         pointVal=Number.parseInt(rspoint);
-    }else if(pointVal<0){
+    }//0보다 작으면 사용포인트를 0으로 변경하고 알림문구 보여줌
+    else if(pointVal<0){ 
         pointVal = 0;
         usePoint.innerText = '0보다 작은 수는 입력할 수 없습니다';
-    }else{
-        
+    }//정상 범위의 값인경우 사용포인트를 상단에 띄운다.
+    else{ 
         usePoint.innerText = pointVal;
     }
+    // if 처리된 사용포인트를 input에 입력
     point.value=pointVal;
 
-    rtt=(tt-pointVal)
+    //결제금액 저장
+    rtt=(tt-pointVal) 
     realtotal.innerText=rtt+"원";
 })
 
@@ -64,36 +68,31 @@ function requestPay() {
     IMP.init("imp18741385"); // 아임포트 회원가입하면 부여되는 내 식별코드 입력
 
     IMP.request_pay(
-        //파라미터값 상세
-        //https://docs.iamport.kr/sdk/javascript-sdk#request_pay
+        //파라미터값 상세 : https://docs.iamport.kr/sdk/javascript-sdk#request_pay
         {
-        pg : 'uplus', //kcp
+        pg : 'uplus', //PG사, (kcp 등)
         pay_method : 'card',//필수, 결제수단
         merchant_uid: uid, //필수, 주문번호 내가 생성함. 중복불가!!!
         name : l_name[0].innerHTML+" 등",
         amount : rtt, //필수, 결제금액
-        buyer_email : email.value, //
-        buyer_name : name.value, //
-        buyer_tel : phone.value, //필수, 가능한한..
+        buyer_email : email.value, // 주문자 이메일
+        buyer_name : name.value, // 주문자 이름
+        buyer_tel : phone.value, //필수, 주문자 연락처
     }, function (rsp) { // callback
         if (rsp.success) {
-            //ajax로 결제성공 페이지 요청
-            console.log(rsp)
+            //ajax로 결제성공시 데이터 전달해 저장
             const xhttp = new XMLHttpRequest();
-            //rsp에 금액, 포인트 추가
+            //응답 받은 rsp에 금액, 포인트 추가
             rsp.point=pointVal
             rsp.amount=tt
             rsp.l_num = l_num;
 
-            const res = JSON.stringify(rsp)
+            const res = JSON.stringify(rsp) //rsp를 json 형태로 변환
 
             xhttp.open("Post","./success");
             xhttp.setRequestHeader("Content-type", "application/json");
-            
             xhttp.send(res);
-
             xhttp.addEventListener("readystatechange", function(){
-
                 if(this.readyState==4 && this.status==200){
                     if(xhttp.response==1){
                         for(let i=0;i<num.length;i++) {
@@ -124,7 +123,6 @@ function requestPay() {
                                 }
                             }
                         }
-                        
                     }
                     location.href="./complete?p_uid="+uid;
 

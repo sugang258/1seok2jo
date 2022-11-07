@@ -18,6 +18,7 @@ import com.seok.home.member.RoleDTO;
 import com.seok.home.pay.PayDAO;
 import com.seok.home.pay.PaymentDTO;
 import com.seok.home.util.ChartDTO;
+import com.seok.home.util.EmailManager;
 
 @Service
 public class AdminService {
@@ -34,6 +35,8 @@ public class AdminService {
 	private CsDAO csDAO;
 	@Autowired
 	private PayDAO payDAO;
+	@Autowired
+	private EmailManager emailManager;
 	
 	public HashMap<String, Object> getAdminDashBoard () throws Exception{
 		HashMap<String, Object> result = new HashMap<String, Object>();
@@ -96,10 +99,16 @@ public class AdminService {
 		
 		String message = "";
 		if(result==1) {
-			message = "답변이 완료되었습니다";
+			message = "답변 등록에 성공하였습니다.";
+			
+			csBoardDTO = csDAO.getBoardDetail(csBoardDTO);
+			
+			String mailText = emailManager.getcsAnswerHtml(csBoardDTO.getCs_title(), csBoardDTO.getCs_contents(), csBoardDTO.getCs_answer());
+			emailManager.sendHTML(csBoardDTO.getCs_email(), "[일석이조]문의에 답변이 완료되었습니다", mailText);
 		}else {
 			message = "답변 등록에 실패하였습니다";
 		}
+		
 		return message;
 	}
 	
@@ -137,27 +146,27 @@ public class AdminService {
 	
 	public String getAuth(MemberDTO member) throws Exception{
 		//아이디 패스워드 맞는지 확인
-		
 		member = memberDAO.getLogin(member);
-		
-		if(member==null) {
+		String msg = "";
+		if(member==null) { //일석이조 회원이 아닌 경우
 			return "일석이조 회원 인증 실패";
 		}else {
 			//이미 권한이 있는지 확인
 			for(RoleDTO role:member.getRoleDTOs()) {
 				if(role.getRoleNum()==1L) {
-					return "관리자 권한이 있는 계정입니다.";
+					msg = "관리자 권한이 있는 계정입니다.";
+					break;
 				}
 			}
 			//권한추가
 			int result = memberDAO.setAdminRole(member);
 			if(result==1) {
-				return "인증이 완료되었습니다\n관리자 로그인을 진행해주세요";				
+				msg ="인증이 완료되었습니다 관리자 로그인을 진행해주세요";				
 			}else {
-				return "관리자 인증 실패\n 담당자에게 문의해주세요";
+				msg ="관리자 인증 실패 담당자에게 문의해주세요";
 			}
 		}
-		
+		return msg;
 	}
 	
 	//board삭제

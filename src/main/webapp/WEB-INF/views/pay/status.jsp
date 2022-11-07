@@ -146,7 +146,7 @@
                                     </c:choose>
                                 </span><BR>
                                 <div class="d-flex justify-content-between">
-                                <span>${paymentDTO.p_c_name} </span><span id="pcnumView" data-pcnum="${paymentDTO.p_c_num}"></span><!--카드번호 문자열 처리 필요-->
+                                <span>${paymentDTO.p_c_name} </span><span id="pcnumView" data-pcnum="${paymentDTO.p_c_num}"></span>
                                 </div>
                             </td>
                         </tr>

@@ -1,8 +1,6 @@
 //카드번호 보여주기
 let pcnumView = document.getElementById("pcnumView");
-
 let pcnum = pcnumView.getAttribute("data-pcnum");
-
 pcnumView.innerText=pcnum.substring(0,6)+'******'+pcnum.substring(12,16)
 
 
@@ -49,7 +47,6 @@ for(let i=0; i<chk_orderprnum.length ; i++){
             chk_orderprnum[i].children[1].children[1].innerText = chk_prnum[j].getAttribute("data-pramount")
             //환불마일리지 세팅
             chk_orderprnum[i].children[2].children[1].innerText = chk_prnum[j].getAttribute("data-prpoint")+"마일"
-        }   
-        
+        }    
     }
 }

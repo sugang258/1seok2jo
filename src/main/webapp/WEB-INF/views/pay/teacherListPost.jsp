@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover" data-ttAmount="${ttAmount}">
     <thead>
         <tr>
             <th>주문번호</th>
@@ -24,7 +24,7 @@
                 <td>${order.o_amount}</td>
                 <td>${order.p_regdate}</td>
                 <td>${order.lectureDTO.lectureAddDTO.status eq 1? '수강 중':'수강 종료'}</td>
-                <td>${null eq order.pr_num? '결제완료':'환불완료'}</td>
+                <td>${null eq order.pr_num? '결제':'환불'}</td>
             </tr>
         </c:forEach>
     </tbody>

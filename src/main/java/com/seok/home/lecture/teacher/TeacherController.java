@@ -36,23 +36,15 @@ public class TeacherController {
 		
 		pager.setTeacher(member.getId());
 		
+		//판매목록 리스트
 		List<OrderDTO> orderList = teacherService.getTeacherList(pager);
 		mv.addObject("orderList", orderList);
+		//총 판매금액
+		mv.addObject("ttAmount", teacherService.getOamountTotal(pager));
+		//페이징
 		mv.addObject("pager", pager);
 		mv.setViewName("pay/teacherListPost");
 		return mv;
-	}
-	
-	@PostMapping("/oamountTotal")
-	@ResponseBody
-	public String getOamountTotal(TeacherPager pager,HttpSession session)throws Exception{
-		MemberDTO member = (MemberDTO)session.getAttribute("member");
-		
-		pager.setTeacher(member.getId());
-		
-		String result = teacherService.getOamountTotal(pager)+"";
-		
-		return result;
 	}
 
 	

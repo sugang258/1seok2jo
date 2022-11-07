@@ -9,16 +9,16 @@ public class BackErrorController {
     
     //ExceptionHandler method만 모임
     
-    @ExceptionHandler(NullPointerException.class)
+//    @ExceptionHandler(NullPointerException.class)
     public ModelAndView exceptionTest() {
         ModelAndView mv = new ModelAndView();
         
-        mv.setViewName("errors/error_404");
+        mv.setViewName("errors/error_500");
         
         return mv;
     }
     
-    @ExceptionHandler(Exception.class)
+//    @ExceptionHandler(Exception.class)
     public ModelAndView exceptionTest2(Exception e) {
         ModelAndView mv = new ModelAndView();
         

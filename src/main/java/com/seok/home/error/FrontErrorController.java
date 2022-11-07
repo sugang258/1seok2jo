@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class FrontErrorController {
 	
-	@GetMapping("/*")
+//	@GetMapping("/*")
 	public ModelAndView error404() throws Exception{
 		ModelAndView mv = new ModelAndView();
         
@@ -17,7 +17,7 @@ public class FrontErrorController {
         return mv;
 	}
     
-    @GetMapping("/error/error400")
+//    @GetMapping("/error/error400")
     public ModelAndView error400() throws Exception {
         ModelAndView mv = new ModelAndView();
         
@@ -30,7 +30,7 @@ public class FrontErrorController {
         ModelAndView mv = new ModelAndView();
         
         System.out.println("Server Exception발생");
-        mv.setViewName("errors/error_404");
+        mv.setViewName("errors/error_500");
         return mv;
     }
 

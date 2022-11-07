@@ -77,7 +77,7 @@ public class PayImportTest extends MyAbstractTest{
 	        }
 	    }
 
-	    @Test
+//	    @Test
 	    public void testPartialCancelPaymentAlreadyCancelledMerchantUid() {
 	        String test_already_cancelled_merchant_uid = "1seok2jo-1663731094101";
 	        CancelData cancel_data = new CancelData(test_already_cancelled_merchant_uid, false, BigDecimal.valueOf(1500)); //merchant_uid를 통한 500원 부분취소

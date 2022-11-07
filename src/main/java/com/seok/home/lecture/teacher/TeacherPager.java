@@ -18,20 +18,17 @@ public class TeacherPager {
 	//Mapper에서 꺼내서 사용할 변수
 	private Long startRow;
 	private Long lastRow;
-	
 	//이전, 다음 블럭의 유무
 	private boolean pre;
-	private boolean next;
-	
+	private boolean next;	
 	//검색
 	private String kind;// 컬럼의 종류
 	private String search;//검색어
-	private String startDate;
-	private String endDate;
-	private String orderby;
-	
-	private String teacher;
-	private String chkstatus;
+	private String startDate; //시작일자
+	private String endDate; //끝 일자
+	private String orderby; // 정렬
+	private String teacher; // 강사 아이디
+	private String chkstatus; // 환불상태
 	
 	
 	public TeacherPager() {

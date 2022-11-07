@@ -21,10 +21,10 @@
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
 							<h1 class="fs-4 card-title fw-bold mb-4">관리자 로그인</h1>
-							<form method="POST" action="/admin/login" class="needs-validation" onsubmit="rememberid();" autocomplete="off">
+							<form method="POST" action="/admin/login" class="needs-validation" autocomplete="off">
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="id">ID</label>
-									<input id="id" type="text" class="form-control" name="id" required autofocus>
+									<input id="id" type="text" class="form-control" name="id" value="${cookie.rememberid.value}" required autofocus>
 								</div>
 
 								<div class="mb-3">

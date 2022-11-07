@@ -4,7 +4,9 @@ import java.lang.reflect.Member;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,13 +156,31 @@ public class AdminController {
 		return mv;
 	}
 	
-	@PostMapping
-	private String getLogin(MemberDTO member, HttpServletRequest request) throws Exception {
-		//아이디와 비밀번호를 체크한 뒤 admin 자격이 있으면 세션의 admin값에 true로 돌려준다.
+	@PostMapping("login")
+	private String getLogin(String remember, MemberDTO member, HttpServletRequest request,HttpServletResponse response) throws Exception {
+		//아이디 쿠키에 저장
 		member = service.getLogin(member);
-		
+		//체크박스가 null이 아니면 쿠키에 아이디 저장
+		if(remember!=null) {
+			Cookie cookie = new Cookie("rememberid", request.getParameter("id"));
+			cookie.setMaxAge(60*60*24*7);//쿠키 유효시간 설정 일주일
+			cookie.setPath("/admin");
+			response.addCookie(cookie);
+		//체크박스가 null이면 쿠키 삭제
+		}else {
+			Cookie[] cookies = request.getCookies();
+			for(Cookie cookie : cookies) {
+				if(cookie.getName().equals("rememberid")) {
+					cookie.setMaxAge(0);
+					cookie.setPath("/admin"); 
+					response.addCookie(cookie);
+				}
+			}
+		}
 		HttpSession session = request.getSession();
 		
+		
+		//아이디와 비밀번호를 체크한 뒤 admin 자격이 있으면 세션의 admin값에 true로 돌려준다.
 		String url = "";
 		boolean chk = false;
 		if(member!=null) {
@@ -169,7 +189,7 @@ public class AdminController {
 			session.setAttribute("admin", chk);
 			url = "redirect: /admin/main";
 		}else {
-			url = "admin/login";
+			url = "redirect: /admin/login";
 		}
 
 		return url;

@@ -6,9 +6,9 @@
         <colgroup>
             <col width="8%"  />
             <col width="12%"/>
-            <col width="41%" />
+            <col width="39%" />
             <col width="9%"/>
-            <col width="6%"/>
+            <col width="8%"/>
             <col width="8%"/>
             <col width="8%"/>
             <col width="10%"/>

@@ -6,7 +6,11 @@
     <mapper namespace="com.seok.home.pay.PayDAO">
     	<select id="getChartAdminDashBoard" resultType="com.seok.home.util.ChartDTO">
     		select *
-            from(select labels, sum(p_realamount) as data from(select TO_CHAR(p_regdate, 'YYYY.MM.DD') as labels, p_realamount from payments)
+            from(
+            	select labels, sum(p_realamount) as data 
+            	from(
+            		select TO_CHAR(p_regdate, 'YYYY.MM.DD') as labels, p_realamount 
+            		from payments)
 			group by labels
             order by labels desc)
             where rownum between 1 and 5
@@ -23,7 +27,8 @@
             INNER join Lecture_sign LS
             on L.L_NUM = LS.L_NUM and P.ID = LS.ID
             where L.ID = #{teacher}
-            and P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+            and P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')
+            				and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
 			and <include refid="tchrsearch"></include>
 			and <include refid="tchrchkstatus"></include>
 			and R.pr_num is null
@@ -56,7 +61,8 @@
             INNER join Lecture_sign LS
             on L.L_NUM = LS.L_NUM and P.ID = LS.ID
             where L.ID = #{teacher}
-            and P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+            and P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')
+            					and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
 			and <include refid="tchrsearch"></include>
 			and <include refid="tchrchkstatus"></include>
 		</select>
@@ -75,7 +81,8 @@
                     INNER join Lecture_sign LS
                     on L.L_NUM = LS.L_NUM and P.ID = LS.ID
                     where L.ID = #{teacher}
-                    and P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
+                    and P.P_REGDATE between TO_DATE(#{startDate}||' 00:00:00','YYYY-MM-DD HH24:MI:SS')
+                    					and TO_DATE(#{endDate}||' 23:59:59','YYYY-MM-DD HH24:MI:SS')
 					and <include refid="tchrsearch"></include>
 					and <include refid="tchrchkstatus"></include>
 					<include refid="orderby"></include>)TCHR)
@@ -272,15 +279,17 @@
     	</resultMap>
 
     	<select id="getPayDetail" parameterType="PaymentDTO" resultMap="allPaymentsResult">
-    		select P.*, O.O_NUM, O.L_NUM, O.O_AMOUNT, L.ID TEACHER, L.LEVEL_NUM, L.L_NAME, L.L_DATE , L.L_PRICE, R.PR_NUM, R.PR_REASON, R.PR_AMOUNT, R.PR_POINT, R.PR_REGDATE
+    		SELECT P.*, O.O_NUM, O.L_NUM, O.O_AMOUNT, 
+    			L.ID TEACHER, L.LEVEL_NUM, L.L_NAME, L.L_DATE , L.L_PRICE, 
+    			R.PR_NUM, R.PR_REASON, R.PR_AMOUNT, R.PR_POINT, R.PR_REGDATE
 			FROM payments P
-			left join ORDERS O
-			on P.p_uid = O.P_UID
-			left join Lecture L
-			on O.l_num = L.l_num
-			left join refund R
-			on O.O_num = R.O_num
-			where P.p_uid=#{p_uid}
+				left join ORDERS O
+				on P.p_uid = O.P_UID
+				left join Lecture L
+				on O.l_num = L.l_num
+				left join refund R
+				on O.O_num = R.O_num
+			WHERE P.p_uid=#{p_uid}
     	</select>
     
     	<insert id="savePayment" parameterType="PaymentDTO">
